@@ -33,7 +33,7 @@ ProjectsApi::~ProjectsApi()
 {
 }
 
-pplx::task<void> ProjectsApi::cloudDeleteV1ProjectsBySlug(utility::string_t slug) const
+pplx::task<void> ProjectsApi::cloudDeleteV1ProjectsSlug(utility::string_t slug) const
 {
 
 
@@ -47,7 +47,6 @@ pplx::task<void> ProjectsApi::cloudDeleteV1ProjectsBySlug(utility::string_t slug
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -68,7 +67,7 @@ pplx::task<void> ProjectsApi::cloudDeleteV1ProjectsBySlug(utility::string_t slug
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("ProjectsApi->cloudDeleteV1ProjectsBySlug does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("ProjectsApi->cloudDeleteV1ProjectsSlug does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -95,7 +94,7 @@ pplx::task<void> ProjectsApi::cloudDeleteV1ProjectsBySlug(utility::string_t slug
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("ProjectsApi->cloudDeleteV1ProjectsBySlug does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("ProjectsApi->cloudDeleteV1ProjectsSlug does not consume any supported media type"));
     }
 
     // authentication (bearerAuth) required
@@ -116,7 +115,7 @@ pplx::task<void> ProjectsApi::cloudDeleteV1ProjectsBySlug(utility::string_t slug
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling cloudDeleteV1ProjectsBySlug: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling cloudDeleteV1ProjectsSlug: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -127,7 +126,7 @@ pplx::task<void> ProjectsApi::cloudDeleteV1ProjectsBySlug(utility::string_t slug
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling cloudDeleteV1ProjectsBySlug: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling cloudDeleteV1ProjectsSlug: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -139,7 +138,7 @@ pplx::task<void> ProjectsApi::cloudDeleteV1ProjectsBySlug(utility::string_t slug
         return void();
     });
 }
-pplx::task<void> ProjectsApi::cloudDeleteV1ProjectsBySlugDomainsByHost(utility::string_t slug, utility::string_t host) const
+pplx::task<void> ProjectsApi::cloudDeleteV1ProjectsSlugDomainsHost(utility::string_t slug, utility::string_t host) const
 {
 
 
@@ -174,7 +173,7 @@ pplx::task<void> ProjectsApi::cloudDeleteV1ProjectsBySlugDomainsByHost(utility::
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("ProjectsApi->cloudDeleteV1ProjectsBySlugDomainsByHost does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("ProjectsApi->cloudDeleteV1ProjectsSlugDomainsHost does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -201,7 +200,7 @@ pplx::task<void> ProjectsApi::cloudDeleteV1ProjectsBySlugDomainsByHost(utility::
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("ProjectsApi->cloudDeleteV1ProjectsBySlugDomainsByHost does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("ProjectsApi->cloudDeleteV1ProjectsSlugDomainsHost does not consume any supported media type"));
     }
 
     // authentication (bearerAuth) required
@@ -222,7 +221,7 @@ pplx::task<void> ProjectsApi::cloudDeleteV1ProjectsBySlugDomainsByHost(utility::
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling cloudDeleteV1ProjectsBySlugDomainsByHost: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling cloudDeleteV1ProjectsSlugDomainsHost: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -233,7 +232,7 @@ pplx::task<void> ProjectsApi::cloudDeleteV1ProjectsBySlugDomainsByHost(utility::
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling cloudDeleteV1ProjectsBySlugDomainsByHost: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling cloudDeleteV1ProjectsSlugDomainsHost: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -245,7 +244,7 @@ pplx::task<void> ProjectsApi::cloudDeleteV1ProjectsBySlugDomainsByHost(utility::
         return void();
     });
 }
-pplx::task<std::vector<std::shared_ptr<Projects_Project>>> ProjectsApi::cloudGetV1Projects() const
+pplx::task<std::vector<std::shared_ptr<Cloud_projectsProject>>> ProjectsApi::cloudGetV1Projects() const
 {
 
 
@@ -347,14 +346,14 @@ pplx::task<std::vector<std::shared_ptr<Projects_Project>>> ProjectsApi::cloudGet
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::vector<std::shared_ptr<Projects_Project>> localVarResult;
+        std::vector<std::shared_ptr<Cloud_projectsProject>> localVarResult;
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
             web::json::value localVarJson = web::json::value::parse(localVarResponse);
             for( auto& localVarItem : localVarJson.as_array() )
             {
-                std::vector<std::shared_ptr<Projects_Project>>::value_type localVarItemObj;
+                std::vector<std::shared_ptr<Cloud_projectsProject>>::value_type localVarItemObj;
                 ModelBase::fromJson(localVarItem, localVarItemObj);
                 localVarResult.push_back(localVarItemObj);
             }
@@ -372,7 +371,7 @@ pplx::task<std::vector<std::shared_ptr<Projects_Project>>> ProjectsApi::cloudGet
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudGetV1ProjectsBySlug(utility::string_t slug) const
+pplx::task<std::shared_ptr<Cloud_projectsProject>> ProjectsApi::cloudGetV1ProjectsSlug(utility::string_t slug) const
 {
 
 
@@ -407,7 +406,7 @@ pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudGetV1ProjectsByS
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("ProjectsApi->cloudGetV1ProjectsBySlug does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("ProjectsApi->cloudGetV1ProjectsSlug does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -434,7 +433,7 @@ pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudGetV1ProjectsByS
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("ProjectsApi->cloudGetV1ProjectsBySlug does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("ProjectsApi->cloudGetV1ProjectsSlug does not consume any supported media type"));
     }
 
     // authentication (bearerAuth) required
@@ -455,7 +454,7 @@ pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudGetV1ProjectsByS
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling cloudGetV1ProjectsBySlug: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling cloudGetV1ProjectsSlug: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -466,7 +465,7 @@ pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudGetV1ProjectsByS
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling cloudGetV1ProjectsBySlug: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling cloudGetV1ProjectsSlug: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -475,7 +474,7 @@ pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudGetV1ProjectsByS
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<Projects_Project> localVarResult(new Projects_Project());
+        std::shared_ptr<Cloud_projectsProject> localVarResult(new Cloud_projectsProject());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
@@ -490,13 +489,13 @@ pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudGetV1ProjectsByS
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling cloudGetV1ProjectsBySlug: unsupported response type"));
+                , utility::conversions::to_string_t("error calling cloudGetV1ProjectsSlug: unsupported response type"));
         }
 
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<Projects_Deployment>>> ProjectsApi::cloudGetV1ProjectsBySlugDeployments(utility::string_t slug) const
+pplx::task<std::vector<std::shared_ptr<Cloud_projectsDeployment>>> ProjectsApi::cloudGetV1ProjectsSlugDeployments(utility::string_t slug) const
 {
 
 
@@ -531,7 +530,7 @@ pplx::task<std::vector<std::shared_ptr<Projects_Deployment>>> ProjectsApi::cloud
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("ProjectsApi->cloudGetV1ProjectsBySlugDeployments does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("ProjectsApi->cloudGetV1ProjectsSlugDeployments does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -558,7 +557,7 @@ pplx::task<std::vector<std::shared_ptr<Projects_Deployment>>> ProjectsApi::cloud
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("ProjectsApi->cloudGetV1ProjectsBySlugDeployments does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("ProjectsApi->cloudGetV1ProjectsSlugDeployments does not consume any supported media type"));
     }
 
     // authentication (bearerAuth) required
@@ -579,7 +578,7 @@ pplx::task<std::vector<std::shared_ptr<Projects_Deployment>>> ProjectsApi::cloud
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling cloudGetV1ProjectsBySlugDeployments: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling cloudGetV1ProjectsSlugDeployments: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -590,7 +589,7 @@ pplx::task<std::vector<std::shared_ptr<Projects_Deployment>>> ProjectsApi::cloud
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling cloudGetV1ProjectsBySlugDeployments: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling cloudGetV1ProjectsSlugDeployments: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -599,14 +598,14 @@ pplx::task<std::vector<std::shared_ptr<Projects_Deployment>>> ProjectsApi::cloud
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::vector<std::shared_ptr<Projects_Deployment>> localVarResult;
+        std::vector<std::shared_ptr<Cloud_projectsDeployment>> localVarResult;
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
             web::json::value localVarJson = web::json::value::parse(localVarResponse);
             for( auto& localVarItem : localVarJson.as_array() )
             {
-                std::vector<std::shared_ptr<Projects_Deployment>>::value_type localVarItemObj;
+                std::vector<std::shared_ptr<Cloud_projectsDeployment>>::value_type localVarItemObj;
                 ModelBase::fromJson(localVarItem, localVarItemObj);
                 localVarResult.push_back(localVarItemObj);
             }
@@ -618,13 +617,13 @@ pplx::task<std::vector<std::shared_ptr<Projects_Deployment>>> ProjectsApi::cloud
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling cloudGetV1ProjectsBySlugDeployments: unsupported response type"));
+                , utility::conversions::to_string_t("error calling cloudGetV1ProjectsSlugDeployments: unsupported response type"));
         }
 
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Projects_Deployment>> ProjectsApi::cloudGetV1ProjectsBySlugDeploymentsById(utility::string_t slug, utility::string_t id) const
+pplx::task<std::shared_ptr<Cloud_projectsDeployment>> ProjectsApi::cloudGetV1ProjectsSlugDeploymentsId(utility::string_t slug, utility::string_t id) const
 {
 
 
@@ -660,7 +659,7 @@ pplx::task<std::shared_ptr<Projects_Deployment>> ProjectsApi::cloudGetV1Projects
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("ProjectsApi->cloudGetV1ProjectsBySlugDeploymentsById does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("ProjectsApi->cloudGetV1ProjectsSlugDeploymentsId does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -687,7 +686,7 @@ pplx::task<std::shared_ptr<Projects_Deployment>> ProjectsApi::cloudGetV1Projects
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("ProjectsApi->cloudGetV1ProjectsBySlugDeploymentsById does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("ProjectsApi->cloudGetV1ProjectsSlugDeploymentsId does not consume any supported media type"));
     }
 
     // authentication (bearerAuth) required
@@ -708,7 +707,7 @@ pplx::task<std::shared_ptr<Projects_Deployment>> ProjectsApi::cloudGetV1Projects
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling cloudGetV1ProjectsBySlugDeploymentsById: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling cloudGetV1ProjectsSlugDeploymentsId: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -719,7 +718,7 @@ pplx::task<std::shared_ptr<Projects_Deployment>> ProjectsApi::cloudGetV1Projects
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling cloudGetV1ProjectsBySlugDeploymentsById: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling cloudGetV1ProjectsSlugDeploymentsId: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -728,7 +727,7 @@ pplx::task<std::shared_ptr<Projects_Deployment>> ProjectsApi::cloudGetV1Projects
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<Projects_Deployment> localVarResult(new Projects_Deployment());
+        std::shared_ptr<Cloud_projectsDeployment> localVarResult(new Cloud_projectsDeployment());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
@@ -743,13 +742,13 @@ pplx::task<std::shared_ptr<Projects_Deployment>> ProjectsApi::cloudGetV1Projects
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling cloudGetV1ProjectsBySlugDeploymentsById: unsupported response type"));
+                , utility::conversions::to_string_t("error calling cloudGetV1ProjectsSlugDeploymentsId: unsupported response type"));
         }
 
         return localVarResult;
     });
 }
-pplx::task<void> ProjectsApi::cloudGetV1ProjectsBySlugDomains(utility::string_t slug) const
+pplx::task<std::shared_ptr<Cloud_projectsDomains>> ProjectsApi::cloudGetV1ProjectsSlugDomains(utility::string_t slug) const
 {
 
 
@@ -763,6 +762,7 @@ pplx::task<void> ProjectsApi::cloudGetV1ProjectsBySlugDomains(utility::string_t 
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -783,7 +783,7 @@ pplx::task<void> ProjectsApi::cloudGetV1ProjectsBySlugDomains(utility::string_t 
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("ProjectsApi->cloudGetV1ProjectsBySlugDomains does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("ProjectsApi->cloudGetV1ProjectsSlugDomains does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -810,7 +810,7 @@ pplx::task<void> ProjectsApi::cloudGetV1ProjectsBySlugDomains(utility::string_t 
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("ProjectsApi->cloudGetV1ProjectsBySlugDomains does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("ProjectsApi->cloudGetV1ProjectsSlugDomains does not consume any supported media type"));
     }
 
     // authentication (bearerAuth) required
@@ -831,7 +831,7 @@ pplx::task<void> ProjectsApi::cloudGetV1ProjectsBySlugDomains(utility::string_t 
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling cloudGetV1ProjectsBySlugDomains: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling cloudGetV1ProjectsSlugDomains: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -842,7 +842,7 @@ pplx::task<void> ProjectsApi::cloudGetV1ProjectsBySlugDomains(utility::string_t 
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling cloudGetV1ProjectsBySlugDomains: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling cloudGetV1ProjectsSlugDomains: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -851,16 +851,34 @@ pplx::task<void> ProjectsApi::cloudGetV1ProjectsBySlugDomains(utility::string_t 
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Cloud_projectsDomains> localVarResult(new Cloud_projectsDomains());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling cloudGetV1ProjectsSlugDomains: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudPatchV1ProjectsBySlug(utility::string_t slug, std::shared_ptr<Projects_UpdateProjectRequest> projectsUpdateProjectRequest) const
+pplx::task<std::shared_ptr<Cloud_projectsProject>> ProjectsApi::cloudPatchV1ProjectsSlug(utility::string_t slug, std::shared_ptr<Cloud_projectsUpdate> cloudProjectsUpdate) const
 {
 
-    // verify the required parameter 'projectsUpdateProjectRequest' is set
-    if (projectsUpdateProjectRequest == nullptr)
+    // verify the required parameter 'cloudProjectsUpdate' is set
+    if (cloudProjectsUpdate == nullptr)
     {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'projectsUpdateProjectRequest' when calling ProjectsApi->cloudPatchV1ProjectsBySlug"));
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'cloudProjectsUpdate' when calling ProjectsApi->cloudPatchV1ProjectsSlug"));
     }
 
 
@@ -895,7 +913,7 @@ pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudPatchV1ProjectsB
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("ProjectsApi->cloudPatchV1ProjectsBySlug does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("ProjectsApi->cloudPatchV1ProjectsSlug does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -913,7 +931,7 @@ pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudPatchV1ProjectsB
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        localVarJson = ModelBase::toJson(projectsUpdateProjectRequest);
+        localVarJson = ModelBase::toJson(cloudProjectsUpdate);
         
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
@@ -924,9 +942,9 @@ pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudPatchV1ProjectsB
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(projectsUpdateProjectRequest.get())
+        if(cloudProjectsUpdate.get())
         {
-            projectsUpdateProjectRequest->toMultipart(localVarMultipart, utility::conversions::to_string_t("projectsUpdateProjectRequest"));
+            cloudProjectsUpdate->toMultipart(localVarMultipart, utility::conversions::to_string_t("cloudProjectsUpdate"));
         }
         
 
@@ -939,7 +957,7 @@ pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudPatchV1ProjectsB
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("ProjectsApi->cloudPatchV1ProjectsBySlug does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("ProjectsApi->cloudPatchV1ProjectsSlug does not consume any supported media type"));
     }
 
     // authentication (bearerAuth) required
@@ -960,7 +978,7 @@ pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudPatchV1ProjectsB
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling cloudPatchV1ProjectsBySlug: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling cloudPatchV1ProjectsSlug: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -971,7 +989,7 @@ pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudPatchV1ProjectsB
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling cloudPatchV1ProjectsBySlug: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling cloudPatchV1ProjectsSlug: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -980,7 +998,7 @@ pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudPatchV1ProjectsB
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<Projects_Project> localVarResult(new Projects_Project());
+        std::shared_ptr<Cloud_projectsProject> localVarResult(new Cloud_projectsProject());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
@@ -995,19 +1013,19 @@ pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudPatchV1ProjectsB
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling cloudPatchV1ProjectsBySlug: unsupported response type"));
+                , utility::conversions::to_string_t("error calling cloudPatchV1ProjectsSlug: unsupported response type"));
         }
 
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudPostV1Projects(std::shared_ptr<Projects_CreateProjectRequest> projectsCreateProjectRequest) const
+pplx::task<std::shared_ptr<Cloud_projectsProject>> ProjectsApi::cloudPostV1Projects(std::shared_ptr<Cloud_projectsCreate> cloudProjectsCreate) const
 {
 
-    // verify the required parameter 'projectsCreateProjectRequest' is set
-    if (projectsCreateProjectRequest == nullptr)
+    // verify the required parameter 'cloudProjectsCreate' is set
+    if (cloudProjectsCreate == nullptr)
     {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'projectsCreateProjectRequest' when calling ProjectsApi->cloudPostV1Projects"));
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'cloudProjectsCreate' when calling ProjectsApi->cloudPostV1Projects"));
     }
 
 
@@ -1059,7 +1077,7 @@ pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudPostV1Projects(s
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        localVarJson = ModelBase::toJson(projectsCreateProjectRequest);
+        localVarJson = ModelBase::toJson(cloudProjectsCreate);
         
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
@@ -1070,9 +1088,9 @@ pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudPostV1Projects(s
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(projectsCreateProjectRequest.get())
+        if(cloudProjectsCreate.get())
         {
-            projectsCreateProjectRequest->toMultipart(localVarMultipart, utility::conversions::to_string_t("projectsCreateProjectRequest"));
+            cloudProjectsCreate->toMultipart(localVarMultipart, utility::conversions::to_string_t("cloudProjectsCreate"));
         }
         
 
@@ -1126,7 +1144,7 @@ pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudPostV1Projects(s
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<Projects_Project> localVarResult(new Projects_Project());
+        std::shared_ptr<Cloud_projectsProject> localVarResult(new Cloud_projectsProject());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
@@ -1295,496 +1313,13 @@ pplx::task<std::shared_ptr<Projects_Deployment>> ProjectsApi::cloudPostV1Project
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Projects_Deployment>> ProjectsApi::cloudPostV1ProjectsBySlugDeploymentsByIdComplete(utility::string_t slug, utility::string_t id, std::shared_ptr<Projects_CompleteDeploymentRequest> projectsCompleteDeploymentRequest) const
+pplx::task<std::shared_ptr<Cloud_projectsProject>> ProjectsApi::cloudPostV1ProjectsFork(std::shared_ptr<Cloud_projectsFork> cloudProjectsFork) const
 {
 
-    // verify the required parameter 'projectsCompleteDeploymentRequest' is set
-    if (projectsCompleteDeploymentRequest == nullptr)
+    // verify the required parameter 'cloudProjectsFork' is set
+    if (cloudProjectsFork == nullptr)
     {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'projectsCompleteDeploymentRequest' when calling ProjectsApi->cloudPostV1ProjectsBySlugDeploymentsByIdComplete"));
-    }
-
-
-    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/projects/{slug}/deployments/{id}/complete");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("slug") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(slug)));
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
-
-    std::map<utility::string_t, utility::string_t> localVarQueryParams;
-    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
-    std::map<utility::string_t, utility::string_t> localVarFormParams;
-    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
-
-    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-    utility::string_t localVarResponseHttpContentType;
-
-    // use JSON if possible
-    if ( localVarResponseHttpContentTypes.size() == 0 )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // JSON
-    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(400, utility::conversions::to_string_t("ProjectsApi->cloudPostV1ProjectsBySlugDeploymentsByIdComplete does not produce any supported media type"));
-    }
-
-    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
-
-    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
-    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-
-    std::shared_ptr<IHttpBody> localVarHttpBody;
-    utility::string_t localVarRequestHttpContentType;
-
-    // use JSON if possible
-    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
-        web::json::value localVarJson;
-
-        localVarJson = ModelBase::toJson(projectsCompleteDeploymentRequest);
-        
-
-        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
-    }
-    // multipart formdata
-    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
-
-        if(projectsCompleteDeploymentRequest.get())
-        {
-            projectsCompleteDeploymentRequest->toMultipart(localVarMultipart, utility::conversions::to_string_t("projectsCompleteDeploymentRequest"));
-        }
-        
-
-        localVarHttpBody = localVarMultipart;
-        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
-    }
-    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
-    }
-    else
-    {
-        throw ApiException(415, utility::conversions::to_string_t("ProjectsApi->cloudPostV1ProjectsBySlugDeploymentsByIdComplete does not consume any supported media type"));
-    }
-
-    // authentication (bearerAuth) required
-
-    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("POST"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
-    .then([=, this](web::http::http_response localVarResponse)
-    {
-        if (m_ApiClient->getResponseHandler())
-        {
-            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
-        }
-
-        // 1xx - informational : OK
-        // 2xx - successful       : OK
-        // 3xx - redirection   : OK
-        // 4xx - client error  : not OK
-        // 5xx - client error  : not OK
-        if (localVarResponse.status_code() >= 400)
-        {
-            throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling cloudPostV1ProjectsBySlugDeploymentsByIdComplete: ") + localVarResponse.reason_phrase()
-                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
-        }
-
-        // check response content type
-        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
-        {
-            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
-            {
-                throw ApiException(500
-                    , utility::conversions::to_string_t("error calling cloudPostV1ProjectsBySlugDeploymentsByIdComplete: unexpected response type: ") + localVarContentType
-                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
-            }
-        }
-
-        return localVarResponse.extract_string();
-    })
-    .then([=, this](utility::string_t localVarResponse)
-    {
-        std::shared_ptr<Projects_Deployment> localVarResult(new Projects_Deployment());
-
-        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value localVarJson = web::json::value::parse(localVarResponse);
-
-            ModelBase::fromJson(localVarJson, localVarResult);
-        }
-        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling cloudPostV1ProjectsBySlugDeploymentsByIdComplete: unsupported response type"));
-        }
-
-        return localVarResult;
-    });
-}
-pplx::task<void> ProjectsApi::cloudPostV1ProjectsBySlugDomains(utility::string_t slug) const
-{
-
-
-    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/projects/{slug}/domains");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("slug") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(slug)));
-
-    std::map<utility::string_t, utility::string_t> localVarQueryParams;
-    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
-    std::map<utility::string_t, utility::string_t> localVarFormParams;
-    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
-
-    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-
-    utility::string_t localVarResponseHttpContentType;
-
-    // use JSON if possible
-    if ( localVarResponseHttpContentTypes.size() == 0 )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // JSON
-    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(400, utility::conversions::to_string_t("ProjectsApi->cloudPostV1ProjectsBySlugDomains does not produce any supported media type"));
-    }
-
-    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
-
-    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
-
-
-    std::shared_ptr<IHttpBody> localVarHttpBody;
-    utility::string_t localVarRequestHttpContentType;
-
-    // use JSON if possible
-    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
-    }
-    else
-    {
-        throw ApiException(415, utility::conversions::to_string_t("ProjectsApi->cloudPostV1ProjectsBySlugDomains does not consume any supported media type"));
-    }
-
-    // authentication (bearerAuth) required
-
-    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("POST"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
-    .then([=, this](web::http::http_response localVarResponse)
-    {
-        if (m_ApiClient->getResponseHandler())
-        {
-            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
-        }
-
-        // 1xx - informational : OK
-        // 2xx - successful       : OK
-        // 3xx - redirection   : OK
-        // 4xx - client error  : not OK
-        // 5xx - client error  : not OK
-        if (localVarResponse.status_code() >= 400)
-        {
-            throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling cloudPostV1ProjectsBySlugDomains: ") + localVarResponse.reason_phrase()
-                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
-        }
-
-        // check response content type
-        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
-        {
-            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
-            {
-                throw ApiException(500
-                    , utility::conversions::to_string_t("error calling cloudPostV1ProjectsBySlugDomains: unexpected response type: ") + localVarContentType
-                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
-            }
-        }
-
-        return localVarResponse.extract_string();
-    })
-    .then([=, this](utility::string_t localVarResponse)
-    {
-        return void();
-    });
-}
-pplx::task<void> ProjectsApi::cloudPostV1ProjectsBySlugDomainsByHostVerify(utility::string_t slug, utility::string_t host) const
-{
-
-
-    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/projects/{slug}/domains/{host}/verify");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("slug") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(slug)));
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("host") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(host)));
-
-    std::map<utility::string_t, utility::string_t> localVarQueryParams;
-    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
-    std::map<utility::string_t, utility::string_t> localVarFormParams;
-    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
-
-    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-
-    utility::string_t localVarResponseHttpContentType;
-
-    // use JSON if possible
-    if ( localVarResponseHttpContentTypes.size() == 0 )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // JSON
-    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(400, utility::conversions::to_string_t("ProjectsApi->cloudPostV1ProjectsBySlugDomainsByHostVerify does not produce any supported media type"));
-    }
-
-    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
-
-    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
-
-
-    std::shared_ptr<IHttpBody> localVarHttpBody;
-    utility::string_t localVarRequestHttpContentType;
-
-    // use JSON if possible
-    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
-    }
-    else
-    {
-        throw ApiException(415, utility::conversions::to_string_t("ProjectsApi->cloudPostV1ProjectsBySlugDomainsByHostVerify does not consume any supported media type"));
-    }
-
-    // authentication (bearerAuth) required
-
-    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("POST"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
-    .then([=, this](web::http::http_response localVarResponse)
-    {
-        if (m_ApiClient->getResponseHandler())
-        {
-            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
-        }
-
-        // 1xx - informational : OK
-        // 2xx - successful       : OK
-        // 3xx - redirection   : OK
-        // 4xx - client error  : not OK
-        // 5xx - client error  : not OK
-        if (localVarResponse.status_code() >= 400)
-        {
-            throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling cloudPostV1ProjectsBySlugDomainsByHostVerify: ") + localVarResponse.reason_phrase()
-                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
-        }
-
-        // check response content type
-        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
-        {
-            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
-            {
-                throw ApiException(500
-                    , utility::conversions::to_string_t("error calling cloudPostV1ProjectsBySlugDomainsByHostVerify: unexpected response type: ") + localVarContentType
-                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
-            }
-        }
-
-        return localVarResponse.extract_string();
-    })
-    .then([=, this](utility::string_t localVarResponse)
-    {
-        return void();
-    });
-}
-pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudPostV1ProjectsBySlugPurge(utility::string_t slug) const
-{
-
-
-    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/projects/{slug}/purge");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("slug") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(slug)));
-
-    std::map<utility::string_t, utility::string_t> localVarQueryParams;
-    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
-    std::map<utility::string_t, utility::string_t> localVarFormParams;
-    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
-
-    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-    utility::string_t localVarResponseHttpContentType;
-
-    // use JSON if possible
-    if ( localVarResponseHttpContentTypes.size() == 0 )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // JSON
-    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(400, utility::conversions::to_string_t("ProjectsApi->cloudPostV1ProjectsBySlugPurge does not produce any supported media type"));
-    }
-
-    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
-
-    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
-
-
-    std::shared_ptr<IHttpBody> localVarHttpBody;
-    utility::string_t localVarRequestHttpContentType;
-
-    // use JSON if possible
-    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
-    }
-    else
-    {
-        throw ApiException(415, utility::conversions::to_string_t("ProjectsApi->cloudPostV1ProjectsBySlugPurge does not consume any supported media type"));
-    }
-
-    // authentication (bearerAuth) required
-
-    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("POST"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
-    .then([=, this](web::http::http_response localVarResponse)
-    {
-        if (m_ApiClient->getResponseHandler())
-        {
-            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
-        }
-
-        // 1xx - informational : OK
-        // 2xx - successful       : OK
-        // 3xx - redirection   : OK
-        // 4xx - client error  : not OK
-        // 5xx - client error  : not OK
-        if (localVarResponse.status_code() >= 400)
-        {
-            throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling cloudPostV1ProjectsBySlugPurge: ") + localVarResponse.reason_phrase()
-                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
-        }
-
-        // check response content type
-        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
-        {
-            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
-            {
-                throw ApiException(500
-                    , utility::conversions::to_string_t("error calling cloudPostV1ProjectsBySlugPurge: unexpected response type: ") + localVarContentType
-                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
-            }
-        }
-
-        return localVarResponse.extract_string();
-    })
-    .then([=, this](utility::string_t localVarResponse)
-    {
-        std::shared_ptr<Projects_Project> localVarResult(new Projects_Project());
-
-        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value localVarJson = web::json::value::parse(localVarResponse);
-
-            ModelBase::fromJson(localVarJson, localVarResult);
-        }
-        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling cloudPostV1ProjectsBySlugPurge: unsupported response type"));
-        }
-
-        return localVarResult;
-    });
-}
-pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudPostV1ProjectsFork(std::shared_ptr<Projects_ForkProjectRequest> projectsForkProjectRequest) const
-{
-
-    // verify the required parameter 'projectsForkProjectRequest' is set
-    if (projectsForkProjectRequest == nullptr)
-    {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'projectsForkProjectRequest' when calling ProjectsApi->cloudPostV1ProjectsFork"));
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'cloudProjectsFork' when calling ProjectsApi->cloudPostV1ProjectsFork"));
     }
 
 
@@ -1836,7 +1371,7 @@ pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudPostV1ProjectsFo
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        localVarJson = ModelBase::toJson(projectsForkProjectRequest);
+        localVarJson = ModelBase::toJson(cloudProjectsFork);
         
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
@@ -1847,9 +1382,9 @@ pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudPostV1ProjectsFo
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(projectsForkProjectRequest.get())
+        if(cloudProjectsFork.get())
         {
-            projectsForkProjectRequest->toMultipart(localVarMultipart, utility::conversions::to_string_t("projectsForkProjectRequest"));
+            cloudProjectsFork->toMultipart(localVarMultipart, utility::conversions::to_string_t("cloudProjectsFork"));
         }
         
 
@@ -1903,7 +1438,7 @@ pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudPostV1ProjectsFo
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<Projects_Project> localVarResult(new Projects_Project());
+        std::shared_ptr<Cloud_projectsProject> localVarResult(new Cloud_projectsProject());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
@@ -1919,6 +1454,550 @@ pplx::task<std::shared_ptr<Projects_Project>> ProjectsApi::cloudPostV1ProjectsFo
         {
             throw ApiException(500
                 , utility::conversions::to_string_t("error calling cloudPostV1ProjectsFork: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::shared_ptr<Cloud_projectsDeployment>> ProjectsApi::cloudPostV1ProjectsSlugDeploymentsIdComplete(utility::string_t slug, utility::string_t id, std::shared_ptr<Cloud_projectsComplete> cloudProjectsComplete) const
+{
+
+    // verify the required parameter 'cloudProjectsComplete' is set
+    if (cloudProjectsComplete == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'cloudProjectsComplete' when calling ProjectsApi->cloudPostV1ProjectsSlugDeploymentsIdComplete"));
+    }
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/projects/{slug}/deployments/{id}/complete");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("slug") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(slug)));
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("ProjectsApi->cloudPostV1ProjectsSlugDeploymentsIdComplete does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        localVarJson = ModelBase::toJson(cloudProjectsComplete);
+        
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(cloudProjectsComplete.get())
+        {
+            cloudProjectsComplete->toMultipart(localVarMultipart, utility::conversions::to_string_t("cloudProjectsComplete"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("ProjectsApi->cloudPostV1ProjectsSlugDeploymentsIdComplete does not consume any supported media type"));
+    }
+
+    // authentication (bearerAuth) required
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("POST"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling cloudPostV1ProjectsSlugDeploymentsIdComplete: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling cloudPostV1ProjectsSlugDeploymentsIdComplete: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::shared_ptr<Cloud_projectsDeployment> localVarResult(new Cloud_projectsDeployment());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling cloudPostV1ProjectsSlugDeploymentsIdComplete: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::shared_ptr<Cloud_projectsBoundDomains>> ProjectsApi::cloudPostV1ProjectsSlugDomains(utility::string_t slug, std::shared_ptr<Cloud_projectsDomainsBind> cloudProjectsDomainsBind) const
+{
+
+    // verify the required parameter 'cloudProjectsDomainsBind' is set
+    if (cloudProjectsDomainsBind == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'cloudProjectsDomainsBind' when calling ProjectsApi->cloudPostV1ProjectsSlugDomains"));
+    }
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/projects/{slug}/domains");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("slug") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(slug)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("ProjectsApi->cloudPostV1ProjectsSlugDomains does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        localVarJson = ModelBase::toJson(cloudProjectsDomainsBind);
+        
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(cloudProjectsDomainsBind.get())
+        {
+            cloudProjectsDomainsBind->toMultipart(localVarMultipart, utility::conversions::to_string_t("cloudProjectsDomainsBind"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("ProjectsApi->cloudPostV1ProjectsSlugDomains does not consume any supported media type"));
+    }
+
+    // authentication (bearerAuth) required
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("POST"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling cloudPostV1ProjectsSlugDomains: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling cloudPostV1ProjectsSlugDomains: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::shared_ptr<Cloud_projectsBoundDomains> localVarResult(new Cloud_projectsBoundDomains());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling cloudPostV1ProjectsSlugDomains: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::shared_ptr<Cloud_projectsDomain>> ProjectsApi::cloudPostV1ProjectsSlugDomainsHostVerify(utility::string_t slug, utility::string_t host) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/projects/{slug}/domains/{host}/verify");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("slug") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(slug)));
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("host") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(host)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("ProjectsApi->cloudPostV1ProjectsSlugDomainsHostVerify does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("ProjectsApi->cloudPostV1ProjectsSlugDomainsHostVerify does not consume any supported media type"));
+    }
+
+    // authentication (bearerAuth) required
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("POST"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling cloudPostV1ProjectsSlugDomainsHostVerify: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling cloudPostV1ProjectsSlugDomainsHostVerify: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::shared_ptr<Cloud_projectsDomain> localVarResult(new Cloud_projectsDomain());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling cloudPostV1ProjectsSlugDomainsHostVerify: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::shared_ptr<Cloud_projectsProject>> ProjectsApi::cloudPostV1ProjectsSlugPurge(utility::string_t slug) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/projects/{slug}/purge");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("slug") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(slug)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("ProjectsApi->cloudPostV1ProjectsSlugPurge does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("ProjectsApi->cloudPostV1ProjectsSlugPurge does not consume any supported media type"));
+    }
+
+    // authentication (bearerAuth) required
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("POST"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling cloudPostV1ProjectsSlugPurge: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling cloudPostV1ProjectsSlugPurge: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::shared_ptr<Cloud_projectsProject> localVarResult(new Cloud_projectsProject());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling cloudPostV1ProjectsSlugPurge: unsupported response type"));
         }
 
         return localVarResult;

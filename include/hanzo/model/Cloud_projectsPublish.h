@@ -10,33 +10,31 @@
  * Do not edit the class manually.
  */
 /*
- * Cloud_Event.h
+ * Cloud_projectsPublish.h
  *
  * 
  */
 
-#ifndef HANZO_MODEL_Cloud_Event_H_
-#define HANZO_MODEL_Cloud_Event_H_
+#ifndef HANZO_MODEL_Cloud_projectsPublish_H_
+#define HANZO_MODEL_Cloud_projectsPublish_H_
 
 #include <boost/optional.hpp>
 
 #include "hanzo/ModelBase.h"
 
-#include "hanzo/AnyType.h"
 #include <cpprest/details/basic_types.h>
-#include <map>
 
 namespace hanzo {
 namespace model {
 
 
 
-class  Cloud_Event
+class  Cloud_projectsPublish
     : public ModelBase
 {
 public:
-    Cloud_Event();
-    virtual ~Cloud_Event();
+    Cloud_projectsPublish();
+    virtual ~Cloud_projectsPublish();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -51,50 +49,32 @@ public:
 
 
     /////////////////////////////////////////////
-    /// Cloud_Event members
+    /// Cloud_projectsPublish members
 
 
-    utility::string_t getDistinctId() const;
-    bool distinctIdIsSet() const;
-    void unsetDistinctId();
-    void setDistinctId(const utility::string_t& value);
+    /// <summary>
+    /// Slug is the site to publish, from the path.
+    /// </summary>
+    utility::string_t getSlug() const;
+    bool slugIsSet() const;
+    void unsetSlug();
+    void setSlug(const utility::string_t& value);
 
-    utility::string_t getEvent() const;
-    bool eventIsSet() const;
-    void unsetEvent();
-    void setEvent(const utility::string_t& value);
-
-    std::map<utility::string_t, std::shared_ptr<AnyType>> getProperties() const;
-    bool propertiesIsSet() const;
-    void unsetProperties();
-    void setProperties(const std::map<utility::string_t, std::shared_ptr<AnyType>>& value);
-
-    utility::string_t getTime() const;
-    bool timeIsSet() const;
-    void unsetTime();
-    void setTime(const utility::string_t& value);
-
-    utility::string_t getType() const;
-    bool typeIsSet() const;
-    void unsetType();
-    void setType(const utility::string_t& value);
+    /// <summary>
+    /// Source is the build output to promote, as a path RELATIVE to your org&#39;s own storage space — never a URL and never a bucket. The org segment is prepended server-side from the validated principal, so the worst a hostile source can address is something your own org already owns.
+    /// </summary>
+    utility::string_t getSource() const;
+    bool sourceIsSet() const;
+    void unsetSource();
+    void setSource(const utility::string_t& value);
 
 
 protected:
-    utility::string_t m_DistinctId;
-    bool m_DistinctIdIsSet;
+    utility::string_t m_Slug;
+    bool m_SlugIsSet;
 
-    utility::string_t m_Event;
-    bool m_EventIsSet;
-
-    std::map<utility::string_t, std::shared_ptr<AnyType>> m_Properties;
-    bool m_PropertiesIsSet;
-
-    utility::string_t m_Time;
-    bool m_TimeIsSet;
-
-    utility::string_t m_Type;
-    bool m_TypeIsSet;
+    utility::string_t m_Source;
+    bool m_SourceIsSet;
 
 };
 
@@ -102,4 +82,4 @@ protected:
 }
 }
 
-#endif /* HANZO_MODEL_Cloud_Event_H_ */
+#endif /* HANZO_MODEL_Cloud_projectsPublish_H_ */
