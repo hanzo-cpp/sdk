@@ -21,7 +21,7 @@
 #   GENERATOR_VERSION  default 7.24.0 — see the note below, it is not free
 #   SPEC_TOKEN, GH_TOKEN, GITHUB_TOKEN — hanzoai/openapi is PRIVATE
 #
-# Requires: java 17+, curl.
+# Requires: java 17+, curl, python3 with PyYAML.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -104,6 +104,24 @@ fi
 
 out="$(mktemp -d "${TMPDIR:-/tmp}/hanzo-cpp-gen.XXXXXX")"
 
+# The document as JSON, because YAML has a ceiling and JSON does not.
+# swagger-parser hands YAML to snakeyaml, which refuses anything over
+# 3 * 1024 * 1024 = 3145728 code points; hanzo.yaml passed that mark and the
+# failure does not say so — it logs SnakeException, silently falls through to
+# the SWAGGER 2.0 compat reader, and dies with "Issues with the OpenAPI input",
+# which reads like a malformed spec. It is not; the document validates at 0
+# errors.
+#
+# -DmaxYamlCodePoints lifts the cap and is NOT the fix: 7.24.0's swagger-parser
+# honours it, 7.14.0's IGNORES it, and 7.14.0 is what the rest of the fleet
+# pins. JSON avoids snakeyaml altogether on every version — measured, not
+# assumed: a JSON 539 KB OVER the ceiling validates clean on 7.14.0. So the
+# fleet driver and this script do the same one thing, and neither carries a
+# ceiling the document will keep growing into.
+spec_json="$out/hanzo.json"
+python3 -c 'import json,sys,yaml; json.dump(yaml.safe_load(open(sys.argv[1])), open(sys.argv[2],"w"))' \
+  "$SPEC" "$spec_json"
+
 # The library version is the document's own info.version. One number, decided
 # once, upstream — never typed into this repo.
 version="$(sed -n 's/^  version: *//p' "$SPEC" | head -1)"
@@ -124,17 +142,9 @@ version="$(sed -n 's/^  version: *//p' "$SPEC" | head -1)"
 # -t templates/cpp-restsdk: four overridden templates, each hunk commented in
 # place. They correct the generator; they say nothing about this API.
 #
-# -DmaxYamlCodePoints: swagger-parser hands the document to snakeyaml, which
-# refuses anything over 3 * 1024 * 1024 = 3145728 code points. hanzo.yaml passed
-# that mark and the parser does not say so plainly — it reports SnakeException,
-# silently falls through to the Swagger 2.0 compat reader, and finally dies with
-# "Issues with the OpenAPI input", which reads like a malformed spec. It is not:
-# the document validates at 0 errors and 0 warnings. This is a parser default
-# and nothing else, and it is fleet-wide — every language's generation needs it
-# from this size onward.
-java -Xmx3g -DmaxYamlCodePoints=99999999 -jar "$JAR" generate \
+java -Xmx3g -jar "$JAR" generate \
   -g cpp-restsdk \
-  -i "$SPEC" \
+  -i "$spec_json" \
   -o "$out" \
   -t templates/cpp-restsdk \
   --global-property apis,models,supportingFiles,apiDocs=false,modelDocs=false,apiTests=false,modelTests=false,skipFormModel=false \
