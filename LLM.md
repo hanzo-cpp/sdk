@@ -43,8 +43,9 @@ The blocker is codegen correctness, and nothing else.
 
 ### What `templates/cpp-restsdk/` fixes (proven: 52 → 11)
 
-Four defect classes live in the generator's mustache templates, so a
-`-t` override reaches them. Each hunk is commented in place.
+Five defect classes live in the generator's mustache templates, so a
+`-t` override reaches them. Each hunk is commented in place, and regenerating
+with these templates reproduces the measured tree byte for byte.
 
 1. **oneOf explicit instantiations are HTML-escaped.** `model-source.mustache`
    interpolates the alternative with `{{.}}` where the header uses `{{{.}}}`,
