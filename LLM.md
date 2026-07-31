@@ -49,10 +49,19 @@ resolution produces, it cannot recompute a type:
 | 9 | `additionalProperties: {$ref: <array-typed schema>}` emits `std::map<utility::string_t, std::vector>` — the aliased array's element type is dropped | `vector_NamedVectors` → `vector_DenseVector` |
 | 1 | an integer-backed enum declares its conversion helpers over `utility::string_t` and defines them over `int32_t` | `framework_Document.docstatus` |
 
-7.24.0 fixes both. Raising the pin fleet-wide would rewrite every other client's
-committed output, so it is a separate deliberate decision; the floor is stated
-once, in `scripts/generate.sh`, where the invocation is. Above the floor is
-fine, below it this repo does not build.
+7.24.0 fixes both. The floor is stated once, in `scripts/generate.sh`, where the
+invocation is. Above the floor is fine; below it this repo does not build.
+
+**The fleet raises to 7.24.0 too — in ONE coordinated regeneration wave, not
+piecemeal, and not yet. This is decided; do not re-litigate it and do not bump
+any other language ad hoc.** The reason to wait is sequencing, not doubt: a
+large workflow is currently converting cloud's ~445 untyped routes into typed
+ops with real In/Out structs, so every client will regenerate against a
+materially different document when that lands. Doing the version bump and the
+schema growth in one wave means each language's committed output changes ONCE,
+reviewably, instead of twice — and a two-step change to 2000+ generated files
+per language is a diff nobody reads. C++ goes first only because it cannot
+build at all below the floor.
 
 **2. `-DmaxYamlCodePoints`.** swagger-parser hands the document to snakeyaml,
 which refuses anything over `3 * 1024 * 1024` = 3145728 code points. `hanzo.yaml`
@@ -130,10 +139,13 @@ of them exists in the merged document.
 state; `tools` reads `error` before `result`, because JSON-RPC reports failure
 inside a 200.
 
-One divergence, recorded rather than hidden: `flows.yaml` says `hello` should
-print `data.owner` and `data.name`, but the typed `bot_User` the route actually
-returns has `id / handle / displayName / email / role` and no such fields. This
-prints what the model has.
+One divergence, and the manifest is the side that is wrong: `flows.yaml` says
+`hello` should print `data.owner` and `data.name`, but the typed `bot_User` the
+route actually returns has `id / handle / displayName / email / role` and no
+such fields. **Printing what the model has is correct — do NOT "fix" this
+example to match the manifest, and do not invent an `owner` field to satisfy
+it.** The spec lane is correcting `flows.yaml` so every language stops working
+around it.
 
 ## Build
 ```bash
@@ -142,10 +154,19 @@ cmake -B build -DHANZO_BUILD_EXAMPLES=ON && cmake --build build -j"$(nproc)"
 ```
 Needs C++17, CMake 3.20+, cpprestsdk + Boost + OpenSSL (`libcpprest-dev` 2.10.19
 from Ubuntu universe resolves cleanly, and so do `find_package(cpprestsdk)` and
-`find_package(Boost)`). Worth knowing: cpprestsdk is archived upstream by
-Microsoft. It is what the only C++ generator that produces a compiling library
-uses, so it is what ships — but moving off it is a real question, not a
-hypothetical one.
+`find_package(Boost)`).
+
+**KNOWN FUTURE MIGRATION — cpprestsdk is ARCHIVED upstream by Microsoft.** This
+is a decision with an expiry, recorded so it is not a surprise later. It ships
+because `cpp-restsdk` is the only openapi-generator C++ target that produces a
+compiling library from this document — `cpp-qt-client` fails on defects no
+template reaches, and the rest are embedded or engine targets (see below). An
+archived dependency gets no security fixes, so the trigger to revisit is
+whichever comes first: a CVE in cpprestsdk, its removal from Ubuntu universe, or
+a C++ generator target that compiles from `hanzo.yaml` without an archived HTTP
+stack. When that happens the move is a generator change plus new
+`templates/<target>/` overrides — the document, the seam and the six flows do
+not move.
 
 Scale is not a problem, and these are measured rather than estimated: generation
 takes under two minutes, the 2376 objects plus the six examples build in
