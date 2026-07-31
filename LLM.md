@@ -147,9 +147,10 @@ Microsoft. It is what the only C++ generator that produces a compiling library
 uses, so it is what ships — but moving off it is a real question, not a
 hypothetical one.
 
-Scale is not a problem: generation takes under a minute, ~2376 objects build in
-about 11 minutes at `-j20`, and the largest TU (`AdminApi.cpp`) peaks near
-1.6 GB RSS.
+Scale is not a problem, and these are measured rather than estimated: generation
+takes under two minutes, the 2376 objects plus the six examples build in
+**6m14s** at `-j20`, peak RSS across the whole build is **1.6 GB** (the largest
+TU is `AdminApi.cpp`), and `libhanzo.a` comes out at 342 MB.
 
 The generators that were measured and rejected, so nobody re-runs the
 experiment: `cpp-qt-client` (drags in Qt6 Core + Network **+ Gui**, and 31 of its
