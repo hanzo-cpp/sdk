@@ -44,18 +44,30 @@ Requires C++17, CMake 3.20+, and cpprestsdk + Boost + OpenSSL
 
 #include "hanzo/ApiClient.h"
 #include "hanzo/ApiConfiguration.h"
+#include "hanzo/ApiException.h"
 #include "hanzo/api/AuthApi.h"
 
 int main() {
+    const char* key = std::getenv("HANZO_API_KEY");
+    if (key == nullptr) {
+        std::cerr << "HANZO_API_KEY is not set" << std::endl;
+        return 1;
+    }
+
     auto config = std::make_shared<hanzo::api::ApiConfiguration>();
     config->setBaseUrl(U("https://api.hanzo.ai"));
     config->getDefaultHeaders()[U("Authorization")] =
-        U("Bearer ") + utility::conversions::to_string_t(std::getenv("HANZO_API_KEY"));
+        U("Bearer ") + utility::conversions::to_string_t(key);
 
     hanzo::api::AuthApi auth(std::make_shared<hanzo::api::ApiClient>(config));
-    auto me = auth.botAuthMe().get();
-
-    std::cout << utility::conversions::to_utf8string(me->getDisplayName()) << std::endl;
+    try {
+        auto me = auth.botAuthMe().get();
+        std::cout << utility::conversions::to_utf8string(me->getDisplayName()) << std::endl;
+    } catch (const hanzo::api::ApiException& e) {
+        // A bad key is a 403 here, not a silent anonymous identity.
+        std::cerr << e.what() << std::endl;
+        return 1;
+    }
 }
 ```
 
