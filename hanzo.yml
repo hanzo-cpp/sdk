@@ -1,0 +1,61 @@
+# Hanzo CI — the ONE way this repo is gated, read by hanzoai/ci.
+#
+# No `images:` and no `deploy:`: this is a C++ client library. A consumer gets it
+# from a tag via FetchContent or from a release archive, so what CI owes is a
+# gate plus an artifact, not a running service.
+#
+# UNEXERCISED. Two separate reasons, both real:
+#   1. No runner is registered for the pool hanzoai/ci defaults to
+#      (`hanzo-build-linux-amd64`, an arc pool at total_count 0), so a run here
+#      queues rather than executes — hanzoai/java-sdk's CI/CD is sitting queued
+#      for exactly this reason. Actions itself is enabled and unrestricted on
+#      the org; this is a capacity gap, not a permissions one.
+#   2. `cmake-build` and `examples-build` have nothing to build yet. No
+#      openapi-generator 7.14.0 C++ generator emits a tree that compiles from
+#      hanzo.yaml; the measured blockers are in LLM.md. These steps are the gate
+#      this repo will be held to the moment scripts/generate.sh can populate
+#      include/ and src/, and they are written now so that landing the client is
+#      one commit rather than two.
+
+test:
+  - name: generate-seam-check
+    # The seam is a call site into hanzoai/openapi's generate.py. It is the only
+    # thing in this repo today that can be wrong, so it is the only thing gated
+    # today. A check, not a test — the reusable's empty-test gate exempts checks.
+    run: bash -n scripts/generate.sh
+
+  - name: codegen-drift-check
+    # --check regenerates into a temp dir and diffs; non-zero if the committed
+    # client drifted from what hanzo.yaml projects. One place decides what this
+    # repo contains, and this is what makes that a fact rather than a promise.
+    run: ./scripts/generate.sh --check
+
+  - name: cmake-build
+    # 2316 translation units in one static library. A regeneration that does not
+    # compile must not reach a tag, which is the whole reason this is a gate and
+    # not a README instruction.
+    run: |
+      set -e
+      cmake -B build -DCMAKE_BUILD_TYPE=Release
+      cmake --build build -j"$(nproc)"
+
+  - name: examples-build
+    # The six canonical flows are the same journeys in every Hanzo SDK. An
+    # example that does not compile is worse than no example, so they are gated
+    # rather than merely committed.
+    run: |
+      set -e
+      cmake -B build -DHANZO_BUILD_EXAMPLES=ON
+      cmake --build build -j"$(nproc)" --target hello chat money store agent tools
+
+binaries:
+  # C++ has no registry. The published artifact is a tagged GitHub release
+  # carrying the headers and the built library — built on every push so a break
+  # is caught immediately, published only on a tag.
+  - name: hanzo-cpp-sdk
+    run: |
+      set -e
+      cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=dist
+      cmake --build build -j"$(nproc)" --target install
+      tar -czf hanzo-cpp-sdk-"$(uname -m)"-linux.tar.gz -C dist .
+    out: hanzo-cpp-sdk-*.tar.gz
