@@ -42,8 +42,10 @@ cd "$(dirname "$0")/.."
 #
 # 7.24.0 fixes both. The fleet raises to 7.24.0 as well, but in ONE coordinated
 # regeneration wave — deliberately NOT piecemeal, so that the version bump and
-# the in-flight typing of cloud's ~445 untyped routes change each language's
-# committed output once rather than twice. Do not bump another language here.
+# the in-flight typing of cloud's untyped routes (648 of 2455 operations carry
+# neither a requestBody nor a typed 2xx schema; 621 of those are cloud_) change
+# each language's committed output once rather than twice. Do not bump another
+# language here.
 # Anything ABOVE this floor is fine; below it, this repo does not build.
 GENERATOR_VERSION="${GENERATOR_VERSION:-7.24.0}"
 SPEC_REPO="${SPEC_REPO:-hanzoai/openapi}"

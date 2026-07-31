@@ -55,9 +55,21 @@ invocation is. Above the floor is fine; below it this repo does not build.
 **The fleet raises to 7.24.0 too — in ONE coordinated regeneration wave, not
 piecemeal, and not yet. This is decided; do not re-litigate it and do not bump
 any other language ad hoc.** The reason to wait is sequencing, not doubt: a
-large workflow is currently converting cloud's ~445 untyped routes into typed
-ops with real In/Out structs, so every client will regenerate against a
-materially different document when that lands. Doing the version bump and the
+large workflow is currently converting cloud's untyped routes into typed ops
+with real In/Out structs, so every client will regenerate against a materially
+different document when that lands.
+
+How big that is, measured rather than quoted — parse `hanzo.yaml` and count
+operations with NO `requestBody` and no schema under any `2xx`
+`content.<mediaType>`:
+
+    total operations 2455 · fully untyped 648 · of which cloud_ 621
+
+(The source side of the same work reads differently because it counts
+registrations, not projections: cloud's own LLM.md says 986 untyped routes
+across 101 packages against 76 typed. Both are real; they measure different
+things. A "~445" figure circulates and reproduces from neither — do not carry
+it.) Doing the version bump and the
 schema growth in one wave means each language's committed output changes ONCE,
 reviewably, instead of twice — and a two-step change to 2000+ generated files
 per language is a diff nobody reads. C++ goes first only because it cannot
