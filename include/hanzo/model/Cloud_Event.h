@@ -74,6 +74,11 @@ public:
     void unsetTime();
     void setTime(const utility::string_t& value);
 
+    utility::string_t getType() const;
+    bool typeIsSet() const;
+    void unsetType();
+    void setType(const utility::string_t& value);
+
 
 protected:
     utility::string_t m_DistinctId;
@@ -87,6 +92,9 @@ protected:
 
     utility::string_t m_Time;
     bool m_TimeIsSet;
+
+    utility::string_t m_Type;
+    bool m_TypeIsSet;
 
 };
 

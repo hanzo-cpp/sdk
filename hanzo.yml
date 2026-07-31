@@ -14,7 +14,7 @@
 
 test:
   - name: cmake-build
-    # 2376 translation units in one static library. A regeneration that does not
+    # ~2400 translation units in one static library. A regeneration that does not
     # compile must not reach a tag, which is the whole reason this is a gate and
     # not a README instruction.
     run: |

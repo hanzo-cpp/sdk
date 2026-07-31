@@ -51,7 +51,6 @@
 #include "hanzo/model/Cloud_usageView.h"
 #include "hanzo/model/Cloud_zapProcReq.h"
 #include "hanzo/HttpContent.h"
-#include "hanzo/Object.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -77,7 +76,7 @@ public:
     /// Removes a registered SSH key, scoped to the caller&#39;s org: an org can only delete its own, and a key id it does not own is not found. Answers 204 with no body. Once removed the key no longer authenticates any SSH git access.
     /// </remarks>
     /// <param name="id">Key id</param>
-    pplx::task<std::shared_ptr<Object>> cloudDeleteV1GitKeysId(
+    pplx::task<void> cloudDeleteV1GitKeysId(
         utility::string_t id
     ) const;
     /// <summary>
@@ -87,7 +86,7 @@ public:
     /// Removes a repo&#39;s metadata and purges its storage. Answers 204 with no body. The metadata row is the source of truth for existence, so a storage purge that fails is logged and the delete still succeeds — and a second call is a 404, not a second delete.
     /// </remarks>
     /// <param name="name">Repo name (a trailing \&quot;.git\&quot; is stripped)</param>
-    pplx::task<std::shared_ptr<Object>> cloudDeleteV1GitReposName(
+    pplx::task<void> cloudDeleteV1GitReposName(
         utility::string_t name
     ) const;
     /// <summary>
@@ -98,7 +97,7 @@ public:
     /// </remarks>
     /// <param name="name">Name is the repo, from the :name path segment.</param>
     /// <param name="id">ID is the row to remove, from the :id path segment.</param>
-    pplx::task<std::shared_ptr<Object>> cloudDeleteV1GitReposNameMirrorsId(
+    pplx::task<void> cloudDeleteV1GitReposNameMirrorsId(
         utility::string_t name,
         utility::string_t id
     ) const;
@@ -110,7 +109,7 @@ public:
     /// </remarks>
     /// <param name="name">Name is the repo, from the :name path segment.</param>
     /// <param name="id">ID is the row to remove, from the :id path segment.</param>
-    pplx::task<std::shared_ptr<Object>> cloudDeleteV1GitReposNameSubscriptionsId(
+    pplx::task<void> cloudDeleteV1GitReposNameSubscriptionsId(
         utility::string_t name,
         utility::string_t id
     ) const;

@@ -33,7 +33,7 @@ GitApi::~GitApi()
 {
 }
 
-pplx::task<std::shared_ptr<Object>> GitApi::cloudDeleteV1GitKeysId(utility::string_t id) const
+pplx::task<void> GitApi::cloudDeleteV1GitKeysId(utility::string_t id) const
 {
 
 
@@ -47,7 +47,6 @@ pplx::task<std::shared_ptr<Object>> GitApi::cloudDeleteV1GitKeysId(utility::stri
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -136,28 +135,10 @@ pplx::task<std::shared_ptr<Object>> GitApi::cloudDeleteV1GitKeysId(utility::stri
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<Object> localVarResult(new Object());
-
-        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value localVarJson = web::json::value::parse(localVarResponse);
-
-            ModelBase::fromJson(localVarJson, localVarResult);
-        }
-        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling cloudDeleteV1GitKeysId: unsupported response type"));
-        }
-
-        return localVarResult;
+        return void();
     });
 }
-pplx::task<std::shared_ptr<Object>> GitApi::cloudDeleteV1GitReposName(utility::string_t name) const
+pplx::task<void> GitApi::cloudDeleteV1GitReposName(utility::string_t name) const
 {
 
 
@@ -171,7 +152,6 @@ pplx::task<std::shared_ptr<Object>> GitApi::cloudDeleteV1GitReposName(utility::s
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -260,28 +240,10 @@ pplx::task<std::shared_ptr<Object>> GitApi::cloudDeleteV1GitReposName(utility::s
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<Object> localVarResult(new Object());
-
-        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value localVarJson = web::json::value::parse(localVarResponse);
-
-            ModelBase::fromJson(localVarJson, localVarResult);
-        }
-        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling cloudDeleteV1GitReposName: unsupported response type"));
-        }
-
-        return localVarResult;
+        return void();
     });
 }
-pplx::task<std::shared_ptr<Object>> GitApi::cloudDeleteV1GitReposNameMirrorsId(utility::string_t name, utility::string_t id) const
+pplx::task<void> GitApi::cloudDeleteV1GitReposNameMirrorsId(utility::string_t name, utility::string_t id) const
 {
 
 
@@ -296,7 +258,6 @@ pplx::task<std::shared_ptr<Object>> GitApi::cloudDeleteV1GitReposNameMirrorsId(u
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -385,28 +346,10 @@ pplx::task<std::shared_ptr<Object>> GitApi::cloudDeleteV1GitReposNameMirrorsId(u
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<Object> localVarResult(new Object());
-
-        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value localVarJson = web::json::value::parse(localVarResponse);
-
-            ModelBase::fromJson(localVarJson, localVarResult);
-        }
-        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling cloudDeleteV1GitReposNameMirrorsId: unsupported response type"));
-        }
-
-        return localVarResult;
+        return void();
     });
 }
-pplx::task<std::shared_ptr<Object>> GitApi::cloudDeleteV1GitReposNameSubscriptionsId(utility::string_t name, utility::string_t id) const
+pplx::task<void> GitApi::cloudDeleteV1GitReposNameSubscriptionsId(utility::string_t name, utility::string_t id) const
 {
 
 
@@ -421,7 +364,6 @@ pplx::task<std::shared_ptr<Object>> GitApi::cloudDeleteV1GitReposNameSubscriptio
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -510,25 +452,7 @@ pplx::task<std::shared_ptr<Object>> GitApi::cloudDeleteV1GitReposNameSubscriptio
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<Object> localVarResult(new Object());
-
-        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value localVarJson = web::json::value::parse(localVarResponse);
-
-            ModelBase::fromJson(localVarJson, localVarResult);
-        }
-        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling cloudDeleteV1GitReposNameSubscriptionsId: unsupported response type"));
-        }
-
-        return localVarResult;
+        return void();
     });
 }
 pplx::task<void> GitApi::cloudGetV1GitByOrgByProjectByRepoInfoRefs(utility::string_t org, utility::string_t project, utility::string_t repo) const

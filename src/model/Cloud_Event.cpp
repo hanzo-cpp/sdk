@@ -25,6 +25,8 @@ Cloud_Event::Cloud_Event()
     m_PropertiesIsSet = false;
     m_Time = utility::conversions::to_string_t("");
     m_TimeIsSet = false;
+    m_Type = utility::conversions::to_string_t("");
+    m_TypeIsSet = false;
 }
 
 Cloud_Event::~Cloud_Event()
@@ -58,6 +60,11 @@ web::json::value Cloud_Event::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("time"))] = ModelBase::toJson(m_Time);
+    }
+    if(m_TypeIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("type"))] = ModelBase::toJson(m_Type);
     }
 
     return val;
@@ -110,6 +117,17 @@ bool Cloud_Event::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("type"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("type")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setType;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setType);
+            setType(refVal_setType);
+            
+        }
+    }
     return ok;
 }
 
@@ -135,6 +153,10 @@ void Cloud_Event::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     if(m_TimeIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("time")), m_Time));
+    }
+    if(m_TypeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("type")), m_Type));
     }
 }
 
@@ -170,6 +192,12 @@ bool Cloud_Event::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         utility::string_t refVal_setTime;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("time"))), refVal_setTime );
         setTime(refVal_setTime);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("type"))))
+    {
+        utility::string_t refVal_setType;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("type"))), refVal_setType );
+        setType(refVal_setType);
     }
     return ok;
 }
@@ -258,6 +286,27 @@ bool Cloud_Event::timeIsSet() const
 void Cloud_Event::unsetTime()
 {
     m_TimeIsSet = false;
+}
+utility::string_t Cloud_Event::getType() const
+{
+    return m_Type;
+}
+
+
+void Cloud_Event::setType(const utility::string_t& value)
+{
+    m_Type = value;
+    m_TypeIsSet = true;
+}
+
+bool Cloud_Event::typeIsSet() const
+{
+    return m_TypeIsSet;
+}
+
+void Cloud_Event::unsetType()
+{
+    m_TypeIsSet = false;
 }
 
 }

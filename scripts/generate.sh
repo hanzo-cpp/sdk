@@ -129,7 +129,7 @@ version="$(sed -n 's/^  version: *//p' "$SPEC" | head -1)"
 
 # Validation stays ON: hanzo.yaml validates at 0 errors / 0 warnings, and a
 # malformed document must fail here rather than as compile errors spread over
-# 2376 files.
+# 2400-odd files.
 #
 # apiDocs/modelDocs/apiTests/modelTests off: ~4000 files of nothing at this
 # surface size, and the docs would be a second, staler copy of the document.
