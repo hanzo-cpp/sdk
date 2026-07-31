@@ -1,6 +1,8 @@
-{{! openapi-generator 7.14.0 cpp-rest-sdk-client/modelbase-header.mustache, overridden.
-     Upstream oneOf and free-form-object codegen does not compile. Each changed
-     hunk carries a comment saying what it fixes; the measurement is in LLM.md. }}
+{{! openapi-generator 7.24.0 cpp-rest-sdk-client/modelbase-header.mustache, overridden.
+     Forked from the stock template at that exact version, so a bump
+     re-derives these rather than merging them. Every changed hunk carries
+     a comment saying which generator defect it fixes; the measurement is
+     in LLM.md. Nothing here says anything about the Hanzo API. }}
 {{>licenseInfo}}
 /*
  * ModelBase.h
@@ -20,6 +22,7 @@
 #include <cpprest/json.h>
 
 #include <map>
+#include <memory>
 #include <set>
 #include <sstream>
 #include <type_traits>
@@ -61,10 +64,10 @@ public:
     template <typename T>
     static utility::string_t toString( const std::set<T> & val );
 
-    // A free-form `object` schema maps to Object, a ModelBase subclass held BY
-    // VALUE (std::vector<Object>, and so on). The overload set below covers
-    // primitives and std::shared_ptr<T> but not that, so toJson/fromJson on any
-    // container of Object finds no overload. A model carries itself.
+    {{! A free-form `object` schema maps to Object, a ModelBase subclass held BY
+         VALUE (std::vector<Object>, and so on). The overload set below covers
+         primitives and std::shared_ptr<T> but not that, so toJson/fromJson on a
+         container of Object finds no overload. A model carries itself. }}
     template <typename T, typename std::enable_if<std::is_base_of<ModelBase, T>::value, int>::type = 0>
     static web::json::value toJson( const T& val ) { return val.toJson(); }
     template <typename T, typename std::enable_if<std::is_base_of<ModelBase, T>::value, int>::type = 0>

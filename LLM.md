@@ -5,142 +5,180 @@ Guidance for AI agents working in this repo.
 ## What this is
 The **full Hanzo cloud SDK for C++** — a typed client over the entire `/v1`
 surface (AI, agents, inference, compute, data, network, security/IAM/KMS,
-platform, observe, web3). Generated from the cloud OpenAPI spec.
-
-## Status — there is no client here yet, and why
-
-**No openapi-generator 7.14.0 C++ generator emits a tree that compiles from
-`hanzo.yaml`.** That is a measured result, not an impression, and it is the
-reason this repo carries the seam (`scripts/generate.sh`), the CI wiring and the
-template overrides but no `include/` or `src/`. A tree that does not compile is
-worse than no tree, so none was committed.
-
-Measured on aarch64 Ubuntu 24.04, g++ 13.3, cmake 3.28.3, generator 7.14.0,
-spec `hanzoai/openapi@0e51842` (1737 paths · 2478 operations · 1798 schemas ·
-263 tags). Method: generate, then `g++ -std=c++17 -fsyntax-only` every emitted
-translation unit.
-
-| generator | verdict |
-|---|---|
-| `cpp-restsdk` | 2316 TUs, **52 fail** as generated → **11 fail** with the overrides in `templates/` |
-| `cpp-qt-client` | 2311 TUs, **51 fail**; also drags in Qt6 Core + Network **+ Gui** (`OAIOauth.h` includes `QDesktopServices`). 31 of the 51 are models it references but never emits, 14 are self-recursive schemas held by value — neither reachable from a template |
-| `cpp-tiny` | not a library — emits `platformio.ini`, `root.cert`, `src/main.cpp`. PlatformIO/Arduino target |
-| `cpp-ue4` | Unreal Engine target, not a normal toolchain |
-| `cpp-tizen` | Samsung Tizen platform target |
-
-**Scale is not the blocker.** The library is one static target of 2316
-translation units and a full Release build compiles ~2300 objects in **under 11
-minutes** at `-j20` on this box (peak RSS 1.6 GB on the largest TU,
-`AdminApi.cpp` at 586 KB). Generation itself takes 50 seconds.
-
-**The dependency is not the blocker either.** `cpp-restsdk` needs cpprestsdk +
-Boost + OpenSSL; `libcpprest-dev` 2.10.19 installs from Ubuntu universe and both
-`find_package(cpprestsdk)` and `find_package(Boost)` resolve, with cmake
-configuring clean. Worth noting anyway that cpprestsdk is archived upstream by
-Microsoft — a second reason not to commit to it before the codegen is sound.
-
-The blocker is codegen correctness, and nothing else.
-
-### What `templates/cpp-restsdk/` fixes (proven: 52 → 11)
-
-Five defect classes live in the generator's mustache templates, so a
-`-t` override reaches them. Each hunk is commented in place, and regenerating
-with these templates reproduces the measured tree byte for byte.
-
-1. **oneOf explicit instantiations are HTML-escaped.** `model-source.mustache`
-   interpolates the alternative with `{{.}}` where the header uses `{{{.}}}`,
-   emitting `fromJson<std::shared_ptr&lt;Object&gt;>`. Never valid C++.
-2. **oneOf visitors call members the alternatives do not have.**
-   `val = arg.toJson()` where `arg` is `std::shared_ptr<Model>` or
-   `utility::string_t`. `ModelBase` already overloads `toJson`/`fromJson` for
-   every alternative kind; the template just does not use it.
-3. **A oneOf model cannot be a field of another model.** The generated class
-   stands outside the `ModelBase` hierarchy and declares only an
-   explicit-`Target` template, so nothing resolves it when it appears as a
-   member. The override derives it from `ModelBase` and gives it the
-   non-template `fromJson`/`fromMultiPart` pair, trying each alternative in
-   declaration order.
-4. **`Object` by value has no `ModelBase` overload.** A free-form `object`
-   schema maps to `Object`, held by value in containers, and the overload set
-   covers primitives and `std::shared_ptr<T>` but not its own subclasses. The
-   override adds the four `is_base_of` overloads, plus the `Object.h` include
-   that oneOf headers omit.
-5. **An API response container and its element type are resolved separately**,
-   so an array of free-form objects declares `std::vector<Object>` and is filled
-   with `push_back(std::shared_ptr<Object>)`. The override reads the element
-   type off the container itself (`::value_type` / `::mapped_type`) and routes
-   both directions through `ModelBase`, which is correct for every item kind.
-
-### What remains, and why a template cannot reach it
-
-The last 11 TUs fail inside the generator's **Java type resolution**. Mustache
-only interpolates the strings that resolution produces (`{{{dataType}}}`, the
-`oneOf` list, `{{#imports}}`); it cannot recompute a type or filter an import
-list. These need a fix in `CppRestSdkClientCodegen`, upstream.
-
-| n | defect | trigger in `hanzo.yaml` |
-|---|---|---|
-| 9 | `additionalProperties: {$ref: <array-typed schema>}` emits `std::map<utility::string_t, std::vector>` — the aliased array's element type is dropped | `vector_NamedVectors` → `vector_DenseVector` |
-| 1 | `FunctionsApi.h` includes `hanzo/model/Edge_deployFunction_request.h`, a model the resolver names but never emits | `edge_deployFunction` — both `application/octet-stream` and an inline `multipart/form-data` object body |
-| 1 | an integer-backed enum: the conversion helpers are declared over `utility::string_t` and their bodies compare against string literals, while the source calls them with `int32_t` | `framework_Document` |
-
-The enum one is template-*shaped* — the signature is hardcoded in
-`model-header.mustache`. It is deliberately **not** overridden here: aligning
-the signature alone only moves the error, because the conversion bodies compare
-against string literals throughout. Fixing it properly means rewriting enum
-codegen for non-string base types, which belongs upstream and not in a fork.
-
-**The spec is not at fault.** `hanzo.yaml` validates at 0 errors / 0 warnings
-under 7.14.0 (346 recommendations, all "unused model"), so
-`--skip-validate-spec` is not needed and is not used. Every trigger above is
-well-formed OpenAPI. Deforming the document to suit one C++ generator would
-degrade the seven other language projections that read the same file — do not
-do it.
-
-### The path to a client, in order
-
-1. Fix the four resolver defects upstream in openapi-generator, or carry a
-   patched generator build.
-2. Add the `cpp` row to `hanzoai/openapi`'s `sdks.yaml` — generator, properties,
-   and a `take` mapping `include`/`src` into this repo. **There is no `cpp` row
-   today**, deliberately: a row describes a projection that compiles, and this
-   one does not yet. `scripts/generate.sh` will exit with
-   `invalid choice: cpp` until it exists.
-3. `./scripts/generate.sh` then populates `include/` and `src/`, and
-   `hanzo.yml`'s `cmake-build` / `examples-build` / `binaries` steps become live.
-4. The six canonical example flows come from `hanzoai/openapi`'s `flows.yaml` —
-   hello, chat, money, store, agent, tools. Read that file; do not re-derive
-   them. `HANZO_API_KEY`, `HANZO_BASE_URL` and `HANZO_ORG_ID` resolve in ONE
-   shared place in this repo, not once per flow.
+platform, observe, web3). Generated from `hanzoai/openapi`'s `hanzo.yaml`.
 
 ## Canonical role
 - This is the **real code** for the C++ full cloud SDK line: `hanzo-cpp/sdk`.
-  The `hanzoai/cpp-sdk` wrapper is docs/landing and links here — never duplicate impl.
+  `hanzoai/cpp-sdk` is a rename redirect to it (`gh api repos/hanzoai/cpp-sdk
+  --jq .full_name` → `hanzo-cpp/sdk`), so the two are one repo, not two.
 - Separate line: the AI/agents lib lives at `hanzo-cpp/ai`. Don't merge the two.
-- Completeness order across languages: Python → Rust → C++ → Go → others.
 - One impl, one place. DRY. Discovery repos link OUT.
 
-## Install / run
-- Consume via CMake: `find_package(hanzo CONFIG REQUIRED)` → link `hanzo::hanzo`.
-- Build: `cmake -B build && cmake --build build && ctest --test-dir build`.
-- Requires C++17, CMake 3.20+.
-
 ## Generation — one place, one way
-`hanzoai/openapi` owns both the document (`hanzo.yaml`) and its projection into
-every language: the matrix is data in `sdks.yaml`, the driver is `generate.py`.
-`scripts/generate.sh` here is a **call site** into that driver and nothing more —
-never a bespoke generator invocation. `./scripts/generate.sh --check` diffs
-instead of writing and exits non-zero on drift, which is what makes "the client
-cannot be hand-edited" a fact rather than a convention.
+
+`hanzoai/openapi` owns the document and the matrix of language projections
+(`sdks.yaml` + `generate.py`). Most clients are a bare call site into that
+driver. **C++ is not, deliberately**, and `sdks.yaml` records why: this
+projection needs generator template **files**, and a file has to sit beside the
+invocation or the pair drifts apart. That is the same rule under which `go` and
+`rust` left the registry. So `scripts/generate.sh` owns the whole invocation —
+same document, same `--check` contract — and there is no `cpp` row upstream.
+What is NOT allowed is a row there AND flags here.
+
+```
+./scripts/generate.sh            # regenerate include/ and src/
+./scripts/generate.sh --check    # diff only; non-zero on drift
+```
+
+`hanzoai/openapi` is PRIVATE. raw.githubusercontent.com serves public repos only
+and answers **404, not 403**, for a private path, so an anonymous miss is
+indistinguishable from a deleted file. The script names that cause and refuses;
+it never falls back to a stale spec.
+
+### Two things about the generator that are not free
+
+**1. openapi-generator 7.24.0, not the 7.14.0 `sdks.yaml` pins.** A measured
+floor. On 7.14.0 this document leaves **10** translation units uncompilable
+(measured at spec `ea45dde`, 2370 TUs — the total moves with the document, the
+defects do not) through two defects in the generator's own Java type resolution.
+Neither is template-reachable — mustache interpolates the strings that
+resolution produces, it cannot recompute a type:
+
+| n | defect | trigger |
+|---|---|---|
+| 9 | `additionalProperties: {$ref: <array-typed schema>}` emits `std::map<utility::string_t, std::vector>` — the aliased array's element type is dropped | `vector_NamedVectors` → `vector_DenseVector` |
+| 1 | an integer-backed enum declares its conversion helpers over `utility::string_t` and defines them over `int32_t` | `framework_Document.docstatus` |
+
+7.24.0 fixes both. Raising the pin fleet-wide would rewrite every other client's
+committed output, so it is a separate deliberate decision; the floor is stated
+once, in `scripts/generate.sh`, where the invocation is. Above the floor is
+fine, below it this repo does not build.
+
+**2. `-DmaxYamlCodePoints`.** swagger-parser hands the document to snakeyaml,
+which refuses anything over `3 * 1024 * 1024` = 3145728 code points. `hanzo.yaml`
+passed that mark (3,654,449 code points at `1bac13f`) and the failure does not
+say so: the parser logs `SnakeException`, silently falls through to the **Swagger
+2.0** compat reader, and dies with `Issues with the OpenAPI input` — which reads
+like a malformed spec. It is not; the document validates at **0 errors / 0
+warnings** (240 "unused model" recommendations). This is fleet-wide, not a C++
+problem, and it is also set in `hanzoai/openapi`'s `generate.py` so that every
+language gets it from one place.
+
+### `templates/cpp-restsdk/` — four overrides
+
+Forked from **7.24.0** stock, so a generator bump re-derives them rather than
+merging them. Each hunk is commented in place; none of them says anything about
+the Hanzo API. Deforming the document to suit one C++ generator would degrade
+the other language projections that read the same file — **do not do it**.
+
+1. **A oneOf class cannot be a field of another model.** It is generated outside
+   the `ModelBase` hierarchy and declares only explicit-`Target` templates, so
+   nothing resolves it as a member. The override derives it from `ModelBase` and
+   adds the non-template `fromJson`/`fromMultiPart` pair, trying each
+   alternative in declaration order.
+2. **oneOf visitors call members the alternatives do not have** — `arg.toJson()`
+   where `arg` is a `std::shared_ptr<Model>` or a primitive. `ModelBase` already
+   overloads every alternative kind; the template just did not use it.
+3. **oneOf explicit instantiations are HTML-escaped** — `{{.}}` where the header
+   uses the triple form, emitting `fromJson<std::shared_ptr&lt;Object&gt;>`.
+4. **A free-form `object` is held BY VALUE.** `Object` is a `ModelBase`
+   subclass, but the overload set covers primitives and `std::shared_ptr<T>`
+   only, so `toJson` / `fromJson` / `toHttpContent` / `fromHttpContent` on a
+   container of `Object` — or on a oneOf whose alternatives are by-value models
+   — find no overload. The override adds `is_base_of` overloads for all four,
+   plus the `Object.h` include that oneOf headers omit.
+5. **An API response container and its element type are resolved separately**,
+   so an array of free-form objects declares `std::vector<Object>` and is filled
+   with `push_back(std::shared_ptr<Object>)`. The override reads the element
+   type off the container itself (`::value_type` / `::mapped_type`).
+
+Plus two in the enum path, both template-shaped and both fixed here:
+`isPrimitiveType` and `isEnum` are **not exclusive**, so an integer-backed enum
+declared its setter twice and defined it once; and the conversion helpers were
+declared over `utility::string_t` in the header while defined over the property's
+own `dataType` in the source, with string literals in bodies that must return a
+number. The literal form now switches on the property's `isNumeric` — note that
+`enumVars`' own `isString` is **false for `utility::string_t`** and is the wrong
+discriminator; using it silently emits bare identifiers (`if (value == user)`).
+
+**Mustache comments must not contain `{{` or `}}`.** Such a comment closes at the
+inner tag and dumps its remainder into the generated C++. That cost two full
+regeneration cycles here; the templates are clean now, keep them so.
+
+## Layout
+- `include/hanzo/…`, `src/…` — generated. Never hand-edit; `--check` enforces it.
+- `CMakeLists.txt`, `cmake/` — the repo's own. The generator's `CMakeLists.txt`
+  and `Config.cmake.in` are dropped before the tree lands: the `hanzo::hanzo`
+  target, the export set and `HANZO_BUILD_EXAMPLES` are this repo's contract
+  with a consumer, not a generator artifact.
+- `examples/` — the six canonical flows.
+- `templates/cpp-restsdk/` — the overrides above.
+
+Namespaces are `hanzo::api` and `hanzo::model`; the include root is `hanzo/`.
+Every call returns `pplx::task<T>`.
+
+## Examples — the six canonical flows
+`hello, chat, money, store, agent, tools`, named and ordered by
+`hanzoai/openapi`'s **`flows.yaml`**. Read that file; do not re-derive them — a
+sibling lane shipped divergent flows by deriving its own and had to reconcile.
+It names the exact operationIds per flow, and a gate upstream asserts every one
+of them exists in the merged document.
+
+`HANZO_API_KEY`, `HANZO_BASE_URL` (default `https://api.hanzo.ai`) and
+`HANZO_ORG_ID` resolve in ONE place — `examples/hanzo.cpp` — not once per flow.
+`store` deletes in a scope guard; `agent` polls the run list to a terminal
+state; `tools` reads `error` before `result`, because JSON-RPC reports failure
+inside a 200.
+
+One divergence, recorded rather than hidden: `flows.yaml` says `hello` should
+print `data.owner` and `data.name`, but the typed `bot_User` the route actually
+returns has `id / handle / displayName / email / role` and no such fields. This
+prints what the model has.
+
+## Build
+```bash
+cmake -B build -DCMAKE_BUILD_TYPE=Release && cmake --build build -j"$(nproc)"
+cmake -B build -DHANZO_BUILD_EXAMPLES=ON && cmake --build build -j"$(nproc)"
+```
+Needs C++17, CMake 3.20+, cpprestsdk + Boost + OpenSSL (`libcpprest-dev` 2.10.19
+from Ubuntu universe resolves cleanly, and so do `find_package(cpprestsdk)` and
+`find_package(Boost)`). Worth knowing: cpprestsdk is archived upstream by
+Microsoft. It is what the only C++ generator that produces a compiling library
+uses, so it is what ships — but moving off it is a real question, not a
+hypothetical one.
+
+Scale is not a problem: generation takes under a minute, ~2376 objects build in
+about 11 minutes at `-j20`, and the largest TU (`AdminApi.cpp`) peaks near
+1.6 GB RSS.
+
+The generators that were measured and rejected, so nobody re-runs the
+experiment: `cpp-qt-client` (drags in Qt6 Core + Network **+ Gui**, and 31 of its
+failures are models it references but never emits — not template-reachable);
+`cpp-tiny` (not a library at all — emits `platformio.ini`, `root.cert`,
+`src/main.cpp`; an Arduino/PlatformIO target); `cpp-ue4` (Unreal); `cpp-tizen`
+(Samsung Tizen).
 
 ## CI
 `hanzo.yml` declares the gates, `.github/workflows/cicd.yml` is the seven-line
-call into `hanzoai/ci`. **Wired and registered, but unexercised.** Actions is
-enabled and unrestricted on the org; what is missing is a runner — `hanzoai/ci`
-defaults to `runs-on: [hanzo-build-linux-amd64]`, an arc pool with zero
-registered runners, so a run queues instead of executing. Two of the four gates
-additionally have nothing to build until the client lands; they are written now
-so that landing it is one commit.
+call into `hanzoai/ci`. **Wired, and UNEXERCISED — do not claim it is green.**
+Two distinct failure modes, both observed, neither fixed by anything in this
+repo:
+
+- On `hanzo-cpp/sdk`, both runs to date are `completed / startup_failure` with
+  **zero jobs created** — GitHub never got as far as scheduling one. It is not a
+  missing reusable: `hanzoai/ci` is public, `@v1` resolves to 18bd16c, and its
+  `build.yml` is present (57 KB).
+- On the `hanzoai/*` repos the same workflow instead sits `queued` forever
+  (`hanzoai/java-sdk`'s only run has been queued since 16:30). That one is
+  capacity: `hanzoai/ci` defaults to `runs-on: [hanzo-build-linux-amd64]`, an arc
+  pool with **zero registered runners** (`gh api orgs/<org>/actions/runners` →
+  `total_count: 0` for hanzoai, hanzo-cpp and hanzo-kotlin alike).
+
+Actions itself is enabled and unrestricted (`enabled_repositories: all`,
+`allowed_actions: all`), so neither is a permissions problem. Verification here
+is a **clean-clone local build**, and that is where every number above comes
+from.
+
 C++ has no registry, so the release artifact is a tagged GitHub release carrying
 headers + library, built by `binaries:` on every push and published on a tag.
 
@@ -150,13 +188,6 @@ headers + library, built by `binaries:` on every push and published on a tag.
 - Paths are `/v1/…` only — never an `/api/` prefix.
 - **Zen** models are Hanzo's own family — never reference upstream model names.
 - Voice: "Hanzo — the Open AI Cloud." Modern, crisp, developer-first.
-
-## Key entry points
-- `scripts/generate.sh` — the call site into `hanzoai/openapi`'s `generate.py`.
-- `templates/cpp-restsdk/` — the four proven generator template overrides.
-- `CMakeLists.txt` — the `hanzo::hanzo` target and install/export config. Lands
-  with the client; the repo root owns it, never the generator.
-- Service methods are code-generated from the OpenAPI spec; regenerate, don't hand-fork.
 
 ## Pointer
 Full SDK model + one-way rules: `~/work/hanzo/SDK-ARCHITECTURE.md`.

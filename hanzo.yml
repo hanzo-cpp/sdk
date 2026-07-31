@@ -4,34 +4,17 @@
 # from a tag via FetchContent or from a release archive, so what CI owes is a
 # gate plus an artifact, not a running service.
 #
-# UNEXERCISED. Two separate reasons, both real:
-#   1. No runner is registered for the pool hanzoai/ci defaults to
-#      (`hanzo-build-linux-amd64`, an arc pool at total_count 0), so a run here
-#      queues rather than executes — hanzoai/java-sdk's CI/CD is sitting queued
-#      for exactly this reason. Actions itself is enabled and unrestricted on
-#      the org; this is a capacity gap, not a permissions one.
-#   2. `cmake-build` and `examples-build` have nothing to build yet. No
-#      openapi-generator 7.14.0 C++ generator emits a tree that compiles from
-#      hanzo.yaml; the measured blockers are in LLM.md. These steps are the gate
-#      this repo will be held to the moment scripts/generate.sh can populate
-#      include/ and src/, and they are written now so that landing the client is
-#      one commit rather than two.
+# UNEXERCISED, and that is a fact about the fleet rather than about this file.
+# Both runs on this repo so far are `completed / startup_failure` with ZERO jobs
+# created — GitHub never scheduled one — while the same workflow on the hanzoai/*
+# repos sits `queued` forever against `hanzo-build-linux-amd64`, an arc pool with
+# zero registered runners. Actions is enabled and unrestricted on the org, so
+# neither is a permissions gap. Every gate below is therefore verified by a
+# clean-clone local build, and the numbers in LLM.md are that build's.
 
 test:
-  - name: generate-seam-check
-    # The seam is a call site into hanzoai/openapi's generate.py. It is the only
-    # thing in this repo today that can be wrong, so it is the only thing gated
-    # today. A check, not a test — the reusable's empty-test gate exempts checks.
-    run: bash -n scripts/generate.sh
-
-  - name: codegen-drift-check
-    # --check regenerates into a temp dir and diffs; non-zero if the committed
-    # client drifted from what hanzo.yaml projects. One place decides what this
-    # repo contains, and this is what makes that a fact rather than a promise.
-    run: ./scripts/generate.sh --check
-
   - name: cmake-build
-    # 2316 translation units in one static library. A regeneration that does not
+    # 2376 translation units in one static library. A regeneration that does not
     # compile must not reach a tag, which is the whole reason this is a gate and
     # not a README instruction.
     run: |
@@ -40,13 +23,21 @@ test:
       cmake --build build -j"$(nproc)"
 
   - name: examples-build
-    # The six canonical flows are the same journeys in every Hanzo SDK. An
+    # The six canonical flows, compiled against the client they demonstrate. An
     # example that does not compile is worse than no example, so they are gated
     # rather than merely committed.
     run: |
       set -e
       cmake -B build -DHANZO_BUILD_EXAMPLES=ON
       cmake --build build -j"$(nproc)" --target hello chat money store agent tools
+
+  - name: codegen-drift-check
+    # The client is generated, so the only thing that can rot is the committed
+    # copy. This regenerates from hanzoai/openapi and fails if what is in git is
+    # not what the document projects. Needs SPEC_TOKEN — hanzoai/openapi is
+    # private, and the script says so by name rather than falling back to a
+    # stale spec.
+    run: ./scripts/generate.sh --check
 
 binaries:
   # C++ has no registry. The published artifact is a tagged GitHub release
