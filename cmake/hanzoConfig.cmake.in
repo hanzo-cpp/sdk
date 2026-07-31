@@ -1,0 +1,14 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+# Transitive, not optional: hanzo::hanzo exposes cpprest types in its public
+# headers, so a consumer that resolves hanzo must resolve these too.
+find_dependency(cpprestsdk)
+find_dependency(Boost)
+find_dependency(OpenSSL)
+find_dependency(Threads)
+
+include("${CMAKE_CURRENT_LIST_DIR}/hanzoTargets.cmake")
+
+check_required_components(hanzo)
