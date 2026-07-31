@@ -4,6 +4,20 @@ The full Hanzo cloud, native in C++ — one typed client for every `/v1` service
 
 Generated from the cloud OpenAPI spec, so the surface is always complete and never drifts from the platform.
 
+## Status
+
+**The client is not published yet.** No openapi-generator 7.14.0 C++ generator
+currently emits a tree that compiles from the Hanzo cloud spec — the closest,
+`cpp-restsdk`, still leaves 11 of 2316 translation units broken on defects in
+the generator's own type resolution. Neither scale nor the HTTP dependency is
+the problem: the library builds ~2300 objects in under 11 minutes at `-j20`, and
+cpprestsdk + Boost + OpenSSL resolve cleanly. Rather than commit a tree that
+does not build, this repo carries the generation seam, the CI gates, and the
+generator template overrides that fix the five defect classes we could reach.
+
+The measurement, the exact remaining blockers and the path to a client are in
+[`LLM.md`](./LLM.md). Everything below is the contract that lands with it.
+
 ## Install
 
 Fetch it with CMake and link against the `hanzo::hanzo` target:
@@ -29,29 +43,19 @@ FetchContent_MakeAvailable(hanzo)
 
 Requires a C++17 compiler and CMake 3.20+.
 
-## Usage
+## Configuration
 
-Initialize a client and make a call. Configuration is read from `HANZO_API_KEY`, or set it explicitly:
+Auth is a bearer token — an IAM-issued JWT or an `hk-` Cloud API key — read from
+the environment, or set explicitly on the client.
 
-```cpp
-#include <hanzo/client.hpp>
-#include <iostream>
+| Option | Env | Default |
+|--------|-----|---------|
+| `api_key` | `HANZO_API_KEY` | — |
+| `base_url` | `HANZO_BASE_URL` | `https://api.hanzo.ai` |
+| `org_id` | `HANZO_ORG_ID` | — (required by org-scoped services, sent as `X-Org-Id`) |
+| `timeout` | — | `60s` |
 
-int main() {
-  hanzo::Client client{{.api_key = std::getenv("HANZO_API_KEY")}};
-
-  auto response = client.chat.completions.create({
-    .model = "zen-1",
-    .messages = {
-      {.role = "user", .content = "Explain composable systems in one sentence."},
-    },
-  });
-
-  std::cout << response.choices.at(0).message.content << '\n';
-}
-```
-
-Every request targets `https://api.hanzo.ai/v1` by default. Point at another
+Every request targets `https://api.hanzo.ai` by default. Point at another
 environment by setting `base_url` on the client options.
 
 Models are the **Zen** family (`zen-1`, and siblings) — Hanzo's own models, first-class across the whole SDK.
@@ -71,20 +75,25 @@ One client, the entire cloud surface under `/v1`:
 | **Observe** | Logs, metrics, traces, dashboards, alerts |
 | **Web3** | Settlement, chains, wallets, tokens, indexer |
 
-## Configuration
+## Regenerating
 
-| Option | Env | Default |
-|--------|-----|---------|
-| `api_key` | `HANZO_API_KEY` | — |
-| `base_url` | `HANZO_BASE_URL` | `https://api.hanzo.ai/v1` |
-| `timeout` | — | `60s` |
+The spec is the only source. `hanzoai/openapi` owns both the document and its
+projection into every language, and this script is a call site into that one
+driver — never a bespoke generator invocation:
+
+```bash
+./scripts/generate.sh            # regenerate the client in place
+./scripts/generate.sh --check    # diff only; non-zero if the client drifted
+```
+
+Never edit generated sources. Edit the per-service spec in `hanzoai/openapi` and
+regenerate.
 
 ## Building from source
 
 ```bash
 cmake -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build
-ctest --test-dir build
 ```
 
 ## Hanzo — the Open AI Cloud
