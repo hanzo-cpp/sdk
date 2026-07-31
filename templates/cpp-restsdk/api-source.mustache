@@ -1,5 +1,8 @@
-{{! openapi-generator 7.14.0 cpp-rest-sdk-client/api-source.mustache, overridden.
-     The container element type is resolved separately from the container. See LLM.md. }}
+{{! openapi-generator 7.24.0 cpp-rest-sdk-client/api-source.mustache, overridden.
+     Forked from the stock template at that exact version, so a bump
+     re-derives these rather than merging them. Every changed hunk carries
+     a comment saying which generator defect it fixes; the measurement is
+     in LLM.md. Nothing here says anything about the Hanzo API. }}
 {{>licenseInfo}}
 {{#operations}}
 
@@ -174,6 +177,9 @@ pplx::task<{{{returnType}}}{{^returnType}}void{{/returnType}}> {{classname}}::{{
                 {{#items.isPrimitiveType}}localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
                 {{/items.isPrimitiveType}}{{^items.isPrimitiveType}}{{#items.isString}}localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
                 {{/items.isString}}{{^items.isString}}{{#items.isDateTime}}localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
+                {{! Same resolution gap on the way out: the item may be a model
+                     held BY VALUE, which has no operator-> . ModelBase overloads
+                     both kinds. }}
                 {{/items.isDateTime}}{{^items.isDateTime}}localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
                 {{/items.isDateTime}}{{/items.isString}}{{/items.isPrimitiveType}}
             }
@@ -241,7 +247,7 @@ pplx::task<{{{returnType}}}{{^returnType}}void{{/returnType}}> {{classname}}::{{
     {{#isApiKey}}
     {{#isKeyInHeader}}
     {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("{{keyParamName}}"));
+        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("{{name}}"));
         if ( localVarApiKey.size() > 0 )
         {
             localVarHeaderParams[utility::conversions::to_string_t("{{keyParamName}}")] = localVarApiKey;
@@ -250,7 +256,7 @@ pplx::task<{{{returnType}}}{{^returnType}}void{{/returnType}}> {{classname}}::{{
     {{/isKeyInHeader}}
     {{#isKeyInQuery}}
     {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("{{keyParamName}}"));
+        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("{{name}}"));
         if ( localVarApiKey.size() > 0 )
         {
             localVarQueryParams[utility::conversions::to_string_t("{{keyParamName}}")] = localVarApiKey;
@@ -327,6 +333,11 @@ pplx::task<{{{returnType}}}{{^returnType}}void{{/returnType}}> {{classname}}::{{
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
             web::json::value localVarJson = web::json::value::parse(localVarResponse);
+            {{! The container and its element type are resolved separately, so an
+                 array of free-form objects declares std::vector<Object> and is
+                 filled with push_back(std::shared_ptr<Object>). Reading the
+                 element type off the container itself is correct for every item
+                 kind, and ModelBase routes both. }}
             {{#isArray}}
             for( auto& localVarItem : localVarJson.as_array() )
             {
