@@ -22,7 +22,7 @@ find_package(OpenSSL REQUIRED)
 find_package(Threads REQUIRED)
 
 # GLOB, deliberately: the file list IS the generated tree, and a hand-kept copy
-# of 2376 names would be a second source of truth that goes stale the first time
+# of ~2400 names would be a second source of truth that goes stale the first time
 # an operation is added upstream. CONFIGURE_DEPENDS makes cmake re-check it on
 # every build.
 file(GLOB_RECURSE HANZO_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")

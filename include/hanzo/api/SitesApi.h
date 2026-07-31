@@ -23,11 +23,12 @@
 
 #include "hanzo/ApiClient.h"
 
-#include "hanzo/model/Projects_BuildSiteRequest.h"
-#include "hanzo/model/Projects_DeploySiteRequest.h"
-#include "hanzo/model/Projects_Error.h"
-#include "hanzo/model/Projects_Site.h"
-#include "hanzo/model/Projects_SiteDeployResult.h"
+#include "hanzo/model/Cloud_projectsBuildSite.h"
+#include "hanzo/model/Cloud_projectsDeploySite.h"
+#include "hanzo/model/Cloud_projectsPublish.h"
+#include "hanzo/model/Cloud_projectsRelease.h"
+#include "hanzo/model/Cloud_projectsSite.h"
+#include "hanzo/model/Cloud_projectsSiteDeploy.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -48,74 +49,78 @@ public:
     virtual ~SitesApi();
 
     /// <summary>
-    /// Your org&#39;s live sites and their URLs
+    /// ListSites returns the org&#39;s deployed sites at the pretty URLs they serve at.
     /// </summary>
     /// <remarks>
-    /// Lists only the projects that are actually LIVE, each with its pretty URL, name and last update — narrower than the project list, which includes drafts and failures, and the right read for &#39;what is my org currently serving&#39;. Requires a validated principal (403 without one) and is keyed by that principal&#39;s org.
+    /// ListSites returns the org&#39;s deployed sites at the pretty URLs they serve at.  It reads the SAME org-scoped store as /v1/projects and keeps only the projects that are actually &#x60;live&#x60;, so a draft or a failed build is not advertised as a site.  Scope: a validated principal is required (403 without one) and the list is keyed by that principal&#39;s org.
     /// </remarks>
-    pplx::task<std::vector<std::shared_ptr<Projects_Site>>> cloudGetV1Sites(
+    pplx::task<std::vector<std::shared_ptr<Cloud_projectsSite>>> cloudGetV1Sites(
     ) const;
     /// <summary>
-    /// The site&#39;s releases, newest first — the rollback menu
+    /// ListReleases returns a site&#39;s releases newest-first, marking the active one — the rollback menu.
     /// </summary>
     /// <remarks>
-    /// Lists the site&#39;s retained releases with their id, object and byte counts, source and creation time, marking which one is currently active. This is what a rollback picks from, so the retention bound matters: each publish reclaims releases past the retention depth, and the live release is never a reclaim candidate. Requires a validated principal (403 without one); the site is resolved within that principal&#39;s org, so another tenant&#39;s slug is a 404.
+    /// ListReleases returns a site&#39;s releases newest-first, marking the active one — the rollback menu.  Each row carries the release id to activate, the source it was promoted from, its object and byte counts, and the URL if it is the one serving. Retention bounds the list, so it is the set that can actually still be rolled back to, not a full history.  Scope: a validated principal is required (403 without one) and the site is resolved within that principal&#39;s org, so another tenant&#39;s slug is a 404.
     /// </remarks>
-    /// <param name="slug"></param>
-    pplx::task<void> cloudGetV1SitesBySlugReleases(
+    /// <param name="slug">Slug is the project to act on, from the path. It is unique within the caller&#39;s org and nowhere else, so another tenant&#39;s slug is a 404.</param>
+    pplx::task<std::vector<std::shared_ptr<Cloud_projectsRelease>>> cloudGetV1SitesSlugReleases(
         utility::string_t slug
     ) const;
     /// <summary>
-    /// Describe a site in words and get it generated and deployed live
+    /// BuildSite generates a self-contained, mobile-responsive static site from a natural-language brief and deploys it live in one call.
     /// </summary>
     /// <remarks>
-    /// Generates a responsive static site from a natural-language &#x60;brief&#x60;, deploys it, and answers the live URL with the resolved slug, the deployment id and the file list. The project is created if the slug does not exist yet and reused if it does, so this one call covers both the first publish and a regeneration. &#x60;slug&#x60; and &#x60;name&#x60; are optional — a slug is derived from the generated title, and a usable one is minted when nothing good can be derived, so a deploy never fails purely for lack of a name.  Order matters and is fail-closed: the hosting gate runs BEFORE any inference, so a denied caller is 402 or 503 with nothing generated, nothing uploaded and no model tokens spent. Generation and hosting are billed to the same payer. A brief that is empty or over the cap is a 400, as is a generation that does not parse; a failed upload is never billed.  Scope: a validated principal is required (403 without one) and the site is created and stored under THAT principal&#39;s org — the same org rule as the project plane, which is why a site made here is an ordinary project visible at &#x60;/v1/projects&#x60;. Object storage must be configured (503), and so must inference (503).
+    /// BuildSite generates a self-contained, mobile-responsive static site from a natural-language brief and deploys it live in one call.  One inference call turns &#x60;brief&#x60; (capped at 8 KiB) into a file manifest, which then runs through the SAME validation, guards and viewport guarantee as a hand-supplied manifest: index.html required at the root, absolute and traversal paths rejected, per-file and total size capped, and a mobile viewport meta tag injected into every HTML document that lacks one. The generated site is fully inline — no CDNs, no remote fonts or images — so it is CSP-safe. &#x60;slug&#x60; and &#x60;name&#x60; are optional: the model&#39;s own title is preferred, and a slug is derived or minted when none is given.  It writes into the SAME org-scoped store as /v1/projects — it ensures a project (framework &#x60;static&#x60;) for the resolved slug and records a deployment — so this is a second door onto one publish pipeline, not a second copy of project state. Ordering is the billing contract: the hosting gate runs BEFORE any inference or upload, so a denied gate generates and uploads NOTHING, and the debit lands once, only after the site is actually live. The tokens are billed to the same ledger the hosting fee was reserved against.  Answers 503 when object storage or inference is unconfigured, and 400 when the model&#39;s manifest cannot be parsed or fails the guards.  Scope: a validated principal is required (403 without one) and the site is published into THAT principal&#39;s org.
     /// </remarks>
-    /// <param name="projectsBuildSiteRequest"></param>
-    pplx::task<std::shared_ptr<Projects_SiteDeployResult>> cloudPostV1Sites(
-        std::shared_ptr<Projects_BuildSiteRequest> projectsBuildSiteRequest
+    /// <param name="cloudProjectsBuildSite"></param>
+    pplx::task<std::shared_ptr<Cloud_projectsSiteDeploy>> cloudPostV1Sites(
+        std::shared_ptr<Cloud_projectsBuildSite> cloudProjectsBuildSite
     ) const;
     /// <summary>
-    /// Publish a build output and take it live in one call
+    /// DeploySite deploys a caller-supplied file manifest — the deploy_site capability an agent calls — and answers with where it went live.
     /// </summary>
     /// <remarks>
-    /// Promotes a build output into a new immutable release and points the site at it, answering the release marked active with the live URL. This is create-plus-activate in sequence with no extra semantics — the two halves stay separately callable for a staged rollout, and they cannot drift because this path is literally both.  No bytes traverse the API. &#x60;source&#x60; is a path RELATIVE to the caller org&#39;s own storage space, and the org segment is prepended server-side from the validated principal while the bucket never appears in the request at all — so the worst a hostile source can name is something the caller&#39;s own org already owns, and no client ever holds a storage credential. A release id is a digest of the manifest it was built from, which makes re-publishing identical bytes idempotent by construction: same content, same id, no copy.  Promoting is the billable work and the hosting gate runs before any copy, so this can never become a way to deploy for free: 402 unfunded, 503 unreachable. Scope: a validated principal is required (403 without one) and the site is resolved within that principal&#39;s org, so another tenant&#39;s slug is a 404. Object storage must be configured (503); a source that breaks the object or byte guards is a 400 or 413 and a source that moved under the scan is a 409.
+    /// DeploySite deploys a caller-supplied file manifest — the deploy_site capability an agent calls — and answers with where it went live.  &#x60;files&#x60; is a list of {path, content} pairs, the same shape the brief build emits, and it runs through the SAME guards: index.html required at the root, absolute and traversal paths rejected, per-file and total size capped, and a mobile viewport meta tag injected into every HTML document that lacks one — so a hand-built site is exactly as safe and as responsive as a generated one. &#x60;slug&#x60; and &#x60;name&#x60; are optional; a slug is derived from the name or minted.  It writes into the SAME org-scoped store as /v1/projects, ensuring a project (framework &#x60;static&#x60;) for the resolved slug and recording a deployment. The hosting gate runs before the upload and the debit lands once, after the site is live — a failed upload is never billed. Answers 503 when object storage is unconfigured.  Scope: a validated principal is required (403 without one) and the site is published into THAT principal&#39;s org.
     /// </remarks>
-    /// <param name="slug"></param>
-    pplx::task<void> cloudPostV1SitesBySlugPublish(
-        utility::string_t slug
+    /// <param name="cloudProjectsDeploySite"></param>
+    pplx::task<std::shared_ptr<Cloud_projectsSiteDeploy>> cloudPostV1SitesDeploy(
+        std::shared_ptr<Cloud_projectsDeploySite> cloudProjectsDeploySite
     ) const;
     /// <summary>
-    /// Promote a build output into a release WITHOUT serving it
+    /// PublishSite promotes a build output into a new release AND goes live with it — create+activate in one call, which is the 99% path.
     /// </summary>
     /// <remarks>
-    /// Creates a new immutable release from &#x60;source&#x60; and answers 201 with it — the staged half of publishing, for running whatever check you want against a release before anyone sees it. Nothing is served until the activate call; the live site is untouched.  The source is a path relative to the caller org&#39;s OWN storage space, with the org segment prepended server-side from the validated principal and the bucket never in the request, so a release can only ever be built from bytes the caller&#39;s org already owns. The id is a digest of the manifest, so promoting unchanged content returns the existing release rather than copying again.  This is where the copy happens, so this is where the hosting gate runs: 402 for an unfunded org, 503 for unreachable commerce, before any bytes move. Scope: a validated principal is required (403 without one) and the site is resolved within that principal&#39;s org, so another tenant&#39;s slug is a 404. Object storage must be configured (503).
+    /// PublishSite promotes a build output into a new release AND goes live with it — create+activate in one call, which is the 99% path.  It is exactly the two halves in sequence with no extra semantics, so the staged flow and the one-shot flow can never drift apart: &#x60;source&#x60; is promoted under the same org-relative rule and the same guards CreateRelease applies, then the site&#39;s pointer is flipped to it, the public host is claimed and the edge is purged. Idempotent on unchanged bytes — same manifest, same release id, no copy — and billed once, after the release exists.  Scope: a validated principal is required (403 without one) and the site is resolved within that principal&#39;s org, so another tenant&#39;s slug is a 404.
     /// </remarks>
-    /// <param name="slug"></param>
-    pplx::task<void> cloudPostV1SitesBySlugReleases(
-        utility::string_t slug
+    /// <param name="slug">Slug is the site to publish, from the path.</param>
+    /// <param name="cloudProjectsPublish"></param>
+    pplx::task<std::shared_ptr<Cloud_projectsRelease>> cloudPostV1SitesSlugPublish(
+        utility::string_t slug,
+        std::shared_ptr<Cloud_projectsPublish> cloudProjectsPublish
     ) const;
     /// <summary>
-    /// Point the site at a release — going live, and equally rolling back
+    /// CreateRelease promotes a build output into a new immutable release WITHOUT serving it — the staged half of publishing, for when you want to check a release before it goes live.
     /// </summary>
     /// <remarks>
-    /// Flips the site&#39;s pointer to an existing release and answers it marked active. Serving reads through that pointer, so the change is one atomic update with nothing rebuilt and nothing re-copied — which is exactly why rolling back is the SAME operation aimed at an older release, and is free.  It verifies the bytes before it flips, so it can fail two distinguishable ways and the difference is the fix: a release nobody can name, or whose row is gone, is a 404; a release still listed but whose bytes were reclaimed by retention is a 410, meaning that rollback target is not coming back and the content must be published again. Not billed — no new content is produced, only a pointer moved.  Scope: a validated principal is required (403 without one) and the site is resolved within that principal&#39;s org, so another tenant&#39;s slug is a 404.
+    /// CreateRelease promotes a build output into a new immutable release WITHOUT serving it — the staged half of publishing, for when you want to check a release before it goes live. Answers 201.  &#x60;source&#x60; is a path RELATIVE to your org&#39;s own storage space: the org segment is prepended server-side from the validated principal and the bucket is never in the request at all, so a server-side copy can only ever reach bytes your org already owns. The prefix is listed, content-addressed (SHA-256 over the sorted manifest of key/size/etag), and copied into an immutable &#x60;&lt;org&gt;/.releases/&lt;slug&gt;/&lt;id&gt;/&#x60; prefix; the row is written LAST, so a partial copy is unreachable rather than merely unlikely. Re-publishing an unchanged source is idempotent BY CONSTRUCTION — same bytes, same id, no copy at all.  The source must contain index.html at its root and stay under the same file and byte caps an artifact deploy does (413 past them); a source that changes mid-copy is a 409 and the release is abandoned. Each publish also reclaims releases past the retention depth, so a site&#39;s release space stays bounded. This is the billable half — the hosting gate runs before any copy, and the debit lands once the release exists.  Scope: a validated principal is required (403 without one) and the site is resolved within that principal&#39;s org, so another tenant&#39;s slug is a 404.
     /// </remarks>
-    /// <param name="slug"></param>
-    /// <param name="release"></param>
-    pplx::task<void> cloudPostV1SitesBySlugReleasesByReleaseActivate(
+    /// <param name="slug">Slug is the site to publish, from the path.</param>
+    /// <param name="cloudProjectsPublish"></param>
+    pplx::task<std::shared_ptr<Cloud_projectsRelease>> cloudPostV1SitesSlugReleases(
+        utility::string_t slug,
+        std::shared_ptr<Cloud_projectsPublish> cloudProjectsPublish
+    ) const;
+    /// <summary>
+    /// ActivateRelease points the site at an existing release — the go-live, and equally the ROLLBACK.
+    /// </summary>
+    /// <remarks>
+    /// ActivateRelease points the site at an existing release — the go-live, and equally the ROLLBACK.  Aim it at an older release and the site serves that one again: releases are immutable and retained to the retention depth, so nothing is rebuilt or re-copied and the flip is one atomic statement. Before the flip, two conditions run in the order that gives each its own honest answer — the ROW says whether this release exists for this tenant at all (404, with no signal about a foreign id), and only then do the BYTES say whether it can still serve (410 GONE when retention has reclaimed them; that rollback target is not coming back, so publish again). Going live also claims the public host and purges the edge, so the release is reachable and no cached predecessor is served. NOT billed: no new content is produced, only a pointer moved.  Scope: a validated principal is required (403 without one) and the site is resolved within that principal&#39;s org, so another tenant&#39;s slug is a 404.
+    /// </remarks>
+    /// <param name="slug">Slug is the site the release belongs to, from the path.</param>
+    /// <param name="release">Release is the content-addressed release id (\&quot;rel_\&quot; + 32 hex chars), from the path. Anything that is not that shape is not found, rather than being interpolated into a storage prefix.</param>
+    pplx::task<std::shared_ptr<Cloud_projectsRelease>> cloudPostV1SitesSlugReleasesReleaseActivate(
         utility::string_t slug,
         utility::string_t release
-    ) const;
-    /// <summary>
-    /// Deploy a site from a file manifest you supply
-    /// </summary>
-    /// <remarks>
-    /// Takes a map of path to file content, deploys it, and answers the live URL with the resolved slug, the deployment id and the file list — the raw half of the site capability, for a site that is already written rather than generated. The project is created if the slug is new and reused if not.  Hand-built files run through the SAME validation, viewport injection and guards a generated site does, so they are exactly as safe and as responsive; and it funnels into the same publish core as every other deploy path, so versioning, host binding and metering happen once, in one place. The hosting gate is fail-closed and runs before the upload: 402 unfunded, 503 unreachable, nothing written. &#x60;files&#x60; is required (400), a manifest over the file-count cap is a 400, and a file set that does not validate is a 400 naming why.  Scope: a validated principal is required (403 without one) and the site is stored under THAT principal&#39;s org. Object storage must be configured, else 503.
-    /// </remarks>
-    /// <param name="projectsDeploySiteRequest"></param>
-    pplx::task<std::shared_ptr<Projects_SiteDeployResult>> cloudPostV1SitesDeploy(
-        std::shared_ptr<Projects_DeploySiteRequest> projectsDeploySiteRequest
     ) const;
 
 protected:

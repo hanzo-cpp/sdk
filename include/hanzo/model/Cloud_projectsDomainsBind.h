@@ -10,33 +10,32 @@
  * Do not edit the class manually.
  */
 /*
- * Cloud_Event.h
+ * Cloud_projectsDomainsBind.h
  *
  * 
  */
 
-#ifndef HANZO_MODEL_Cloud_Event_H_
-#define HANZO_MODEL_Cloud_Event_H_
+#ifndef HANZO_MODEL_Cloud_projectsDomainsBind_H_
+#define HANZO_MODEL_Cloud_projectsDomainsBind_H_
 
 #include <boost/optional.hpp>
 
 #include "hanzo/ModelBase.h"
 
-#include "hanzo/AnyType.h"
 #include <cpprest/details/basic_types.h>
-#include <map>
+#include <vector>
 
 namespace hanzo {
 namespace model {
 
 
 
-class  Cloud_Event
+class  Cloud_projectsDomainsBind
     : public ModelBase
 {
 public:
-    Cloud_Event();
-    virtual ~Cloud_Event();
+    Cloud_projectsDomainsBind();
+    virtual ~Cloud_projectsDomainsBind();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -51,50 +50,32 @@ public:
 
 
     /////////////////////////////////////////////
-    /// Cloud_Event members
+    /// Cloud_projectsDomainsBind members
 
 
-    utility::string_t getDistinctId() const;
-    bool distinctIdIsSet() const;
-    void unsetDistinctId();
-    void setDistinctId(const utility::string_t& value);
+    /// <summary>
+    /// Domains are the custom hostnames to attach, in order. An empty list is a 400 rather than a clear — releasing a host is its own call.
+    /// </summary>
+    std::vector<utility::string_t> getDomains() const;
+    bool domainsIsSet() const;
+    void unsetDomains();
+    void setDomains(const std::vector<utility::string_t>& value);
 
-    utility::string_t getEvent() const;
-    bool eventIsSet() const;
-    void unsetEvent();
-    void setEvent(const utility::string_t& value);
-
-    std::map<utility::string_t, std::shared_ptr<AnyType>> getProperties() const;
-    bool propertiesIsSet() const;
-    void unsetProperties();
-    void setProperties(const std::map<utility::string_t, std::shared_ptr<AnyType>>& value);
-
-    utility::string_t getTime() const;
-    bool timeIsSet() const;
-    void unsetTime();
-    void setTime(const utility::string_t& value);
-
-    utility::string_t getType() const;
-    bool typeIsSet() const;
-    void unsetType();
-    void setType(const utility::string_t& value);
+    /// <summary>
+    /// Slug is the site the hosts attach to, from the path.
+    /// </summary>
+    utility::string_t getSlug() const;
+    bool slugIsSet() const;
+    void unsetSlug();
+    void setSlug(const utility::string_t& value);
 
 
 protected:
-    utility::string_t m_DistinctId;
-    bool m_DistinctIdIsSet;
+    std::vector<utility::string_t> m_Domains;
+    bool m_DomainsIsSet;
 
-    utility::string_t m_Event;
-    bool m_EventIsSet;
-
-    std::map<utility::string_t, std::shared_ptr<AnyType>> m_Properties;
-    bool m_PropertiesIsSet;
-
-    utility::string_t m_Time;
-    bool m_TimeIsSet;
-
-    utility::string_t m_Type;
-    bool m_TypeIsSet;
+    utility::string_t m_Slug;
+    bool m_SlugIsSet;
 
 };
 
@@ -102,4 +83,4 @@ protected:
 }
 }
 
-#endif /* HANZO_MODEL_Cloud_Event_H_ */
+#endif /* HANZO_MODEL_Cloud_projectsDomainsBind_H_ */

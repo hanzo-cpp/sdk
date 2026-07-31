@@ -10,33 +10,31 @@
  * Do not edit the class manually.
  */
 /*
- * Cloud_Event.h
+ * Cloud_projectsBuildSite.h
  *
  * 
  */
 
-#ifndef HANZO_MODEL_Cloud_Event_H_
-#define HANZO_MODEL_Cloud_Event_H_
+#ifndef HANZO_MODEL_Cloud_projectsBuildSite_H_
+#define HANZO_MODEL_Cloud_projectsBuildSite_H_
 
 #include <boost/optional.hpp>
 
 #include "hanzo/ModelBase.h"
 
-#include "hanzo/AnyType.h"
 #include <cpprest/details/basic_types.h>
-#include <map>
 
 namespace hanzo {
 namespace model {
 
 
 
-class  Cloud_Event
+class  Cloud_projectsBuildSite
     : public ModelBase
 {
 public:
-    Cloud_Event();
-    virtual ~Cloud_Event();
+    Cloud_projectsBuildSite();
+    virtual ~Cloud_projectsBuildSite();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -51,50 +49,42 @@ public:
 
 
     /////////////////////////////////////////////
-    /// Cloud_Event members
+    /// Cloud_projectsBuildSite members
 
 
-    utility::string_t getDistinctId() const;
-    bool distinctIdIsSet() const;
-    void unsetDistinctId();
-    void setDistinctId(const utility::string_t& value);
+    utility::string_t getBrief() const;
+    bool briefIsSet() const;
+    void unsetBrief();
+    void setBrief(const utility::string_t& value);
 
-    utility::string_t getEvent() const;
-    bool eventIsSet() const;
-    void unsetEvent();
-    void setEvent(const utility::string_t& value);
+    utility::string_t getModel() const;
+    bool modelIsSet() const;
+    void unsetModel();
+    void setModel(const utility::string_t& value);
 
-    std::map<utility::string_t, std::shared_ptr<AnyType>> getProperties() const;
-    bool propertiesIsSet() const;
-    void unsetProperties();
-    void setProperties(const std::map<utility::string_t, std::shared_ptr<AnyType>>& value);
+    utility::string_t getName() const;
+    bool nameIsSet() const;
+    void unsetName();
+    void setName(const utility::string_t& value);
 
-    utility::string_t getTime() const;
-    bool timeIsSet() const;
-    void unsetTime();
-    void setTime(const utility::string_t& value);
-
-    utility::string_t getType() const;
-    bool typeIsSet() const;
-    void unsetType();
-    void setType(const utility::string_t& value);
+    utility::string_t getSlug() const;
+    bool slugIsSet() const;
+    void unsetSlug();
+    void setSlug(const utility::string_t& value);
 
 
 protected:
-    utility::string_t m_DistinctId;
-    bool m_DistinctIdIsSet;
+    utility::string_t m_Brief;
+    bool m_BriefIsSet;
 
-    utility::string_t m_Event;
-    bool m_EventIsSet;
+    utility::string_t m_Model;
+    bool m_ModelIsSet;
 
-    std::map<utility::string_t, std::shared_ptr<AnyType>> m_Properties;
-    bool m_PropertiesIsSet;
+    utility::string_t m_Name;
+    bool m_NameIsSet;
 
-    utility::string_t m_Time;
-    bool m_TimeIsSet;
-
-    utility::string_t m_Type;
-    bool m_TypeIsSet;
+    utility::string_t m_Slug;
+    bool m_SlugIsSet;
 
 };
 
@@ -102,4 +92,4 @@ protected:
 }
 }
 
-#endif /* HANZO_MODEL_Cloud_Event_H_ */
+#endif /* HANZO_MODEL_Cloud_projectsBuildSite_H_ */

@@ -10,19 +10,18 @@
  * Do not edit the class manually.
  */
 /*
- * Cloud_Event.h
+ * Cloud_projectsUploadGrant.h
  *
  * 
  */
 
-#ifndef HANZO_MODEL_Cloud_Event_H_
-#define HANZO_MODEL_Cloud_Event_H_
+#ifndef HANZO_MODEL_Cloud_projectsUploadGrant_H_
+#define HANZO_MODEL_Cloud_projectsUploadGrant_H_
 
 #include <boost/optional.hpp>
 
 #include "hanzo/ModelBase.h"
 
-#include "hanzo/AnyType.h"
 #include <cpprest/details/basic_types.h>
 #include <map>
 
@@ -31,12 +30,12 @@ namespace model {
 
 
 
-class  Cloud_Event
+class  Cloud_projectsUploadGrant
     : public ModelBase
 {
 public:
-    Cloud_Event();
-    virtual ~Cloud_Event();
+    Cloud_projectsUploadGrant();
+    virtual ~Cloud_projectsUploadGrant();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -51,50 +50,50 @@ public:
 
 
     /////////////////////////////////////////////
-    /// Cloud_Event members
+    /// Cloud_projectsUploadGrant members
 
 
-    utility::string_t getDistinctId() const;
-    bool distinctIdIsSet() const;
-    void unsetDistinctId();
-    void setDistinctId(const utility::string_t& value);
+    int32_t getExpiresAt() const;
+    bool expiresAtIsSet() const;
+    void unsetExpiresAt();
+    void setExpiresAt(int32_t value);
 
-    utility::string_t getEvent() const;
-    bool eventIsSet() const;
-    void unsetEvent();
-    void setEvent(const utility::string_t& value);
+    std::map<utility::string_t, utility::string_t> getFields() const;
+    bool fieldsIsSet() const;
+    void unsetFields();
+    void setFields(const std::map<utility::string_t, utility::string_t>& value);
 
-    std::map<utility::string_t, std::shared_ptr<AnyType>> getProperties() const;
-    bool propertiesIsSet() const;
-    void unsetProperties();
-    void setProperties(const std::map<utility::string_t, std::shared_ptr<AnyType>>& value);
+    int32_t getMaxBytes() const;
+    bool maxBytesIsSet() const;
+    void unsetMaxBytes();
+    void setMaxBytes(int32_t value);
 
-    utility::string_t getTime() const;
-    bool timeIsSet() const;
-    void unsetTime();
-    void setTime(const utility::string_t& value);
+    utility::string_t getPrefix() const;
+    bool prefixIsSet() const;
+    void unsetPrefix();
+    void setPrefix(const utility::string_t& value);
 
-    utility::string_t getType() const;
-    bool typeIsSet() const;
-    void unsetType();
-    void setType(const utility::string_t& value);
+    utility::string_t getUrl() const;
+    bool urlIsSet() const;
+    void unsetUrl();
+    void setUrl(const utility::string_t& value);
 
 
 protected:
-    utility::string_t m_DistinctId;
-    bool m_DistinctIdIsSet;
+    int32_t m_ExpiresAt;
+    bool m_ExpiresAtIsSet;
 
-    utility::string_t m_Event;
-    bool m_EventIsSet;
+    std::map<utility::string_t, utility::string_t> m_Fields;
+    bool m_FieldsIsSet;
 
-    std::map<utility::string_t, std::shared_ptr<AnyType>> m_Properties;
-    bool m_PropertiesIsSet;
+    int32_t m_MaxBytes;
+    bool m_MaxBytesIsSet;
 
-    utility::string_t m_Time;
-    bool m_TimeIsSet;
+    utility::string_t m_Prefix;
+    bool m_PrefixIsSet;
 
-    utility::string_t m_Type;
-    bool m_TypeIsSet;
+    utility::string_t m_Url;
+    bool m_UrlIsSet;
 
 };
 
@@ -102,4 +101,4 @@ protected:
 }
 }
 
-#endif /* HANZO_MODEL_Cloud_Event_H_ */
+#endif /* HANZO_MODEL_Cloud_projectsUploadGrant_H_ */
