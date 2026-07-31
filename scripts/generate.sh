@@ -40,10 +40,11 @@ cd "$(dirname "$0")/.."
 #          `utility::string_t` and defines them over `int32_t`
 #          (framework_Document.docstatus).
 #
-# 7.24.0 fixes both. Raising this pin fleet-wide is a separate, deliberate
-# decision — it would rewrite every other client's committed output — so it is
-# stated here, once, where the invocation is. Anything ABOVE this floor is fine;
-# below it, this repo does not build.
+# 7.24.0 fixes both. The fleet raises to 7.24.0 as well, but in ONE coordinated
+# regeneration wave — deliberately NOT piecemeal, so that the version bump and
+# the in-flight typing of cloud's ~445 untyped routes change each language's
+# committed output once rather than twice. Do not bump another language here.
+# Anything ABOVE this floor is fine; below it, this repo does not build.
 GENERATOR_VERSION="${GENERATOR_VERSION:-7.24.0}"
 SPEC_REPO="${SPEC_REPO:-hanzoai/openapi}"
 SPEC_REF="${SPEC_REF:-main}"
