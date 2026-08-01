@@ -127,9 +127,16 @@ python3 -c 'import json,sys,yaml; json.dump(yaml.safe_load(open(sys.argv[1])), o
 version="$(sed -n 's/^  version: *//p' "$SPEC" | head -1)"
 : "${version:?could not read info.version from $SPEC}"
 
-# Validation stays ON: hanzo.yaml validates at 0 errors / 0 warnings, and a
-# malformed document must fail here rather than as compile errors spread over
-# 2400-odd files.
+# --skip-validate-spec: the document is OpenAPI 3.1, and 3.1 made `responses`
+# OPTIONAL on an operation. The validator in generator 7.14.0 still enforces the
+# 3.0 rule that it is required, so it REFUSES a document that is valid. Measured
+# on hanzoai/cloud's openapi.yaml: 684 of 1636 operations are routes the router
+# proves exist and whose response shape no seam can state, and cloud emits those
+# with no `responses` key on purpose (openapi/openapi.go — "absent stays valid
+# and absent beats invented").
+#
+# What keeps a bad document out is not the validator, it is the cmake build —
+# the whole generated library plus the example flows, in hanzo.yml's test: block.
 #
 # apiDocs/modelDocs/apiTests/modelTests off: ~4000 files of nothing at this
 # surface size, and the docs would be a second, staler copy of the document.
@@ -144,6 +151,7 @@ version="$(sed -n 's/^  version: *//p' "$SPEC" | head -1)"
 #
 java -Xmx3g -jar "$JAR" generate \
   -g cpp-restsdk \
+  --skip-validate-spec \
   -i "$spec_json" \
   -o "$out" \
   -t templates/cpp-restsdk \
