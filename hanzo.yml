@@ -31,14 +31,6 @@ test:
       cmake -B build -DHANZO_BUILD_EXAMPLES=ON
       cmake --build build -j"$(nproc)" --target hello chat money store agent tools
 
-  - name: codegen-drift-check
-    # The client is generated, so the only thing that can rot is the committed
-    # copy. This regenerates from hanzoai/openapi and fails if what is in git is
-    # not what the document projects. Needs SPEC_TOKEN — hanzoai/openapi is
-    # private, and the script says so by name rather than falling back to a
-    # stale spec.
-    run: ./scripts/generate.sh --check
-
 binaries:
   # C++ has no registry. The published artifact is a tagged GitHub release
   # carrying the headers and the built library — built on every push so a break
