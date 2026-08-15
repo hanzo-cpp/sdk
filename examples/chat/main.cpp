@@ -1,50 +1,43 @@
-// chat — one completion.
+// chat — ask one question, print the grounded answer and what it cited.
 //
-// Operation: ai_createChatCompletion (POST /v1/chat/completions).
+// Operation: research_web (POST /v1/ask/web), on AskApi.
 //
-// OpenAI-compatible request and response. Non-streaming on purpose: streaming
-// is a different transport (SSE) that a generated client returns as an opaque
-// body, so demonstrating it here would teach the wrong shape.
+// NOT /v1/chat/completions. That route is real and this client carries it, but
+// the document declares it with no request body and no response schema, so the
+// generated method takes nothing and returns nothing — there is no typed way to
+// send a message or read a reply through it. A generated client can only be as
+// typed as the document, and an example has to demonstrate a call that works.
+// /v1/ask/web is the typed one: a question in, an answer with its sources out.
+//
+// Non-streaming on purpose: streaming is a different transport (SSE) that a
+// generated client returns as an opaque body, so demonstrating it here would
+// teach the wrong shape.
 //
 //   HANZO_API_KEY=hk-... ./build/examples/chat
 #include <iostream>
 
 #include "hanzo.h"
-#include "hanzo/api/OpenAICompatibleApi.h"
+#include "hanzo/api/AskApi.h"
 
 int main() {
     using namespace hanzo;
     try {
-        auto content = std::make_shared<model::AnyType>();
-        content->fromJson(web::json::value::string(
-            U("Name the three laws of thermodynamics in one line each.")));
+        auto question = std::make_shared<model::WebQuestion>();
+        question->setQ(U("Name the three laws of thermodynamics in one line each."));
+        question->setMode(U("search"));
+        question->setMaxSources(3);
 
-        auto message = std::make_shared<model::Ai_ChatMessage>();
-        message->setRole(model::Ai_ChatMessage::RoleEnum::USER);
-        message->setContent(content);
+        api::AskApi ask(examples::client());
+        std::shared_ptr<model::Report> report = ask.researchWeb(question).get();
 
-        auto request = std::make_shared<model::Ai_ChatCompletionRequest>();
-        request->setModel(examples::model());
-        request->setMessages({message});
-        request->setStream(false);
+        examples::print(U("model  "), report->getModel());
+        examples::print(U("answer "), report->getAnswer());
 
-        api::OpenAICompatibleApi ai(examples::client());
-        std::shared_ptr<model::Ai_ChatCompletionResponse> answer =
-            ai.aiCreateChatCompletion(request).get();
-
-        examples::print(U("model  "), answer->getModel());
-
-        const auto choices = answer->getChoices();
-        if (choices.empty()) {
-            std::cerr << "no choices in the response" << std::endl;
-            return 1;
+        // Every citation is a page the call fetched, so the sources are part of
+        // the answer rather than decoration.
+        for (const auto& source : report->getSources()) {
+            examples::print(U("source "), source->getUrl());
         }
-        // AnyType is a json carrier: content is `string` today and an array of
-        // content parts in the multimodal shape, so the example prints what
-        // arrived rather than asserting one of them.
-        const auto reply = choices.front()->getMessage()->getContent()->toJson();
-        examples::print(U("reply  "),
-                        reply.is_string() ? reply.as_string() : reply.serialize());
     } catch (const std::exception& e) {
         return examples::fail(U("chat"), e);
     }

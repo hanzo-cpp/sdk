@@ -1,29 +1,29 @@
-// hello — prove the key works, and print who it belongs to.
+// hello — prove the key works, and print the verdict the API returns.
 //
-// Operation: bot_authMe (GET /v1/bot/auth/me).
+// Operation: get_ai_account (GET /v1/ai/account), on AiApi.
 //
-// This is the call that SAYS NO. With no key, or a bogus one, the route answers
-// 403 {"error":"no validated principal"} rather than a cheerful anonymous
-// identity — which is why it, and not ai_getAccount, is what a hello is built
-// on: /v1/ai/account answers 200 with type="anonymous-user" to a request
-// carrying no key at all. The refusal is the point, so the failure is printed
-// as deliberately as the success.
+// The route answers with an Envelope, and the document is explicit that `status`
+// is the verdict and not the HTTP code: "a handled failure is still 200". So a
+// hello that only caught exceptions would print success on a refusal. Both are
+// checked here — the transport failure as a catch, the handled one as a status —
+// because that is the shape every other call in this client has.
 //
 //   HANZO_API_KEY=hk-... ./build/examples/hello
 #include "hanzo.h"
-#include "hanzo/api/AuthApi.h"
+#include "hanzo/api/AiApi.h"
 
 int main() {
     using namespace hanzo;
     try {
-        api::AuthApi auth(examples::client());
-        std::shared_ptr<model::Bot_User> me = auth.botAuthMe().get();
+        api::AiApi ai(examples::client());
+        std::shared_ptr<model::Envelope> res = ai.getAiAccount().get();
 
-        examples::print(U("id     "), me->getId());
-        examples::print(U("handle "), me->getHandle());
-        examples::print(U("name   "), me->getDisplayName());
-        examples::print(U("email  "), me->getEmail());
-        examples::print(U("role   "), me->fromRoleEnum(me->getRole()));
+        examples::print(U("status "), res->fromStatusEnum(res->getStatus()));
+        if (res->getStatus() != model::Envelope::StatusEnum::OK) {
+            examples::print(U("reason "), res->getMsg());
+            return 1;
+        }
+        examples::print(U("account"), res->getData()->toJson().serialize());
     } catch (const std::exception& e) {
         return examples::fail(U("whoami"), e);
     }

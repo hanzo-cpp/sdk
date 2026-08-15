@@ -1,15 +1,18 @@
-// agent — create an agent, run it, read the run back.
+// agent — create an agent, run it, poll the run to a terminal state.
 //
-// Operations: cloud_post_v1_agents           (POST /v1/agents)
-//             cloud_post_v1_agents_by_ref_run (POST /v1/agents/{ref}/run)
-//             cloud_get_v1_agents_ref_runs    (GET  /v1/agents/{ref}/runs)
+// Operations: postAgents          (POST /v1/agents)
+//             postAgentsByRefRun  (POST /v1/agents/{ref}/run)
+//             getAgentsByRefRuns  (GET  /v1/agents/{ref}/runs)
 //
 // `ref` takes the public id (agent_...) OR the org-unique name, which is why
 // run and read can both use the name just created without waiting for an id.
 // Names are org-unique, so this must not hardcode one.
 //
-// The last step is the RUN LIST, not the agent read: a run is asynchronous, so
-// the example polls until the run it started is terminal.
+// The run POST is declared with no request body and no response, so it starts
+// the run and tells you nothing — the input cannot be passed through it and the
+// run id does not come back from it. The RUN LIST is the typed one, so that is
+// where the id, the status and the output are read, and polling it is how the
+// example learns the run finished.
 //
 //   HANZO_API_KEY=hk-... HANZO_ORG_ID=... ./build/examples/agent
 #include <chrono>
@@ -38,36 +41,30 @@ int main() {
         const utility::string_t name = utility::conversions::to_string_t(
             "hanzo-cpp-example-" + std::to_string(std::time(nullptr)));
 
-        auto create = std::make_shared<model::Cloud_createAgentIn>();
+        auto create = std::make_shared<model::CreateAgentIn>();
         create->setName(name);
         create->setModel(examples::model());
         create->setInstructions(U("Answer in one short sentence."));
 
-        std::shared_ptr<model::Cloud_agentView> agent =
-            agents.cloudPostV1Agents(create).get();
+        std::shared_ptr<model::AgentView> agent = agents.postAgents(create).get();
         examples::print(U("agent   "), agent->getName());
         examples::print(U("id      "), agent->getId());
 
-        auto input = std::make_shared<model::Agents_RunRequest>();
-        input->setInput(U("What is the capital of Japan?"));
+        agents.postAgentsByRefRun(name).get();
+        examples::print(U("started "), name);
 
-        std::shared_ptr<model::Agents_RunView> run =
-            agents.cloudPostV1AgentsByRefRun(name, input).get();
-        examples::print(U("run     "), run->getId());
-        examples::print(U("status  "), run->fromStatusEnum(run->getStatus()));
-
-        // Poll the run list until the run just started reaches a terminal state.
+        // Poll the run list until this agent's newest run is terminal.
         for (int attempt = 0; attempt < 10; ++attempt) {
-            std::shared_ptr<model::Cloud_runList> runs =
-                agents.cloudGetV1AgentsRefRuns(name, 10).get();
+            std::shared_ptr<model::RunList> runs =
+                agents.getAgentsByRefRuns(name, boost::optional<int32_t>(10)).get();
 
-            for (const auto& seen : runs->getRuns()) {
-                if (seen->getId() != run->getId()) {
-                    continue;
-                }
-                examples::print(U("polled  "), seen->getStatus());
-                if (terminal(seen->getStatus())) {
-                    examples::print(U("output  "), seen->getOutput());
+            const auto seen = runs->getRuns();
+            if (!seen.empty()) {
+                const auto& run = seen.front();
+                examples::print(U("polled  "), run->getStatus());
+                if (terminal(run->getStatus())) {
+                    examples::print(U("run     "), run->getId());
+                    examples::print(U("output  "), run->getOutput());
                     return 0;
                 }
             }

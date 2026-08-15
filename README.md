@@ -2,7 +2,7 @@
 
 The full Hanzo cloud, native in C++ — one typed client over every `/v1` service: AI and agents, inference, compute, data, network, security (IAM/KMS), platform, observe, and web3.
 
-Generated from `hanzoai/openapi`, so the surface is complete by construction and cannot drift from the platform. Nothing here is hand-written, and `./scripts/generate.sh --check` is what makes that a fact rather than a convention.
+Generated from the OpenAPI document `hanzoai/cloud` emits, at the commit `.spec-lock` names, so the surface is complete by construction and cannot drift from the platform. Nothing under `include/` or `src/` is hand-written, and `./scripts/generate.sh --check` is what makes that a fact rather than a convention.
 
 ## Install
 
@@ -45,7 +45,7 @@ Requires C++17, CMake 3.20+, and cpprestsdk + Boost + OpenSSL
 #include "hanzo/ApiClient.h"
 #include "hanzo/ApiConfiguration.h"
 #include "hanzo/ApiException.h"
-#include "hanzo/api/AuthApi.h"
+#include "hanzo/api/AskApi.h"
 
 int main() {
     const char* key = std::getenv("HANZO_API_KEY");
@@ -59,12 +59,14 @@ int main() {
     config->getDefaultHeaders()[U("Authorization")] =
         U("Bearer ") + utility::conversions::to_string_t(key);
 
-    hanzo::api::AuthApi auth(std::make_shared<hanzo::api::ApiClient>(config));
+    hanzo::api::AskApi ask(std::make_shared<hanzo::api::ApiClient>(config));
     try {
-        auto me = auth.botAuthMe().get();
-        std::cout << utility::conversions::to_utf8string(me->getDisplayName()) << std::endl;
+        auto question = std::make_shared<hanzo::model::WebQuestion>();
+        question->setQ(U("What are the three laws of thermodynamics?"));
+
+        auto report = ask.researchWeb(question).get();
+        std::cout << utility::conversions::to_utf8string(report->getAnswer()) << std::endl;
     } catch (const hanzo::api::ApiException& e) {
-        // A bad key is a 403 here, not a silent anonymous identity.
         std::cerr << e.what() << std::endl;
         return 1;
     }
@@ -75,7 +77,10 @@ Every call returns a `pplx::task<T>`: `.get()` blocks, `.then(...)` composes.
 
 ## Configuration
 
-Auth is a bearer token — an IAM-issued JWT or an `hk-` Cloud API key.
+Auth is a bearer token — an IAM-issued JWT or an `hk-` Cloud API key. The
+document declares that scheme globally; `cpp-restsdk` does not emit a per-call
+application for an HTTP bearer scheme, so the token is set once as a default
+header on the configuration, as above and as `examples/hanzo.cpp` does.
 
 | Setting | Env the examples read | Default |
 |---|---|---|
@@ -92,9 +97,9 @@ The six canonical flows every Hanzo SDK ships, named and ordered by
 
 | flow | what it does |
 |---|---|
-| `hello` | Identity — the call that says no, and who the key belongs to. |
-| `chat` | One completion. |
-| `money` | Balance, then the usage that moved it. |
+| `hello` | Identity — the account this key resolves to, and the verdict it returns. |
+| `chat` | One question, answered with its sources cited. |
+| `money` | Credits remaining, then the usage that spent them. |
 | `store` | KV round-trip — create, read back, delete. |
 | `agent` | Create an agent, run it, poll the run to a terminal state. |
 | `tools` | List the MCP tools this key can reach. |
@@ -124,19 +129,27 @@ One client, the entire cloud surface under `/v1`:
 
 ## Regenerating
 
-The document is the only source.
+The document is the only source, and `.spec-lock` names it by commit:
+
+```
+ref=49389cf91a54e31f174ba6ac3a76e9c33b3f772c
+sha256=eb375622d4d53653672031aeb2fb473424b26baa975be78693226a04a5005571
+repo=hanzoai/cloud
+path=openapi.yaml
+```
 
 ```bash
 ./scripts/generate.sh            # regenerate include/ and src/ in place
 ./scripts/generate.sh --check    # diff only; non-zero if the client drifted
 ```
 
-`hanzoai/openapi` is private, so the script needs `SPEC_TOKEN` (or `GH_TOKEN` /
-`GITHUB_TOKEN`), or `SPEC=/path/to/hanzo.yaml` from a checkout. It refuses,
-loudly and by name, rather than falling back to a stale spec.
+The document is read from `git.hanzo.ai` at that commit and refused if its bytes
+hash to anything else, so this cannot regenerate from a document nobody shipped.
+That read needs `FORGE_TOKEN` (contents:read); `SPEC=/path/to/openapi.yaml` from
+a checkout skips the fetch.
 
-Never edit generated sources. Edit the per-service spec in `hanzoai/openapi` and
-regenerate.
+Never edit generated sources. `hanzoai/cloud` emits the document from its own
+routers, so a route changes there and arrives here by regeneration.
 
 ## Hanzo — the Open AI Cloud
 

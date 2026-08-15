@@ -6,8 +6,13 @@
 # contract with a consumer, so the repo owns them.
 cmake_minimum_required(VERSION 3.20)
 
-# Kept in step with hanzo.yaml's info.version by scripts/generate.sh, which
-# writes the same number into the generated sources' packageVersion.
+# THE LIBRARY'S version, which is this repo's to choose and nothing else's. It
+# used to be described as kept in step with the API document's info.version, and
+# that coupling was inert: measured with a sentinel, `packageVersion` reaches the
+# generator's own README and no file under include/ or src/, so no generated line
+# ever carried it. The document names itself in the generated headers already
+# ("The version of the OpenAPI document"), which is the honest place for it.
+# hanzo.yml's client lane reads the number below, so a release bumps this line.
 project(hanzo VERSION 8.0.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
