@@ -6,14 +6,16 @@ Generated from the OpenAPI document `hanzoai/cloud` emits, at the commit `.spec-
 
 ## Install
 
-C++ has no package registry, so a consumer takes it from a tag.
+C++ has no package registry, so a consumer takes it from a tag. The client lane
+cuts `v<the VERSION in CMakeLists.txt>` when it resyncs the document — **no tag
+is cut yet**, so pin a commit until the first one lands. `GIT_TAG` takes either.
 
 ```cmake
 include(FetchContent)
 FetchContent_Declare(
   hanzo
   GIT_REPOSITORY https://github.com/hanzo-cpp/sdk.git
-  GIT_TAG        v8.0.0
+  GIT_TAG        v8.0.0   # until the lane cuts it: a commit sha
 )
 FetchContent_MakeAvailable(hanzo)
 
