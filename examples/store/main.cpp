@@ -1,8 +1,8 @@
 // store — KV round-trip: create a store, read it back, delete it.
 //
-// Operations: cloud_post_v1_kv        (POST   /v1/kv)
-//             cloud_get_v1_kv_name    (GET    /v1/kv/{name})
-//             cloud_delete_v1_kv_name (DELETE /v1/kv/{name})
+// Operations: postKv        (POST   /v1/kv)
+//             getKvByName   (GET    /v1/kv/{name})
+//             deleteKvByName (DELETE /v1/kv/{name})
 //
 // The delete is in a scope guard, so a failed read still cleans up instead of
 // leaving the store behind for the next run to collide with.
@@ -36,7 +36,7 @@ class Cleanup {
         : m_kv(kv), m_name(std::move(name)) {}
     ~Cleanup() {
         try {
-            m_kv.cloudDeleteV1KvName(m_name).get();
+            m_kv.deleteKvByName(m_name).get();
             hanzo::examples::print(U("deleted "), m_name);
         } catch (const std::exception& e) {
             std::cerr << "delete failed: " << e.what() << std::endl;
@@ -56,19 +56,19 @@ int main() {
     const utility::string_t name = uniqueName();
 
     try {
-        auto request = std::make_shared<model::Cloud_provisionRequest>();
+        auto request = std::make_shared<model::ProvisionRequest>();
         request->setName(name);
 
-        std::shared_ptr<model::Cloud_provisionResult> created =
-            kv.cloudPostV1Kv(request).get();
+        std::shared_ptr<model::ProvisionResult> created =
+            kv.postKv(request).get();
         examples::print(U("created "), created->getName());
         examples::print(U("kind    "), created->getKind());
         examples::print(U("status  "), created->getStatus());
 
         Cleanup cleanup(kv, name);
 
-        std::shared_ptr<model::Cloud_provisionedResource> read =
-            kv.cloudGetV1KvName(name).get();
+        std::shared_ptr<model::ProvisionedResource> read =
+            kv.getKvByName(name).get();
         examples::print(U("read    "), read->getName());
         examples::print(U("host    "), read->getHost());
         examples::print(U("port    "), static_cast<int64_t>(read->getPort()));

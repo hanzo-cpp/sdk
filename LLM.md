@@ -5,7 +5,9 @@ Guidance for AI agents working in this repo.
 ## What this is
 The **full Hanzo cloud SDK for C++** — a typed client over the entire `/v1`
 surface (AI, agents, inference, compute, data, network, security/IAM/KMS,
-platform, observe, web3). Generated from `hanzoai/openapi`'s `hanzo.yaml`.
+platform, observe, web3). Generated from the `openapi.yaml` that **`hanzoai/cloud`
+emits**, at the commit `.spec-lock` names — the same document, at the same kind of
+pin, as every other Hanzo client.
 
 ## Canonical role
 - This is the **real code** for the C++ full cloud SDK line: `hanzo-cpp/sdk`.
@@ -16,74 +18,96 @@ platform, observe, web3). Generated from `hanzoai/openapi`'s `hanzo.yaml`.
 
 ## Generation — one place, one way
 
-`hanzoai/openapi` owns the document and the matrix of language projections
-(`sdks.yaml` + `generate.py`). Most clients are a bare call site into that
-driver. **C++ is not, deliberately**, and `sdks.yaml` records why: this
-projection needs generator template **files**, and a file has to sit beside the
-invocation or the pair drifts apart. That is the same rule under which `go` and
-`rust` left the registry. So `scripts/generate.sh` owns the whole invocation —
-same document, same `--check` contract — and there is no `cpp` row upstream.
-What is NOT allowed is a row there AND flags here.
+`hanzoai/openapi` owns the matrix of language projections (`sdks.yaml` +
+`generate.py`). Most clients are a bare call site into that driver. **C++ is not,
+deliberately**, and there is exactly ONE reason left: this projection needs
+generator template **files**, and a file has to sit beside the invocation or the
+pair drifts apart. That is the same rule under which `rust` stays out. So
+`scripts/generate.sh` owns the whole invocation — same document, same pin, same
+`--check` contract — and there is no `cpp` row upstream. What is NOT allowed is
+a row there AND flags here.
+
+**That reason is measured, not inherited.** Generate this document with the same
+flags and no `-t templates/cpp-restsdk` and the library fails with 8 errors, all
+in `ModelBase.h`. The two reasons this repo used to give have become one: the
+generator-version half is gone (see below), and `go` — which departed for a
+third reason, its client sitting at the module root — is a row again now that
+`generate.py` owns the FILES it wrote rather than a directory. Templates are the
+last thing `sdks.yaml` cannot say.
 
 ```
 ./scripts/generate.sh            # regenerate include/ and src/
 ./scripts/generate.sh --check    # diff only; non-zero on drift
 ```
 
-`hanzoai/openapi` is PRIVATE. raw.githubusercontent.com serves public repos only
-and answers **404, not 403**, for a private path, so an anonymous miss is
-indistinguishable from a deleted file. The script names that cause and refuses;
-it never falls back to a stale spec.
+The document is read from **`git.hanzo.ai`** at the commit `.spec-lock` names and
+refused if its bytes hash to anything else, so this cannot regenerate from a
+document nobody shipped. That read needs `FORGE_TOKEN` (contents:read);
+`SPEC=/path/to/openapi.yaml` skips the fetch. The forge serves its API at `/v1/`,
+**not** `/api/v1/`, and the wrong path 404s in a way that reads like a rejected
+credential.
 
-### Two things about the generator that are not free
+### THE DOCUMENT MOVED — cloud's emission, not a projection of it
 
-**1. openapi-generator 7.24.0, not the 7.14.0 `sdks.yaml` pins.** A measured
-floor. On 7.14.0 this document leaves **10** translation units uncompilable
-(measured at spec `ea45dde`, 2370 TUs — the total moves with the document, the
-defects do not) through two defects in the generator's own Java type resolution.
-Neither is template-reachable — mustache interpolates the strings that
-resolution produces, it cannot recompute a type:
+This client used to read `hanzoai/openapi`'s `hanzo.yaml` at branch `main`, with
+no lock at all. It now reads what `hanzoai/cloud` emits, at a commit. Both halves
+of that mattered: a branch name is not a version, and `hanzo.yaml` is a
+projection of the same bytes rather than a second authority.
 
-| n | defect | trigger |
+Measured across the two documents at this ref, so the trade is on the record
+rather than argued:
+
+| | hanzo.yaml | cloud openapi.yaml |
 |---|---|---|
-| 9 | `additionalProperties: {$ref: <array-typed schema>}` emits `std::map<utility::string_t, std::vector>` — the aliased array's element type is dropped | `vector_NamedVectors` → `vector_DenseVector` |
-| 1 | an integer-backed enum declares its conversion helpers over `utility::string_t` and defines them over `int32_t` | `framework_Document.docstatus` |
+| routes | 2456 | **2479** |
+| routes the other lacks | 0 | 23 |
+| operations with a requestBody | 673 | 694 |
+| operations with a typed 2xx | 1622 | 1645 |
+| generated methods | 2456 | **2502** |
+| …returning `void` | 834 | **834** |
 
-7.24.0 fixes both. The floor is stated once, in `scripts/generate.sh`, where the
-invocation is. Above the floor is fine; below it this repo does not build.
+**Nothing is lost: cloud's routes are a strict superset.** And the one thing
+`publish.py` adds for C++ — a `default` response injected into every operation
+that declares none — buys exactly nothing here: a `default` with no `content`
+produces the same `void` return that no `responses` does, so both documents
+yield the identical 834 void-returning methods. The projection's cost is real
+(23 routes and 46 methods), its benefit for this language is zero.
 
-**The fleet raises to 7.24.0 too — in ONE coordinated regeneration wave, not
-piecemeal, and not yet. This is decided; do not re-litigate it and do not bump
-any other language ad hoc.** The reason to wait is sequencing, not doubt: a
-large workflow is currently converting cloud's untyped routes into typed ops
-with real In/Out structs, so every client will regenerate against a materially
-different document when that lands.
+### The generator version — 7.14.0, the same pin as every other language
 
-How big that is, measured rather than quoted — parse `hanzo.yaml` and count
-operations with NO `requestBody` and no schema under any `2xx`
-`content.<mediaType>`:
+This repo used to state a **7.24.0** floor, and it was true when written: two
+defects in the generator's type resolution left 10 translation units
+uncompilable, neither reachable by a template. Both defects lived in schemas the
+document **no longer carries** — `vector_NamedVectors`/`vector_DenseVector` under
+`additionalProperties`, and `framework_Document.docstatus` — so the floor was a
+fact about a document, not about `cpp-restsdk`.
 
-    total operations 2455 · fully untyped 648 · of which cloud_ 621
+Re-measured at the locked ref, 7.14.0 and 7.24.0 emit the **same library**: apart
+from the generator string in each file's header comment and blank lines, exactly
+one file differs, and the difference is a doc comment on
+`ConsoleSettings::getOidcConfig`. 7.14.0 builds clean — 2663 sources, 0 errors.
+So this repo is on the fleet pin and is no longer an exception on version. Do not
+raise it here alone; the fleet moves as one when it moves.
 
-(The source side of the same work reads differently because it counts
-registrations, not projections: cloud's own LLM.md says 986 untyped routes
-across 101 packages against 76 typed. Both are real; they measure different
-things. A "~445" figure circulates and reproduces from neither — do not carry
-it.) Doing the version bump and the
-schema growth in one wave means each language's committed output changes ONCE,
-reviewably, instead of twice — and a two-step change to 2000+ generated files
-per language is a diff nobody reads. C++ goes first only because it cannot
-build at all below the floor.
+**The document reaches the generator as JSON, and that is the whole of the
+snakeyaml story.** swagger-parser hands YAML to snakeyaml, which refuses anything
+over `3 * 1024 * 1024` = 3145728 code points and reports the refusal as
+`Issues with the OpenAPI input` — which reads like a malformed spec and is not.
+`-DmaxYamlCodePoints` lifts the cap and is NOT what this uses: it is honoured by
+7.24.0's parser and **ignored** by 7.14.0's. JSON avoids snakeyaml on every
+version, so this script and `hanzoai/openapi`'s `generate.py` do the same one
+thing and neither carries a ceiling the document will keep growing into.
 
-**2. `-DmaxYamlCodePoints`.** swagger-parser hands the document to snakeyaml,
-which refuses anything over `3 * 1024 * 1024` = 3145728 code points. `hanzo.yaml`
-passed that mark (3,654,449 code points at `1bac13f`) and the failure does not
-say so: the parser logs `SnakeException`, silently falls through to the **Swagger
-2.0** compat reader, and dies with `Issues with the OpenAPI input` — which reads
-like a malformed spec. It is not; the document validates at **0 errors / 0
-warnings** (240 "unused model" recommendations). This is fleet-wide, not a C++
-problem, and it is also set in `hanzoai/openapi`'s `generate.py` so that every
-language gets it from one place.
+### One flag, and it is the fleet's flag
+
+`--name-mappings removed_at=removed_at_legacy,integration_config=integration_config_legacy`.
+`o11y.GettableAgentCheckIn` declares `integration_config` AND `integrationConfig`,
+`removed_at` AND `removedAt` — the snake spellings are live wire, published so
+older agents keep working. C++ camel-cases a property into its accessor, so each
+pair lands on one method declared twice and the library does not compile (5
+errors). Renaming the ACCESSOR keeps both wire keys — measured, all four are
+present in the emitted model, each under its own name. The python, go, java,
+kotlin, ruby and php rows correct the same two schemas the same way.
 
 ### `templates/cpp-restsdk/` — four overrides
 
@@ -147,17 +171,31 @@ of them exists in the merged document.
 
 `HANZO_API_KEY`, `HANZO_BASE_URL` (default `https://api.hanzo.ai`) and
 `HANZO_ORG_ID` resolve in ONE place — `examples/hanzo.cpp` — not once per flow.
-`store` deletes in a scope guard; `agent` polls the run list to a terminal
-state; `tools` reads `error` before `result`, because JSON-RPC reports failure
-inside a 200.
+`store` deletes in a scope guard; `agent` polls the run list to a terminal state.
 
-One divergence, and the manifest is the side that is wrong: `flows.yaml` says
-`hello` should print `data.owner` and `data.name`, but the typed `bot_User` the
-route actually returns has `id / handle / displayName / email / role` and no
-such fields. **Printing what the model has is correct — do NOT "fix" this
-example to match the manifest, and do not invent an `owner` field to satisfy
-it.** The spec lane is correcting `flows.yaml` so every language stops working
-around it.
+**Four flows changed route when the document did, and the rule they follow is
+"demonstrate a call the document TYPES".** A generated client can only be as
+typed as its document, and several of the obvious addresses are declared with no
+body and no response — the generated method then takes nothing and returns
+nothing, which cannot demonstrate anything. Where that was true, the flow moved
+to the typed route for the same job and says so in its header comment:
+
+| flow | was | is | why |
+|---|---|---|---|
+| `hello` | `bot_authMe` | `get_ai_account` → `Envelope` | the old route is in neither document |
+| `chat` | `/v1/chat/completions` | `research_web` → `Report` | completions declares no body and no response |
+| `money` | `/v1/billing/{balance,usage}` | `get_finance_{credits,usage}` | billing declares no parameters and no response |
+| `tools` | `POST /v1/mcp` (JSON-RPC) | `aiMCPTools` → `AiMCPSurface` | `/v1/mcp` is in neither document |
+
+`agent` kept its route and lost its input: `postAgentsByRefRun` is declared with
+no request body and no response, so it starts the run and reports nothing — the
+id, the status and the output are read from the typed run LIST instead.
+
+None of this came from the document move. Every one of those routes is untyped
+or absent in `hanzo.yaml` too, measured by regenerating from it: the committed
+tree simply predated the change. Do not "restore" these to the old operations —
+they do not exist, and a client cannot invent a shape the document does not
+declare.
 
 ## Build
 ```bash
@@ -175,17 +213,18 @@ compiling library from this document — `cpp-qt-client` fails on defects no
 template reaches, and the rest are embedded or engine targets (see below). An
 archived dependency gets no security fixes, so the trigger to revisit is
 whichever comes first: a CVE in cpprestsdk, its removal from Ubuntu universe, or
-a C++ generator target that compiles from `hanzo.yaml` without an archived HTTP
+a C++ generator target that compiles from this document without an archived HTTP
 stack. When that happens the move is a generator change plus new
 `templates/<target>/` overrides — the document, the seam and the six flows do
 not move.
 
-Scale is not a problem, and these are measured rather than estimated: at spec
-`0522222` (2376 sources) the library plus the six examples built in **6m14s** at
-`-j20`, peak RSS **1.6 GB** (the largest TU is `AdminApi.cpp`), `libhanzo.a`
-342 MB. Generation is well under a minute now that the document reaches the
-generator as JSON. The file count moves with every resync — re-measure, do not
-quote.
+Scale is not a problem, and these are measured rather than estimated. At document
+`49389cf9`, aarch64 Ubuntu 24.04, g++ 13.3, generator 7.14.0, `-j20`, from a
+clean tree: **2663 sources / 2664 headers**, 192 API classes, 2462 models, 2502
+operations; the library builds with **0 errors** and `libhanzo.a` is **349 MB**;
+the six examples then build with **0 errors**. Generation is well under a minute
+now that the document reaches the generator as JSON. The file count moves with
+every resync — re-measure, do not quote.
 
 The generators that were measured and rejected, so nobody re-runs the
 experiment: `cpp-qt-client` (drags in Qt6 Core + Network **+ Gui**, and 31 of its
@@ -204,11 +243,12 @@ repo:
   **zero jobs created** — GitHub never got as far as scheduling one. It is not a
   missing reusable: `hanzoai/ci` is public, `@v1` resolves to 18bd16c, and its
   `build.yml` is present (57 KB).
-- On the `hanzoai/*` repos the same workflow instead sits `queued` forever
-  (`hanzoai/java-sdk`'s only run has been queued since 16:30). That one is
-  capacity: `hanzoai/ci` defaults to `runs-on: [hanzo-build-linux-amd64]`, an arc
-  pool with **zero registered runners** (`gh api orgs/<org>/actions/runners` →
-  `total_count: 0` for hanzoai, hanzo-cpp and hanzo-kotlin alike).
+- On the `hanzoai/*` repos the same workflow instead sat `queued` forever, for
+  capacity rather than permissions: `hanzoai/ci` defaults to
+  `runs-on: [hanzo-build-linux-amd64]` and nothing was registered under that
+  label. That label is now served by the **`git-runner` fleet on git.hanzo.ai**
+  (StatefulSet `git-runner`, ns `hanzo`) — the arc pool this note used to name
+  was retired. Re-measure before claiming either state; do not quote this.
 
 Actions itself is enabled and unrestricted (`enabled_repositories: all`,
 `allowed_actions: all`), so neither is a permissions problem. Verification here
