@@ -139,14 +139,18 @@ path=openapi.yaml
 ```
 
 ```bash
-./scripts/generate.sh            # regenerate include/ and src/ in place
-./scripts/generate.sh --check    # diff only; non-zero if the client drifted
+OPENAPI=~/work/hanzo/openapi ./scripts/generate.sh          # regenerate include/ and src/
+OPENAPI=~/work/hanzo/openapi ./scripts/generate.sh --check  # non-zero if the client drifted
 ```
 
-The document is read from `git.hanzo.ai` at that commit and refused if its bytes
-hash to anything else, so this cannot regenerate from a document nobody shipped.
-That read needs `FORGE_TOKEN` (contents:read); `SPEC=/path/to/openapi.yaml` from
-a checkout skips the fetch.
+The invocation itself lives once, in `hanzoai/openapi` — `generate.py` plus the
+`cpp` row in `sdks.yaml`, which carries the four `cpp-restsdk` template
+overrides this client needs. The script above is a call site and nothing more.
+
+The document is read from `git.hanzo.ai` at the locked commit and refused if its
+bytes hash to anything else, so this cannot regenerate from a document nobody
+shipped. That read needs `FORGE_TOKEN` (contents:read);
+`SPEC=/path/to/openapi.yaml` from a checkout skips the fetch.
 
 Never edit generated sources. `hanzoai/cloud` emits the document from its own
 routers, so a route changes there and arrives here by regeneration.
