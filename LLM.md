@@ -122,6 +122,13 @@ merging them. Each hunk is commented in place; none of them says anything about
 the Hanzo API. Deforming the document to suit one C++ generator would degrade
 the other language projections that read the same file — **do not do it**.
 
+They are load-bearing, and the cost of dropping them is measured, not asserted:
+regenerate this document with the same flags and no `-t`, then syntax-check all
+2663 sources, and **24 errors** land in **two** files — 8 in
+`include/hanzo/ModelBase.h` (defect 4, reached from `ConsoleSettings.cpp`'s
+`std::vector<Object>`) and 16 in `src/model/Post_event_request.cpp` (defects 1–3,
+the oneOf shape). Both root causes are below; check both if you ever re-derive.
+
 1. **A oneOf class cannot be a field of another model.** It is generated outside
    the `ModelBase` hierarchy and declares only explicit-`Target` templates, so
    nothing resolves it as a member. The override derives it from `ModelBase` and
@@ -226,12 +233,20 @@ stack. When that happens the move is a generator change plus new
 not move.
 
 Scale is not a problem, and these are measured rather than estimated. At document
-`49389cf9`, aarch64 Ubuntu 24.04, g++ 13.3, generator 7.14.0, `-j20`, from a
-clean tree: **2663 sources / 2664 headers**, 192 API classes, 2462 models, 2502
-operations; the library builds with **0 errors** and `libhanzo.a` is **349 MB**;
-the six examples then build with **0 errors**. Generation is well under a minute
-now that the document reaches the generator as JSON. The file count moves with
-every resync — re-measure, do not quote.
+`49389cf9`, aarch64 Ubuntu 24.04, g++ 13.3, generator 7.14.0, `-j20`,
+`-DCMAKE_BUILD_TYPE=Release`, from a clean tree: **2663 sources / 2664 headers**,
+192 API classes, 2462 models, 2502 operations; the library builds with **0
+errors** and `libhanzo.a` is **349 MB**; the six examples then build with **0
+errors**. Generation is well under a minute now that the document reaches the
+generator as JSON. The file count moves with every resync — re-measure, do not
+quote.
+
+**Quote the build type with the archive size or the number means nothing.** 349
+MB is Release. `cmake -B build && cmake --build build` leaves `CMAKE_BUILD_TYPE`
+EMPTY, which is not a smaller build — it is an unoptimized one that inlines
+nothing and keeps every template instantiation, and the same 2664 objects then
+archive to **1281 MB**, 3.7x. Both figures are this tree at this document; they
+differ only in that one flag.
 
 The generators that were measured and rejected, so nobody re-runs the
 experiment: `cpp-qt-client` (drags in Qt6 Core + Network **+ Gui**, and 31 of its
