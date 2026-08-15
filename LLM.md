@@ -18,34 +18,39 @@ pin, as every other Hanzo client.
 
 ## Generation — one place, one way
 
-`hanzoai/openapi` owns the matrix of language projections (`sdks.yaml` +
-`generate.py`). Most clients are a bare call site into that driver. **C++ is not,
-deliberately**, and there is exactly ONE reason left: this projection needs
-generator template **files**, and a file has to sit beside the invocation or the
-pair drifts apart. That is the same rule under which `rust` stays out. So
-`scripts/generate.sh` owns the whole invocation — same document, same pin, same
-`--check` contract — and there is no `cpp` row upstream. What is NOT allowed is
-a row there AND flags here.
-
-**That reason is measured, not inherited.** Generate this document with the same
-flags and no `-t templates/cpp-restsdk` and the library fails with 8 errors, all
-in `ModelBase.h`. The two reasons this repo used to give have become one: the
-generator-version half is gone (see below), and `go` — which departed for a
-third reason, its client sitting at the module root — is a row again now that
-`generate.py` owns the FILES it wrote rather than a directory. Templates are the
-last thing `sdks.yaml` cannot say.
+`hanzoai/openapi` owns the invocation (`generate.py`) and the matrix of language
+projections (`sdks.yaml`). **C++ is a row there like every other language**, and
+`scripts/generate.sh` is a call site that says "cpp, into this checkout" and
+nothing else. Nothing about HOW this SDK is generated lives in this repo.
 
 ```
-./scripts/generate.sh            # regenerate include/ and src/
-./scripts/generate.sh --check    # diff only; non-zero on drift
+OPENAPI=~/work/hanzo/openapi ./scripts/generate.sh          # regenerate include/ and src/
+OPENAPI=~/work/hanzo/openapi ./scripts/generate.sh --check  # non-zero on drift
 ```
 
-The document is read from **`git.hanzo.ai`** at the commit `.spec-lock` names and
-refused if its bytes hash to anything else, so this cannot regenerate from a
-document nobody shipped. That read needs `FORGE_TOKEN` (contents:read);
-`SPEC=/path/to/openapi.yaml` skips the fetch. The forge serves its API at `/v1/`,
-**not** `/api/v1/`, and the wrong path 404s in a way that reads like a rejected
-credential.
+**This repo used to own its whole invocation, and both reasons it gave are
+gone.** The first was templates: four `cpp-restsdk` mustache overrides are
+required before the output compiles at all — measured, without them the library
+fails with 8 errors in `ModelBase.h` — and the argument was that a template is a
+FILE that must sit beside the call. Right about the risk, wrong about which
+call: the call is `generate.py`'s `emit()`, so the overrides now live at
+`templates/cpp-restsdk/` in the driver repo, one directory from the flags they
+go with. The second was the generator version, and it expired (below).
+
+What the departure cost is the reason not to repeat it: that script named
+`hanzoai/openapi`'s `hanzo.yaml` at branch `main` while this repo's `hanzo.yml`
+already declared cloud's `openapi.yaml`, and it re-derived the jar fetch, the
+YAML-to-JSON conversion, `--skip-validate-spec` and the drift check — four
+copies of logic the driver owns once. `generate.py cpp --check` reports **clean**
+against the tree that script produced: byte for byte, 5327 files.
+
+Both inputs arrive as VALUES. `$SPEC` is the document, already fetched at the
+pinned ref and digest-checked; `$OPENAPI` is the checkout holding the driver.
+hanzoai/ci's client lane sets both, because it holds the one credential that
+reads the forge. Without `$SPEC` the driver reads `.spec-lock` and fetches the
+commit it names from **`git.hanzo.ai`**, refusing if the bytes hash to anything
+else. The forge serves its API at `/v1/`, **not** `/api/v1/`, and the wrong path
+404s in a way that reads like a rejected credential.
 
 ### THE DOCUMENT MOVED — cloud's emission, not a projection of it
 
@@ -73,10 +78,10 @@ produces the same `void` return that no `responses` does, so both documents
 yield the identical 834 void-returning methods. The projection's cost is real
 (23 routes and 46 methods), its benefit for this language is zero.
 
-### The generator version — 7.14.0, the same pin as every other language
+### The generator version — 7.14.0, the fleet's one pin
 
-This repo used to state a **7.24.0** floor, and it was true when written: two
-defects in the generator's type resolution left 10 translation units
+This repo used to state a **7.24.0** floor of its own, and it was true when
+written: two defects in the generator's type resolution left 10 translation units
 uncompilable, neither reachable by a template. Both defects lived in schemas the
 document **no longer carries** — `vector_NamedVectors`/`vector_DenseVector` under
 `additionalProperties`, and `framework_Document.docstatus` — so the floor was a
@@ -86,21 +91,22 @@ Re-measured at the locked ref, 7.14.0 and 7.24.0 emit the **same library**: apar
 from the generator string in each file's header comment and blank lines, exactly
 one file differs, and the difference is a doc comment on
 `ConsoleSettings::getOidcConfig`. 7.14.0 builds clean — 2663 sources, 0 errors.
-So this repo is on the fleet pin and is no longer an exception on version. Do not
-raise it here alone; the fleet moves as one when it moves.
+So there is no cpp-specific version any more: `sdks.yaml` pins one generator for
+everyone and this row needs no exception. The fleet moves as one when it moves.
 
 **The document reaches the generator as JSON, and that is the whole of the
 snakeyaml story.** swagger-parser hands YAML to snakeyaml, which refuses anything
 over `3 * 1024 * 1024` = 3145728 code points and reports the refusal as
 `Issues with the OpenAPI input` — which reads like a malformed spec and is not.
-`-DmaxYamlCodePoints` lifts the cap and is NOT what this uses: it is honoured by
-7.24.0's parser and **ignored** by 7.14.0's. JSON avoids snakeyaml on every
-version, so this script and `hanzoai/openapi`'s `generate.py` do the same one
-thing and neither carries a ceiling the document will keep growing into.
+`-DmaxYamlCodePoints` lifts the cap and is NOT what the driver uses: it is
+honoured by 7.24.0's parser and **ignored** by 7.14.0's. JSON avoids snakeyaml on
+every version, so one mechanism serves every language and none of them carries a
+ceiling the document will keep growing into.
 
 ### One flag, and it is the fleet's flag
 
-`--name-mappings removed_at=removed_at_legacy,integration_config=integration_config_legacy`.
+`name-mappings: removed_at=removed_at_legacy,integration_config=integration_config_legacy`,
+in the `cpp` row.
 `o11y.GettableAgentCheckIn` declares `integration_config` AND `integrationConfig`,
 `removed_at` AND `removedAt` — the snake spellings are live wire, published so
 older agents keep working. C++ camel-cases a property into its accessor, so each
@@ -109,7 +115,7 @@ errors). Renaming the ACCESSOR keeps both wire keys — measured, all four are
 present in the emitted model, each under its own name. The python, go, java,
 kotlin, ruby and php rows correct the same two schemas the same way.
 
-### `templates/cpp-restsdk/` — four overrides
+### `templates/cpp-restsdk/` — four overrides, in `hanzoai/openapi`
 
 Forked from **7.24.0** stock, so a generator bump re-derives them rather than
 merging them. Each hunk is commented in place; none of them says anything about
@@ -157,7 +163,8 @@ regeneration cycles here; the templates are clean now, keep them so.
   target, the export set and `HANZO_BUILD_EXAMPLES` are this repo's contract
   with a consumer, not a generator artifact.
 - `examples/` — the six canonical flows.
-- `templates/cpp-restsdk/` — the overrides above.
+- `templates/` — GONE from this repo; the overrides live in `hanzoai/openapi`
+  at `templates/cpp-restsdk/`, beside the row whose flags they go with.
 
 Namespaces are `hanzo::api` and `hanzo::model`; the include root is `hanzo/`.
 Every call returns `pplx::task<T>`.
