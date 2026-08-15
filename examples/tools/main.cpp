@@ -1,69 +1,37 @@
 // tools — list the MCP tools this key can reach.
 //
-// Operation: mcp_rpc (POST /v1/mcp), method=tools/list.
+// Operation: aiMCPTools (GET /v1/ai/mcp/tools), on AiApi.
 //
-// POST /v1/mcp is the fleet's one MCP door: it composes the typed product
-// operations with the external MCP servers the caller's org has enabled. It is
-// IN the document, which is what makes this a generated call rather than a
-// hand-rolled HTTP request inside a generated client — the exact drift these
-// SDKs exist to prevent. (GET /v1/mcp is 404; one verb is never a liveness
-// probe.)
-//
-// JSON-RPC reports failure INSIDE a 200, so `error` is read before `result`.
+// The surface answers with the tool COUNT, the apps that publish them, and —
+// when `names` is asked for — every tool name. It is IN the document, which is
+// what makes this a generated call rather than a hand-rolled HTTP request
+// inside a generated client: the exact drift these SDKs exist to prevent.
 //
 //   HANZO_API_KEY=hk-... ./build/examples/tools
 #include <iostream>
-#include <variant>
 
 #include "hanzo.h"
-#include "hanzo/api/MCPApi.h"
+#include "hanzo/api/AiApi.h"
 
 int main() {
     using namespace hanzo;
     try {
-        auto request = std::make_shared<model::Mcp_Request>();
-        request->setJsonrpc(model::Mcp_Request::JsonrpcEnum::_2_0);
-        request->setId(U("1"));
-        request->setMethod(model::Mcp_Request::MethodEnum::TOOLS_LIST);
+        api::AiApi ai(examples::client());
 
-        api::MCPApi mcp(examples::client());
-        std::shared_ptr<model::Mcp_Response> response = mcp.mcpRpc(request).get();
+        // `names` off returns the count and the apps only, so it is asked for.
+        std::shared_ptr<model::AiMCPSurface> surface =
+            ai.aiMCPTools(boost::optional<bool>(true)).get();
 
-        // A JSON-RPC error arrives with HTTP 200, so this is the first thing
-        // read — not the last.
-        if (response->errorIsSet() && response->getError()) {
-            const auto failure = response->getError();
-            std::cerr << "mcp error " << failure->getCode() << ": "
-                      << utility::conversions::to_utf8string(failure->getMessage())
-                      << std::endl;
+        const auto names = surface->getNames();
+        examples::print(U("tools  "), static_cast<int64_t>(surface->getTools()));
+        examples::print(U("apps   "), static_cast<int64_t>(surface->getApps().size()));
+
+        if (names.empty()) {
+            std::cerr << "the surface named no tools" << std::endl;
             return 1;
         }
-
-        const auto result = response->getResult();
-        if (!result) {
-            std::cerr << "mcp returned neither result nor error" << std::endl;
-            return 1;
-        }
-
-        // result is a oneOf: a catalogue for tools/list, an outcome for
-        // tools/call, server info for initialize.
-        const auto* catalog = std::get_if<model::Mcp_Catalog>(&result->getVariant());
-        if (catalog == nullptr) {
-            std::cerr << "tools/list did not answer with a catalogue: "
-                      << utility::conversions::to_utf8string(result->toJson().serialize())
-                      << std::endl;
-            return 1;
-        }
-
-        const auto tools = catalog->getTools();
-        if (tools.empty()) {
-            std::cerr << "the catalogue is empty" << std::endl;
-            return 1;
-        }
-
-        examples::print(U("tools  "), static_cast<int64_t>(tools.size()));
-        for (std::size_t i = 0; i < tools.size() && i < 3; ++i) {
-            examples::print(U("  "), tools[i]->getName());
+        for (std::size_t i = 0; i < names.size() && i < 3; ++i) {
+            examples::print(U("  "), names[i]);
         }
     } catch (const std::exception& e) {
         return examples::fail(U("mcp"), e);

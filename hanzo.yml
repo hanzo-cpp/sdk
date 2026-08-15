@@ -51,11 +51,15 @@ binaries:
 # `.spec-lock` beside the code, and — only after the `test:` block below has
 # passed over exactly those bytes — commits and cuts a patch.
 #
-# The document moved from hanzoai/openapi `hanzo.yaml` (hand-merged, 1742 paths,
-# fed by nothing, and NOTHING HAS EVER SENT the spec-update this repo listens
-# for) to hanzoai/cloud `openapi.yaml` — smaller (1058 paths), emitted from the
-# code by each app's own router, and gated on every cloud release. A smaller true
-# document beats a larger unverified one.
+# The document is hanzoai/cloud's `openapi.yaml` — emitted from the code by each
+# app's own router and gated on every cloud release — and scripts/generate.sh now
+# reads it, which it did not when this note was written. It read hanzoai/openapi's
+# `hanzo.yaml` at branch `main` with no lock, so this lane and the script named
+# two different documents. They name one now: `.spec-lock`, by commit.
+#
+# Measured at that commit, cloud's document is the LARGER of the two as well as
+# the emitted one: 1814 paths / 2479 operations against hanzo.yaml's 1794 / 2456,
+# a strict superset of its routes.
 client:
   generate: ./scripts/generate.sh
   version: "CMakeLists.txt:grep -m1 -oE 'VERSION [0-9]+\\.[0-9]+\\.[0-9]+' CMakeLists.txt | cut -d' ' -f2"
