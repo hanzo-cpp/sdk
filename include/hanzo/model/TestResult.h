@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,21 +52,33 @@ public:
     /// TestResult members
 
 
+    /// <summary>
+    /// Delivered is whether the subscriber accepted the test POST. It is the whole answer: the send is synchronous and is not retried.
+    /// </summary>
     bool isDelivered() const;
     bool deliveredIsSet() const;
     void unsetDelivered();
     void setDelivered(bool value);
 
+    /// <summary>
+    /// DurationMs is how long the single attempt took, in MILLISECONDS.
+    /// </summary>
     int32_t getDurationMs() const;
     bool durationMsIsSet() const;
     void unsetDurationMs();
     void setDurationMs(int32_t value);
 
+    /// <summary>
+    /// Error says what stopped it. Empty when delivered.
+    /// </summary>
     utility::string_t getError() const;
     bool errorIsSet() const;
     void unsetError();
     void setError(const utility::string_t& value);
 
+    /// <summary>
+    /// HTTPStatus is what the subscriber answered, or 0 if it never answered.
+    /// </summary>
     int32_t getHttpStatus() const;
     bool httpStatusIsSet() const;
     void unsetHttpStatus();

@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,41 +52,65 @@ public:
     /// ProjectsRelease members
 
 
+    /// <summary>
+    /// Active is whether this is the release the site is SERVING right now. Exactly one release of a site is active; the others are kept so they can be activated again, until retention reclaims them.
+    /// </summary>
     bool isActive() const;
     bool activeIsSet() const;
     void unsetActive();
     void setActive(bool value);
 
+    /// <summary>
+    /// Bytes is their total size in bytes.
+    /// </summary>
     int32_t getBytes() const;
     bool bytesIsSet() const;
     void unsetBytes();
     void setBytes(int32_t value);
 
+    /// <summary>
+    /// CreatedAt is when the release was cut, as Unix seconds — not when it was last activated.
+    /// </summary>
     int32_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
     void setCreatedAt(int32_t value);
 
+    /// <summary>
+    /// Objects is how many files the release holds.
+    /// </summary>
     int32_t getObjects() const;
     bool objectsIsSet() const;
     void unsetObjects();
     void setObjects(int32_t value);
 
+    /// <summary>
+    /// ReleaseID is derived from a DIGEST of the release&#39;s own manifest, so identical content is the same release and a release can never be confused with another one. Activating an older id IS the rollback.
+    /// </summary>
     utility::string_t getReleaseId() const;
     bool releaseIdIsSet() const;
     void unsetReleaseId();
     void setReleaseId(const utility::string_t& value);
 
+    /// <summary>
+    /// Slug is the site this release belongs to.
+    /// </summary>
     utility::string_t getSlug() const;
     bool slugIsSet() const;
     void unsetSlug();
     void setSlug(const utility::string_t& value);
 
+    /// <summary>
+    /// Source is what the release was cut from — the build output or upload it was promoted out of.
+    /// </summary>
     utility::string_t getSource() const;
     bool sourceIsSet() const;
     void unsetSource();
     void setSource(const utility::string_t& value);
 
+    /// <summary>
+    /// URL is where the site serves. Present only on the ACTIVE release, since an inactive one is not answering anywhere.
+    /// </summary>
     utility::string_t getUrl() const;
     bool urlIsSet() const;
     void unsetUrl();

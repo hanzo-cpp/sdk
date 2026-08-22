@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -54,44 +54,65 @@ public:
     /// InboxItem members
 
 
+    /// <summary>
+    /// Category is the expense account the scanner proposed, as a chart number — a PROPOSAL, not a posting: nothing is booked until it is accepted.
+    /// </summary>
     utility::string_t getCategory() const;
     bool categoryIsSet() const;
     void unsetCategory();
     void setCategory(const utility::string_t& value);
 
+    /// <summary>
+    /// Confidence is how sure the scanner is of that reading, and is the signal for whether a person needs to check it before it is booked.
+    /// </summary>
     utility::string_t getConfidence() const;
     bool confidenceIsSet() const;
     void unsetConfidence();
     void setConfidence(const utility::string_t& value);
 
+    /// <summary>
+    /// CreatedAt is when the document was uploaded.
+    /// </summary>
     utility::string_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
     void setCreatedAt(const utility::string_t& value);
 
+    /// <summary>
+    /// Extracted is what the scanner read off the document. Absent until it has been scanned, so its absence is \&quot;not read yet\&quot;, never \&quot;nothing on it\&quot;.
+    /// </summary>
     std::shared_ptr<Extracted> getExtracted() const;
     bool extractedIsSet() const;
     void unsetExtracted();
     void setExtracted(const std::shared_ptr<Extracted>& value);
 
+    /// <summary>
+    /// Filename is the name the document was uploaded under, for a person to recognise it by. It is not part of the item&#39;s identity.
+    /// </summary>
     utility::string_t getFilename() const;
     bool filenameIsSet() const;
     void unsetFilename();
     void setFilename(const utility::string_t& value);
 
     /// <summary>
-    /// the file hash (&#x3D;&#x3D; a scan&#39;s ScanID)
+    /// ID is the CONTENT HASH of the uploaded bytes, which is what makes the queue idempotent: re-uploading the same document returns this item rather than adding a second one. It is also the id the scan of this document carries.
     /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
+    /// <summary>
+    /// Status is where the document is in the queue — unsorted until the scanner has read it, and thereafter whether it is waiting on a person or has been booked.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
+    /// <summary>
+    /// Vendor is the supplier the scanner identified, surfaced beside the item so a queue renders without opening each document.
+    /// </summary>
     utility::string_t getVendor() const;
     bool vendorIsSet() const;
     void unsetVendor();

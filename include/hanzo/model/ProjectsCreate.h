@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -62,21 +62,33 @@ public:
     void unsetAnalytics();
     void setAnalytics(bool value);
 
+    /// <summary>
+    /// Description is the one-line summary, copied onto anything forked from this project.
+    /// </summary>
     utility::string_t getDescription() const;
     bool descriptionIsSet() const;
     void unsetDescription();
     void setDescription(const utility::string_t& value);
 
+    /// <summary>
+    /// Framework is a BUILD HINT from a closed set, defaulting to static. It tells CI how to build a linked repo and never gates a deploy.
+    /// </summary>
     utility::string_t getFramework() const;
     bool frameworkIsSet() const;
     void unsetFramework();
     void setFramework(const utility::string_t& value);
 
+    /// <summary>
+    /// License is the terms that upstream work carries.
+    /// </summary>
     utility::string_t getLicense() const;
     bool licenseIsSet() const;
     void unsetLicense();
     void setLicense(const utility::string_t& value);
 
+    /// <summary>
+    /// Name is the project&#39;s display name and the only REQUIRED field. When slug is omitted it is also what the slug is derived from.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
@@ -87,13 +99,16 @@ public:
     void unsetRepo();
     void setRepo(const std::shared_ptr<ProjectsCreate_repo>& value);
 
+    /// <summary>
+    /// Slug is the handle everything else addresses this project by: the public host &#x60;&lt;slug&gt;.hanzo.app&#x60;, the object-store key segment, and the path parameter of every later call. Derived from the name when omitted. It is a hostname label, so it is constrained and reserved labels such as &#x60;api&#x60; or &#x60;admin&#x60; are refused.
+    /// </summary>
     utility::string_t getSlug() const;
     bool slugIsSet() const;
     void unsetSlug();
     void setSlug(const utility::string_t& value);
 
     /// <summary>
-    /// Upstream/License credit the third-party work this project was published from. Taken from any caller: disclaiming authorship can only cost the publisher credit, so it needs no gate (see Project.Upstream).
+    /// Upstream credits the third-party work this project was published from. It is accepted from any caller: giving away credit can only cost the publisher, so it needs no gate.
     /// </summary>
     utility::string_t getUpstream() const;
     bool upstreamIsSet() const;

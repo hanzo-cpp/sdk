@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -65,16 +65,25 @@ public:
     void unsetChecked_at();
     void setCheckedAt(const utility::string_t& value);
 
+    /// <summary>
+    /// InProgressMaintenances is always empty: this platform has no maintenance scheduling plane, so \&quot;nothing is running\&quot; is a true statement rather than a placeholder.
+    /// </summary>
     std::vector<std::shared_ptr<O11y_StatusMaintenance>> getInProgressMaintenances() const;
     bool inProgressMaintenancesIsSet() const;
     void unsetIn_progress_maintenances();
     void setInProgressMaintenances(const std::vector<std::shared_ptr<O11y_StatusMaintenance>>& value);
 
+    /// <summary>
+    /// OngoingIncidents is one entry per service that failed its health probe, sorted by name. Empty means every probed service answered — which is a measurement, not an absence of reports.
+    /// </summary>
     std::vector<std::shared_ptr<O11y_StatusIncident>> getOngoingIncidents() const;
     bool ongoingIncidentsIsSet() const;
     void unsetOngoing_incidents();
     void setOngoingIncidents(const std::vector<std::shared_ptr<O11y_StatusIncident>>& value);
 
+    /// <summary>
+    /// PageTitle is the brand&#39;s own status-page title, resolved per request from the Host — a lux caller must never be shown Hanzo&#39;s.
+    /// </summary>
     utility::string_t getPageTitle() const;
     bool pageTitleIsSet() const;
     void unsetPage_title();
@@ -88,6 +97,9 @@ public:
     void unsetPage_url();
     void setPageUrl(const utility::string_t& value);
 
+    /// <summary>
+    /// ScheduledMaintenances is always empty, for the same reason.
+    /// </summary>
     std::vector<std::shared_ptr<O11y_StatusMaintenance>> getScheduledMaintenances() const;
     bool scheduledMaintenancesIsSet() const;
     void unsetScheduled_maintenances();

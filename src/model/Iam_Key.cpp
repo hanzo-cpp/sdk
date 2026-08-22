@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -22,6 +22,10 @@ Iam_Key::Iam_Key()
     m_AccessKeyIsSet = false;
     m_AccessSecret = utility::conversions::to_string_t("");
     m_AccessSecretIsSet = false;
+    m_AccessSecretDigest = utility::conversions::to_string_t("");
+    m_AccessSecretDigestIsSet = false;
+    m_Act = false;
+    m_ActIsSet = false;
     m_Application = utility::conversions::to_string_t("");
     m_ApplicationIsSet = false;
     m_CreatedAt = utility::datetime();
@@ -77,6 +81,16 @@ web::json::value Iam_Key::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("accessSecret"))] = ModelBase::toJson(m_AccessSecret);
+    }
+    if(m_AccessSecretDigestIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("accessSecretDigest"))] = ModelBase::toJson(m_AccessSecretDigest);
+    }
+    if(m_ActIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("act"))] = ModelBase::toJson(m_Act);
     }
     if(m_ApplicationIsSet)
     {
@@ -184,6 +198,28 @@ bool Iam_Key::fromJson(const web::json::value& val)
             utility::string_t refVal_setAccessSecret;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAccessSecret);
             setAccessSecret(refVal_setAccessSecret);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("accessSecretDigest"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("accessSecretDigest")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setAccessSecretDigest;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setAccessSecretDigest);
+            setAccessSecretDigest(refVal_setAccessSecretDigest);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("act"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("act")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_setAct;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setAct);
+            setAct(refVal_setAct);
             
         }
     }
@@ -381,6 +417,14 @@ void Iam_Key::toMultipart(std::shared_ptr<MultipartFormData> multipart, const ut
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("accessSecret")), m_AccessSecret));
     }
+    if(m_AccessSecretDigestIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("accessSecretDigest")), m_AccessSecretDigest));
+    }
+    if(m_ActIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("act")), m_Act));
+    }
     if(m_ApplicationIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("application")), m_Application));
@@ -467,6 +511,18 @@ bool Iam_Key::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
         utility::string_t refVal_setAccessSecret;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("accessSecret"))), refVal_setAccessSecret );
         setAccessSecret(refVal_setAccessSecret);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("accessSecretDigest"))))
+    {
+        utility::string_t refVal_setAccessSecretDigest;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("accessSecretDigest"))), refVal_setAccessSecretDigest );
+        setAccessSecretDigest(refVal_setAccessSecretDigest);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("act"))))
+    {
+        bool refVal_setAct;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("act"))), refVal_setAct );
+        setAct(refVal_setAct);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("application"))))
     {
@@ -609,6 +665,48 @@ bool Iam_Key::accessSecretIsSet() const
 void Iam_Key::unsetAccessSecret()
 {
     m_AccessSecretIsSet = false;
+}
+utility::string_t Iam_Key::getAccessSecretDigest() const
+{
+    return m_AccessSecretDigest;
+}
+
+
+void Iam_Key::setAccessSecretDigest(const utility::string_t& value)
+{
+    m_AccessSecretDigest = value;
+    m_AccessSecretDigestIsSet = true;
+}
+
+bool Iam_Key::accessSecretDigestIsSet() const
+{
+    return m_AccessSecretDigestIsSet;
+}
+
+void Iam_Key::unsetAccessSecretDigest()
+{
+    m_AccessSecretDigestIsSet = false;
+}
+bool Iam_Key::isAct() const
+{
+    return m_Act;
+}
+
+
+void Iam_Key::setAct(bool value)
+{
+    m_Act = value;
+    m_ActIsSet = true;
+}
+
+bool Iam_Key::actIsSet() const
+{
+    return m_ActIsSet;
+}
+
+void Iam_Key::unsetAct()
+{
+    m_ActIsSet = false;
 }
 utility::string_t Iam_Key::getApplication() const
 {

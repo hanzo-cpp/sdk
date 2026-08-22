@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,61 +52,97 @@ public:
     /// AgentBinding members
 
 
+    /// <summary>
+    /// AgentName is the cloud Agent (/v1/agents) this machine runs — the agent a message to the bot is actually run against. It is the one field that decides what the bot DOES.
+    /// </summary>
     utility::string_t getAgentName() const;
     bool agentNameIsSet() const;
     void unsetAgentName();
     void setAgentName(const utility::string_t& value);
 
+    /// <summary>
+    /// BotVersion pins the @hanzo/bot runtime version the machine runs. Empty means the machine took the default in force when it was bound.
+    /// </summary>
     utility::string_t getBotVersion() const;
     bool botVersionIsSet() const;
     void unsetBotVersion();
     void setBotVersion(const utility::string_t& value);
 
+    /// <summary>
+    /// CreatedTime is when the binding was first made.
+    /// </summary>
     utility::string_t getCreatedTime() const;
     bool createdTimeIsSet() const;
     void unsetCreatedTime();
     void setCreatedTime(const utility::string_t& value);
 
+    /// <summary>
+    /// MachineId is the bound machine as vm addresses it, owner-qualified (\&quot;&lt;org&gt;/&lt;machine&gt;\&quot;). The unqualified half is what this surface&#39;s :id routes take.
+    /// </summary>
     utility::string_t getMachineId() const;
     bool machineIdIsSet() const;
     void unsetMachineId();
     void setMachineId(const utility::string_t& value);
 
+    /// <summary>
+    /// Message is vm&#39;s human-readable detail on Status (\&quot;machine provisioning; @hanzo/bot runtime not yet confirmed\&quot;) — the reason behind the state, not a second state.
+    /// </summary>
     utility::string_t getMessage() const;
     bool messageIsSet() const;
     void unsetMessage();
     void setMessage(const utility::string_t& value);
 
+    /// <summary>
+    /// Name is the binding&#39;s own key, which is the machine&#39;s id: a machine hosts at most one agent, so the binding is named for it. This is the key a bots list joins bindings onto machines by.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
+    /// <summary>
+    /// Org is the Hanzo tenant the binding belongs to.
+    /// </summary>
     utility::string_t getOrg() const;
     bool orgIsSet() const;
     void unsetOrg();
     void setOrg(const utility::string_t& value);
 
+    /// <summary>
+    /// Owner is the tenant vm filed the binding under, resolved from the ?owner it was called with — which is the caller&#39;s validated org and never a body field.
+    /// </summary>
     utility::string_t getOwner() const;
     bool ownerIsSet() const;
     void unsetOwner();
     void setOwner(const utility::string_t& value);
 
+    /// <summary>
+    /// Provider is the cloud the bound machine runs on, carried here so a bindings list says where each bot lives without a second read per machine.
+    /// </summary>
     utility::string_t getProvider() const;
     bool providerIsSet() const;
     void unsetProvider();
     void setProvider(const utility::string_t& value);
 
+    /// <summary>
+    /// PublicIp is the bound machine&#39;s public address as vm recorded it on the binding. Empty while the machine has none yet.
+    /// </summary>
     utility::string_t getPublicIp() const;
     bool publicIpIsSet() const;
     void unsetPublicIp();
     void setPublicIp(const utility::string_t& value);
 
+    /// <summary>
+    /// Status is the binding&#39;s lifecycle in VM&#39;s OWN words — \&quot;Pending\&quot; while the machine provisions and the runtime is unconfirmed, \&quot;running\&quot; once vm has confirmed it. The vocabulary is vm&#39;s and passes through unmapped, which is why its capitalization does not match the machine states beside it, and it is vm&#39;s reconciled reading rather than anything asserted here.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
+    /// <summary>
+    /// UpdatedTime is when vm last reconciled it — the age of Status.
+    /// </summary>
     utility::string_t getUpdatedTime() const;
     bool updatedTimeIsSet() const;
     void unsetUpdatedTime();

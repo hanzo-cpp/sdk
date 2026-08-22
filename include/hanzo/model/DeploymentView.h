@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,61 +52,97 @@ public:
     /// DeploymentView members
 
 
+    /// <summary>
+    /// ApplicationID is the app this deployed — the app&#39;s &#x60;id&#x60;, not its slug.
+    /// </summary>
     utility::string_t getApplicationId() const;
     bool applicationIdIsSet() const;
     void unsetApplicationId();
     void setApplicationId(const utility::string_t& value);
 
+    /// <summary>
+    /// BuildID is the build record behind a git deploy, whose logs and status live at /v1/platform/builds. Empty for an image deploy.
+    /// </summary>
     utility::string_t getBuildId() const;
     bool buildIdIsSet() const;
     void unsetBuildId();
     void setBuildId(const utility::string_t& value);
 
+    /// <summary>
+    /// Commit is the git ref this built — the commit a deploy or a push named, else the app&#39;s branch. Empty for an image deploy, which builds nothing.
+    /// </summary>
     utility::string_t getCommit() const;
     bool commitIsSet() const;
     void unsetCommit();
     void setCommit(const utility::string_t& value);
 
+    /// <summary>
+    /// CreatedAt is when the attempt was recorded, unix seconds.
+    /// </summary>
     int32_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
     void setCreatedAt(int32_t value);
 
+    /// <summary>
+    /// ID is the deployment&#39;s id (&#x60;dep_…&#x60;), minted when the attempt is recorded. The app&#39;s currentDeploymentId points at one of these.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
+    /// <summary>
+    /// Image is the full &#x60;repo:tag&#x60; this deployment put in the CR. For a git deploy it is the ref the in-cluster build pushes to, known before the build runs.
+    /// </summary>
     utility::string_t getImage() const;
     bool imageIsSet() const;
     void unsetImage();
     void setImage(const utility::string_t& value);
 
+    /// <summary>
+    /// Message is why this attempt is not live: the failure, or the note that a newer deployment went live before this build finished. Empty while it is fine.
+    /// </summary>
     utility::string_t getMessage() const;
     bool messageIsSet() const;
     void unsetMessage();
     void setMessage(const utility::string_t& value);
 
+    /// <summary>
+    /// Org is the tenant the deployment belongs to, from the validated identity.
+    /// </summary>
     utility::string_t getOrg() const;
     bool orgIsSet() const;
     void unsetOrg();
     void setOrg(const utility::string_t& value);
 
+    /// <summary>
+    /// Source is which lane produced it: &#x60;git&#x60; (built from the repo) or &#x60;image&#x60; (an already-built ref deployed as-is, including promote and rollback).
+    /// </summary>
     utility::string_t getSource() const;
     bool sourceIsSet() const;
     void unsetSource();
     void setSource(const utility::string_t& value);
 
+    /// <summary>
+    /// Status is where the attempt got to: &#x60;building&#x60; while its image is being built, &#x60;deploying&#x60; once its CR reached the cluster — which is the terminal success state, the app&#39;s own status is what turns &#x60;live&#x60; — &#x60;error&#x60; with the reason in Message, or &#x60;superseded&#x60; when a newer version went live first.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
+    /// <summary>
+    /// UpdatedAt is its last transition, unix seconds — so for a terminal deployment it is when it reached that state.
+    /// </summary>
     int32_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
     void setUpdatedAt(int32_t value);
 
+    /// <summary>
+    /// Version counts this app&#39;s deployments, from 1 and monotonically. It is what ORDERS them: a deploy only goes live if no higher version already is, so a build that finishes late is superseded instead of overwriting a newer one.
+    /// </summary>
     int32_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();

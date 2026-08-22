@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -55,11 +55,17 @@ public:
     /// RiskDatasetVersions members
 
 
+    /// <summary>
+    /// Items is every version of it, newest first — including the disposed ones, whose record outlives their rows. Never null.
+    /// </summary>
     std::vector<std::shared_ptr<RiskDataset>> getItems() const;
     bool itemsIsSet() const;
     void unsetItems();
     void setItems(const std::vector<std::shared_ptr<RiskDataset>>& value);
 
+    /// <summary>
+    /// Name is the dataset these versions belong to, as the register holds it.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();

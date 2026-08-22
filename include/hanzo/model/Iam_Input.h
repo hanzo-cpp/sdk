@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -23,7 +23,6 @@
 #include "hanzo/ModelBase.h"
 
 #include <cpprest/details/basic_types.h>
-#include <vector>
 
 namespace hanzo {
 namespace model {
@@ -53,35 +52,45 @@ public:
     /// Iam_Input members
 
 
+    utility::string_t getAction() const;
+    bool actionIsSet() const;
+    void unsetAction();
+    void setAction(const utility::string_t& value);
+
+    utility::string_t getClientIp() const;
+    bool clientIpIsSet() const;
+    void unsetClientIp();
+    void setClientIp(const utility::string_t& value);
+
     utility::string_t getCreatedTime() const;
     bool createdTimeIsSet() const;
     void unsetCreatedTime();
     void setCreatedTime(const utility::string_t& value);
 
-    utility::string_t getDescription() const;
-    bool descriptionIsSet() const;
-    void unsetDescription();
-    void setDescription(const utility::string_t& value);
+    bool isIsTriggered() const;
+    bool isTriggeredIsSet() const;
+    void unsetIsTriggered();
+    void setIsTriggered(bool value);
 
-    utility::string_t getDisplayName() const;
-    bool displayNameIsSet() const;
-    void unsetDisplayName();
-    void setDisplayName(const utility::string_t& value);
+    utility::string_t getLanguage() const;
+    bool languageIsSet() const;
+    void unsetLanguage();
+    void setLanguage(const utility::string_t& value);
 
-    bool isIsDefault() const;
-    bool isDefaultIsSet() const;
-    void unsetIsDefault();
-    void setIsDefault(bool value);
-
-    utility::string_t getMetadata() const;
-    bool metadataIsSet() const;
-    void unsetMetadata();
-    void setMetadata(const utility::string_t& value);
+    utility::string_t getMethod() const;
+    bool methodIsSet() const;
+    void unsetMethod();
+    void setMethod(const utility::string_t& value);
 
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
+
+    utility::string_t getObject() const;
+    bool objectIsSet() const;
+    void unsetobject();
+    void setObject(const utility::string_t& value);
 
     utility::string_t getOrganization() const;
     bool organizationIsSet() const;
@@ -93,35 +102,51 @@ public:
     void unsetOwner();
     void setOwner(const utility::string_t& value);
 
-    std::vector<utility::string_t> getTags() const;
-    bool tagsIsSet() const;
-    void unsetTags();
-    void setTags(const std::vector<utility::string_t>& value);
+    utility::string_t getRequestUri() const;
+    bool requestUriIsSet() const;
+    void unsetRequestUri();
+    void setRequestUri(const utility::string_t& value);
 
-    utility::string_t getWorkspace() const;
-    bool workspaceIsSet() const;
-    void unsetWorkspace();
-    void setWorkspace(const utility::string_t& value);
+    utility::string_t getResponse() const;
+    bool responseIsSet() const;
+    void unsetResponse();
+    void setResponse(const utility::string_t& value);
+
+    int32_t getStatusCode() const;
+    bool statusCodeIsSet() const;
+    void unsetStatusCode();
+    void setStatusCode(int32_t value);
+
+    utility::string_t getUser() const;
+    bool userIsSet() const;
+    void unsetUser();
+    void setUser(const utility::string_t& value);
 
 
 protected:
+    utility::string_t m_Action;
+    bool m_ActionIsSet;
+
+    utility::string_t m_ClientIp;
+    bool m_ClientIpIsSet;
+
     utility::string_t m_CreatedTime;
     bool m_CreatedTimeIsSet;
 
-    utility::string_t m_Description;
-    bool m_DescriptionIsSet;
+    bool m_IsTriggered;
+    bool m_IsTriggeredIsSet;
 
-    utility::string_t m_DisplayName;
-    bool m_DisplayNameIsSet;
+    utility::string_t m_Language;
+    bool m_LanguageIsSet;
 
-    bool m_IsDefault;
-    bool m_IsDefaultIsSet;
-
-    utility::string_t m_Metadata;
-    bool m_MetadataIsSet;
+    utility::string_t m_Method;
+    bool m_MethodIsSet;
 
     utility::string_t m_Name;
     bool m_NameIsSet;
+
+    utility::string_t m_object;
+    bool m_objectIsSet;
 
     utility::string_t m_Organization;
     bool m_OrganizationIsSet;
@@ -129,11 +154,17 @@ protected:
     utility::string_t m_Owner;
     bool m_OwnerIsSet;
 
-    std::vector<utility::string_t> m_Tags;
-    bool m_TagsIsSet;
+    utility::string_t m_RequestUri;
+    bool m_RequestUriIsSet;
 
-    utility::string_t m_Workspace;
-    bool m_WorkspaceIsSet;
+    utility::string_t m_Response;
+    bool m_ResponseIsSet;
+
+    int32_t m_StatusCode;
+    bool m_StatusCodeIsSet;
+
+    utility::string_t m_User;
+    bool m_UserIsSet;
 
 };
 

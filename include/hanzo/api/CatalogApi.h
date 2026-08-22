@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -42,16 +42,6 @@ public:
     virtual ~CatalogApi();
 
     /// <summary>
-    /// Remove a catalog entry
-    /// </summary>
-    /// <remarks>
-    /// Deletes the entry with the addressed slug and answers 204. The slug is matched as a trailing wildcard, not a single segment, because a model slug contains a slash. PLATFORM admin only — an org-level admin is refused 403 — and an unknown slug is 404, so the call is safe to repeat but not silently idempotent.
-    /// </remarks>
-    /// <param name="wildcard1"></param>
-    pplx::task<void> deleteCatalogEntriesByWildcard1(
-        utility::string_t wildcard1
-    ) const;
-    /// <summary>
     /// Browse searches AND browses the cross-org catalog: every project, app and site the fleet has built, whichever org built it.
     /// </summary>
     /// <remarks>
@@ -78,56 +68,6 @@ public:
         boost::optional<utility::string_t> forkable,
         boost::optional<utility::string_t> limit,
         boost::optional<utility::string_t> offset
-    ) const;
-    /// <summary>
-    /// The raw catalog entries, including the unpublished ones
-    /// </summary>
-    /// <remarks>
-    /// Returns every catalog row as stored — the admin view, which unlike the public projection includes entries that are not published. It is cross-tenant platform data, so the gate is a PLATFORM admin: an org-level admin is refused 403 no matter how privileged they are inside their own org, enforced by the handler itself and not only by the route&#39;s token middleware.
-    /// </remarks>
-    pplx::task<void> getCatalogEntries(
-    ) const;
-    /// <summary>
-    /// Add a catalog entry
-    /// </summary>
-    /// <remarks>
-    /// Creates a catalog row from the body and answers it at 201. The slug is required and is the globally-unique catalog key, so a second entry claiming a slug already in use is refused 409 rather than shadowing the first. PLATFORM admin only — this is cross-tenant pricing and packaging data, and an org-level admin is refused 403.
-    /// </remarks>
-    pplx::task<void> postCatalogEntries(
-    ) const;
-    /// <summary>
-    /// Land a syncer&#39;s view of the model catalog: upstream costs and machine facts
-    /// </summary>
-    /// <remarks>
-    /// Takes a batch of model rows and upserts each one&#39;s upstream COST and machine-observable facts, answering what was created and changed. It deliberately touches nothing a human owns — not the retail price, not the markup, not the entitlement tier — so a sync can never overwrite an administrator&#39;s pricing decision. The gate is a PLATFORM principal rather than a platform ADMIN, because the caller is normally a scheduled job holding the internal service token, which carries platform scope but no admin claim.
-    /// </remarks>
-    pplx::task<void> postCatalogModels(
-    ) const;
-    /// <summary>
-    /// Refresh the model catalog by reading the upstream provider
-    /// </summary>
-    /// <remarks>
-    /// Pulls the upstream model list and lands it through the same upsert the push door uses, so the rule that a sync owns cost and an administrator owns price holds no matter which door a row came through. It takes no body — the upstream is READ rather than told. If that upstream cannot be read the call answers 502 and writes NOTHING: a sync that cannot see its source must never conclude the source is empty, because that conclusion would withdraw every model on sale. The gate is a PLATFORM principal so the scheduled job&#39;s service token qualifies.
-    /// </remarks>
-    pplx::task<void> postCatalogModelsRefresh(
-    ) const;
-    /// <summary>
-    /// Seed the embedded catalog, without disturbing edits already made
-    /// </summary>
-    /// <remarks>
-    /// Upserts the shipped catalog seed and answers how many entries it created. It is idempotent and non-destructive — an entry an administrator has since edited is left alone — so it is safe to run against a live catalog to fill in what is missing. PLATFORM admin only; an org-level admin is refused 403.
-    /// </remarks>
-    pplx::task<void> postCatalogSeed(
-    ) const;
-    /// <summary>
-    /// Replace a catalog entry, keeping its slug
-    /// </summary>
-    /// <remarks>
-    /// Loads the addressed entry, applies the body over it and answers the stored result. The slug is the entry&#39;s IDENTITY and is re-stamped from the path after decoding, so a slug in the body is ignored and a rename is impossible through this address. The slug is matched as a trailing wildcard rather than one path segment because a model&#39;s slug IS its callable id and those contain a slash — a segment parameter would stop at it and leave most catalog rows unaddressable. PLATFORM admin only; an unknown slug is 404.
-    /// </remarks>
-    /// <param name="wildcard1"></param>
-    pplx::task<void> putCatalogEntriesByWildcard1(
-        utility::string_t wildcard1
     ) const;
 
 protected:

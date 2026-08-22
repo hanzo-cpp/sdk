@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -69,51 +69,81 @@ public:
     void unsetCold();
     void setCold(bool value);
 
+    /// <summary>
+    /// Completions is complete&#39;s answer: the candidates at the position, typed and resolved through the repository&#39;s dependencies rather than guessed from text.
+    /// </summary>
     std::vector<std::shared_ptr<Completion>> getCompletions() const;
     bool completionsIsSet() const;
     void unsetCompletions();
     void setCompletions(const std::vector<std::shared_ptr<Completion>>& value);
 
+    /// <summary>
+    /// Diagnostics is diagnostics&#39; answer: every problem the server finds in the whole file, position ignored. Empty means it found none.
+    /// </summary>
     std::vector<std::shared_ptr<Diagnostic>> getDiagnostics() const;
     bool diagnosticsIsSet() const;
     void unsetDiagnostics();
     void setDiagnostics(const std::vector<std::shared_ptr<Diagnostic>>& value);
 
+    /// <summary>
+    /// Hover is hover&#39;s answer: the type and documentation as the language server itself renders them, so it is prose meant to be shown, not parsed.
+    /// </summary>
     utility::string_t getHover() const;
     bool hoverIsSet() const;
     void unsetHover();
     void setHover(const utility::string_t& value);
 
+    /// <summary>
+    /// Lang is the language the server that answered speaks (\&quot;go\&quot;), as the daemon reports it. Empty when the daemon named none.
+    /// </summary>
     utility::string_t getLang() const;
     bool langIsSet() const;
     void unsetLang();
     void setLang(const utility::string_t& value);
 
+    /// <summary>
+    /// Locations is locate&#39;s answer: where the symbol is defined, referenced, typed or implemented, per the relation asked for. Empty means the server resolved nothing there, which is an answer.
+    /// </summary>
     std::vector<std::shared_ptr<Location>> getLocations() const;
     bool locationsIsSet() const;
     void unsetLocations();
     void setLocations(const std::vector<std::shared_ptr<Location>>& value);
 
+    /// <summary>
+    /// Op is the question that was asked: hover, locate, symbols, diagnostics or complete. It names which result field below is the populated one.
+    /// </summary>
     utility::string_t getOp() const;
     bool opIsSet() const;
     void unsetOp();
     void setOp(const utility::string_t& value);
 
+    /// <summary>
+    /// Path is the repo-relative file the question was about, echoed back.
+    /// </summary>
     utility::string_t getPath() const;
     bool pathIsSet() const;
     void unsetPath();
     void setPath(const utility::string_t& value);
 
+    /// <summary>
+    /// Repo is the repository the question was about, echoed back.
+    /// </summary>
     utility::string_t getRepo() const;
     bool repoIsSet() const;
     void unsetRepo();
     void setRepo(const utility::string_t& value);
 
+    /// <summary>
+    /// Rev is the RESOLVED commit sha, never the branch or tag that was asked for. It is what makes an answer re-askable: a branch moves, this does not.
+    /// </summary>
     utility::string_t getRev() const;
     bool revIsSet() const;
     void unsetRev();
     void setRev(const utility::string_t& value);
 
+    /// <summary>
+    /// Symbols is symbols&#39; answer: the file&#39;s whole outline, position ignored.
+    /// </summary>
     std::vector<std::shared_ptr<Symbol>> getSymbols() const;
     bool symbolsIsSet() const;
     void unsetSymbols();

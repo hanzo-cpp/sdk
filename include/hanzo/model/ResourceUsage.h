@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -51,21 +51,33 @@ public:
     /// ResourceUsage members
 
 
+    /// <summary>
+    /// CostCents would be the window&#39;s spend in cents. Always null here — the money a run costs is the metering ledger&#39;s, joined by the run id, and repeating it from this side would be a second number that could disagree with the bill.
+    /// </summary>
     double getCostCents() const;
     bool costCentsIsSet() const;
     void unsetCostCents();
     void setCostCents(double value);
 
+    /// <summary>
+    /// CPUVcpuHours would be vCPU-hours over the window. Always null: this store holds agent definitions and run I/O, and nothing here meters a CPU. Null is the honest answer and 0 would be a claim.
+    /// </summary>
     double getCpuVcpuHours() const;
     bool cpuVcpuHoursIsSet() const;
     void unsetCpuVcpuHours();
     void setCpuVcpuHours(double value);
 
+    /// <summary>
+    /// MemGbHours would be gigabyte-hours of memory. Always null, same reason.
+    /// </summary>
     double getMemGbHours() const;
     bool memGbHoursIsSet() const;
     void unsetMemGbHours();
     void setMemGbHours(double value);
 
+    /// <summary>
+    /// StorageIoBytes would be bytes moved to and from storage. Always null, same reason.
+    /// </summary>
     double getStorageIoBytes() const;
     bool storageIoBytesIsSet() const;
     void unsetStorageIoBytes();

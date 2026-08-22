@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -53,16 +53,25 @@ public:
     /// BuildOut members
 
 
+    /// <summary>
+    /// Bytes is the size of the bundled CommonJS the runtime will execute.
+    /// </summary>
     int32_t getBytes() const;
     bool bytesIsSet() const;
     void unsetBytes();
     void setBytes(int32_t value);
 
+    /// <summary>
+    /// Generated is whether a model wrote the source from a spec, rather than the caller posting the source itself.
+    /// </summary>
     bool isGenerated() const;
     bool generatedIsSet() const;
     void unsetGenerated();
     void setGenerated(bool value);
 
+    /// <summary>
+    /// Plugin is the plugin as stored, with its derived id and build time.
+    /// </summary>
     std::shared_ptr<AuthoredPlugin> getPlugin() const;
     bool pluginIsSet() const;
     void unsetPlugin();

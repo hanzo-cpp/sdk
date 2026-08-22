@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,26 +52,41 @@ public:
     /// LastEventView members
 
 
+    /// <summary>
+    /// Actor is who produced the turn, defaulted to the calling principal when the writer named nobody.
+    /// </summary>
     utility::string_t getActor() const;
     bool actorIsSet() const;
     void unsetActor();
     void setActor(const utility::string_t& value);
 
+    /// <summary>
+    /// At is when the turn was recorded, RFC 3339 in UTC to the second.
+    /// </summary>
     utility::string_t getAt() const;
     bool atIsSet() const;
     void unsetAt();
     void setAt(const utility::string_t& value);
 
+    /// <summary>
+    /// Kind is what the turn was, from the log&#39;s closed six: message, tool-call, spawn, log, status, control.
+    /// </summary>
     utility::string_t getKind() const;
     bool kindIsSet() const;
     void unsetKind();
     void setKind(const utility::string_t& value);
 
+    /// <summary>
+    /// Preview is the first 240 bytes of the event&#39;s payload, cut without regard for the JSON inside it — it is a string to SHOW, never a value to parse. Read the detail or the stream for the whole payload.
+    /// </summary>
     utility::string_t getPreview() const;
     bool previewIsSet() const;
     void unsetPreview();
     void setPreview(const utility::string_t& value);
 
+    /// <summary>
+    /// Seq is that event&#39;s position in the session&#39;s log — monotonic from 1, per session. A reader holding it can ask the detail or stream reads for everything after it, so this doubles as the list&#39;s resume cursor.
+    /// </summary>
     int32_t getSeq() const;
     bool seqIsSet() const;
     void unsetSeq();

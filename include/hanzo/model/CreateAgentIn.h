@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -53,46 +53,73 @@ public:
     /// CreateAgentIn members
 
 
+    /// <summary>
+    /// ComputeRef optionally binds this bot to a visor machine. Opaque here, bounded at 256 characters, and not resolved — this package stores the reference and the binding&#39;s lifecycle belongs elsewhere.
+    /// </summary>
     utility::string_t getComputeRef() const;
     bool computeRefIsSet() const;
     void unsetComputeRef();
     void setComputeRef(const utility::string_t& value);
 
+    /// <summary>
+    /// Description is the one line published as the description of the &#x60;agent_&lt;name&gt;&#x60; tool, which is how another agent decides whether to call this one. Optional, and worth writing for exactly that reason.
+    /// </summary>
     utility::string_t getDescription() const;
     bool descriptionIsSet() const;
     void unsetDescription();
     void setDescription(const utility::string_t& value);
 
+    /// <summary>
+    /// ExecutionMode is one-shot or long-running. Empty takes one-shot, which runs only when something POSTs to it. long-running additionally requires Schedule, and counts against a per-org cap that answers 409 when it is full.
+    /// </summary>
     utility::string_t getExecutionMode() const;
     bool executionModeIsSet() const;
     void unsetExecutionMode();
     void setExecutionMode(const utility::string_t& value);
 
+    /// <summary>
+    /// Instructions is the system prompt, up to 32 KiB, stored verbatim. This is what the model reads; Description is what other CALLERS read.
+    /// </summary>
     utility::string_t getInstructions() const;
     bool instructionsIsSet() const;
     void unsetInstructions();
     void setInstructions(const utility::string_t& value);
 
+    /// <summary>
+    /// Model names the model to run on. Omit it to take the deployment&#39;s configured default; name one and it is checked against the gateway&#39;s served catalogue here, so a model this deployment cannot serve is refused now rather than at the first run. Stored under our own name for it, whatever spelling arrives.
+    /// </summary>
     utility::string_t getModel() const;
     bool modelIsSet() const;
     void unsetModel();
     void setModel(const utility::string_t& value);
 
+    /// <summary>
+    /// Name is the agent&#39;s org-unique handle and the only required field. It must match ^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$, and a name already taken in this org is a 409 rather than an overwrite. It is permanent: no update route moves it.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
+    /// <summary>
+    /// Schedule is the 5-field cron a long-running agent fires on, parsed here so a bad expression is a 400 and not an agent that silently never runs. Required with long-running; DISCARDED for one-shot rather than stored unused.
+    /// </summary>
     utility::string_t getSchedule() const;
     bool scheduleIsSet() const;
     void unsetSchedule();
     void setSchedule(const utility::string_t& value);
 
+    /// <summary>
+    /// ServiceAccountID optionally names the IAM agent service account (&lt;org&gt;-&lt;agent&gt;) a scheduled run should be billed AS, so an autonomous run is attributable to a principal rather than only to the org. Same 256-character bound, also unresolved here.
+    /// </summary>
     utility::string_t getServiceAccountId() const;
     bool serviceAccountIdIsSet() const;
     void unsetServiceAccountId();
     void setServiceAccountId(const utility::string_t& value);
 
+    /// <summary>
+    /// Tools are the tool names this agent may call. Omitted or empty grants NONE — that default is the agent&#39;s authority and is not widened anywhere. The single entry \&quot;*\&quot; means whatever the fleet&#39;s tool door serves at the time of each run.
+    /// </summary>
     std::vector<utility::string_t> getTools() const;
     bool toolsIsSet() const;
     void unsetTools();

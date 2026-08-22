@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -56,21 +56,33 @@ public:
     /// ArgoCluster members
 
 
+    /// <summary>
+    /// ConnectionState is whether the destination is reachable.
+    /// </summary>
     std::shared_ptr<ArgoConnectionState> getConnectionState() const;
     bool connectionStateIsSet() const;
     void unsetConnectionState();
     void setConnectionState(const std::shared_ptr<ArgoConnectionState>& value);
 
+    /// <summary>
+    /// Info is the connection state again plus the count of applications targeting this destination.
+    /// </summary>
     std::shared_ptr<ArgoClusterInfo> getInfo() const;
     bool infoIsSet() const;
     void unsetInfo();
     void setInfo(const std::shared_ptr<ArgoClusterInfo>& value);
 
+    /// <summary>
+    /// Name is what the Destination column shows: \&quot;in-cluster\&quot; for this cluster, otherwise whatever spec.destination.name declares, falling back to the server URL when it declares none.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
+    /// <summary>
+    /// Server is the destination&#39;s API URL, and the key the list is deduplicated by. https://kubernetes.default.svc is this cluster.
+    /// </summary>
     utility::string_t getServer() const;
     bool serverIsSet() const;
     void unsetServer();

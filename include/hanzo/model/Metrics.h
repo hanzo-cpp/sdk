@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -67,16 +67,25 @@ public:
     void unsetGpuUtil();
     void setGpuUtil(double value);
 
+    /// <summary>
+    /// Load1 is the machine&#39;s own one-minute load average — a count of runnable and uninterruptible tasks, NOT a percentage and NOT already divided by core count, so it is read against Spec.CPUs: 8.0 is idle on 16 cores and swamped on 4. Coerced finite and non-negative on write, so 0 means either genuinely idle or nothing reported.
+    /// </summary>
     double getLoad1() const;
     bool load1IsSet() const;
     void unsetLoad1();
     void setLoad1(double value);
 
+    /// <summary>
+    /// Load5 is the same figure averaged over five minutes.
+    /// </summary>
     double getLoad5() const;
     bool load5IsSet() const;
     void unsetLoad5();
     void setLoad5(double value);
 
+    /// <summary>
+    /// Load15 is the same figure over fifteen. The three together are what separate a machine that is busy right now from one that has been busy all along — which is the question a dispatcher is really asking.
+    /// </summary>
     double getLoad15() const;
     bool load15IsSet() const;
     void unsetLoad15();

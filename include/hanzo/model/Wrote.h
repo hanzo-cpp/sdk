@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,11 +52,17 @@ public:
     /// Wrote members
 
 
+    /// <summary>
+    /// Bytes is how many bytes the file now holds. A write REPLACES the file, so this is its whole length and not an amount appended, and 0 is a legitimate answer: a WriteIn with no Data truncates the file to nothing.
+    /// </summary>
     int32_t getBytes() const;
     bool bytesIsSet() const;
     void unsetBytes();
     void setBytes(int32_t value);
 
+    /// <summary>
+    /// Path is where the bytes actually landed: the caller&#39;s path resolved against the sandbox&#39;s working directory (Leased.Workdir), which is what a later read or a shell line inside the sandbox has to name.
+    /// </summary>
     utility::string_t getPath() const;
     bool pathIsSet() const;
     void unsetPath();

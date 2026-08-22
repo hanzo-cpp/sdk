@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -23,55 +23,6 @@
 #include "hanzo/ApiClient.h"
 
 #include "hanzo/model/AiMCPSurface.h"
-#include "hanzo/model/Envelope.h"
-#include "hanzo/model/Get_ai_activities_200_response.h"
-#include "hanzo/model/Get_ai_articles_200_response.h"
-#include "hanzo/model/Get_ai_assets_200_response.h"
-#include "hanzo/model/Get_ai_chats_200_response.h"
-#include "hanzo/model/Get_ai_deployments_200_response.h"
-#include "hanzo/model/Get_ai_files_200_response.h"
-#include "hanzo/model/Get_ai_forms_200_response.h"
-#include "hanzo/model/Get_ai_graphs_200_response.h"
-#include "hanzo/model/Get_ai_messages_200_response.h"
-#include "hanzo/model/Get_ai_nodes_200_response.h"
-#include "hanzo/model/Get_ai_providers_200_response.h"
-#include "hanzo/model/Get_ai_records_200_response.h"
-#include "hanzo/model/Get_ai_remote_connections_200_response.h"
-#include "hanzo/model/Get_ai_routes_200_response.h"
-#include "hanzo/model/Get_ai_scales_200_response.h"
-#include "hanzo/model/Get_ai_scans_200_response.h"
-#include "hanzo/model/Get_ai_signin_sessions_200_response.h"
-#include "hanzo/model/Get_ai_stores_200_response.h"
-#include "hanzo/model/Get_ai_tasks_200_response.h"
-#include "hanzo/model/Get_ai_templates_200_response.h"
-#include "hanzo/model/Get_ai_usages_200_response.h"
-#include "hanzo/model/Get_ai_vectors_200_response.h"
-#include "hanzo/model/Get_ai_videos_200_response.h"
-#include "hanzo/model/Get_ai_workflows_200_response.h"
-#include "hanzo/Object.h"
-#include "hanzo/model/Post_ai_articles_200_response.h"
-#include "hanzo/model/Post_ai_assets_200_response.h"
-#include "hanzo/model/Post_ai_chats_200_response.h"
-#include "hanzo/model/Post_ai_deployments_200_response.h"
-#include "hanzo/model/Post_ai_files_200_response.h"
-#include "hanzo/model/Post_ai_forms_200_response.h"
-#include "hanzo/model/Post_ai_graphs_200_response.h"
-#include "hanzo/model/Post_ai_messages_200_response.h"
-#include "hanzo/model/Post_ai_nodes_200_response.h"
-#include "hanzo/model/Post_ai_providers_200_response.h"
-#include "hanzo/model/Post_ai_records_200_response.h"
-#include "hanzo/model/Post_ai_remote_connections_200_response.h"
-#include "hanzo/model/Post_ai_routes_200_response.h"
-#include "hanzo/model/Post_ai_scales_200_response.h"
-#include "hanzo/model/Post_ai_scans_200_response.h"
-#include "hanzo/model/Post_ai_signin_sessions_200_response.h"
-#include "hanzo/model/Post_ai_stores_200_response.h"
-#include "hanzo/model/Post_ai_tasks_200_response.h"
-#include "hanzo/model/Post_ai_templates_200_response.h"
-#include "hanzo/model/Post_ai_tree_files_200_response.h"
-#include "hanzo/model/Post_ai_vectors_200_response.h"
-#include "hanzo/model/Post_ai_videos_200_response.h"
-#include "hanzo/model/Post_ai_workflows_200_response.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -106,9 +57,9 @@ public:
     /// <remarks>
     /// Delete one article.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_articles_200_response>> deleteAiArticlesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> deleteAiArticlesByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -118,9 +69,9 @@ public:
     /// <remarks>
     /// Delete one asset.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_assets_200_response>> deleteAiAssetsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> deleteAiAssetsByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -130,9 +81,9 @@ public:
     /// <remarks>
     /// Delete one chat.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_chats_200_response>> deleteAiChatsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> deleteAiChatsByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -152,9 +103,9 @@ public:
     /// <remarks>
     /// Delete one application.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_deployments_200_response>> deleteAiDeploymentsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> deleteAiDeploymentsByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -164,9 +115,9 @@ public:
     /// <remarks>
     /// Delete one file.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_files_200_response>> deleteAiFilesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> deleteAiFilesByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -176,9 +127,9 @@ public:
     /// <remarks>
     /// Delete one form.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_forms_200_response>> deleteAiFormsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> deleteAiFormsByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -188,9 +139,9 @@ public:
     /// <remarks>
     /// Delete one graph.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_graphs_200_response>> deleteAiGraphsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> deleteAiGraphsByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -200,9 +151,9 @@ public:
     /// <remarks>
     /// Delete one message.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_messages_200_response>> deleteAiMessagesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> deleteAiMessagesByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -212,7 +163,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    pplx::task<std::shared_ptr<Envelope>> deleteAiMessagesWelcome(
+    pplx::task<void> deleteAiMessagesWelcome(
     ) const;
     /// <summary>
     /// Delete a node
@@ -220,11 +171,27 @@ public:
     /// <remarks>
     /// Delete one node.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_nodes_200_response>> deleteAiNodesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> deleteAiNodesByOwnerByName(
         utility::string_t owner,
         utility::string_t name
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> deleteAiOrgSettings(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> deleteAiOrgSettingsList(
     ) const;
     /// <summary>
     /// Delete a provider
@@ -232,9 +199,9 @@ public:
     /// <remarks>
     /// Delete one provider.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_providers_200_response>> deleteAiProvidersByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> deleteAiProvidersByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -244,9 +211,9 @@ public:
     /// <remarks>
     /// Delete one record.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_records_200_response>> deleteAiRecordsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> deleteAiRecordsByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -256,11 +223,59 @@ public:
     /// <remarks>
     /// Delete one connection.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_remote_connections_200_response>> deleteAiRemoteConnectionsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> deleteAiRemoteConnectionsByOwnerByName(
         utility::string_t owner,
         utility::string_t name
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> deleteAiRouterArtifactMeta(
+    ) const;
+    /// <summary>
+    /// Router Data
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    pplx::task<void> deleteAiRouterData(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> deleteAiRouterDefaults(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> deleteAiRouterLedger(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> deleteAiRouterPolicy(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> deleteAiRouterRewards(
     ) const;
     /// <summary>
     /// Delete a model-route
@@ -268,9 +283,9 @@ public:
     /// <remarks>
     /// Delete one model-route.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_routes_200_response>> deleteAiRoutesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> deleteAiRoutesByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -280,9 +295,9 @@ public:
     /// <remarks>
     /// Delete one scale.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_scales_200_response>> deleteAiScalesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> deleteAiScalesByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -292,9 +307,9 @@ public:
     /// <remarks>
     /// Delete one scan.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_scans_200_response>> deleteAiScansByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> deleteAiScansByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -304,9 +319,9 @@ public:
     /// <remarks>
     /// Delete one session.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_signin_sessions_200_response>> deleteAiSigninSessionsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> deleteAiSigninSessionsByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -316,9 +331,9 @@ public:
     /// <remarks>
     /// Delete one store.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_stores_200_response>> deleteAiStoresByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> deleteAiStoresByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -328,9 +343,9 @@ public:
     /// <remarks>
     /// Delete one task.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_tasks_200_response>> deleteAiTasksByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> deleteAiTasksByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -340,9 +355,9 @@ public:
     /// <remarks>
     /// Delete one template.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_templates_200_response>> deleteAiTemplatesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> deleteAiTemplatesByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -352,9 +367,9 @@ public:
     /// <remarks>
     /// Delete one tree-file.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_tree_files_200_response>> deleteAiTreeFilesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> deleteAiTreeFilesByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -364,7 +379,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    pplx::task<std::shared_ptr<Envelope>> deleteAiVectorsAll(
+    pplx::task<void> deleteAiVectorsAll(
     ) const;
     /// <summary>
     /// Delete a vector
@@ -372,9 +387,9 @@ public:
     /// <remarks>
     /// Delete one vector.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_vectors_200_response>> deleteAiVectorsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> deleteAiVectorsByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -384,9 +399,9 @@ public:
     /// <remarks>
     /// Delete one video.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_videos_200_response>> deleteAiVideosByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> deleteAiVideosByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -396,9 +411,9 @@ public:
     /// <remarks>
     /// Delete one workflow.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_workflows_200_response>> deleteAiWorkflowsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> deleteAiWorkflowsByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -408,7 +423,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    pplx::task<std::shared_ptr<Envelope>> getAiAccount(
+    pplx::task<void> getAiAccount(
     ) const;
     /// <summary>
     /// List activities
@@ -416,7 +431,7 @@ public:
     /// <remarks>
     /// List the caller&#39;s activities.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_activities_200_response>> getAiActivities(
+    pplx::task<void> getAiActivities(
     ) const;
     /// <summary>
     /// Answer
@@ -424,7 +439,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    pplx::task<std::shared_ptr<Envelope>> getAiAnswer(
+    pplx::task<void> getAiAnswer(
     ) const;
     /// <summary>
     /// List articles
@@ -432,7 +447,7 @@ public:
     /// <remarks>
     /// List the caller&#39;s articles.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_articles_200_response>> getAiArticles(
+    pplx::task<void> getAiArticles(
     ) const;
     /// <summary>
     /// Retrieve a article
@@ -440,9 +455,9 @@ public:
     /// <remarks>
     /// Read one article by its (owner, name) key.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_articles_200_response>> getAiArticlesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> getAiArticlesByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -452,7 +467,7 @@ public:
     /// <remarks>
     /// Cross-tenant listing. Admin-only; a tenant caller is refused.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_articles_200_response>> getAiArticlesGlobal(
+    pplx::task<void> getAiArticlesGlobal(
     ) const;
     /// <summary>
     /// List assets
@@ -460,7 +475,7 @@ public:
     /// <remarks>
     /// List the caller&#39;s assets.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_assets_200_response>> getAiAssets(
+    pplx::task<void> getAiAssets(
     ) const;
     /// <summary>
     /// Retrieve a asset
@@ -468,9 +483,9 @@ public:
     /// <remarks>
     /// Read one asset by its (owner, name) key.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_assets_200_response>> getAiAssetsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> getAiAssetsByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -480,7 +495,7 @@ public:
     /// <remarks>
     /// List the caller&#39;s chats.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_chats_200_response>> getAiChats(
+    pplx::task<void> getAiChats(
     ) const;
     /// <summary>
     /// Retrieve a chat
@@ -488,9 +503,9 @@ public:
     /// <remarks>
     /// Read one chat by its (owner, name) key.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_chats_200_response>> getAiChatsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> getAiChatsByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -500,7 +515,7 @@ public:
     /// <remarks>
     /// Cross-tenant listing. Admin-only; a tenant caller is refused.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_chats_200_response>> getAiChatsGlobal(
+    pplx::task<void> getAiChatsGlobal(
     ) const;
     /// <summary>
     /// Lists the org&#39;s connectable AI accounts and whether each is currently connected.
@@ -546,7 +561,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    pplx::task<std::shared_ptr<Envelope>> getAiDashboardsAgents(
+    pplx::task<void> getAiDashboardsAgents(
     ) const;
     /// <summary>
     /// Dashboards Vm
@@ -554,7 +569,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    pplx::task<std::shared_ptr<Envelope>> getAiDashboardsVm(
+    pplx::task<void> getAiDashboardsVm(
     ) const;
     /// <summary>
     /// List deployments
@@ -562,7 +577,7 @@ public:
     /// <remarks>
     /// List the caller&#39;s deployments.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_deployments_200_response>> getAiDeployments(
+    pplx::task<void> getAiDeployments(
     ) const;
     /// <summary>
     /// Retrieve a application
@@ -570,9 +585,9 @@ public:
     /// <remarks>
     /// Read one application by its (owner, name) key.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_deployments_200_response>> getAiDeploymentsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> getAiDeploymentsByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -582,7 +597,7 @@ public:
     /// <remarks>
     /// List the caller&#39;s files.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_files_200_response>> getAiFiles(
+    pplx::task<void> getAiFiles(
     ) const;
     /// <summary>
     /// Active (file)
@@ -590,7 +605,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    pplx::task<std::shared_ptr<Envelope>> getAiFilesActive(
+    pplx::task<void> getAiFilesActive(
     ) const;
     /// <summary>
     /// Retrieve a file
@@ -598,9 +613,9 @@ public:
     /// <remarks>
     /// Read one file by its (owner, name) key.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_files_200_response>> getAiFilesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> getAiFilesByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -610,7 +625,55 @@ public:
     /// <remarks>
     /// Cross-tenant listing. Admin-only; a tenant caller is refused.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_files_200_response>> getAiFilesGlobal(
+    pplx::task<void> getAiFilesGlobal(
+    ) const;
+    /// <summary>
+    /// Proxies a HuggingFace dataset search (dataset picker).
+    /// </summary>
+    /// <remarks>
+    /// Proxies a HuggingFace dataset search (dataset picker).
+    /// </remarks>
+    pplx::task<void> getAiFinetuneHfDatasets(
+    ) const;
+    /// <summary>
+    /// Proxies a HuggingFace model search (base-model picker).
+    /// </summary>
+    /// <remarks>
+    /// Proxies a HuggingFace model search (base-model picker).
+    /// </remarks>
+    pplx::task<void> getAiFinetuneHfModels(
+    ) const;
+    /// <summary>
+    /// Returns a repo&#39;s detail (files, gated/private state).
+    /// </summary>
+    /// <remarks>
+    /// Returns a repo&#39;s detail (files, gated/private state). ?id&#x3D;&amp;kind&#x3D;model|dataset
+    /// </remarks>
+    pplx::task<void> getAiFinetuneHfRepo(
+    ) const;
+    /// <summary>
+    /// Returns one job with refreshed live status.
+    /// </summary>
+    /// <remarks>
+    /// Returns one job with refreshed live status. ?id&#x3D;owner/name or ?name&#x3D;
+    /// </remarks>
+    pplx::task<void> getAiFinetuneJob(
+    ) const;
+    /// <summary>
+    /// Returns the org&#39;s jobs, refreshing live status for active ones.
+    /// </summary>
+    /// <remarks>
+    /// Returns the org&#39;s jobs, refreshing live status for active ones.
+    /// </remarks>
+    pplx::task<void> getAiFinetuneJobs(
+    ) const;
+    /// <summary>
+    /// Returns the new-job catalog plus, when a selection is passed (?baseModel&amp;method&amp;task&amp;preset[&amp;datasetExamples]), the recommended config so the console can render \&quot;Recommended\&quot; as a one-click, ready-to-run default.
+    /// </summary>
+    /// <remarks>
+    /// Returns the new-job catalog plus, when a selection is passed (?baseModel&amp;method&amp;task&amp;preset[&amp;datasetExamples]), the recommended config so the console can render \&quot;Recommended\&quot; as a one-click, ready-to-run default.
+    /// </remarks>
+    pplx::task<void> getAiFinetunePresets(
     ) const;
     /// <summary>
     /// List forms
@@ -618,7 +681,7 @@ public:
     /// <remarks>
     /// List the caller&#39;s forms.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_forms_200_response>> getAiForms(
+    pplx::task<void> getAiForms(
     ) const;
     /// <summary>
     /// Retrieve a form
@@ -626,9 +689,9 @@ public:
     /// <remarks>
     /// Read one form by its (owner, name) key.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_forms_200_response>> getAiFormsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> getAiFormsByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -638,7 +701,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    pplx::task<std::shared_ptr<Envelope>> getAiFormsData(
+    pplx::task<void> getAiFormsData(
     ) const;
     /// <summary>
     /// List forms across tenants
@@ -646,7 +709,7 @@ public:
     /// <remarks>
     /// Cross-tenant listing. Admin-only; a tenant caller is refused.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_forms_200_response>> getAiFormsGlobal(
+    pplx::task<void> getAiFormsGlobal(
     ) const;
     /// <summary>
     /// List graphs
@@ -654,7 +717,7 @@ public:
     /// <remarks>
     /// List the caller&#39;s graphs.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_graphs_200_response>> getAiGraphs(
+    pplx::task<void> getAiGraphs(
     ) const;
     /// <summary>
     /// Retrieve a graph
@@ -662,9 +725,9 @@ public:
     /// <remarks>
     /// Read one graph by its (owner, name) key.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_graphs_200_response>> getAiGraphsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> getAiGraphsByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -674,7 +737,7 @@ public:
     /// <remarks>
     /// Cross-tenant listing. Admin-only; a tenant caller is refused.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_graphs_200_response>> getAiGraphsGlobal(
+    pplx::task<void> getAiGraphsGlobal(
     ) const;
     /// <summary>
     /// K8s Status
@@ -682,7 +745,39 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    pplx::task<std::shared_ptr<Envelope>> getAiK8sStatus(
+    pplx::task<void> getAiK8sStatus(
+    ) const;
+    /// <summary>
+    /// List the authenticated user&#39;s stored facts
+    /// </summary>
+    /// <remarks>
+    /// List the authenticated user&#39;s stored facts
+    /// </remarks>
+    pplx::task<void> getAiMemoryFacts(
+    ) const;
+    /// <summary>
+    /// List the authenticated user&#39;s memories, newest first
+    /// </summary>
+    /// <remarks>
+    /// List the authenticated user&#39;s memories, newest first
+    /// </remarks>
+    pplx::task<void> getAiMemoryList(
+    ) const;
+    /// <summary>
+    /// Recall recent/relevant memories for context injection; with q it
+    /// </summary>
+    /// <remarks>
+    /// Recall recent/relevant memories for context injection; with q it ranks semantically, without q it returns the most recent
+    /// </remarks>
+    pplx::task<void> getAiMemoryRecall(
+    ) const;
+    /// <summary>
+    /// Search the authenticated user&#39;s memories (semantic, text fallback)
+    /// </summary>
+    /// <remarks>
+    /// Search the authenticated user&#39;s memories (semantic, text fallback)
+    /// </remarks>
+    pplx::task<void> getAiMemorySearch(
     ) const;
     /// <summary>
     /// List messages
@@ -690,7 +785,7 @@ public:
     /// <remarks>
     /// List the caller&#39;s messages.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_messages_200_response>> getAiMessages(
+    pplx::task<void> getAiMessages(
     ) const;
     /// <summary>
     /// Retrieve a message
@@ -698,9 +793,9 @@ public:
     /// <remarks>
     /// Read one message by its (owner, name) key.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_messages_200_response>> getAiMessagesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> getAiMessagesByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -710,9 +805,9 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Envelope>> getAiMessagesByOwnerByNameAnswer(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> getAiMessagesByOwnerByNameAnswer(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -722,7 +817,7 @@ public:
     /// <remarks>
     /// Cross-tenant listing. Admin-only; a tenant caller is refused.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_messages_200_response>> getAiMessagesGlobal(
+    pplx::task<void> getAiMessagesGlobal(
     ) const;
     /// <summary>
     /// List nodes
@@ -730,7 +825,7 @@ public:
     /// <remarks>
     /// List the caller&#39;s nodes.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_nodes_200_response>> getAiNodes(
+    pplx::task<void> getAiNodes(
     ) const;
     /// <summary>
     /// Retrieve a node
@@ -738,9 +833,9 @@ public:
     /// <remarks>
     /// Read one node by its (owner, name) key.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_nodes_200_response>> getAiNodesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> getAiNodesByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -750,11 +845,27 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Envelope>> getAiNodesByOwnerByNameTunnel(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> getAiNodesByOwnerByNameTunnel(
         utility::string_t owner,
         utility::string_t name
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> getAiOrgSettings(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> getAiOrgSettingsList(
     ) const;
     /// <summary>
     /// Prometheus
@@ -762,7 +873,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    pplx::task<std::shared_ptr<Envelope>> getAiPrometheus(
+    pplx::task<void> getAiPrometheus(
     ) const;
     /// <summary>
     /// List providers
@@ -770,7 +881,7 @@ public:
     /// <remarks>
     /// List the caller&#39;s providers.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_providers_200_response>> getAiProviders(
+    pplx::task<void> getAiProviders(
     ) const;
     /// <summary>
     /// Retrieve a provider
@@ -778,9 +889,9 @@ public:
     /// <remarks>
     /// Read one provider by its (owner, name) key.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_providers_200_response>> getAiProvidersByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> getAiProvidersByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -790,7 +901,15 @@ public:
     /// <remarks>
     /// Cross-tenant listing. Admin-only; a tenant caller is refused.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_providers_200_response>> getAiProvidersGlobal(
+    pplx::task<void> getAiProvidersGlobal(
+    ) const;
+    /// <summary>
+    /// Return every stored chunk of one file_id (full document context).
+    /// </summary>
+    /// <remarks>
+    /// Return every stored chunk of one file_id (full document context). Consolidates the retired chat-rag-api GET /documents/{id}/context.
+    /// </remarks>
+    pplx::task<void> getAiRagContext(
     ) const;
     /// <summary>
     /// List records
@@ -798,7 +917,7 @@ public:
     /// <remarks>
     /// List the caller&#39;s records.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_records_200_response>> getAiRecords(
+    pplx::task<void> getAiRecords(
     ) const;
     /// <summary>
     /// Retrieve a record
@@ -806,9 +925,9 @@ public:
     /// <remarks>
     /// Read one record by its (owner, name) key.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_records_200_response>> getAiRecordsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> getAiRecordsByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -818,7 +937,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    pplx::task<std::shared_ptr<Envelope>> getAiRecordsQuery(
+    pplx::task<void> getAiRecordsQuery(
     ) const;
     /// <summary>
     /// Query Second (record)
@@ -826,7 +945,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    pplx::task<std::shared_ptr<Envelope>> getAiRecordsQuerySecond(
+    pplx::task<void> getAiRecordsQuerySecond(
     ) const;
     /// <summary>
     /// List remote-connections
@@ -834,7 +953,7 @@ public:
     /// <remarks>
     /// List the caller&#39;s remote-connections.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_remote_connections_200_response>> getAiRemoteConnections(
+    pplx::task<void> getAiRemoteConnections(
     ) const;
     /// <summary>
     /// Retrieve a connection
@@ -842,11 +961,83 @@ public:
     /// <remarks>
     /// Read one connection by its (owner, name) key.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_remote_connections_200_response>> getAiRemoteConnectionsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> getAiRemoteConnectionsByOwnerByName(
         utility::string_t owner,
         utility::string_t name
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> getAiRouterArtifactMeta(
+    ) const;
+    /// <summary>
+    /// Router Data
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    pplx::task<void> getAiRouterData(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> getAiRouterDefaults(
+    ) const;
+    /// <summary>
+    /// Returns the router-improvement time-series.
+    /// </summary>
+    /// <remarks>
+    /// Returns the router-improvement time-series. Two scopes, one route, mirroring /v1/ai/router/stats:    - ?scope&#x3D;platform — PUBLIC-safe aggregate over ALL orgs, no authentication. Emits     the daily reward/cost-saved/adoption series (task mix included, model ids NOT)     and the retrain timeline. This is what world.hanzo.ai polls.   - default (org scope) — requires a signed-in principal, scoped to the caller&#39;s OWN     org (a super admin may pass ?org&#x3D; to target another or \&quot;\&quot; for all).  Window: ?days&#x3D;N (default 30, capped at 90). Aggregates only.
+    /// </remarks>
+    pplx::task<void> getAiRouterHistory(
+    ) const;
+    /// <summary>
+    /// Returns the LIVE Mean-Field Judge Panel state: the configured panel + dynamic judge posture (enabled/sample) resolved from the \&quot;*\&quot; GlobalDefaultOwner row, the live in-process per-judge calibration (weight/mean/n), and the static published benchmark.
+    /// </summary>
+    /// <remarks>
+    /// Returns the LIVE Mean-Field Judge Panel state: the configured panel + dynamic judge posture (enabled/sample) resolved from the \&quot;*\&quot; GlobalDefaultOwner row, the live in-process per-judge calibration (weight/mean/n), and the static published benchmark. PUBLIC-safe and platform-global (model ids + scalars only), so it rides the same unauthenticated, balance-exempt class as /v1/ai/router/stats?scope&#x3D;platform — the world widget polls it with no auth. The judge state is a single in-process population (not per-org), so there is nothing to scope; ?scope&#x3D;platform is accepted for symmetry with router-stats.
+    /// </remarks>
+    pplx::task<void> getAiRouterJudgePanel(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> getAiRouterLedger(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> getAiRouterPolicy(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> getAiRouterRewards(
+    ) const;
+    /// <summary>
+    /// Returns the router observability aggregate.
+    /// </summary>
+    /// <remarks>
+    /// Returns the router observability aggregate. Two scopes, one route:    - ?scope&#x3D;platform — PUBLIC-safe aggregate over ALL orgs, no authentication.     Emits rates, shares, per-task/per-model counts, throughput, and the cost     RATIO (saved_pct) + counterfactual model id, but NEVER absolute $ levels,     org identity, raw events, or feature vectors. This is what world.hanzo.ai     polls.   - default (org scope) — requires a signed-in principal; scoped to the caller&#39;s     OWN org (a super admin may pass ?org&#x3D; to target another org or \&quot;\&quot; for all).     Carries the absolute $/MTok indices for the admin savings panel.  Window: ?since&#x3D; (RFC3339) or ?hours&#x3D; (default 24, capped). Aggregates only.
+    /// </remarks>
+    pplx::task<void> getAiRouterStats(
     ) const;
     /// <summary>
     /// List routes
@@ -854,7 +1045,7 @@ public:
     /// <remarks>
     /// List the caller&#39;s routes.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_routes_200_response>> getAiRoutes(
+    pplx::task<void> getAiRoutes(
     ) const;
     /// <summary>
     /// Retrieve a model-route
@@ -862,9 +1053,9 @@ public:
     /// <remarks>
     /// Read one model-route by its (owner, name) key.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_routes_200_response>> getAiRoutesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> getAiRoutesByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -874,7 +1065,7 @@ public:
     /// <remarks>
     /// List the caller&#39;s scales.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_scales_200_response>> getAiScales(
+    pplx::task<void> getAiScales(
     ) const;
     /// <summary>
     /// Retrieve a scale
@@ -882,9 +1073,9 @@ public:
     /// <remarks>
     /// Read one scale by its (owner, name) key.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_scales_200_response>> getAiScalesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> getAiScalesByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -894,7 +1085,7 @@ public:
     /// <remarks>
     /// Cross-tenant listing. Admin-only; a tenant caller is refused.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_scales_200_response>> getAiScalesGlobal(
+    pplx::task<void> getAiScalesGlobal(
     ) const;
     /// <summary>
     /// Public (scale)
@@ -902,7 +1093,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    pplx::task<std::shared_ptr<Envelope>> getAiScalesPublic(
+    pplx::task<void> getAiScalesPublic(
     ) const;
     /// <summary>
     /// List scans
@@ -910,7 +1101,7 @@ public:
     /// <remarks>
     /// List the caller&#39;s scans.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_scans_200_response>> getAiScans(
+    pplx::task<void> getAiScans(
     ) const;
     /// <summary>
     /// Retrieve a scan
@@ -918,9 +1109,9 @@ public:
     /// <remarks>
     /// Read one scan by its (owner, name) key.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_scans_200_response>> getAiScansByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> getAiScansByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -930,7 +1121,7 @@ public:
     /// <remarks>
     /// List the caller&#39;s signin-sessions.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_signin_sessions_200_response>> getAiSigninSessions(
+    pplx::task<void> getAiSigninSessions(
     ) const;
     /// <summary>
     /// Retrieve a session
@@ -938,9 +1129,9 @@ public:
     /// <remarks>
     /// Read one session by its (owner, name) key.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_signin_sessions_200_response>> getAiSigninSessionsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> getAiSigninSessionsByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -950,7 +1141,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    pplx::task<std::shared_ptr<Envelope>> getAiSigninSessionsDuplicated(
+    pplx::task<void> getAiSigninSessionsDuplicated(
     ) const;
     /// <summary>
     /// List stores
@@ -958,7 +1149,7 @@ public:
     /// <remarks>
     /// List the caller&#39;s stores.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_stores_200_response>> getAiStores(
+    pplx::task<void> getAiStores(
     ) const;
     /// <summary>
     /// Retrieve a store
@@ -966,9 +1157,9 @@ public:
     /// <remarks>
     /// Read one store by its (owner, name) key.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_stores_200_response>> getAiStoresByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> getAiStoresByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -978,7 +1169,7 @@ public:
     /// <remarks>
     /// Cross-tenant listing. Admin-only; a tenant caller is refused.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_stores_200_response>> getAiStoresGlobal(
+    pplx::task<void> getAiStoresGlobal(
     ) const;
     /// <summary>
     /// Names (store)
@@ -986,7 +1177,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    pplx::task<std::shared_ptr<Envelope>> getAiStoresNames(
+    pplx::task<void> getAiStoresNames(
     ) const;
     /// <summary>
     /// Providers (store)
@@ -994,7 +1185,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    pplx::task<std::shared_ptr<Envelope>> getAiStoresProviders(
+    pplx::task<void> getAiStoresProviders(
     ) const;
     /// <summary>
     /// System
@@ -1002,7 +1193,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    pplx::task<std::shared_ptr<Envelope>> getAiSystem(
+    pplx::task<void> getAiSystem(
     ) const;
     /// <summary>
     /// List tasks
@@ -1010,7 +1201,7 @@ public:
     /// <remarks>
     /// List the caller&#39;s tasks.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_tasks_200_response>> getAiTasks(
+    pplx::task<void> getAiTasks(
     ) const;
     /// <summary>
     /// Retrieve a task
@@ -1018,9 +1209,9 @@ public:
     /// <remarks>
     /// Read one task by its (owner, name) key.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_tasks_200_response>> getAiTasksByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> getAiTasksByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -1030,7 +1221,7 @@ public:
     /// <remarks>
     /// Cross-tenant listing. Admin-only; a tenant caller is refused.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_tasks_200_response>> getAiTasksGlobal(
+    pplx::task<void> getAiTasksGlobal(
     ) const;
     /// <summary>
     /// List templates
@@ -1038,7 +1229,7 @@ public:
     /// <remarks>
     /// List the caller&#39;s templates.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_templates_200_response>> getAiTemplates(
+    pplx::task<void> getAiTemplates(
     ) const;
     /// <summary>
     /// Retrieve a template
@@ -1046,11 +1237,19 @@ public:
     /// <remarks>
     /// Read one template by its (owner, name) key.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_templates_200_response>> getAiTemplatesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> getAiTemplatesByOwnerByName(
         utility::string_t owner,
         utility::string_t name
+    ) const;
+    /// <summary>
+    /// Returns the PUBLIC live request-geo aggregate for the world.hanzo.ai \&quot;Hanzo mode\&quot; globe: WHERE requests to api.hanzo.ai are coming from, as country/region points with per-service-class counts, plus headline throughput rates.
+    /// </summary>
+    /// <remarks>
+    /// Returns the PUBLIC live request-geo aggregate for the world.hanzo.ai \&quot;Hanzo mode\&quot; globe: WHERE requests to api.hanzo.ai are coming from, as country/region points with per-service-class counts, plus headline throughput rates.  It is AUTH-exempt and BALANCE-exempt exactly like /v1/ai/router/stats?scope&#x3D;platform:   - auth: the controller name \&quot;traffic/globe\&quot; is neither a get-/update- CRUD name     nor a super-admin/present-credential endpoint, so the authz filter passes it     through, and this handler requires no principal.   - balance: isBalanceExempt(\&quot;/v1/ai/traffic/...\&quot;) returns true.  It exposes ONLY aggregates — counts, rates, and country/region centroids — and NEVER any IP, per-request row, org, or user dimension (see object/traffic.go). Marketing telemetry; nothing sensitive.
+    /// </remarks>
+    pplx::task<void> getAiTrafficGlobe(
     ) const;
     /// <summary>
     /// Training Contribution
@@ -1058,7 +1257,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    pplx::task<std::shared_ptr<Envelope>> getAiTrainingContribution(
+    pplx::task<void> getAiTrainingContribution(
     ) const;
     /// <summary>
     /// List usages
@@ -1066,7 +1265,7 @@ public:
     /// <remarks>
     /// List the caller&#39;s usages.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_usages_200_response>> getAiUsages(
+    pplx::task<void> getAiUsages(
     ) const;
     /// <summary>
     /// By User (usage)
@@ -1074,7 +1273,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    pplx::task<std::shared_ptr<Envelope>> getAiUsagesByUser(
+    pplx::task<void> getAiUsagesByUser(
     ) const;
     /// <summary>
     /// Cloud (usage)
@@ -1082,7 +1281,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    pplx::task<std::shared_ptr<Envelope>> getAiUsagesCloud(
+    pplx::task<void> getAiUsagesCloud(
     ) const;
     /// <summary>
     /// Range (usage)
@@ -1090,7 +1289,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    pplx::task<std::shared_ptr<Envelope>> getAiUsagesRange(
+    pplx::task<void> getAiUsagesRange(
     ) const;
     /// <summary>
     /// User Names (usage)
@@ -1098,7 +1297,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    pplx::task<std::shared_ptr<Envelope>> getAiUsagesUserNames(
+    pplx::task<void> getAiUsagesUserNames(
     ) const;
     /// <summary>
     /// List vectors
@@ -1106,7 +1305,7 @@ public:
     /// <remarks>
     /// List the caller&#39;s vectors.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_vectors_200_response>> getAiVectors(
+    pplx::task<void> getAiVectors(
     ) const;
     /// <summary>
     /// Retrieve a vector
@@ -1114,9 +1313,9 @@ public:
     /// <remarks>
     /// Read one vector by its (owner, name) key.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_vectors_200_response>> getAiVectorsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> getAiVectorsByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -1126,7 +1325,7 @@ public:
     /// <remarks>
     /// Cross-tenant listing. Admin-only; a tenant caller is refused.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_vectors_200_response>> getAiVectorsGlobal(
+    pplx::task<void> getAiVectorsGlobal(
     ) const;
     /// <summary>
     /// Version
@@ -1134,7 +1333,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    pplx::task<std::shared_ptr<Envelope>> getAiVersion(
+    pplx::task<void> getAiVersion(
     ) const;
     /// <summary>
     /// List videos
@@ -1142,7 +1341,7 @@ public:
     /// <remarks>
     /// List the caller&#39;s videos.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_videos_200_response>> getAiVideos(
+    pplx::task<void> getAiVideos(
     ) const;
     /// <summary>
     /// Retrieve a video
@@ -1150,9 +1349,9 @@ public:
     /// <remarks>
     /// Read one video by its (owner, name) key.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_videos_200_response>> getAiVideosByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> getAiVideosByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -1162,7 +1361,7 @@ public:
     /// <remarks>
     /// Cross-tenant listing. Admin-only; a tenant caller is refused.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_videos_200_response>> getAiVideosGlobal(
+    pplx::task<void> getAiVideosGlobal(
     ) const;
     /// <summary>
     /// List workflows
@@ -1170,7 +1369,7 @@ public:
     /// <remarks>
     /// List the caller&#39;s workflows.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_workflows_200_response>> getAiWorkflows(
+    pplx::task<void> getAiWorkflows(
     ) const;
     /// <summary>
     /// Retrieve a workflow
@@ -1178,9 +1377,9 @@ public:
     /// <remarks>
     /// Read one workflow by its (owner, name) key.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    pplx::task<std::shared_ptr<Post_ai_workflows_200_response>> getAiWorkflowsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> getAiWorkflowsByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -1190,7 +1389,53 @@ public:
     /// <remarks>
     /// Cross-tenant listing. Admin-only; a tenant caller is refused.
     /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_workflows_200_response>> getAiWorkflowsGlobal(
+    pplx::task<void> getAiWorkflowsGlobal(
+    ) const;
+    /// <summary>
+    /// Returns the list of available models from the routing table.
+    /// </summary>
+    /// <remarks>
+    /// Returns the list of available models from the routing table.  PUBLIC BY DESIGN, AND IT DOES NOT AUTHENTICATE — that is the whole contract, so it is stated here rather than left to be inferred. The catalogue is the same for everyone (listAvailableModels takes no principal), docs.hanzo.ai fetches it from the browser, and every policy layer around it already says so out loud: the authz filter lists \&quot;models\&quot; as public, filter_balance refuses to gate it (a 402 here was a console-wide outage), the rate limiter excludes it, and cloud&#39;s spend.Reachable carries /v1/models/ as \&quot;the model catalog the shell reads for discovery\&quot;.  SO THE Authorization HEADER IS NOT AN ADMISSION CHECK HERE. It is read for ONE thing — annotating gated SKUs with the caller&#39;s own access standing — and annotation degrades to nothing when there is no verified principal.  It used to hold a \&quot;require authentication\&quot; gate that authenticated nobody: it rejected an ABSENT credential and a MALFORMED one, then accepted any string that merely looked like a key. &#x60;Bearer sk-&#x60; followed by 36 zeroes returned 200 in production; so did a JWT three days expired. It was a shape check wearing an auth check&#39;s clothes, and its cost was diagnostic: /v1/models is the natural \&quot;is my auth working?\&quot; probe, and answering 200 to a dead credential sent people debugging the wrong system. A public endpoint must not appear to validate. Either check the credential or ignore it — this one ignores it, deliberately and visibly.  Removing that gate discloses nothing new: the catalogue was already reachable by anyone willing to type three characters, so there is no confidentiality delta, only an honesty one.
+    /// </remarks>
+    pplx::task<void> getModels(
+    ) const;
+    /// <summary>
+    /// Returns the caller&#39;s own standing for a gated model: \&quot;granted\&quot;, \&quot;requested\&quot;, or empty when they have never asked.
+    /// </summary>
+    /// <remarks>
+    /// Returns the caller&#39;s own standing for a gated model: \&quot;granted\&quot;, \&quot;requested\&quot;, or empty when they have never asked.
+    /// </remarks>
+    /// <param name="model"></param>
+    pplx::task<void> getModelsByModelAccess(
+        utility::string_t model
+    ) const;
+    /// <summary>
+    /// Public, secret-free list of the providers serving the models that GET /v1/models lists — the same source, projected.
+    /// </summary>
+    /// <remarks>
+    /// Public, secret-free list of the providers serving the models that GET /v1/models lists — the same source, projected. Safe unauthenticated: no keys, URLs, or config are returned, and it reports a SET of names, never which provider serves which model.
+    /// </remarks>
+    pplx::task<void> getModelsProviders(
+    ) const;
+    /// <summary>
+    /// Implements GET /v1/videos/{id} — poll a job&#39;s status.
+    /// </summary>
+    /// <remarks>
+    /// Implements GET /v1/videos/{id} — poll a job&#39;s status.  It authenticates the caller, verifies they OWN the job (the caller&#39;s billing subject must equal the job&#39;s), performs ONE upstream status poll, and — the first time the job is observed completed — settles the reservation with the actual cost and records the billable usage event (exactly once). Returns the OpenAI-shaped video object.
+    /// </remarks>
+    /// <param name="id"></param>
+    pplx::task<void> getVideosById(
+        utility::string_t id
+    ) const;
+    /// <summary>
+    /// Implements GET /v1/videos/{id}/content — download the finished MP4.
+    /// </summary>
+    /// <remarks>
+    /// Implements GET /v1/videos/{id}/content — download the finished MP4.  It authenticates + ownership-checks the caller, then proxies the upstream /content endpoint (bounded by the download concurrency ceiling) and streams the raw video bytes back inline. A successful download also bills the job once (for the client that downloads without first polling to completion) — idempotent with the poll path via job.markCompleted.
+    /// </remarks>
+    /// <param name="id"></param>
+    pplx::task<void> getVideosByIdContent(
+        utility::string_t id
     ) const;
     /// <summary>
     /// Update a article
@@ -1198,13 +1443,11 @@ public:
     /// <remarks>
     /// Update one article. PATCH and PUT reach the same handler, which has always taken a whole object.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_articles_200_response>> patchAiArticlesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> patchAiArticlesByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Update a asset
@@ -1212,13 +1455,11 @@ public:
     /// <remarks>
     /// Update one asset. PATCH and PUT reach the same handler, which has always taken a whole object.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_assets_200_response>> patchAiAssetsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> patchAiAssetsByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Update a chat
@@ -1226,13 +1467,11 @@ public:
     /// <remarks>
     /// Update one chat. PATCH and PUT reach the same handler, which has always taken a whole object.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_chats_200_response>> patchAiChatsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> patchAiChatsByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Update a application
@@ -1240,13 +1479,11 @@ public:
     /// <remarks>
     /// Update one application. PATCH and PUT reach the same handler, which has always taken a whole object.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_deployments_200_response>> patchAiDeploymentsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> patchAiDeploymentsByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Update a file
@@ -1254,13 +1491,11 @@ public:
     /// <remarks>
     /// Update one file. PATCH and PUT reach the same handler, which has always taken a whole object.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_files_200_response>> patchAiFilesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> patchAiFilesByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Update a form
@@ -1268,13 +1503,11 @@ public:
     /// <remarks>
     /// Update one form. PATCH and PUT reach the same handler, which has always taken a whole object.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_forms_200_response>> patchAiFormsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> patchAiFormsByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Update a graph
@@ -1282,13 +1515,11 @@ public:
     /// <remarks>
     /// Update one graph. PATCH and PUT reach the same handler, which has always taken a whole object.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_graphs_200_response>> patchAiGraphsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> patchAiGraphsByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Update a message
@@ -1296,13 +1527,11 @@ public:
     /// <remarks>
     /// Update one message. PATCH and PUT reach the same handler, which has always taken a whole object.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_messages_200_response>> patchAiMessagesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> patchAiMessagesByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Update a node
@@ -1310,13 +1539,27 @@ public:
     /// <remarks>
     /// Update one node. PATCH and PUT reach the same handler, which has always taken a whole object.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_nodes_200_response>> patchAiNodesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> patchAiNodesByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> patchAiOrgSettings(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> patchAiOrgSettingsList(
     ) const;
     /// <summary>
     /// Preferences
@@ -1324,9 +1567,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Envelope>> patchAiPreferences(
-        std::shared_ptr<Object> body
+    pplx::task<void> patchAiPreferences(
     ) const;
     /// <summary>
     /// Update a provider
@@ -1334,13 +1575,11 @@ public:
     /// <remarks>
     /// Update one provider. PATCH and PUT reach the same handler, which has always taken a whole object.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_providers_200_response>> patchAiProvidersByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> patchAiProvidersByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Update a record
@@ -1348,13 +1587,11 @@ public:
     /// <remarks>
     /// Update one record. PATCH and PUT reach the same handler, which has always taken a whole object.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_records_200_response>> patchAiRecordsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> patchAiRecordsByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Update a connection
@@ -1362,13 +1599,51 @@ public:
     /// <remarks>
     /// Update one connection. PATCH and PUT reach the same handler, which has always taken a whole object.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_remote_connections_200_response>> patchAiRemoteConnectionsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> patchAiRemoteConnectionsByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> patchAiRouterArtifactMeta(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> patchAiRouterDefaults(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> patchAiRouterLedger(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> patchAiRouterPolicy(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> patchAiRouterRewards(
     ) const;
     /// <summary>
     /// Update a model-route
@@ -1376,13 +1651,11 @@ public:
     /// <remarks>
     /// Update one model-route. PATCH and PUT reach the same handler, which has always taken a whole object.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_routes_200_response>> patchAiRoutesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> patchAiRoutesByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Update a scale
@@ -1390,13 +1663,11 @@ public:
     /// <remarks>
     /// Update one scale. PATCH and PUT reach the same handler, which has always taken a whole object.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_scales_200_response>> patchAiScalesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> patchAiScalesByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Update a scan
@@ -1404,13 +1675,11 @@ public:
     /// <remarks>
     /// Update one scan. PATCH and PUT reach the same handler, which has always taken a whole object.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_scans_200_response>> patchAiScansByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> patchAiScansByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Update a session
@@ -1418,13 +1687,11 @@ public:
     /// <remarks>
     /// Update one session. PATCH and PUT reach the same handler, which has always taken a whole object.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_signin_sessions_200_response>> patchAiSigninSessionsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> patchAiSigninSessionsByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Update a store
@@ -1432,13 +1699,11 @@ public:
     /// <remarks>
     /// Update one store. PATCH and PUT reach the same handler, which has always taken a whole object.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_stores_200_response>> patchAiStoresByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> patchAiStoresByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Update a task
@@ -1446,13 +1711,11 @@ public:
     /// <remarks>
     /// Update one task. PATCH and PUT reach the same handler, which has always taken a whole object.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_tasks_200_response>> patchAiTasksByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> patchAiTasksByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Update a template
@@ -1460,13 +1723,11 @@ public:
     /// <remarks>
     /// Update one template. PATCH and PUT reach the same handler, which has always taken a whole object.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_templates_200_response>> patchAiTemplatesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> patchAiTemplatesByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Training Contribution
@@ -1474,9 +1735,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Envelope>> patchAiTrainingContribution(
-        std::shared_ptr<Object> body
+    pplx::task<void> patchAiTrainingContribution(
     ) const;
     /// <summary>
     /// Update a tree-file
@@ -1484,13 +1743,11 @@ public:
     /// <remarks>
     /// Update one tree-file. PATCH and PUT reach the same handler, which has always taken a whole object.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_tree_files_200_response>> patchAiTreeFilesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> patchAiTreeFilesByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Update a vector
@@ -1498,13 +1755,11 @@ public:
     /// <remarks>
     /// Update one vector. PATCH and PUT reach the same handler, which has always taken a whole object.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_vectors_200_response>> patchAiVectorsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> patchAiVectorsByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Update a video
@@ -1512,13 +1767,11 @@ public:
     /// <remarks>
     /// Update one video. PATCH and PUT reach the same handler, which has always taken a whole object.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_videos_200_response>> patchAiVideosByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> patchAiVideosByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Update a workflow
@@ -1526,13 +1779,11 @@ public:
     /// <remarks>
     /// Update one workflow. PATCH and PUT reach the same handler, which has always taken a whole object.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_workflows_200_response>> patchAiWorkflowsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> patchAiWorkflowsByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Create a article
@@ -1540,9 +1791,7 @@ public:
     /// <remarks>
     /// Create one article.
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_articles_200_response>> postAiArticles(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiArticles(
     ) const;
     /// <summary>
     /// Create a asset
@@ -1550,9 +1799,7 @@ public:
     /// <remarks>
     /// Create one asset.
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_assets_200_response>> postAiAssets(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiAssets(
     ) const;
     /// <summary>
     /// Scan (asset)
@@ -1560,13 +1807,11 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Envelope>> postAiAssetsByOwnerByNameScan(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> postAiAssetsByOwnerByNameScan(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Scan (asset)
@@ -1574,9 +1819,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Envelope>> postAiAssetsScan(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiAssetsScan(
     ) const;
     /// <summary>
     /// Create a chat
@@ -1584,9 +1827,7 @@ public:
     /// <remarks>
     /// Create one chat.
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_chats_200_response>> postAiChats(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiChats(
     ) const;
     /// <summary>
     /// Connects (or reconnects) a third-party AI account for the org by sealing the supplied key into KMS and upserting the org&#39;s provider row.
@@ -1612,9 +1853,7 @@ public:
     /// <remarks>
     /// Create one application.
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_deployments_200_response>> postAiDeployments(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiDeployments(
     ) const;
     /// <summary>
     /// Deploy (application)
@@ -1622,13 +1861,11 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Envelope>> postAiDeploymentsByOwnerByNameDeploy(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> postAiDeploymentsByOwnerByNameDeploy(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Undeploy (application)
@@ -1636,13 +1873,19 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Envelope>> postAiDeploymentsByOwnerByNameUndeploy(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> postAiDeploymentsByOwnerByNameUndeploy(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
+    ) const;
+    /// <summary>
+    /// Attaches a per-request outcome reward to the routing decision that served request_id — the enso training loop&#39;s quality signal.
+    /// </summary>
+    /// <remarks>
+    /// Attaches a per-request outcome reward to the routing decision that served request_id — the enso training loop&#39;s quality signal. Org-scoped via the same session-OR-Bearer principal the usage read uses (RequirePrincipal): the reward lands only on the caller&#39;s OWN org&#39;s event, so a request_id from another org (or unknown) is a 404 — cross-org writes are impossible and unknown ids are indistinguishable from foreign ones. Idempotent: a repeat overwrites. The body carries NO prompt text — only {request_id, reward|rating}.
+    /// </remarks>
+    pplx::task<void> postAiFeedback(
     ) const;
     /// <summary>
     /// Create a file
@@ -1650,9 +1893,7 @@ public:
     /// <remarks>
     /// Create one file.
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_files_200_response>> postAiFiles(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiFiles(
     ) const;
     /// <summary>
     /// Activate (file)
@@ -1660,9 +1901,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Envelope>> postAiFilesActivate(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiFilesActivate(
     ) const;
     /// <summary>
     /// Vectors (file)
@@ -1670,13 +1909,11 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Envelope>> postAiFilesByOwnerByNameVectors(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> postAiFilesByOwnerByNameVectors(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Upload (file)
@@ -1684,9 +1921,31 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Envelope>> postAiFilesUpload(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiFilesUpload(
+    ) const;
+    /// <summary>
+    /// Deletes the TrainJob CR, meters the GPU-hours used so far, and marks the job cancelled.
+    /// </summary>
+    /// <remarks>
+    /// Deletes the TrainJob CR, meters the GPU-hours used so far, and marks the job cancelled. ?id&#x3D; or ?name&#x3D;
+    /// </remarks>
+    pplx::task<void> postAiFinetuneCancel(
+    ) const;
+    /// <summary>
+    /// Serves a completed job&#39;s checkpoints and registers the result as a routable model on api.hanzo.ai.
+    /// </summary>
+    /// <remarks>
+    /// Serves a completed job&#39;s checkpoints and registers the result as a routable model on api.hanzo.ai. ?id&#x3D; or ?name&#x3D;
+    /// </remarks>
+    pplx::task<void> postAiFinetuneDeploy(
+    ) const;
+    /// <summary>
+    /// Validates the request, resolves efficient defaults, persists the job, and submits a real TrainJob CR.
+    /// </summary>
+    /// <remarks>
+    /// Validates the request, resolves efficient defaults, persists the job, and submits a real TrainJob CR. A submit failure (e.g. no cluster wired) is surfaced honestly: the job is saved with status \&quot;failed\&quot; + the reason, never faked.
+    /// </remarks>
+    pplx::task<void> postAiFinetuneJobs(
     ) const;
     /// <summary>
     /// Create a form
@@ -1694,9 +1953,7 @@ public:
     /// <remarks>
     /// Create one form.
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_forms_200_response>> postAiForms(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiForms(
     ) const;
     /// <summary>
     /// Create a graph
@@ -1704,9 +1961,31 @@ public:
     /// <remarks>
     /// Create one graph.
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_graphs_200_response>> postAiGraphs(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiGraphs(
+    ) const;
+    /// <summary>
+    /// Delete one of the authenticated user&#39;s memories
+    /// </summary>
+    /// <remarks>
+    /// Delete one of the authenticated user&#39;s memories
+    /// </remarks>
+    pplx::task<void> postAiMemoryDelete(
+    ) const;
+    /// <summary>
+    /// Store a memory for the authenticated user
+    /// </summary>
+    /// <remarks>
+    /// Store a memory for the authenticated user
+    /// </remarks>
+    pplx::task<void> postAiMemoryRemember(
+    ) const;
+    /// <summary>
+    /// Update one of the authenticated user&#39;s memories
+    /// </summary>
+    /// <remarks>
+    /// Update one of the authenticated user&#39;s memories
+    /// </remarks>
+    pplx::task<void> postAiMemoryUpdate(
     ) const;
     /// <summary>
     /// Create a message
@@ -1714,9 +1993,7 @@ public:
     /// <remarks>
     /// Create one message.
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_messages_200_response>> postAiMessages(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiMessages(
     ) const;
     /// <summary>
     /// Create a node
@@ -1724,9 +2001,7 @@ public:
     /// <remarks>
     /// Create one node.
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_nodes_200_response>> postAiNodes(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiNodes(
     ) const;
     /// <summary>
     /// Tunnel (node)
@@ -1734,13 +2009,27 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Envelope>> postAiNodesByOwnerByNameTunnel(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> postAiNodesByOwnerByNameTunnel(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> postAiOrgSettings(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> postAiOrgSettingsList(
     ) const;
     /// <summary>
     /// Create a provider
@@ -1748,9 +2037,7 @@ public:
     /// <remarks>
     /// Create one provider.
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_providers_200_response>> postAiProviders(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiProviders(
     ) const;
     /// <summary>
     /// Mcp Tools (provider)
@@ -1758,9 +2045,47 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Envelope>> postAiProvidersMcpTools(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiProvidersMcpTools(
+    ) const;
+    /// <summary>
+    /// Delete all chunks of one or more uploaded files (by file_id) from the owner&#39;s Search+Vector index.
+    /// </summary>
+    /// <remarks>
+    /// Delete all chunks of one or more uploaded files (by file_id) from the owner&#39;s Search+Vector index. Consolidates the retired chat-rag-api DELETE /documents.
+    /// </remarks>
+    pplx::task<void> postAiRagDelete(
+    ) const;
+    /// <summary>
+    /// Parse, chunk, and embed one uploaded file under its file_id into the unified Search+Vector index, scoped to the authenticated owner.
+    /// </summary>
+    /// <remarks>
+    /// Parse, chunk, and embed one uploaded file under its file_id into the unified Search+Vector index, scoped to the authenticated owner. Provide inline &#x60;content&#x60; or a &#x60;url&#x60; to fetch+parse (PDF/CSV/XLSX/PPTX/…). Re-embedding the same file_id replaces its chunks. Consolidates the retired chat-rag-api POST /embed and /local/embed.
+    /// </remarks>
+    pplx::task<void> postAiRagEmbed(
+    ) const;
+    /// <summary>
+    /// Unified RAG ingest: parse + chunk + embed documents and pipe them to BOTH Hanzo Vector (semantic) AND Hanzo Search (keyword) under the tenant index {owner}-{store}-docs — the same index /v1/chat retrieval reads.
+    /// </summary>
+    /// <remarks>
+    /// Unified RAG ingest: parse + chunk + embed documents and pipe them to BOTH Hanzo Vector (semantic) AND Hanzo Search (keyword) under the tenant index {owner}-{store}-docs — the same index /v1/chat retrieval reads. The source is pluggable: \&quot;upload\&quot; (inline files/documents), \&quot;github\&quot; (index a repo), \&quot;crawl\&quot; (web), or \&quot;s3\&quot; (the store&#39;s object-storage space). The owner is bound to the authenticated principal; the client-supplied owner is never trusted.
+    /// </remarks>
+    pplx::task<void> postAiRagIngest(
+    ) const;
+    /// <summary>
+    /// Retrieve the top-K chunks relevant to a query, scoped to a single uploaded file (&#x60;file_id&#x60;).
+    /// </summary>
+    /// <remarks>
+    /// Retrieve the top-K chunks relevant to a query, scoped to a single uploaded file (&#x60;file_id&#x60;). Hybrid keyword+vector retrieval over the same index. Consolidates the retired chat-rag-api POST /query.
+    /// </remarks>
+    pplx::task<void> postAiRagQuery(
+    ) const;
+    /// <summary>
+    /// Retrieve the top-K chunks relevant to a query, scoped to a SET of uploaded files (&#x60;file_ids&#x60;).
+    /// </summary>
+    /// <remarks>
+    /// Retrieve the top-K chunks relevant to a query, scoped to a SET of uploaded files (&#x60;file_ids&#x60;). Consolidates the retired chat-rag-api POST /query_multiple. Shares one retrieval path with /rag/query.
+    /// </remarks>
+    pplx::task<void> postAiRagQueryMultiple(
     ) const;
     /// <summary>
     /// Create a record
@@ -1768,9 +2093,7 @@ public:
     /// <remarks>
     /// Create one record.
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_records_200_response>> postAiRecords(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiRecords(
     ) const;
     /// <summary>
     /// Batch (record)
@@ -1778,9 +2101,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Envelope>> postAiRecordsBatch(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiRecordsBatch(
     ) const;
     /// <summary>
     /// Commit (record)
@@ -1788,9 +2109,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Envelope>> postAiRecordsCommit(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiRecordsCommit(
     ) const;
     /// <summary>
     /// Commit Second (record)
@@ -1798,9 +2117,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Envelope>> postAiRecordsCommitSecond(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiRecordsCommitSecond(
     ) const;
     /// <summary>
     /// Create a connection
@@ -1808,9 +2125,7 @@ public:
     /// <remarks>
     /// Create one connection.
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_remote_connections_200_response>> postAiRemoteConnections(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiRemoteConnections(
     ) const;
     /// <summary>
     /// Start (connection)
@@ -1818,13 +2133,11 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Envelope>> postAiRemoteConnectionsByOwnerByNameStart(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> postAiRemoteConnectionsByOwnerByNameStart(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Stop (connection)
@@ -1832,13 +2145,51 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Envelope>> postAiRemoteConnectionsByOwnerByNameStop(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> postAiRemoteConnectionsByOwnerByNameStop(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> postAiRouterArtifactMeta(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> postAiRouterDefaults(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> postAiRouterLedger(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> postAiRouterPolicy(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> postAiRouterRewards(
     ) const;
     /// <summary>
     /// Create a model-route
@@ -1846,9 +2197,7 @@ public:
     /// <remarks>
     /// Create one model-route.
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_routes_200_response>> postAiRoutes(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiRoutes(
     ) const;
     /// <summary>
     /// Create a scale
@@ -1856,9 +2205,7 @@ public:
     /// <remarks>
     /// Create one scale.
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_scales_200_response>> postAiScales(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiScales(
     ) const;
     /// <summary>
     /// Create a scan
@@ -1866,9 +2213,7 @@ public:
     /// <remarks>
     /// Create one scan.
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_scans_200_response>> postAiScans(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiScans(
     ) const;
     /// <summary>
     /// Signin
@@ -1876,9 +2221,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Envelope>> postAiSignin(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiSignin(
     ) const;
     /// <summary>
     /// Create a session
@@ -1886,9 +2229,7 @@ public:
     /// <remarks>
     /// Create one session.
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_signin_sessions_200_response>> postAiSigninSessions(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiSigninSessions(
     ) const;
     /// <summary>
     /// Signout
@@ -1896,9 +2237,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Envelope>> postAiSignout(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiSignout(
     ) const;
     /// <summary>
     /// Create a store
@@ -1906,9 +2245,7 @@ public:
     /// <remarks>
     /// Create one store.
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_stores_200_response>> postAiStores(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiStores(
     ) const;
     /// <summary>
     /// Vectors (store)
@@ -1916,13 +2253,11 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Envelope>> postAiStoresByOwnerByNameVectors(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> postAiStoresByOwnerByNameVectors(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Create a task
@@ -1930,9 +2265,7 @@ public:
     /// <remarks>
     /// Create one task.
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_tasks_200_response>> postAiTasks(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiTasks(
     ) const;
     /// <summary>
     /// Analyze (task)
@@ -1940,13 +2273,11 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Envelope>> postAiTasksByOwnerByNameAnalyze(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> postAiTasksByOwnerByNameAnalyze(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Document (task)
@@ -1954,13 +2285,11 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Envelope>> postAiTasksByOwnerByNameDocument(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> postAiTasksByOwnerByNameDocument(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Create a template
@@ -1968,9 +2297,7 @@ public:
     /// <remarks>
     /// Create one template.
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_templates_200_response>> postAiTemplates(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiTemplates(
     ) const;
     /// <summary>
     /// Create a tree-file
@@ -1978,9 +2305,7 @@ public:
     /// <remarks>
     /// Create one tree-file.
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_tree_files_200_response>> postAiTreeFiles(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiTreeFiles(
     ) const;
     /// <summary>
     /// Create a vector
@@ -1988,9 +2313,7 @@ public:
     /// <remarks>
     /// Create one vector.
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_vectors_200_response>> postAiVectors(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiVectors(
     ) const;
     /// <summary>
     /// Create a video
@@ -1998,9 +2321,7 @@ public:
     /// <remarks>
     /// Create one video.
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_videos_200_response>> postAiVideos(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiVideos(
     ) const;
     /// <summary>
     /// Upload (video)
@@ -2008,9 +2329,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Envelope>> postAiVideosUpload(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiVideosUpload(
     ) const;
     /// <summary>
     /// Create a workflow
@@ -2018,9 +2337,145 @@ public:
     /// <remarks>
     /// Create one workflow.
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_workflows_200_response>> postAiWorkflows(
-        std::shared_ptr<Object> body
+    pplx::task<void> postAiWorkflows(
+    ) const;
+    /// <summary>
+    /// Serves the generative audio verbs — /v1/audio/voice (TTS), /music, /foley — that the Zen family serves natively.
+    /// </summary>
+    /// <remarks>
+    /// Serves the generative audio verbs — /v1/audio/voice (TTS), /music, /foley — that the Zen family serves natively. It resolves the SKU and, for a Zen model, forwards to zen&#39;s matching verb billed per call at the discovered price. These verbs are Zen-native; a non-Zen model is rejected.
+    /// </remarks>
+    pplx::task<void> postAudioFoley(
+    ) const;
+    /// <summary>
+    /// Serves the generative audio verbs — /v1/audio/voice (TTS), /music, /foley — that the Zen family serves natively.
+    /// </summary>
+    /// <remarks>
+    /// Serves the generative audio verbs — /v1/audio/voice (TTS), /music, /foley — that the Zen family serves natively. It resolves the SKU and, for a Zen model, forwards to zen&#39;s matching verb billed per call at the discovered price. These verbs are Zen-native; a non-Zen model is rejected.
+    /// </remarks>
+    pplx::task<void> postAudioMusic(
+    ) const;
+    /// <summary>
+    /// The OpenAI-compatible TTS endpoint (POST /v1/audio/speech).
+    /// </summary>
+    /// <remarks>
+    /// The OpenAI-compatible TTS endpoint (POST /v1/audio/speech). It authenticates the caller, resolves &#x60;model&#x60; to its TTS provider (the SAME model-route resolution the chat/images/video endpoints use — so a BYO node registered as a TTS provider works transparently), synthesizes the audio, and streams the bytes back. This is the ONE way to synthesize speech: OpenAI-shaped, with no store or message coupling, so a caller needs no chat to speak.
+    /// </remarks>
+    pplx::task<void> postAudioSpeech(
+    ) const;
+    /// <summary>
+    /// The OpenAI-compatible STT endpoint (POST /v1/audio/transcriptions, multipart: file + model [+ language + response_format]).
+    /// </summary>
+    /// <remarks>
+    /// The OpenAI-compatible STT endpoint (POST /v1/audio/transcriptions, multipart: file + model [+ language + response_format]). It mirrors AudioSpeech exactly: authenticate the caller, resolve &#x60;model&#x60; to its STT provider through the SAME model-route resolution (so the in-cluster speech service — or any BYO node registered as an STT provider — works transparently), transcribe, and return the OpenAI body. This is the ONE way to transcribe: OpenAI-shaped, with no store coupling, so a caller needs no chat to be heard.
+    /// </remarks>
+    pplx::task<void> postAudioTranscriptions(
+    ) const;
+    /// <summary>
+    /// Serves the generative audio verbs — /v1/audio/voice (TTS), /music, /foley — that the Zen family serves natively.
+    /// </summary>
+    /// <remarks>
+    /// Serves the generative audio verbs — /v1/audio/voice (TTS), /music, /foley — that the Zen family serves natively. It resolves the SKU and, for a Zen model, forwards to zen&#39;s matching verb billed per call at the discovered price. These verbs are Zen-native; a non-Zen model is rejected.
+    /// </remarks>
+    pplx::task<void> postAudioVoice(
+    ) const;
+    /// <summary>
+    /// Implements the OpenAI-compatible chat completions API
+    /// </summary>
+    /// <remarks>
+    /// Implements the OpenAI-compatible chat completions API
+    /// </remarks>
+    pplx::task<void> postChat(
+    ) const;
+    /// <summary>
+    /// Implements the OpenAI-compatible chat completions API
+    /// </summary>
+    /// <remarks>
+    /// Implements the OpenAI-compatible chat completions API
+    /// </remarks>
+    pplx::task<void> postChatCompletions(
+    ) const;
+    /// <summary>
+    /// Serves one completion to a caller with no account.
+    /// </summary>
+    /// <remarks>
+    /// Serves one completion to a caller with no account.
+    /// </remarks>
+    pplx::task<void> postChatPublic(
+    ) const;
+    /// <summary>
+    /// Implements the OpenAI-compatible chat completions API
+    /// </summary>
+    /// <remarks>
+    /// Implements the OpenAI-compatible chat completions API
+    /// </remarks>
+    pplx::task<void> postCompletions(
+    ) const;
+    /// <summary>
+    /// Implements POST /v1/embeddings (OpenAI-compatible).
+    /// </summary>
+    /// <remarks>
+    /// Implements POST /v1/embeddings (OpenAI-compatible).  Body: {\&quot;model\&quot;: \&quot;...\&quot;, \&quot;input\&quot;: \&quot;...\&quot;|[\&quot;...\&quot;, ...], \&quot;encoding_format\&quot;?, \&quot;dimensions\&quot;?} It authenticates the caller, resolves the model to its upstream provider via the shared routing table, rewrites the user-facing model name to the upstream id, and proxies the request to the provider&#39;s /embeddings endpoint verbatim.
+    /// </remarks>
+    pplx::task<void> postEmbeddings(
+    ) const;
+    /// <summary>
+    /// Implements POST /v1/images/generations (OpenAI-compatible).
+    /// </summary>
+    /// <remarks>
+    /// Implements POST /v1/images/generations (OpenAI-compatible).  Body: {\&quot;model\&quot;: \&quot;...\&quot;, \&quot;prompt\&quot;: \&quot;...\&quot;, \&quot;n\&quot;?: int, \&quot;size\&quot;?: \&quot;1024x1024\&quot;,   \&quot;response_format\&quot;?: \&quot;url\&quot;|\&quot;b64_json\&quot;}  It authenticates the caller, resolves the model to its upstream provider via the shared routing table (zen3-image* → do-ai fal diffusion), reserves the per-image budget, generates the image(s) through the do-ai async image client, records usage for billing, and returns the OpenAI images response.
+    /// </remarks>
+    pplx::task<void> postImagesGenerations(
+    ) const;
+    /// <summary>
+    /// Implements the Anthropic Messages API.
+    /// </summary>
+    /// <remarks>
+    /// Implements the Anthropic Messages API.
+    /// </remarks>
+    pplx::task<void> postMessages(
+    ) const;
+    /// <summary>
+    /// Implements POST /v1/messages/count_tokens.
+    /// </summary>
+    /// <remarks>
+    /// Implements POST /v1/messages/count_tokens. Claude Code calls it before a request; it returns {\&quot;input_tokens\&quot;: N} for the given model + messages + tools.
+    /// </remarks>
+    pplx::task<void> postMessagesCountTokens(
+    ) const;
+    /// <summary>
+    /// Records the caller&#39;s waitlist request for a gated model and answers their new standing.
+    /// </summary>
+    /// <remarks>
+    /// Records the caller&#39;s waitlist request for a gated model and answers their new standing. Authed, idempotent, and self-scoped: the row is keyed to the caller&#39;s own org and identity, never to a body-supplied owner.
+    /// </remarks>
+    /// <param name="model"></param>
+    pplx::task<void> postModelsByModelAccess(
+        utility::string_t model
+    ) const;
+    /// <summary>
+    /// Implements POST /v1/rerank (Cohere/Jina-compatible).
+    /// </summary>
+    /// <remarks>
+    /// Implements POST /v1/rerank (Cohere/Jina-compatible).  Body: {\&quot;model\&quot;: \&quot;...\&quot;, \&quot;query\&quot;: \&quot;...\&quot;, \&quot;documents\&quot;: [\&quot;...\&quot;, ...]|[{\&quot;text\&quot;:\&quot;...\&quot;}],   \&quot;top_n\&quot;?: int, \&quot;return_documents\&quot;?: bool}  Response: {\&quot;object\&quot;:\&quot;list\&quot;,\&quot;model\&quot;:...,\&quot;results\&quot;:[{\&quot;index\&quot;,\&quot;relevance_score\&quot;,\&quot;document\&quot;?}],\&quot;usage\&quot;:{...}}  Backend selection is provider-driven (one endpoint, one contract):   - If the model routes to a native rerank provider (Jina/Cohere/Voyage) the     request is proxied to that provider&#39;s /rerank endpoint.   - Otherwise scores are computed as a real bi-encoder ranking: embed the     query and documents through the resolved embedding model and rank by     cosine similarity. No rerank-specific key required.
+    /// </remarks>
+    pplx::task<void> postRerank(
+    ) const;
+    /// <summary>
+    /// Implements POST /v1/responses.
+    /// </summary>
+    /// <remarks>
+    /// Implements POST /v1/responses. The converted request is completed by the chat path, which is handed a sink saying where the answer goes: a stream is translated as it is produced, a whole body is translated entire.
+    /// </remarks>
+    pplx::task<void> postResponses(
+    ) const;
+    /// <summary>
+    /// Implements POST /v1/videos/generations — the ASYNC create.
+    /// </summary>
+    /// <remarks>
+    /// Implements POST /v1/videos/generations — the ASYNC create.  Body: {\&quot;model\&quot;: \&quot;...\&quot;, \&quot;prompt\&quot;: \&quot;...\&quot;, \&quot;size\&quot;?: \&quot;1280x720\&quot;, \&quot;seconds\&quot;?: int}  It authenticates the caller, resolves the model to its upstream provider via the shared routing table (zen3-video* / wan2-2-t2v-a14b → the spark-video backend), reserves the per-video budget (the balance gate), creates ONE upstream job, registers it in the in-pod store, and returns the OpenAI-shaped video object with status \&quot;queued\&quot; IMMEDIATELY. The client then polls GET /v1/videos/{id} and downloads GET /v1/videos/{id}/content. Nothing is billed here — the debit lands on completion.
+    /// </remarks>
+    pplx::task<void> postVideosGenerations(
     ) const;
     /// <summary>
     /// Replace a article
@@ -2028,13 +2483,11 @@ public:
     /// <remarks>
     /// Identical to PATCH — the handler takes a whole object either way.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_articles_200_response>> putAiArticlesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> putAiArticlesByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Replace a asset
@@ -2042,13 +2495,11 @@ public:
     /// <remarks>
     /// Identical to PATCH — the handler takes a whole object either way.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_assets_200_response>> putAiAssetsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> putAiAssetsByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Replace a chat
@@ -2056,13 +2507,11 @@ public:
     /// <remarks>
     /// Identical to PATCH — the handler takes a whole object either way.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_chats_200_response>> putAiChatsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> putAiChatsByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Replace a application
@@ -2070,13 +2519,11 @@ public:
     /// <remarks>
     /// Identical to PATCH — the handler takes a whole object either way.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_deployments_200_response>> putAiDeploymentsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> putAiDeploymentsByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Replace a file
@@ -2084,13 +2531,11 @@ public:
     /// <remarks>
     /// Identical to PATCH — the handler takes a whole object either way.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_files_200_response>> putAiFilesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> putAiFilesByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Replace a form
@@ -2098,13 +2543,11 @@ public:
     /// <remarks>
     /// Identical to PATCH — the handler takes a whole object either way.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_forms_200_response>> putAiFormsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> putAiFormsByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Replace a graph
@@ -2112,13 +2555,11 @@ public:
     /// <remarks>
     /// Identical to PATCH — the handler takes a whole object either way.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_graphs_200_response>> putAiGraphsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> putAiGraphsByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Replace a message
@@ -2126,13 +2567,11 @@ public:
     /// <remarks>
     /// Identical to PATCH — the handler takes a whole object either way.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_messages_200_response>> putAiMessagesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> putAiMessagesByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Replace a node
@@ -2140,13 +2579,27 @@ public:
     /// <remarks>
     /// Identical to PATCH — the handler takes a whole object either way.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_nodes_200_response>> putAiNodesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> putAiNodesByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> putAiOrgSettings(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> putAiOrgSettingsList(
     ) const;
     /// <summary>
     /// Preferences
@@ -2154,9 +2607,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Envelope>> putAiPreferences(
-        std::shared_ptr<Object> body
+    pplx::task<void> putAiPreferences(
     ) const;
     /// <summary>
     /// Replace a provider
@@ -2164,13 +2615,11 @@ public:
     /// <remarks>
     /// Identical to PATCH — the handler takes a whole object either way.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_providers_200_response>> putAiProvidersByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> putAiProvidersByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Replace a record
@@ -2178,13 +2627,11 @@ public:
     /// <remarks>
     /// Identical to PATCH — the handler takes a whole object either way.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_records_200_response>> putAiRecordsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> putAiRecordsByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Replace a connection
@@ -2192,13 +2639,51 @@ public:
     /// <remarks>
     /// Identical to PATCH — the handler takes a whole object either way.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_remote_connections_200_response>> putAiRemoteConnectionsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> putAiRemoteConnectionsByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> putAiRouterArtifactMeta(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> putAiRouterDefaults(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> putAiRouterLedger(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> putAiRouterPolicy(
+    ) const;
+    /// <summary>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]).
+    /// </summary>
+    /// <remarks>
+    /// The HTTP transport binding for the RESTful router-config nouns (/v1/ai/router/{policy,defaults,ledger,rewards,artifact-meta} and /v1/ai/org/settings[/list]). It dispatches IN-PROCESS through dispatchGateway — the SAME canonical ZAP gateway registry (zap_registry.go) that the MsgType 200 handler serves over the gateway transport. The native ZAP handler is the ONE and ONLY implementation of these routes; this is purely the api.hanzo.ai HTTP binding, so there is NO controller twin to drift from and the split-brain the router refactor removed stays removed.  Why a bridge and not a twin controller method: every other migrated route (get-records, get-connections, …) carries BOTH a controller method and a ZAP handler — the exact dual-impl drift that silently NULLed customer router settings (the update-router-policy data-wipe). Routing these nouns through the ZAP handler over one adapter keeps a single source of truth.  Identity is the request&#39;s own Bearer credential (Authorization header), which the native handlers resolve exactly as the gateway does — every caller (console, chat, app) already sends it. The dispatched handler returns a ZAP message whose status is field 0 and body is field 4 (BuildCloudResponse / BuildGatewayResponse layout); both are relayed verbatim. The route is mapped \&quot;*\&quot; (any verb) because the native handler is method-aware: /v1/ai/router/policy splits GET (read) vs PUT (write), /v1/ai/org/settings GET/PUT/DELETE, and returns 405 for a verb it does not own.
+    /// </remarks>
+    pplx::task<void> putAiRouterRewards(
     ) const;
     /// <summary>
     /// Replace a model-route
@@ -2206,13 +2691,11 @@ public:
     /// <remarks>
     /// Identical to PATCH — the handler takes a whole object either way.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_routes_200_response>> putAiRoutesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> putAiRoutesByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Replace a scale
@@ -2220,13 +2703,11 @@ public:
     /// <remarks>
     /// Identical to PATCH — the handler takes a whole object either way.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_scales_200_response>> putAiScalesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> putAiScalesByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Replace a scan
@@ -2234,13 +2715,11 @@ public:
     /// <remarks>
     /// Identical to PATCH — the handler takes a whole object either way.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_scans_200_response>> putAiScansByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> putAiScansByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Replace a session
@@ -2248,13 +2727,11 @@ public:
     /// <remarks>
     /// Identical to PATCH — the handler takes a whole object either way.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_signin_sessions_200_response>> putAiSigninSessionsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> putAiSigninSessionsByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Replace a store
@@ -2262,13 +2739,11 @@ public:
     /// <remarks>
     /// Identical to PATCH — the handler takes a whole object either way.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_stores_200_response>> putAiStoresByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> putAiStoresByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Replace a task
@@ -2276,13 +2751,11 @@ public:
     /// <remarks>
     /// Identical to PATCH — the handler takes a whole object either way.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_tasks_200_response>> putAiTasksByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> putAiTasksByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Replace a template
@@ -2290,13 +2763,11 @@ public:
     /// <remarks>
     /// Identical to PATCH — the handler takes a whole object either way.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_templates_200_response>> putAiTemplatesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> putAiTemplatesByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Training Contribution
@@ -2304,9 +2775,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Envelope>> putAiTrainingContribution(
-        std::shared_ptr<Object> body
+    pplx::task<void> putAiTrainingContribution(
     ) const;
     /// <summary>
     /// Replace a tree-file
@@ -2314,13 +2783,11 @@ public:
     /// <remarks>
     /// Identical to PATCH — the handler takes a whole object either way.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_tree_files_200_response>> putAiTreeFilesByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> putAiTreeFilesByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Replace a vector
@@ -2328,13 +2795,11 @@ public:
     /// <remarks>
     /// Identical to PATCH — the handler takes a whole object either way.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_vectors_200_response>> putAiVectorsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> putAiVectorsByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Replace a video
@@ -2342,13 +2807,11 @@ public:
     /// <remarks>
     /// Identical to PATCH — the handler takes a whole object either way.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_videos_200_response>> putAiVideosByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> putAiVideosByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
     /// <summary>
     /// Replace a workflow
@@ -2356,13 +2819,11 @@ public:
     /// <remarks>
     /// Identical to PATCH — the handler takes a whole object either way.
     /// </remarks>
-    /// <param name="owner">Owning organization.</param>
-    /// <param name="name">Resource name, unique within the owner.</param>
-    /// <param name="body"></param>
-    pplx::task<std::shared_ptr<Post_ai_workflows_200_response>> putAiWorkflowsByOwnerByName(
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> putAiWorkflowsByOwnerByName(
         utility::string_t owner,
-        utility::string_t name,
-        std::shared_ptr<Object> body
+        utility::string_t name
     ) const;
 
 protected:

@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,11 +52,17 @@ public:
     /// Entry members
 
 
+    /// <summary>
+    /// Archetype is WHAT KIND OF THING this is, from a closed and ordered list — model | contract | chain | sdk | template | infra | site | app — derived from the repository&#39;s own topics, name and description, first match winning, and always &#x60;site&#x60; for a deployed site. It is DERIVED, never guessed by a model, because a wrong archetype hides a row from the browse rail more thoroughly than a missing one does. Empty when no topic matched: unclassified, not uncategorisable.
+    /// </summary>
     utility::string_t getArchetype() const;
     bool archetypeIsSet() const;
     void unsetArchetype();
     void setArchetype(const utility::string_t& value);
 
+    /// <summary>
+    /// Description is the repository&#39;s own one-line GitHub description, carried verbatim. It comes from the SOURCE half of a row, so a site that was never matched to a repository has none, and nothing here is written by us.
+    /// </summary>
     utility::string_t getDescription() const;
     bool descriptionIsSet() const;
     void unsetDescription();
@@ -70,6 +76,9 @@ public:
     void unsetForkable();
     void setForkable(bool value);
 
+    /// <summary>
+    /// ID is \&quot;&lt;org&gt;/&lt;name&gt;\&quot; and is the corpus&#39;s primary key: a re-published entry updates in place under it rather than accumulating duplicates, so it is the one handle stable enough to link to or to name in a &#x60;template&#x60; filter. Two orgs can spell the same id, and &#x60;canonical&#x60; picks which one keeps it.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
@@ -83,16 +92,25 @@ public:
     void unsetKind();
     void setKind(const utility::string_t& value);
 
+    /// <summary>
+    /// Language is the repository&#39;s primary implementation language as GitHub computes it (\&quot;Go\&quot;, \&quot;TypeScript\&quot;), and the case is GitHub&#39;s. Empty for a site with no source half and for a repository GitHub could not classify.
+    /// </summary>
     utility::string_t getLanguage() const;
     bool languageIsSet() const;
     void unsetLanguage();
     void setLanguage(const utility::string_t& value);
 
+    /// <summary>
+    /// License is the terms that upstream work carries, in whichever form the half that credited it had: an SPDX id (\&quot;MIT\&quot;, \&quot;Apache-2.0\&quot;) on a GitHub fork, free text on a site whose publisher declared it. GitHub&#39;s NOASSERTION — \&quot;we could not identify it\&quot; — reads as none rather than as a licence by that name. So empty means UNDECLARED and never unencumbered, and Upstream is what says whether the question applies at all.
+    /// </summary>
     utility::string_t getLicense() const;
     bool licenseIsSet() const;
     void unsetLicense();
     void setLicense(const utility::string_t& value);
 
+    /// <summary>
+    /// Name is the short identifier inside the org — the repository&#39;s name, or the site&#39;s slug — and is the half of ID after the slash. Not a display name; Title is.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
@@ -138,6 +156,9 @@ public:
     void unsetScope();
     void setScope(const utility::string_t& value);
 
+    /// <summary>
+    /// Stars is GitHub&#39;s stargazer count for the source repository, read at the last sync and never accumulated here. It is not a ranking — the page sorts on Updated — but it is the tiebreak when two orgs claim one ID. Absent for a site with no repository behind it, and for a repository nobody has starred.
+    /// </summary>
     int32_t getStars() const;
     bool starsIsSet() const;
     void unsetStars();
@@ -151,11 +172,17 @@ public:
     void unsetr_template();
     void setRTemplate(const utility::string_t& value);
 
+    /// <summary>
+    /// Title is what to SHOW. A site&#39;s human name wins where it has one; a repo row falls back to the repository name, so on a repo this usually just repeats Name. Absent only for a site whose project was never named — render Name.
+    /// </summary>
     utility::string_t getTitle() const;
     bool titleIsSet() const;
     void unsetTitle();
     void setTitle(const utility::string_t& value);
 
+    /// <summary>
+    /// Updated is when the thing last MOVED, as RFC 3339 in UTC: a repository&#39;s last push, or a site&#39;s last deploy. The page is ordered on it, most recent first, by comparing these strings — so the format is load-bearing and not cosmetic. Absent means the source reported no timestamp, and such a row sorts last.
+    /// </summary>
     utility::string_t getUpdated() const;
     bool updatedIsSet() const;
     void unsetUpdated();

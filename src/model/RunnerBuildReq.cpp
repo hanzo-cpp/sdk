@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -34,14 +34,10 @@ RunnerBuildReq::RunnerBuildReq()
     m_DockerfileIsSet = false;
     m_Image = utility::conversions::to_string_t("");
     m_ImageIsSet = false;
-    m_OrganizationId = utility::conversions::to_string_t("");
-    m_OrganizationIdIsSet = false;
     m_Os = utility::conversions::to_string_t("");
     m_OsIsSet = false;
     m_Ref = utility::conversions::to_string_t("");
     m_RefIsSet = false;
-    m_Release = false;
-    m_ReleaseIsSet = false;
     m_Repo = utility::conversions::to_string_t("");
     m_RepoIsSet = false;
     m_Sha = utility::conversions::to_string_t("");
@@ -107,11 +103,6 @@ web::json::value RunnerBuildReq::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("image"))] = ModelBase::toJson(m_Image);
     }
-    if(m_OrganizationIdIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("organizationId"))] = ModelBase::toJson(m_OrganizationId);
-    }
     if(m_OsIsSet)
     {
         
@@ -121,11 +112,6 @@ web::json::value RunnerBuildReq::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("ref"))] = ModelBase::toJson(m_Ref);
-    }
-    if(m_ReleaseIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("release"))] = ModelBase::toJson(m_Release);
     }
     if(m_RepoIsSet)
     {
@@ -248,17 +234,6 @@ bool RunnerBuildReq::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("organizationId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("organizationId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setOrganizationId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setOrganizationId);
-            setOrganizationId(refVal_setOrganizationId);
-            
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("os"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("os")));
@@ -278,17 +253,6 @@ bool RunnerBuildReq::fromJson(const web::json::value& val)
             utility::string_t refVal_setRef;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRef);
             setRef(refVal_setRef);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("release"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("release")));
-        if(!fieldValue.is_null())
-        {
-            bool refVal_setRelease;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setRelease);
-            setRelease(refVal_setRelease);
             
         }
     }
@@ -371,10 +335,6 @@ void RunnerBuildReq::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("image")), m_Image));
     }
-    if(m_OrganizationIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("organizationId")), m_OrganizationId));
-    }
     if(m_OsIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("os")), m_Os));
@@ -382,10 +342,6 @@ void RunnerBuildReq::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     if(m_RefIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("ref")), m_Ref));
-    }
-    if(m_ReleaseIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("release")), m_Release));
     }
     if(m_RepoIsSet)
     {
@@ -464,12 +420,6 @@ bool RunnerBuildReq::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("image"))), refVal_setImage );
         setImage(refVal_setImage);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("organizationId"))))
-    {
-        utility::string_t refVal_setOrganizationId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("organizationId"))), refVal_setOrganizationId );
-        setOrganizationId(refVal_setOrganizationId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("os"))))
     {
         utility::string_t refVal_setOs;
@@ -481,12 +431,6 @@ bool RunnerBuildReq::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         utility::string_t refVal_setRef;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ref"))), refVal_setRef );
         setRef(refVal_setRef);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("release"))))
-    {
-        bool refVal_setRelease;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("release"))), refVal_setRelease );
-        setRelease(refVal_setRelease);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("repo"))))
     {
@@ -699,27 +643,6 @@ void RunnerBuildReq::unsetImage()
 {
     m_ImageIsSet = false;
 }
-utility::string_t RunnerBuildReq::getOrganizationId() const
-{
-    return m_OrganizationId;
-}
-
-
-void RunnerBuildReq::setOrganizationId(const utility::string_t& value)
-{
-    m_OrganizationId = value;
-    m_OrganizationIdIsSet = true;
-}
-
-bool RunnerBuildReq::organizationIdIsSet() const
-{
-    return m_OrganizationIdIsSet;
-}
-
-void RunnerBuildReq::unsetOrganizationId()
-{
-    m_OrganizationIdIsSet = false;
-}
 utility::string_t RunnerBuildReq::getOs() const
 {
     return m_Os;
@@ -761,27 +684,6 @@ bool RunnerBuildReq::refIsSet() const
 void RunnerBuildReq::unsetRef()
 {
     m_RefIsSet = false;
-}
-bool RunnerBuildReq::isRelease() const
-{
-    return m_Release;
-}
-
-
-void RunnerBuildReq::setRelease(bool value)
-{
-    m_Release = value;
-    m_ReleaseIsSet = true;
-}
-
-bool RunnerBuildReq::releaseIsSet() const
-{
-    return m_ReleaseIsSet;
-}
-
-void RunnerBuildReq::unsetRelease()
-{
-    m_ReleaseIsSet = false;
 }
 utility::string_t RunnerBuildReq::getRepo() const
 {

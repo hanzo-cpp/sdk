@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -18,12 +18,12 @@ namespace model {
 
 UsagePoint::UsagePoint()
 {
-    m_date = utility::conversions::to_string_t("");
-    m_dateIsSet = false;
     m_Requests = 0;
     m_RequestsIsSet = false;
     m_SpendCents = 0;
     m_SpendCentsIsSet = false;
+    m_t = utility::conversions::to_string_t("");
+    m_tIsSet = false;
     m_Tokens = 0;
     m_TokensIsSet = false;
 }
@@ -40,11 +40,6 @@ void UsagePoint::validate()
 web::json::value UsagePoint::toJson() const
 {
     web::json::value val = web::json::value::object();
-    if(m_dateIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("date"))] = ModelBase::toJson(m_date);
-    }
     if(m_RequestsIsSet)
     {
         
@@ -54,6 +49,11 @@ web::json::value UsagePoint::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("spendCents"))] = ModelBase::toJson(m_SpendCents);
+    }
+    if(m_tIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("t"))] = ModelBase::toJson(m_t);
     }
     if(m_TokensIsSet)
     {
@@ -67,17 +67,6 @@ web::json::value UsagePoint::toJson() const
 bool UsagePoint::fromJson(const web::json::value& val)
 {
     bool ok = true;
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("date"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("date")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setDate;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setDate);
-            setDate(refVal_setDate);
-            
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("requests"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("requests")));
@@ -97,6 +86,17 @@ bool UsagePoint::fromJson(const web::json::value& val)
             int32_t refVal_setSpendCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSpendCents);
             setSpendCents(refVal_setSpendCents);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("t"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("t")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setT;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setT);
+            setT(refVal_setT);
             
         }
     }
@@ -121,10 +121,6 @@ void UsagePoint::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
     {
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
-    if(m_dateIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("date")), m_date));
-    }
     if(m_RequestsIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("requests")), m_Requests));
@@ -132,6 +128,10 @@ void UsagePoint::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
     if(m_SpendCentsIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("spendCents")), m_SpendCents));
+    }
+    if(m_tIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("t")), m_t));
     }
     if(m_TokensIsSet)
     {
@@ -148,12 +148,6 @@ bool UsagePoint::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("date"))))
-    {
-        utility::string_t refVal_setDate;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("date"))), refVal_setDate );
-        setDate(refVal_setDate);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("requests"))))
     {
         int32_t refVal_setRequests;
@@ -166,6 +160,12 @@ bool UsagePoint::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("spendCents"))), refVal_setSpendCents );
         setSpendCents(refVal_setSpendCents);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("t"))))
+    {
+        utility::string_t refVal_setT;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("t"))), refVal_setT );
+        setT(refVal_setT);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tokens"))))
     {
         int32_t refVal_setTokens;
@@ -176,27 +176,6 @@ bool UsagePoint::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 }
 
 
-utility::string_t UsagePoint::getDate() const
-{
-    return m_date;
-}
-
-
-void UsagePoint::setDate(const utility::string_t& value)
-{
-    m_date = value;
-    m_dateIsSet = true;
-}
-
-bool UsagePoint::dateIsSet() const
-{
-    return m_dateIsSet;
-}
-
-void UsagePoint::unsetdate()
-{
-    m_dateIsSet = false;
-}
 int32_t UsagePoint::getRequests() const
 {
     return m_Requests;
@@ -238,6 +217,27 @@ bool UsagePoint::spendCentsIsSet() const
 void UsagePoint::unsetSpendCents()
 {
     m_SpendCentsIsSet = false;
+}
+utility::string_t UsagePoint::getT() const
+{
+    return m_t;
+}
+
+
+void UsagePoint::setT(const utility::string_t& value)
+{
+    m_t = value;
+    m_tIsSet = true;
+}
+
+bool UsagePoint::TIsSet() const
+{
+    return m_tIsSet;
+}
+
+void UsagePoint::unsett()
+{
+    m_tIsSet = false;
 }
 int32_t UsagePoint::getTokens() const
 {

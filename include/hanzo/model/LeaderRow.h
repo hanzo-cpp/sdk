@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -53,6 +53,30 @@ public:
 
 
     /// <summary>
+    /// CIHigh is the upper bound of that interval. Wilson rather than the normal approximation because the normal one produces bounds past 100 exactly where benchmark scores live — at 194/198 that is the top of the board, not a corner case.
+    /// </summary>
+    double getCiHigh() const;
+    bool ciHighIsSet() const;
+    void unsetCiHigh();
+    void setCiHigh(double value);
+
+    /// <summary>
+    /// CILow and CIHigh are the 95% Wilson interval on Measured, in percent. They are what makes the score comparable: at n&#x3D;198 a 98% carries roughly ±2 points, so most differences at the top of a board are not distinguishable and a bare number implies a precision it does not have. Absent when there is no measurement.
+    /// </summary>
+    double getCiLow() const;
+    bool ciLowIsSet() const;
+    void unsetCiLow();
+    void setCiLow(double value);
+
+    /// <summary>
+    /// Claims is how many independent claims exist for this model on this benchmark. More than one means several sources reported it.
+    /// </summary>
+    int32_t getClaims() const;
+    bool claimsIsSet() const;
+    void unsetClaims();
+    void setClaims(int32_t value);
+
+    /// <summary>
     /// published − measured (the arena signal)
     /// </summary>
     double getGap() const;
@@ -61,12 +85,28 @@ public:
     void setGap(double value);
 
     /// <summary>
+    /// Mean is the unweighted average of every claim, which answers a different question from Published: what the field says on average, rather than what the vendor says about itself. With one claim the two are equal.
+    /// </summary>
+    double getMean() const;
+    bool meanIsSet() const;
+    void unsetMean();
+    void setMean(double value);
+
+    /// <summary>
     /// hanzo-measured accuracy % (nil if unrun)
     /// </summary>
     double getMeasured() const;
     bool measuredIsSet() const;
     void unsetMeasured();
     void setMeasured(double value);
+
+    /// <summary>
+    /// MeasuredAt is when the run behind Measured was recorded.
+    /// </summary>
+    utility::datetime getMeasuredAt() const;
+    bool measuredAtIsSet() const;
+    void unsetMeasuredAt();
+    void setMeasuredAt(const utility::datetime& value);
 
     /// <summary>
     /// the model this row scores
@@ -100,13 +140,44 @@ public:
     void unsetPublished();
     void setPublished(double value);
 
+    /// <summary>
+    /// Run names the measurement Measured came from, and MeasuredAt is when it ran. A score with no date is not a fact about a model, it is a fact about a model on a day — and models change, so the date is what makes the number checkable rather than merely quoted.
+    /// </summary>
+    utility::string_t getRun() const;
+    bool runIsSet() const;
+    void unsetRun();
+    void setRun(const utility::string_t& value);
+
+    /// <summary>
+    /// Spread is the distance between the highest and lowest of them, nil when there is only one. It is the disagreement AMONG sources, which a single Published number cannot show — signal in the same way the published-minus-measured gap is.
+    /// </summary>
+    double getSpread() const;
+    bool spreadIsSet() const;
+    void unsetSpread();
+    void setSpread(double value);
+
 
 protected:
+    double m_CiHigh;
+    bool m_CiHighIsSet;
+
+    double m_CiLow;
+    bool m_CiLowIsSet;
+
+    int32_t m_Claims;
+    bool m_ClaimsIsSet;
+
     double m_Gap;
     bool m_GapIsSet;
 
+    double m_Mean;
+    bool m_MeanIsSet;
+
     double m_Measured;
     bool m_MeasuredIsSet;
+
+    utility::datetime m_MeasuredAt;
+    bool m_MeasuredAtIsSet;
 
     utility::string_t m_Model;
     bool m_ModelIsSet;
@@ -119,6 +190,12 @@ protected:
 
     double m_Published;
     bool m_PublishedIsSet;
+
+    utility::string_t m_Run;
+    bool m_RunIsSet;
+
+    double m_Spread;
+    bool m_SpreadIsSet;
 
 };
 

@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -54,21 +54,33 @@ public:
     /// StateGraph members
 
 
+    /// <summary>
+    /// Initial is the state a fresh document starts in — \&quot;draft\&quot;. A stored document with no status at all is read as this too.
+    /// </summary>
     utility::string_t getInitial() const;
     bool initialIsSet() const;
     void unsetInitial();
     void setInitial(const utility::string_t& value);
 
+    /// <summary>
+    /// Live is the ONE state that is publicly readable — \&quot;published\&quot;. The site pulls only documents in it, so reaching Live IS site-publish; every other state is invisible to a reader.
+    /// </summary>
     utility::string_t getLive() const;
     bool liveIsSet() const;
     void unsetLive();
     void setLive(const utility::string_t& value);
 
+    /// <summary>
+    /// States is every lifecycle state in canonical order: draft, in_review, approved, queued, published, archived. The console lays its board columns out in exactly this order, so the order is part of the answer.
+    /// </summary>
     std::vector<utility::string_t> getStates() const;
     bool statesIsSet() const;
     void unsetStates();
     void setStates(const std::vector<utility::string_t>& value);
 
+    /// <summary>
+    /// Transitions maps each state to the states it may move to. A target absent from a state&#39;s list is REFUSED, at the endpoint and again at the storage boundary — this is the whole rule, not a hint for the UI. A state never lists itself; a move that changes nothing is always legal.
+    /// </summary>
     std::map<utility::string_t, std::vector<utility::string_t>> getTransitions() const;
     bool transitionsIsSet() const;
     void unsetTransitions();

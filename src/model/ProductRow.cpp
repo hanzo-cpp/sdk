@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -18,38 +18,14 @@ namespace model {
 
 ProductRow::ProductRow()
 {
-    m_Cluster = utility::conversions::to_string_t("");
-    m_ClusterIsSet = false;
-    m_DeclaredTag = utility::conversions::to_string_t("");
-    m_DeclaredTagIsSet = false;
-    m_Drift = false;
-    m_DriftIsSet = false;
-    m_DriftSeverity = utility::conversions::to_string_t("");
-    m_DriftSeverityIsSet = false;
-    m_Env = utility::conversions::to_string_t("");
-    m_EnvIsSet = false;
-    m_Health = utility::conversions::to_string_t("");
-    m_HealthIsSet = false;
-    m_Kind = utility::conversions::to_string_t("");
-    m_KindIsSet = false;
-    m_LatestTag = utility::conversions::to_string_t("");
-    m_LatestTagIsSet = false;
-    m_Name = utility::conversions::to_string_t("");
-    m_NameIsSet = false;
-    m_r_namespace = utility::conversions::to_string_t("");
-    m_r_namespaceIsSet = false;
-    m_Org = utility::conversions::to_string_t("");
-    m_OrgIsSet = false;
-    m_Phase = utility::conversions::to_string_t("");
-    m_PhaseIsSet = false;
-    m_Repo = utility::conversions::to_string_t("");
-    m_RepoIsSet = false;
-    m_RunningTag = utility::conversions::to_string_t("");
-    m_RunningTagIsSet = false;
-    m_Tier = utility::conversions::to_string_t("");
-    m_TierIsSet = false;
-    m_Updated = utility::conversions::to_string_t("");
-    m_UpdatedIsSet = false;
+    m_Orders = 0;
+    m_OrdersIsSet = false;
+    m_ProductId = utility::conversions::to_string_t("");
+    m_ProductIdIsSet = false;
+    m_Revenue = 0.0;
+    m_RevenueIsSet = false;
+    m_Units = 0;
+    m_UnitsIsSet = false;
 }
 
 ProductRow::~ProductRow()
@@ -64,85 +40,25 @@ void ProductRow::validate()
 web::json::value ProductRow::toJson() const
 {
     web::json::value val = web::json::value::object();
-    if(m_ClusterIsSet)
+    if(m_OrdersIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("cluster"))] = ModelBase::toJson(m_Cluster);
+        val[utility::conversions::to_string_t(_XPLATSTR("orders"))] = ModelBase::toJson(m_Orders);
     }
-    if(m_DeclaredTagIsSet)
+    if(m_ProductIdIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("declaredTag"))] = ModelBase::toJson(m_DeclaredTag);
+        val[utility::conversions::to_string_t(_XPLATSTR("productId"))] = ModelBase::toJson(m_ProductId);
     }
-    if(m_DriftIsSet)
+    if(m_RevenueIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("drift"))] = ModelBase::toJson(m_Drift);
+        val[utility::conversions::to_string_t(_XPLATSTR("revenue"))] = ModelBase::toJson(m_Revenue);
     }
-    if(m_DriftSeverityIsSet)
+    if(m_UnitsIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("driftSeverity"))] = ModelBase::toJson(m_DriftSeverity);
-    }
-    if(m_EnvIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("env"))] = ModelBase::toJson(m_Env);
-    }
-    if(m_HealthIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("health"))] = ModelBase::toJson(m_Health);
-    }
-    if(m_KindIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("kind"))] = ModelBase::toJson(m_Kind);
-    }
-    if(m_LatestTagIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("latestTag"))] = ModelBase::toJson(m_LatestTag);
-    }
-    if(m_NameIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("name"))] = ModelBase::toJson(m_Name);
-    }
-    if(m_r_namespaceIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("namespace"))] = ModelBase::toJson(m_r_namespace);
-    }
-    if(m_OrgIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("org"))] = ModelBase::toJson(m_Org);
-    }
-    if(m_PhaseIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("phase"))] = ModelBase::toJson(m_Phase);
-    }
-    if(m_RepoIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("repo"))] = ModelBase::toJson(m_Repo);
-    }
-    if(m_RunningTagIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("runningTag"))] = ModelBase::toJson(m_RunningTag);
-    }
-    if(m_TierIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("tier"))] = ModelBase::toJson(m_Tier);
-    }
-    if(m_UpdatedIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("updated"))] = ModelBase::toJson(m_Updated);
+        val[utility::conversions::to_string_t(_XPLATSTR("units"))] = ModelBase::toJson(m_Units);
     }
 
     return val;
@@ -151,179 +67,47 @@ web::json::value ProductRow::toJson() const
 bool ProductRow::fromJson(const web::json::value& val)
 {
     bool ok = true;
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("cluster"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("orders"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cluster")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("orders")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setCluster;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setCluster);
-            setCluster(refVal_setCluster);
+            int32_t refVal_setOrders;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setOrders);
+            setOrders(refVal_setOrders);
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("declaredTag"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("productId"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("declaredTag")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("productId")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setDeclaredTag;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setDeclaredTag);
-            setDeclaredTag(refVal_setDeclaredTag);
+            utility::string_t refVal_setProductId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setProductId);
+            setProductId(refVal_setProductId);
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("drift"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("revenue"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("drift")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("revenue")));
         if(!fieldValue.is_null())
         {
-            bool refVal_setDrift;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setDrift);
-            setDrift(refVal_setDrift);
+            double refVal_setRevenue;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setRevenue);
+            setRevenue(refVal_setRevenue);
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("driftSeverity"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("units"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("driftSeverity")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("units")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setDriftSeverity;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setDriftSeverity);
-            setDriftSeverity(refVal_setDriftSeverity);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("env"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("env")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnv;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnv);
-            setEnv(refVal_setEnv);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("health"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("health")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setHealth;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setHealth);
-            setHealth(refVal_setHealth);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("kind"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("kind")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setKind;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setKind);
-            setKind(refVal_setKind);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("latestTag"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("latestTag")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setLatestTag;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setLatestTag);
-            setLatestTag(refVal_setLatestTag);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("name"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("name")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setName;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setName);
-            setName(refVal_setName);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("namespace"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("namespace")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setRNamespace;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setRNamespace);
-            setRNamespace(refVal_setRNamespace);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("org"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("org")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setOrg;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setOrg);
-            setOrg(refVal_setOrg);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("phase"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("phase")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setPhase;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setPhase);
-            setPhase(refVal_setPhase);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("repo"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("repo")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setRepo;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setRepo);
-            setRepo(refVal_setRepo);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("runningTag"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("runningTag")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setRunningTag;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setRunningTag);
-            setRunningTag(refVal_setRunningTag);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("tier"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tier")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTier;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTier);
-            setTier(refVal_setTier);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("updated"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updated")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setUpdated;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setUpdated);
-            setUpdated(refVal_setUpdated);
+            int32_t refVal_setUnits;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setUnits);
+            setUnits(refVal_setUnits);
             
         }
     }
@@ -337,69 +121,21 @@ void ProductRow::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
     {
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
-    if(m_ClusterIsSet)
+    if(m_OrdersIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("cluster")), m_Cluster));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("orders")), m_Orders));
     }
-    if(m_DeclaredTagIsSet)
+    if(m_ProductIdIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("declaredTag")), m_DeclaredTag));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("productId")), m_ProductId));
     }
-    if(m_DriftIsSet)
+    if(m_RevenueIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("drift")), m_Drift));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("revenue")), m_Revenue));
     }
-    if(m_DriftSeverityIsSet)
+    if(m_UnitsIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("driftSeverity")), m_DriftSeverity));
-    }
-    if(m_EnvIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("env")), m_Env));
-    }
-    if(m_HealthIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("health")), m_Health));
-    }
-    if(m_KindIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("kind")), m_Kind));
-    }
-    if(m_LatestTagIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("latestTag")), m_LatestTag));
-    }
-    if(m_NameIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("name")), m_Name));
-    }
-    if(m_r_namespaceIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("namespace")), m_r_namespace));
-    }
-    if(m_OrgIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("org")), m_Org));
-    }
-    if(m_PhaseIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("phase")), m_Phase));
-    }
-    if(m_RepoIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("repo")), m_Repo));
-    }
-    if(m_RunningTagIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("runningTag")), m_RunningTag));
-    }
-    if(m_TierIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("tier")), m_Tier));
-    }
-    if(m_UpdatedIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("updated")), m_Updated));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("units")), m_Units));
     }
 }
 
@@ -412,441 +148,117 @@ bool ProductRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cluster"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("orders"))))
     {
-        utility::string_t refVal_setCluster;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cluster"))), refVal_setCluster );
-        setCluster(refVal_setCluster);
+        int32_t refVal_setOrders;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("orders"))), refVal_setOrders );
+        setOrders(refVal_setOrders);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("declaredTag"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("productId"))))
     {
-        utility::string_t refVal_setDeclaredTag;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("declaredTag"))), refVal_setDeclaredTag );
-        setDeclaredTag(refVal_setDeclaredTag);
+        utility::string_t refVal_setProductId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("productId"))), refVal_setProductId );
+        setProductId(refVal_setProductId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("drift"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("revenue"))))
     {
-        bool refVal_setDrift;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("drift"))), refVal_setDrift );
-        setDrift(refVal_setDrift);
+        double refVal_setRevenue;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("revenue"))), refVal_setRevenue );
+        setRevenue(refVal_setRevenue);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("driftSeverity"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("units"))))
     {
-        utility::string_t refVal_setDriftSeverity;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("driftSeverity"))), refVal_setDriftSeverity );
-        setDriftSeverity(refVal_setDriftSeverity);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("env"))))
-    {
-        utility::string_t refVal_setEnv;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("env"))), refVal_setEnv );
-        setEnv(refVal_setEnv);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("health"))))
-    {
-        utility::string_t refVal_setHealth;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("health"))), refVal_setHealth );
-        setHealth(refVal_setHealth);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("kind"))))
-    {
-        utility::string_t refVal_setKind;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("kind"))), refVal_setKind );
-        setKind(refVal_setKind);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("latestTag"))))
-    {
-        utility::string_t refVal_setLatestTag;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("latestTag"))), refVal_setLatestTag );
-        setLatestTag(refVal_setLatestTag);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("name"))))
-    {
-        utility::string_t refVal_setName;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("name"))), refVal_setName );
-        setName(refVal_setName);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("namespace"))))
-    {
-        utility::string_t refVal_setRNamespace;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("namespace"))), refVal_setRNamespace );
-        setRNamespace(refVal_setRNamespace);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("org"))))
-    {
-        utility::string_t refVal_setOrg;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("org"))), refVal_setOrg );
-        setOrg(refVal_setOrg);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("phase"))))
-    {
-        utility::string_t refVal_setPhase;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("phase"))), refVal_setPhase );
-        setPhase(refVal_setPhase);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("repo"))))
-    {
-        utility::string_t refVal_setRepo;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("repo"))), refVal_setRepo );
-        setRepo(refVal_setRepo);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("runningTag"))))
-    {
-        utility::string_t refVal_setRunningTag;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("runningTag"))), refVal_setRunningTag );
-        setRunningTag(refVal_setRunningTag);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tier"))))
-    {
-        utility::string_t refVal_setTier;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("tier"))), refVal_setTier );
-        setTier(refVal_setTier);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updated"))))
-    {
-        utility::string_t refVal_setUpdated;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updated"))), refVal_setUpdated );
-        setUpdated(refVal_setUpdated);
+        int32_t refVal_setUnits;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("units"))), refVal_setUnits );
+        setUnits(refVal_setUnits);
     }
     return ok;
 }
 
 
-utility::string_t ProductRow::getCluster() const
+int32_t ProductRow::getOrders() const
 {
-    return m_Cluster;
+    return m_Orders;
 }
 
 
-void ProductRow::setCluster(const utility::string_t& value)
+void ProductRow::setOrders(int32_t value)
 {
-    m_Cluster = value;
-    m_ClusterIsSet = true;
+    m_Orders = value;
+    m_OrdersIsSet = true;
 }
 
-bool ProductRow::clusterIsSet() const
+bool ProductRow::ordersIsSet() const
 {
-    return m_ClusterIsSet;
+    return m_OrdersIsSet;
 }
 
-void ProductRow::unsetCluster()
+void ProductRow::unsetOrders()
 {
-    m_ClusterIsSet = false;
+    m_OrdersIsSet = false;
 }
-utility::string_t ProductRow::getDeclaredTag() const
+utility::string_t ProductRow::getProductId() const
 {
-    return m_DeclaredTag;
-}
-
-
-void ProductRow::setDeclaredTag(const utility::string_t& value)
-{
-    m_DeclaredTag = value;
-    m_DeclaredTagIsSet = true;
-}
-
-bool ProductRow::declaredTagIsSet() const
-{
-    return m_DeclaredTagIsSet;
-}
-
-void ProductRow::unsetDeclaredTag()
-{
-    m_DeclaredTagIsSet = false;
-}
-bool ProductRow::isDrift() const
-{
-    return m_Drift;
+    return m_ProductId;
 }
 
 
-void ProductRow::setDrift(bool value)
+void ProductRow::setProductId(const utility::string_t& value)
 {
-    m_Drift = value;
-    m_DriftIsSet = true;
+    m_ProductId = value;
+    m_ProductIdIsSet = true;
 }
 
-bool ProductRow::driftIsSet() const
+bool ProductRow::productIdIsSet() const
 {
-    return m_DriftIsSet;
+    return m_ProductIdIsSet;
 }
 
-void ProductRow::unsetDrift()
+void ProductRow::unsetProductId()
 {
-    m_DriftIsSet = false;
+    m_ProductIdIsSet = false;
 }
-utility::string_t ProductRow::getDriftSeverity() const
+double ProductRow::getRevenue() const
 {
-    return m_DriftSeverity;
-}
-
-
-void ProductRow::setDriftSeverity(const utility::string_t& value)
-{
-    m_DriftSeverity = value;
-    m_DriftSeverityIsSet = true;
-}
-
-bool ProductRow::driftSeverityIsSet() const
-{
-    return m_DriftSeverityIsSet;
-}
-
-void ProductRow::unsetDriftSeverity()
-{
-    m_DriftSeverityIsSet = false;
-}
-utility::string_t ProductRow::getEnv() const
-{
-    return m_Env;
+    return m_Revenue;
 }
 
 
-void ProductRow::setEnv(const utility::string_t& value)
+void ProductRow::setRevenue(double value)
 {
-    m_Env = value;
-    m_EnvIsSet = true;
+    m_Revenue = value;
+    m_RevenueIsSet = true;
 }
 
-bool ProductRow::envIsSet() const
+bool ProductRow::revenueIsSet() const
 {
-    return m_EnvIsSet;
+    return m_RevenueIsSet;
 }
 
-void ProductRow::unsetEnv()
+void ProductRow::unsetRevenue()
 {
-    m_EnvIsSet = false;
+    m_RevenueIsSet = false;
 }
-utility::string_t ProductRow::getHealth() const
+int32_t ProductRow::getUnits() const
 {
-    return m_Health;
-}
-
-
-void ProductRow::setHealth(const utility::string_t& value)
-{
-    m_Health = value;
-    m_HealthIsSet = true;
-}
-
-bool ProductRow::healthIsSet() const
-{
-    return m_HealthIsSet;
-}
-
-void ProductRow::unsetHealth()
-{
-    m_HealthIsSet = false;
-}
-utility::string_t ProductRow::getKind() const
-{
-    return m_Kind;
+    return m_Units;
 }
 
 
-void ProductRow::setKind(const utility::string_t& value)
+void ProductRow::setUnits(int32_t value)
 {
-    m_Kind = value;
-    m_KindIsSet = true;
+    m_Units = value;
+    m_UnitsIsSet = true;
 }
 
-bool ProductRow::kindIsSet() const
+bool ProductRow::unitsIsSet() const
 {
-    return m_KindIsSet;
+    return m_UnitsIsSet;
 }
 
-void ProductRow::unsetKind()
+void ProductRow::unsetUnits()
 {
-    m_KindIsSet = false;
-}
-utility::string_t ProductRow::getLatestTag() const
-{
-    return m_LatestTag;
-}
-
-
-void ProductRow::setLatestTag(const utility::string_t& value)
-{
-    m_LatestTag = value;
-    m_LatestTagIsSet = true;
-}
-
-bool ProductRow::latestTagIsSet() const
-{
-    return m_LatestTagIsSet;
-}
-
-void ProductRow::unsetLatestTag()
-{
-    m_LatestTagIsSet = false;
-}
-utility::string_t ProductRow::getName() const
-{
-    return m_Name;
-}
-
-
-void ProductRow::setName(const utility::string_t& value)
-{
-    m_Name = value;
-    m_NameIsSet = true;
-}
-
-bool ProductRow::nameIsSet() const
-{
-    return m_NameIsSet;
-}
-
-void ProductRow::unsetName()
-{
-    m_NameIsSet = false;
-}
-utility::string_t ProductRow::getRNamespace() const
-{
-    return m_r_namespace;
-}
-
-
-void ProductRow::setRNamespace(const utility::string_t& value)
-{
-    m_r_namespace = value;
-    m_r_namespaceIsSet = true;
-}
-
-bool ProductRow::rNamespaceIsSet() const
-{
-    return m_r_namespaceIsSet;
-}
-
-void ProductRow::unsetr_namespace()
-{
-    m_r_namespaceIsSet = false;
-}
-utility::string_t ProductRow::getOrg() const
-{
-    return m_Org;
-}
-
-
-void ProductRow::setOrg(const utility::string_t& value)
-{
-    m_Org = value;
-    m_OrgIsSet = true;
-}
-
-bool ProductRow::orgIsSet() const
-{
-    return m_OrgIsSet;
-}
-
-void ProductRow::unsetOrg()
-{
-    m_OrgIsSet = false;
-}
-utility::string_t ProductRow::getPhase() const
-{
-    return m_Phase;
-}
-
-
-void ProductRow::setPhase(const utility::string_t& value)
-{
-    m_Phase = value;
-    m_PhaseIsSet = true;
-}
-
-bool ProductRow::phaseIsSet() const
-{
-    return m_PhaseIsSet;
-}
-
-void ProductRow::unsetPhase()
-{
-    m_PhaseIsSet = false;
-}
-utility::string_t ProductRow::getRepo() const
-{
-    return m_Repo;
-}
-
-
-void ProductRow::setRepo(const utility::string_t& value)
-{
-    m_Repo = value;
-    m_RepoIsSet = true;
-}
-
-bool ProductRow::repoIsSet() const
-{
-    return m_RepoIsSet;
-}
-
-void ProductRow::unsetRepo()
-{
-    m_RepoIsSet = false;
-}
-utility::string_t ProductRow::getRunningTag() const
-{
-    return m_RunningTag;
-}
-
-
-void ProductRow::setRunningTag(const utility::string_t& value)
-{
-    m_RunningTag = value;
-    m_RunningTagIsSet = true;
-}
-
-bool ProductRow::runningTagIsSet() const
-{
-    return m_RunningTagIsSet;
-}
-
-void ProductRow::unsetRunningTag()
-{
-    m_RunningTagIsSet = false;
-}
-utility::string_t ProductRow::getTier() const
-{
-    return m_Tier;
-}
-
-
-void ProductRow::setTier(const utility::string_t& value)
-{
-    m_Tier = value;
-    m_TierIsSet = true;
-}
-
-bool ProductRow::tierIsSet() const
-{
-    return m_TierIsSet;
-}
-
-void ProductRow::unsetTier()
-{
-    m_TierIsSet = false;
-}
-utility::string_t ProductRow::getUpdated() const
-{
-    return m_Updated;
-}
-
-
-void ProductRow::setUpdated(const utility::string_t& value)
-{
-    m_Updated = value;
-    m_UpdatedIsSet = true;
-}
-
-bool ProductRow::updatedIsSet() const
-{
-    return m_UpdatedIsSet;
-}
-
-void ProductRow::unsetUpdated()
-{
-    m_UpdatedIsSet = false;
+    m_UnitsIsSet = false;
 }
 
 }

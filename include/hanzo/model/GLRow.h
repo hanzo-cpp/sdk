@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,46 +52,73 @@ public:
     /// GLRow members
 
 
+    /// <summary>
+    /// Account is the chart-of-accounts number this leg posts to.
+    /// </summary>
     utility::string_t getAccount() const;
     bool accountIsSet() const;
     void unsetAccount();
     void setAccount(const utility::string_t& value);
 
+    /// <summary>
+    /// Against names the OTHER accounts in the same voucher — the contra side of this leg — so a single row reads as an entry rather than as half of one.
+    /// </summary>
     utility::string_t getAgainst() const;
     bool againstIsSet() const;
     void unsetAgainst();
     void setAgainst(const utility::string_t& value);
 
+    /// <summary>
+    /// Credit is the amount credited to that account, in whole cents.
+    /// </summary>
     int32_t getCredit() const;
     bool creditIsSet() const;
     void unsetCredit();
     void setCredit(int32_t value);
 
+    /// <summary>
+    /// Debit is the amount debited to that account, in whole cents. Exactly one of debit and credit is non-zero on a leg; a negative amount is never used to mean the other side.
+    /// </summary>
     int32_t getDebit() const;
     bool debitIsSet() const;
     void unsetDebit();
     void setDebit(int32_t value);
 
+    /// <summary>
+    /// ID is the entry&#39;s position in the ledger. The ledger is append-only, so ids ascend with posting order and a higher id is a later entry.
+    /// </summary>
     int32_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(int32_t value);
 
+    /// <summary>
+    /// PostingAt is the accounting date this entry belongs to — what the reports window on, which need not be when the row was written.
+    /// </summary>
     utility::string_t getPostingAt() const;
     bool postingAtIsSet() const;
     void unsetPostingAt();
     void setPostingAt(const utility::string_t& value);
 
+    /// <summary>
+    /// Remarks is the memo carried onto the entry, for a human reading the ledger.
+    /// </summary>
     utility::string_t getRemarks() const;
     bool remarksIsSet() const;
     void unsetRemarks();
     void setRemarks(const utility::string_t& value);
 
+    /// <summary>
+    /// SourceID identifies that originating record within its kind.
+    /// </summary>
     utility::string_t getSourceId() const;
     bool sourceIdIsSet() const;
     void unsetSourceId();
     void setSourceId(const utility::string_t& value);
 
+    /// <summary>
+    /// SourceKind is what caused the posting: a bank line, a scanned document, a commerce sale. With sourceId it traces the entry back to the thing that produced it.
+    /// </summary>
     utility::string_t getSourceKind() const;
     bool sourceKindIsSet() const;
     void unsetSourceKind();

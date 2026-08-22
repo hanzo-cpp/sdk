@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,11 +52,17 @@ public:
     /// GithubForkOut members
 
 
+    /// <summary>
+    /// CloneURL is the fork&#39;s https git remote. GitHub populates a new fork in the background, so a clone issued the moment this answers can still find it empty.
+    /// </summary>
     utility::string_t getCloneUrl() const;
     bool cloneUrlIsSet() const;
     void unsetClone_url();
     void setCloneUrl(const utility::string_t& value);
 
+    /// <summary>
+    /// DefaultBranch is the branch the fork checks out, inherited from upstream.
+    /// </summary>
     utility::string_t getDefaultBranch() const;
     bool defaultBranchIsSet() const;
     void unsetDefault_branch();
@@ -70,11 +76,17 @@ public:
     void unsetExisting();
     void setExisting(bool value);
 
+    /// <summary>
+    /// FullName is the fork&#39;s \&quot;owner/repo\&quot;. The owner is the account it landed in — the request&#39;s org, or the installation&#39;s own account when none was named.
+    /// </summary>
     utility::string_t getFullName() const;
     bool fullNameIsSet() const;
     void unsetFull_name();
     void setFullName(const utility::string_t& value);
 
+    /// <summary>
+    /// HTMLURL is the fork&#39;s page on github.com.
+    /// </summary>
     utility::string_t getHtmlUrl() const;
     bool htmlUrlIsSet() const;
     void unsetHtml_url();

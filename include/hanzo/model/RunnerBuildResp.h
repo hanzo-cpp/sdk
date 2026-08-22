@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -53,7 +53,7 @@ public:
 
 
     /// <summary>
-    /// BuildJobID is the queued build&#39;s id, and what a release is followed by.
+    /// BuildJobID is the queued build&#39;s id, and what its progress is read by.
     /// </summary>
     utility::string_t getBuildJobId() const;
     bool buildJobIdIsSet() const;
@@ -85,7 +85,7 @@ public:
     void setRunnerPool(const utility::string_t& value);
 
     /// <summary>
-    /// Status is &#x60;queued&#x60; for an ordinary build, &#x60;releasing&#x60; for a self-publish.
+    /// Status is &#x60;queued&#x60; — the build was accepted and has not finished.
     /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;

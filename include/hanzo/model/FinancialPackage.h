@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -61,41 +61,65 @@ public:
     /// FinancialPackage members
 
 
+    /// <summary>
+    /// BalanceSheet is struck as of the period END, not the start.
+    /// </summary>
     std::shared_ptr<BalanceSheet> getBalanceSheet() const;
     bool balanceSheetIsSet() const;
     void unsetBalanceSheet();
     void setBalanceSheet(const std::shared_ptr<BalanceSheet>& value);
 
+    /// <summary>
+    /// From opens the reporting period. Absent means from the beginning of the ledger.
+    /// </summary>
     utility::string_t getFrom() const;
     bool fromIsSet() const;
     void unsetFrom();
     void setFrom(const utility::string_t& value);
 
+    /// <summary>
+    /// GeneratedAt is when the bundle was assembled — the moment the statements were struck, which is what makes two exports of the same period comparable.
+    /// </summary>
     utility::string_t getGeneratedAt() const;
     bool generatedAtIsSet() const;
     void unsetGeneratedAt();
     void setGeneratedAt(const utility::string_t& value);
 
+    /// <summary>
+    /// GL is the newest slice of ledger detail, as the audit trail behind the statements. It is CAPPED, so on a busy ledger it is a sample rather than the full support for the figures above.
+    /// </summary>
     std::vector<std::shared_ptr<GLRow>> getGl() const;
     bool glIsSet() const;
     void unsetGl();
     void setGl(const std::vector<std::shared_ptr<GLRow>>& value);
 
+    /// <summary>
+    /// Org is the organisation whose books these are — the validated caller&#39;s own, stamped so a downloaded bundle still says whose it is.
+    /// </summary>
     utility::string_t getOrg() const;
     bool orgIsSet() const;
     void unsetOrg();
     void setOrg(const utility::string_t& value);
 
+    /// <summary>
+    /// PnL is the income statement for the period, on an accrual basis.
+    /// </summary>
     std::shared_ptr<PnL> getPnl() const;
     bool pnlIsSet() const;
     void unsetPnl();
     void setPnl(const std::shared_ptr<PnL>& value);
 
+    /// <summary>
+    /// To closes it. Absent means up to now.
+    /// </summary>
     utility::string_t getTo() const;
     bool toIsSet() const;
     void unsetTo();
     void setTo(const utility::string_t& value);
 
+    /// <summary>
+    /// TrialBalance is the proof the ledger balances over the period.
+    /// </summary>
     std::shared_ptr<TrialBalance> getTrialBalance() const;
     bool trialBalanceIsSet() const;
     void unsetTrialBalance();

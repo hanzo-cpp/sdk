@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -53,26 +53,41 @@ public:
     /// ArgoMeta members
 
 
+    /// <summary>
+    /// CreationTimestamp is when the source object was created, RFC 3339 to the second. Empty for a synthesized project.
+    /// </summary>
     utility::string_t getCreationTimestamp() const;
     bool creationTimestampIsSet() const;
     void unsetCreationTimestamp();
     void setCreationTimestamp(const utility::string_t& value);
 
+    /// <summary>
+    /// Labels are the labels this projection puts on the row, not the source object&#39;s full label set. An application projected from an App CR carries hanzo.ai/instance (its name), hanzo.ai/env (main, test or dev, from the namespace it was read from) and hanzo.ai/org when the CR declares a tenant. A Hanzo CD Application carries the CR&#39;s own labels verbatim. A project reflected from IAM carries hanzo.ai/org alone.
+    /// </summary>
     std::map<utility::string_t, utility::string_t> getLabels() const;
     bool labelsIsSet() const;
     void unsetLabels();
     void setLabels(const std::map<utility::string_t, utility::string_t>& value);
 
+    /// <summary>
+    /// Name is the projected object&#39;s name: the App CR&#39;s metadata.name for an application, the CD Application&#39;s name for a CD row, and the IAM project name for a project.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
+    /// <summary>
+    /// Namespace is the namespace the source object was read from — the tenant or platform namespace for an App CR, CD&#39;s controller namespace for a CD row. Empty for a project synthesized here, which lives in no namespace.
+    /// </summary>
     utility::string_t getRNamespace() const;
     bool rNamespaceIsSet() const;
     void unsetr_namespace();
     void setRNamespace(const utility::string_t& value);
 
+    /// <summary>
+    /// UID is the k8s metadata.uid of the source object, which is what the SPA keys a row on across refreshes. Empty for a synthesized project — there is no object to take one from.
+    /// </summary>
     utility::string_t getUid() const;
     bool uidIsSet() const;
     void unsetUid();

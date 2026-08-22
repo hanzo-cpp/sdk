@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -48,6 +48,22 @@ public:
     pplx::task<void> getMetricsHealth(
     ) const;
     /// <summary>
+    /// How many log records this deployment holds for your org
+    /// </summary>
+    /// <remarks>
+    /// Reports the native log store&#39;s live state for the calling tenant: the subsystem version and &#x60;records&#x60;, the count actually held right now rather than a constant. Not a dependency probe — the store is in-process, so this answers 200 whenever the process is up.  The tenant is the gateway-minted &#x60;X-Org-Id&#x60; header, falling back to the deployment brand and then &#x60;default&#x60;.
+    /// </remarks>
+    pplx::task<void> getMetricsLogsHealth(
+    ) const;
+    /// <summary>
+    /// Search your org&#39;s logs by label, time and substring
+    /// </summary>
+    /// <remarks>
+    /// Answers &#x60;{count, records}&#x60;, newest first. &#x60;match&#x60; is the same &#x60;k&#x3D;v,k2&#x3D;v2&#x60; superset label matcher the metrics query uses; &#x60;contains&#x60; is a case-insensitive substring test against the record body; &#x60;start&#x60; and &#x60;end&#x60; are nanosecond bounds.  A bound that is absent, empty or unparseable becomes 0, which means UNBOUNDED — a malformed &#x60;start&#x60; widens the search rather than failing it. &#x60;limit&#x60; caps the page and defaults to 100 when absent or non-positive, so an unfiltered read is never the whole ring.  The tenant is the gateway-minted &#x60;X-Org-Id&#x60; header, falling back to the deployment brand and then &#x60;default&#x60;, so a search can only reach the org the edge asserted.
+    /// </remarks>
+    pplx::task<void> getMetricsLogsQuery(
+    ) const;
+    /// <summary>
     /// Read your org&#39;s series back over a time range
     /// </summary>
     /// <remarks>
@@ -56,12 +72,52 @@ public:
     pplx::task<void> getMetricsQuery(
     ) const;
     /// <summary>
+    /// How many spans this deployment holds for your org
+    /// </summary>
+    /// <remarks>
+    /// Reports the native trace store&#39;s live state for the calling tenant: the subsystem version and &#x60;spans&#x60;, the count actually held right now. Not a dependency probe — the store is in-process, so this answers 200 whenever the process is up.  The tenant is the gateway-minted &#x60;X-Org-Id&#x60; header, falling back to the deployment brand and then &#x60;default&#x60;.
+    /// </remarks>
+    pplx::task<void> getMetricsTracesHealth(
+    ) const;
+    /// <summary>
+    /// Recent spans for your org over a time range
+    /// </summary>
+    /// <remarks>
+    /// Answers &#x60;{count, spans}&#x60;, newest first, filtered on each span&#39;s START time. &#x60;start&#x60; and &#x60;end&#x60; are nanosecond bounds where 0 — which is what an absent, empty or unparseable value becomes — means UNBOUNDED, so a malformed bound widens the listing instead of failing it. &#x60;limit&#x60; defaults to 100 when absent or non-positive.  It lists SPANS, not traces: several spans of one trace each count separately and each take a slot against &#x60;limit&#x60;. Assembling one trace is /v1/metrics/traces/trace. The tenant is the gateway-minted &#x60;X-Org-Id&#x60; header, falling back to the deployment brand and then &#x60;default&#x60;.
+    /// </remarks>
+    pplx::task<void> getMetricsTracesQuery(
+    ) const;
+    /// <summary>
+    /// Every span of one trace — the waterfall
+    /// </summary>
+    /// <remarks>
+    /// Answers &#x60;{spans}&#x60;: every span the org holds for the trace id in &#x60;id&#x60;, in the order they were appended, which is what a waterfall view renders. Unlike the other reads there is no count, no time range and no limit — a trace is addressed by id or not at all.  An id with no spans answers an EMPTY list, never a 404: the store cannot tell a trace that never existed from one whose spans retention has already dropped, so it does not pretend to. The tenant is the gateway-minted &#x60;X-Org-Id&#x60; header, falling back to the deployment brand and then &#x60;default&#x60;, and a trace id belonging to another org is simply not in this org&#39;s store.
+    /// </remarks>
+    pplx::task<void> getMetricsTracesTrace(
+    ) const;
+    /// <summary>
     /// Ingest a MetricBatch — the same payload the ZAP transport carries
     /// </summary>
     /// <remarks>
     /// Writes every sample in a luxfi/metric &#x60;MetricBatch&#x60; into the calling org&#39;s store and answers &#x60;{written}&#x60;: the number of SAMPLES stored, not families and not metrics. This is the exact wire shape the ZAP &#x60;MsgMetricBatch&#x60; transport carries, so the HTTP door and the optional ZAP push receiver share one code path and one meaning — the transport is an optimisation, never a different contract.  A counter or gauge lands as one sample. A histogram or summary contributes DERIVED &#x60;&lt;name&gt;_sum&#x60; and &#x60;&lt;name&gt;_count&#x60; series, so one metric can write more than one sample and &#x60;written&#x60; can exceed the number of metrics you sent. The batch&#39;s own &#x60;TimestampNs&#x60; stamps every sample it carries.  The tenant is the gateway-minted &#x60;X-Org-Id&#x60; header, falling back to the deployment brand and then &#x60;default&#x60;; each org gets its own store, WAL-durable under the deployment&#39;s data dir. A body that does not decode is 400.
     /// </remarks>
     pplx::task<void> postMetricsBatch(
+    ) const;
+    /// <summary>
+    /// Append structured log records for your org
+    /// </summary>
+    /// <remarks>
+    /// Takes &#x60;{records:[{t, level, body, labels}]}&#x60;, appends each one, and answers &#x60;{written}&#x60;. Bodies are stored verbatim; &#x60;labels&#x60; are the indexed dimensions a query filters on, so what you do not label you can only find by substring.  &#x60;t&#x60; is NANOSECONDS since the Unix epoch. A record sent without one is stored at 0 and then falls outside any query carrying a lower bound — the usual reason a successful write does not read back. Retention is a bounded ring, 1048576 records per org, oldest evicted first. No record is validated or rejected, so &#x60;written&#x60; is the number of records SENT; only a body that does not decode at all is 400.  The tenant is the gateway-minted &#x60;X-Org-Id&#x60; header, falling back to the deployment brand and then &#x60;default&#x60;; each org&#39;s records live in its own WAL-durable store.
+    /// </remarks>
+    pplx::task<void> postMetricsLogsWrite(
+    ) const;
+    /// <summary>
+    /// Append spans for your org
+    /// </summary>
+    /// <remarks>
+    /// Takes &#x60;{spans:[{traceId, spanId, parentId, name, startNs, endNs, attrs}]}&#x60;, appends each, and answers &#x60;{written}&#x60; — the number of spans sent. Every span is indexed by its trace id as it lands, which is what makes the waterfall read possible without a second store.  Times are NANOSECONDS since the Unix epoch. Retention is a bounded ring of 1048576 spans per org: past that the OLDEST are evicted to keep the newest 1048576, and the trace index is rebuilt — so a long-lived trace can lose its early spans while its later ones survive, and a waterfall read is best-effort against retention, not a guarantee.  The tenant is the gateway-minted &#x60;X-Org-Id&#x60; header, falling back to the deployment brand and then &#x60;default&#x60;. A body that does not decode is 400.
+    /// </remarks>
+    pplx::task<void> postMetricsTracesWrite(
     ) const;
     /// <summary>
     /// Append samples to your org&#39;s named, labelled series

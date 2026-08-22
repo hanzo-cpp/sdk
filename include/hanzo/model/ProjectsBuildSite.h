@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,21 +52,33 @@ public:
     /// ProjectsBuildSite members
 
 
+    /// <summary>
+    /// Brief is what the site should be, in plain language. It is the whole input the model gets and it is size-bounded.
+    /// </summary>
     utility::string_t getBrief() const;
     bool briefIsSet() const;
     void unsetBrief();
     void setBrief(const utility::string_t& value);
 
+    /// <summary>
+    /// Model names which model writes the site. Absent takes the deployment&#39;s default — this route spends inference on the caller&#39;s org either way.
+    /// </summary>
     utility::string_t getModel() const;
     bool modelIsSet() const;
     void unsetModel();
     void setModel(const utility::string_t& value);
 
+    /// <summary>
+    /// Name is the site&#39;s display name. Taken from what the model writes when omitted.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
+    /// <summary>
+    /// Slug is the handle and public host label to publish under. Derived from the name, or from the brief, when omitted.
+    /// </summary>
     utility::string_t getSlug() const;
     bool slugIsSet() const;
     void unsetSlug();

@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -53,7 +53,7 @@ public:
 
 
     /// <summary>
-    /// native target, e.g. \&quot;gfx1151\&quot;
+    /// Arch is the card&#39;s native compile target (\&quot;gfx1151\&quot;), which is what a kernel has to be built for. AMD reports one; NVIDIA cards leave it empty.
     /// </summary>
     utility::string_t getArch() const;
     bool archIsSet() const;
@@ -61,20 +61,23 @@ public:
     void setArch(const utility::string_t& value);
 
     /// <summary>
-    /// VRAM (or unified pool), e.g. \&quot;122880 MiB\&quot;
+    /// MemoryTotal is the card&#39;s VRAM in the units the host reported it in (\&quot;122880 MiB\&quot;) — a display string, not a byte count. On a unified part it is the shared CPU/GPU pool, so it is not memory reserved for the GPU.
     /// </summary>
     utility::string_t getMemoryTotal() const;
     bool memoryTotalIsSet() const;
     void unsetMemoryTotal();
     void setMemoryTotal(const utility::string_t& value);
 
+    /// <summary>
+    /// Name is the card&#39;s model exactly as its own tooling named it (\&quot;NVIDIA GB10\&quot;), never normalized — an operator matches what they see here against what nvidia-smi tells them on the box.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
     /// <summary>
-    /// unified CPU/GPU memory pool (APU / SoC)
+    /// Unified reports that CPU and GPU share one memory pool (an APU or SoC), so MemoryTotal is not private to the GPU and the host competes for it.
     /// </summary>
     bool isUnified() const;
     bool unifiedIsSet() const;

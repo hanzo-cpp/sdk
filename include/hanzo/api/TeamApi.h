@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -24,6 +24,8 @@
 
 #include "hanzo/model/BotRoster.h"
 #include "hanzo/model/BotSync.h"
+#include "hanzo/model/CollabRequest.h"
+#include "hanzo/model/CollabResult.h"
 #include "hanzo/model/CookieAck.h"
 #include "hanzo/model/PlanInfo.h"
 #include "hanzo/model/ProviderInfo.h"
@@ -114,22 +116,20 @@ public:
     pplx::task<void> getTeamBillingUi(
     ) const;
     /// <summary>
-    /// Load an asset of the wallet page
-    /// </summary>
-    /// <remarks>
-    /// Serves one file of the embedded wallet bundle — a content-hashed script or stylesheet under assets/, an icon, or the page shell itself.  A path that names NO REAL FILE falls back to the shell instead of 404ing, which is what makes a deep link into the page&#39;s own routes survive a hard refresh. So a 200 here is not proof the asset exists — a typo answers HTML.  assets/ is immutable for a year (the names carry the content hash); the shell is no-cache, so a deploy is picked up on the next load. Gated exactly like the page: 401 without a verified session, 503 when the bundle was never built.
-    /// </remarks>
-    /// <param name="wildcard1"></param>
-    pplx::task<void> getTeamBillingUiByWildcard1(
-        utility::string_t wildcard1
-    ) const;
-    /// <summary>
     /// Returns the caller org&#39;s bot members — the org&#39;s agents projected as the workspace Employees they become, each with the member account uuid and Person reference the roster addresses it by.
     /// </summary>
     /// <remarks>
     /// Returns the caller org&#39;s bot members — the org&#39;s agents projected as the workspace Employees they become, each with the member account uuid and Person reference the roster addresses it by. An agents subsystem that is not mounted answers an empty list, never an error.
     /// </remarks>
     pplx::task<std::shared_ptr<BotRoster>> getTeamBots(
+    ) const;
+    /// <summary>
+    /// Open the live collaborative-editing socket
+    /// </summary>
+    /// <remarks>
+    /// Upgrades to the hocuspocus WebSocket the Team editor syncs its Y.js documents over: binary frames of document name, message type and payload, with ONE socket multiplexing every document a tab has open. The server is a relay and an ordered update log, not a CRDT engine — it replays the log to each joining peer and broadcasts every update to the rest, which converges because Y.js updates are commutative and idempotent. There is no body; the response is a protocol upgrade.  BOTH LANES SHARE ONE ROOT. The client derives them from one configured URL — this socket at its root, the markup-snapshot RPC one segment in — so pointing the editor at this service is one value, and the two lanes cannot drift apart.  AUTH IS IN-BAND, PER DOCUMENT, NOT ON THE UPGRADE. The handshake gates only on browser Origin (403 outside the team surfaces; no Origin at all is admitted, which is what a non-browser sends), and then the first frame for a document must be an Auth message carrying the same session or workspace token every other team route verifies — a browser WebSocket cannot set an Authorization header, which is why the token rides inside the protocol. Anything else on an unauthenticated document is answered with one permission denial and nothing further.  Every document is authorized on its own: the document&#39;s workspace must be the token&#39;s workspace when the token pins one, and the caller must be a member of it. A mismatch, an unknown workspace and a non-member deny alike with \&quot;document not found\&quot;. Rooms are keyed by org and workspace and the persisted log&#39;s key embeds both, so a foreign document id can neither join a room nor read a blob.  The server pings every twenty seconds and drops a socket silent for sixty, so a backgrounded tab — whose JS timers are throttled but whose network stack still auto-pongs — stays connected instead of dying into a reconnect loop.
+    /// </remarks>
+    pplx::task<void> getTeamCollaborator(
     ) const;
     /// <summary>
     /// Download a workspace file
@@ -188,6 +188,18 @@ public:
     /// SyncBots re-projects the caller org&#39;s agents as workspace members into EVERY workspace of the org, and removes the ones whose agent is gone. It is idempotent, and admin only: mutating a workspace&#39;s roster requires the gateway-minted admin flag, which a client can never forge. It answers how many roster entries the reconcile touched.
     /// </remarks>
     pplx::task<std::shared_ptr<BotSync>> postTeamBotsSync(
+    ) const;
+    /// <summary>
+    /// CollabRPC is the collaborative-markup snapshot plane the Team front&#39;s editor speaks: createContent stores a document field&#39;s markup at a fresh, immutable blob ref and returns it, updateContent stores a new snapshot and answers nothing, and getContent reads back the exact snapshot a ref names.
+    /// </summary>
+    /// <remarks>
+    /// CollabRPC is the collaborative-markup snapshot plane the Team front&#39;s editor speaks: createContent stores a document field&#39;s markup at a fresh, immutable blob ref and returns it, updateContent stores a new snapshot and answers nothing, and getContent reads back the exact snapshot a ref names.  createContent ALSO seeds the live-editing update log from the front-supplied Y.js update, so a dialog-authored description is visible in the collaborative editor — which replays that log — and not only in snapshot reads. updateContent never touches that log: peers may be live-editing the document, and their edits are not this call&#39;s to overwrite.  Every call is scoped to the caller&#39;s VERIFIED session or workspace token: the documentId&#39;s workspace must be the token&#39;s workspace when the token names one, and the caller must be a member of it. An unknown workspace, another tenant&#39;s workspace and a workspace the caller is not in all answer the same 404, so a probe learns nothing about what exists.
+    /// </remarks>
+    /// <param name="documentId">DocumentID addresses the document field, as \&quot;&lt;workspaceUuid&gt;|&lt;objectClass&gt;|&lt;objectId&gt;|&lt;objectAttr&gt;\&quot; — the collaborator-client encodeDocumentId shape, from the path.</param>
+    /// <param name="collabRequest"></param>
+    pplx::task<std::shared_ptr<CollabResult>> postTeamCollaboratorRpcByDocumentid(
+        utility::string_t documentId,
+        std::shared_ptr<CollabRequest> collabRequest
     ) const;
     /// <summary>
     /// Upload a file into a workspace

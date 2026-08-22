@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,11 +52,17 @@ public:
     /// ProvisionRequest members
 
 
+    /// <summary>
+    /// Instance binds a DEDICATED add-on to the app instance whose &lt;instance&gt;-addons Secret receives the &lt;KIND&gt;_URL (e.g. \&quot;commerce\&quot;). Optional: empty means \&quot;not instance-bound\&quot; — the DSN is returned once and wired by the caller.
+    /// </summary>
     utility::string_t getInstance() const;
     bool instanceIsSet() const;
     void unsetInstance();
     void setInstance(const utility::string_t& value);
 
+    /// <summary>
+    /// Name is the org-unique slug for the new resource, matching ^[a-z0-9]([a-z0-9-]{0,38}[a-z0-9])?$. Every physical name derives from it.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();

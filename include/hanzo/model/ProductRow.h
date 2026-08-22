@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -53,176 +53,50 @@ public:
 
 
     /// <summary>
-    /// hanzo-k8s
+    /// Orders is how many order_completed events carried it.
     /// </summary>
-    utility::string_t getCluster() const;
-    bool clusterIsSet() const;
-    void unsetCluster();
-    void setCluster(const utility::string_t& value);
+    int32_t getOrders() const;
+    bool ordersIsSet() const;
+    void unsetOrders();
+    void setOrders(int32_t value);
 
     /// <summary>
-    /// spec.image.tag on the App CR (declared truth)
+    /// ProductID is the product the order events named.
     /// </summary>
-    utility::string_t getDeclaredTag() const;
-    bool declaredTagIsSet() const;
-    void unsetDeclaredTag();
-    void setDeclaredTag(const utility::string_t& value);
+    utility::string_t getProductId() const;
+    bool productIdIsSet() const;
+    void unsetProductId();
+    void setProductId(const utility::string_t& value);
 
     /// <summary>
-    /// any drift flag present
+    /// Revenue is the total they carried, in the events&#39; own currency unit.
     /// </summary>
-    bool isDrift() const;
-    bool driftIsSet() const;
-    void unsetDrift();
-    void setDrift(bool value);
+    double getRevenue() const;
+    bool revenueIsSet() const;
+    void unsetRevenue();
+    void setRevenue(double value);
 
     /// <summary>
-    /// ok|yellow|red (rolled-up)
+    /// Units is the summed quantity sold.
     /// </summary>
-    utility::string_t getDriftSeverity() const;
-    bool driftSeverityIsSet() const;
-    void unsetDriftSeverity();
-    void setDriftSeverity(const utility::string_t& value);
-
-    /// <summary>
-    /// main|test|dev (lifecycle namespace)
-    /// </summary>
-    utility::string_t getEnv() const;
-    bool envIsSet() const;
-    void unsetEnv();
-    void setEnv(const utility::string_t& value);
-
-    /// <summary>
-    /// green|yellow|red|unknown
-    /// </summary>
-    utility::string_t getHealth() const;
-    bool healthIsSet() const;
-    void unsetHealth();
-    void setHealth(const utility::string_t& value);
-
-    /// <summary>
-    /// operator App CR spec.role (sql|kv|generic|ingress) or \&quot;\&quot;
-    /// </summary>
-    utility::string_t getKind() const;
-    bool kindIsSet() const;
-    void unsetKind();
-    void setKind(const utility::string_t& value);
-
-    /// <summary>
-    /// newest released tag (GH release reader — empty until wired)
-    /// </summary>
-    utility::string_t getLatestTag() const;
-    bool latestTagIsSet() const;
-    void unsetLatestTag();
-    void setLatestTag(const utility::string_t& value);
-
-    utility::string_t getName() const;
-    bool nameIsSet() const;
-    void unsetName();
-    void setName(const utility::string_t& value);
-
-    /// <summary>
-    /// k8s namespace
-    /// </summary>
-    utility::string_t getRNamespace() const;
-    bool rNamespaceIsSet() const;
-    void unsetr_namespace();
-    void setRNamespace(const utility::string_t& value);
-
-    /// <summary>
-    /// image namespace (hanzoai|luxfi|docker.io/…)
-    /// </summary>
-    utility::string_t getOrg() const;
-    bool orgIsSet() const;
-    void unsetOrg();
-    void setOrg(const utility::string_t& value);
-
-    /// <summary>
-    /// operator status.phase (Running/Creating/…)
-    /// </summary>
-    utility::string_t getPhase() const;
-    bool phaseIsSet() const;
-    void unsetPhase();
-    void setPhase(const utility::string_t& value);
-
-    /// <summary>
-    /// owner/repo image coordinate
-    /// </summary>
-    utility::string_t getRepo() const;
-    bool repoIsSet() const;
-    void unsetRepo();
-    void setRepo(const utility::string_t& value);
-
-    /// <summary>
-    /// observed from the live Deployment
-    /// </summary>
-    utility::string_t getRunningTag() const;
-    bool runningTagIsSet() const;
-    void unsetRunningTag();
-    void setRunningTag(const utility::string_t& value);
-
-    /// <summary>
-    /// derived: cloud|data|edge|daemon|paas|app (grouping)
-    /// </summary>
-    utility::string_t getTier() const;
-    bool tierIsSet() const;
-    void unsetTier();
-    void setTier(const utility::string_t& value);
-
-    utility::string_t getUpdated() const;
-    bool updatedIsSet() const;
-    void unsetUpdated();
-    void setUpdated(const utility::string_t& value);
+    int32_t getUnits() const;
+    bool unitsIsSet() const;
+    void unsetUnits();
+    void setUnits(int32_t value);
 
 
 protected:
-    utility::string_t m_Cluster;
-    bool m_ClusterIsSet;
+    int32_t m_Orders;
+    bool m_OrdersIsSet;
 
-    utility::string_t m_DeclaredTag;
-    bool m_DeclaredTagIsSet;
+    utility::string_t m_ProductId;
+    bool m_ProductIdIsSet;
 
-    bool m_Drift;
-    bool m_DriftIsSet;
+    double m_Revenue;
+    bool m_RevenueIsSet;
 
-    utility::string_t m_DriftSeverity;
-    bool m_DriftSeverityIsSet;
-
-    utility::string_t m_Env;
-    bool m_EnvIsSet;
-
-    utility::string_t m_Health;
-    bool m_HealthIsSet;
-
-    utility::string_t m_Kind;
-    bool m_KindIsSet;
-
-    utility::string_t m_LatestTag;
-    bool m_LatestTagIsSet;
-
-    utility::string_t m_Name;
-    bool m_NameIsSet;
-
-    utility::string_t m_r_namespace;
-    bool m_r_namespaceIsSet;
-
-    utility::string_t m_Org;
-    bool m_OrgIsSet;
-
-    utility::string_t m_Phase;
-    bool m_PhaseIsSet;
-
-    utility::string_t m_Repo;
-    bool m_RepoIsSet;
-
-    utility::string_t m_RunningTag;
-    bool m_RunningTagIsSet;
-
-    utility::string_t m_Tier;
-    bool m_TierIsSet;
-
-    utility::string_t m_Updated;
-    bool m_UpdatedIsSet;
+    int32_t m_Units;
+    bool m_UnitsIsSet;
 
 };
 

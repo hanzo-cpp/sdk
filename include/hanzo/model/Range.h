@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -53,11 +53,17 @@ public:
     /// Range members
 
 
+    /// <summary>
+    /// End is the position just past the span, excluded — the range is half-open, so an empty range has Start equal to End.
+    /// </summary>
     std::shared_ptr<Position> getEnd() const;
     bool endIsSet() const;
     void unsetEnd();
     void setEnd(const std::shared_ptr<Position>& value);
 
+    /// <summary>
+    /// Start is the first position in the span, included.
+    /// </summary>
     std::shared_ptr<Position> getStart() const;
     bool startIsSet() const;
     void unsetStart();

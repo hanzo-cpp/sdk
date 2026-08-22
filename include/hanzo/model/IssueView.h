@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -53,23 +53,32 @@ public:
     /// IssueView members
 
 
+    /// <summary>
+    /// Assignee is who holds the work — an IAM username, or the login of the FIRST assignee when a forge issue has several. Absent when nobody holds it, which is exactly the state a claim needs.
+    /// </summary>
     utility::string_t getAssignee() const;
     bool assigneeIsSet() const;
     void unsetAssignee();
     void setAssignee(const utility::string_t& value);
 
+    /// <summary>
+    /// CreatedAt is when the item was opened, in unix seconds. 0 when the source gave no parseable timestamp.
+    /// </summary>
     int32_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
     void setCreatedAt(int32_t value);
 
+    /// <summary>
+    /// Description is the body, markdown as its author wrote it. Absent when empty.
+    /// </summary>
     utility::string_t getDescription() const;
     bool descriptionIsSet() const;
     void unsetDescription();
     void setDescription(const utility::string_t& value);
 
     /// <summary>
-    /// unix seconds; absent &#x3D; no due date
+    /// DueAt is when the work is due, in unix seconds; absent means no due date. A forge row takes it from its MILESTONE&#39;s due date, since a forge issue has no deadline of its own. Never before StartAt, and never past 2200-01-01.
     /// </summary>
     int32_t getDueAt() const;
     bool dueAtIsSet() const;
@@ -77,20 +86,23 @@ public:
     void setDueAt(int32_t value);
 
     /// <summary>
-    /// external anchor
+    /// ExtRef anchors the item to something outside the todo — a mirrored issue (\&quot;github:owner/repo#123\&quot;), a pushed PR branch, or a record on another plane. It is the idempotency key the mirror upsert matches on. Absent when the item has no external origin.
     /// </summary>
     utility::string_t getExtRef() const;
     bool extRefIsSet() const;
     void unsetExtRef();
     void setExtRef(const utility::string_t& value);
 
+    /// <summary>
+    /// ID is the work item&#39;s opaque handle, and it is NOT how you address it — ProjectKey plus Number is. Its shape says which source answered: a forge issue&#39;s is the forge&#39;s own numeric id in decimal, an index row&#39;s a minted \&quot;issue_\&quot; id.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
     /// <summary>
-    /// KEY-&lt;number&gt;, the human handle
+    /// Identifier is the human handle, \&quot;&lt;key&gt;#&lt;number&gt;\&quot; — the board and the number on it, joined. ONE spelling whichever source answered, because a list where forge rows read cli#1 and index rows read OPS-3 is two products in one list.
     /// </summary>
     utility::string_t getIdentifier() const;
     bool identifierIsSet() const;
@@ -98,35 +110,47 @@ public:
     void setIdentifier(const utility::string_t& value);
 
     /// <summary>
-    /// issue | pr | epic
+    /// Kind is what the item IS: issue, pr or epic. Set once at create and never changed, so a row does not migrate between surfaces. Deliberately not \&quot;task\&quot; — that word is the async plane (contract.go).
     /// </summary>
     utility::string_t getKind() const;
     bool kindIsSet() const;
     void unsetKind();
     void setKind(const utility::string_t& value);
 
+    /// <summary>
+    /// Labels are the item&#39;s remaining tags, with the status and priority labels lifted OUT — a column that stayed here would render twice, once as the card&#39;s column and once as a chip on the card. Always present; empty is [].
+    /// </summary>
     std::vector<utility::string_t> getLabels() const;
     bool labelsIsSet() const;
     void unsetLabels();
     void setLabels(const std::vector<utility::string_t>& value);
 
+    /// <summary>
+    /// Number is the item&#39;s number ON ITS BOARD, from 1 and monotonic there — the forge&#39;s own issue number for a forge row, allocated inside the create transaction for an index row so it cannot race. Unique per board, never across the org.
+    /// </summary>
     int32_t getNumber() const;
     bool numberIsSet() const;
     void unsetnumber();
     void setNumber(int32_t value);
 
+    /// <summary>
+    /// Priority is urgent, high, medium, low or none. Also a label on a forge row. Never empty: \&quot;none\&quot; when nothing names one, so callers compare a value rather than test for absence.
+    /// </summary>
     utility::string_t getPriority() const;
     bool priorityIsSet() const;
     void unsetPriority();
     void setPriority(const utility::string_t& value);
 
+    /// <summary>
+    /// ProjectKey is the board this item is on: the repository name for a forge issue, the index board&#39;s key otherwise. With Number it is the item&#39;s address in every other route.
+    /// </summary>
     utility::string_t getProjectKey() const;
     bool projectKeyIsSet() const;
     void unsetProjectKey();
     void setProjectKey(const utility::string_t& value);
 
     /// <summary>
-    /// git repo binding
+    /// Repo is the git repository the item is bound to, so a repository&#39;s Issues and PRs tabs are filters over this one table. Absent when the item is not repo-bound.
     /// </summary>
     utility::string_t getRepo() const;
     bool repoIsSet() const;
@@ -134,7 +158,7 @@ public:
     void setRepo(const utility::string_t& value);
 
     /// <summary>
-    /// team | git | crm | helpdesk | cms | agent
+    /// Source is which surface OPENED it: team, git, crm, helpdesk, cms or agent. Also set once. It is the ORIGIN, not the subject — source&#x3D;helpdesk is an engineering issue opened from a support escalation, not a support ticket.
     /// </summary>
     utility::string_t getSource() const;
     bool sourceIsSet() const;
@@ -142,23 +166,32 @@ public:
     void setSource(const utility::string_t& value);
 
     /// <summary>
-    /// unix seconds; absent &#x3D; unscheduled
+    /// StartAt is when the work starts, in unix seconds; absent means unscheduled. A forge row takes it from when the issue was opened, but only once the issue has a due date — an interval needs both ends.
     /// </summary>
     int32_t getStartAt() const;
     bool startAtIsSet() const;
     void unsetStartAt();
     void setStartAt(int32_t value);
 
+    /// <summary>
+    /// Status is the board column: backlog, todo, in_progress, done or canceled, and nothing else. On a forge row it is read off a LABEL, so relabelling in the forge web UI moves the card here and vice versa — and a CLOSED forge issue reads done whatever its labels say. Never empty: \&quot;backlog\&quot; when nothing names a column.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
+    /// <summary>
+    /// Title is the item&#39;s one-line summary.
+    /// </summary>
     utility::string_t getTitle() const;
     bool titleIsSet() const;
     void unsetTitle();
     void setTitle(const utility::string_t& value);
 
+    /// <summary>
+    /// UpdatedAt is when it last changed, in unix seconds.
+    /// </summary>
     int32_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();

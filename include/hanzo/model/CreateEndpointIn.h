@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -70,7 +70,7 @@ public:
     void setEvents(const std::vector<utility::string_t>& value);
 
     /// <summary>
-    /// Status is \&quot;active\&quot; or \&quot;disabled\&quot;. Empty defaults to active. A disabled endpoint receives no bus deliveries, but can still be exercised with POST /v1/webhooks/{id}/test.
+    /// Status is \&quot;active\&quot; or \&quot;disabled\&quot;. Empty defaults to active. A disabled endpoint receives no bus deliveries, but can still be exercised with POST /v1/webhook/{id}/test.
     /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;

@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,16 +52,25 @@ public:
     /// VersionMeta members
 
 
+    /// <summary>
+    /// Brand is the white-label key this revision was authored under; empty is the shared base playbook. Revisions of two brands never share a number line.
+    /// </summary>
     utility::string_t getBrand() const;
     bool brandIsSet() const;
     void unsetBrand();
     void setBrand(const utility::string_t& value);
 
+    /// <summary>
+    /// UpdatedAt is when this revision was written, as Unix seconds — the \&quot;who changed the playbook, and when\&quot; half of the audit trail.
+    /// </summary>
     int32_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
     void setUpdatedAt(int32_t value);
 
+    /// <summary>
+    /// Version is the store&#39;s own revision counter for that brand, starting at 1 for the seeded playbook and incrementing on every edit. Nothing is overwritten, so the highest number is the live one and every lower number is still readable. It is not the playbook&#39;s authored &#x60;version&#x60; string.
+    /// </summary>
     int32_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();

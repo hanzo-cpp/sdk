@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -32,6 +32,8 @@ DestinationStatus::DestinationStatus()
     m_LiveIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
+    m_Pixel = false;
+    m_PixelIsSet = false;
     m_Platform = utility::conversions::to_string_t("");
     m_PlatformIsSet = false;
     m_SecretsIsSet = false;
@@ -88,6 +90,11 @@ web::json::value DestinationStatus::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("name"))] = ModelBase::toJson(m_Name);
+    }
+    if(m_PixelIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("pixel"))] = ModelBase::toJson(m_Pixel);
     }
     if(m_PlatformIsSet)
     {
@@ -194,6 +201,17 @@ bool DestinationStatus::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("pixel"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("pixel")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_setPixel;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setPixel);
+            setPixel(refVal_setPixel);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("platform"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("platform")));
@@ -257,6 +275,10 @@ void DestinationStatus::toMultipart(std::shared_ptr<MultipartFormData> multipart
     if(m_NameIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("name")), m_Name));
+    }
+    if(m_PixelIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("pixel")), m_Pixel));
     }
     if(m_PlatformIsSet)
     {
@@ -324,6 +346,12 @@ bool DestinationStatus::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
         utility::string_t refVal_setName;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("name"))), refVal_setName );
         setName(refVal_setName);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("pixel"))))
+    {
+        bool refVal_setPixel;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("pixel"))), refVal_setPixel );
+        setPixel(refVal_setPixel);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("platform"))))
     {
@@ -508,6 +536,27 @@ bool DestinationStatus::nameIsSet() const
 void DestinationStatus::unsetName()
 {
     m_NameIsSet = false;
+}
+bool DestinationStatus::isPixel() const
+{
+    return m_Pixel;
+}
+
+
+void DestinationStatus::setPixel(bool value)
+{
+    m_Pixel = value;
+    m_PixelIsSet = true;
+}
+
+bool DestinationStatus::pixelIsSet() const
+{
+    return m_PixelIsSet;
+}
+
+void DestinationStatus::unsetPixel()
+{
+    m_PixelIsSet = false;
 }
 utility::string_t DestinationStatus::getPlatform() const
 {

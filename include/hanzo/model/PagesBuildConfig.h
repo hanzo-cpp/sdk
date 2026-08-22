@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,16 +52,25 @@ public:
     /// PagesBuildConfig members
 
 
+    /// <summary>
+    /// BuildCommand is what Cloudflare runs to build the site (\&quot;npm run build\&quot;). Omitted means no build step: the repository is published as it stands.
+    /// </summary>
     utility::string_t getBuildCommand() const;
     bool buildCommandIsSet() const;
     void unsetBuild_command();
     void setBuildCommand(const utility::string_t& value);
 
+    /// <summary>
+    /// DestinationDir is the directory the build leaves the site in (\&quot;dist\&quot;), relative to RootDir. It is what gets served.
+    /// </summary>
     utility::string_t getDestinationDir() const;
     bool destinationDirIsSet() const;
     void unsetDestination_dir();
     void setDestinationDir(const utility::string_t& value);
 
+    /// <summary>
+    /// RootDir is where in the repository the build runs, for a project that is not at the repository root. Omitted means the root.
+    /// </summary>
     utility::string_t getRootDir() const;
     bool rootDirIsSet() const;
     void unsetRoot_dir();

@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -54,16 +54,25 @@ public:
     /// Location members
 
 
+    /// <summary>
+    /// External is true when the answer left the repository — the case a static index cannot answer, and the reason this service resolves through dependencies.
+    /// </summary>
     bool isExternal() const;
     bool externalIsSet() const;
     void unsetExternal();
     void setExternal(bool value);
 
+    /// <summary>
+    /// Path is repo-relative while External is false, and the module coordinate (\&quot;golang.org/x/mod@v0.14.0/semver/semver.go\&quot;) once it is true.
+    /// </summary>
     utility::string_t getPath() const;
     bool pathIsSet() const;
     void unsetPath();
     void setPath(const utility::string_t& value);
 
+    /// <summary>
+    /// Range is the span inside that file, in LSP positions.
+    /// </summary>
     std::shared_ptr<Range> getRange() const;
     bool rangeIsSet() const;
     void unsetRange();

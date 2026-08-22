@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -18,25 +18,14 @@ namespace model {
 
 Form::Form()
 {
-    m_Category = utility::conversions::to_string_t("");
-    m_CategoryIsSet = false;
-    m_CreatedTime = utility::conversions::to_string_t("");
-    m_CreatedTimeIsSet = false;
-    m_DisplayName = utility::conversions::to_string_t("");
-    m_DisplayNameIsSet = false;
-    m_FormItemsIsSet = false;
+    m_Code = utility::conversions::to_string_t("");
+    m_CodeIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_Owner = utility::conversions::to_string_t("");
-    m_OwnerIsSet = false;
-    m_Position = utility::conversions::to_string_t("");
-    m_PositionIsSet = false;
-    m_Tag = utility::conversions::to_string_t("");
-    m_TagIsSet = false;
-    m_Type = utility::conversions::to_string_t("");
-    m_TypeIsSet = false;
-    m_Url = utility::conversions::to_string_t("");
-    m_UrlIsSet = false;
+    m_r_signed = false;
+    m_r_signedIsSet = false;
+    m_Why = utility::conversions::to_string_t("");
+    m_WhyIsSet = false;
 }
 
 Form::~Form()
@@ -51,55 +40,25 @@ void Form::validate()
 web::json::value Form::toJson() const
 {
     web::json::value val = web::json::value::object();
-    if(m_CategoryIsSet)
+    if(m_CodeIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("category"))] = ModelBase::toJson(m_Category);
-    }
-    if(m_CreatedTimeIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("createdTime"))] = ModelBase::toJson(m_CreatedTime);
-    }
-    if(m_DisplayNameIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("displayName"))] = ModelBase::toJson(m_DisplayName);
-    }
-    if(m_FormItemsIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("formItems"))] = ModelBase::toJson(m_FormItems);
+        val[utility::conversions::to_string_t(_XPLATSTR("code"))] = ModelBase::toJson(m_Code);
     }
     if(m_NameIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("name"))] = ModelBase::toJson(m_Name);
     }
-    if(m_OwnerIsSet)
+    if(m_r_signedIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("owner"))] = ModelBase::toJson(m_Owner);
+        val[utility::conversions::to_string_t(_XPLATSTR("signed"))] = ModelBase::toJson(m_r_signed);
     }
-    if(m_PositionIsSet)
+    if(m_WhyIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("position"))] = ModelBase::toJson(m_Position);
-    }
-    if(m_TagIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("tag"))] = ModelBase::toJson(m_Tag);
-    }
-    if(m_TypeIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("type"))] = ModelBase::toJson(m_Type);
-    }
-    if(m_UrlIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("url"))] = ModelBase::toJson(m_Url);
+        val[utility::conversions::to_string_t(_XPLATSTR("why"))] = ModelBase::toJson(m_Why);
     }
 
     return val;
@@ -108,47 +67,14 @@ web::json::value Form::toJson() const
 bool Form::fromJson(const web::json::value& val)
 {
     bool ok = true;
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("category"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("code"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("category")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("code")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setCategory;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setCategory);
-            setCategory(refVal_setCategory);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("createdTime"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdTime")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setCreatedTime;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedTime);
-            setCreatedTime(refVal_setCreatedTime);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("displayName"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("displayName")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setDisplayName;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setDisplayName);
-            setDisplayName(refVal_setDisplayName);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("formItems"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("formItems")));
-        if(!fieldValue.is_null())
-        {
-            std::vector<std::shared_ptr<FormItem>> refVal_setFormItems;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setFormItems);
-            setFormItems(refVal_setFormItems);
+            utility::string_t refVal_setCode;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setCode);
+            setCode(refVal_setCode);
             
         }
     }
@@ -163,58 +89,25 @@ bool Form::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("owner"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("signed"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("owner")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("signed")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setOwner;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setOwner);
-            setOwner(refVal_setOwner);
+            bool refVal_setRSigned;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setRSigned);
+            setRSigned(refVal_setRSigned);
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("position"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("why"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("position")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("why")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setPosition;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setPosition);
-            setPosition(refVal_setPosition);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("tag"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tag")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTag;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTag);
-            setTag(refVal_setTag);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("type"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("type")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setType;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setType);
-            setType(refVal_setType);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("url"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("url")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setUrl;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setUrl);
-            setUrl(refVal_setUrl);
+            utility::string_t refVal_setWhy;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setWhy);
+            setWhy(refVal_setWhy);
             
         }
     }
@@ -228,45 +121,21 @@ void Form::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utili
     {
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
-    if(m_CategoryIsSet)
+    if(m_CodeIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("category")), m_Category));
-    }
-    if(m_CreatedTimeIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("createdTime")), m_CreatedTime));
-    }
-    if(m_DisplayNameIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("displayName")), m_DisplayName));
-    }
-    if(m_FormItemsIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("formItems")), m_FormItems));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("code")), m_Code));
     }
     if(m_NameIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("name")), m_Name));
     }
-    if(m_OwnerIsSet)
+    if(m_r_signedIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("owner")), m_Owner));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("signed")), m_r_signed));
     }
-    if(m_PositionIsSet)
+    if(m_WhyIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("position")), m_Position));
-    }
-    if(m_TagIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("tag")), m_Tag));
-    }
-    if(m_TypeIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("type")), m_Type));
-    }
-    if(m_UrlIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("url")), m_Url));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("why")), m_Why));
     }
 }
 
@@ -279,29 +148,11 @@ bool Form::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("category"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("code"))))
     {
-        utility::string_t refVal_setCategory;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("category"))), refVal_setCategory );
-        setCategory(refVal_setCategory);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdTime"))))
-    {
-        utility::string_t refVal_setCreatedTime;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdTime"))), refVal_setCreatedTime );
-        setCreatedTime(refVal_setCreatedTime);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("displayName"))))
-    {
-        utility::string_t refVal_setDisplayName;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("displayName"))), refVal_setDisplayName );
-        setDisplayName(refVal_setDisplayName);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("formItems"))))
-    {
-        std::vector<std::shared_ptr<FormItem>> refVal_setFormItems;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("formItems"))), refVal_setFormItems );
-        setFormItems(refVal_setFormItems);
+        utility::string_t refVal_setCode;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("code"))), refVal_setCode );
+        setCode(refVal_setCode);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("name"))))
     {
@@ -309,123 +160,42 @@ bool Form::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("name"))), refVal_setName );
         setName(refVal_setName);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("owner"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("signed"))))
     {
-        utility::string_t refVal_setOwner;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("owner"))), refVal_setOwner );
-        setOwner(refVal_setOwner);
+        bool refVal_setRSigned;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("signed"))), refVal_setRSigned );
+        setRSigned(refVal_setRSigned);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("position"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("why"))))
     {
-        utility::string_t refVal_setPosition;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("position"))), refVal_setPosition );
-        setPosition(refVal_setPosition);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tag"))))
-    {
-        utility::string_t refVal_setTag;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("tag"))), refVal_setTag );
-        setTag(refVal_setTag);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("type"))))
-    {
-        utility::string_t refVal_setType;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("type"))), refVal_setType );
-        setType(refVal_setType);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("url"))))
-    {
-        utility::string_t refVal_setUrl;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("url"))), refVal_setUrl );
-        setUrl(refVal_setUrl);
+        utility::string_t refVal_setWhy;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("why"))), refVal_setWhy );
+        setWhy(refVal_setWhy);
     }
     return ok;
 }
 
 
-utility::string_t Form::getCategory() const
+utility::string_t Form::getCode() const
 {
-    return m_Category;
+    return m_Code;
 }
 
 
-void Form::setCategory(const utility::string_t& value)
+void Form::setCode(const utility::string_t& value)
 {
-    m_Category = value;
-    m_CategoryIsSet = true;
+    m_Code = value;
+    m_CodeIsSet = true;
 }
 
-bool Form::categoryIsSet() const
+bool Form::codeIsSet() const
 {
-    return m_CategoryIsSet;
+    return m_CodeIsSet;
 }
 
-void Form::unsetCategory()
+void Form::unsetCode()
 {
-    m_CategoryIsSet = false;
-}
-utility::string_t Form::getCreatedTime() const
-{
-    return m_CreatedTime;
-}
-
-
-void Form::setCreatedTime(const utility::string_t& value)
-{
-    m_CreatedTime = value;
-    m_CreatedTimeIsSet = true;
-}
-
-bool Form::createdTimeIsSet() const
-{
-    return m_CreatedTimeIsSet;
-}
-
-void Form::unsetCreatedTime()
-{
-    m_CreatedTimeIsSet = false;
-}
-utility::string_t Form::getDisplayName() const
-{
-    return m_DisplayName;
-}
-
-
-void Form::setDisplayName(const utility::string_t& value)
-{
-    m_DisplayName = value;
-    m_DisplayNameIsSet = true;
-}
-
-bool Form::displayNameIsSet() const
-{
-    return m_DisplayNameIsSet;
-}
-
-void Form::unsetDisplayName()
-{
-    m_DisplayNameIsSet = false;
-}
-std::vector<std::shared_ptr<FormItem>> Form::getFormItems() const
-{
-    return m_FormItems;
-}
-
-
-void Form::setFormItems(const std::vector<std::shared_ptr<FormItem>>& value)
-{
-    m_FormItems = value;
-    m_FormItemsIsSet = true;
-}
-
-bool Form::formItemsIsSet() const
-{
-    return m_FormItemsIsSet;
-}
-
-void Form::unsetFormItems()
-{
-    m_FormItemsIsSet = false;
+    m_CodeIsSet = false;
 }
 utility::string_t Form::getName() const
 {
@@ -448,110 +218,47 @@ void Form::unsetName()
 {
     m_NameIsSet = false;
 }
-utility::string_t Form::getOwner() const
+bool Form::isRSigned() const
 {
-    return m_Owner;
+    return m_r_signed;
 }
 
 
-void Form::setOwner(const utility::string_t& value)
+void Form::setRSigned(bool value)
 {
-    m_Owner = value;
-    m_OwnerIsSet = true;
+    m_r_signed = value;
+    m_r_signedIsSet = true;
 }
 
-bool Form::ownerIsSet() const
+bool Form::rSignedIsSet() const
 {
-    return m_OwnerIsSet;
+    return m_r_signedIsSet;
 }
 
-void Form::unsetOwner()
+void Form::unsetr_signed()
 {
-    m_OwnerIsSet = false;
+    m_r_signedIsSet = false;
 }
-utility::string_t Form::getPosition() const
+utility::string_t Form::getWhy() const
 {
-    return m_Position;
-}
-
-
-void Form::setPosition(const utility::string_t& value)
-{
-    m_Position = value;
-    m_PositionIsSet = true;
-}
-
-bool Form::positionIsSet() const
-{
-    return m_PositionIsSet;
-}
-
-void Form::unsetPosition()
-{
-    m_PositionIsSet = false;
-}
-utility::string_t Form::getTag() const
-{
-    return m_Tag;
+    return m_Why;
 }
 
 
-void Form::setTag(const utility::string_t& value)
+void Form::setWhy(const utility::string_t& value)
 {
-    m_Tag = value;
-    m_TagIsSet = true;
+    m_Why = value;
+    m_WhyIsSet = true;
 }
 
-bool Form::tagIsSet() const
+bool Form::whyIsSet() const
 {
-    return m_TagIsSet;
+    return m_WhyIsSet;
 }
 
-void Form::unsetTag()
+void Form::unsetWhy()
 {
-    m_TagIsSet = false;
-}
-utility::string_t Form::getType() const
-{
-    return m_Type;
-}
-
-
-void Form::setType(const utility::string_t& value)
-{
-    m_Type = value;
-    m_TypeIsSet = true;
-}
-
-bool Form::typeIsSet() const
-{
-    return m_TypeIsSet;
-}
-
-void Form::unsetType()
-{
-    m_TypeIsSet = false;
-}
-utility::string_t Form::getUrl() const
-{
-    return m_Url;
-}
-
-
-void Form::setUrl(const utility::string_t& value)
-{
-    m_Url = value;
-    m_UrlIsSet = true;
-}
-
-bool Form::urlIsSet() const
-{
-    return m_UrlIsSet;
-}
-
-void Form::unsetUrl()
-{
-    m_UrlIsSet = false;
+    m_WhyIsSet = false;
 }
 
 }

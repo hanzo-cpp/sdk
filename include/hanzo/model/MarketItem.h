@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -60,6 +60,9 @@ public:
     void unsetActivated();
     void setActivated(bool value);
 
+    /// <summary>
+    /// Category is that same listing&#39;s grouping. Free text chosen by the publisher, absent when there is no public listing or the publisher left it blank.
+    /// </summary>
     utility::string_t getCategory() const;
     bool categoryIsSet() const;
     void unsetCategory();
@@ -80,6 +83,9 @@ public:
     void unsetInputSchema();
     void setInputSchema(const std::shared_ptr<AnyType>& value);
 
+    /// <summary>
+    /// Installed is whether the tool is activated for THIS caller&#39;s (org, project): the same bit as Activated, under the shop&#39;s name for it, which install and uninstall are the writes for. It is per caller, so one listing reads installed for one org and not for another.
+    /// </summary>
     bool isInstalled() const;
     bool installedIsSet() const;
     void unsetInstalled();
@@ -100,6 +106,9 @@ public:
     void unsetSource();
     void setSource(const utility::string_t& value);
 
+    /// <summary>
+    /// Title is the shop-window name, painted over the registry Name from the CHEAPEST public listing for this tool — several orgs may list the same one, and the row shown is the one a buyer would pay. Absent when no org has listed the tool publicly: that row is a plain capability, not an offer.
+    /// </summary>
     utility::string_t getTitle() const;
     bool titleIsSet() const;
     void unsetTitle();

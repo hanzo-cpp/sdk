@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,16 +52,25 @@ public:
     /// Unsubscribed members
 
 
+    /// <summary>
+    /// Address is the recipient now opted out, normalized (lower-cased, trimmed) to the form the send gate matches on — so it can differ in case from the address the link carried.
+    /// </summary>
     utility::string_t getAddress() const;
     bool addressIsSet() const;
     void unsetAddress();
     void setAddress(const utility::string_t& value);
 
+    /// <summary>
+    /// Channel is the ONE surface opted out of: email, sms, social, meta, google or tiktok. The other channels are untouched, and so is this address in every other org.
+    /// </summary>
     utility::string_t getChannel() const;
     bool channelIsSet() const;
     void unsetChannel();
     void setChannel(const utility::string_t& value);
 
+    /// <summary>
+    /// Unsubscribed is always true here: the opt-out is idempotent, so a second click on the same link confirms the same thing rather than reporting nothing changed. A refused token never reaches this shape — it is a 403.
+    /// </summary>
     bool isUnsubscribed() const;
     bool unsubscribedIsSet() const;
     void unsetUnsubscribed();

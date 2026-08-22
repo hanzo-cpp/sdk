@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -55,11 +55,17 @@ public:
     /// TreeNode members
 
 
+    /// <summary>
+    /// Children is this node&#39;s direct children, each a whole node, so the array nests to the depth of the flow. A leaf carries null rather than an empty array. The subtree is materialised in full, up to 10000 nodes, out of one indexed read of the root; nothing is walked node by node.
+    /// </summary>
     std::vector<std::shared_ptr<TreeNode>> getChildren() const;
     bool childrenIsSet() const;
     void unsetChildren();
     void setChildren(const std::vector<std::shared_ptr<TreeNode>>& value);
 
+    /// <summary>
+    /// Session is this node&#39;s own session, carrying its event count and its direct fan-out. It is the same shape the list and detail reads answer with, minus the last-event preview, which the tree does not fetch.
+    /// </summary>
     std::shared_ptr<SessionView> getSession() const;
     bool sessionIsSet() const;
     void unsetSession();

@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,26 +52,41 @@ public:
     /// RoutedRunOut members
 
 
+    /// <summary>
+    /// Base is the branch to start FROM. Empty means the repository&#39;s default — resolve it on the machine, since the machine is the one holding the clone.
+    /// </summary>
     utility::string_t getBase() const;
     bool baseIsSet() const;
     void unsetBase();
     void setBase(const utility::string_t& value);
 
+    /// <summary>
+    /// Branch is the ref the run must push its work to, and the ONLY one it is permitted to write: the forge&#39;s ref policy refuses anything else from this run&#39;s credential. It is decided at dispatch and exists before the work does.
+    /// </summary>
     utility::string_t getBranch() const;
     bool branchIsSet() const;
     void unsetBranch();
     void setBranch(const utility::string_t& value);
 
+    /// <summary>
+    /// CloneURL is how to fetch the repository. It carries NO credential — the machine authenticates with the git identity it already holds — which is why this whole shape is safe to hand to a claimed runner.
+    /// </summary>
     utility::string_t getCloneUrl() const;
     bool cloneUrlIsSet() const;
     void unsetCloneUrl();
     void setCloneUrl(const utility::string_t& value);
 
+    /// <summary>
+    /// Project is the product slug the run is filed under, so the machine can tag what it produces. Empty when the dispatch named none.
+    /// </summary>
     utility::string_t getProject() const;
     bool projectIsSet() const;
     void unsetProject();
     void setProject(const utility::string_t& value);
 
+    /// <summary>
+    /// Prompt is the task, in full, as the person wrote it. There is no second field for context.
+    /// </summary>
     utility::string_t getPrompt() const;
     bool promptIsSet() const;
     void unsetPrompt();

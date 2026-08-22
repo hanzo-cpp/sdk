@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,21 +52,33 @@ public:
     /// BuildRequest members
 
 
+    /// <summary>
+    /// Name is the plugin&#39;s name: one lowercase path segment (a-z0-9, _ or -), and the id the runtime loads it by.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
+    /// <summary>
+    /// Provider is the connectors provider whose credential the plugin reads at run time. Empty for a plugin that needs none.
+    /// </summary>
     utility::string_t getProvider() const;
     bool providerIsSet() const;
     void unsetProvider();
     void setProvider(const utility::string_t& value);
 
+    /// <summary>
+    /// Source is TypeScript to build as-is. Exactly one of Source or Spec.
+    /// </summary>
     utility::string_t getSource() const;
     bool sourceIsSet() const;
     void unsetSource();
     void setSource(const utility::string_t& value);
 
+    /// <summary>
+    /// Spec is API documentation — an OpenAPI document, or prose describing the endpoints — that the generator turns into Source. The generated source is returned in the response, so a caller can read what will run before it runs.
+    /// </summary>
     utility::string_t getSpec() const;
     bool specIsSet() const;
     void unsetSpec();

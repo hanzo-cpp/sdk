@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -68,6 +68,9 @@ public:
     void unsetAt();
     void setAt(const utility::string_t& value);
 
+    /// <summary>
+    /// ID identifies the event, and its shape says which kind it is: a run event carries the run&#39;s own id, while an agent event is the agent id suffixed \&quot;:created\&quot; or \&quot;:updated\&quot;. Unique within a feed, and not an address — there is nothing to fetch it by.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
@@ -81,6 +84,9 @@ public:
     void unsetKind();
     void setKind(const utility::string_t& value);
 
+    /// <summary>
+    /// Message is the line to render, already bounded: \&quot;Invoked &lt;model&gt;\&quot; for a run that worked, the run&#39;s own error truncated to 200 characters for one that did not (or \&quot;Run failed\&quot; when it said nothing), and a fixed phrase for the two agent events. Nothing here is invented — every event is a row that exists.
+    /// </summary>
     utility::string_t getMessage() const;
     bool messageIsSet() const;
     void unsetMessage();

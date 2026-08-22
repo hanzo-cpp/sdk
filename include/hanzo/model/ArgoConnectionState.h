@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,16 +52,25 @@ public:
     /// ArgoConnectionState members
 
 
+    /// <summary>
+    /// AttemptedAt is when the connection was last probed. Always absent: nothing is probed, and a fabricated timestamp would claim a check that never ran.
+    /// </summary>
     utility::string_t getAttemptedAt() const;
     bool attemptedAtIsSet() const;
     void unsetAttemptedAt();
     void setAttemptedAt(const utility::string_t& value);
 
+    /// <summary>
+    /// Message is why a connection failed. Always absent, since none does.
+    /// </summary>
     utility::string_t getMessage() const;
     bool messageIsSet() const;
     void unsetMessage();
     void setMessage(const utility::string_t& value);
 
+    /// <summary>
+    /// Status is ArgoCD&#39;s ConnectionStatus — Successful, Failed or Unknown. Always Successful here: the destination is the cluster this process is already running in, so it is reachable by construction and there is no credential to probe.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();

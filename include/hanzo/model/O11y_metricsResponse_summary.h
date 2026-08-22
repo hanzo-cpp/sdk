@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -12,7 +12,7 @@
 /*
  * O11y_metricsResponse_summary.h
  *
- * 
+ * Summary totals the window in one object, so a tile does not have to sum the series to render. errorRate is a RATIO of the window&#39;s requests, not a percentage, and p95Ms is over the window rather than the worst bucket.
  */
 
 #ifndef HANZO_MODEL_O11y_metricsResponse_summary_H_
@@ -28,6 +28,9 @@ namespace model {
 
 
 
+/// <summary>
+/// Summary totals the window in one object, so a tile does not have to sum the series to render. errorRate is a RATIO of the window&#39;s requests, not a percentage, and p95Ms is over the window rather than the worst bucket.
+/// </summary>
 class  O11y_metricsResponse_summary
     : public ModelBase
 {

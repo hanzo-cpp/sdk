@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -55,21 +55,33 @@ public:
     /// ProfileMetrics members
 
 
+    /// <summary>
+    /// Funnel is what the org&#39;s analytics observed over the trailing window. Read its &#x60;available&#x60; first: an org with no analytics reports zeros here, and zero traffic and no measurement are different facts.
+    /// </summary>
     std::shared_ptr<Funnel> getFunnel() const;
     bool funnelIsSet() const;
     void unsetFunnel();
     void setFunnel(const std::shared_ptr<Funnel>& value);
 
+    /// <summary>
+    /// LaunchProgress is the org&#39;s own position in the launch checklist, folded in so a profile carries both what the org has BUILT and what it has DONE.
+    /// </summary>
     std::shared_ptr<ProgressView> getLaunchProgress() const;
     bool launchProgressIsSet() const;
     void unsetLaunchProgress();
     void setLaunchProgress(const std::shared_ptr<ProgressView>& value);
 
+    /// <summary>
+    /// Records is how many business records the org holds — the volume that tells a real book of customers from an empty account. It feeds the &#x60;customers&#x60; signal, which crosses at a threshold rather than at one row.
+    /// </summary>
     int32_t getRecords() const;
     bool recordsIsSet() const;
     void unsetRecords();
     void setRecords(int32_t value);
 
+    /// <summary>
+    /// RevenueCents is the org&#39;s money OF RECORD — what its books say, in whole cents, never a float and never a display string. This is the number the scaling stage is decided on; funnel.revenue is the beacon&#39;s separate, unreconciled view of the same business. Zero when the org has none, and also zero when the books could not be read, which is why the &#x60;revenue&#x60; signal beside it is the thing to trust.
+    /// </summary>
     int32_t getRevenueCents() const;
     bool revenueCentsIsSet() const;
     void unsetRevenueCents();

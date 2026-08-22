@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -287,16 +287,6 @@ public:
         boost::optional<utility::string_t> since,
         boost::optional<utility::string_t> until,
         boost::optional<utility::string_t> continuous
-    ) const;
-    /// <summary>
-    /// Run a Cloudflare Workers AI model and get its output back
-    /// </summary>
-    /// <remarks>
-    /// Runs a Workers AI model — the model id is the rest of the path, e.g. &#x60;@cf/meta/llama-3.1-8b-instruct&#x60; — on the org&#39;s OWN Cloudflare account and relays the model&#39;s output. The request body is whatever the chosen model takes (a prompt, chat messages, a base64 audio clip) and is forwarded unchanged; the response is the model&#39;s own, which for an image or audio model is BYTES under Cloudflare&#39;s content type rather than JSON. Both halves are why this is not a typed op.  It is the ONE PRICED route on this plane, because a run is inference rather than passthrough. The org&#39;s own token already paid Cloudflare for the compute, so Hanzo debits only the thin BYO routing fee — never the full inference cost — and meters it on the SAME &#x60;ai&#x60; product axis and per-project caps as every other model call, so Workers AI spend sums with LLM spend. The fee has a floor, so every run leaves a usage row even for a modality that reports no tokens, and it emits one gen_ai span with &#x60;gen_ai.system &#x3D; cloudflare&#x60;.  Gated by BALANCE, not by the admin bit that guards the destructive verbs here: a validated org is enough, and a frozen, broke or over-cap org is refused with the fleet-wide 402/503 billing contract BEFORE any byte reaches Cloudflare — no run, and no account discovery either. An empty or oversized body is 400, as is a model id that is not a plain Cloudflare model path; 503 if the org has never connected a Cloudflare token.
-    /// </remarks>
-    /// <param name="wildcard1"></param>
-    pplx::task<void> postCloudflareAiRunByWildcard1(
-        utility::string_t wildcard1
     ) const;
     /// <summary>
     /// Creates a D1 database on the org&#39;s Cloudflare account.

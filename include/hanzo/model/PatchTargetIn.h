@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -56,11 +56,17 @@ public:
     /// PatchTargetIn members
 
 
+    /// <summary>
+    /// Capacity rewrites the human summary, up to 256 characters. \&quot;\&quot; clears it.
+    /// </summary>
     utility::string_t getCapacity() const;
     bool capacityIsSet() const;
     void unsetCapacity();
     void setCapacity(const utility::string_t& value);
 
+    /// <summary>
+    /// Host re-points the hostname sessions are matched by. Moving it moves the load: the session counts follow the new name from the next read.
+    /// </summary>
     utility::string_t getHost() const;
     bool hostIsSet() const;
     void unsetHost();
@@ -74,29 +80,41 @@ public:
     void unsetId();
     void setId(const utility::string_t& value);
 
+    /// <summary>
+    /// Kind re-files it under laptop | cloud | gpu | cluster | machine.
+    /// </summary>
     utility::string_t getKind() const;
     bool kindIsSet() const;
     void unsetKind();
     void setKind(const utility::string_t& value);
 
+    /// <summary>
+    /// Label renames the machine, up to 128 characters. Empty STRING is refused — a target with no name is a row nobody can pick out of a fleet.
+    /// </summary>
     utility::string_t getLabel() const;
     bool labelIsSet() const;
     void unsetLabel();
     void setLabel(const utility::string_t& value);
 
     /// <summary>
-    /// present &#x3D;&gt; a heartbeat; the server stamps its time
+    /// Metrics replaces the live sample, and sending one IS A HEARTBEAT: the server stamps the time and appends the point to the fleet series. Sending an all-zero sample CLEARS the heartbeat — the machine goes back to having no liveness fact at all, and its stored status is taken at face value again.
     /// </summary>
     std::shared_ptr<Metrics> getMetrics() const;
     bool metricsIsSet() const;
     void unsetMetrics();
     void setMetrics(const std::shared_ptr<Metrics>& value);
 
+    /// <summary>
+    /// Spec replaces the static capability whole, sanitized and clamped the same way a register&#39;s is.
+    /// </summary>
     std::shared_ptr<Spec> getSpec() const;
     bool specIsSet() const;
     void unsetSpec();
     void setSpec(const std::shared_ptr<Spec>& value);
 
+    /// <summary>
+    /// Status sets operator INTENT: online | offline | draining. Draining is how a machine is taken out of dispatch without ending what is already on it. What comes back may still read offline, because the heartbeat outranks the intent.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
