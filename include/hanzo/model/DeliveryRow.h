@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,46 +52,73 @@ public:
     /// DeliveryRow members
 
 
+    /// <summary>
+    /// Attempt is which try this row is, starting at 1. The ladder waits 1s, then 5s, then 25s before the next one.
+    /// </summary>
     int32_t getAttempt() const;
     bool attemptIsSet() const;
     void unsetAttempt();
     void setAttempt(int32_t value);
 
+    /// <summary>
+    /// Created is when the attempt was made, RFC3339 in UTC.
+    /// </summary>
     utility::string_t getCreated() const;
     bool createdIsSet() const;
     void unsetCreated();
     void setCreated(const utility::string_t& value);
 
+    /// <summary>
+    /// DeliveryID groups the attempts for ONE event to ONE endpoint. Rows sharing it are the same delivery being retried, not separate events.
+    /// </summary>
     utility::string_t getDelivery() const;
     bool deliveryIsSet() const;
     void unsetDelivery();
     void setDelivery(const utility::string_t& value);
 
+    /// <summary>
+    /// DurationMs is how long this attempt took end to end, in MILLISECONDS.
+    /// </summary>
     int32_t getDurationMs() const;
     bool durationMsIsSet() const;
     void unsetDurationMs();
     void setDurationMs(int32_t value);
 
+    /// <summary>
+    /// EndpointID is which subscriber this attempt was for.
+    /// </summary>
     utility::string_t getEndpoint() const;
     bool endpointIsSet() const;
     void unsetEndpoint();
     void setEndpoint(const utility::string_t& value);
 
+    /// <summary>
+    /// Error says what went wrong on a non-ok attempt. Empty on success.
+    /// </summary>
     utility::string_t getError() const;
     bool errorIsSet() const;
     void unsetError();
     void setError(const utility::string_t& value);
 
+    /// <summary>
+    /// HTTPStatus is what the subscriber answered. ZERO means it never answered — a refused connection, a DNS failure or a timeout — which is why a zero here is not a 200.
+    /// </summary>
     int32_t getHttpStatus() const;
     bool httpStatusIsSet() const;
     void unsetHttpStatus();
     void setHttpStatus(int32_t value);
 
+    /// <summary>
+    /// Status is \&quot;ok\&quot; when the subscriber accepted it, \&quot;retrying\&quot; while a further attempt will follow, and \&quot;failed\&quot; when none will. Exactly one row of a delivery is terminal.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
+    /// <summary>
+    /// Subject is the event that was delivered (\&quot;commerce.order.created\&quot;). A manual test send carries \&quot;webhook.test\&quot;.
+    /// </summary>
     utility::string_t getSubject() const;
     bool subjectIsSet() const;
     void unsetSubject();

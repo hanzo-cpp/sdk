@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -22,6 +22,8 @@ Iam_WebauthnCredential::Iam_WebauthnCredential()
     m_AaguidIsSet = false;
     m_Attachment = utility::conversions::to_string_t("");
     m_AttachmentIsSet = false;
+    m_AttestationFormat = utility::conversions::to_string_t("");
+    m_AttestationFormatIsSet = false;
     m_AttestationType = utility::conversions::to_string_t("");
     m_AttestationTypeIsSet = false;
     m_BackupEligible = false;
@@ -80,6 +82,11 @@ web::json::value Iam_WebauthnCredential::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("attachment"))] = ModelBase::toJson(m_Attachment);
+    }
+    if(m_AttestationFormatIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("attestationFormat"))] = ModelBase::toJson(m_AttestationFormat);
     }
     if(m_AttestationTypeIsSet)
     {
@@ -197,6 +204,17 @@ bool Iam_WebauthnCredential::fromJson(const web::json::value& val)
             utility::string_t refVal_setAttachment;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAttachment);
             setAttachment(refVal_setAttachment);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("attestationFormat"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("attestationFormat")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setAttestationFormat;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setAttestationFormat);
+            setAttestationFormat(refVal_setAttestationFormat);
             
         }
     }
@@ -416,6 +434,10 @@ void Iam_WebauthnCredential::toMultipart(std::shared_ptr<MultipartFormData> mult
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("attachment")), m_Attachment));
     }
+    if(m_AttestationFormatIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("attestationFormat")), m_AttestationFormat));
+    }
     if(m_AttestationTypeIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("attestationType")), m_AttestationType));
@@ -510,6 +532,12 @@ bool Iam_WebauthnCredential::fromMultiPart(std::shared_ptr<MultipartFormData> mu
         utility::string_t refVal_setAttachment;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("attachment"))), refVal_setAttachment );
         setAttachment(refVal_setAttachment);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("attestationFormat"))))
+    {
+        utility::string_t refVal_setAttestationFormat;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("attestationFormat"))), refVal_setAttestationFormat );
+        setAttestationFormat(refVal_setAttestationFormat);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("attestationType"))))
     {
@@ -664,6 +692,27 @@ bool Iam_WebauthnCredential::attachmentIsSet() const
 void Iam_WebauthnCredential::unsetAttachment()
 {
     m_AttachmentIsSet = false;
+}
+utility::string_t Iam_WebauthnCredential::getAttestationFormat() const
+{
+    return m_AttestationFormat;
+}
+
+
+void Iam_WebauthnCredential::setAttestationFormat(const utility::string_t& value)
+{
+    m_AttestationFormat = value;
+    m_AttestationFormatIsSet = true;
+}
+
+bool Iam_WebauthnCredential::attestationFormatIsSet() const
+{
+    return m_AttestationFormatIsSet;
+}
+
+void Iam_WebauthnCredential::unsetAttestationFormat()
+{
+    m_AttestationFormatIsSet = false;
 }
 utility::string_t Iam_WebauthnCredential::getAttestationType() const
 {

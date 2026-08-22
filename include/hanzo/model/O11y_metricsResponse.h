@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -22,16 +22,16 @@
 
 #include "hanzo/ModelBase.h"
 
+#include "hanzo/model/O11y_metricsResponse_range.h"
 #include "hanzo/model/O11y_metricsResponse_usage.h"
 #include "hanzo/model/O11y_metricsResponse_series.h"
 #include <cpprest/details/basic_types.h>
 #include "hanzo/model/O11y_metricsResponse_summary.h"
-#include "hanzo/model/O11y_availabilityResponse_range.h"
 
 namespace hanzo {
 namespace model {
 
-class O11y_availabilityResponse_range;
+class O11y_metricsResponse_range;
 class O11y_metricsResponse_series;
 class O11y_metricsResponse_summary;
 class O11y_metricsResponse_usage;
@@ -60,15 +60,18 @@ public:
     /// O11y_metricsResponse members
 
 
+    /// <summary>
+    /// Product is the service these numbers are about, echoed back.
+    /// </summary>
     utility::string_t getProduct() const;
     bool productIsSet() const;
     void unsetProduct();
     void setProduct(const utility::string_t& value);
 
-    std::shared_ptr<O11y_availabilityResponse_range> getRange() const;
+    std::shared_ptr<O11y_metricsResponse_range> getRange() const;
     bool rangeIsSet() const;
     void unsetRange();
-    void setRange(const std::shared_ptr<O11y_availabilityResponse_range>& value);
+    void setRange(const std::shared_ptr<O11y_metricsResponse_range>& value);
 
     std::shared_ptr<O11y_metricsResponse_series> getSeries() const;
     bool seriesIsSet() const;
@@ -90,7 +93,7 @@ protected:
     utility::string_t m_Product;
     bool m_ProductIsSet;
 
-    std::shared_ptr<O11y_availabilityResponse_range> m_Range;
+    std::shared_ptr<O11y_metricsResponse_range> m_Range;
     bool m_RangeIsSet;
 
     std::shared_ptr<O11y_metricsResponse_series> m_Series;

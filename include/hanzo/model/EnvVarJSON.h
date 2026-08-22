@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,16 +52,25 @@ public:
     /// EnvVarJSON members
 
 
+    /// <summary>
+    /// Key is the variable&#39;s name in the container, which must match &#x60;^[A-Za-z_][A-Za-z0-9_]*$&#x60;. For a sealed value it is also the last segment of the KMS ref, so it is what identifies the value across a round trip.
+    /// </summary>
     utility::string_t getKey() const;
     bool keyIsSet() const;
     void unsetKey();
     void setKey(const utility::string_t& value);
 
+    /// <summary>
+    /// Secret says the value lives in KMS and never in the database. A caller may only ADD secrecy: the server seals a value whose key or shape looks like a credential anyway (secretshape.go), so an entry can come back secret that was not sent that way.
+    /// </summary>
     bool isSecret() const;
     bool secretIsSet() const;
     void unsetSecret();
     void setSecret(bool value);
 
+    /// <summary>
+    /// Value is the plaintext, and it is WRITE-ONLY once the entry is secret: a sealed value reads back as \&quot;\&quot;, and sending \&quot;\&quot; again KEEPS what is sealed rather than wiping it. Only a non-empty value seals a new one.
+    /// </summary>
     utility::string_t getValue() const;
     bool valueIsSet() const;
     void unsetValue();

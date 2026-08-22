@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,21 +52,33 @@ public:
     /// Page members
 
 
+    /// <summary>
+    /// Body is the reusable prompt or snippet itself. It may carry {placeholder} tokens for the client-specific bits — {client_name}, {domain}, {product} — which are substituted where the template is used, not here.
+    /// </summary>
     utility::string_t getBody() const;
     bool bodyIsSet() const;
     void unsetBody();
     void setBody(const utility::string_t& value);
 
+    /// <summary>
+    /// Enabled is the admin lever. Absent reads as ON; an explicit false withdraws the template from org-facing reads.
+    /// </summary>
     bool isEnabled() const;
     bool enabledIsSet() const;
     void unsetEnabled();
     void setEnabled(bool value);
 
+    /// <summary>
+    /// ID is the slug a step references to pull this template in.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
+    /// <summary>
+    /// Title names the template in the authoring plane and in a picker.
+    /// </summary>
     utility::string_t getTitle() const;
     bool titleIsSet() const;
     void unsetTitle();

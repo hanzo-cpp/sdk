@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -33,7 +33,7 @@ IndexApi::~IndexApi()
 {
 }
 
-pplx::task<void> IndexApi::deleteIndexIndexesByUid(utility::string_t uid) const
+pplx::task<std::shared_ptr<IndexEnqueued>> IndexApi::deleteIndexIndexesByUid(utility::string_t uid) const
 {
 
 
@@ -47,6 +47,7 @@ pplx::task<void> IndexApi::deleteIndexIndexesByUid(utility::string_t uid) const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -135,10 +136,28 @@ pplx::task<void> IndexApi::deleteIndexIndexesByUid(utility::string_t uid) const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<IndexEnqueued> localVarResult(new IndexEnqueued());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteIndexIndexesByUid: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> IndexApi::deleteIndexIndexesByUidDocumentsById(utility::string_t uid, utility::string_t id) const
+pplx::task<std::shared_ptr<IndexEnqueued>> IndexApi::deleteIndexIndexesByUidDocumentsById(utility::string_t uid, utility::string_t id) const
 {
 
 
@@ -153,6 +172,7 @@ pplx::task<void> IndexApi::deleteIndexIndexesByUidDocumentsById(utility::string_
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -241,10 +261,28 @@ pplx::task<void> IndexApi::deleteIndexIndexesByUidDocumentsById(utility::string_
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<IndexEnqueued> localVarResult(new IndexEnqueued());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteIndexIndexesByUidDocumentsById: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> IndexApi::getIndexHealth() const
+pplx::task<std::shared_ptr<IndexHealth>> IndexApi::getIndexHealth() const
 {
 
 
@@ -257,6 +295,7 @@ pplx::task<void> IndexApi::getIndexHealth() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -345,10 +384,28 @@ pplx::task<void> IndexApi::getIndexHealth() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<IndexHealth> localVarResult(new IndexHealth());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getIndexHealth: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> IndexApi::getIndexIndexes() const
+pplx::task<std::shared_ptr<IndexList>> IndexApi::getIndexIndexes() const
 {
 
 
@@ -361,6 +418,7 @@ pplx::task<void> IndexApi::getIndexIndexes() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -449,10 +507,28 @@ pplx::task<void> IndexApi::getIndexIndexes() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<IndexList> localVarResult(new IndexList());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getIndexIndexes: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> IndexApi::getIndexIndexesByUid(utility::string_t uid) const
+pplx::task<std::shared_ptr<IndexView>> IndexApi::getIndexIndexesByUid(utility::string_t uid) const
 {
 
 
@@ -466,6 +542,7 @@ pplx::task<void> IndexApi::getIndexIndexesByUid(utility::string_t uid) const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -554,10 +631,28 @@ pplx::task<void> IndexApi::getIndexIndexesByUid(utility::string_t uid) const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<IndexView> localVarResult(new IndexView());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getIndexIndexesByUid: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> IndexApi::getIndexIndexesByUidDocuments(utility::string_t uid) const
+pplx::task<std::shared_ptr<IndexDocuments>> IndexApi::getIndexIndexesByUidDocuments(utility::string_t uid, boost::optional<utility::string_t> limit, boost::optional<utility::string_t> offset) const
 {
 
 
@@ -571,6 +666,7 @@ pplx::task<void> IndexApi::getIndexIndexesByUidDocuments(utility::string_t uid) 
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -598,6 +694,14 @@ pplx::task<void> IndexApi::getIndexIndexesByUidDocuments(utility::string_t uid) 
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
+    if (limit)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("limit")] = ApiClient::parameterToString(*limit);
+    }
+    if (offset)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("offset")] = ApiClient::parameterToString(*offset);
+    }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
     utility::string_t localVarRequestHttpContentType;
@@ -659,10 +763,28 @@ pplx::task<void> IndexApi::getIndexIndexesByUidDocuments(utility::string_t uid) 
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<IndexDocuments> localVarResult(new IndexDocuments());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getIndexIndexesByUidDocuments: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> IndexApi::getIndexIndexesByUidDocumentsById(utility::string_t uid, utility::string_t id) const
+pplx::task<std::shared_ptr<AnyType>> IndexApi::getIndexIndexesByUidDocumentsById(utility::string_t uid, utility::string_t id) const
 {
 
 
@@ -677,6 +799,7 @@ pplx::task<void> IndexApi::getIndexIndexesByUidDocumentsById(utility::string_t u
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -765,10 +888,28 @@ pplx::task<void> IndexApi::getIndexIndexesByUidDocumentsById(utility::string_t u
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<AnyType> localVarResult(nullptr);
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getIndexIndexesByUidDocumentsById: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> IndexApi::getIndexIndexesByUidSettings(utility::string_t uid) const
+pplx::task<std::shared_ptr<IndexSettings>> IndexApi::getIndexIndexesByUidSettings(utility::string_t uid) const
 {
 
 
@@ -782,6 +923,7 @@ pplx::task<void> IndexApi::getIndexIndexesByUidSettings(utility::string_t uid) c
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -870,10 +1012,28 @@ pplx::task<void> IndexApi::getIndexIndexesByUidSettings(utility::string_t uid) c
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<IndexSettings> localVarResult(new IndexSettings());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getIndexIndexesByUidSettings: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> IndexApi::getIndexStats() const
+pplx::task<std::shared_ptr<IndexStats>> IndexApi::getIndexStats() const
 {
 
 
@@ -886,6 +1046,7 @@ pplx::task<void> IndexApi::getIndexStats() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -974,10 +1135,28 @@ pplx::task<void> IndexApi::getIndexStats() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<IndexStats> localVarResult(new IndexStats());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getIndexStats: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> IndexApi::getIndexTasksByUid(utility::string_t uid) const
+pplx::task<std::shared_ptr<IndexTask>> IndexApi::getIndexTasksByUid(int32_t uid) const
 {
 
 
@@ -991,6 +1170,7 @@ pplx::task<void> IndexApi::getIndexTasksByUid(utility::string_t uid) const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1079,10 +1259,28 @@ pplx::task<void> IndexApi::getIndexTasksByUid(utility::string_t uid) const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<IndexTask> localVarResult(new IndexTask());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getIndexTasksByUid: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> IndexApi::getIndexVersion() const
+pplx::task<std::shared_ptr<IndexVersion>> IndexApi::getIndexVersion() const
 {
 
 
@@ -1095,6 +1293,7 @@ pplx::task<void> IndexApi::getIndexVersion() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1183,11 +1382,35 @@ pplx::task<void> IndexApi::getIndexVersion() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<IndexVersion> localVarResult(new IndexVersion());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getIndexVersion: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> IndexApi::patchIndexIndexesByUidSettings(utility::string_t uid) const
+pplx::task<std::shared_ptr<IndexEnqueued>> IndexApi::patchIndexIndexesByUidSettings(utility::string_t uid, std::shared_ptr<IndexFilter> indexFilter) const
 {
+
+    // verify the required parameter 'indexFilter' is set
+    if (indexFilter == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'indexFilter' when calling IndexApi->patchIndexIndexesByUidSettings"));
+    }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
@@ -1200,6 +1423,7 @@ pplx::task<void> IndexApi::patchIndexIndexesByUidSettings(utility::string_t uid)
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1226,6 +1450,7 @@ pplx::task<void> IndexApi::patchIndexIndexesByUidSettings(utility::string_t uid)
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -1235,11 +1460,27 @@ pplx::task<void> IndexApi::patchIndexIndexesByUidSettings(utility::string_t uid)
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        localVarJson = ModelBase::toJson(indexFilter);
+        
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(indexFilter.get())
+        {
+            indexFilter->toMultipart(localVarMultipart, utility::conversions::to_string_t("indexFilter"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1288,11 +1529,35 @@ pplx::task<void> IndexApi::patchIndexIndexesByUidSettings(utility::string_t uid)
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<IndexEnqueued> localVarResult(new IndexEnqueued());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchIndexIndexesByUidSettings: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> IndexApi::postIndexIndexes() const
+pplx::task<std::shared_ptr<IndexEnqueued>> IndexApi::postIndexIndexes(std::shared_ptr<IndexNew> indexNew) const
 {
+
+    // verify the required parameter 'indexNew' is set
+    if (indexNew == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'indexNew' when calling IndexApi->postIndexIndexes"));
+    }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
@@ -1304,6 +1569,7 @@ pplx::task<void> IndexApi::postIndexIndexes() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1330,6 +1596,7 @@ pplx::task<void> IndexApi::postIndexIndexes() const
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -1339,11 +1606,27 @@ pplx::task<void> IndexApi::postIndexIndexes() const
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        localVarJson = ModelBase::toJson(indexNew);
+        
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(indexNew.get())
+        {
+            indexNew->toMultipart(localVarMultipart, utility::conversions::to_string_t("indexNew"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1392,10 +1675,28 @@ pplx::task<void> IndexApi::postIndexIndexes() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<IndexEnqueued> localVarResult(new IndexEnqueued());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postIndexIndexes: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> IndexApi::postIndexIndexesByUidDocuments(utility::string_t uid) const
+pplx::task<std::shared_ptr<IndexEnqueued>> IndexApi::postIndexIndexesByUidDocuments(utility::string_t uid, boost::optional<std::vector<std::shared_ptr<AnyType>>> requestBody) const
 {
 
 
@@ -1409,6 +1710,7 @@ pplx::task<void> IndexApi::postIndexIndexesByUidDocuments(utility::string_t uid)
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1435,6 +1737,7 @@ pplx::task<void> IndexApi::postIndexIndexesByUidDocuments(utility::string_t uid)
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -1444,11 +1747,38 @@ pplx::task<void> IndexApi::postIndexIndexesByUidDocuments(utility::string_t uid)
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        {
+            std::vector<web::json::value> localVarJsonArray;
+            for( auto& localVarItem : requestBody.get() )
+            {
+                localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
+                
+            }
+            localVarJson = web::json::value::array(localVarJsonArray);
+        }
+        
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        {
+            std::vector<web::json::value> localVarJsonArray;
+            for( auto& localVarItem : requestBody.get() )
+            {
+                localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
+            }
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("requestBody"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1497,10 +1827,28 @@ pplx::task<void> IndexApi::postIndexIndexesByUidDocuments(utility::string_t uid)
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<IndexEnqueued> localVarResult(new IndexEnqueued());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postIndexIndexesByUidDocuments: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> IndexApi::postIndexIndexesByUidDocumentsDeleteBatch(utility::string_t uid) const
+pplx::task<std::shared_ptr<IndexEnqueued>> IndexApi::postIndexIndexesByUidDocumentsDeleteBatch(utility::string_t uid, boost::optional<std::shared_ptr<Post_index_indexes_by_uid_documents_delete_batch_request>> postIndexIndexesByUidDocumentsDeleteBatchRequest) const
 {
 
 
@@ -1514,6 +1862,7 @@ pplx::task<void> IndexApi::postIndexIndexesByUidDocumentsDeleteBatch(utility::st
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1540,6 +1889,7 @@ pplx::task<void> IndexApi::postIndexIndexesByUidDocumentsDeleteBatch(utility::st
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -1549,11 +1899,27 @@ pplx::task<void> IndexApi::postIndexIndexesByUidDocumentsDeleteBatch(utility::st
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (postIndexIndexesByUidDocumentsDeleteBatchRequest)
+            localVarJson = ModelBase::toJson(*postIndexIndexesByUidDocumentsDeleteBatchRequest);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(postIndexIndexesByUidDocumentsDeleteBatchRequest && (*postIndexIndexesByUidDocumentsDeleteBatchRequest).get())
+        {
+            (*postIndexIndexesByUidDocumentsDeleteBatchRequest)->toMultipart(localVarMultipart, utility::conversions::to_string_t("postIndexIndexesByUidDocumentsDeleteBatchRequest"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1602,11 +1968,35 @@ pplx::task<void> IndexApi::postIndexIndexesByUidDocumentsDeleteBatch(utility::st
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<IndexEnqueued> localVarResult(new IndexEnqueued());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postIndexIndexesByUidDocumentsDeleteBatch: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> IndexApi::postIndexIndexesByUidSearch(utility::string_t uid) const
+pplx::task<std::shared_ptr<IndexHits>> IndexApi::postIndexIndexesByUidSearch(utility::string_t uid, std::shared_ptr<IndexQuery> indexQuery) const
 {
+
+    // verify the required parameter 'indexQuery' is set
+    if (indexQuery == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'indexQuery' when calling IndexApi->postIndexIndexesByUidSearch"));
+    }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
@@ -1619,6 +2009,7 @@ pplx::task<void> IndexApi::postIndexIndexesByUidSearch(utility::string_t uid) co
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1645,6 +2036,7 @@ pplx::task<void> IndexApi::postIndexIndexesByUidSearch(utility::string_t uid) co
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -1654,11 +2046,27 @@ pplx::task<void> IndexApi::postIndexIndexesByUidSearch(utility::string_t uid) co
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        localVarJson = ModelBase::toJson(indexQuery);
+        
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(indexQuery.get())
+        {
+            indexQuery->toMultipart(localVarMultipart, utility::conversions::to_string_t("indexQuery"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1707,10 +2115,28 @@ pplx::task<void> IndexApi::postIndexIndexesByUidSearch(utility::string_t uid) co
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<IndexHits> localVarResult(new IndexHits());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postIndexIndexesByUidSearch: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> IndexApi::putIndexIndexesByUidDocuments(utility::string_t uid) const
+pplx::task<std::shared_ptr<IndexEnqueued>> IndexApi::putIndexIndexesByUidDocuments(utility::string_t uid, boost::optional<std::vector<std::shared_ptr<AnyType>>> requestBody) const
 {
 
 
@@ -1724,6 +2150,7 @@ pplx::task<void> IndexApi::putIndexIndexesByUidDocuments(utility::string_t uid) 
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1750,6 +2177,7 @@ pplx::task<void> IndexApi::putIndexIndexesByUidDocuments(utility::string_t uid) 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -1759,11 +2187,38 @@ pplx::task<void> IndexApi::putIndexIndexesByUidDocuments(utility::string_t uid) 
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        {
+            std::vector<web::json::value> localVarJsonArray;
+            for( auto& localVarItem : requestBody.get() )
+            {
+                localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
+                
+            }
+            localVarJson = web::json::value::array(localVarJsonArray);
+        }
+        
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        {
+            std::vector<web::json::value> localVarJsonArray;
+            for( auto& localVarItem : requestBody.get() )
+            {
+                localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
+            }
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("requestBody"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1812,7 +2267,25 @@ pplx::task<void> IndexApi::putIndexIndexesByUidDocuments(utility::string_t uid) 
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<IndexEnqueued> localVarResult(new IndexEnqueued());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putIndexIndexesByUidDocuments: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
 

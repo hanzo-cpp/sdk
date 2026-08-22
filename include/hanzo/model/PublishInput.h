@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,18 +52,24 @@ public:
     /// PublishInput members
 
 
+    /// <summary>
+    /// DocType is the content type holding the item: Campaign, SocialPost or Asset. Any other name is refused as an unknown content type.
+    /// </summary>
     utility::string_t getDoctype() const;
     bool doctypeIsSet() const;
     void unsetDoctype();
     void setDoctype(const utility::string_t& value);
 
+    /// <summary>
+    /// Name is the document within that type — the item to distribute. Its caption, media and channel list come off the stored document, so this names WHICH item and says nothing about what goes out.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
     /// <summary>
-    /// \&quot;\&quot; &#x3D; now
+    /// ScheduleAt hands a future go-live to the channel&#39;s own scheduler, as an ISO-8601 time. Empty posts now.
     /// </summary>
     utility::string_t getScheduleAt() const;
     bool scheduleAtIsSet() const;

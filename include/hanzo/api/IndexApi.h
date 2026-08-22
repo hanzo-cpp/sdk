@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -21,7 +21,23 @@
 
 
 #include "hanzo/ApiClient.h"
-#include "hanzo/ModelBase.h"
+
+#include "hanzo/AnyType.h"
+#include "hanzo/model/IndexDocuments.h"
+#include "hanzo/model/IndexEnqueued.h"
+#include "hanzo/model/IndexFilter.h"
+#include "hanzo/model/IndexHealth.h"
+#include "hanzo/model/IndexHits.h"
+#include "hanzo/model/IndexList.h"
+#include "hanzo/model/IndexNew.h"
+#include "hanzo/model/IndexQuery.h"
+#include "hanzo/model/IndexSettings.h"
+#include "hanzo/model/IndexStats.h"
+#include "hanzo/model/IndexTask.h"
+#include "hanzo/model/IndexVersion.h"
+#include "hanzo/model/IndexView.h"
+#include "hanzo/model/Post_index_indexes_by_uid_documents_delete_batch_request.h"
+#include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -41,168 +57,184 @@ public:
     virtual ~IndexApi();
 
     /// <summary>
-    /// Delete an index and everything in it
+    /// Deletes an index and everything in it.
     /// </summary>
     /// <remarks>
-    /// Drops one index in the caller&#39;s org together with all of its documents. This is the only way to retire an index; without it a mistaken uid would be permanent. It is idempotent — dropping an index that is not there still succeeds. The tenant is the org minted from the VALIDATED bearer&#39;s owner claim, never a client-supplied header, and every query filters on it, so two orgs may both hold an index named \&quot;messages\&quot; and neither can see the other&#39;s documents. Without a validated principal the answer is 403 carrying Meilisearch&#39;s &#x60;invalid_api_key&#x60; body. Errors use Meilisearch&#39;s {message, code, type, link} shape rather than cloud&#39;s, because that &#x60;code&#x60; is a wire contract a Meilisearch client branches on.  The 202 and its &#x60;enqueued&#x60; task are DIALECT COMPATIBILITY, not a promise of later work: the write is already applied when this answers, and the task it names is already complete. A client that polls waitForTask resolves immediately rather than waiting, and a client that does not poll has still had its write committed.
+    /// Deletes an index and everything in it.  Drops the index and every document in it from the caller&#39;s own org, and answers the dialect&#39;s EnqueuedTask. This is the only way to retire an index; without it a mistaken uid is permanent. Deleting an index that is not there succeeds, so a cleanup pass is safe to re-run.  The 202 and its &#x60;enqueued&#x60; task are DIALECT COMPATIBILITY, not a promise of later work: the documents are already gone when this answers.
     /// </remarks>
     /// <param name="uid"></param>
-    pplx::task<void> deleteIndexIndexesByUid(
+    pplx::task<std::shared_ptr<IndexEnqueued>> deleteIndexIndexesByUid(
         utility::string_t uid
     ) const;
     /// <summary>
-    /// Delete one document by its primary key
+    /// Deletes one document by its primary key.
     /// </summary>
     /// <remarks>
-    /// Removes one document from an index. It is IDEMPOTENT: deleting a key that is not there succeeds rather than 404, so a retry after a lost response is safe. The tenant is the org minted from the VALIDATED bearer&#39;s owner claim, never a client-supplied header, and every query filters on it, so two orgs may both hold an index named \&quot;messages\&quot; and neither can see the other&#39;s documents. Without a validated principal the answer is 403 carrying Meilisearch&#39;s &#x60;invalid_api_key&#x60; body. Errors use Meilisearch&#39;s {message, code, type, link} shape rather than cloud&#39;s, because that &#x60;code&#x60; is a wire contract a Meilisearch client branches on.  The 202 and its &#x60;enqueued&#x60; task are DIALECT COMPATIBILITY, not a promise of later work: the write is already applied when this answers, and the task it names is already complete. A client that polls waitForTask resolves immediately rather than waiting, and a client that does not poll has still had its write committed.
+    /// Deletes one document by its primary key.  Removes the document from the caller&#39;s own org and answers the dialect&#39;s EnqueuedTask. Deleting a key that is not there succeeds, so a client reconciling its own corpus can delete without checking first.  The 202 and its &#x60;enqueued&#x60; task are DIALECT COMPATIBILITY, not a promise of later work: the document is already gone when this answers.
     /// </remarks>
     /// <param name="uid"></param>
     /// <param name="id"></param>
-    pplx::task<void> deleteIndexIndexesByUidDocumentsById(
+    pplx::task<std::shared_ptr<IndexEnqueued>> deleteIndexIndexesByUidDocumentsById(
         utility::string_t uid,
         utility::string_t id
     ) const;
     /// <summary>
-    /// Report whether the search plane can serve
+    /// Reports whether the search plane can serve.
     /// </summary>
     /// <remarks>
-    /// Answers Meilisearch&#39;s &#x60;{\&quot;status\&quot;:\&quot;available\&quot;}&#x60; when the index store is readable. It FAILS CLOSED — an unreadable store answers 503 and &#x60;unavailable&#x60; — so a replica whose volume has gone bad stops taking traffic instead of answering every search with nothing found. It touches no tenant data and needs no credential.
+    /// Reports whether the search plane can serve.  Answers the dialect&#39;s &#x60;{\&quot;status\&quot;:\&quot;available\&quot;}&#x60; when the index store is readable. It FAILS CLOSED — an unreadable store answers 503 with &#x60;{\&quot;status\&quot;:\&quot;unavailable\&quot;}&#x60; rather than an empty result set, because a Meilisearch client probes this before it will use a server at all and a cheerful 200 over a broken volume turns \&quot;search is down\&quot; into \&quot;nothing matched\&quot;. It requires no principal and reads no tenant data.
     /// </remarks>
-    pplx::task<void> getIndexHealth(
+    pplx::task<std::shared_ptr<IndexHealth>> getIndexHealth(
     ) const;
     /// <summary>
-    /// List the indexes your org holds
+    /// Lists the indexes your org holds.
     /// </summary>
     /// <remarks>
-    /// Answers every index in the caller&#39;s org with its primary key and timestamps. It is the only way to enumerate what an org holds — without it an index whose uid a caller has forgotten is unreachable. The tenant is the org minted from the VALIDATED bearer&#39;s owner claim, never a client-supplied header, and every query filters on it, so two orgs may both hold an index named \&quot;messages\&quot; and neither can see the other&#39;s documents. Without a validated principal the answer is 403 carrying Meilisearch&#39;s &#x60;invalid_api_key&#x60; body. Errors use Meilisearch&#39;s {message, code, type, link} shape rather than cloud&#39;s, because that &#x60;code&#x60; is a wire contract a Meilisearch client branches on.
+    /// Lists the indexes your org holds.  Answers every index in the caller&#39;s own org with its primary key and timestamps. Without it an index whose uid a caller has forgotten is unreachable — there is no other way to enumerate what an org holds. The page is the whole set: an org&#39;s index count is small by construction, so &#x60;limit&#x60; and &#x60;total&#x60; both report it.  The tenant is the org minted from the VALIDATED bearer&#39;s owner claim, never a client-supplied header, and two orgs may both hold an index named \&quot;messages\&quot; without either seeing the other. Without a validated principal the answer is 403 carrying the dialect&#39;s &#x60;invalid_api_key&#x60; body.
     /// </remarks>
-    pplx::task<void> getIndexIndexes(
+    pplx::task<std::shared_ptr<IndexList>> getIndexIndexes(
     ) const;
     /// <summary>
-    /// Read one index&#39;s definition
+    /// Reads one index&#39;s definition.
     /// </summary>
     /// <remarks>
-    /// Answers a single index&#39;s uid, primary key and timestamps. An index the caller&#39;s org does not hold is 404 &#x60;index_not_found&#x60; — which is the same answer another org&#39;s index gives, since the org is a bound predicate on the read. The tenant is the org minted from the VALIDATED bearer&#39;s owner claim, never a client-supplied header, and every query filters on it, so two orgs may both hold an index named \&quot;messages\&quot; and neither can see the other&#39;s documents. Without a validated principal the answer is 403 carrying Meilisearch&#39;s &#x60;invalid_api_key&#x60; body. Errors use Meilisearch&#39;s {message, code, type, link} shape rather than cloud&#39;s, because that &#x60;code&#x60; is a wire contract a Meilisearch client branches on.
+    /// Reads one index&#39;s definition.  Answers the index&#39;s uid, primary key and timestamps. An index this org does not hold answers 404 carrying the dialect&#39;s &#x60;index_not_found&#x60; — the code a Meilisearch client reads as permission to create it, which is why this is a refusal rather than an empty object.  The uid is scoped to the caller&#39;s own org, so another tenant&#39;s index is indistinguishable from one that never existed: this surface is not an existence oracle.
     /// </remarks>
     /// <param name="uid"></param>
-    pplx::task<void> getIndexIndexesByUid(
+    pplx::task<std::shared_ptr<IndexView>> getIndexIndexesByUid(
         utility::string_t uid
     ) const;
     /// <summary>
-    /// Page through the documents in an index
+    /// Pages through the documents in an index.
     /// </summary>
     /// <remarks>
-    /// Answers the documents in one index with a total count. &#x60;limit&#x60; defaults to 20 and is capped at 1000, &#x60;offset&#x60; pages, and the response echoes both back so a pager knows what it actually got. An index the caller&#39;s org does not hold is 404 &#x60;index_not_found&#x60;. The tenant is the org minted from the VALIDATED bearer&#39;s owner claim, never a client-supplied header, and every query filters on it, so two orgs may both hold an index named \&quot;messages\&quot; and neither can see the other&#39;s documents. Without a validated principal the answer is 403 carrying Meilisearch&#39;s &#x60;invalid_api_key&#x60; body. Errors use Meilisearch&#39;s {message, code, type, link} shape rather than cloud&#39;s, because that &#x60;code&#x60; is a wire contract a Meilisearch client branches on.
+    /// Pages through the documents in an index.  Answers the org&#39;s stored documents in insertion order, whole, with the page&#39;s bounds and the index&#39;s total. It is the enumeration surface — search ranks by relevance and cannot walk a corpus — so a caller reconciling what it has written reads it here.  An index this org does not hold answers 404 carrying the dialect&#39;s &#x60;index_not_found&#x60;.
     /// </remarks>
     /// <param name="uid"></param>
-    pplx::task<void> getIndexIndexesByUidDocuments(
-        utility::string_t uid
+    /// <param name="limit"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="offset"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<IndexDocuments>> getIndexIndexesByUidDocuments(
+        utility::string_t uid,
+        boost::optional<utility::string_t> limit,
+        boost::optional<utility::string_t> offset
     ) const;
     /// <summary>
-    /// Read one document by its primary key
+    /// Reads one document by its primary key.
     /// </summary>
     /// <remarks>
-    /// Answers the stored document whose primary key matches, exactly as it was written. A missing document is 404 &#x60;document_not_found&#x60; and a missing index is 404 &#x60;index_not_found&#x60; — two different codes, because a client that branches on them treats the cases differently. The tenant is the org minted from the VALIDATED bearer&#39;s owner claim, never a client-supplied header, and every query filters on it, so two orgs may both hold an index named \&quot;messages\&quot; and neither can see the other&#39;s documents. Without a validated principal the answer is 403 carrying Meilisearch&#39;s &#x60;invalid_api_key&#x60; body. Errors use Meilisearch&#39;s {message, code, type, link} shape rather than cloud&#39;s, because that &#x60;code&#x60; is a wire contract a Meilisearch client branches on.
+    /// Reads one document by its primary key.  Answers the stored document exactly as it was written — this surface keeps documents whole rather than projecting them, so what comes back is what went in. A primary key this index does not hold answers 404 carrying the dialect&#39;s &#x60;document_not_found&#x60;; an index this org does not hold answers &#x60;index_not_found&#x60;, and the two are different facts a client acts on differently.
     /// </remarks>
     /// <param name="uid"></param>
     /// <param name="id"></param>
-    pplx::task<void> getIndexIndexesByUidDocumentsById(
+    pplx::task<std::shared_ptr<AnyType>> getIndexIndexesByUidDocumentsById(
         utility::string_t uid,
         utility::string_t id
     ) const;
     /// <summary>
-    /// Read an index&#39;s filterable attributes
+    /// Reads an index&#39;s filterable attributes.
     /// </summary>
     /// <remarks>
-    /// Answers the attributes an index allows filtering on. This dialect implements the filterable-attributes setting and no other, so that is the whole of what comes back. An index the caller&#39;s org does not hold is 404 &#x60;index_not_found&#x60;. The tenant is the org minted from the VALIDATED bearer&#39;s owner claim, never a client-supplied header, and every query filters on it, so two orgs may both hold an index named \&quot;messages\&quot; and neither can see the other&#39;s documents. Without a validated principal the answer is 403 carrying Meilisearch&#39;s &#x60;invalid_api_key&#x60; body. Errors use Meilisearch&#39;s {message, code, type, link} shape rather than cloud&#39;s, because that &#x60;code&#x60; is a wire contract a Meilisearch client branches on.
+    /// Reads an index&#39;s filterable attributes.  Answers the settings subset this surface implements: the attributes a search &#x60;filter&#x60; may constrain. An index this org does not hold answers 404 carrying the dialect&#39;s &#x60;index_not_found&#x60;.
     /// </remarks>
     /// <param name="uid"></param>
-    pplx::task<void> getIndexIndexesByUidSettings(
+    pplx::task<std::shared_ptr<IndexSettings>> getIndexIndexesByUidSettings(
         utility::string_t uid
     ) const;
     /// <summary>
-    /// Count the documents in each of your indexes
+    /// Counts the documents in each of your indexes.
     /// </summary>
     /// <remarks>
-    /// Answers a document count per index for the caller&#39;s org, plus their sum. &#x60;isIndexing&#x60; is always false, which is the honest answer here rather than a stub: writes are applied before their response, so there is never a backlog in progress to report. The tenant is the org minted from the VALIDATED bearer&#39;s owner claim, never a client-supplied header, and every query filters on it, so two orgs may both hold an index named \&quot;messages\&quot; and neither can see the other&#39;s documents. Without a validated principal the answer is 403 carrying Meilisearch&#39;s &#x60;invalid_api_key&#x60; body. Errors use Meilisearch&#39;s {message, code, type, link} shape rather than cloud&#39;s, because that &#x60;code&#x60; is a wire contract a Meilisearch client branches on.
+    /// Counts the documents in each of your indexes.  Reports every index the caller&#39;s own org holds with its document count, plus the org&#39;s total. &#x60;isIndexing&#x60; is always false because writes here are applied before their response — there is never a background pass to wait on.  The tenant is the org minted from the VALIDATED bearer&#39;s owner claim, never a client-supplied header, so this counts the caller&#39;s own documents and no other tenant&#39;s. Without a validated principal the answer is 403 carrying the dialect&#39;s &#x60;invalid_api_key&#x60; body.
     /// </remarks>
-    pplx::task<void> getIndexStats(
+    pplx::task<std::shared_ptr<IndexStats>> getIndexStats(
     ) const;
     /// <summary>
-    /// Check a write task, which has already finished
+    /// Checks a write task, which has already finished.
     /// </summary>
     /// <remarks>
-    /// Answers &#x60;succeeded&#x60; for the task id given. It ALWAYS answers succeeded, and that is honest rather than a stub: writes on this surface are applied before their response returns, so by the time any task id exists to ask about, its work is done. It exists so a Meilisearch client&#39;s waitForTask resolves at once instead of polling forever for a queue that was never there. It requires a validated principal but reads no tenant data.
+    /// Checks a write task, which has already finished.  Always reports &#x60;succeeded&#x60;. Writes here are applied to SQLite before their EnqueuedTask is returned, so a client polling waitForTask resolves on its first call rather than waiting for a queue that was never there. The three timestamps are the same instant for the same reason.  It requires a validated principal but reads no tenant data: the task id it echoes was minted by this process and names nothing about any org.
     /// </remarks>
     /// <param name="uid"></param>
-    pplx::task<void> getIndexTasksByUid(
-        utility::string_t uid
+    pplx::task<std::shared_ptr<IndexTask>> getIndexTasksByUid(
+        int32_t uid
     ) const;
     /// <summary>
-    /// Identify the search implementation answering
+    /// Identifies the search implementation answering.
     /// </summary>
     /// <remarks>
-    /// Answers the version shape a Meilisearch client expects. It names THIS implementation rather than a Meilisearch release — the commit field reads &#x60;hanzo-cloud&#x60; — so a client that logs it records which server actually answered instead of implying a Meilisearch build. Needs no credential.
+    /// Identifies the search implementation answering.  Reports the dialect&#39;s version shape with &#x60;commitSha&#x60; naming this implementation rather than a Meilisearch build, so a client that logs the version records which server answered instead of implying a release of software this is not. It requires no principal and reads no tenant data.
     /// </remarks>
-    pplx::task<void> getIndexVersion(
+    pplx::task<std::shared_ptr<IndexVersion>> getIndexVersion(
     ) const;
     /// <summary>
-    /// Set which attributes an index can be filtered on
+    /// Sets which attributes an index can be filtered on.
     /// </summary>
     /// <remarks>
-    /// Replaces an index&#39;s filterable attributes with the list in &#x60;filterableAttributes&#x60;; omitting the field leaves them as they are. The index is CREATED ON DEMAND rather than 404&#39;d, because a client that configures an index it has just asked for should not have to create it first — this is the one read-shaped path on the surface that writes. The tenant is the org minted from the VALIDATED bearer&#39;s owner claim, never a client-supplied header, and every query filters on it, so two orgs may both hold an index named \&quot;messages\&quot; and neither can see the other&#39;s documents. Without a validated principal the answer is 403 carrying Meilisearch&#39;s &#x60;invalid_api_key&#x60; body. Errors use Meilisearch&#39;s {message, code, type, link} shape rather than cloud&#39;s, because that &#x60;code&#x60; is a wire contract a Meilisearch client branches on.  The 202 and its &#x60;enqueued&#x60; task are DIALECT COMPATIBILITY, not a promise of later work: the write is already applied when this answers, and the task it names is already complete. A client that polls waitForTask resolves immediately rather than waiting, and a client that does not poll has still had its write committed.
+    /// Sets which attributes an index can be filtered on.  Replaces the whole filterable set. An attribute not listed here cannot be used in a search &#x60;filter&#x60;, so this is what makes a per-user or per-tag narrowing possible at all.  It CREATES the index when it is missing rather than answering 404, because a Meilisearch client configures settings on an index it has just asked for and a refusal there leaves the client with no index at all.  The 202 and its &#x60;enqueued&#x60; task are DIALECT COMPATIBILITY, not a promise of later work: the setting is already applied when this answers.
     /// </remarks>
     /// <param name="uid"></param>
-    pplx::task<void> patchIndexIndexesByUidSettings(
-        utility::string_t uid
+    /// <param name="indexFilter"></param>
+    pplx::task<std::shared_ptr<IndexEnqueued>> patchIndexIndexesByUidSettings(
+        utility::string_t uid,
+        std::shared_ptr<IndexFilter> indexFilter
     ) const;
     /// <summary>
-    /// Create an index
+    /// Creates an index.
     /// </summary>
     /// <remarks>
-    /// Creates an index named by &#x60;uid&#x60; in the caller&#39;s org. &#x60;primaryKey&#x60; names the document field that identifies a document and defaults to &#x60;id&#x60;. Creating an index that already exists is not an error — it settles on the existing one, primary key included — so a client that creates before every write is safe to run repeatedly. A missing or over-long uid is 400 &#x60;invalid_index_uid&#x60;. A new index starts with &#x60;user&#x60; filterable, which is what lets a multi-user app narrow searches to one end user without configuring anything. The tenant is the org minted from the VALIDATED bearer&#39;s owner claim, never a client-supplied header, and every query filters on it, so two orgs may both hold an index named \&quot;messages\&quot; and neither can see the other&#39;s documents. Without a validated principal the answer is 403 carrying Meilisearch&#39;s &#x60;invalid_api_key&#x60; body. Errors use Meilisearch&#39;s {message, code, type, link} shape rather than cloud&#39;s, because that &#x60;code&#x60; is a wire contract a Meilisearch client branches on.  The 202 and its &#x60;enqueued&#x60; task are DIALECT COMPATIBILITY, not a promise of later work: the write is already applied when this answers, and the task it names is already complete. A client that polls waitForTask resolves immediately rather than waiting, and a client that does not poll has still had its write committed.
+    /// Creates an index.  Registers a named index in the caller&#39;s own org and answers the dialect&#39;s EnqueuedTask. It is idempotent: creating an index that already exists returns the same receipt and changes nothing, which is what lets a client create on startup without checking first.  &#x60;primaryKey&#x60; is optional — the first write establishes one when it is omitted. An index is a ROW here rather than a table, so an unusual uid is stored verbatim instead of being sanitised into a schema name.  The 202 and its &#x60;enqueued&#x60; task are DIALECT COMPATIBILITY, not a promise of later work: the write is already applied when this answers. A client that polls waitForTask resolves immediately.
     /// </remarks>
-    pplx::task<void> postIndexIndexes(
+    /// <param name="indexNew"></param>
+    pplx::task<std::shared_ptr<IndexEnqueued>> postIndexIndexes(
+        std::shared_ptr<IndexNew> indexNew
     ) const;
     /// <summary>
     /// Add or replace documents in an index
     /// </summary>
     /// <remarks>
-    /// Upserts documents into one index, keyed by the index&#39;s primary key: a document whose key is already present is REPLACED, one that is not is added, and it becomes searchable immediately. Send an array, or a single object — a hand-rolled caller sending one document is accepted rather than 400&#39;d. The index is created on demand, so a first write needs no create call.  This and the PUT on the same path are the SAME operation: both are a whole document upsert, which is what a Meilisearch client&#39;s addDocuments and updateDocuments both reduce to here. A body that is neither an array nor an object is 400. The tenant is the org minted from the VALIDATED bearer&#39;s owner claim, never a client-supplied header, and every query filters on it, so two orgs may both hold an index named \&quot;messages\&quot; and neither can see the other&#39;s documents. Without a validated principal the answer is 403 carrying Meilisearch&#39;s &#x60;invalid_api_key&#x60; body. Errors use Meilisearch&#39;s {message, code, type, link} shape rather than cloud&#39;s, because that &#x60;code&#x60; is a wire contract a Meilisearch client branches on.  The 202 and its &#x60;enqueued&#x60; task are DIALECT COMPATIBILITY, not a promise of later work: the write is already applied when this answers, and the task it names is already complete. A client that polls waitForTask resolves immediately rather than waiting, and a client that does not poll has still had its write committed.
+    /// Writes documents into the caller&#39;s own index, keyed by the index&#39;s primary key: a document whose key is already present is REPLACED whole. The body is the dialect&#39;s own — an array of documents, or a single document — and each is stored verbatim, so a read gives back exactly what was written.  The index is CREATED when it is missing rather than refused, because a Meilisearch client writes before it configures.  The tenant is the org minted from the VALIDATED bearer&#39;s owner claim, never a client-supplied header, so two orgs may both hold an index named \&quot;messages\&quot; and neither can see the other&#39;s documents. Without a validated principal the answer is 403 carrying the dialect&#39;s &#x60;invalid_api_key&#x60; body.  The 202 and its &#x60;enqueued&#x60; task are DIALECT COMPATIBILITY, not a promise of later work: the documents are searchable when this answers, and a client that polls waitForTask resolves immediately.
     /// </remarks>
     /// <param name="uid"></param>
-    pplx::task<void> postIndexIndexesByUidDocuments(
-        utility::string_t uid
+    /// <param name="requestBody"> (optional)</param>
+    pplx::task<std::shared_ptr<IndexEnqueued>> postIndexIndexesByUidDocuments(
+        utility::string_t uid,
+        boost::optional<std::vector<std::shared_ptr<AnyType>>> requestBody
     ) const;
     /// <summary>
     /// Delete many documents by primary key in one call
     /// </summary>
     /// <remarks>
-    /// Removes every document named by an array of primary keys. Keys may be sent as strings or numbers — a number keeps its exact decimal form, so an integer key round-trips as &#x60;42&#x60; and never as scientific notation. Keys that are absent from the index are skipped rather than failing the batch, so this is idempotent. A body that is not an array is 400. The tenant is the org minted from the VALIDATED bearer&#39;s owner claim, never a client-supplied header, and every query filters on it, so two orgs may both hold an index named \&quot;messages\&quot; and neither can see the other&#39;s documents. Without a validated principal the answer is 403 carrying Meilisearch&#39;s &#x60;invalid_api_key&#x60; body. Errors use Meilisearch&#39;s {message, code, type, link} shape rather than cloud&#39;s, because that &#x60;code&#x60; is a wire contract a Meilisearch client branches on.  The 202 and its &#x60;enqueued&#x60; task are DIALECT COMPATIBILITY, not a promise of later work: the write is already applied when this answers, and the task it names is already complete. A client that polls waitForTask resolves immediately rather than waiting, and a client that does not poll has still had its write committed.
+    /// Removes every named document from the caller&#39;s own index. The body is the dialect&#39;s own: a bare array of primary keys, which may be strings or numbers. A key that is not there is not an error, so a client reconciling its own corpus can send one list rather than checking each key first.  The tenant is the org minted from the VALIDATED bearer&#39;s owner claim, never a client-supplied header. Without a validated principal the answer is 403 carrying the dialect&#39;s &#x60;invalid_api_key&#x60; body.  The 202 and its &#x60;enqueued&#x60; task are DIALECT COMPATIBILITY, not a promise of later work: the documents are already gone when this answers.
     /// </remarks>
     /// <param name="uid"></param>
-    pplx::task<void> postIndexIndexesByUidDocumentsDeleteBatch(
-        utility::string_t uid
+    /// <param name="postIndexIndexesByUidDocumentsDeleteBatchRequest"> (optional)</param>
+    pplx::task<std::shared_ptr<IndexEnqueued>> postIndexIndexesByUidDocumentsDeleteBatch(
+        utility::string_t uid,
+        boost::optional<std::shared_ptr<Post_index_indexes_by_uid_documents_delete_batch_request>> postIndexIndexesByUidDocumentsDeleteBatchRequest
     ) const;
     /// <summary>
-    /// Search an index, forgiving typos
+    /// Searches an index, forgiving typos.
     /// </summary>
     /// <remarks>
-    /// Answers the documents in one index matching &#x60;q&#x60;, ranked by how many of the query&#39;s terms they match, with prefix matching so a partial word still finds its document. &#x60;limit&#x60; defaults to 20 and is capped at 1000, &#x60;offset&#x60; pages; a negative value falls back to the default rather than erroring.  &#x60;filter&#x60; takes a Meilisearch filter expression, or an array of them, and the &#x60;user &#x3D; \&quot;…\&quot;&#x60; and &#x60;user IN […]&#x60; forms are honoured — that is how an app with many end users narrows results to one of them WITHIN the org. &#x60;estimatedTotalHits&#x60; is exact for the page returned, not an estimate, because every hit is materialised. An index the caller&#39;s org does not hold is 404 &#x60;index_not_found&#x60;. The tenant is the org minted from the VALIDATED bearer&#39;s owner claim, never a client-supplied header, and every query filters on it, so two orgs may both hold an index named \&quot;messages\&quot; and neither can see the other&#39;s documents. Without a validated principal the answer is 403 carrying Meilisearch&#39;s &#x60;invalid_api_key&#x60; body. Errors use Meilisearch&#39;s {message, code, type, link} shape rather than cloud&#39;s, because that &#x60;code&#x60; is a wire contract a Meilisearch client branches on.
+    /// Searches an index, forgiving typos.  Ranks the org&#39;s documents in one index against &#x60;q&#x60; and answers the matching documents whole, most relevant first. A prefix matches, so a partial word finds the documents containing it, and &#x60;filter&#x60; narrows the result to documents whose filterable attributes match — which is how a caller scopes results to one end user within its own org.  &#x60;estimatedTotalHits&#x60; is the dialect&#39;s name for the count; every hit is materialised here, so for this page it is exact. An index this org does not hold answers 404 carrying the dialect&#39;s &#x60;index_not_found&#x60;.
     /// </remarks>
     /// <param name="uid"></param>
-    pplx::task<void> postIndexIndexesByUidSearch(
-        utility::string_t uid
+    /// <param name="indexQuery"></param>
+    pplx::task<std::shared_ptr<IndexHits>> postIndexIndexesByUidSearch(
+        utility::string_t uid,
+        std::shared_ptr<IndexQuery> indexQuery
     ) const;
     /// <summary>
     /// Add or update documents in an index
     /// </summary>
     /// <remarks>
-    /// Upserts documents into one index, keyed by the index&#39;s primary key: a document whose key is already present is REPLACED, one that is not is added, and it becomes searchable immediately. Send an array, or a single object — a hand-rolled caller sending one document is accepted rather than 400&#39;d. The index is created on demand, so a first write needs no create call.  This and the POST on the same path are the SAME operation, served by one handler. Both exist because the Meilisearch dialect has both verbs; there is no partial-update semantics on this one — a document is replaced whole either way. The tenant is the org minted from the VALIDATED bearer&#39;s owner claim, never a client-supplied header, and every query filters on it, so two orgs may both hold an index named \&quot;messages\&quot; and neither can see the other&#39;s documents. Without a validated principal the answer is 403 carrying Meilisearch&#39;s &#x60;invalid_api_key&#x60; body. Errors use Meilisearch&#39;s {message, code, type, link} shape rather than cloud&#39;s, because that &#x60;code&#x60; is a wire contract a Meilisearch client branches on.  The 202 and its &#x60;enqueued&#x60; task are DIALECT COMPATIBILITY, not a promise of later work: the write is already applied when this answers, and the task it names is already complete. A client that polls waitForTask resolves immediately rather than waiting, and a client that does not poll has still had its write committed.
+    /// The dialect&#39;s update spelling of the write above, and the same act: an upsert keyed by the index&#39;s primary key. The JS client&#39;s addDocuments and updateDocuments both reduce to this for whole documents, so both spellings are served and both behave identically.  The tenant is the org minted from the VALIDATED bearer&#39;s owner claim, never a client-supplied header. Without a validated principal the answer is 403 carrying the dialect&#39;s &#x60;invalid_api_key&#x60; body.  The 202 and its &#x60;enqueued&#x60; task are DIALECT COMPATIBILITY, not a promise of later work: the write is already applied when this answers.
     /// </remarks>
     /// <param name="uid"></param>
-    pplx::task<void> putIndexIndexesByUidDocuments(
-        utility::string_t uid
+    /// <param name="requestBody"> (optional)</param>
+    pplx::task<std::shared_ptr<IndexEnqueued>> putIndexIndexesByUidDocuments(
+        utility::string_t uid,
+        boost::optional<std::vector<std::shared_ptr<AnyType>>> requestBody
     ) const;
 
 protected:

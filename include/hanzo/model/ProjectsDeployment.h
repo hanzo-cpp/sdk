@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -54,66 +54,105 @@ public:
     /// ProjectsDeployment members
 
 
+    /// <summary>
+    /// Bucket is the object-store bucket its files were written to.
+    /// </summary>
     utility::string_t getBucket() const;
     bool bucketIsSet() const;
     void unsetBucket();
     void setBucket(const utility::string_t& value);
 
+    /// <summary>
+    /// Bytes is their total size in bytes.
+    /// </summary>
     int32_t getBytes() const;
     bool bytesIsSet() const;
     void unsetBytes();
     void setBytes(int32_t value);
 
+    /// <summary>
+    /// Commit is the revision that was built, for a deployment that came from a repository. Absent for an uploaded artifact, which has no revision.
+    /// </summary>
     utility::string_t getCommit() const;
     bool commitIsSet() const;
     void unsetCommit();
     void setCommit(const utility::string_t& value);
 
+    /// <summary>
+    /// CreatedAt is when the deployment was queued, as Unix seconds.
+    /// </summary>
     int32_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
     void setCreatedAt(int32_t value);
 
+    /// <summary>
+    /// Files is how many objects the deployment published.
+    /// </summary>
     int32_t getFiles() const;
     bool filesIsSet() const;
     void unsetFiles();
     void setFiles(int32_t value);
 
+    /// <summary>
+    /// ID identifies this one deployment attempt, and is what CI quotes back to complete it.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
+    /// <summary>
+    /// LiveURL is where this deployment serves, once it is live.
+    /// </summary>
     utility::string_t getLiveUrl() const;
     bool liveUrlIsSet() const;
     void unsetLiveUrl();
     void setLiveUrl(const utility::string_t& value);
 
+    /// <summary>
+    /// Message is what happened, in words — the build&#39;s own note, or on a failure why it failed.
+    /// </summary>
     utility::string_t getMessage() const;
     bool messageIsSet() const;
     void unsetMessage();
     void setMessage(const utility::string_t& value);
 
+    /// <summary>
+    /// Prefix is the key prefix within that bucket holding EXACTLY this deployment&#39;s objects — the unit an upload grant is scoped to, so a grant for one deployment cannot write over another.
+    /// </summary>
     utility::string_t getPrefix() const;
     bool prefixIsSet() const;
     void unsetPrefix();
     void setPrefix(const utility::string_t& value);
 
+    /// <summary>
+    /// ProjectID is the project this deployment belongs to.
+    /// </summary>
     utility::string_t getProjectId() const;
     bool projectIdIsSet() const;
     void unsetProjectId();
     void setProjectId(const utility::string_t& value);
 
+    /// <summary>
+    /// Source is what caused the deployment — a git push, an uploaded artifact, a generated site.
+    /// </summary>
     utility::string_t getSource() const;
     bool sourceIsSet() const;
     void unsetSource();
     void setSource(const utility::string_t& value);
 
+    /// <summary>
+    /// Status is where the attempt got to — queued, live, or failed. A deployment that is live is not necessarily the one SERVING: the project&#39;s own currentDeploymentId says which is.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
+    /// <summary>
+    /// UpdatedAt is when it last changed state, as Unix seconds — so the gap between the two is how long the build took.
+    /// </summary>
     int32_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
@@ -127,6 +166,9 @@ public:
     void unsetUpload();
     void setUpload(const std::shared_ptr<ProjectsUploadGrant>& value);
 
+    /// <summary>
+    /// Version counts deployments of this project from 1, so the history reads as an ordered sequence rather than by timestamp. It is per project, not global.
+    /// </summary>
     int32_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();

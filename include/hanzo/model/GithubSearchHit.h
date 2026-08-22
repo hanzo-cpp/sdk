@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,41 +52,65 @@ public:
     /// GithubSearchHit members
 
 
+    /// <summary>
+    /// CloneURL is the repository&#39;s https git remote.
+    /// </summary>
     utility::string_t getCloneUrl() const;
     bool cloneUrlIsSet() const;
     void unsetClone_url();
     void setCloneUrl(const utility::string_t& value);
 
+    /// <summary>
+    /// DefaultBranch is the branch a clone checks out.
+    /// </summary>
     utility::string_t getDefaultBranch() const;
     bool defaultBranchIsSet() const;
     void unsetDefault_branch();
     void setDefaultBranch(const utility::string_t& value);
 
+    /// <summary>
+    /// Description is the blurb the repository&#39;s owner wrote. Empty when it has none.
+    /// </summary>
     utility::string_t getDescription() const;
     bool descriptionIsSet() const;
     void unsetDescription();
     void setDescription(const utility::string_t& value);
 
+    /// <summary>
+    /// FullName is the repository&#39;s \&quot;owner/repo\&quot; on GitHub. Finding it here does NOT make it forkable: githubFork takes a repo the org&#39;s installation was granted, and a hit from the public index usually is not one.
+    /// </summary>
     utility::string_t getFullName() const;
     bool fullNameIsSet() const;
     void unsetFull_name();
     void setFullName(const utility::string_t& value);
 
+    /// <summary>
+    /// HTMLURL is the repository&#39;s page on github.com.
+    /// </summary>
     utility::string_t getHtmlUrl() const;
     bool htmlUrlIsSet() const;
     void unsetHtml_url();
     void setHtmlUrl(const utility::string_t& value);
 
+    /// <summary>
+    /// Language is the primary language GitHub detected from the file mix (\&quot;Go\&quot;, \&quot;TypeScript\&quot;). Empty when GitHub attributes none.
+    /// </summary>
     utility::string_t getLanguage() const;
     bool languageIsSet() const;
     void unsetLanguage();
     void setLanguage(const utility::string_t& value);
 
+    /// <summary>
+    /// Private is GitHub&#39;s visibility flag, passed through. This op reads the public index — the org&#39;s token only charges the rate limit to the installation — so it is false for everything a search can reach.
+    /// </summary>
     bool isRPrivate() const;
     bool rPrivateIsSet() const;
     void unsetr_private();
     void setRPrivate(bool value);
 
+    /// <summary>
+    /// Stars is GitHub&#39;s stargazers_count as the SEARCH INDEX held it when the query ran — a snapshot, not a live count off the repository.
+    /// </summary>
     int32_t getStars() const;
     bool starsIsSet() const;
     void unsetStars();

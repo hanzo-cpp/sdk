@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -24,10 +24,23 @@
 
 #include "hanzo/model/ActivationReq.h"
 #include "hanzo/model/ActivationSet.h"
+#include "hanzo/model/AuthoredPluginList.h"
+#include "hanzo/model/AuthoredSkillList.h"
+#include "hanzo/model/BuildOut.h"
+#include "hanzo/model/BuildRequest.h"
+#include "hanzo/model/CreateServerReq.h"
 #include "hanzo/model/CurateReq.h"
 #include "hanzo/model/MCPListing.h"
+#include "hanzo/model/MCPServer.h"
 #include "hanzo/model/McpCatalog.h"
 #include "hanzo/model/McpCatalogSync.h"
+#include "hanzo/model/McpServerList.h"
+#include "hanzo/model/PluginDeleted.h"
+#include "hanzo/model/PluginMountList.h"
+#include "hanzo/model/SkillDeleted.h"
+#include "hanzo/model/SkillIn.h"
+#include "hanzo/model/SkillWritten.h"
+#include "hanzo/model/SourceToolList.h"
 #include "hanzo/model/ToolCall.h"
 #include "hanzo/model/ToolList.h"
 #include "hanzo/model/ToolResult.h"
@@ -49,6 +62,36 @@ public:
 
     virtual ~ToolsApi();
 
+    /// <summary>
+    /// Deregisters one of the caller org&#39;s external MCP servers, so its tools leave the registry.
+    /// </summary>
+    /// <remarks>
+    /// Deregisters one of the caller org&#39;s external MCP servers, so its tools leave the registry. Scoped to the caller&#39;s org, so an id belonging to another tenant is a 404 and not a delete. Answers 204 with no body; a server this org does not have is 404.
+    /// </remarks>
+    /// <param name="id">ID is the server to deregister, from the path.</param>
+    pplx::task<void> deleteToolsMcpServersById(
+        utility::string_t id
+    ) const;
+    /// <summary>
+    /// Removes one of the caller org&#39;s built plugins, so the runtime can no longer load it.
+    /// </summary>
+    /// <remarks>
+    /// Removes one of the caller org&#39;s built plugins, so the runtime can no longer load it. Scoped to the caller&#39;s org, so an id belonging to another tenant answers 404 and is not deleted.
+    /// </remarks>
+    /// <param name="id">ID is the plugin to remove, from the path.</param>
+    pplx::task<std::shared_ptr<PluginDeleted>> deleteToolsPluginsAuthoredById(
+        utility::string_t id
+    ) const;
+    /// <summary>
+    /// Removes one of the caller org&#39;s authored skills.
+    /// </summary>
+    /// <remarks>
+    /// Removes one of the caller org&#39;s authored skills. Scoped to the caller&#39;s org, so an id belonging to another tenant is never reached. Removing what is not there is not an error — the caller&#39;s intent is \&quot;gone\&quot;, and it is.
+    /// </remarks>
+    /// <param name="id">ID is the skill to remove, from the path. It is the skill&#39;s name.</param>
+    pplx::task<std::shared_ptr<SkillDeleted>> deleteToolsSkillsById(
+        utility::string_t id
+    ) const;
     /// <summary>
     /// Lists every tool the caller&#39;s org and project can reach, from every source, each flagged with whether it is activated.
     /// </summary>
@@ -73,7 +116,7 @@ public:
     /// Lists the MCP servers the public registries publish, as we hold them: our canonical copy of registry.modelcontextprotocol.io, plus what we decided about each entry.
     /// </summary>
     /// <remarks>
-    /// Lists the MCP servers the public registries publish, as we hold them: our canonical copy of registry.modelcontextprotocol.io, plus what we decided about each entry.  This is the SHELF an org picks from. A listing with a streamable-http endpoint can be enabled as-is — POST /v1/mcp/servers with its id — and its tools then join the org&#39;s tool plane and the fleet&#39;s MCP door. A listing that only ships a stdio package needs a process to run it, which is why the transports are on every entry rather than implied.  Hidden entries are absent: they are the ones we took off the shelf. A platform SuperAdmin sees them, because the same query answers \&quot;what is on the shelf\&quot; and \&quot;what is in the catalog\&quot; and two queries would drift apart.  It is PAGED — 50 by default, 200 at most. The public registry publishes tens of thousands of servers, so an unbounded answer is a twenty-megabyte response and a storefront that renders in a minute. total is the whole match, not the page.
+    /// Lists the MCP servers the public registries publish, as we hold them: our canonical copy of registry.modelcontextprotocol.io, plus what we decided about each entry.  This is the SHELF an org picks from. A listing with a streamable-http endpoint can be enabled as-is — POST /v1/tools/mcp/servers with its id — and its tools then join the org&#39;s tool plane and the fleet&#39;s MCP door. A listing that only ships a stdio package needs a process to run it, which is why the transports are on every entry rather than implied.  Hidden entries are absent: they are the ones we took off the shelf. A platform SuperAdmin sees them, because the same query answers \&quot;what is on the shelf\&quot; and \&quot;what is in the catalog\&quot; and two queries would drift apart.  It is PAGED — 50 by default, 200 at most. The public registry publishes tens of thousands of servers, so an unbounded answer is a twenty-megabyte response and a storefront that renders in a minute. total is the whole match, not the page.
     /// </remarks>
     /// <param name="q">Q matches the name, title or description, case-insensitively. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="featured">Featured keeps only the listings we put on the front of the shelf, and only when it is exactly the string \&quot;true\&quot;. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
@@ -96,6 +139,50 @@ public:
     /// <param name="id">ID is the listing, from the path. It is the publisher&#39;s reverse-DNS name with its one slash written as an underscore — \&quot;com.stripe_mcp\&quot;.</param>
     pplx::task<std::shared_ptr<MCPListing>> getToolsCatalogById(
         utility::string_t id
+    ) const;
+    /// <summary>
+    /// Lists the external MCP servers the caller&#39;s org has registered.
+    /// </summary>
+    /// <remarks>
+    /// Lists the external MCP servers the caller&#39;s org has registered. Each record carries the URL and the name of the header its credential is injected into; the credential VALUE lives only in KMS and is never returned, so hasSecret is the whole of what this surface says about it.
+    /// </remarks>
+    pplx::task<std::shared_ptr<McpServerList>> getToolsMcpServers(
+    ) const;
+    /// <summary>
+    /// Reports what this deployment actually mounted: every subsystem the composition root declared and whether it is switched on.
+    /// </summary>
+    /// <remarks>
+    /// Reports what this deployment actually mounted: every subsystem the composition root declared and whether it is switched on. A plugin here is MOUNTED CODE that extends the deployment&#39;s own surface — not a tool an agent calls — so this is an inventory and not a tool source. It is read off the same boot snapshot every traced request resolves its subsystem label against, so it cannot drift from what is serving. Enabled-only by default, because a caller asking what this deployment can do wants what is running; ?all&#x3D;true adds the configured-but-off ones.
+    /// </remarks>
+    /// <param name="all">All includes the configured-but-disabled subsystems too, but only when it is exactly the string \&quot;true\&quot;. Otherwise only the running ones are reported. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<PluginMountList>> getToolsPlugins(
+        boost::optional<utility::string_t> all
+    ) const;
+    /// <summary>
+    /// Lists the plugins the caller&#39;s org BUILT, newest first, each with the TypeScript as authored.
+    /// </summary>
+    /// <remarks>
+    /// Lists the plugins the caller&#39;s org BUILT, newest first, each with the TypeScript as authored. That is a different set with a different lifecycle from GET /v1/tools/plugins, which reports the subsystems this deployment mounted. The bundled CommonJS the runtime executes is never included, and neither is any credential — a plugin names the connectors provider it needs and reads the credential from ctx.auth at run time.
+    /// </remarks>
+    pplx::task<std::shared_ptr<AuthoredPluginList>> getToolsPluginsAuthored(
+    ) const;
+    /// <summary>
+    /// Lists the skills the caller&#39;s org can reach — the brand&#39;s embedded catalogue plus the org&#39;s own authored ones — with each one&#39;s activation flag.
+    /// </summary>
+    /// <remarks>
+    /// Lists the skills the caller&#39;s org can reach — the brand&#39;s embedded catalogue plus the org&#39;s own authored ones — with each one&#39;s activation flag. A skill is discovery and activation metadata attached to an agent, never called directly, so every entry here is non-dispatchable. It is GET /v1/tools narrowed to one source, not a second store: a name a caller sees here is the same entry, with the same activation state, that discovery reports.
+    /// </remarks>
+    /// <param name="activated">Activated keeps only the tools activated for the caller&#39;s org and project, and only when it is exactly the string \&quot;true\&quot;. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<SourceToolList>> getToolsSkills(
+        boost::optional<utility::string_t> activated
+    ) const;
+    /// <summary>
+    /// Lists the caller org&#39;s OWN skills with their SKILL.md bodies.
+    /// </summary>
+    /// <remarks>
+    /// Lists the caller org&#39;s OWN skills with their SKILL.md bodies. GET /v1/tools/skills is the registry view — the brand&#39;s catalogue plus this org&#39;s, with activation flags and no bodies; this is the EDITABLE set, so it carries the content that view omits and nothing the org did not write.
+    /// </remarks>
+    pplx::task<std::shared_ptr<AuthoredSkillList>> getToolsSkillsAuthored(
     ) const;
     /// <summary>
     /// Sets what WE say about one catalog entry — hidden, featured, official, logo — and answers with the stored listing.
@@ -126,6 +213,36 @@ public:
     /// Pulls the public MCP registry into our canonical copy and reports what changed. SuperAdmin only; every other caller is refused.  It is IDEMPOTENT: a listing is keyed by the publisher&#39;s own reverse-DNS name, so a second pass over an unchanged registry rewrites the same rows and reports added&#x3D;0, updated&#x3D;0. It never deletes — a listing that vanishes upstream may be one an org has already enabled, and dropping its description would not drop its server. And it never touches CURATION: hidden, featured, an admin-set official and a logo survive every sync, because the write does not name those columns.
     /// </remarks>
     pplx::task<std::shared_ptr<McpCatalogSync>> postToolsCatalogSync(
+    ) const;
+    /// <summary>
+    /// Gives the caller&#39;s org one more external MCP server, so its tools join the org&#39;s tool plane and the fleet&#39;s MCP door.
+    /// </summary>
+    /// <remarks>
+    /// Gives the caller&#39;s org one more external MCP server, so its tools join the org&#39;s tool plane and the fleet&#39;s MCP door. It is the ONE way an org gains a server, whether it typed the URL in or enabled a catalog listing: both write the SAME record, and &#x60;source&#x60; says which it was. A second registration path would be a second place for a server to exist, and then a second place to forget to check the credential.  The credential VALUE is sealed in KMS under a per-org ref; the row keeps only the URL, the header name to inject it into, and a has-secret flag — so a secret with no KMS configured is refused 503 rather than stored in the clear. The URL is SSRF-validated here and re-checked by the dialer at connect time, which is the DNS-rebinding defense.  Enabling a listing the org already enabled REVISES that server rather than adding a near-duplicate beside it, so a retried enable is the same one server. Answers 201 with the stored record.
+    /// </remarks>
+    /// <param name="createServerReq"></param>
+    pplx::task<std::shared_ptr<MCPServer>> postToolsMcpServers(
+        std::shared_ptr<CreateServerReq> createServerReq
+    ) const;
+    /// <summary>
+    /// Builds and stores one plugin for the caller&#39;s org.
+    /// </summary>
+    /// <remarks>
+    /// Builds and stores one plugin for the caller&#39;s org. The 201 carries the bundle&#39;s size, whether a model wrote the source, and the plugin as stored.  Post &#x60;source&#x60; to build TypeScript as-is, or &#x60;spec&#x60; — an OpenAPI document or plain prose describing the endpoints — to have one generated; the generated source comes back in the answer, so a caller reads what will run before it runs. Exactly one of the two, and &#x60;name&#x60; must be one lowercase path segment; both or neither is 400.  COMPILING IS THE GATE. The source goes through the same pipeline the committed connectors do — esbuild to one CommonJS program, then compiled in the goja runtime that will actually execute it — and anything that fails is rejected and NEVER stored. So a plugin in the store is one this deployment has already loaded once, not one a model claimed was fine. A failed build answers 422 carrying the diagnostics a caller needs to fix it: the bundler&#39;s error (&#x60;detail&#x60;), the source that failed, and whether the model wrote it.  CREDENTIALS ARE NOT PART OF A PLUGIN. A plugin names the connectors &#x60;provider&#x60; it needs and reads that credential from &#x60;ctx.auth&#x60; at run time, under KMS custody. Source that carries something key-shaped is REFUSED rather than silently persisted — a scrubbed key looks like it worked.
+    /// </remarks>
+    /// <param name="buildRequest"></param>
+    pplx::task<std::shared_ptr<BuildOut>> postToolsPluginsBuild(
+        std::shared_ptr<BuildRequest> buildRequest
+    ) const;
+    /// <summary>
+    /// Adds or revises one of the caller org&#39;s own skills, and answers 201 with the stored record.
+    /// </summary>
+    /// <remarks>
+    /// Adds or revises one of the caller org&#39;s own skills, and answers 201 with the stored record. The id is derived from the name, so writing the same name again REVISES that skill rather than accumulating near-duplicates that would then collide in the registry. An org&#39;s skills are private to it by construction — they live in a different store from the brand&#39;s embedded catalogue and have no path into the public gallery — and a brand skill always wins a name collision against an org&#39;s.
+    /// </remarks>
+    /// <param name="skillIn"></param>
+    pplx::task<std::shared_ptr<SkillWritten>> postToolsSkills(
+        std::shared_ptr<SkillIn> skillIn
     ) const;
     /// <summary>
     /// Switches tools on and off for the caller&#39;s org and project, and answers with the resulting activated set.

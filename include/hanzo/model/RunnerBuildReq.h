@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -129,14 +129,6 @@ public:
     void setImage(const utility::string_t& value);
 
     /// <summary>
-    /// OrgID attributes the build to an org. On the IAM path it defaults to the caller&#39;s own validated org, and a foreign one is refused unless the caller is a platform SuperAdmin.
-    /// </summary>
-    utility::string_t getOrganizationId() const;
-    bool organizationIdIsSet() const;
-    void unsetOrganizationId();
-    void setOrganizationId(const utility::string_t& value);
-
-    /// <summary>
     /// OS is the target operating system for the artifact lane.
     /// </summary>
     utility::string_t getOs() const;
@@ -151,14 +143,6 @@ public:
     bool refIsSet() const;
     void unsetRef();
     void setRef(const utility::string_t& value);
-
-    /// <summary>
-    /// Release requests native release semantics for cloud&#39;s self-publish: compute the next version, build+push ghcr.io/hanzoai/cloud, smoke it, then tag (the receipt) and notify universe. It owns its output image (release.go), and it takes SuperAdmin.
-    /// </summary>
-    bool isRelease() const;
-    bool releaseIsSet() const;
-    void unsetRelease();
-    void setRelease(bool value);
 
     /// <summary>
     /// Repo is the repository clone URL to build. Required on the image lane.
@@ -213,17 +197,11 @@ protected:
     utility::string_t m_Image;
     bool m_ImageIsSet;
 
-    utility::string_t m_OrganizationId;
-    bool m_OrganizationIdIsSet;
-
     utility::string_t m_Os;
     bool m_OsIsSet;
 
     utility::string_t m_Ref;
     bool m_RefIsSet;
-
-    bool m_Release;
-    bool m_ReleaseIsSet;
 
     utility::string_t m_Repo;
     bool m_RepoIsSet;

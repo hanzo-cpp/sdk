@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -22,46 +22,19 @@
 
 #include "hanzo/ApiClient.h"
 
-#include "hanzo/model/ClearReferenceOut.h"
-#include "hanzo/model/ReferenceOut.h"
-#include "hanzo/model/ReferenceSetsOut.h"
-#include "hanzo/model/RefreshReferenceIn.h"
-#include "hanzo/model/RefreshReferenceOut.h"
-#include "hanzo/model/ResolveReferenceIn.h"
-#include "hanzo/model/ResolveReferenceOut.h"
 #include "hanzo/model/RiskAdoptIn.h"
 #include "hanzo/model/RiskAppetiteIn.h"
 #include "hanzo/model/RiskCatalog.h"
-#include "hanzo/model/RiskDataset.h"
-#include "hanzo/model/RiskDatasetDisposal.h"
-#include "hanzo/model/RiskDatasetList.h"
-#include "hanzo/model/RiskDatasetRows.h"
-#include "hanzo/model/RiskDatasetSpec.h"
-#include "hanzo/model/RiskDatasetVersions.h"
-#include "hanzo/model/RiskDisposeIn.h"
-#include "hanzo/model/RiskDisposeOut.h"
-#include "hanzo/model/RiskHoldIn.h"
-#include "hanzo/model/RiskHoldOut.h"
-#include "hanzo/model/RiskLabelCoverage.h"
-#include "hanzo/model/RiskLabelIn.h"
-#include "hanzo/model/RiskLabelOut.h"
-#include "hanzo/model/RiskLabelVocabulary.h"
-#include "hanzo/model/RiskLabelsOut.h"
 #include "hanzo/model/RiskLearnIn.h"
 #include "hanzo/model/RiskLearnOut.h"
-#include "hanzo/model/RiskLineage.h"
 #include "hanzo/model/RiskModelState.h"
 #include "hanzo/model/RiskPolicyOut.h"
 #include "hanzo/model/RiskPublishOut.h"
-#include "hanzo/model/RiskResolveIn.h"
-#include "hanzo/model/RiskResolveOut.h"
 #include "hanzo/model/RiskScoreIn.h"
 #include "hanzo/model/RiskScoreOut.h"
 #include "hanzo/model/RiskSearchIn.h"
 #include "hanzo/model/RiskSearchReport.h"
 #include "hanzo/model/RiskSearchRun.h"
-#include "hanzo/model/SetReferenceIn.h"
-#include "hanzo/model/SetReferenceOut.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -99,96 +72,6 @@ public:
         std::shared_ptr<RiskAdoptIn> riskAdoptIn
     ) const;
     /// <summary>
-    /// Removes one of your organisation&#39;s overrides.
-    /// </summary>
-    /// <remarks>
-    /// Removes one of your organisation&#39;s overrides.  It removes an entry your organisation wrote, never a baseline member: the published set is not writable from here, so a removal can only ever restore the baseline&#39;s own answer.
-    /// </remarks>
-    /// <param name="set"></param>
-    /// <param name="key"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    pplx::task<std::shared_ptr<ClearReferenceOut>> riskClearReference(
-        utility::string_t set,
-        boost::optional<utility::string_t> key
-    ) const;
-    /// <summary>
-    /// Declare the next version of a dataset
-    /// </summary>
-    /// <remarks>
-    /// Declares the next version of a dataset from a bound query over this org&#39;s own feature surface.  It mints a VERSION and writes no rows: a version is declared, then materialised once, then never rewritten. Version numbers are monotone and never reused, so \&quot;version 3 of signups\&quot; means one thing forever — which is the whole reason a model can cite one.  The window is bounded by the source&#39;s retention, the horizon by a year, the rows by the plane&#39;s cap, and the number of datasets and versions per org by their own limits. Every refusal names which bound it hit.
-    /// </remarks>
-    /// <param name="riskDatasetSpec"></param>
-    pplx::task<std::shared_ptr<RiskDataset>> riskCreateDataset(
-        std::shared_ptr<RiskDatasetSpec> riskDatasetSpec
-    ) const;
-    /// <summary>
-    /// Describe every version of one dataset
-    /// </summary>
-    /// <remarks>
-    /// Dataset describes every version of one dataset, newest first — the whole history, because the point of a version is that the older ones are still there and a model fitted last quarter cites one of them.  A name this org does not own answers 404, exactly as an unknown name does, so a probe learns nothing about another tenant&#39;s datasets.
-    /// </remarks>
-    /// <param name="name">Name is the dataset, from the path.</param>
-    pplx::task<std::shared_ptr<RiskDatasetVersions>> riskDataset(
-        utility::string_t name
-    ) const;
-    /// <summary>
-    /// Show where a version&#39;s rows came from, and whether that can still be demonstrated
-    /// </summary>
-    /// <remarks>
-    /// Shows where a version&#39;s rows came from and whether that can still be demonstrated.  The answer is MEASURED, not recalled: the plane asks the source the same bounded question again and compares it to the fingerprint taken when the version was built. Anything but exact agreement is reported as drift — the source is fed by a rollup that runs behind the events, so \&quot;it holds more now\&quot; is the ordinary case and it means re-running the spec would not reproduce this version. An admitted gap is actionable; an unfalsifiable claim is not.  IT IS A PRICED, BOUNDED READ, because it is the same statement a materialisation is charged for: an exact distinct-count over up to 400 days of this org&#39;s feature surface. It takes the org&#39;s ONE source-scan slot, so a tenant looping it spends one scan and not a thousand; it counts against the plane&#39;s ceiling, so the fleet&#39;s warehouse is bounded too; and it runs under this plane&#39;s own deadline rather than the caller&#39;s patience.
-    /// </remarks>
-    /// <param name="name">Name is the dataset, from the path.</param>
-    /// <param name="version">Version is the version to trace. Zero takes the newest published one. (optional, default to 0)</param>
-    pplx::task<std::shared_ptr<RiskLineage>> riskDatasetLineage(
-        utility::string_t name,
-        boost::optional<int32_t> version
-    ) const;
-    /// <summary>
-    /// List this org&#39;s datasets
-    /// </summary>
-    /// <remarks>
-    /// Datasets lists this org&#39;s datasets, each with its newest version. An org that has declared none gets an empty list; a store that cannot be reached gets a refusal, never an empty list, because the two read identically and only one of them is true.
-    /// </remarks>
-    pplx::task<std::shared_ptr<RiskDatasetList>> riskDatasets(
-    ) const;
-    /// <summary>
-    /// Dispose of one dataset and every version of it
-    /// </summary>
-    /// <remarks>
-    /// Disposes of one dataset and every version of it: the rows are dropped and the register is marked with what went.  This is the ONLY expiry in this plane. Neither table carries a TTL, deliberately: a table TTL is a fleet-wide clock no tenant can hold longer or shorten, which is the opposite of a retention decision belonging to the tenant whose records they are. The drop is a partition drop on (org, dataset), so the tenant is the first component of the thing being dropped and a disposal cannot be spelled across one.  The BYTES are what goes. The register keeps one &#x60;disposed&#x60; row per version — the name, the number, the spec, the digest and who disposed of it when — for two reasons: a retention obligation is answered by a record of the deletion, not by silence; and version numbers must stay monotone, so that after &#x60;orders&#x60; is disposed of and declared again the next version is 4 and not 1. A number that could be reused would make every citation of &#x60;orders v3&#x60; ambiguous forever.  It is not reversible and there is no soft state in between. A version a model cited has no rows once this returns, and every read of it says so.
-    /// </remarks>
-    /// <param name="name">Name is the dataset, from the path.</param>
-    pplx::task<std::shared_ptr<RiskDatasetDisposal>> riskDeleteDataset(
-        utility::string_t name
-    ) const;
-    /// <summary>
-    /// Dispose of this tenant&#39;s expired assertions, whole records only
-    /// </summary>
-    /// <remarks>
-    /// Applies this tenant&#39;s retention, and only this tenant&#39;s.  It is bounded three ways, each a compliance property rather than a convenience. It refuses a boundary younger than the platform floor, because a label can be the input to an adverse action and five years is what the retention ledger holds such a record for. It never touches a record under litigation hold. And it disposes of whole records rather than redacting fields.  It removes the derived columnar copy BEFORE the record, and refuses the whole disposal if the warehouse cannot be reached. The other order would leave rows in the warehouse that nothing can identify any more, which is a disposal that did not happen and says it did.
-    /// </remarks>
-    /// <param name="riskDisposeIn"></param>
-    pplx::task<std::shared_ptr<RiskDisposeOut>> riskDisposeLabels(
-        std::shared_ptr<RiskDisposeIn> riskDisposeIn
-    ) const;
-    /// <summary>
-    /// Read a version&#39;s rows back, one page at a time
-    /// </summary>
-    /// <remarks>
-    /// Reads a published version&#39;s rows back, one bounded page at a time, in the version&#39;s own stable row order.  Only a published version can be exported. Rows written by an attempt that never completed are inert — no register row names them — and they are disposed of with the dataset.
-    /// </remarks>
-    /// <param name="name">Name is the dataset, from the path.</param>
-    /// <param name="version">Version is the version to read. Zero takes the newest published one. (optional, default to 0)</param>
-    /// <param name="split">Split narrows to train, val or test. Empty reads every split. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="offset">Offset is where the page starts, in the version&#39;s own row order (by id, which is derived from the row and therefore stable forever). (optional, default to 0)</param>
-    /// <param name="limit">Limit is how many rows to return. Zero and anything above the plane&#39;s bound take the bound. (optional, default to 0)</param>
-    pplx::task<std::shared_ptr<RiskDatasetRows>> riskExportDataset(
-        utility::string_t name,
-        boost::optional<int32_t> version,
-        boost::optional<utility::string_t> split,
-        boost::optional<int32_t> offset,
-        boost::optional<int32_t> limit
-    ) const;
-    /// <summary>
     /// The feature catalogue: what the model reads, and what your surface carries
     /// </summary>
     /// <remarks>
@@ -199,68 +82,6 @@ public:
         boost::optional<int32_t> days
     ) const;
     /// <summary>
-    /// Place or release a litigation hold on named records
-    /// </summary>
-    /// <remarks>
-    /// Places or releases a litigation hold on named records.  A hold is a fact about the RECORD, not about the world: it says retention may not dispose of this row, and it asserts nothing about what happened. So it is not a field on an assertion and it is not folded into the content digest — carried there it was silently a no-op on any record that already existed, since re-filing the same assertion with a hold flag produced the same digest, the insert was ignored, and the caller was answered &#x60;duplicate&#x60; while the hold it asked for was never placed. This op is the one way a hold moves, in either direction, and the move is written to the audit log.  Every named id is this tenant&#39;s or is nothing. The statement runs against the tenant&#39;s own file, which holds no other tenant&#39;s rows and has no column that could name one.
-    /// </remarks>
-    /// <param name="riskHoldIn"></param>
-    pplx::task<std::shared_ptr<RiskHoldOut>> riskHoldLabels(
-        std::shared_ptr<RiskHoldIn> riskHoldIn
-    ) const;
-    /// <summary>
-    /// Assert ground truth about events
-    /// </summary>
-    /// <remarks>
-    /// Records a batch of ground truth against the entities it judges.  Each assertion carries TWO times — when the judged event happened, and when the assertion became knowable — and both are required. The second is what keeps a chargeback that landed in June out of a model that had to decide in February.  It is idempotent on the CONTENT of an assertion, so a webhook that redelivers is safe. It never overwrites: a source that corrects itself later files a NEW assertion, which wins from the moment it became knowable and leaves every earlier observation instant seeing exactly what it saw.  The asserter is stamped from the validated credential and is not a body field.
-    /// </remarks>
-    /// <param name="riskLabelIn"></param>
-    pplx::task<std::shared_ptr<RiskLabelOut>> riskLabel(
-        std::shared_ptr<RiskLabelIn> riskLabelIn
-    ) const;
-    /// <summary>
-    /// How much of the window has matured, and how much of that is judged
-    /// </summary>
-    /// <remarks>
-    /// Reports how much of a window has matured and how much of that is judged, per source.  It is the gate on training. A supervised fit over a window whose judged count is near zero produces a number, and the number is meaningless; this op is what lets that be stated before the fit rather than discovered after it.  It reads the RECORD plane and folds every assertion at that event&#39;s OWN as-of, so the counts obey exactly the leakage rule a materialisation would. It counts only what was ASSERTED: what share of the whole event STREAM carries a label is a question about the feature plane&#39;s denominator and is not answerable here.
-    /// </remarks>
-    /// <param name="from">From and To bound the EVENT window, half-open, RFC 3339.  Unstated, the window is the 90 days ENDING where maturity begins — &#x60;to&#x60; is the horizon ago, not now. A default window running to now under a default horizon could not contain one matured event, so every count below it would be zero however much ground truth the tenant held. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="to"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="horizon">Horizon is the maturity horizon in days the coverage is measured under. Unstated takes 120. It also moves the default window, which ends where maturity begins. (optional, default to 0)</param>
-    pplx::task<std::shared_ptr<RiskLabelCoverage>> riskLabelCoverage(
-        boost::optional<utility::string_t> from,
-        boost::optional<utility::string_t> to,
-        boost::optional<int32_t> horizon
-    ) const;
-    /// <summary>
-    /// The closed vocabularies and the precedence rule that resolves a conflict
-    /// </summary>
-    /// <remarks>
-    /// Publishes the closed vocabularies and the precedence rule that resolves a conflict between two sources.  A precedence rule nobody can read is a rule nobody can audit or dispute, and the whole defensibility of a contested label rests on being able to say why one assertion beat another. The order returned here is derived from the same declaration the resolver reads — it is not a description of it.
-    /// </remarks>
-    pplx::task<std::shared_ptr<RiskLabelVocabulary>> riskLabelVocabulary(
-    ) const;
-    /// <summary>
-    /// Read the assertions this tenant has recorded
-    /// </summary>
-    /// <remarks>
-    /// Reads the assertions this tenant has recorded, newest event first.  It reads the RECORD — the tenant&#39;s own store — and not the columnar copy, so what it returns is what would be produced in an audit. Narrow it by entity, by asserter, or by event window.
-    /// </remarks>
-    /// <param name="kind">Kind and Subject narrow to one entity. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="subject"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="source">Source narrows to one asserter — the read that answers \&quot;what has commerce told us\&quot;, separately from \&quot;what has an analyst told us\&quot;. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="from">From and To bound the EVENT time, half-open, RFC 3339. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="to"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps the page. Out of range takes the plane&#39;s own bound. (optional, default to 0)</param>
-    pplx::task<std::shared_ptr<RiskLabelsOut>> riskLabels(
-        boost::optional<utility::string_t> kind,
-        boost::optional<utility::string_t> subject,
-        boost::optional<utility::string_t> source,
-        boost::optional<utility::string_t> from,
-        boost::optional<utility::string_t> to,
-        boost::optional<int32_t> limit
-    ) const;
-    /// <summary>
     /// Teach your organisation&#39;s own model from its own events
     /// </summary>
     /// <remarks>
@@ -269,16 +90,6 @@ public:
     /// <param name="riskLearnIn"></param>
     pplx::task<std::shared_ptr<RiskLearnOut>> riskLearn(
         std::shared_ptr<RiskLearnIn> riskLearnIn
-    ) const;
-    /// <summary>
-    /// Materialise the declared version into immutable rows
-    /// </summary>
-    /// <remarks>
-    /// Builds the declared version into immutable rows and answers 202 as soon as the attempt is on record.  It never holds the request open for the work: a materialisation is a bounded warehouse scan, and letting an HTTP client&#39;s timeout be a data plane&#39;s timeout is how one tenant&#39;s retry loop becomes everyone&#39;s outage. ONE materialisation runs per org at a time; a second is refused rather than queued, because a queue admits the same work later and the honest answer to \&quot;again\&quot; while one is running is that one is running.  Only a DECLARED version is admitted. A published version is immutable, and a version whose earlier attempt did not complete is never re-attempted — that would union two runs&#39; rows under one number and make the digest a lie. In both cases the answer is to declare a new version, which is what a second run over a moving source honestly is.
-    /// </remarks>
-    /// <param name="name">Name is the dataset, from the path.</param>
-    pplx::task<std::shared_ptr<RiskDataset>> riskMaterializeDataset(
-        utility::string_t name
     ) const;
     /// <summary>
     /// Your organisation&#39;s decision-regime history, and which version is in force
@@ -295,58 +106,6 @@ public:
     /// Publishes your organisation&#39;s model as a NAMED VALUE, so a decision taken today can be reconstructed tomorrow and a change made today can be undone.  It answers with a NAME and not with the state. The masses stay on your organisation&#39;s own encrypted store and are referred to by an address computed from their own content: the shape, the geometry seed, the position in the window, the threshold, the masses themselves as IEEE-754 bits, and the fold watermark behind them. That is what makes the value nameable without making the caller its custodian.  IT IS IDEMPOTENT ON THE VALUE. A model that has not changed publishes to the name it already has and mints nothing, reporting minted&#x3D;false — so publishing at every boundary that matters is free. Ten values are retained per organisation, bounded in BYTES rather than in rows, and the oldest is disposed of past that.  A model that has learned nothing is refused: planted is not learned, and a value that reproduces nothing is not a value.  It is POST and PUT on one address because they are one plane&#39;s two verbs over one kind of thing: POST mints a value from the model in force, PUT puts a value in force. They were /v1/risk/state/snapshot and /v1/risk/state/restore — two addresses named after the operation rather than after the thing, which is how a reader ends up asking what the difference between a snapshot and a value is.
     /// </remarks>
     pplx::task<std::shared_ptr<RiskPublishOut>> riskPublishModel(
-    ) const;
-    /// <summary>
-    /// Reference describes one set and lists your org&#39;s overrides in it.
-    /// </summary>
-    /// <remarks>
-    /// Reference describes one set and lists your org&#39;s overrides in it.  The set half is public data about a published list — its version, its publishers, their licences and how current each one is. The overrides half is yours alone: it is read from your organisation&#39;s own store, and no other organisation&#39;s entries can appear in it.
-    /// </remarks>
-    /// <param name="set"></param>
-    /// <param name="after">After pages the override listing: the last key of the previous page. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps the override listing: default 200, maximum 1000. (optional, default to 0)</param>
-    pplx::task<std::shared_ptr<ReferenceOut>> riskReference(
-        utility::string_t set,
-        boost::optional<utility::string_t> after,
-        boost::optional<int32_t> limit
-    ) const;
-    /// <summary>
-    /// Lists every set this plane publishes, with its version and how fresh it is.
-    /// </summary>
-    /// <remarks>
-    /// Lists every set this plane publishes, with its version and how fresh it is.  Read the Stale and Refused lists first: they are the two ways this plane can be quietly wrong, and they are reported rather than inferred. A set in Refused answers nothing — it has never loaded, it is held by another component, or it names a source we hold no licence for.
-    /// </remarks>
-    pplx::task<std::shared_ptr<ReferenceSetsOut>> riskReferenceSets(
-    ) const;
-    /// <summary>
-    /// Takes a new version of one set.
-    /// </summary>
-    /// <remarks>
-    /// Takes a new version of one set. SuperAdmin only.  It is platform work, not tenant work: it writes the shared baseline every organisation reads, so it is gated to the platform&#39;s own identity. Nothing here can write an organisation&#39;s overrides, and nothing an organisation sends can reach this route.  Idempotent. A version is the content digest of what was taken, so refreshing an unchanged publisher writes no rows and reports unchanged. Resumable: a run that died half-way is continued from where it stopped rather than restarted.  A set whose source needs a licence we do not hold is refused with the reason, rather than being quietly skipped.
-    /// </remarks>
-    /// <param name="refreshReferenceIn"></param>
-    pplx::task<std::shared_ptr<RefreshReferenceOut>> riskRefreshReference(
-        std::shared_ptr<RefreshReferenceIn> refreshReferenceIn
-    ) const;
-    /// <summary>
-    /// Resolve the label in force for named events, as of each event&#39;s own horizon
-    /// </summary>
-    /// <remarks>
-    /// Answers, for each named event, which assertion was in force AS OF that event&#39;s own horizon — and what disagreed with it.  This is the join surface: the dataset materialiser calls it to attach ground truth to training rows, and the evaluator calls it to score a past decision against what was knowable when the decision had to be made. One mechanism for both, so a model can never be trained under one leakage rule and scored under another.  Three answers are distinct and all three are honest: a resolved label, an event that has not matured, and a matured event nobody has judged. The last is never reported as unproductive.
-    /// </remarks>
-    /// <param name="riskResolveIn"></param>
-    pplx::task<std::shared_ptr<RiskResolveOut>> riskResolveLabels(
-        std::shared_ptr<RiskResolveIn> riskResolveIn
-    ) const;
-    /// <summary>
-    /// Looks keys up against the reference plane.
-    /// </summary>
-    /// <remarks>
-    /// Looks keys up against the reference plane.  Your organisation&#39;s own overrides are consulted FIRST and win outright; the shared baseline answers everything they do not cover. Every answer names the version that produced it, when that version was current and whether it is stale, so a decision can record exactly what it consulted.  Read Refusal before reading Hit. A set that has never loaded, one held by the component that screens against it, and one whose source needs a licence we do not hold all answer with a refusal — and a miss on a refusing set means nothing is known, not that the key is clean.
-    /// </remarks>
-    /// <param name="resolveReferenceIn"></param>
-    pplx::task<std::shared_ptr<ResolveReferenceOut>> riskResolveReference(
-        std::shared_ptr<ResolveReferenceIn> resolveReferenceIn
     ) const;
     /// <summary>
     /// Score one event against your organisation&#39;s own model
@@ -387,18 +146,6 @@ public:
     /// <param name="riskAppetiteIn"></param>
     pplx::task<std::shared_ptr<RiskPolicyOut>> riskSetPolicy(
         std::shared_ptr<RiskAppetiteIn> riskAppetiteIn
-    ) const;
-    /// <summary>
-    /// Writes your organisation&#39;s own allow and deny entries over a set.
-    /// </summary>
-    /// <remarks>
-    /// Writes your organisation&#39;s own allow and deny entries over a set.  Idempotent on the key: writing the same entry twice is one entry, and writing it again replaces the verdict and the note. The whole batch is one transaction, so a batch that would cross the per-set bound writes nothing rather than half of itself — a half-applied deny list is worse than a refused one, because nobody can tell which half applied.  Your entries are held in your organisation&#39;s own store and are never visible to another organisation, and they never change what any other organisation sees. The shared baseline is not writable from here at all.
-    /// </remarks>
-    /// <param name="set"></param>
-    /// <param name="setReferenceIn"></param>
-    pplx::task<std::shared_ptr<SetReferenceOut>> riskSetReference(
-        utility::string_t set,
-        std::shared_ptr<SetReferenceIn> setReferenceIn
     ) const;
     /// <summary>
     /// Report your organisation&#39;s model: what it learned, and what it realised

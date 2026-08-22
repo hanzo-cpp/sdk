@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -53,7 +53,7 @@ public:
 
 
     /// <summary>
-    /// Class is what KIND of computer to lease, and the set is closed:   exec     a throwaway one that keeps nothing. Seconds to minutes.  dev      a coding one, with the project&#39;s own disk attached. Hours.  desktop  a dev one that also has a screen.  android  a desktop with a phone running on that screen.  Empty leases an &#x60;exec&#x60;, which is the right answer for running a program and the wrong one for working on a repository, because it keeps nothing.  An &#x60;android&#x60; needs a node that can virtualise a CPU, so it is the one class a deployment may not be able to place. Where the fleet has none, the lease succeeds and the pod stays Pending naming the device it is waiting for — which is the honest answer, because the alternative is an emulator running on an interpreted CPU and never finishing its boot.
+    /// Class is what the sandbox is FOR: \&quot;exec\&quot; for a code-interpreter call, \&quot;dev\&quot; for a workspace bound to a project, \&quot;desktop\&quot; for one with a screen. It decides the image, the working directory and the isolation.
     /// </summary>
     utility::string_t getRClass() const;
     bool rClassIsSet() const;
@@ -61,15 +61,15 @@ public:
     void setRClass(const utility::string_t& value);
 
     /// <summary>
-    /// ID names a sandbox to RESUME, and is the id an earlier lease answered with. Empty asks for a new one. A caller that holds an id and omits it does not get a second view of the same computer, it gets a second computer.
+    /// Image overrides the image the class would pick. Honoured only for a caller the policy admits, and the sandbox that comes back names the image it GOT.
     /// </summary>
-    utility::string_t getId() const;
-    bool idIsSet() const;
-    void unsetId();
-    void setId(const utility::string_t& value);
+    utility::string_t getImage() const;
+    bool imageIsSet() const;
+    void unsetImage();
+    void setImage(const utility::string_t& value);
 
     /// <summary>
-    /// Project names the disk to attach, and is REQUIRED for every class but &#x60;exec&#x60;.  One live sandbox per project: the disk attaches to one computer at a time, so a second lease over a project that already has one is refused by name rather than handed a silently empty disk.
+    /// Project binds the sandbox to one of the org&#39;s projects. Required for a dev or desktop class, which are single-attach per project; an exec sandbox carries none.
     /// </summary>
     utility::string_t getProject() const;
     bool projectIsSet() const;
@@ -77,7 +77,7 @@ public:
     void setProject(const utility::string_t& value);
 
     /// <summary>
-    /// Runtime is the isolation boundary asked for: &#x60;gvisor&#x60; shares a filesystem and holds a project volume, &#x60;kata-fc&#x60; is a microVM that boots slower and reads files faster but has no shared filesystem at all. Empty asks for the fleet&#39;s default, which is the right answer unless you are measuring.  It is a REQUEST. The owner decides, and refuses a combination it cannot honour — a volume under a runtime with no shared filesystem would write into a tmpfs and lose the bytes at exit. Read Leased.Runtime for what the sandbox actually got.
+    /// Runtime asks for an isolation: runc, gvisor, kata-clh or kata-fc. It is a REQUEST, not a guarantee — the sandbox that comes back carries the runtime it was actually given, which is the field to read.
     /// </summary>
     utility::string_t getRuntime() const;
     bool runtimeIsSet() const;
@@ -85,7 +85,7 @@ public:
     void setRuntime(const utility::string_t& value);
 
     /// <summary>
-    /// TTLSec bounds the lease in seconds. Unset takes the class default. Nothing runs forever, because a sandbox is somebody else&#39;s code on our nodes.
+    /// TTLSec is how long the lease runs before the reaper may take it, in seconds. Zero takes the class&#39;s own default.
     /// </summary>
     int32_t getTtlSec() const;
     bool ttlSecIsSet() const;
@@ -97,8 +97,8 @@ protected:
     utility::string_t m_r_class;
     bool m_r_classIsSet;
 
-    utility::string_t m_Id;
-    bool m_IdIsSet;
+    utility::string_t m_Image;
+    bool m_ImageIsSet;
 
     utility::string_t m_Project;
     bool m_ProjectIsSet;

@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -35,6 +35,17 @@
 #include "hanzo/model/DataroomRoomOne.h"
 #include "hanzo/model/DataroomRooms.h"
 #include "hanzo/model/DataroomStats.h"
+#include "hanzo/model/TrustAsk.h"
+#include "hanzo/model/TrustAsked.h"
+#include "hanzo/model/TrustDecision.h"
+#include "hanzo/model/TrustDesk.h"
+#include "hanzo/model/TrustEdit.h"
+#include "hanzo/model/TrustGranted.h"
+#include "hanzo/model/TrustItemView.h"
+#include "hanzo/model/TrustPage.h"
+#include "hanzo/model/TrustPublish.h"
+#include "hanzo/model/TrustRefused.h"
+#include "hanzo/model/TrustSettings.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -136,6 +147,36 @@ public:
     pplx::task<std::shared_ptr<DataroomLinks>> getDataroomLinks(
     ) const;
     /// <summary>
+    /// Answers the caller org&#39;s OWN trust centre: its settings, every item it holds in both tiers, the requests waiting on it, and the grants it has made.
+    /// </summary>
+    /// <remarks>
+    /// Answers the caller org&#39;s OWN trust centre: its settings, every item it holds in both tiers, the requests waiting on it, and the grants it has made.  The org is the caller&#39;s, taken from the validated bearer and from nothing else, so this op cannot be pointed at another tenant — there is no field for one. An org that has never opened a centre reads back an empty one rather than an error, because having no trust centre is an ordinary state and this is the read that tells you so.
+    /// </remarks>
+    pplx::task<std::shared_ptr<TrustDesk>> getDataroomTrust(
+    ) const;
+    /// <summary>
+    /// Answers an org&#39;s public trust centre: its name, the text a party must accept to ask for a document, and every item it publishes.
+    /// </summary>
+    /// <remarks>
+    /// Answers an org&#39;s public trust centre: its name, the text a party must accept to ask for a document, and every item it publishes.  An item is either available NOW — the things the org states itself, its policies, its filled questionnaires, its subprocessor list, its knowledge base — or available ON REQUEST, which is everything an independent auditor put their name to. Both are listed by name and kind, so a reader can see WHAT exists before asking for it; only the second withholds the content.  No principal is involved and none is accepted: the org is resolved from the address, which answers only for a centre its owner has published. An address nobody publishes at is not found, the same answer an unpublished one gets.
+    /// </remarks>
+    /// <param name="slug">Slug is the centre&#39;s public address. It resolves only for an org that has published; anything else is not found, so this cannot be used to learn which orgs exist.</param>
+    pplx::task<std::shared_ptr<TrustPage>> getDataroomTrustCenterBySlug(
+        utility::string_t slug
+    ) const;
+    /// <summary>
+    /// Read a public trust-centre item&#39;s bytes
+    /// </summary>
+    /// <remarks>
+    /// Streams the file behind an item a trust centre publishes openly — a policy, a filled questionnaire, a knowledge-base attachment — under its recorded content type.  No principal and no link: these are the things an org states about itself, so they are served to anyone who asks. The narrowing is in the lookup rather than in a check: the item must be public, must not be retired, and must belong to a centre its owner has published, so an item released only on request is NOT FOUND here rather than refused — the same answer an id that never existed gets, which is what stops this reporting what the released-on-request tier holds.  Bytes that cannot be fetched from object storage are 502, never a truncated file.
+    /// </remarks>
+    /// <param name="slug"></param>
+    /// <param name="item"></param>
+    pplx::task<void> getDataroomTrustCenterBySlugFileByItem(
+        utility::string_t slug,
+        utility::string_t item
+    ) const;
+    /// <summary>
     /// What a share link&#39;s visitor sees before authenticating
     /// </summary>
     /// <remarks>
@@ -156,6 +197,18 @@ public:
     pplx::task<void> getDataroomViewByLinkidDocumentByDocumentidFile(
         utility::string_t linkId,
         utility::string_t documentId
+    ) const;
+    /// <summary>
+    /// Amend changes an item on the caller org&#39;s trust centre — replace its file with a newer edition, move it between public and gated, rewrite what it says, or retire it — and answers with the item as it now stands.
+    /// </summary>
+    /// <remarks>
+    /// Amend changes an item on the caller org&#39;s trust centre — replace its file with a newer edition, move it between public and gated, rewrite what it says, or retire it — and answers with the item as it now stands.  Retiring is the withdrawal: the item leaves the public centre immediately and can no longer be granted, while grants already made over it stand, because a release that happened is part of the record and un-happening it in the record would be a lie. Restoring is the same call with retired false.  Moving an item an independent auditor signed to the public tier is refused, and refused by the database rather than only here. Only an admin of the org may call it, and the item is resolved in that org&#39;s own store, so another org&#39;s id is not found.
+    /// </remarks>
+    /// <param name="id">ID is the item to change, taken from the path.</param>
+    /// <param name="trustEdit"></param>
+    pplx::task<std::shared_ptr<TrustItemView>> patchDataroomTrustArtifactsById(
+        utility::string_t id,
+        std::shared_ptr<TrustEdit> trustEdit
     ) const;
     /// <summary>
     /// Opens a new data room for the caller org and answers with it, including the short public id it is addressed by.
@@ -198,6 +251,52 @@ public:
         std::shared_ptr<DataroomLinkCreate> dataroomLinkCreate
     ) const;
     /// <summary>
+    /// Publish puts an item on the caller org&#39;s trust centre and answers with it.
+    /// </summary>
+    /// <remarks>
+    /// Publish puts an item on the caller org&#39;s trust centre and answers with it.  The item is GATED unless it says otherwise, so a kind nobody has thought of yet arrives private and someone has to release it deliberately — that default is what keeps an auditor&#39;s report from becoming readable because a field went unset. An item whose attester is \&quot;auditor\&quot; cannot be public at all: the database refuses the pair, so no path through this API can publish one.  A file is optional and is uploaded FIRST, through POST /v1/dataroom/documents, then named here — the data room is the one place bytes enter, so a trust centre document is an ordinary data-room document and inherits its storage, its grants and its page-by-page access record. A gated item that has a file is added to the org&#39;s release room, which is what lets a party be granted the whole gated tier in one link.  Only an admin of the org may call it.
+    /// </remarks>
+    /// <param name="trustPublish"></param>
+    pplx::task<std::shared_ptr<TrustItemView>> postDataroomTrustArtifacts(
+        std::shared_ptr<TrustPublish> trustPublish
+    ) const;
+    /// <summary>
+    /// Records a request to read what an independent auditor signed, and answers with its id.
+    /// </summary>
+    /// <remarks>
+    /// Records a request to read what an independent auditor signed, and answers with its id.  The org that owns the centre decides. Nothing is released here and no link is minted: this writes the ask down, which is the whole promise the form makes. The write is the answer — a request that could not be stored is an error, never a receipt, so a form can never appear to have been sent and be gone.  &#x60;email&#x60; is required and is the ONLY address the eventual grant will admit, so an address the asker cannot read is an ask that cannot be answered. Where the centre states an NDA, &#x60;accept&#x60; must be true and the text in force is recorded verbatim against the request.  Asking twice for the same thing from the same address is the SAME ask: the second answers with the first&#39;s id rather than opening a second row, which is also what keeps an anonymous door from filling a tenant&#39;s store.
+    /// </remarks>
+    /// <param name="slug">Slug is the centre&#39;s public address, taken from the path.</param>
+    /// <param name="trustAsk"></param>
+    pplx::task<std::shared_ptr<TrustAsked>> postDataroomTrustCenterBySlugRequests(
+        utility::string_t slug,
+        std::shared_ptr<TrustAsk> trustAsk
+    ) const;
+    /// <summary>
+    /// Grant answers a request by opening access: it mints a share link over what was asked for, addressed to the address that asked and closing at expiry, records the decision, and mails the asker.
+    /// </summary>
+    /// <remarks>
+    /// Grant answers a request by opening access: it mints a share link over what was asked for, addressed to the address that asked and closing at expiry, records the decision, and mails the asker.  The link is NEVER a public URL. It carries the asker&#39;s address on its allow list, so forwarding it to somebody else does not open it, and it expires. What the party then does with it — which document, which page, for how long — is recorded by the data room&#39;s own view tracking, which is where the access record for this release lives; there is no second log.  A request that was already answered is refused rather than answered twice, so a second click cannot mint a second link. Only an admin of the org may call it, and the request is resolved in that org&#39;s own store, so another org&#39;s request id is not found — which is also what stops one org deciding another&#39;s queue.  Mail is best effort and the grant does not depend on it: a deployment that sends no mail still records the grant and says so in &#x60;delivery&#x60;, so the approver knows to pass the address on themselves.
+    /// </remarks>
+    /// <param name="id">ID is the request to answer, taken from the path.</param>
+    /// <param name="trustDecision"></param>
+    pplx::task<std::shared_ptr<TrustGranted>> postDataroomTrustRequestsByIdGrant(
+        utility::string_t id,
+        std::shared_ptr<TrustDecision> trustDecision
+    ) const;
+    /// <summary>
+    /// Refuse answers a request by declining it, recording who declined and why.
+    /// </summary>
+    /// <remarks>
+    /// Refuse answers a request by declining it, recording who declined and why.  Nothing is released and no link is minted. The refusal STAYS on the record beside the ask — a request that was turned down is part of the access record exactly as one that was granted is, and deleting it would leave a queue that only ever shows the decisions somebody liked.  A request that was already answered is refused rather than answered twice. Only an admin of the org may call it, and the request is resolved in that org&#39;s own store, so another org&#39;s request id is not found.
+    /// </remarks>
+    /// <param name="id">ID is the request to answer, taken from the path.</param>
+    /// <param name="trustDecision"></param>
+    pplx::task<std::shared_ptr<TrustRefused>> postDataroomTrustRequestsByIdRefuse(
+        utility::string_t id,
+        std::shared_ptr<TrustDecision> trustDecision
+    ) const;
+    /// <summary>
     /// Pass a share link&#39;s gates and open a viewing session
     /// </summary>
     /// <remarks>
@@ -216,6 +315,16 @@ public:
     /// <param name="linkId"></param>
     pplx::task<void> postDataroomViewByLinkidPageview(
         utility::string_t linkId
+    ) const;
+    /// <summary>
+    /// SetCenter opens, publishes or withdraws the caller org&#39;s trust centre and answers with the centre as it now stands.
+    /// </summary>
+    /// <remarks>
+    /// SetCenter opens, publishes or withdraws the caller org&#39;s trust centre and answers with the centre as it now stands.  Publishing requires a name and an address, and the address must be free: another org already answering there is a conflict, never a takeover. Withdrawing closes the public door only — items, grants and the access record are untouched, so an org can go quiet and come back without losing anything.  Only an admin of the org may call it. The org is the caller&#39;s own, so there is no field naming one and no way to point this at another tenant.
+    /// </remarks>
+    /// <param name="trustSettings"></param>
+    pplx::task<std::shared_ptr<TrustDesk>> putDataroomTrust(
+        std::shared_ptr<TrustSettings> trustSettings
     ) const;
 
 protected:

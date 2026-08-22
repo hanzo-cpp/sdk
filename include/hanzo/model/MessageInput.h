@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -53,21 +53,33 @@ public:
     /// MessageInput members
 
 
+    /// <summary>
+    /// From is the number to send FROM, in E.164. It must be one this org holds and it must be sms-capable.
+    /// </summary>
     utility::string_t getFrom() const;
     bool fromIsSet() const;
     void unsetFrom();
     void setFrom(const utility::string_t& value);
 
+    /// <summary>
+    /// Media are URLs to attach. A message with any is an MMS to the carrier — the distinction is the carrier&#39;s to make, not something the caller declares.
+    /// </summary>
     std::vector<utility::string_t> getMedia() const;
     bool mediaIsSet() const;
     void unsetMedia();
     void setMedia(const std::vector<utility::string_t>& value);
 
+    /// <summary>
+    /// Text is the message body. It may be empty when Media carries the message.
+    /// </summary>
     utility::string_t getText() const;
     bool textIsSet() const;
     void unsetText();
     void setText(const utility::string_t& value);
 
+    /// <summary>
+    /// To is the number to send to, in E.164.
+    /// </summary>
     utility::string_t getTo() const;
     bool toIsSet() const;
     void unsetTo();

@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,31 +52,49 @@ public:
     /// ProjectView members
 
 
+    /// <summary>
+    /// Applications is how many platform apps this org has under the project, counted per request. It is the one fact IAM cannot answer about a project.
+    /// </summary>
     int32_t getApplications() const;
     bool applicationsIsSet() const;
     void unsetApplications();
     void setApplications(int32_t value);
 
+    /// <summary>
+    /// CreatedAt is IAM&#39;s creation time as unix seconds. 0 when IAM&#39;s timestamp is absent or unparseable — never a fabricated time.
+    /// </summary>
     int32_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
     void setCreatedAt(int32_t value);
 
+    /// <summary>
+    /// Description is IAM&#39;s free text about the project. Nothing derives from it.
+    /// </summary>
     utility::string_t getDescription() const;
     bool descriptionIsSet() const;
     void unsetDescription();
     void setDescription(const utility::string_t& value);
 
+    /// <summary>
+    /// Name is IAM&#39;s display name, falling back to the slug when the project has none, so this is never empty.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
+    /// <summary>
+    /// Org is the project&#39;s IAM owner, and the tenant every app under it deploys into. It comes from the validated identity, never from the request.
+    /// </summary>
     utility::string_t getOrg() const;
     bool orgIsSet() const;
     void unsetOrg();
     void setOrg(const utility::string_t& value);
 
+    /// <summary>
+    /// Slug is the project&#39;s IAM name — half of the (org,name) identity, the &#x60;:project&#x60; path segment, and the scope key an app is filed under. It is the project&#39;s address; Name is not.
+    /// </summary>
     utility::string_t getSlug() const;
     bool slugIsSet() const;
     void unsetSlug();

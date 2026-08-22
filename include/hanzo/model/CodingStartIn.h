@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -101,13 +101,16 @@ public:
     void setPrompt(const utility::string_t& value);
 
     /// <summary>
-    /// ReplyChannel / ReplyThread are WHERE THE RUN NARRATES ITSELF, when the door that started it has somewhere for it to talk. Empty means nobody is listening and the run simply does not narrate — which is the app door&#39;s case, because /v1/coding hands back a session id and the session stream is a better progress feed than any message could be.  It is an ADDRESS and not a token: the engine says \&quot;put this text there\&quot;, and the process that owns the workspace&#39;s bot credential is the one that actually posts. So a run reports into a Slack thread without the engine ever holding the token that could post anywhere else in that workspace.
+    /// ReplyChannel / ReplyThread are WHERE THE RUN NARRATES ITSELF, when the door that started it has somewhere for it to talk. Empty means nobody is listening and the run simply does not narrate — which is the app door&#39;s case, because /v1/agents/coding hands back a session id and the session stream is a better progress feed than any message could be.  It is an ADDRESS and not a token: the engine says \&quot;put this text there\&quot;, and the process that owns the workspace&#39;s bot credential is the one that actually posts. So a run reports into a Slack thread without the engine ever holding the token that could post anywhere else in that workspace.
     /// </summary>
     utility::string_t getReplyChannel() const;
     bool replyChannelIsSet() const;
     void unsetReplyChannel();
     void setReplyChannel(const utility::string_t& value);
 
+    /// <summary>
+    /// ReplyThread narrows that address to one THREAD inside the channel: on Slack it is the parent message&#39;s ts, the same value a reply carries as thread_ts. Empty puts the run&#39;s status line at the top level of the channel instead.  The channel is what decides whether a run narrates at all, so this on its own addresses nothing — a thread with no ReplyChannel is a run nobody hears.
+    /// </summary>
     utility::string_t getReplyThread() const;
     bool replyThreadIsSet() const;
     void unsetReplyThread();

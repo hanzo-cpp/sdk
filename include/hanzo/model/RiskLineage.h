@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,6 +52,9 @@ public:
     /// RiskLineage members
 
 
+    /// <summary>
+    /// Dataset is the dataset traced.
+    /// </summary>
     utility::string_t getDataset() const;
     bool datasetIsSet() const;
     void unsetDataset();
@@ -66,7 +69,7 @@ public:
     void setDigest(const utility::string_t& value);
 
     /// <summary>
-    /// From and To are the window actually read — To is the window&#39;s end pulled back by the maturity horizon, which is usually earlier than the spec&#39;s.
+    /// From is where the window actually read opens, RFC 3339. Same as the spec&#39;s.
     /// </summary>
     utility::string_t getFrom() const;
     bool fromIsSet() const;
@@ -89,13 +92,16 @@ public:
     void unsetOversize();
     void setOversize(int32_t value);
 
+    /// <summary>
+    /// Refusal says which way it failed — the window expired, or the source now holds a different count. Absent when Reproducible is true.
+    /// </summary>
     utility::string_t getRefusal() const;
     bool refusalIsSet() const;
     void unsetRefusal();
     void setRefusal(const utility::string_t& value);
 
     /// <summary>
-    /// Reproducible is true when the source still holds what this version was built from. Refusal says why not, when it is false.
+    /// Reproducible is true when the source still holds what this version was built from — measured by asking it again, not recalled. False is ordinary: the source is fed by a rollup that runs behind the events, so \&quot;it holds more now\&quot; is the common case and it means re-running the spec would not produce this version.
     /// </summary>
     bool isReproducible() const;
     bool reproducibleIsSet() const;
@@ -111,7 +117,7 @@ public:
     void setRetention(const utility::string_t& value);
 
     /// <summary>
-    /// Rows and Subjects are what the source held for that window at materialisation time.
+    /// Rows is how many rows the source held for that window at materialisation time. Holds is the same question asked now, and the difference between them is the whole of the reproducibility claim.
     /// </summary>
     int32_t getRows() const;
     bool rowsIsSet() const;
@@ -134,16 +140,25 @@ public:
     void unsetSource();
     void setSource(const utility::string_t& value);
 
+    /// <summary>
+    /// Subjects is how many distinct subjects those rows belonged to. It is the real sample size — the row count flatters it whenever a subject is active.
+    /// </summary>
     int32_t getSubjects() const;
     bool subjectsIsSet() const;
     void unsetSubjects();
     void setSubjects(int32_t value);
 
+    /// <summary>
+    /// To is where it ends: the spec&#39;s own end pulled BACK by the maturity horizon, so it is usually earlier than the spec says. This is the window a reproduction has to ask for — asking the spec&#39;s would not return these rows.
+    /// </summary>
     utility::string_t getTo() const;
     bool toIsSet() const;
     void unsetTo();
     void setTo(const utility::string_t& value);
 
+    /// <summary>
+    /// Version is the version traced — the one asked for, or the newest published one when the request named none.
+    /// </summary>
     int32_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();

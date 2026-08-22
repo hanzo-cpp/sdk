@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -55,26 +55,41 @@ public:
     /// ContextBundle members
 
 
+    /// <summary>
+    /// BudgetTokens is the ceiling the caller asked for. Packing stops under it, so this is a bound and not a target.
+    /// </summary>
     int32_t getBudgetTokens() const;
     bool budgetTokensIsSet() const;
     void unsetBudgetTokens();
     void setBudgetTokens(int32_t value);
 
+    /// <summary>
+    /// Query is the ask this bundle was packed for, echoed back so a cached or forwarded bundle still says what it answers.
+    /// </summary>
     utility::string_t getQuery() const;
     bool queryIsSet() const;
     void unsetQuery();
     void setQuery(const utility::string_t& value);
 
+    /// <summary>
+    /// Repo narrows the retrieval to one repository. Absent means every indexed repo was searched.
+    /// </summary>
     utility::string_t getRepo() const;
     bool repoIsSet() const;
     void unsetRepo();
     void setRepo(const utility::string_t& value);
 
+    /// <summary>
+    /// Spans are the packed chunks, most relevant first, each expanded with the definitions it calls and its notable callers. The top match is always present even if it had to be truncated to fit, so a matched query never comes back with nothing.
+    /// </summary>
     std::vector<std::shared_ptr<Span>> getSpans() const;
     bool spansIsSet() const;
     void unsetSpans();
     void setSpans(const std::vector<std::shared_ptr<Span>>& value);
 
+    /// <summary>
+    /// UsedTokens is what the returned spans actually cost, by the same estimate the packer used (roughly one token per four characters — an estimate, not a tokenizer&#39;s count, so size a real window with headroom).
+    /// </summary>
     int32_t getUsedTokens() const;
     bool usedTokensIsSet() const;
     void unsetUsedTokens();

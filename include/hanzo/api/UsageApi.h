@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -22,21 +22,12 @@
 
 #include "hanzo/ApiClient.h"
 
-#include "hanzo/model/ActivityView.h"
-#include "hanzo/model/BackfillQuery.h"
-#include "hanzo/model/BackfillResult.h"
 #include "hanzo/model/DashResp.h"
-#include "hanzo/model/LeaderboardView.h"
-#include "hanzo/model/OptinView.h"
-#include "hanzo/model/OrgOptinReq.h"
-#include "hanzo/model/OrgOptinView.h"
 #include "hanzo/model/ReportReq.h"
 #include "hanzo/model/ReportResp.h"
 #include "hanzo/model/UsageAnalyticsAccess.h"
 #include "hanzo/model/UsageAnalyticsView.h"
 #include "hanzo/model/UsageSummary.h"
-#include "hanzo/model/UserOptinReq.h"
-#include "hanzo/model/UserOptinView.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -55,22 +46,6 @@ public:
 
     virtual ~UsageApi();
 
-    /// <summary>
-    /// Activity returns the per-day usage series for ONE authorized subject — the points a contribution heatmap and a timeline are drawn from, gap-filled so every day in the range is present.
-    /// </summary>
-    /// <remarks>
-    /// Activity returns the per-day usage series for ONE authorized subject — the points a contribution heatmap and a timeline are drawn from, gap-filled so every day in the range is present. Authorization is resolved server-side from the validated principal, so a caller can never widen the subject past what they are entitled to: a non-admin reads only themselves and their own org. subject&#x3D;project answers empty with a note, because the usage ledger records no project column yet. When the warehouse is not connected the series answers empty with available&#x3D;false rather than fabricated days.
-    /// </remarks>
-    /// <param name="subject">Subject is what the series is about: \&quot;user\&quot; (default), \&quot;org\&quot; or \&quot;project\&quot;. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="id">ID names the subject within what the caller is entitled to see. Omitted (or \&quot;me\&quot;) it is the caller themselves, or their own org. Another user requires org admin and must belong to the caller&#39;s org; another org requires a SuperAdmin. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="from">From is the first day of the range, \&quot;2006-01-02\&quot;. Defaults to 90 days back. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="to">To is the last day of the range, \&quot;2006-01-02\&quot;. Defaults to today; the span is clamped to 366 days. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    pplx::task<std::shared_ptr<ActivityView>> getUsageActivity(
-        boost::optional<utility::string_t> subject,
-        boost::optional<utility::string_t> id,
-        boost::optional<utility::string_t> from,
-        boost::optional<utility::string_t> to
-    ) const;
     /// <summary>
     /// Is the entitlement-GATED per-provider breakdown of the caller org&#39;s LLM usage — the paid lens over the same warehouse ledger GET /v1/usage/summary reads its totals from.
     /// </summary>
@@ -96,30 +71,6 @@ public:
     /// <param name="plan">Plan is a plan id from the live @hanzo/plans catalog. Empty resolves the free floor, and so does an id the catalog does not know — this never fails on an unknown plan. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<UsageAnalyticsAccess>> getUsageAnalyticsAccess(
         boost::optional<utility::string_t> plan
-    ) const;
-    /// <summary>
-    /// Leaderboard ranks AI usage over a window, either the users of the caller&#39;s own org or organizations against each other, and always reports the caller&#39;s own standing even when it falls outside the returned page.
-    /// </summary>
-    /// <remarks>
-    /// Leaderboard ranks AI usage over a window, either the users of the caller&#39;s own org or organizations against each other, and always reports the caller&#39;s own standing even when it falls outside the returned page. Identities are private by default: a caller sees themselves, plus the peers or orgs that opted into public listing, and only an admin sees their own org&#39;s members named. Cross-org spend is restricted to platform admins. When the warehouse is not connected the board answers empty with available&#x3D;false rather than a fabricated rank.
-    /// </remarks>
-    /// <param name="scope">Scope picks the board: \&quot;personal\&quot; (default) ranks the caller among their own org&#39;s users, \&quot;org\&quot; is that same org board named for an admin, \&quot;global\&quot; ranks organizations against each other. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="metric">Metric is the value ranked: tokens (default), requests, or cost. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="period">Period is the window ranked: day, week, month (default) or all. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps the rows returned, clamped to 100. Defaults to 10, which is also what a non-positive or unparseable value takes. (optional, default to 0)</param>
-    pplx::task<std::shared_ptr<LeaderboardView>> getUsageLeaderboard(
-        boost::optional<utility::string_t> scope,
-        boost::optional<utility::string_t> metric,
-        boost::optional<utility::string_t> period,
-        boost::optional<int32_t> limit
-    ) const;
-    /// <summary>
-    /// Returns the caller&#39;s own public-listing preference and their org&#39;s, each with whether the caller may change it.
-    /// </summary>
-    /// <remarks>
-    /// Returns the caller&#39;s own public-listing preference and their org&#39;s, each with whether the caller may change it. Public listing is opt-in and private by default, so a fresh caller reads listed&#x3D;false for both.
-    /// </remarks>
-    pplx::task<std::shared_ptr<OptinView>> getUsageLeaderboardOptin(
     ) const;
     /// <summary>
     /// Is the PER-PROVIDER view: one connected account&#39;s own consumption of its own plan — \&quot;my plan is 47% through its 6h window, resets at 14:20\&quot;.
@@ -155,41 +106,11 @@ public:
     /// Ingests a batch of account-usage samples — what a developer&#39;s OWN AI accounts have consumed of their OWN plans, metered from each provider&#39;s own login — and appends them to the warehouse series.
     /// </summary>
     /// <remarks>
-    /// Ingests a batch of account-usage samples — what a developer&#39;s OWN AI accounts have consumed of their OWN plans, metered from each provider&#39;s own login — and appends them to the warehouse series. Answers 202.  Send either a &#x60;samples&#x60; array or one sample&#39;s fields at the top level. Every sample needs a provider, a machine and a known window class; an unknown window or kind is refused rather than silently rewritten, because a dash filled with a class nobody reported is worse than an error. There is no timestamp field: the server owns the observation clock, and a sample says which window it measured with windowStart or resetsAt.  It is FAIL-SOFT on storage: a warehouse outage costs a poll of history (stored:false), never a failed request. It records usage ONLY — the link registry is refreshed separately via POST /v1/links, so there is one and only one way to update an account row.
+    /// Ingests a batch of account-usage samples — what a developer&#39;s OWN AI accounts have consumed of their OWN plans, metered from each provider&#39;s own login — and appends them to the warehouse series. Answers 202.  Send either a &#x60;samples&#x60; array or one sample&#39;s fields at the top level. Every sample needs a provider, a machine and a known window class; an unknown window or kind is refused rather than silently rewritten, because a dash filled with a class nobody reported is worse than an error. There is no timestamp field: the server owns the observation clock, and a sample says which window it measured with windowStart or resetsAt.  It is FAIL-SOFT on storage: a warehouse outage costs a poll of history (stored:false), never a failed request. It records usage ONLY — the link registry is refreshed separately via POST /v1/link, so there is one and only one way to update an account row.
     /// </remarks>
     /// <param name="reportReq"></param>
     pplx::task<std::shared_ptr<ReportResp>> postUsage(
         std::shared_ptr<ReportReq> reportReq
-    ) const;
-    /// <summary>
-    /// Backfill seeds the derived usage rollup from ledger history — the rows written before the incremental view existed, which that view can never capture.
-    /// </summary>
-    /// <remarks>
-    /// Backfill seeds the derived usage rollup from ledger history — the rows written before the incremental view existed, which that view can never capture. SuperAdmin only. Because the rollup accumulates, a second unguarded run would double every day it re-reads, so it refuses with 409 when the rollup already holds rows unless force&#x3D;true is passed; forcing WILL double-count.
-    /// </remarks>
-    /// <param name="backfillQuery"></param>
-    pplx::task<std::shared_ptr<BackfillResult>> postUsageRollupBackfill(
-        std::shared_ptr<BackfillQuery> backfillQuery
-    ) const;
-    /// <summary>
-    /// Sets the CALLER&#39;s own public-listing preference on the leaderboard.
-    /// </summary>
-    /// <remarks>
-    /// Sets the CALLER&#39;s own public-listing preference on the leaderboard. Self only: the row written is keyed by the caller&#39;s validated ledger identity, so this can never edit another member&#39;s visibility whatever the request says. A caller opting in with no handle is given their username, so a listed row never renders as \&quot;Anonymous\&quot; to its own owner.
-    /// </remarks>
-    /// <param name="userOptinReq"></param>
-    pplx::task<std::shared_ptr<UserOptinView>> putUsageLeaderboardOptin(
-        std::shared_ptr<UserOptinReq> userOptinReq
-    ) const;
-    /// <summary>
-    /// Sets the ORG&#39;s listing on the cross-org global board.
-    /// </summary>
-    /// <remarks>
-    /// Sets the ORG&#39;s listing on the cross-org global board. Only an admin of the caller&#39;s own org — an org admin or a platform SuperAdmin — may change it, and the org written is the caller&#39;s validated tenant, never a value from the request. Listing consents to publishing the org&#39;s usage VOLUME; cross-org spend stays restricted to platform admins regardless.
-    /// </remarks>
-    /// <param name="orgOptinReq"></param>
-    pplx::task<std::shared_ptr<OrgOptinView>> putUsageLeaderboardOptinOrg(
-        std::shared_ptr<OrgOptinReq> orgOptinReq
     ) const;
 
 protected:

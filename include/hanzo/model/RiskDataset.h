@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -57,13 +57,16 @@ public:
 
 
     /// <summary>
-    /// At is when this version last changed state, and By who.
+    /// At is when this version last changed state, RFC 3339 UTC.
     /// </summary>
     utility::string_t getAt() const;
     bool atIsSet() const;
     void unsetAt();
     void setAt(const utility::string_t& value);
 
+    /// <summary>
+    /// By is who moved it there: the validated user, or the org itself when the caller is a machine with no user behind it.
+    /// </summary>
     utility::string_t getBy() const;
     bool byIsSet() const;
     void unsetBy();
@@ -86,7 +89,7 @@ public:
     void setDigest(const utility::string_t& value);
 
     /// <summary>
-    /// Name and Version identify the version.
+    /// Name identifies the dataset across all of its versions.
     /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
@@ -149,6 +152,9 @@ public:
     void unsetTruncated();
     void setTruncated(bool value);
 
+    /// <summary>
+    /// Version is which version this is, from 1 and monotone within the dataset. A number is never reused — not even after a disposal, where the next declare continues the count — so \&quot;signups v3\&quot; means one thing forever, which is what makes a model&#39;s citation of it checkable.
+    /// </summary>
     int32_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();

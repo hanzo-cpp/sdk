@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -33,13 +33,13 @@ KvApi::~KvApi()
 {
 }
 
-pplx::task<void> KvApi::deleteKvByName(utility::string_t name) const
+pplx::task<void> KvApi::deleteKvByBucket(utility::string_t bucket) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/kv/{name}");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("name") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(name)));
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/kv/{bucket}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("bucket") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(bucket)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -67,7 +67,7 @@ pplx::task<void> KvApi::deleteKvByName(utility::string_t name) const
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("KvApi->deleteKvByName does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("KvApi->deleteKvByBucket does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -94,7 +94,7 @@ pplx::task<void> KvApi::deleteKvByName(utility::string_t name) const
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("KvApi->deleteKvByName does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("KvApi->deleteKvByBucket does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -115,7 +115,7 @@ pplx::task<void> KvApi::deleteKvByName(utility::string_t name) const
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling deleteKvByName: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling deleteKvByBucket: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -126,7 +126,7 @@ pplx::task<void> KvApi::deleteKvByName(utility::string_t name) const
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling deleteKvByName: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling deleteKvByBucket: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -138,12 +138,14 @@ pplx::task<void> KvApi::deleteKvByName(utility::string_t name) const
         return void();
     });
 }
-pplx::task<std::vector<std::shared_ptr<ProvisionedSummary>>> KvApi::getKv() const
+pplx::task<void> KvApi::deleteKvByBucketByKey(utility::string_t bucket, utility::string_t key) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/kv");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/kv/{bucket}/{key}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("bucket") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(bucket)));
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("key") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(key)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -151,7 +153,6 @@ pplx::task<std::vector<std::shared_ptr<ProvisionedSummary>>> KvApi::getKv() cons
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -172,7 +173,7 @@ pplx::task<std::vector<std::shared_ptr<ProvisionedSummary>>> KvApi::getKv() cons
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("KvApi->getKv does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("KvApi->deleteKvByBucketByKey does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -199,12 +200,12 @@ pplx::task<std::vector<std::shared_ptr<ProvisionedSummary>>> KvApi::getKv() cons
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("KvApi->getKv does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("KvApi->deleteKvByBucketByKey does not consume any supported media type"));
     }
 
     // authentication (bearer) required
 
-    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("DELETE"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=, this](web::http::http_response localVarResponse)
     {
         if (m_ApiClient->getResponseHandler())
@@ -220,7 +221,7 @@ pplx::task<std::vector<std::shared_ptr<ProvisionedSummary>>> KvApi::getKv() cons
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling getKv: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling deleteKvByBucketByKey: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -231,7 +232,7 @@ pplx::task<std::vector<std::shared_ptr<ProvisionedSummary>>> KvApi::getKv() cons
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getKv: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling deleteKvByBucketByKey: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -240,38 +241,17 @@ pplx::task<std::vector<std::shared_ptr<ProvisionedSummary>>> KvApi::getKv() cons
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::vector<std::shared_ptr<ProvisionedSummary>> localVarResult;
-
-        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value localVarJson = web::json::value::parse(localVarResponse);
-            for( auto& localVarItem : localVarJson.as_array() )
-            {
-                std::vector<std::shared_ptr<ProvisionedSummary>>::value_type localVarItemObj;
-                ModelBase::fromJson(localVarItem, localVarItemObj);
-                localVarResult.push_back(localVarItemObj);
-            }
-        }
-        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling getKv: unsupported response type"));
-        }
-
-        return localVarResult;
+        return void();
     });
 }
-pplx::task<std::shared_ptr<ProvisionedResource>> KvApi::getKvByName(utility::string_t name) const
+pplx::task<std::shared_ptr<KvEntry>> KvApi::getKvByBucketByKey(utility::string_t bucket, utility::string_t key) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/kv/{name}");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("name") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(name)));
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/kv/{bucket}/{key}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("bucket") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(bucket)));
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("key") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(key)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -300,7 +280,7 @@ pplx::task<std::shared_ptr<ProvisionedResource>> KvApi::getKvByName(utility::str
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("KvApi->getKvByName does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("KvApi->getKvByBucketByKey does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -327,7 +307,7 @@ pplx::task<std::shared_ptr<ProvisionedResource>> KvApi::getKvByName(utility::str
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("KvApi->getKvByName does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("KvApi->getKvByBucketByKey does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -348,7 +328,7 @@ pplx::task<std::shared_ptr<ProvisionedResource>> KvApi::getKvByName(utility::str
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling getKvByName: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling getKvByBucketByKey: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -359,7 +339,7 @@ pplx::task<std::shared_ptr<ProvisionedResource>> KvApi::getKvByName(utility::str
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getKvByName: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling getKvByBucketByKey: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -368,7 +348,7 @@ pplx::task<std::shared_ptr<ProvisionedResource>> KvApi::getKvByName(utility::str
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<ProvisionedResource> localVarResult(new ProvisionedResource());
+        std::shared_ptr<KvEntry> localVarResult(new KvEntry());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
@@ -383,18 +363,20 @@ pplx::task<std::shared_ptr<ProvisionedResource>> KvApi::getKvByName(utility::str
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling getKvByName: unsupported response type"));
+                , utility::conversions::to_string_t("error calling getKvByBucketByKey: unsupported response type"));
         }
 
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ProvisionResult>> KvApi::postKv(boost::optional<std::shared_ptr<ProvisionRequest>> provisionRequest) const
+pplx::task<std::shared_ptr<KvPage>> KvApi::getKvByBucketByKeyHistory(utility::string_t bucket, utility::string_t key) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/kv");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/kv/{bucket}/{key}/history");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("bucket") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(bucket)));
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("key") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(key)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -423,7 +405,137 @@ pplx::task<std::shared_ptr<ProvisionResult>> KvApi::postKv(boost::optional<std::
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("KvApi->postKv does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("KvApi->getKvByBucketByKeyHistory does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("KvApi->getKvByBucketByKeyHistory does not consume any supported media type"));
+    }
+
+    // authentication (bearer) required
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling getKvByBucketByKeyHistory: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling getKvByBucketByKeyHistory: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::shared_ptr<KvPage> localVarResult(new KvPage());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getKvByBucketByKeyHistory: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::shared_ptr<BucketRecord>> KvApi::postKvByBucket(utility::string_t bucket, std::shared_ptr<BucketWrite> bucketWrite) const
+{
+
+    // verify the required parameter 'bucketWrite' is set
+    if (bucketWrite == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'bucketWrite' when calling KvApi->postKvByBucket"));
+    }
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/kv/{bucket}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("bucket") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(bucket)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("KvApi->postKvByBucket does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -441,8 +553,8 @@ pplx::task<std::shared_ptr<ProvisionResult>> KvApi::postKv(boost::optional<std::
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        if (provisionRequest)
-            localVarJson = ModelBase::toJson(*provisionRequest);
+        localVarJson = ModelBase::toJson(bucketWrite);
+        
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
@@ -452,9 +564,9 @@ pplx::task<std::shared_ptr<ProvisionResult>> KvApi::postKv(boost::optional<std::
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(provisionRequest && (*provisionRequest).get())
+        if(bucketWrite.get())
         {
-            (*provisionRequest)->toMultipart(localVarMultipart, utility::conversions::to_string_t("provisionRequest"));
+            bucketWrite->toMultipart(localVarMultipart, utility::conversions::to_string_t("bucketWrite"));
         }
         
 
@@ -467,7 +579,7 @@ pplx::task<std::shared_ptr<ProvisionResult>> KvApi::postKv(boost::optional<std::
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("KvApi->postKv does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("KvApi->postKvByBucket does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -488,7 +600,7 @@ pplx::task<std::shared_ptr<ProvisionResult>> KvApi::postKv(boost::optional<std::
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling postKv: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling postKvByBucket: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -499,7 +611,7 @@ pplx::task<std::shared_ptr<ProvisionResult>> KvApi::postKv(boost::optional<std::
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling postKv: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling postKvByBucket: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -508,7 +620,7 @@ pplx::task<std::shared_ptr<ProvisionResult>> KvApi::postKv(boost::optional<std::
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<ProvisionResult> localVarResult(new ProvisionResult());
+        std::shared_ptr<BucketRecord> localVarResult(new BucketRecord());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
@@ -523,7 +635,155 @@ pplx::task<std::shared_ptr<ProvisionResult>> KvApi::postKv(boost::optional<std::
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling postKv: unsupported response type"));
+                , utility::conversions::to_string_t("error calling postKvByBucket: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::shared_ptr<KvAck>> KvApi::putKvByBucketByKey(utility::string_t bucket, utility::string_t key, std::shared_ptr<KvWrite> kvWrite) const
+{
+
+    // verify the required parameter 'kvWrite' is set
+    if (kvWrite == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'kvWrite' when calling KvApi->putKvByBucketByKey"));
+    }
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/kv/{bucket}/{key}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("bucket") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(bucket)));
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("key") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(key)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("KvApi->putKvByBucketByKey does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        localVarJson = ModelBase::toJson(kvWrite);
+        
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(kvWrite.get())
+        {
+            kvWrite->toMultipart(localVarMultipart, utility::conversions::to_string_t("kvWrite"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("KvApi->putKvByBucketByKey does not consume any supported media type"));
+    }
+
+    // authentication (bearer) required
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("PUT"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling putKvByBucketByKey: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling putKvByBucketByKey: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::shared_ptr<KvAck> localVarResult(new KvAck());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putKvByBucketByKey: unsupported response type"));
         }
 
         return localVarResult;

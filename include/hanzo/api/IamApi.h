@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -26,13 +26,11 @@
 #include "hanzo/model/Iam_Answer.h"
 #include "hanzo/model/Iam_Application.h"
 #include "hanzo/model/Iam_ApplicationListResult.h"
-#include "hanzo/model/Iam_ApplicationRef.h"
 #include "hanzo/model/Iam_AuditLog.h"
 #include "hanzo/model/Iam_Cert.h"
 #include "hanzo/model/Iam_CreateInput.h"
 #include "hanzo/model/Iam_CreateOrganizationInput.h"
 #include "hanzo/model/Iam_CreateSessionIn.h"
-#include "hanzo/model/Iam_DeleteOrganizationInput.h"
 #include "hanzo/model/Iam_DeleteOrganizationOutput.h"
 #include "hanzo/model/Iam_DeleteOutput.h"
 #include "hanzo/model/Iam_DeleteResponse.h"
@@ -44,17 +42,14 @@
 #include "hanzo/model/Iam_ListOrganizationsOutput.h"
 #include "hanzo/model/Iam_ListOutput.h"
 #include "hanzo/model/Iam_ListResponse.h"
-#include "hanzo/model/Iam_ListSessionsIn.h"
 #include "hanzo/model/Iam_ListSessionsOut.h"
 #include "hanzo/model/Iam_Organization.h"
 #include "hanzo/model/Iam_Permission.h"
 #include "hanzo/model/Iam_Project.h"
 #include "hanzo/model/Iam_Provider.h"
-#include "hanzo/model/Iam_Ref.h"
-#include "hanzo/model/Iam_Response.h"
 #include "hanzo/model/Iam_Role.h"
 #include "hanzo/model/Iam_Session.h"
-#include "hanzo/model/Iam_SessionRef.h"
+#include "hanzo/model/Iam_SetAvatarInput.h"
 #include "hanzo/model/Iam_Token.h"
 #include "hanzo/model/Iam_UpdateInput.h"
 #include "hanzo/model/Iam_UpdateOrganizationInput.h"
@@ -62,16 +57,14 @@
 #include "hanzo/model/Iam_User.h"
 #include "hanzo/model/Iam_WebauthnCredential.h"
 #include "hanzo/model/Iam_Workspace.h"
-#include "hanzo/model/Iam_auditlogs_Input.h"
+#include "hanzo/model/Iam_accountBody.h"
+#include "hanzo/model/Iam_assumeBody.h"
 #include "hanzo/model/Iam_certs_DeleteOutput.h"
 #include "hanzo/model/Iam_certs_ListOutput.h"
-#include "hanzo/model/Iam_certs_Ref.h"
 #include "hanzo/model/Iam_config.h"
 #include "hanzo/model/Iam_invitations_DeleteOutput.h"
 #include "hanzo/model/Iam_invitations_Input.h"
 #include "hanzo/model/Iam_invitations_ListOutput.h"
-#include "hanzo/model/Iam_invitations_Ref.h"
-#include "hanzo/model/Iam_keys_Ref.h"
 #include "hanzo/model/Iam_listProvidersOut.h"
 #include "hanzo/model/Iam_listResponse.h"
 #include "hanzo/model/Iam_listTokensOut.h"
@@ -80,33 +73,25 @@
 #include "hanzo/model/Iam_passwordBody.h"
 #include "hanzo/model/Iam_permission_DeleteResponse.h"
 #include "hanzo/model/Iam_permission_ListResponse.h"
-#include "hanzo/model/Iam_permission_Ref.h"
 #include "hanzo/model/Iam_person.h"
 #include "hanzo/model/Iam_projects_DeleteOutput.h"
+#include "hanzo/model/Iam_projects_Input.h"
 #include "hanzo/model/Iam_projects_ListOutput.h"
-#include "hanzo/model/Iam_projects_Ref.h"
-#include "hanzo/model/Iam_providerKey.h"
 #include "hanzo/model/Iam_providerResult.h"
 #include "hanzo/model/Iam_registration.h"
 #include "hanzo/model/Iam_reply.h"
 #include "hanzo/model/Iam_roles_DeleteOutput.h"
 #include "hanzo/model/Iam_roles_Input.h"
 #include "hanzo/model/Iam_roles_ListOutput.h"
-#include "hanzo/model/Iam_roles_Ref.h"
-#include "hanzo/model/Iam_tokenKey.h"
 #include "hanzo/model/Iam_tokenMutation.h"
 #include "hanzo/model/Iam_tokenResult.h"
-#include "hanzo/model/Iam_userBody.h"
 #include "hanzo/model/Iam_users_DeleteOutput.h"
 #include "hanzo/model/Iam_users_ListOutput.h"
-#include "hanzo/model/Iam_users_Ref.h"
-#include "hanzo/model/Iam_webauthnCredentialKey.h"
 #include "hanzo/model/Iam_webauthnCredentialMutationResult.h"
 #include "hanzo/model/Iam_webauthnCredentialResult.h"
 #include "hanzo/model/Iam_workspaces_DeleteOutput.h"
 #include "hanzo/model/Iam_workspaces_Input.h"
 #include "hanzo/model/Iam_workspaces_ListOutput.h"
-#include "hanzo/model/Iam_workspaces_Ref.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -183,7 +168,99 @@ public:
     /// </remarks>
     /// <param name="owner"></param>
     /// <param name="name"></param>
-    pplx::task<std::shared_ptr<Iam_DeleteResult>> deleteIamApplication(
+    pplx::task<std::shared_ptr<Iam_DeleteResult>> deleteIamApplicationsByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name
+    ) const;
+    /// <summary>
+    /// Removes an audit entry.
+    /// </summary>
+    /// <remarks>
+    /// Removes an audit entry. Retention policy is normally what should expire a trail; deleting by hand leaves a gap a reviewer will notice.
+    /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<std::shared_ptr<Iam_DeleteOutput>> deleteIamAuditLogsByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name
+    ) const;
+    /// <summary>
+    /// Removes a signing certificate.
+    /// </summary>
+    /// <remarks>
+    /// Removes a signing certificate. Tokens signed with it can no longer be verified, so retire it only once nothing is still presenting them.
+    /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<std::shared_ptr<Iam_certs_DeleteOutput>> deleteIamCertsByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name
+    ) const;
+    /// <summary>
+    /// Withdraws an invitation.
+    /// </summary>
+    /// <remarks>
+    /// Withdraws an invitation. It stops being redeemable at once; anyone who already joined through it keeps their account.
+    /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<std::shared_ptr<Iam_invitations_DeleteOutput>> deleteIamInvitationsByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name
+    ) const;
+    /// <summary>
+    /// Revokes an API key.
+    /// </summary>
+    /// <remarks>
+    /// Revokes an API key. Anything still presenting it stops being authorized at once, so roll the replacement out before you revoke.
+    /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<std::shared_ptr<Iam_DeleteResponse>> deleteIamKeysByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name
+    ) const;
+    /// <summary>
+    /// Turns a factor off, so sign-in stops asking for it.
+    /// </summary>
+    /// <remarks>
+    /// Turns a factor off, so sign-in stops asking for it. Naming no factor turns off ALL of them — the reset path. People may do this for themselves; doing it for somebody else takes an administrator, which is what makes it the way back in when a phone is lost.  The recovery codes go with the last factor: they are the way past a challenge, so keeping them alive for an account with nothing to challenge would leave a standing credential behind.
+    /// </remarks>
+    pplx::task<void> deleteIamMfa(
+    ) const;
+    /// <summary>
+    /// Revokes a permission.
+    /// </summary>
+    /// <remarks>
+    /// Revokes a permission. Everyone who held access only through it loses that access immediately; grants they hold by another route are untouched.
+    /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<std::shared_ptr<Iam_permission_DeleteResponse>> deleteIamPermissionsByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name
+    ) const;
+    /// <summary>
+    /// Removes a project.
+    /// </summary>
+    /// <remarks>
+    /// Removes a project. The people and roles in your organization are unchanged; what goes is the scope itself, so move anything addressed by it first.
+    /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<std::shared_ptr<Iam_projects_DeleteOutput>> deleteIamProjectsByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name
+    ) const;
+    /// <summary>
+    /// Removes a role.
+    /// </summary>
+    /// <remarks>
+    /// Removes a role. Everyone in it loses the access it carried; their accounts, and any other role they hold, are untouched.
+    /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<std::shared_ptr<Iam_roles_DeleteOutput>> deleteIamRolesByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -210,14 +287,52 @@ public:
         utility::string_t name
     ) const;
     /// <summary>
+    /// Removes a person from your organization.
+    /// </summary>
+    /// <remarks>
+    /// Removes a person from your organization. Their sessions stop working immediately and the account is gone rather than suspended — to keep the record and only stop sign-in, update the user instead.
+    /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<std::shared_ptr<Iam_users_DeleteOutput>> deleteIamUsersByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name
+    ) const;
+    /// <summary>
+    /// Clears the target user&#39;s key of the requested TYPE (immediate revoke).
+    /// </summary>
+    /// <remarks>
+    /// Clears the target user&#39;s key of the requested TYPE (immediate revoke). Scoped by the same &#x60;?type&#x60; field mint takes, so revoking the browser key leaves the server key working. A secret key&#39;s stored value is the sk- in its schema.Key row.
+    /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> deleteIamUsersByOwnerByNameKeys(
+        utility::string_t owner,
+        utility::string_t name
+    ) const;
+    /// <summary>
+    /// Removes a workspace.
+    /// </summary>
+    /// <remarks>
+    /// Removes a workspace. The people and roles in your organization are unchanged; what goes is the scope itself.
+    /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<std::shared_ptr<Iam_workspaces_DeleteOutput>> deleteIamWorkspacesByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name
+    ) const;
+    /// <summary>
     /// Removes an organization and everything named inside it.
     /// </summary>
     /// <remarks>
     /// Removes an organization and everything named inside it. There is no undo, and every session issued under it stops working.  The built-in admin organization cannot be deleted — losing it would leave the account with no way back in.
     /// </remarks>
-    /// <param name="iamDeleteOrganizationInput"></param>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
     pplx::task<std::shared_ptr<Iam_DeleteOrganizationOutput>> deleteOrganization(
-        std::shared_ptr<Iam_DeleteOrganizationInput> iamDeleteOrganizationInput
+        utility::string_t owner,
+        utility::string_t name
     ) const;
     /// <summary>
     /// Removes a provider.
@@ -225,9 +340,11 @@ public:
     /// <remarks>
     /// Removes a provider. Sign-in through it stops for every application that used it, so give those applications another method first.  A provider that is already gone answers \&quot;nothing changed\&quot; rather than an error, so the call is safe to repeat.
     /// </remarks>
-    /// <param name="iamProviderKey"></param>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
     pplx::task<std::shared_ptr<Iam_mutationResult>> deleteProvider(
-        std::shared_ptr<Iam_providerKey> iamProviderKey
+        utility::string_t owner,
+        utility::string_t name
     ) const;
     /// <summary>
     /// Signs a person out of one application — the session ends and every browser carrying it stops being authenticated.
@@ -235,9 +352,13 @@ public:
     /// <remarks>
     /// Signs a person out of one application — the session ends and every browser carrying it stops being authenticated.  A session that is already gone reports that nothing was deleted rather than an error, so the call is safe to repeat.
     /// </remarks>
-    /// <param name="iamSessionRef"></param>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    /// <param name="application"></param>
     pplx::task<std::shared_ptr<Iam_DeleteSessionOut>> deleteSession(
-        std::shared_ptr<Iam_SessionRef> iamSessionRef
+        utility::string_t owner,
+        utility::string_t name,
+        utility::string_t application
     ) const;
     /// <summary>
     /// Revokes an access token.
@@ -245,9 +366,11 @@ public:
     /// <remarks>
     /// Revokes an access token. Whatever was using it stops being authorized at once.  A token that is already gone answers \&quot;nothing changed\&quot; rather than an error, so the call is safe to repeat.
     /// </remarks>
-    /// <param name="iamTokenKey"></param>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
     pplx::task<std::shared_ptr<Iam_tokenMutation>> deleteToken(
-        std::shared_ptr<Iam_tokenKey> iamTokenKey
+        utility::string_t owner,
+        utility::string_t name
     ) const;
     /// <summary>
     /// Removes a passkey or security key — what you call when a device is lost.
@@ -255,9 +378,11 @@ public:
     /// <remarks>
     /// Removes a passkey or security key — what you call when a device is lost. Make sure the person has another way to sign in first.  A credential that is already gone answers \&quot;nothing changed\&quot; rather than an error, so the call is safe to repeat.
     /// </remarks>
-    /// <param name="iamWebauthnCredentialKey"></param>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
     pplx::task<std::shared_ptr<Iam_webauthnCredentialMutationResult>> deleteWebauthnCredential(
-        std::shared_ptr<Iam_webauthnCredentialKey> iamWebauthnCredentialKey
+        utility::string_t owner,
+        utility::string_t name
     ) const;
     /// <summary>
     /// Returns the signed-in person&#39;s own account and the organization they belong to — what a console reads to draw the account menu.
@@ -266,18 +391,6 @@ public:
     /// Returns the signed-in person&#39;s own account and the organization they belong to — what a console reads to draw the account menu.  Passwords, API secrets and MFA material are stripped. It answers for a session cookie or a bearer token alike.
     /// </remarks>
     pplx::task<void> getIamAccount(
-    ) const;
-    /// <summary>
-    /// Returns one application: its sign-in methods, its allowed redirect URIs and the client credentials your integration authenticates with.
-    /// </summary>
-    /// <remarks>
-    /// Returns one application: its sign-in methods, its allowed redirect URIs and the client credentials your integration authenticates with.
-    /// </remarks>
-    /// <param name="owner"></param>
-    /// <param name="name"></param>
-    pplx::task<std::shared_ptr<Iam_Application>> getIamApplication(
-        utility::string_t owner,
-        utility::string_t name
     ) const;
     /// <summary>
     /// Returns the applications in one organization, newest first — each product or site your people sign in to, with the sign-in methods and redirect URIs it allows.
@@ -297,7 +410,7 @@ public:
     /// </remarks>
     /// <param name="owner"></param>
     /// <param name="name"></param>
-    pplx::task<std::shared_ptr<Iam_Application>> getIamApplicationsGet(
+    pplx::task<std::shared_ptr<Iam_Application>> getIamApplicationsByOwnerByName(
         utility::string_t owner,
         utility::string_t name
     ) const;
@@ -310,6 +423,18 @@ public:
     /// <param name="owner"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<Iam_ListOutput>> getIamAuditLogs(
         boost::optional<utility::string_t> owner
+    ) const;
+    /// <summary>
+    /// Returns one audit entry in full: the action, the person or key behind it, and the request it came in on.
+    /// </summary>
+    /// <remarks>
+    /// Returns one audit entry in full: the action, the person or key behind it, and the request it came in on.
+    /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<std::shared_ptr<Iam_AuditLog>> getIamAuditLogsByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name
     ) const;
     /// <summary>
     /// Returns everything a login screen needs to draw itself for one application: its branding, and each sign-in method it offers with the provider details that method needs.
@@ -344,6 +469,18 @@ public:
         boost::optional<utility::string_t> owner
     ) const;
     /// <summary>
+    /// Returns one signing certificate — its algorithm, its validity window and its public half.
+    /// </summary>
+    /// <remarks>
+    /// Returns one signing certificate — its algorithm, its validity window and its public half. The private key is masked.
+    /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<std::shared_ptr<Iam_Cert>> getIamCertsByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name
+    ) const;
+    /// <summary>
     /// Returns the calling person&#39;s own privacy and communication choices.
     /// </summary>
     /// <remarks>
@@ -372,170 +509,6 @@ public:
         boost::optional<utility::string_t> responseType
     ) const;
     /// <summary>
-    /// Reads one record — the older spelling of the single reads on the REST surface, over the same data and the same permissions.
-    /// </summary>
-    /// <remarks>
-    /// Reads one record — the older spelling of the single reads on the REST surface, over the same data and the same permissions.  Secrets are stripped. Naming a record in another organization does not reach it, however the request spells it.
-    /// </remarks>
-    pplx::task<void> getIamGetApplication(
-    ) const;
-    /// <summary>
-    /// Lists one kind of record in your organization — the older spelling of the collection reads on the REST surface, over the same data and the same permissions.
-    /// </summary>
-    /// <remarks>
-    /// Lists one kind of record in your organization — the older spelling of the collection reads on the REST surface, over the same data and the same permissions.  Secrets are stripped from every row. Send both a page number and a page size to page, and the total comes back alongside; send neither and you get the whole set. You see your own organization and no other, whatever the request asks for.  Scoping note (intentional, fail-closed): iam&#39;s ownership model is mixed — users/roles/permissions are owned by their tenant org, while organizations/ applications/providers/certs are platform-owned (Owner \&quot;admin\&quot;). A SuperAdmin (Scope → the requested owner, empty &#x3D; all) therefore lists every entity, which is the console-admin path. A non-super is pinned by Scope to its own org, so it lists its tenant-owned entities correctly and is refused the platform-owned lists at the Guard (owner \&quot;\&quot; or \&quot;admin\&quot; both deny) — a safe 403, never another tenant&#39;s rows. Non-super, membership-scoped views of the platform-owned entities (e.g. an org console&#39;s own app list keyed on Application.Organization) are a separate, additive surface, not a silent behavior of this generic lister.
-    /// </remarks>
-    pplx::task<void> getIamGetApplications(
-    ) const;
-    /// <summary>
-    /// Reads one record — the older spelling of the single reads on the REST surface, over the same data and the same permissions.
-    /// </summary>
-    /// <remarks>
-    /// Reads one record — the older spelling of the single reads on the REST surface, over the same data and the same permissions.  Secrets are stripped. Naming a record in another organization does not reach it, however the request spells it.
-    /// </remarks>
-    pplx::task<void> getIamGetCert(
-    ) const;
-    /// <summary>
-    /// Lists one kind of record in your organization — the older spelling of the collection reads on the REST surface, over the same data and the same permissions.
-    /// </summary>
-    /// <remarks>
-    /// Lists one kind of record in your organization — the older spelling of the collection reads on the REST surface, over the same data and the same permissions.  Secrets are stripped from every row. Send both a page number and a page size to page, and the total comes back alongside; send neither and you get the whole set. You see your own organization and no other, whatever the request asks for.  Scoping note (intentional, fail-closed): iam&#39;s ownership model is mixed — users/roles/permissions are owned by their tenant org, while organizations/ applications/providers/certs are platform-owned (Owner \&quot;admin\&quot;). A SuperAdmin (Scope → the requested owner, empty &#x3D; all) therefore lists every entity, which is the console-admin path. A non-super is pinned by Scope to its own org, so it lists its tenant-owned entities correctly and is refused the platform-owned lists at the Guard (owner \&quot;\&quot; or \&quot;admin\&quot; both deny) — a safe 403, never another tenant&#39;s rows. Non-super, membership-scoped views of the platform-owned entities (e.g. an org console&#39;s own app list keyed on Application.Organization) are a separate, additive surface, not a silent behavior of this generic lister.
-    /// </remarks>
-    pplx::task<void> getIamGetCerts(
-    ) const;
-    /// <summary>
-    /// Lists one kind of record in your organization — the older spelling of the collection reads on the REST surface, over the same data and the same permissions.
-    /// </summary>
-    /// <remarks>
-    /// Lists one kind of record in your organization — the older spelling of the collection reads on the REST surface, over the same data and the same permissions.  Secrets are stripped from every row. Send both a page number and a page size to page, and the total comes back alongside; send neither and you get the whole set. You see your own organization and no other, whatever the request asks for.  Scoping note (intentional, fail-closed): iam&#39;s ownership model is mixed — users/roles/permissions are owned by their tenant org, while organizations/ applications/providers/certs are platform-owned (Owner \&quot;admin\&quot;). A SuperAdmin (Scope → the requested owner, empty &#x3D; all) therefore lists every entity, which is the console-admin path. A non-super is pinned by Scope to its own org, so it lists its tenant-owned entities correctly and is refused the platform-owned lists at the Guard (owner \&quot;\&quot; or \&quot;admin\&quot; both deny) — a safe 403, never another tenant&#39;s rows. Non-super, membership-scoped views of the platform-owned entities (e.g. an org console&#39;s own app list keyed on Application.Organization) are a separate, additive surface, not a silent behavior of this generic lister.
-    /// </remarks>
-    pplx::task<void> getIamGetGlobalUsers(
-    ) const;
-    /// <summary>
-    /// Lists one kind of record in your organization — the older spelling of the collection reads on the REST surface, over the same data and the same permissions.
-    /// </summary>
-    /// <remarks>
-    /// Lists one kind of record in your organization — the older spelling of the collection reads on the REST surface, over the same data and the same permissions.  Secrets are stripped from every row. Send both a page number and a page size to page, and the total comes back alongside; send neither and you get the whole set. You see your own organization and no other, whatever the request asks for.  Scoping note (intentional, fail-closed): iam&#39;s ownership model is mixed — users/roles/permissions are owned by their tenant org, while organizations/ applications/providers/certs are platform-owned (Owner \&quot;admin\&quot;). A SuperAdmin (Scope → the requested owner, empty &#x3D; all) therefore lists every entity, which is the console-admin path. A non-super is pinned by Scope to its own org, so it lists its tenant-owned entities correctly and is refused the platform-owned lists at the Guard (owner \&quot;\&quot; or \&quot;admin\&quot; both deny) — a safe 403, never another tenant&#39;s rows. Non-super, membership-scoped views of the platform-owned entities (e.g. an org console&#39;s own app list keyed on Application.Organization) are a separate, additive surface, not a silent behavior of this generic lister.
-    /// </remarks>
-    pplx::task<void> getIamGetInvitations(
-    ) const;
-    /// <summary>
-    /// Answers either question about who belongs where: which organizations one person can act in, or who can act in one organization.
-    /// </summary>
-    /// <remarks>
-    /// Answers either question about who belongs where: which organizations one person can act in, or who can act in one organization.  Both are org-scoped: a non-SuperAdmin may ask about ITS OWN org&#39;s roster, or about a user whose home org is its own, and nothing else. The bound comes from the verified credential via authz.Scope, so a request parameter can never widen it — a membership row names who may act and spend in an org, so a cross-tenant read is a customer roster leak.
-    /// </remarks>
-    /// <param name="user">User is \&quot;&lt;homeOrg&gt;/&lt;username&gt;\&quot; — which organizations that identity may act in. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="org">Org is an organization — who may act in it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    pplx::task<std::shared_ptr<Iam_Answer>> getIamGetMemberships(
-        boost::optional<utility::string_t> user,
-        boost::optional<utility::string_t> org
-    ) const;
-    /// <summary>
-    /// Reads one record — the older spelling of the single reads on the REST surface, over the same data and the same permissions.
-    /// </summary>
-    /// <remarks>
-    /// Reads one record — the older spelling of the single reads on the REST surface, over the same data and the same permissions.  Secrets are stripped. Naming a record in another organization does not reach it, however the request spells it.
-    /// </remarks>
-    pplx::task<void> getIamGetOrganization(
-    ) const;
-    /// <summary>
-    /// Returns one organization&#39;s projects — what a scope switcher lists so somebody can move between them.
-    /// </summary>
-    /// <remarks>
-    /// Returns one organization&#39;s projects — what a scope switcher lists so somebody can move between them.  You see your own organization and no other, whatever the request asks for.
-    /// </remarks>
-    pplx::task<void> getIamGetOrganizationProjects(
-    ) const;
-    /// <summary>
-    /// Returns one organization&#39;s workspaces — what a scope switcher lists so somebody can move between them.
-    /// </summary>
-    /// <remarks>
-    /// Returns one organization&#39;s workspaces — what a scope switcher lists so somebody can move between them.  You see your own organization and no other, whatever the request asks for.
-    /// </remarks>
-    pplx::task<void> getIamGetOrganizationWorkspaces(
-    ) const;
-    /// <summary>
-    /// Lists one kind of record in your organization — the older spelling of the collection reads on the REST surface, over the same data and the same permissions.
-    /// </summary>
-    /// <remarks>
-    /// Lists one kind of record in your organization — the older spelling of the collection reads on the REST surface, over the same data and the same permissions.  Secrets are stripped from every row. Send both a page number and a page size to page, and the total comes back alongside; send neither and you get the whole set. You see your own organization and no other, whatever the request asks for.  Scoping note (intentional, fail-closed): iam&#39;s ownership model is mixed — users/roles/permissions are owned by their tenant org, while organizations/ applications/providers/certs are platform-owned (Owner \&quot;admin\&quot;). A SuperAdmin (Scope → the requested owner, empty &#x3D; all) therefore lists every entity, which is the console-admin path. A non-super is pinned by Scope to its own org, so it lists its tenant-owned entities correctly and is refused the platform-owned lists at the Guard (owner \&quot;\&quot; or \&quot;admin\&quot; both deny) — a safe 403, never another tenant&#39;s rows. Non-super, membership-scoped views of the platform-owned entities (e.g. an org console&#39;s own app list keyed on Application.Organization) are a separate, additive surface, not a silent behavior of this generic lister.
-    /// </remarks>
-    pplx::task<void> getIamGetOrganizations(
-    ) const;
-    /// <summary>
-    /// Reads one record — the older spelling of the single reads on the REST surface, over the same data and the same permissions.
-    /// </summary>
-    /// <remarks>
-    /// Reads one record — the older spelling of the single reads on the REST surface, over the same data and the same permissions.  Secrets are stripped. Naming a record in another organization does not reach it, however the request spells it.
-    /// </remarks>
-    pplx::task<void> getIamGetPermission(
-    ) const;
-    /// <summary>
-    /// Lists one kind of record in your organization — the older spelling of the collection reads on the REST surface, over the same data and the same permissions.
-    /// </summary>
-    /// <remarks>
-    /// Lists one kind of record in your organization — the older spelling of the collection reads on the REST surface, over the same data and the same permissions.  Secrets are stripped from every row. Send both a page number and a page size to page, and the total comes back alongside; send neither and you get the whole set. You see your own organization and no other, whatever the request asks for.  Scoping note (intentional, fail-closed): iam&#39;s ownership model is mixed — users/roles/permissions are owned by their tenant org, while organizations/ applications/providers/certs are platform-owned (Owner \&quot;admin\&quot;). A SuperAdmin (Scope → the requested owner, empty &#x3D; all) therefore lists every entity, which is the console-admin path. A non-super is pinned by Scope to its own org, so it lists its tenant-owned entities correctly and is refused the platform-owned lists at the Guard (owner \&quot;\&quot; or \&quot;admin\&quot; both deny) — a safe 403, never another tenant&#39;s rows. Non-super, membership-scoped views of the platform-owned entities (e.g. an org console&#39;s own app list keyed on Application.Organization) are a separate, additive surface, not a silent behavior of this generic lister.
-    /// </remarks>
-    pplx::task<void> getIamGetPermissions(
-    ) const;
-    /// <summary>
-    /// Reads one record — the older spelling of the single reads on the REST surface, over the same data and the same permissions.
-    /// </summary>
-    /// <remarks>
-    /// Reads one record — the older spelling of the single reads on the REST surface, over the same data and the same permissions.  Secrets are stripped. Naming a record in another organization does not reach it, however the request spells it.
-    /// </remarks>
-    pplx::task<void> getIamGetProvider(
-    ) const;
-    /// <summary>
-    /// Lists one kind of record in your organization — the older spelling of the collection reads on the REST surface, over the same data and the same permissions.
-    /// </summary>
-    /// <remarks>
-    /// Lists one kind of record in your organization — the older spelling of the collection reads on the REST surface, over the same data and the same permissions.  Secrets are stripped from every row. Send both a page number and a page size to page, and the total comes back alongside; send neither and you get the whole set. You see your own organization and no other, whatever the request asks for.  Scoping note (intentional, fail-closed): iam&#39;s ownership model is mixed — users/roles/permissions are owned by their tenant org, while organizations/ applications/providers/certs are platform-owned (Owner \&quot;admin\&quot;). A SuperAdmin (Scope → the requested owner, empty &#x3D; all) therefore lists every entity, which is the console-admin path. A non-super is pinned by Scope to its own org, so it lists its tenant-owned entities correctly and is refused the platform-owned lists at the Guard (owner \&quot;\&quot; or \&quot;admin\&quot; both deny) — a safe 403, never another tenant&#39;s rows. Non-super, membership-scoped views of the platform-owned entities (e.g. an org console&#39;s own app list keyed on Application.Organization) are a separate, additive surface, not a silent behavior of this generic lister.
-    /// </remarks>
-    pplx::task<void> getIamGetProviders(
-    ) const;
-    /// <summary>
-    /// Lists one kind of record in your organization — the older spelling of the collection reads on the REST surface, over the same data and the same permissions.
-    /// </summary>
-    /// <remarks>
-    /// Lists one kind of record in your organization — the older spelling of the collection reads on the REST surface, over the same data and the same permissions.  Secrets are stripped from every row. Send both a page number and a page size to page, and the total comes back alongside; send neither and you get the whole set. You see your own organization and no other, whatever the request asks for.  Scoping note (intentional, fail-closed): iam&#39;s ownership model is mixed — users/roles/permissions are owned by their tenant org, while organizations/ applications/providers/certs are platform-owned (Owner \&quot;admin\&quot;). A SuperAdmin (Scope → the requested owner, empty &#x3D; all) therefore lists every entity, which is the console-admin path. A non-super is pinned by Scope to its own org, so it lists its tenant-owned entities correctly and is refused the platform-owned lists at the Guard (owner \&quot;\&quot; or \&quot;admin\&quot; both deny) — a safe 403, never another tenant&#39;s rows. Non-super, membership-scoped views of the platform-owned entities (e.g. an org console&#39;s own app list keyed on Application.Organization) are a separate, additive surface, not a silent behavior of this generic lister.
-    /// </remarks>
-    pplx::task<void> getIamGetRecords(
-    ) const;
-    /// <summary>
-    /// Reads one record — the older spelling of the single reads on the REST surface, over the same data and the same permissions.
-    /// </summary>
-    /// <remarks>
-    /// Reads one record — the older spelling of the single reads on the REST surface, over the same data and the same permissions.  Secrets are stripped. Naming a record in another organization does not reach it, however the request spells it.
-    /// </remarks>
-    pplx::task<void> getIamGetRole(
-    ) const;
-    /// <summary>
-    /// Lists one kind of record in your organization — the older spelling of the collection reads on the REST surface, over the same data and the same permissions.
-    /// </summary>
-    /// <remarks>
-    /// Lists one kind of record in your organization — the older spelling of the collection reads on the REST surface, over the same data and the same permissions.  Secrets are stripped from every row. Send both a page number and a page size to page, and the total comes back alongside; send neither and you get the whole set. You see your own organization and no other, whatever the request asks for.  Scoping note (intentional, fail-closed): iam&#39;s ownership model is mixed — users/roles/permissions are owned by their tenant org, while organizations/ applications/providers/certs are platform-owned (Owner \&quot;admin\&quot;). A SuperAdmin (Scope → the requested owner, empty &#x3D; all) therefore lists every entity, which is the console-admin path. A non-super is pinned by Scope to its own org, so it lists its tenant-owned entities correctly and is refused the platform-owned lists at the Guard (owner \&quot;\&quot; or \&quot;admin\&quot; both deny) — a safe 403, never another tenant&#39;s rows. Non-super, membership-scoped views of the platform-owned entities (e.g. an org console&#39;s own app list keyed on Application.Organization) are a separate, additive surface, not a silent behavior of this generic lister.
-    /// </remarks>
-    pplx::task<void> getIamGetRoles(
-    ) const;
-    /// <summary>
-    /// Reads one person, two ways.
-    /// </summary>
-    /// <remarks>
-    /// Reads one person, two ways.  Name them and it is an ordinary read, with secrets stripped. Or hand it a SECRET API key and it answers with the person that key belongs to — how a service of yours turns a credential on an incoming request into an identity.  A publishable key resolves to nobody here, deliberately: it is safe to ship in a browser precisely because it names an organization and never a person.  get-user is handler-authorized (authz.handlerAuthorizedExact) because the key variant carries no owner/name for the Guard to authorize; so the owner/name variant reinstates the SAME read authorization the Guard applies, through the ONE policy function (authz.Can) — identical behavior, a cross-tenant or non-self read still refused 403 — then reuses the generic getHandler verbatim for resolution and redaction. No authz and no CRUD is reimplemented.
-    /// </remarks>
-    pplx::task<void> getIamGetUser(
-    ) const;
-    /// <summary>
-    /// Lists one kind of record in your organization — the older spelling of the collection reads on the REST surface, over the same data and the same permissions.
-    /// </summary>
-    /// <remarks>
-    /// Lists one kind of record in your organization — the older spelling of the collection reads on the REST surface, over the same data and the same permissions.  Secrets are stripped from every row. Send both a page number and a page size to page, and the total comes back alongside; send neither and you get the whole set. You see your own organization and no other, whatever the request asks for.  Scoping note (intentional, fail-closed): iam&#39;s ownership model is mixed — users/roles/permissions are owned by their tenant org, while organizations/ applications/providers/certs are platform-owned (Owner \&quot;admin\&quot;). A SuperAdmin (Scope → the requested owner, empty &#x3D; all) therefore lists every entity, which is the console-admin path. A non-super is pinned by Scope to its own org, so it lists its tenant-owned entities correctly and is refused the platform-owned lists at the Guard (owner \&quot;\&quot; or \&quot;admin\&quot; both deny) — a safe 403, never another tenant&#39;s rows. Non-super, membership-scoped views of the platform-owned entities (e.g. an org console&#39;s own app list keyed on Application.Organization) are a separate, additive surface, not a silent behavior of this generic lister.
-    /// </remarks>
-    pplx::task<void> getIamGetUsers(
-    ) const;
-    /// <summary>
     /// Returns your organization&#39;s invitations, newest first — who has been asked to join, on what terms, and how many seats each invitation still has left.
     /// </summary>
     /// <remarks>
@@ -544,6 +517,18 @@ public:
     /// <param name="owner"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<Iam_invitations_ListOutput>> getIamInvitations(
         boost::optional<utility::string_t> owner
+    ) const;
+    /// <summary>
+    /// Returns one invitation: who it is for, what it grants on acceptance, and when it expires.
+    /// </summary>
+    /// <remarks>
+    /// Returns one invitation: who it is for, what it grants on acceptance, and when it expires.
+    /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<std::shared_ptr<Iam_Invitation>> getIamInvitationsByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name
     ) const;
     /// <summary>
     /// Returns your organization&#39;s API keys, newest first — what each is called, what it may reach, and its publishable half.
@@ -561,11 +546,27 @@ public:
     /// <remarks>
     /// Returns one API key: what it is called, what it may reach, and when it was issued.
     /// </remarks>
-    /// <param name="owner"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="name"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    pplx::task<std::shared_ptr<Iam_Key>> getIamKeysGet(
-        boost::optional<utility::string_t> owner,
-        boost::optional<utility::string_t> name
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<std::shared_ptr<Iam_Key>> getIamKeysByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name
+    ) const;
+    /// <summary>
+    /// Resolve a PUBLISHABLE key to the organization that owns it
+    /// </summary>
+    /// <remarks>
+    /// Answers which organization a publishable key belongs to — what a service calls to attribute a request that arrived carrying a key shipped in a browser. This is the noun spelling of &#x60;/v1/iam/resolve-key&#x60;, the same handler at the address that replaces it; both answer while callers migrate.  It names an ORGANIZATION and never a person. No path through it loads or returns a user, so a key placed in client code cannot become a way to learn who anyone is — which is the whole reason this is a separate door from the one below.  A key that is expired, secret rather than publishable, or simply unknown all answer with the same sentence and a &#x60;code&#x60; saying which it was. Only a confidential service that has already proved it may resolve keys reads that code — there is no anonymous caller here to probe which keys exist — and telling those apart is what lets a holder be told to re-mint an expired key instead of hunting a configuration error.
+    /// </remarks>
+    pplx::task<void> getIamKeysOrg(
+    ) const;
+    /// <summary>
+    /// Resolve a SECRET key to the principal it authenticates
+    /// </summary>
+    /// <remarks>
+    /// Answers who a secret key belongs to — the owner and name a gateway needs to attribute and bill a request that arrived carrying an &#x60;sk-&#x60;. This is the noun spelling of &#x60;/v1/iam/get-user?accessKey&#x3D;&#x60;, the same handler at the address that replaces it; both answer while callers migrate.  It resolves a KEY and nothing else. The verb it replaces also reads a user by &#x60;?id&#x3D;&#x60;, and carrying that here would make this a second address for the user read — the exact thing being retired. Ask for a person by name at the user read; ask here only what a credential resolves to.  Requires a confidential caller: the resolver authenticates as an app, so a request without that credential resolves nothing rather than falling back to an anonymous lookup. An unresolvable key answers with a &#x60;code&#x60; distinguishing expired from wrong-door from unknown, so the holder can be told which one cure applies.
+    /// </remarks>
+    pplx::task<void> getIamKeysPrincipal(
     ) const;
     /// <summary>
     /// Returns the sign-in identities linked to the calling person&#39;s account — every provider they can currently sign in with.
@@ -607,7 +608,7 @@ public:
     /// Ends a sign-in and sends the browser somewhere sensible.
     /// </summary>
     /// <remarks>
-    /// Ends a sign-in and sends the browser somewhere sensible. Accepts GET or POST, so it works as a plain link.  It ACTUALLY signs you out, which is worth stating because the endpoint spent a release not doing it: the whole body computed a redirect and answered {\&quot;status\&quot;:\&quot;ok\&quot;} unconditionally — no session ended, no token revoked. A logout that reports success while leaving the session live is worse than no logout at all, because the person on the shared machine believes it worked. Three things happen here now, in this order:   1. The browser session dies — sid revoked server-side AND the cookie expired     (sessions.Clear). Server-side revocation is the load-bearing half: a copy     of the cookie taken before logout must not still resolve.  2. The relying party&#39;s tokens are revoked when an id_token_hint names it, so     the refresh token cannot mint a fresh access token after the human left.     Revocation state is authoritative — a JWT&#39;s &#x60;exp&#x60; still reads valid for     days, so expiry is necessary but never sufficient.  3. Only then is a redirect considered, and only to a REGISTERED uri.  The open-redirect guard is unchanged: a redirect happens only when a VERIFIED id_token_hint identifies the application and that application has registered the target. Anything else refuses to redirect — nobody can turn your logout link into a redirect to a site of their choosing.
+    /// Ends a sign-in and sends the browser somewhere sensible. Accepts GET or POST, so it works as a plain link.  It ACTUALLY signs you out — worth stating, because a logout that computes a redirect and answers {\&quot;status\&quot;:\&quot;ok\&quot;} while ending no session and revoking no token is worse than none: the person on the shared machine believes it worked. Three things happen here, in this order:   1. The browser session dies — sid revoked server-side AND the cookie expired     (sessions.Clear). Server-side revocation is the load-bearing half: a copy     of the cookie taken before logout must not still resolve.  2. The relying party&#39;s tokens are revoked when an id_token_hint names it, so     the refresh token cannot mint a fresh access token after the human left.     Revocation state is authoritative — a JWT&#39;s &#x60;exp&#x60; still reads valid for     days, so expiry is necessary but never sufficient.  3. Only then is a redirect considered, and only to a REGISTERED uri.  The open-redirect guard is unchanged: a redirect happens only when a VERIFIED id_token_hint identifies the application and that application has registered the target. Anything else refuses to redirect — nobody can turn your logout link into a redirect to a site of their choosing.
     /// </remarks>
     pplx::task<void> getIamOauthLogout(
     ) const;
@@ -635,11 +636,11 @@ public:
     /// <remarks>
     /// Returns one permission: who it grants to, what it allows, and the resources it covers.
     /// </remarks>
-    /// <param name="owner"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="name"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    pplx::task<std::shared_ptr<Iam_Permission>> getIamPermissionsGet(
-        boost::optional<utility::string_t> owner,
-        boost::optional<utility::string_t> name
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<std::shared_ptr<Iam_Permission>> getIamPermissionsByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name
     ) const;
     /// <summary>
     /// Returns your organization&#39;s projects, newest first — the scope people pick between when their work is separated by product or client rather than by team.
@@ -650,6 +651,18 @@ public:
     /// <param name="owner"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<Iam_projects_ListOutput>> getIamProjects(
         boost::optional<utility::string_t> owner
+    ) const;
+    /// <summary>
+    /// Returns one project: what it is called and how it is set up.
+    /// </summary>
+    /// <remarks>
+    /// Returns one project: what it is called and how it is set up.
+    /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<std::shared_ptr<Iam_Project>> getIamProjectsByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name
     ) const;
     /// <summary>
     /// Publishes the public key your registry uses to verify the tokens issued above — the one URL to configure so the registry trusts logins without holding any secret of its own.
@@ -668,14 +681,6 @@ public:
     pplx::task<void> getIamRegistryToken(
     ) const;
     /// <summary>
-    /// Answers which organization a PUBLISHABLE key belongs to — what a service of yours calls to attribute a request that arrived carrying a key shipped in a browser.
-    /// </summary>
-    /// <remarks>
-    /// Answers which organization a PUBLISHABLE key belongs to — what a service of yours calls to attribute a request that arrived carrying a key shipped in a browser.  It names an organization and never a person: no path through it can load or return a user, so a key you put in client code cannot become a way to learn who anyone is. A key that is expired, secret rather than publishable, or simply unknown all answer with the same sentence, and with a &#x60;code&#x60; saying which of those it was. Only a confidential service that already proved it may resolve keys at all ever reads that code — there is no anonymous caller here to probe for which keys exist — and telling it apart is what lets the holder be told to re-mint an expired key instead of hunting a configuration error.
-    /// </remarks>
-    pplx::task<void> getIamResolveKey(
-    ) const;
-    /// <summary>
     /// Returns your organization&#39;s roles, newest first — each a named group of people that permissions are granted to.
     /// </summary>
     /// <remarks>
@@ -684,6 +689,18 @@ public:
     /// <param name="owner"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<Iam_roles_ListOutput>> getIamRoles(
         boost::optional<utility::string_t> owner
+    ) const;
+    /// <summary>
+    /// Returns one role: who is in it, and the roles it includes.
+    /// </summary>
+    /// <remarks>
+    /// Returns one role: who is in it, and the roles it includes.
+    /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<std::shared_ptr<Iam_Role>> getIamRolesByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name
     ) const;
     /// <summary>
     /// Returns the kinds of record this directory provisions and the address of each, so your identity provider discovers them rather than having them configured by hand.
@@ -770,10 +787,12 @@ public:
     /// Returns a page of the people in your organization, with the total so you can page through the rest. Passwords, API secrets and MFA material are stripped from every entry.
     /// </remarks>
     /// <param name="owner"></param>
+    /// <param name="email">Email narrows the page to the accounts carrying one address. Looking a person up by their address is a QUERY over the collection, not an item read: an address is not the natural key, two rows in one org can carry one, and a caller that gets a page SEES both — where a single-item read would have to choose, and choosing is how somebody joins a team under a colleague&#39;s identity. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="limit"> (optional, default to 0)</param>
     /// <param name="offset"> (optional, default to 0)</param>
     pplx::task<std::shared_ptr<Iam_users_ListOutput>> getIamUsers(
         utility::string_t owner,
+        boost::optional<utility::string_t> email,
         boost::optional<int32_t> limit,
         boost::optional<int32_t> offset
     ) const;
@@ -784,11 +803,11 @@ public:
     /// Returns one person in your organization, addressed by their username or by their email address. Passwords, API secrets and MFA material are stripped from the response.  An address that names two accounts names none: the read refuses rather than picking one, and says so instead of reporting \&quot;no such user\&quot;. Handing back an arbitrary one of two rows is how somebody gets added to a team under a colleague&#39;s identity.
     /// </remarks>
     /// <param name="owner"></param>
-    /// <param name="name"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="name"></param>
     /// <param name="email"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    pplx::task<std::shared_ptr<Iam_User>> getIamUsersGet(
+    pplx::task<std::shared_ptr<Iam_User>> getIamUsersByOwnerByName(
         utility::string_t owner,
-        boost::optional<utility::string_t> name,
+        utility::string_t name,
         boost::optional<utility::string_t> email
     ) const;
     /// <summary>
@@ -798,6 +817,22 @@ public:
     /// Starts a wallet sign-in: it returns a one-time challenge for the wallet to sign. The challenge is good once and is tied to the site that asked for it, so a signature collected elsewhere cannot be replayed here.
     /// </remarks>
     pplx::task<void> getIamWeb3Nonce(
+    ) const;
+    /// <summary>
+    /// Starts a passkey sign-in: it returns the challenge the person&#39;s authenticator signs.
+    /// </summary>
+    /// <remarks>
+    /// Starts a passkey sign-in: it returns the challenge the person&#39;s authenticator signs.  The account is named in the query, and the challenge is bound to it, so what may answer is decided here — by the server, from the row — and the finish checks the answer against that decision rather than recomputing it.
+    /// </remarks>
+    pplx::task<void> getIamWebauthnSigninBegin(
+    ) const;
+    /// <summary>
+    /// Starts enrolling a passkey for the signed-in person: it returns the options their browser hands to the authenticator.
+    /// </summary>
+    /// <remarks>
+    /// Starts enrolling a passkey for the signed-in person: it returns the options their browser hands to the authenticator.  Passkeys already on the account are EXCLUDED, so a second enrollment on a device that already holds one is refused by the authenticator itself rather than silently producing a duplicate the person cannot tell apart.
+    /// </remarks>
+    pplx::task<void> getIamWebauthnSignupBegin(
     ) const;
     /// <summary>
     /// Tells you who the current caller is — the lightweight check a page makes on load to decide whether to render signed-in or signed-out.
@@ -816,6 +851,18 @@ public:
     /// <param name="owner"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<Iam_workspaces_ListOutput>> getIamWorkspaces(
         boost::optional<utility::string_t> owner
+    ) const;
+    /// <summary>
+    /// Returns one workspace: what it is called and how it is set up.
+    /// </summary>
+    /// <remarks>
+    /// Returns one workspace: what it is called and how it is set up.
+    /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<std::shared_ptr<Iam_Workspace>> getIamWorkspacesByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name
     ) const;
     /// <summary>
     /// Publishes the public keys that verify the tokens issued here — the one URL you point a service at so it can check a token itself, offline, without calling back and without holding any secret of ours.
@@ -847,11 +894,11 @@ public:
     /// <remarks>
     /// Returns one organization: its display, its defaults and the sign-in rules everyone in it inherits.
     /// </remarks>
-    /// <param name="owner"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="name"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
     pplx::task<std::shared_ptr<Iam_Organization>> getOrganization(
-        boost::optional<utility::string_t> owner,
-        boost::optional<utility::string_t> name
+        utility::string_t owner,
+        utility::string_t name
     ) const;
     /// <summary>
     /// Returns one provider: what it connects to and how it is configured.
@@ -859,9 +906,11 @@ public:
     /// <remarks>
     /// Returns one provider: what it connects to and how it is configured. Its credentials come back masked.
     /// </remarks>
-    /// <param name="iamProviderKey"></param>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
     pplx::task<std::shared_ptr<Iam_providerResult>> getProvider(
-        std::shared_ptr<Iam_providerKey> iamProviderKey
+        utility::string_t owner,
+        utility::string_t name
     ) const;
     /// <summary>
     /// Returns one person&#39;s session in one application — when it began and which browsers or devices are still carrying it.
@@ -869,9 +918,13 @@ public:
     /// <remarks>
     /// Returns one person&#39;s session in one application — when it began and which browsers or devices are still carrying it.
     /// </remarks>
-    /// <param name="iamSessionRef"></param>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    /// <param name="application"></param>
     pplx::task<std::shared_ptr<Iam_Session>> getSession(
-        std::shared_ptr<Iam_SessionRef> iamSessionRef
+        utility::string_t owner,
+        utility::string_t name,
+        utility::string_t application
     ) const;
     /// <summary>
     /// Returns one access token: who and what it was issued to, and when it expires.
@@ -879,9 +932,11 @@ public:
     /// <remarks>
     /// Returns one access token: who and what it was issued to, and when it expires.
     /// </remarks>
-    /// <param name="iamTokenKey"></param>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
     pplx::task<std::shared_ptr<Iam_tokenResult>> getToken(
-        std::shared_ptr<Iam_tokenKey> iamTokenKey
+        utility::string_t owner,
+        utility::string_t name
     ) const;
     /// <summary>
     /// Returns one passkey or security key: whose it is, what device it lives on, and when it was registered.
@@ -889,23 +944,27 @@ public:
     /// <remarks>
     /// Returns one passkey or security key: whose it is, what device it lives on, and when it was registered.
     /// </remarks>
-    /// <param name="iamWebauthnCredentialKey"></param>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
     pplx::task<std::shared_ptr<Iam_webauthnCredentialResult>> getWebauthnCredential(
-        std::shared_ptr<Iam_webauthnCredentialKey> iamWebauthnCredentialKey
+        utility::string_t owner,
+        utility::string_t name
     ) const;
     /// <summary>
-    /// Returns the organizations you can see, newest first.
+    /// Returns the organizations you can act in, the ones you belong to first and the rest after, newest first, narrowed by an optional query against the name or the display name.
     /// </summary>
     /// <remarks>
-    /// Returns the organizations you can see, newest first. Narrow it to one parent account, and set a limit and offset to page through the rest.
+    /// Returns the organizations you can act in, the ones you belong to first and the rest after, newest first, narrowed by an optional query against the name or the display name.  Platform operators see every organization; everyone else sees their own. Pass the cursor from the previous page to continue; an empty cursor in the answer means there is nothing more.  THE SCOPE IS THE HANDLER&#39;S OWN, so it holds at every door. The Guard refuses a bearerless request before this runs, but the agent door carries a typed op to its handler with no middleware in front of it — a handler that read no principal would answer such a caller with the whole registry. Reading the principal here is what makes the answer the same one over both.
     /// </remarks>
-    /// <param name="owner"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xForwardedFor"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="q"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="limit"> (optional, default to 0)</param>
-    /// <param name="offset"> (optional, default to 0)</param>
+    /// <param name="cursor"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<Iam_ListOrganizationsOutput>> listOrganizations(
-        boost::optional<utility::string_t> owner,
+        boost::optional<utility::string_t> xForwardedFor,
+        boost::optional<utility::string_t> q,
         boost::optional<int32_t> limit,
-        boost::optional<int32_t> offset
+        boost::optional<utility::string_t> cursor
     ) const;
     /// <summary>
     /// Returns your organization&#39;s providers, newest first — the identity providers your people sign in with, and the senders and connectors your applications go through.
@@ -923,9 +982,13 @@ public:
     /// <remarks>
     /// Returns who is currently signed in to your organization, newest first, and can be narrowed to one person or one application. It is what you read before signing someone out.
     /// </remarks>
-    /// <param name="iamListSessionsIn"></param>
+    /// <param name="owner"></param>
+    /// <param name="name"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="application"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<Iam_ListSessionsOut>> listSessions(
-        std::shared_ptr<Iam_ListSessionsIn> iamListSessionsIn
+        utility::string_t owner,
+        boost::optional<utility::string_t> name,
+        boost::optional<utility::string_t> application
     ) const;
     /// <summary>
     /// Returns the access tokens issued in your organization, newest first, and can be narrowed to one organization.
@@ -940,14 +1003,14 @@ public:
         boost::optional<utility::string_t> organization
     ) const;
     /// <summary>
-    /// Returns the passkeys and security keys registered in your organization, newest first — which device each belongs to and when it was last used.
+    /// Returns the passkeys and security keys registered to one person, newest first — which device each lives on and when it was registered.
     /// </summary>
     /// <remarks>
-    /// Returns the passkeys and security keys registered in your organization, newest first — which device each belongs to and when it was last used.
+    /// Returns the passkeys and security keys registered to one person, newest first — which device each lives on and when it was registered.  Yours by default. Name somebody else and you get them only if you already administer their account, which is the same authority that governs reading their user record — so this list can never show more people than the surface beside it already does.  There is no organization-wide list, by design. Scoping to the ORG would hand an org admin every member&#39;s credential rows in one answer and a SuperAdmin every tenant&#39;s, while a plain member could not read even their own (an unnamed target fails the Guard&#39;s tenant rule). One scope answers both halves cleanly: the answer is a person&#39;s, and the caller is that person unless they say otherwise and may.
     /// </remarks>
-    /// <param name="owner"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="user"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<Iam_listWebauthnCredentialsOut>> listWebauthnCredentials(
-        boost::optional<utility::string_t> owner
+        boost::optional<utility::string_t> user
     ) const;
     /// <summary>
     /// Applies a partial change from your identity provider — one attribute moved, not the whole record resent.
@@ -960,84 +1023,6 @@ public:
     pplx::task<void> patchIamScimV2UsersByOwnerByName(
         utility::string_t owner,
         utility::string_t name
-    ) const;
-    /// <summary>
-    /// Registers an application in your organization — one product or site your people sign in to, with its own client credentials, sign-in methods and allowed redirect URIs.
-    /// </summary>
-    /// <remarks>
-    /// Registers an application in your organization — one product or site your people sign in to, with its own client credentials, sign-in methods and allowed redirect URIs.  The older spelling of POST /v1/iam/application. A name already used in the organization is refused rather than overwritten.
-    /// </remarks>
-    /// <param name="iamApplication"></param>
-    pplx::task<std::shared_ptr<Iam_Response>> postIamAddApplication(
-        std::shared_ptr<Iam_Application> iamApplication
-    ) const;
-    /// <summary>
-    /// Lets a person or an application act in an organization.
-    /// </summary>
-    /// <remarks>
-    /// Lets a person or an application act in an organization. It is the grant behind \&quot;add someone to the team\&quot;, and it is safe to repeat — granting a membership that already exists changes nothing. Granting membership IS the org&#39;s authority to give, so it takes the same gate a write to that org&#39;s own registry row takes: a SuperAdmin, an admin of the org itself, or an org-admin-capable confidential client. One rule, one place (internal/authz).
-    /// </remarks>
-    pplx::task<void> postIamAddMembership(
-    ) const;
-    /// <summary>
-    /// Creates an organization — the account everything else in your directory hangs from.
-    /// </summary>
-    /// <remarks>
-    /// Creates an organization — the account everything else in your directory hangs from. Users, applications, roles, projects and workspaces are all named inside one organization, so this is the first write in a new tenant.  The older spelling of POST /v1/iam/organizations. Both reach the same create, so a name already taken is refused here too.
-    /// </remarks>
-    /// <param name="iamCreateOrganizationInput"></param>
-    pplx::task<std::shared_ptr<Iam_Response>> postIamAddOrganization(
-        std::shared_ptr<Iam_CreateOrganizationInput> iamCreateOrganizationInput
-    ) const;
-    /// <summary>
-    /// Creates a project inside your organization — the scope people pick between when their work is separated by product or client rather than by team.
-    /// </summary>
-    /// <remarks>
-    /// Creates a project inside your organization — the scope people pick between when their work is separated by product or client rather than by team.  The older spelling of POST /v1/iam/projects. Creating one takes an administrator of the owning organization.
-    /// </remarks>
-    /// <param name="iamInput"></param>
-    pplx::task<std::shared_ptr<Iam_Response>> postIamAddProject(
-        std::shared_ptr<Iam_Input> iamInput
-    ) const;
-    /// <summary>
-    /// Adds an identity provider your people can sign in with, or a service your applications send through — a social or enterprise login, an email or SMS sender, a storage or payment connector.
-    /// </summary>
-    /// <remarks>
-    /// Adds an identity provider your people can sign in with, or a service your applications send through — a social or enterprise login, an email or SMS sender, a storage or payment connector.  A provider is configured once here and then switched on per application, so several applications can share one set of credentials.  The older spelling of POST /v1/iam/providers.
-    /// </remarks>
-    /// <param name="iamProvider"></param>
-    pplx::task<std::shared_ptr<Iam_Response>> postIamAddProvider(
-        std::shared_ptr<Iam_Provider> iamProvider
-    ) const;
-    /// <summary>
-    /// Creates a role — a named group of people that permissions are granted to.
-    /// </summary>
-    /// <remarks>
-    /// Creates a role — a named group of people that permissions are granted to. Granting to a role rather than to each person is what keeps access correct as your team changes: add someone to the role and they inherit everything it can do.  The older spelling of POST /v1/iam/roles.
-    /// </remarks>
-    /// <param name="iamRolesInput"></param>
-    pplx::task<std::shared_ptr<Iam_Response>> postIamAddRole(
-        std::shared_ptr<Iam_roles_Input> iamRolesInput
-    ) const;
-    /// <summary>
-    /// Adds a person to your organization and, if you send a password, sets the one they will sign in with.
-    /// </summary>
-    /// <remarks>
-    /// Adds a person to your organization and, if you send a password, sets the one they will sign in with. The password is hashed before it is stored and is never returned to you or to anyone else.  Usernames are checked against one rule wherever an account is created — this verb, password signup, a social sign-in, or SCIM — so a name accepted here is a name accepted everywhere.  The older spelling of POST /v1/iam/users, and it posts the user&#39;s fields at the top level rather than wrapped in {user, password}.
-    /// </remarks>
-    /// <param name="iamUserBody"></param>
-    pplx::task<std::shared_ptr<Iam_Response>> postIamAddUser(
-        std::shared_ptr<Iam_userBody> iamUserBody
-    ) const;
-    /// <summary>
-    /// Creates a workspace inside your organization — the scope a team works in, alongside projects rather than instead of them.
-    /// </summary>
-    /// <remarks>
-    /// Creates a workspace inside your organization — the scope a team works in, alongside projects rather than instead of them.  The older spelling of POST /v1/iam/workspaces. Creating one takes an administrator of the owning organization.
-    /// </remarks>
-    /// <param name="iamWorkspacesInput"></param>
-    pplx::task<std::shared_ptr<Iam_Response>> postIamAddWorkspace(
-        std::shared_ptr<Iam_workspaces_Input> iamWorkspacesInput
     ) const;
     /// <summary>
     /// Sets up an account on someone&#39;s behalf — the same onboarding a person gets themselves, driven by one of your own services instead of by them.
@@ -1054,38 +1039,22 @@ public:
     /// Registers an application in your organization — one product or site your people sign in to, with its own client credentials, sign-in methods and allowed redirect URIs. A name already used in the organization is refused rather than overwritten.  Exported so the legacy add-application alias reuses this exact path — one create, two spellings.
     /// </remarks>
     /// <param name="iamApplication"></param>
-    pplx::task<std::shared_ptr<Iam_Application>> postIamApplication(
-        std::shared_ptr<Iam_Application> iamApplication
-    ) const;
-    /// <summary>
-    /// Registers an application in your organization — one product or site your people sign in to, with its own client credentials, sign-in methods and allowed redirect URIs.
-    /// </summary>
-    /// <remarks>
-    /// Registers an application in your organization — one product or site your people sign in to, with its own client credentials, sign-in methods and allowed redirect URIs. A name already used in the organization is refused rather than overwritten.  Exported so the legacy add-application alias reuses this exact path — one create, two spellings.
-    /// </remarks>
-    /// <param name="iamApplication"></param>
     pplx::task<std::shared_ptr<Iam_Application>> postIamApplications(
         std::shared_ptr<Iam_Application> iamApplication
     ) const;
     /// <summary>
-    /// Removes an application.
+    /// Steps a platform operator into an organization: it returns their own access token re-scoped to that tenant, so they see what the tenant sees.
     /// </summary>
     /// <remarks>
-    /// Removes an application. Anyone mid-sign-in through it is turned away and its client credentials stop working, so retire the integration before deleting it.
+    /// Steps a platform operator into an organization: it returns their own access token re-scoped to that tenant, so they see what the tenant sees.  The token still names the operator — stepping in is not becoming somebody else — and records the organization it was scoped to, so everything done with it is attributed to the person who did it. Only a platform operator may, and the attempt is recorded whether or not it succeeds.
     /// </remarks>
-    /// <param name="iamApplicationRef"></param>
-    pplx::task<std::shared_ptr<Iam_DeleteResult>> postIamApplicationsDelete(
-        std::shared_ptr<Iam_ApplicationRef> iamApplicationRef
-    ) const;
-    /// <summary>
-    /// Changes an application&#39;s display, its sign-in methods and the redirect URIs it may return to — the call that makes login work from a new host.
-    /// </summary>
-    /// <remarks>
-    /// Changes an application&#39;s display, its sign-in methods and the redirect URIs it may return to — the call that makes login work from a new host. Which organization it belongs to and what it is named are fixed when it is created and are not editable here.  Exported so the legacy update-application alias reuses this exact path — one update, two spellings.
-    /// </remarks>
-    /// <param name="iamApplication"></param>
-    pplx::task<std::shared_ptr<Iam_Application>> postIamApplicationsUpdate(
-        std::shared_ptr<Iam_Application> iamApplication
+    /// <param name="iamAssumeBody"></param>
+    /// <param name="authorization"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xForwardedFor"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<Iam_Answer>> postIamAssume(
+        std::shared_ptr<Iam_assumeBody> iamAssumeBody,
+        boost::optional<utility::string_t> authorization,
+        boost::optional<utility::string_t> xForwardedFor
     ) const;
     /// <summary>
     /// Records an audit entry, so activity from your own systems lands in the same trail as everything the Hanzo Cloud records for you.
@@ -1093,89 +1062,19 @@ public:
     /// <remarks>
     /// Records an audit entry, so activity from your own systems lands in the same trail as everything the Hanzo Cloud records for you.
     /// </remarks>
-    /// <param name="iamAuditlogsInput"></param>
+    /// <param name="iamInput"></param>
     pplx::task<std::shared_ptr<Iam_AuditLog>> postIamAuditLogs(
-        std::shared_ptr<Iam_auditlogs_Input> iamAuditlogsInput
+        std::shared_ptr<Iam_Input> iamInput
     ) const;
     /// <summary>
-    /// Removes an audit entry.
+    /// Adds a signing certificate your applications can verify tokens against — the call you make to stage the next one before a rotation.
     /// </summary>
     /// <remarks>
-    /// Removes an audit entry. Retention policy is normally what should expire a trail; deleting by hand leaves a gap a reviewer will notice.
-    /// </remarks>
-    /// <param name="iamRef"></param>
-    pplx::task<std::shared_ptr<Iam_DeleteOutput>> postIamAuditLogsDelete(
-        std::shared_ptr<Iam_Ref> iamRef
-    ) const;
-    /// <summary>
-    /// Returns one audit entry in full: the action, the person or key behind it, and the request it came in on.
-    /// </summary>
-    /// <remarks>
-    /// Returns one audit entry in full: the action, the person or key behind it, and the request it came in on.
-    /// </remarks>
-    /// <param name="iamRef"></param>
-    pplx::task<std::shared_ptr<Iam_AuditLog>> postIamAuditLogsGet(
-        std::shared_ptr<Iam_Ref> iamRef
-    ) const;
-    /// <summary>
-    /// Corrects an audit entry.
-    /// </summary>
-    /// <remarks>
-    /// Corrects an audit entry. The trail is append-only in normal operation and nothing in the Hanzo Cloud rewrites it — this exists for an administrator to correct an entry their own systems recorded wrongly.
-    /// </remarks>
-    /// <param name="iamAuditlogsInput"></param>
-    pplx::task<std::shared_ptr<Iam_AuditLog>> postIamAuditLogsUpdate(
-        std::shared_ptr<Iam_auditlogs_Input> iamAuditlogsInput
-    ) const;
-    /// <summary>
-    /// Adds a signing certificate your applications can verify tokens against — the call you make to bring your own key, or to stage the next one before a rotation.
-    /// </summary>
-    /// <remarks>
-    /// Adds a signing certificate your applications can verify tokens against — the call you make to bring your own key, or to stage the next one before a rotation. A name already used in your organization is refused.
+    /// Adds a signing certificate your applications can verify tokens against — the call you make to stage the next one before a rotation. A name already used in your organization is refused.  It registers the certificate&#39;s IDENTITY: its name (which is the JWKS &#x60;kid&#x60;), its algorithm, its expiry. Key material does not travel this way and cannot: the private key is not part of the Cert&#39;s JSON, so it is neither served here nor accepted here. It is supplied to the process by the deployment, under the name registered here (internal/keyring). Staging a rotation is therefore two halves — this call names the key, and the deployment provides it.
     /// </remarks>
     /// <param name="iamCert"></param>
     pplx::task<std::shared_ptr<Iam_Cert>> postIamCerts(
         std::shared_ptr<Iam_Cert> iamCert
-    ) const;
-    /// <summary>
-    /// Removes a signing certificate.
-    /// </summary>
-    /// <remarks>
-    /// Removes a signing certificate. Tokens signed with it can no longer be verified, so retire it only once nothing is still presenting them.
-    /// </remarks>
-    /// <param name="iamCertsRef"></param>
-    pplx::task<std::shared_ptr<Iam_certs_DeleteOutput>> postIamCertsDelete(
-        std::shared_ptr<Iam_certs_Ref> iamCertsRef
-    ) const;
-    /// <summary>
-    /// Returns one signing certificate — its algorithm, its validity window and its public half.
-    /// </summary>
-    /// <remarks>
-    /// Returns one signing certificate — its algorithm, its validity window and its public half. The private key is masked.
-    /// </remarks>
-    /// <param name="iamCertsRef"></param>
-    pplx::task<std::shared_ptr<Iam_Cert>> postIamCertsGet(
-        std::shared_ptr<Iam_certs_Ref> iamCertsRef
-    ) const;
-    /// <summary>
-    /// Changes a signing certificate&#39;s settings.
-    /// </summary>
-    /// <remarks>
-    /// Changes a signing certificate&#39;s settings. What it is called does not change, and neither does when it was added.
-    /// </remarks>
-    /// <param name="iamCert"></param>
-    pplx::task<std::shared_ptr<Iam_Cert>> postIamCertsUpdate(
-        std::shared_ptr<Iam_Cert> iamCert
-    ) const;
-    /// <summary>
-    /// Deletes an application.
-    /// </summary>
-    /// <remarks>
-    /// Deletes an application. Anyone mid-sign-in through it is turned away and its client credentials stop working, so retire the integration first.  The older spelling of DELETE /v1/iam/application.
-    /// </remarks>
-    /// <param name="iamApplication"></param>
-    pplx::task<std::shared_ptr<Iam_Response>> postIamDeleteApplication(
-        std::shared_ptr<Iam_Application> iamApplication
     ) const;
     /// <summary>
     /// Takes away a person&#39;s or an application&#39;s right to act in an organization.
@@ -1194,66 +1093,6 @@ public:
     pplx::task<void> postIamDeleteMfa(
     ) const;
     /// <summary>
-    /// Deletes an organization and everything named inside it — its users, applications, roles, projects and workspaces.
-    /// </summary>
-    /// <remarks>
-    /// Deletes an organization and everything named inside it — its users, applications, roles, projects and workspaces. There is no undo, and every session issued under it stops working.  The older spelling of POST /v1/iam/organizations/delete.
-    /// </remarks>
-    /// <param name="iamDeleteOrganizationInput"></param>
-    pplx::task<std::shared_ptr<Iam_Response>> postIamDeleteOrganization(
-        std::shared_ptr<Iam_DeleteOrganizationInput> iamDeleteOrganizationInput
-    ) const;
-    /// <summary>
-    /// Deletes a project.
-    /// </summary>
-    /// <remarks>
-    /// Deletes a project. The people and roles in your organization are unchanged; what goes is the scope itself, so anything addressed by it must move first.  The older spelling of POST /v1/iam/projects/delete.
-    /// </remarks>
-    /// <param name="iamProjectsRef"></param>
-    pplx::task<std::shared_ptr<Iam_Response>> postIamDeleteProject(
-        std::shared_ptr<Iam_projects_Ref> iamProjectsRef
-    ) const;
-    /// <summary>
-    /// Removes a provider.
-    /// </summary>
-    /// <remarks>
-    /// Removes a provider. Sign-in through it stops for every application that used it, so detach those applications first if they have no other method.  The older spelling of POST /v1/iam/providers/delete.
-    /// </remarks>
-    /// <param name="iamProvider"></param>
-    pplx::task<std::shared_ptr<Iam_Response>> postIamDeleteProvider(
-        std::shared_ptr<Iam_Provider> iamProvider
-    ) const;
-    /// <summary>
-    /// Deletes a role.
-    /// </summary>
-    /// <remarks>
-    /// Deletes a role. Everyone in it loses the access it carried; their accounts and any other roles they hold are untouched.  The older spelling of POST /v1/iam/roles/delete.
-    /// </remarks>
-    /// <param name="iamRolesRef"></param>
-    pplx::task<std::shared_ptr<Iam_Response>> postIamDeleteRole(
-        std::shared_ptr<Iam_roles_Ref> iamRolesRef
-    ) const;
-    /// <summary>
-    /// Removes a person from your organization.
-    /// </summary>
-    /// <remarks>
-    /// Removes a person from your organization. Their sessions stop working and the account is gone, not suspended — to keep the record and only stop sign-in, update the user instead.  The older spelling of POST /v1/iam/users/delete.
-    /// </remarks>
-    /// <param name="iamUserBody"></param>
-    pplx::task<std::shared_ptr<Iam_Response>> postIamDeleteUser(
-        std::shared_ptr<Iam_userBody> iamUserBody
-    ) const;
-    /// <summary>
-    /// Deletes a workspace.
-    /// </summary>
-    /// <remarks>
-    /// Deletes a workspace. The people and roles in your organization are unchanged; what goes is the scope itself.  The older spelling of POST /v1/iam/workspaces/delete.
-    /// </remarks>
-    /// <param name="iamWorkspacesRef"></param>
-    pplx::task<std::shared_ptr<Iam_Response>> postIamDeleteWorkspace(
-        std::shared_ptr<Iam_workspaces_Ref> iamWorkspacesRef
-    ) const;
-    /// <summary>
     /// Issues an invitation to join your organization — the code or link a new member redeems, with the role they arrive holding and the date it stops working.
     /// </summary>
     /// <remarks>
@@ -1261,36 +1100,6 @@ public:
     /// </remarks>
     /// <param name="iamInvitationsInput"></param>
     pplx::task<std::shared_ptr<Iam_Invitation>> postIamInvitations(
-        std::shared_ptr<Iam_invitations_Input> iamInvitationsInput
-    ) const;
-    /// <summary>
-    /// Withdraws an invitation.
-    /// </summary>
-    /// <remarks>
-    /// Withdraws an invitation. It stops being redeemable at once; anyone who already joined through it keeps their account.
-    /// </remarks>
-    /// <param name="iamInvitationsRef"></param>
-    pplx::task<std::shared_ptr<Iam_invitations_DeleteOutput>> postIamInvitationsDelete(
-        std::shared_ptr<Iam_invitations_Ref> iamInvitationsRef
-    ) const;
-    /// <summary>
-    /// Returns one invitation: who it is for, what it grants on acceptance, and when it expires.
-    /// </summary>
-    /// <remarks>
-    /// Returns one invitation: who it is for, what it grants on acceptance, and when it expires.
-    /// </remarks>
-    /// <param name="iamInvitationsRef"></param>
-    pplx::task<std::shared_ptr<Iam_Invitation>> postIamInvitationsGet(
-        std::shared_ptr<Iam_invitations_Ref> iamInvitationsRef
-    ) const;
-    /// <summary>
-    /// Changes an invitation&#39;s terms — the role it grants, how many may redeem it, or when it expires.
-    /// </summary>
-    /// <remarks>
-    /// Changes an invitation&#39;s terms — the role it grants, how many may redeem it, or when it expires. What it is called does not change.
-    /// </remarks>
-    /// <param name="iamInvitationsInput"></param>
-    pplx::task<std::shared_ptr<Iam_Invitation>> postIamInvitationsUpdate(
         std::shared_ptr<Iam_invitations_Input> iamInvitationsInput
     ) const;
     /// <summary>
@@ -1309,42 +1118,6 @@ public:
     /// </remarks>
     /// <param name="iamKey"></param>
     pplx::task<std::shared_ptr<Iam_Key>> postIamKeys(
-        std::shared_ptr<Iam_Key> iamKey
-    ) const;
-    /// <summary>
-    /// Revokes an API key.
-    /// </summary>
-    /// <remarks>
-    /// Revokes an API key. Anything still presenting it stops being authorized at once, so roll the replacement out before you revoke.
-    /// </remarks>
-    /// <param name="iamKeysRef"></param>
-    pplx::task<std::shared_ptr<Iam_DeleteResponse>> postIamKeysDelete(
-        std::shared_ptr<Iam_keys_Ref> iamKeysRef
-    ) const;
-    /// <summary>
-    /// (re)generates the target user&#39;s key of the requested TYPE and returns it once, over the shared authorizeMinter + mintTarget seam.
-    /// </summary>
-    /// <remarks>
-    /// (re)generates the target user&#39;s key of the requested TYPE and returns it once, over the shared authorizeMinter + mintTarget seam. &#x60;?type&#x3D;secret&#x60; (the default) yields the confidential sk-; &#x60;?type&#x3D;publishable&#x60; yields the pk- that is safe to ship in client JS and resolves to an org, never a principal.  It writes the schema.Key row that the resolvers actually read. schema.User.AccessKey is not a credential and nothing resolves it, so a key stamped there would authenticate nobody.
-    /// </remarks>
-    pplx::task<void> postIamKeysMint(
-    ) const;
-    /// <summary>
-    /// Clears the target user&#39;s key of the requested TYPE (immediate revoke).
-    /// </summary>
-    /// <remarks>
-    /// Clears the target user&#39;s key of the requested TYPE (immediate revoke). Scoped by the same &#x60;?type&#x60; field mint takes, so revoking the browser key leaves the server key working. A secret key&#39;s stored value is the sk- in its schema.Key row.
-    /// </remarks>
-    pplx::task<void> postIamKeysRevoke(
-    ) const;
-    /// <summary>
-    /// Changes what a key is called or what it may reach.
-    /// </summary>
-    /// <remarks>
-    /// Changes what a key is called or what it may reach. The credential itself is not reissued — the key in your deployment keeps working.
-    /// </remarks>
-    /// <param name="iamKey"></param>
-    pplx::task<std::shared_ptr<Iam_Key>> postIamKeysUpdate(
         std::shared_ptr<Iam_Key> iamKey
     ) const;
     /// <summary>
@@ -1372,14 +1145,6 @@ public:
     pplx::task<void> postIamMemberships(
     ) const;
     /// <summary>
-    /// Turns a factor off, so sign-in stops asking for it.
-    /// </summary>
-    /// <remarks>
-    /// Turns a factor off, so sign-in stops asking for it. Naming no factor turns off ALL of them — the reset path. People may do this for themselves; doing it for somebody else takes an administrator, which is what makes it the way back in when a phone is lost.  The recovery codes go with the last factor: they are the way past a challenge, so keeping them alive for an account with nothing to challenge would leave a standing credential behind.
-    /// </remarks>
-    pplx::task<void> postIamMfaDisable(
-    ) const;
-    /// <summary>
     /// Picks which second factor an account is asked for first when it has more than one.
     /// </summary>
     /// <remarks>
@@ -1391,7 +1156,7 @@ public:
     /// Finishes the enrolment: from here the account&#39;s sign-ins ask for this factor.
     /// </summary>
     /// <remarks>
-    /// Finishes the enrolment: from here the account&#39;s sign-ins ask for this factor. It requires the proof initiate handed out — a passcode from the authenticator, or the code that was sent — and verifies it BEFORE writing anything.  It used to write on the strength of a &#x60;secret&#x60; field alone. A client that skipped the verify step, scanned the QR into the wrong app, or was simply buggy switched on a factor no code would ever satisfy, and the account was then locked out with no self-service way back: the gate holds the sign-in before minting, so the person cannot obtain the bearer that disable requires.  The recovery codes are minted here and returned ONCE, on the first factor the account adds. Answering with them is the way back in when no factor can be produced, so they are the same value the row&#39;s digests were made from — by construction, not by a client echoing them back.
+    /// Finishes the enrolment: from here the account&#39;s sign-ins ask for this factor. It requires the proof initiate handed out — a passcode from the authenticator, or the code that was sent — and verifies it BEFORE writing anything.  Verifying BEFORE writing is what keeps a client that never completed the proof — a skipped verify step, a QR scanned into the wrong app, a bug — from switching on a factor no code can satisfy. That would lock the account out with no self-service way back: the gate holds the sign-in before minting, so the person could not obtain the bearer that disable requires.  The recovery codes are minted here and returned ONCE, on the first factor the account adds. Answering with them is the way back in when no factor can be produced, so they are the same value the row&#39;s digests were made from — by construction, not by a client echoing them back.
     /// </remarks>
     pplx::task<void> postIamMfaSetupEnable(
     ) const;
@@ -1431,7 +1196,7 @@ public:
     /// Answers \&quot;what am I approving?\&quot; for a pending device code.
     /// </summary>
     /// <remarks>
-    /// Answers \&quot;what am I approving?\&quot; for a pending device code.  The approval page exists to tell a human WHICH application they are authorizing; a page that names the wrong one defeats the control it implements. It used to render the portal&#39;s own app name — a constant, &#x60;hanzo-console&#x60; for every code — so a device code minted by &#x60;hanzo-cli&#x60; was approved under a screen naming a different application entirely. The client is a property of the CODE, so it is read from the code&#39;s row here and nowhere else.  Requires a signed-in session, and answers with the same ONE opaque refusal approveDevice uses. That is deliberate: the user_code is only 40 bits and is the one secret in this flow, so an unauthenticated lookup — or one that distinguished unknown from expired from already-approved — would be an oracle for hunting live codes. Gated and opaque, it reveals strictly less than the approval the same caller could already attempt.
+    /// Answers \&quot;what am I approving?\&quot; for a pending device code.  The approval page exists to tell a human WHICH application they are authorizing; a page that names any other one defeats the control it implements. The client is a property of the CODE, not of the page or of whatever app the browser happens to be signed in to, so it is read from the code&#39;s row here and nowhere else.  Requires a signed-in session, and answers with the same ONE opaque refusal approveDevice uses. That is deliberate: the user_code is only 40 bits and is the one secret in this flow, so an unauthenticated lookup — or one that distinguished unknown from expired from already-approved — would be an oracle for hunting live codes. Gated and opaque, it reveals strictly less than the approval the same caller could already attempt.
     /// </remarks>
     pplx::task<void> postIamOauthDeviceInfo(
     ) const;
@@ -1455,7 +1220,7 @@ public:
     /// Ends a sign-in and sends the browser somewhere sensible.
     /// </summary>
     /// <remarks>
-    /// Ends a sign-in and sends the browser somewhere sensible. Accepts GET or POST, so it works as a plain link.  It ACTUALLY signs you out, which is worth stating because the endpoint spent a release not doing it: the whole body computed a redirect and answered {\&quot;status\&quot;:\&quot;ok\&quot;} unconditionally — no session ended, no token revoked. A logout that reports success while leaving the session live is worse than no logout at all, because the person on the shared machine believes it worked. Three things happen here now, in this order:   1. The browser session dies — sid revoked server-side AND the cookie expired     (sessions.Clear). Server-side revocation is the load-bearing half: a copy     of the cookie taken before logout must not still resolve.  2. The relying party&#39;s tokens are revoked when an id_token_hint names it, so     the refresh token cannot mint a fresh access token after the human left.     Revocation state is authoritative — a JWT&#39;s &#x60;exp&#x60; still reads valid for     days, so expiry is necessary but never sufficient.  3. Only then is a redirect considered, and only to a REGISTERED uri.  The open-redirect guard is unchanged: a redirect happens only when a VERIFIED id_token_hint identifies the application and that application has registered the target. Anything else refuses to redirect — nobody can turn your logout link into a redirect to a site of their choosing.
+    /// Ends a sign-in and sends the browser somewhere sensible. Accepts GET or POST, so it works as a plain link.  It ACTUALLY signs you out — worth stating, because a logout that computes a redirect and answers {\&quot;status\&quot;:\&quot;ok\&quot;} while ending no session and revoking no token is worse than none: the person on the shared machine believes it worked. Three things happen here, in this order:   1. The browser session dies — sid revoked server-side AND the cookie expired     (sessions.Clear). Server-side revocation is the load-bearing half: a copy     of the cookie taken before logout must not still resolve.  2. The relying party&#39;s tokens are revoked when an id_token_hint names it, so     the refresh token cannot mint a fresh access token after the human left.     Revocation state is authoritative — a JWT&#39;s &#x60;exp&#x60; still reads valid for     days, so expiry is necessary but never sufficient.  3. Only then is a redirect considered, and only to a REGISTERED uri.  The open-redirect guard is unchanged: a redirect happens only when a VERIFIED id_token_hint identifies the application and that application has registered the target. Anything else refuses to redirect — nobody can turn your logout link into a redirect to a site of their choosing.
     /// </remarks>
     pplx::task<void> postIamOauthLogout(
     ) const;
@@ -1463,7 +1228,7 @@ public:
     /// Retires a token before it expires — what you call when someone signs out or a credential may have leaked.
     /// </summary>
     /// <remarks>
-    /// Retires a token before it expires — what you call when someone signs out or a credential may have leaked.  Revoking an access token kills that token. Revoking a REFRESH token kills the whole chain it belongs to, so no further access tokens can be minted from it and every token already minted from it dies with it.  A token that is not yours, or that never existed, answers success and does nothing — so the endpoint cannot be used to discover which tokens are real.  PUBLIC clients revoke too, and must: sign-out is the only control a long-lived refresh token has. hanzo-cli is a public PKCE client holding a 30-day rotating refresh token, so a confidential-only revocation endpoint made &#x60;hanzo auth logout&#x60; a LOCAL DELETE — the credential it dropped stayed spendable at hanzo.id for the rest of the month, with nothing able to kill it. Measured 2026-08-01: revoke answered 401 invalid_client and the refresh token went on minting access tokens.  Widening authentication does not widen authority. The caller must still POSSESS the token — and possession already permits USE, of which revocation is the strict opposite — and the row must belong to the client that presents it, so a public client_id buys the ability to destroy exactly what its holder could otherwise spend. RFC 6749 §3.2.1 is the same reading: a client with no credentials identifies itself with client_id.
+    /// Retires a token before it expires — what you call when someone signs out or a credential may have leaked.  Revoking an access token kills that token. Revoking a REFRESH token kills the whole chain it belongs to, so no further access tokens can be minted from it and every token already minted from it dies with it.  A token that is not yours, or that never existed, answers success and does nothing — so the endpoint cannot be used to discover which tokens are real.  PUBLIC clients revoke too, and must: sign-out is the only control a long-lived refresh token has. A native app or CLI is a public PKCE client and holds no secret, so requiring one here would leave signing out as a local delete — forgetting a credential that stays spendable for the rest of its lifetime.  Widening authentication does not widen authority. The caller must still POSSESS the token — and possession already permits USE, of which revocation is the strict opposite — and the row must belong to the client that presents it, so a public client_id buys the ability to destroy exactly what its holder could otherwise spend. RFC 6749 §3.2.1 is the same reading: a client with no credentials identifies itself with client_id.
     /// </remarks>
     pplx::task<void> postIamOauthRevoke(
     ) const;
@@ -1502,26 +1267,6 @@ public:
         std::shared_ptr<Iam_Permission> iamPermission
     ) const;
     /// <summary>
-    /// Revokes a permission.
-    /// </summary>
-    /// <remarks>
-    /// Revokes a permission. Everyone who held access only through it loses that access immediately; grants they hold by another route are untouched.
-    /// </remarks>
-    /// <param name="iamPermissionRef"></param>
-    pplx::task<std::shared_ptr<Iam_permission_DeleteResponse>> postIamPermissionsDelete(
-        std::shared_ptr<Iam_permission_Ref> iamPermissionRef
-    ) const;
-    /// <summary>
-    /// Changes who a permission grants to, what it allows, or the resources it covers.
-    /// </summary>
-    /// <remarks>
-    /// Changes who a permission grants to, what it allows, or the resources it covers. Access changes as soon as the write lands. What the permission is called does not change, and neither does when it was created.
-    /// </remarks>
-    /// <param name="iamPermission"></param>
-    pplx::task<std::shared_ptr<Iam_Permission>> postIamPermissionsUpdate(
-        std::shared_ptr<Iam_Permission> iamPermission
-    ) const;
-    /// <summary>
     /// Saves the calling person&#39;s own settings and returns the full set afterwards.
     /// </summary>
     /// <remarks>
@@ -1535,39 +1280,9 @@ public:
     /// <remarks>
     /// Makes a project inside your organization — the scope people pick between when their work is separated by product or client rather than by team. A name already used in the organization is refused.
     /// </remarks>
-    /// <param name="iamInput"></param>
+    /// <param name="iamProjectsInput"></param>
     pplx::task<std::shared_ptr<Iam_Project>> postIamProjects(
-        std::shared_ptr<Iam_Input> iamInput
-    ) const;
-    /// <summary>
-    /// Removes a project.
-    /// </summary>
-    /// <remarks>
-    /// Removes a project. The people and roles in your organization are unchanged; what goes is the scope itself, so move anything addressed by it first.
-    /// </remarks>
-    /// <param name="iamProjectsRef"></param>
-    pplx::task<std::shared_ptr<Iam_projects_DeleteOutput>> postIamProjectsDelete(
-        std::shared_ptr<Iam_projects_Ref> iamProjectsRef
-    ) const;
-    /// <summary>
-    /// Returns one project: what it is called and how it is set up.
-    /// </summary>
-    /// <remarks>
-    /// Returns one project: what it is called and how it is set up.
-    /// </remarks>
-    /// <param name="iamProjectsRef"></param>
-    pplx::task<std::shared_ptr<Iam_Project>> postIamProjectsGet(
-        std::shared_ptr<Iam_projects_Ref> iamProjectsRef
-    ) const;
-    /// <summary>
-    /// Changes a project&#39;s settings.
-    /// </summary>
-    /// <remarks>
-    /// Changes a project&#39;s settings. What it is called does not change, and neither does when it was created.
-    /// </remarks>
-    /// <param name="iamInput"></param>
-    pplx::task<std::shared_ptr<Iam_Project>> postIamProjectsUpdate(
-        std::shared_ptr<Iam_Input> iamInput
+        std::shared_ptr<Iam_projects_Input> iamProjectsInput
     ) const;
     /// <summary>
     /// Signs a container client in to your registry.
@@ -1576,6 +1291,20 @@ public:
     /// Signs a container client in to your registry. &#x60;docker login&#x60;, and every build tool that pushes or pulls images, lands here: it exchanges the credential for a short-lived token scoped to exactly the repositories that credential may touch.  Both of the shapes container tooling uses are accepted, so the same login works whichever client your pipeline runs.
     /// </remarks>
     pplx::task<void> postIamRegistryToken(
+    ) const;
+    /// <summary>
+    /// Steps a platform operator back out: it returns their own access token with no organization assumed, which is the credential they had before they stepped in.
+    /// </summary>
+    /// <remarks>
+    /// Steps a platform operator back out: it returns their own access token with no organization assumed, which is the credential they had before they stepped in. Recorded like the step in.
+    /// </remarks>
+    /// <param name="iamAssumeBody"></param>
+    /// <param name="authorization"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xForwardedFor"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<Iam_Answer>> postIamRelease(
+        std::shared_ptr<Iam_assumeBody> iamAssumeBody,
+        boost::optional<utility::string_t> authorization,
+        boost::optional<utility::string_t> xForwardedFor
     ) const;
     /// <summary>
     /// Clears the target user&#39;s key of the requested TYPE (immediate revoke).
@@ -1593,36 +1322,6 @@ public:
     /// </remarks>
     /// <param name="iamRolesInput"></param>
     pplx::task<std::shared_ptr<Iam_Role>> postIamRoles(
-        std::shared_ptr<Iam_roles_Input> iamRolesInput
-    ) const;
-    /// <summary>
-    /// Removes a role.
-    /// </summary>
-    /// <remarks>
-    /// Removes a role. Everyone in it loses the access it carried; their accounts, and any other role they hold, are untouched.
-    /// </remarks>
-    /// <param name="iamRolesRef"></param>
-    pplx::task<std::shared_ptr<Iam_roles_DeleteOutput>> postIamRolesDelete(
-        std::shared_ptr<Iam_roles_Ref> iamRolesRef
-    ) const;
-    /// <summary>
-    /// Returns one role: who is in it, and the roles it includes.
-    /// </summary>
-    /// <remarks>
-    /// Returns one role: who is in it, and the roles it includes.
-    /// </remarks>
-    /// <param name="iamRolesRef"></param>
-    pplx::task<std::shared_ptr<Iam_Role>> postIamRolesGet(
-        std::shared_ptr<Iam_roles_Ref> iamRolesRef
-    ) const;
-    /// <summary>
-    /// Changes who is in a role, or which roles it includes.
-    /// </summary>
-    /// <remarks>
-    /// Changes who is in a role, or which roles it includes. Access changes for everyone in it as soon as the write lands. What the role is called does not change, and neither does when it was created.
-    /// </remarks>
-    /// <param name="iamRolesInput"></param>
-    pplx::task<std::shared_ptr<Iam_Role>> postIamRolesUpdate(
         std::shared_ptr<Iam_roles_Input> iamRolesInput
     ) const;
     /// <summary>
@@ -1700,62 +1399,12 @@ public:
     pplx::task<void> postIamUnlink(
     ) const;
     /// <summary>
-    /// Updates one of your applications — its display, its sign-in methods and the redirect URIs it is allowed to return to.
-    /// </summary>
-    /// <remarks>
-    /// Updates one of your applications — its display, its sign-in methods and the redirect URIs it is allowed to return to. Which organization and name the application has are fixed when it is created and are not editable here.  A redirect URI you add becomes an allowed sign-in origin, so this is the call that makes login work from a new host.  The older spelling of PUT /v1/iam/application.
-    /// </remarks>
-    /// <param name="iamApplication"></param>
-    pplx::task<std::shared_ptr<Iam_Response>> postIamUpdateApplication(
-        std::shared_ptr<Iam_Application> iamApplication
-    ) const;
-    /// <summary>
-    /// Updates your organization — its display, its default settings and the sign-in rules everyone in it inherits.
-    /// </summary>
-    /// <remarks>
-    /// Updates your organization — its display, its default settings and the sign-in rules everyone in it inherits.  The older spelling of POST /v1/iam/organizations/update.
-    /// </remarks>
-    /// <param name="iamUpdateOrganizationInput"></param>
-    pplx::task<std::shared_ptr<Iam_Response>> postIamUpdateOrganization(
-        std::shared_ptr<Iam_UpdateOrganizationInput> iamUpdateOrganizationInput
-    ) const;
-    /// <summary>
     /// Saves the calling person&#39;s own settings and returns the full set afterwards.
     /// </summary>
     /// <remarks>
     /// Saves the calling person&#39;s own settings and returns the full set afterwards. Send only the settings you are changing — the rest are kept, so two screens can save at once without one undoing the other.
     /// </remarks>
     pplx::task<void> postIamUpdatePreferences(
-    ) const;
-    /// <summary>
-    /// Updates a provider&#39;s settings or rotates the credentials it holds.
-    /// </summary>
-    /// <remarks>
-    /// Updates a provider&#39;s settings or rotates the credentials it holds. The change takes effect on the next sign-in through it — sessions already issued are unaffected.  The older spelling of POST /v1/iam/providers/update.
-    /// </remarks>
-    /// <param name="iamProvider"></param>
-    pplx::task<std::shared_ptr<Iam_Response>> postIamUpdateProvider(
-        std::shared_ptr<Iam_Provider> iamProvider
-    ) const;
-    /// <summary>
-    /// Updates a role&#39;s members or the roles it includes.
-    /// </summary>
-    /// <remarks>
-    /// Updates a role&#39;s members or the roles it includes. Access changes for everyone in it as soon as the write lands.  The older spelling of POST /v1/iam/roles/update.
-    /// </remarks>
-    /// <param name="iamRolesInput"></param>
-    pplx::task<std::shared_ptr<Iam_Response>> postIamUpdateRole(
-        std::shared_ptr<Iam_roles_Input> iamRolesInput
-    ) const;
-    /// <summary>
-    /// Updates one of your users&#39; profile, roles or credentials.
-    /// </summary>
-    /// <remarks>
-    /// Updates one of your users&#39; profile, roles or credentials. Send a password to reset it; leave it out and the current one stands.  The older spelling of POST /v1/iam/users/update, with the user&#39;s fields at the top level rather than wrapped in {user, password}.
-    /// </remarks>
-    /// <param name="iamUserBody"></param>
-    pplx::task<std::shared_ptr<Iam_Response>> postIamUpdateUser(
-        std::shared_ptr<Iam_userBody> iamUserBody
     ) const;
     /// <summary>
     /// Adds a person to your organization.
@@ -1768,24 +1417,16 @@ public:
         std::shared_ptr<Iam_CreateInput> iamCreateInput
     ) const;
     /// <summary>
-    /// Removes a person from your organization.
+    /// (re)generates the target user&#39;s key of the requested TYPE and returns it once, over the shared authorizeMinter + mintTarget seam.
     /// </summary>
     /// <remarks>
-    /// Removes a person from your organization. Their sessions stop working immediately and the account is gone rather than suspended — to keep the record and only stop sign-in, update the user instead.
+    /// (re)generates the target user&#39;s key of the requested TYPE and returns it once, over the shared authorizeMinter + mintTarget seam. &#x60;?type&#x3D;secret&#x60; (the default) yields the confidential sk-; &#x60;?type&#x3D;publishable&#x60; yields the pk- that is safe to ship in client JS and resolves to an org, never a principal.  It writes the schema.Key row that the resolvers actually read. schema.User.AccessKey is not a credential and nothing resolves it, so a key stamped there would authenticate nobody.
     /// </remarks>
-    /// <param name="iamUsersRef"></param>
-    pplx::task<std::shared_ptr<Iam_users_DeleteOutput>> postIamUsersDelete(
-        std::shared_ptr<Iam_users_Ref> iamUsersRef
-    ) const;
-    /// <summary>
-    /// Changes a person&#39;s profile, their roles, or the credentials they sign in with.
-    /// </summary>
-    /// <remarks>
-    /// Changes a person&#39;s profile, their roles, or the credentials they sign in with. Send a password to reset it; leave it out and their current one keeps working.  Who they are does not change: their organization, username and the identifier their existing sessions are keyed on all survive the write, so an update never signs anyone out.
-    /// </remarks>
-    /// <param name="iamUpdateInput"></param>
-    pplx::task<std::shared_ptr<Iam_User>> postIamUsersUpdate(
-        std::shared_ptr<Iam_UpdateInput> iamUpdateInput
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    pplx::task<void> postIamUsersByOwnerByNameKeys(
+        utility::string_t owner,
+        utility::string_t name
     ) const;
     /// <summary>
     /// Validates the request and asks otp to get a code to the person.
@@ -1804,6 +1445,22 @@ public:
     pplx::task<void> postIamWeb3Verify(
     ) const;
     /// <summary>
+    /// Verifies the signed challenge and signs the person in.
+    /// </summary>
+    /// <remarks>
+    /// Verifies the signed challenge and signs the person in.  It answers exactly as a password sign-in does — the same envelope, through the same grant — so nothing downstream branches on how somebody arrived.
+    /// </remarks>
+    pplx::task<void> postIamWebauthnSigninFinish(
+    ) const;
+    /// <summary>
+    /// Verifies the newly created passkey and stores it, so the person can sign in with their device from then on.
+    /// </summary>
+    /// <remarks>
+    /// Verifies the newly created passkey and stores it, so the person can sign in with their device from then on.
+    /// </remarks>
+    pplx::task<void> postIamWebauthnSignupFinish(
+    ) const;
+    /// <summary>
     /// Makes a workspace inside your organization — the scope a team works in, alongside projects rather than instead of them.
     /// </summary>
     /// <remarks>
@@ -1814,34 +1471,18 @@ public:
         std::shared_ptr<Iam_workspaces_Input> iamWorkspacesInput
     ) const;
     /// <summary>
-    /// Removes a workspace.
+    /// Saves the calling person&#39;s own profile — the name they are shown by, their picture, a line about themselves and a link.
     /// </summary>
     /// <remarks>
-    /// Removes a workspace. The people and roles in your organization are unchanged; what goes is the scope itself.
+    /// Saves the calling person&#39;s own profile — the name they are shown by, their picture, a line about themselves and a link.  Only their own: the request names nobody, so it cannot reach another account. Send only what you are changing; a field you leave out keeps the value it had, and a field you send empty is cleared.  A picture is an https link or an inline image up to 96 KiB, the same value an organization&#39;s mark is (schema.AvatarRef) — one rule for how a subject appears, whether the subject is a person or an organization.
     /// </remarks>
-    /// <param name="iamWorkspacesRef"></param>
-    pplx::task<std::shared_ptr<Iam_workspaces_DeleteOutput>> postIamWorkspacesDelete(
-        std::shared_ptr<Iam_workspaces_Ref> iamWorkspacesRef
-    ) const;
-    /// <summary>
-    /// Returns one workspace: what it is called and how it is set up.
-    /// </summary>
-    /// <remarks>
-    /// Returns one workspace: what it is called and how it is set up.
-    /// </remarks>
-    /// <param name="iamWorkspacesRef"></param>
-    pplx::task<std::shared_ptr<Iam_Workspace>> postIamWorkspacesGet(
-        std::shared_ptr<Iam_workspaces_Ref> iamWorkspacesRef
-    ) const;
-    /// <summary>
-    /// Changes a workspace&#39;s settings.
-    /// </summary>
-    /// <remarks>
-    /// Changes a workspace&#39;s settings. What it is called does not change, and neither does when it was created.
-    /// </remarks>
-    /// <param name="iamWorkspacesInput"></param>
-    pplx::task<std::shared_ptr<Iam_Workspace>> postIamWorkspacesUpdate(
-        std::shared_ptr<Iam_workspaces_Input> iamWorkspacesInput
+    /// <param name="iamAccountBody"></param>
+    /// <param name="cookie"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="authorization"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<Iam_Answer>> putIamAccount(
+        std::shared_ptr<Iam_accountBody> iamAccountBody,
+        boost::optional<utility::string_t> cookie,
+        boost::optional<utility::string_t> authorization
     ) const;
     /// <summary>
     /// Changes an application&#39;s display, its sign-in methods and the redirect URIs it may return to — the call that makes login work from a new host.
@@ -1849,9 +1490,41 @@ public:
     /// <remarks>
     /// Changes an application&#39;s display, its sign-in methods and the redirect URIs it may return to — the call that makes login work from a new host. Which organization it belongs to and what it is named are fixed when it is created and are not editable here.  Exported so the legacy update-application alias reuses this exact path — one update, two spellings.
     /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
     /// <param name="iamApplication"></param>
-    pplx::task<std::shared_ptr<Iam_Application>> putIamApplication(
+    pplx::task<std::shared_ptr<Iam_Application>> putIamApplicationsByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name,
         std::shared_ptr<Iam_Application> iamApplication
+    ) const;
+    /// <summary>
+    /// Corrects an audit entry.
+    /// </summary>
+    /// <remarks>
+    /// Corrects an audit entry. The trail is append-only in normal operation and nothing in the Hanzo Cloud rewrites it — this exists for an administrator to correct an entry their own systems recorded wrongly.
+    /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    /// <param name="iamInput"></param>
+    pplx::task<std::shared_ptr<Iam_AuditLog>> putIamAuditLogsByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name,
+        std::shared_ptr<Iam_Input> iamInput
+    ) const;
+    /// <summary>
+    /// Changes a signing certificate&#39;s settings.
+    /// </summary>
+    /// <remarks>
+    /// Changes a signing certificate&#39;s settings. What it is called does not change, and neither does when it was added.  A PUT here is a METADATA edit — display name, expiry, provider. It overlays only the fields the request actually SET onto the loaded row: a field the JSON omits (or leaves at its zero value) keeps what the row holds, rather than blanking it. That is load-bearing, not a nicety. A read serves the public Certificate (Mask hides only PrivateKey and AccessSecret), so a client that reads a cert, changes one field, and writes it back sends the masked halves empty and every other field it did not touch at its zero value — and the old full-struct overlay wrote all of those blanks back. Blanking CryptoAlgorithm alone drops the cert from the JWKS (oidc.Publishes turns false), so every token under its &#x60;kid&#x60; stops verifying; blanking Provider/Account/ExpireTime breaks ACME renewal and expiry — all from a request that only meant to rename it. Absent-or-zero means \&quot;unchanged\&quot;, so the deployment (key) and a rotation (cert) remain the only way key or published material changes; the metadata API cannot clear it.  The overlay is generic — it copies every set field, so a field nobody has added yet is carried without a line here — and leaves three things the request may not move: the bound Model (id, createdAt, key, snapshot), the natural key (owner/name address the row, they do not mutate it), and the creation stamp.
+    /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    /// <param name="iamCert"></param>
+    pplx::task<std::shared_ptr<Iam_Cert>> putIamCertsByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name,
+        std::shared_ptr<Iam_Cert> iamCert
     ) const;
     /// <summary>
     /// Records the calling person&#39;s privacy and communication choices.
@@ -1860,6 +1533,34 @@ public:
     /// Records the calling person&#39;s privacy and communication choices. Only their own — there is no way to set consent for somebody else.  Send only the answers you are changing. A question you leave out keeps the answer it already had, so a screen that saves one switch never revokes the other, and two screens saving at once do not undo each other.  An answer this version does not recognize is refused here rather than stored, so nothing is ever persisted for a later reader to have to interpret.
     /// </remarks>
     pplx::task<void> putIamConsent(
+    ) const;
+    /// <summary>
+    /// Changes an invitation&#39;s terms — the role it grants, how many may redeem it, or when it expires.
+    /// </summary>
+    /// <remarks>
+    /// Changes an invitation&#39;s terms — the role it grants, how many may redeem it, or when it expires. What it is called does not change.
+    /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    /// <param name="iamInvitationsInput"></param>
+    pplx::task<std::shared_ptr<Iam_Invitation>> putIamInvitationsByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name,
+        std::shared_ptr<Iam_invitations_Input> iamInvitationsInput
+    ) const;
+    /// <summary>
+    /// Changes what a key is called or what it may reach.
+    /// </summary>
+    /// <remarks>
+    /// Changes what a key is called or what it may reach. The credential itself is not reissued — the key in your deployment keeps working.
+    /// </remarks>
+    /// <param name="owner">Owner is the tenant that holds the key; Name is unique within Owner.</param>
+    /// <param name="name"></param>
+    /// <param name="iamKey"></param>
+    pplx::task<std::shared_ptr<Iam_Key>> putIamKeysByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name,
+        std::shared_ptr<Iam_Key> iamKey
     ) const;
     /// <summary>
     /// Replaces the calling person&#39;s password.
@@ -1876,6 +1577,48 @@ public:
         boost::optional<utility::string_t> authorization
     ) const;
     /// <summary>
+    /// Changes who a permission grants to, what it allows, or the resources it covers.
+    /// </summary>
+    /// <remarks>
+    /// Changes who a permission grants to, what it allows, or the resources it covers. Access changes as soon as the write lands. What the permission is called does not change, and neither does when it was created.
+    /// </remarks>
+    /// <param name="owner">Identity — the (owner, name) natural key.</param>
+    /// <param name="name"></param>
+    /// <param name="iamPermission"></param>
+    pplx::task<std::shared_ptr<Iam_Permission>> putIamPermissionsByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name,
+        std::shared_ptr<Iam_Permission> iamPermission
+    ) const;
+    /// <summary>
+    /// Changes a project&#39;s settings.
+    /// </summary>
+    /// <remarks>
+    /// Changes a project&#39;s settings. What it is called does not change, and neither does when it was created.
+    /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    /// <param name="iamProjectsInput"></param>
+    pplx::task<std::shared_ptr<Iam_Project>> putIamProjectsByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name,
+        std::shared_ptr<Iam_projects_Input> iamProjectsInput
+    ) const;
+    /// <summary>
+    /// Changes who is in a role, or which roles it includes.
+    /// </summary>
+    /// <remarks>
+    /// Changes who is in a role, or which roles it includes. Access changes for everyone in it as soon as the write lands. What the role is called does not change, and neither does when it was created.
+    /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    /// <param name="iamRolesInput"></param>
+    pplx::task<std::shared_ptr<Iam_Role>> putIamRolesByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name,
+        std::shared_ptr<Iam_roles_Input> iamRolesInput
+    ) const;
+    /// <summary>
     /// Overwrites a person&#39;s SCIM attributes with what your identity provider sends — how a change made there lands here.
     /// </summary>
     /// <remarks>
@@ -1888,13 +1631,55 @@ public:
         utility::string_t name
     ) const;
     /// <summary>
+    /// Changes a person&#39;s profile, their roles, or the credentials they sign in with.
+    /// </summary>
+    /// <remarks>
+    /// Changes a person&#39;s profile, their roles, or the credentials they sign in with. Send a password to reset it; leave it out and their current one keeps working.  Who they are does not change: their organization, username and the identifier their existing sessions are keyed on all survive the write, so an update never signs anyone out.
+    /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    /// <param name="iamUpdateInput"></param>
+    pplx::task<std::shared_ptr<Iam_User>> putIamUsersByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name,
+        std::shared_ptr<Iam_UpdateInput> iamUpdateInput
+    ) const;
+    /// <summary>
+    /// Changes a workspace&#39;s settings.
+    /// </summary>
+    /// <remarks>
+    /// Changes a workspace&#39;s settings. What it is called does not change, and neither does when it was created.
+    /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    /// <param name="iamWorkspacesInput"></param>
+    pplx::task<std::shared_ptr<Iam_Workspace>> putIamWorkspacesByOwnerByName(
+        utility::string_t owner,
+        utility::string_t name,
+        std::shared_ptr<Iam_workspaces_Input> iamWorkspacesInput
+    ) const;
+    /// <summary>
+    /// Changes how an organization appears across Hanzo: the square mark beside its name, as an uploaded image or as a single emoji.
+    /// </summary>
+    /// <remarks>
+    /// Changes how an organization appears across Hanzo: the square mark beside its name, as an uploaded image or as a single emoji. Sending an image clears the emoji and sending an emoji clears the image — an organization has one mark, not a preference order — and sending neither clears both, which is how it goes back to being drawn as its initial.  An image is an https link or the bytes inline as a data URL, up to 96 KiB. Anyone who administers the organization may set this; it is not reserved to the platform.  It writes the two fields onto the stored row and touches nothing else, which update cannot do: update replaces the whole record, and a record read back first arrives masked, so a read-modify-write through it would persist the mask over the organization&#39;s own credential settings.
+    /// </remarks>
+    /// <param name="iamSetAvatarInput"></param>
+    pplx::task<std::shared_ptr<Iam_Organization>> setOrganizationAvatar(
+        std::shared_ptr<Iam_SetAvatarInput> iamSetAvatarInput
+    ) const;
+    /// <summary>
     /// Changes an organization&#39;s display, its defaults and the sign-in rules everyone in it inherits.
     /// </summary>
     /// <remarks>
     /// Changes an organization&#39;s display, its defaults and the sign-in rules everyone in it inherits. Which organization it is does not change, and neither does when it was created.
     /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
     /// <param name="iamUpdateOrganizationInput"></param>
     pplx::task<std::shared_ptr<Iam_Organization>> updateOrganization(
+        utility::string_t owner,
+        utility::string_t name,
         std::shared_ptr<Iam_UpdateOrganizationInput> iamUpdateOrganizationInput
     ) const;
     /// <summary>
@@ -1903,8 +1688,12 @@ public:
     /// <remarks>
     /// Changes a provider&#39;s settings or rotates the credentials it holds. The change takes effect on the next sign-in through it — sessions already issued are unaffected.  A provider that is not there answers \&quot;nothing changed\&quot; rather than an error, so the call is safe to repeat.
     /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
     /// <param name="iamProvider"></param>
     pplx::task<std::shared_ptr<Iam_mutationResult>> updateProvider(
+        utility::string_t owner,
+        utility::string_t name,
         std::shared_ptr<Iam_Provider> iamProvider
     ) const;
     /// <summary>
@@ -1913,8 +1702,14 @@ public:
     /// <remarks>
     /// Replaces the set of browsers a session covers — signing out the ones you leave off while the session itself stays live. A session that does not exist is reported as missing rather than created.
     /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
+    /// <param name="application"></param>
     /// <param name="iamUpdateSessionIn"></param>
     pplx::task<std::shared_ptr<Iam_Session>> updateSession(
+        utility::string_t owner,
+        utility::string_t name,
+        utility::string_t application,
         std::shared_ptr<Iam_UpdateSessionIn> iamUpdateSessionIn
     ) const;
     /// <summary>
@@ -1923,8 +1718,12 @@ public:
     /// <remarks>
     /// Changes an access token&#39;s scope or expiry.  A token that is not there answers \&quot;nothing changed\&quot; rather than an error, so the call is safe to repeat.
     /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
     /// <param name="iamToken"></param>
     pplx::task<std::shared_ptr<Iam_tokenMutation>> updateToken(
+        utility::string_t owner,
+        utility::string_t name,
         std::shared_ptr<Iam_Token> iamToken
     ) const;
     /// <summary>
@@ -1933,8 +1732,12 @@ public:
     /// <remarks>
     /// Renames a registered passkey or security key, so a person can tell their devices apart.  A credential that is not there answers \&quot;nothing changed\&quot; rather than an error, so the call is safe to repeat.
     /// </remarks>
+    /// <param name="owner"></param>
+    /// <param name="name"></param>
     /// <param name="iamWebauthnCredential"></param>
     pplx::task<std::shared_ptr<Iam_webauthnCredentialMutationResult>> updateWebauthnCredential(
+        utility::string_t owner,
+        utility::string_t name,
         std::shared_ptr<Iam_WebauthnCredential> iamWebauthnCredential
     ) const;
     /// <summary>
@@ -1953,7 +1756,7 @@ public:
     /// Creates a person or updates them in place, so a deployment can declare the accounts it needs and re-run that declaration safely.
     /// </summary>
     /// <remarks>
-    /// Creates a person or updates them in place, so a deployment can declare the accounts it needs and re-run that declaration safely.  Passwords are hashed before they are stored. Leave the password out and their current one is kept, so a redeploy never locks somebody out.
+    /// Creates a person or updates them in place, so a deployment can declare the accounts it needs and re-run that declaration safely.  It DESCRIBES an account it meets and GRANTS only to one it creates: org-admin is never raised on a row that already exists, and a machine identity is answered by name rather than adopted. Both are properties of the update itself, so a steady-state reconcile — which changes neither — is unaffected.  Passwords are hashed before they are stored. Leave the password out and their current one is kept, so a redeploy never locks somebody out; send the same one again and it is kept too, so a steady-state re-run is not a rotation.
     /// </remarks>
     /// <param name="iamPerson"></param>
     /// <param name="authorization"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>

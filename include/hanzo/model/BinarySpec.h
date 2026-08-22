@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -53,36 +53,57 @@ public:
     /// BinarySpec members
 
 
+    /// <summary>
+    /// Image is the toolchain image the recipe runs in, a Go bookworm image by default. It is the one field the GitHub lane ignores: there the runner IS the toolchain, and a cluster has to be told what a runner already is.
+    /// </summary>
     utility::string_t getImage() const;
     bool imageIsSet() const;
     void unsetImage();
     void setImage(const utility::string_t& value);
 
+    /// <summary>
+    /// Ldflags are the Go linker flags, &#x60;-s -w&#x60; when the recipe names none, on one line. Go lane only.
+    /// </summary>
     utility::string_t getLdflags() const;
     bool ldflagsIsSet() const;
     void unsetLdflags();
     void setLdflags(const utility::string_t& value);
 
+    /// <summary>
+    /// Main is the Go package to build, repo-relative (&#x60;.&#x60; or &#x60;./cmd/x&#x60;), and it selects the GO LANE. Defaults to &#x60;.&#x60; when neither lane is named; declaring it together with &#x60;run&#x60; is refused.
+    /// </summary>
     utility::string_t getMain() const;
     bool mainIsSet() const;
     void unsetMain();
     void setMain(const utility::string_t& value);
 
+    /// <summary>
+    /// Name is the artifact&#39;s base name: the prefix of every file published for this entry, and the name a host later asks for. It must match &#x60;^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$&#x60;, which is what makes it safe as both a filename and a URL path segment.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
+    /// <summary>
+    /// Out is the glob of files &#x60;run&#x60; produced, relative to the repo root; matching nothing FAILS the build rather than publishing an empty entry. It expands unquoted, so it is bounded to path and glob characters. The Go lane names its own files and ignores this.
+    /// </summary>
     utility::string_t getOut() const;
     bool outIsSet() const;
     void unsetOut();
     void setOut(const utility::string_t& value);
 
+    /// <summary>
+    /// Platforms are the &#x60;&lt;os&gt;/&lt;arch&gt;&#x60; pairs the Go lane cross-compiles, [linux/amd64] by default. Each one publishes as &#x60;&lt;name&gt;-&lt;os&gt;-&lt;arch&gt;&#x60;, which is the shape a host resolves a binary BY — so the list is what a caller can ask for later.
+    /// </summary>
     std::vector<utility::string_t> getPlatforms() const;
     bool platformsIsSet() const;
     void unsetPlatforms();
     void setPlatforms(const std::vector<utility::string_t>& value);
 
+    /// <summary>
+    /// Run is any other toolchain&#39;s build command, run by &#x60;sh -c&#x60; in this entry&#39;s image, and it selects the OTHER LANE. Arbitrary shell is the point — it is the same trust as a Dockerfile RUN — which is why it executes with no object-store credential and no service-account token. It requires &#x60;out&#x60;.
+    /// </summary>
     utility::string_t getRun() const;
     bool runIsSet() const;
     void unsetRun();

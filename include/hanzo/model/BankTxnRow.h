@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,51 +52,81 @@ public:
     /// BankTxnRow members
 
 
+    /// <summary>
+    /// AmountCents is the size of the movement in whole cents, always POSITIVE — direction carries the sign, so a caller must read both to know which way money went.
+    /// </summary>
     int32_t getAmountCents() const;
     bool amountCentsIsSet() const;
     void unsetAmountCents();
     void setAmountCents(int32_t value);
 
+    /// <summary>
+    /// Connector names the feed this row arrived on — which bank or processor connection it was synced from. With externalId it is the row&#39;s identity, so re-syncing the same statement never books a second copy.
+    /// </summary>
     utility::string_t getConnector() const;
     bool connectorIsSet() const;
     void unsetConnector();
     void setConnector(const utility::string_t& value);
 
+    /// <summary>
+    /// Currency is the ISO code the bank reported the line in.
+    /// </summary>
     utility::string_t getCurrency() const;
     bool currencyIsSet() const;
     void unsetCurrency();
     void setCurrency(const utility::string_t& value);
 
+    /// <summary>
+    /// Description is the statement memo as the bank wrote it.
+    /// </summary>
     utility::string_t getDescription() const;
     bool descriptionIsSet() const;
     void unsetDescription();
     void setDescription(const utility::string_t& value);
 
+    /// <summary>
+    /// Direction is which way the money moved: an inflow into the account or an outflow from it, from the org&#39;s point of view.
+    /// </summary>
     utility::string_t getDirection() const;
     bool directionIsSet() const;
     void unsetDirection();
     void setDirection(const utility::string_t& value);
 
+    /// <summary>
+    /// ExternalID is the bank&#39;s OWN id for the line, carried verbatim. It is unique only within its connector.
+    /// </summary>
     utility::string_t getExternalId() const;
     bool externalIdIsSet() const;
     void unsetExternalId();
     void setExternalId(const utility::string_t& value);
 
+    /// <summary>
+    /// MatchedVoucher names the ledger voucher this line was reconciled against — the bill it paid, or the settlement it cleared. Absent when nothing matched, which for an inflow is what raises a question.
+    /// </summary>
     utility::string_t getMatchedVoucher() const;
     bool matchedVoucherIsSet() const;
     void unsetMatchedVoucher();
     void setMatchedVoucher(const utility::string_t& value);
 
+    /// <summary>
+    /// Merchant is the counterparty the feed identified, where it did.
+    /// </summary>
     utility::string_t getMerchant() const;
     bool merchantIsSet() const;
     void unsetMerchant();
     void setMerchant(const utility::string_t& value);
 
+    /// <summary>
+    /// PostedAt is the bank&#39;s posting date for the line, not when we synced it.
+    /// </summary>
     utility::string_t getPostedAt() const;
     bool postedAtIsSet() const;
     void unsetPostedAt();
     void setPostedAt(const utility::string_t& value);
 
+    /// <summary>
+    /// Status is where the line got to: posted (an outflow booked straight to an expense), settled (an outflow that paid down a scanned bill), reconciled (an inflow that cleared a pending settlement), transfer (a move between the org&#39;s own accounts, recorded but with no effect on the books), or unmatched (an inflow nobody could place, which is waiting on a human answer).
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();

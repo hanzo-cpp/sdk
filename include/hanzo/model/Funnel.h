@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,39 +52,83 @@ public:
 
 
     /// <summary>
-    /// ConvertedOrgs is how many distinct referred orgs have produced positive commission at least once — a referral that actually spent.
+    /// Available separates \&quot;this org has no traffic\&quot; from \&quot;we could not ask\&quot;. False means the warehouse was unreachable or the org has emitted nothing at all, and every count below is then a placeholder zero rather than a measurement — a caller must read this before reading any of them.
     /// </summary>
-    int32_t getConvertedOrgs() const;
-    bool convertedOrgsIsSet() const;
-    void unsetConvertedOrgs();
-    void setConvertedOrgs(int32_t value);
+    bool isAvailable() const;
+    bool availableIsSet() const;
+    void unsetAvailable();
+    void setAvailable(bool value);
 
     /// <summary>
-    /// RatePct is convertedOrgs over referredOrgs as a PERCENTAGE, 0–100, and the one non-integer figure on this board. It is 0 when nothing has been referred yet, not undefined.
+    /// Orders counts completed orders in the window — purchases, not carts started.
     /// </summary>
-    double getRatePct() const;
-    bool ratePctIsSet() const;
-    void unsetRatePct();
-    void setRatePct(double value);
+    int32_t getOrders() const;
+    bool ordersIsSet() const;
+    void unsetOrders();
+    void setOrders(int32_t value);
 
     /// <summary>
-    /// ReferredOrgs is how many attribution edges exist fleet-wide — one per referred org, first-touch, so it is also the count of distinct referred orgs.
+    /// Pageviews counts page events in the window, one per view rather than per person, so a single visitor reading ten pages counts ten.
     /// </summary>
-    int32_t getReferredOrgs() const;
-    bool referredOrgsIsSet() const;
-    void unsetReferredOrgs();
-    void setReferredOrgs(int32_t value);
+    int32_t getPageviews() const;
+    bool pageviewsIsSet() const;
+    void unsetPageviews();
+    void setPageviews(int32_t value);
+
+    /// <summary>
+    /// Revenue is the sum of the amounts those orders reported, in whatever currency the beacon stamped on them (major units, e.g. 49.5 for $49.50) — NOT cents, and not converted to a single currency. Contrast revenueCents on the profile, which is the money of record.
+    /// </summary>
+    double getRevenue() const;
+    bool revenueIsSet() const;
+    void unsetRevenue();
+    void setRevenue(double value);
+
+    /// <summary>
+    /// Signups counts completed signups in the window, the step where an anonymous visitor becomes somebody with an account.
+    /// </summary>
+    int32_t getSignups() const;
+    bool signupsIsSet() const;
+    void unsetSignups();
+    void setSignups(int32_t value);
+
+    /// <summary>
+    /// Visitors is the number of DISTINCT people seen in the window, counted by the beacon&#39;s distinct id — so it is unique visitors, not sessions and not views.
+    /// </summary>
+    int32_t getVisitors() const;
+    bool visitorsIsSet() const;
+    void unsetVisitors();
+    void setVisitors(int32_t value);
+
+    /// <summary>
+    /// WindowDays is the length of the trailing window every count covers, so a reader knows whether 40 signups is a month or a day.
+    /// </summary>
+    int32_t getWindowDays() const;
+    bool windowDaysIsSet() const;
+    void unsetWindowDays();
+    void setWindowDays(int32_t value);
 
 
 protected:
-    int32_t m_ConvertedOrgs;
-    bool m_ConvertedOrgsIsSet;
+    bool m_Available;
+    bool m_AvailableIsSet;
 
-    double m_RatePct;
-    bool m_RatePctIsSet;
+    int32_t m_Orders;
+    bool m_OrdersIsSet;
 
-    int32_t m_ReferredOrgs;
-    bool m_ReferredOrgsIsSet;
+    int32_t m_Pageviews;
+    bool m_PageviewsIsSet;
+
+    double m_Revenue;
+    bool m_RevenueIsSet;
+
+    int32_t m_Signups;
+    bool m_SignupsIsSet;
+
+    int32_t m_Visitors;
+    bool m_VisitorsIsSet;
+
+    int32_t m_WindowDays;
+    bool m_WindowDaysIsSet;
 
 };
 

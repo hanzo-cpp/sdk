@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,21 +52,33 @@ public:
     /// UsagePoint members
 
 
-    utility::string_t getDate() const;
-    bool dateIsSet() const;
-    void unsetdate();
-    void setDate(const utility::string_t& value);
-
+    /// <summary>
+    /// Requests is how many LLM calls fell in this bucket.
+    /// </summary>
     int32_t getRequests() const;
     bool requestsIsSet() const;
     void unsetRequests();
     void setRequests(int32_t value);
 
+    /// <summary>
+    /// SpendCents is what they cost, in cents.
+    /// </summary>
     int32_t getSpendCents() const;
     bool spendCentsIsSet() const;
     void unsetSpendCents();
     void setSpendCents(int32_t value);
 
+    /// <summary>
+    /// T is the bucket&#39;s start, RFC3339 UTC, aligned to the interval.
+    /// </summary>
+    utility::string_t getT() const;
+    bool TIsSet() const;
+    void unsett();
+    void setT(const utility::string_t& value);
+
+    /// <summary>
+    /// Tokens is prompt plus completion tokens over those calls.
+    /// </summary>
     int32_t getTokens() const;
     bool tokensIsSet() const;
     void unsetTokens();
@@ -74,14 +86,14 @@ public:
 
 
 protected:
-    utility::string_t m_date;
-    bool m_dateIsSet;
-
     int32_t m_Requests;
     bool m_RequestsIsSet;
 
     int32_t m_SpendCents;
     bool m_SpendCentsIsSet;
+
+    utility::string_t m_t;
+    bool m_tIsSet;
 
     int32_t m_Tokens;
     bool m_TokensIsSet;

@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -60,11 +60,17 @@ public:
     void unsetName();
     void setName(const utility::string_t& value);
 
+    /// <summary>
+    /// Namespace is where in that cluster the workload lands. \&quot;*\&quot; on a project&#39;s destination fence means any namespace.
+    /// </summary>
     utility::string_t getRNamespace() const;
     bool rNamespaceIsSet() const;
     void unsetr_namespace();
     void setRNamespace(const utility::string_t& value);
 
+    /// <summary>
+    /// Server is the cluster API URL the application reconciles into. Everything this plane projects lands in the cluster it runs in, so it is https://kubernetes.default.svc — except on a project&#39;s destination fence, where \&quot;*\&quot; means any cluster.
+    /// </summary>
     utility::string_t getServer() const;
     bool serverIsSet() const;
     void unsetServer();

@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,26 +52,41 @@ public:
     /// BankQuestion members
 
 
+    /// <summary>
+    /// Connector names the feed the unplaceable line arrived on. With externalId it identifies both the question and the bank line it is about, so re-syncing the same deposit never asks twice.
+    /// </summary>
     utility::string_t getConnector() const;
     bool connectorIsSet() const;
     void unsetConnector();
     void setConnector(const utility::string_t& value);
 
+    /// <summary>
+    /// CreatedAt is when the question was raised.
+    /// </summary>
     utility::string_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
     void setCreatedAt(const utility::string_t& value);
 
+    /// <summary>
+    /// ExternalID is the bank&#39;s own id for the line in question.
+    /// </summary>
     utility::string_t getExternalId() const;
     bool externalIdIsSet() const;
     void unsetExternalId();
     void setExternalId(const utility::string_t& value);
 
+    /// <summary>
+    /// Prompt is the question put to the founder in plain language — what this money was, since the books cannot place it on their own.
+    /// </summary>
     utility::string_t getPrompt() const;
     bool promptIsSet() const;
     void unsetPrompt();
     void setPrompt(const utility::string_t& value);
 
+    /// <summary>
+    /// Status is whether the question is still open or has been answered.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();

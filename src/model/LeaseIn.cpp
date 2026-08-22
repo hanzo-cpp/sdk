@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -20,8 +20,8 @@ LeaseIn::LeaseIn()
 {
     m_r_class = utility::conversions::to_string_t("");
     m_r_classIsSet = false;
-    m_Id = utility::conversions::to_string_t("");
-    m_IdIsSet = false;
+    m_Image = utility::conversions::to_string_t("");
+    m_ImageIsSet = false;
     m_Project = utility::conversions::to_string_t("");
     m_ProjectIsSet = false;
     m_Runtime = utility::conversions::to_string_t("");
@@ -47,10 +47,10 @@ web::json::value LeaseIn::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("class"))] = ModelBase::toJson(m_r_class);
     }
-    if(m_IdIsSet)
+    if(m_ImageIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("id"))] = ModelBase::toJson(m_Id);
+        val[utility::conversions::to_string_t(_XPLATSTR("image"))] = ModelBase::toJson(m_Image);
     }
     if(m_ProjectIsSet)
     {
@@ -85,14 +85,14 @@ bool LeaseIn::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("id"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("image"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("id")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("image")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setId);
-            setId(refVal_setId);
+            utility::string_t refVal_setImage;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setImage);
+            setImage(refVal_setImage);
             
         }
     }
@@ -143,9 +143,9 @@ void LeaseIn::toMultipart(std::shared_ptr<MultipartFormData> multipart, const ut
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("class")), m_r_class));
     }
-    if(m_IdIsSet)
+    if(m_ImageIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("id")), m_Id));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("image")), m_Image));
     }
     if(m_ProjectIsSet)
     {
@@ -176,11 +176,11 @@ bool LeaseIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("class"))), refVal_setRClass );
         setRClass(refVal_setRClass);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("id"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("image"))))
     {
-        utility::string_t refVal_setId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("id"))), refVal_setId );
-        setId(refVal_setId);
+        utility::string_t refVal_setImage;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("image"))), refVal_setImage );
+        setImage(refVal_setImage);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("project"))))
     {
@@ -225,26 +225,26 @@ void LeaseIn::unsetr_class()
 {
     m_r_classIsSet = false;
 }
-utility::string_t LeaseIn::getId() const
+utility::string_t LeaseIn::getImage() const
 {
-    return m_Id;
+    return m_Image;
 }
 
 
-void LeaseIn::setId(const utility::string_t& value)
+void LeaseIn::setImage(const utility::string_t& value)
 {
-    m_Id = value;
-    m_IdIsSet = true;
+    m_Image = value;
+    m_ImageIsSet = true;
 }
 
-bool LeaseIn::idIsSet() const
+bool LeaseIn::imageIsSet() const
 {
-    return m_IdIsSet;
+    return m_ImageIsSet;
 }
 
-void LeaseIn::unsetId()
+void LeaseIn::unsetImage()
 {
-    m_IdIsSet = false;
+    m_ImageIsSet = false;
 }
 utility::string_t LeaseIn::getProject() const
 {

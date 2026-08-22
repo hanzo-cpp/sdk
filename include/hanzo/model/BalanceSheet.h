@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -55,44 +55,65 @@ public:
     /// BalanceSheet members
 
 
+    /// <summary>
+    /// AsOf is the posting time the statement is taken at, inclusive. A balance sheet is a snapshot, not a window, so there is no From. Absent means as of now.
+    /// </summary>
     utility::string_t getAsOf() const;
     bool asOfIsSet() const;
     void unsetAsOf();
     void setAsOf(const utility::string_t& value);
 
+    /// <summary>
+    /// Assets are what the org OWNS at that instant, one line per account that has a balance. Cash, receivables, funds captured but not yet settled.
+    /// </summary>
     std::vector<std::shared_ptr<BalanceLine>> getAssets() const;
     bool assetsIsSet() const;
     void unsetAssets();
     void setAssets(const std::vector<std::shared_ptr<BalanceLine>>& value);
 
     /// <summary>
-    /// TotalAssets &#x3D;&#x3D; TotalLiabilities + TotalEquity
+    /// Balanced is whether assets equal liabilities plus equity — the accounting equation, computed from the totals above rather than assumed. False means the ledger is broken, not that the statement is.
     /// </summary>
     bool isBalanced() const;
     bool balancedIsSet() const;
     void unsetBalanced();
     void setBalanced(bool value);
 
+    /// <summary>
+    /// Equity is what is left over for the owners. It carries a DERIVED retained earnings line holding cumulative income minus expense, because this ledger has no period close that sweeps the P&amp;L into equity — without that line the equation would not close.
+    /// </summary>
     std::vector<std::shared_ptr<BalanceLine>> getEquity() const;
     bool equityIsSet() const;
     void unsetEquity();
     void setEquity(const std::vector<std::shared_ptr<BalanceLine>>& value);
 
+    /// <summary>
+    /// Liabilities are what the org OWES — including customers&#39; unspent prepaid credit, which is their money until it is consumed and so is carried here rather than counted as revenue.
+    /// </summary>
     std::vector<std::shared_ptr<BalanceLine>> getLiabilities() const;
     bool liabilitiesIsSet() const;
     void unsetLiabilities();
     void setLiabilities(const std::vector<std::shared_ptr<BalanceLine>>& value);
 
+    /// <summary>
+    /// TotalAssets is the sum of the asset lines, in cents.
+    /// </summary>
     int32_t getTotalAssets() const;
     bool totalAssetsIsSet() const;
     void unsetTotalAssets();
     void setTotalAssets(int32_t value);
 
+    /// <summary>
+    /// TotalEquity is the sum of the equity lines including retained earnings, in cents.
+    /// </summary>
     int32_t getTotalEquity() const;
     bool totalEquityIsSet() const;
     void unsetTotalEquity();
     void setTotalEquity(int32_t value);
 
+    /// <summary>
+    /// TotalLiabilities is the sum of the liability lines, in cents.
+    /// </summary>
     int32_t getTotalLiabilities() const;
     bool totalLiabilitiesIsSet() const;
     void unsetTotalLiabilities();

@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -22,14 +22,11 @@
 
 #include "hanzo/ModelBase.h"
 
-#include "hanzo/model/FormItem.h"
 #include <cpprest/details/basic_types.h>
-#include <vector>
 
 namespace hanzo {
 namespace model {
 
-class FormItem;
 
 
 class  Form
@@ -55,87 +52,51 @@ public:
     /// Form members
 
 
-    utility::string_t getCategory() const;
-    bool categoryIsSet() const;
-    void unsetCategory();
-    void setCategory(const utility::string_t& value);
+    /// <summary>
+    /// Code is the IRS designation, e.g. \&quot;SS-4\&quot;.
+    /// </summary>
+    utility::string_t getCode() const;
+    bool codeIsSet() const;
+    void unsetCode();
+    void setCode(const utility::string_t& value);
 
-    utility::string_t getCreatedTime() const;
-    bool createdTimeIsSet() const;
-    void unsetCreatedTime();
-    void setCreatedTime(const utility::string_t& value);
-
-    utility::string_t getDisplayName() const;
-    bool displayNameIsSet() const;
-    void unsetDisplayName();
-    void setDisplayName(const utility::string_t& value);
-
-    std::vector<std::shared_ptr<FormItem>> getFormItems() const;
-    bool formItemsIsSet() const;
-    void unsetFormItems();
-    void setFormItems(const std::vector<std::shared_ptr<FormItem>>& value);
-
+    /// <summary>
+    /// Name is the form&#39;s own title, so a reader need not already know the code.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
-    utility::string_t getOwner() const;
-    bool ownerIsSet() const;
-    void unsetOwner();
-    void setOwner(const utility::string_t& value);
+    /// <summary>
+    /// Signed reports whether we hold the signature.
+    /// </summary>
+    bool isRSigned() const;
+    bool rSignedIsSet() const;
+    void unsetr_signed();
+    void setRSigned(bool value);
 
-    utility::string_t getPosition() const;
-    bool positionIsSet() const;
-    void unsetPosition();
-    void setPosition(const utility::string_t& value);
-
-    utility::string_t getTag() const;
-    bool tagIsSet() const;
-    void unsetTag();
-    void setTag(const utility::string_t& value);
-
-    utility::string_t getType() const;
-    bool typeIsSet() const;
-    void unsetType();
-    void setType(const utility::string_t& value);
-
-    utility::string_t getUrl() const;
-    bool urlIsSet() const;
-    void unsetUrl();
-    void setUrl(const utility::string_t& value);
+    /// <summary>
+    /// Why states what this form is for in this application — the same form is owed for different reasons on different paths.
+    /// </summary>
+    utility::string_t getWhy() const;
+    bool whyIsSet() const;
+    void unsetWhy();
+    void setWhy(const utility::string_t& value);
 
 
 protected:
-    utility::string_t m_Category;
-    bool m_CategoryIsSet;
-
-    utility::string_t m_CreatedTime;
-    bool m_CreatedTimeIsSet;
-
-    utility::string_t m_DisplayName;
-    bool m_DisplayNameIsSet;
-
-    std::vector<std::shared_ptr<FormItem>> m_FormItems;
-    bool m_FormItemsIsSet;
+    utility::string_t m_Code;
+    bool m_CodeIsSet;
 
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    utility::string_t m_Owner;
-    bool m_OwnerIsSet;
+    bool m_r_signed;
+    bool m_r_signedIsSet;
 
-    utility::string_t m_Position;
-    bool m_PositionIsSet;
-
-    utility::string_t m_Tag;
-    bool m_TagIsSet;
-
-    utility::string_t m_Type;
-    bool m_TypeIsSet;
-
-    utility::string_t m_Url;
-    bool m_UrlIsSet;
+    utility::string_t m_Why;
+    bool m_WhyIsSet;
 
 };
 

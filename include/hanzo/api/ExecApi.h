@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -24,6 +24,7 @@
 
 #include "hanzo/model/CodeResult.h"
 #include "hanzo/model/CodeRun.h"
+#include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
 namespace hanzo {
@@ -42,10 +43,20 @@ public:
     virtual ~ExecApi();
 
     /// <summary>
+    /// List the files in an execution session
+    /// </summary>
+    /// <remarks>
+    /// Lists what a session&#39;s sandbox holds — the uploads a run can read and the artifacts it produced — each then fetched from /v1/exec/download.  It answers a BARE JSON ARRAY of {name, lastModified}, where &#x60;name&#x60; is the same {session_id}/{fileId} identifier download takes, because that is what the client matches on. An object wrapper would be a wire change, which is why this is not a typed operation.
+    /// </remarks>
+    /// <param name="sid"></param>
+    pplx::task<void> getExecFilesBySid(
+        utility::string_t sid
+    ) const;
+    /// <summary>
     /// Run a code snippet in a sandboxed interpreter
     /// </summary>
     /// <remarks>
-    /// Executes a program in a throwaway sandbox and answers with what it printed and what it left behind.  &#x60;lang&#x60; names one of the thirteen the sandbox image carries — py, js, ts, bash, r, php, go, rs, c, cpp, java, d, f90 — and &#x60;code&#x60; is the whole program, not a fragment: a compiled language is compiled and then run, an interpreted one is interpreted, and &#x60;args&#x60; becomes the program&#39;s own argv either way. Nothing is installed for you; the image is the environment.  A PROGRAM THAT FAILS IS A SUCCESSFUL CALL. A non-zero exit answers 200 with the diagnostics on &#x60;stderr&#x60;, because \&quot;the code threw\&quot; and \&quot;the interpreter is down\&quot; are different facts a caller renders differently. Only the second is an error status.  Runs are stateful through &#x60;session_id&#x60;. Omit it and the run gets a fresh sandbox whose id comes back on the answer; pass that id again and the next run sees the same filesystem, so a program can write a file one call and read it the next. &#x60;files&#x60; names bytes already uploaded to a session (POST /v1/upload), copied in before the program starts. &#x60;files&#x60; on the ANSWER is what the program created or changed, by comparison against a marker taken at start — so it is the run&#39;s real output, not a listing of the directory — and each is fetched from GET /v1/download/{session}/{name}.  The tenant is the caller&#39;s, never the body&#39;s, at every door. A typed op is also an MCP tool and an op-plane op; MCP&#39;s tools/call invokes it directly, with no route and therefore no middleware, so nothing there could have checked a credential. tenantOf refuses a context carrying neither a validated principal nor exec&#39;s own admission marker, so those doors fail closed without a second gate to keep in step.
+    /// Executes a program in a throwaway sandbox and answers with what it printed and what it left behind.  &#x60;lang&#x60; names one of the thirteen the sandbox image carries — py, js, ts, bash, r, php, go, rs, c, cpp, java, d, f90 — and &#x60;code&#x60; is the whole program, not a fragment: a compiled language is compiled and then run, an interpreted one is interpreted, and &#x60;args&#x60; becomes the program&#39;s own argv either way. Nothing is installed for you; the image is the environment.  A PROGRAM THAT FAILS IS A SUCCESSFUL CALL. A non-zero exit answers 200 with the diagnostics on &#x60;stderr&#x60;, because \&quot;the code threw\&quot; and \&quot;the interpreter is down\&quot; are different facts a caller renders differently. Only the second is an error status.  Runs are stateful through &#x60;session_id&#x60;. Omit it and the run gets a fresh sandbox whose id comes back on the answer; pass that id again and the next run sees the same filesystem, so a program can write a file one call and read it the next. &#x60;files&#x60; names bytes already uploaded to a session (POST /v1/exec/upload), copied in before the program starts. &#x60;files&#x60; on the ANSWER is what the program created or changed, by comparison against a marker taken at start — so it is the run&#39;s real output, not a listing of the directory — and each is fetched from GET /v1/exec/download/{session}/{name}.  The tenant is the caller&#39;s, never the body&#39;s, at every door. A typed op is also an MCP tool and an op-plane op; MCP&#39;s tools/call invokes it directly, with no route and therefore no middleware, so nothing there could have checked a credential. tenantOf refuses a context carrying neither a validated principal nor exec&#39;s own admission marker, so those doors fail closed without a second gate to keep in step.
     /// </remarks>
     /// <param name="codeRun"></param>
     pplx::task<std::shared_ptr<CodeResult>> postExec(
@@ -58,6 +69,14 @@ public:
     /// Answers 501. This address belongs to a DIFFERENT protocol from /v1/exec: the server suspends a program on each tool call, returns the pending calls with a continuation token, and resumes when the client posts results back. Serving it means implementing suspension and resumption, so it refuses in the open rather than answering with a shape the caller&#39;s parser cannot read.
     /// </remarks>
     pplx::task<void> postExecProgrammatic(
+    ) const;
+    /// <summary>
+    /// Upload a file into an execution session
+    /// </summary>
+    /// <remarks>
+    /// Takes a multipart upload and writes the file into the session&#39;s sandbox, so a later run can read it. Answers the session id and the identifier the file is addressed by; &#x60;session_id&#x60; in the form joins an existing session instead of opening one.  The body is multipart/form-data, which is why this is not a typed operation: every non-empty typed body is decoded as JSON.
+    /// </remarks>
+    pplx::task<void> postExecUpload(
     ) const;
 
 protected:

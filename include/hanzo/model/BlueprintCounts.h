@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -51,26 +51,41 @@ public:
     /// BlueprintCounts members
 
 
+    /// <summary>
+    /// Principles is how many spine archetypes the playbook carries (64 in the shipped corpus).
+    /// </summary>
     int32_t getPrinciples() const;
     bool principlesIsSet() const;
     void unsetPrinciples();
     void setPrinciples(int32_t value);
 
+    /// <summary>
+    /// Sections is how many phases the journey has.
+    /// </summary>
     int32_t getSections() const;
     bool sectionsIsSet() const;
     void unsetSections();
     void setSections(int32_t value);
 
+    /// <summary>
+    /// Steps is how many checklist items the playbook holds, DISABLED ONES INCLUDED — this counts the authored document, not the journey an org runs, so it is normally larger than the &#x60;total&#x60; on a progress view.
+    /// </summary>
     int32_t getSteps() const;
     bool stepsIsSet() const;
     void unsetSteps();
     void setSteps(int32_t value);
 
+    /// <summary>
+    /// Strategies is how many tactics the corpus holds, again counting disabled ones.
+    /// </summary>
     int32_t getStrategies() const;
     bool strategiesIsSet() const;
     void unsetStrategies();
     void setStrategies(int32_t value);
 
+    /// <summary>
+    /// Templates is how many reusable prompts the playbook carries.
+    /// </summary>
     int32_t getTemplates() const;
     bool templatesIsSet() const;
     void unsetTemplates();

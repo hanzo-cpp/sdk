@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -53,7 +53,7 @@ public:
 
 
     /// <summary>
-    /// ID is the file&#39;s path RELATIVE to its session&#39;s artifact directory, which is also how it is fetched: GET /v1/download/{session}/{id}.
+    /// ID is the file&#39;s path RELATIVE to its session&#39;s artifact directory, which is also how it is fetched: GET /v1/exec/download/{session}/{id}.
     /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;

@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -86,6 +86,8 @@
 #include "hanzo/model/O11y_O11yDeprecatedUserOut.h"
 #include "hanzo/model/O11y_O11yDeprecatedUserUpdate.h"
 #include "hanzo/model/O11y_O11yDeprecatedUsersOut.h"
+#include "hanzo/model/O11y_O11yDiscoverIn.h"
+#include "hanzo/model/O11y_O11yDiscoverOut.h"
 #include "hanzo/model/O11y_O11yDisk.h"
 #include "hanzo/model/O11y_O11yDomainsIn.h"
 #include "hanzo/model/O11y_O11yDomainsOut.h"
@@ -169,6 +171,7 @@
 #include "hanzo/model/O11y_O11yLogPromotePath.h"
 #include "hanzo/model/O11y_O11yLogPromotedOut.h"
 #include "hanzo/model/O11y_O11yLogRecordsOut.h"
+#include "hanzo/model/O11y_O11yLogsOut.h"
 #include "hanzo/model/O11y_O11yMessage.h"
 #include "hanzo/model/O11y_O11yMetricAckOut.h"
 #include "hanzo/model/O11y_O11yMetricAlertsOut.h"
@@ -259,6 +262,12 @@
 #include "hanzo/model/O11y_O11ySavedViewListOut.h"
 #include "hanzo/model/O11y_O11ySavedViewOut.h"
 #include "hanzo/model/O11y_O11ySavedViewUpdateIn.h"
+#include "hanzo/model/O11y_O11ySentryEventOut.h"
+#include "hanzo/model/O11y_O11ySentryIssueEventsOut.h"
+#include "hanzo/model/O11y_O11ySentryPostableProject.h"
+#include "hanzo/model/O11y_O11ySentryProjectOut.h"
+#include "hanzo/model/O11y_O11ySentryProjectsOut.h"
+#include "hanzo/model/O11y_O11ySentryUpdateIssueIn.h"
 #include "hanzo/model/O11y_O11yServiceAccountCreateIn.h"
 #include "hanzo/model/O11y_O11yServiceAccountCreateOut.h"
 #include "hanzo/model/O11y_O11yServiceAccountOut.h"
@@ -283,6 +292,7 @@
 #include "hanzo/model/O11y_O11ySpanPercentileIn.h"
 #include "hanzo/model/O11y_O11ySpanPercentileOut.h"
 #include "hanzo/model/O11y_O11yStatefulSetListOut.h"
+#include "hanzo/model/O11y_O11yStatsOut.h"
 #include "hanzo/model/O11y_O11ySubstituteVarsOut.h"
 #include "hanzo/model/O11y_O11yTestNotificationOut.h"
 #include "hanzo/model/O11y_O11yTestRuleOut.h"
@@ -292,9 +302,11 @@
 #include "hanzo/model/O11y_O11yTraceAggregationsOut.h"
 #include "hanzo/model/O11y_O11yTraceFlamegraphIn.h"
 #include "hanzo/model/O11y_O11yTraceFlamegraphOut.h"
+#include "hanzo/model/O11y_O11yTraceOut.h"
 #include "hanzo/model/O11y_O11yTraceSpanWindow.h"
 #include "hanzo/model/O11y_O11yTraceWaterfallIn.h"
 #include "hanzo/model/O11y_O11yTraceWaterfallOut.h"
+#include "hanzo/model/O11y_O11yTracesOut.h"
 #include "hanzo/model/O11y_O11yTransaction.h"
 #include "hanzo/model/O11y_O11yUpdatableAuthDomain.h"
 #include "hanzo/model/O11y_O11yUpdatablePreference.h"
@@ -333,6 +345,7 @@
 #include "hanzo/model/O11y_QueryRangeRequest.h"
 #include "hanzo/model/O11y_SavedView.h"
 #include "hanzo/model/O11y_StatefulSetListRequest.h"
+#include "hanzo/model/O11y_StatusSummary.h"
 #include "hanzo/model/O11y_UninstallIntegrationRequest.h"
 #include "hanzo/model/O11y_VolumeListRequest.h"
 #include "hanzo/model/O11y_addItemsIn.h"
@@ -815,6 +828,16 @@ public:
     /// </remarks>
     /// <param name="id">ID is the annotation queue to act on, from the path.</param>
     pplx::task<std::shared_ptr<O11y_annQueueDeleted>> deleteO11yReviewsById(
+        utility::string_t id
+    ) const;
+    /// <summary>
+    /// Deletes one Sentry project of the caller&#39;s org.
+    /// </summary>
+    /// <remarks>
+    /// Deletes one Sentry project of the caller&#39;s org. Its DSN stops resolving immediately, so ingest for that id fails closed exactly as an unknown project does; retained events are not touched. Answers 204.  Callers need the editor role; the runtime&#39;s own gate enforces it.
+    /// </remarks>
+    /// <param name="id">ID is the project id.</param>
+    pplx::task<void> deleteO11ySentinelProjectsById(
         utility::string_t id
     ) const;
     /// <summary>
@@ -2225,7 +2248,7 @@ public:
     /// Watch one running query&#39;s progress
     /// </summary>
     /// <remarks>
-    /// Reports how far a submitted query has got — rows scanned, bytes read, elapsed — and HOLDS the connection until the next update rather than answering immediately.  The long poll is the whole point, and the reason this cannot be a typed operation: an answer that arrived only when the query finished would report progress on nothing. The websocket form of the same read is /ws/query_progress.  A validated, org-scoped principal is required; a query id belonging to another tenant is simply not found.
+    /// Reports how far a submitted query has got — rows scanned, bytes read, elapsed — and HOLDS the connection until the next update rather than answering immediately.  ONE ADDRESS, TWO PROTOCOLS. Send an Upgrade and this is a websocket carrying the same progress; send an ordinary GET and it is a long poll. The Upgrade is a property of the request, not of the address, so the read that used to answer at /ws/query_progress answers here.  The long poll is the whole point, and the reason this cannot be a typed operation: an answer that arrived only when the query finished would report progress on nothing, and an upgraded connection has no JSON response to declare.  A validated, org-scoped principal is required; a query id belonging to another tenant is simply not found.
     /// </remarks>
     pplx::task<void> getO11yQueryProgress(
     ) const;
@@ -2294,6 +2317,144 @@ public:
         boost::optional<utility::string_t> status,
         boost::optional<int32_t> page,
         boost::optional<int32_t> limit
+    ) const;
+    /// <summary>
+    /// Returns one captured error event of a project, by its id.
+    /// </summary>
+    /// <remarks>
+    /// Returns one captured error event of a project, by its id.  Callers need the viewer role; the runtime&#39;s own gate enforces it.
+    /// </remarks>
+    /// <param name="id">ID is the event id.</param>
+    /// <param name="project">Project is the project the event belongs to, by its id. Required.</param>
+    pplx::task<std::shared_ptr<O11y_O11ySentryEventOut>> getO11ySentinelEventsById(
+        utility::string_t id,
+        utility::string_t project
+    ) const;
+    /// <summary>
+    /// Lists the caller&#39;s org&#39;s grouped error issues, optionally narrowed to one project and one time window, and filtered by status, level, environment, service, a free-text query and a sort.
+    /// </summary>
+    /// <remarks>
+    /// Lists the caller&#39;s org&#39;s grouped error issues, optionally narrowed to one project and one time window, and filtered by status, level, environment, service, a free-text query and a sort.  Callers need the viewer role; the runtime&#39;s own gate enforces it.
+    /// </remarks>
+    /// <param name="status">Status narrows to one lifecycle state: unresolved, resolved or ignored. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="level">Level narrows to one severity, e.g. error, warning, info. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="environment">Environment narrows to one deployment environment. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="serviceName">ServiceName narrows to one reporting service. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="query">Query narrows to issues whose text contains it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="sort">Sort orders the page, e.g. lastSeen, firstSeen, count. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="offset">Offset is how many issues to skip. Zero starts at the first. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many issues come back. Zero means the default. (optional, default to 0)</param>
+    /// <param name="project">Project narrows the org&#39;s issues to one project, by its id. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="period">Period is the window to read, relative to now — 1h, 24h, 7d, 14d, 30d. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<O11y_O11yErrorIssuesOut>> getO11ySentinelIssues(
+        boost::optional<utility::string_t> status,
+        boost::optional<utility::string_t> level,
+        boost::optional<utility::string_t> environment,
+        boost::optional<utility::string_t> serviceName,
+        boost::optional<utility::string_t> query,
+        boost::optional<utility::string_t> sort,
+        boost::optional<int32_t> offset,
+        boost::optional<int32_t> limit,
+        boost::optional<utility::string_t> project,
+        boost::optional<utility::string_t> period
+    ) const;
+    /// <summary>
+    /// Returns one grouped issue of the caller&#39;s org with its latest occurrence sample.
+    /// </summary>
+    /// <remarks>
+    /// Returns one grouped issue of the caller&#39;s org with its latest occurrence sample.  Callers need the viewer role; the runtime&#39;s own gate enforces it.
+    /// </remarks>
+    /// <param name="id">ID is the issue id.</param>
+    pplx::task<std::shared_ptr<O11y_O11yErrorGettableIssueOut>> getO11ySentinelIssuesById(
+        utility::string_t id
+    ) const;
+    /// <summary>
+    /// Lists one issue&#39;s captured occurrences, scoped to a project — a project is an isolation unit, so the caller declares which project&#39;s occurrences to read.
+    /// </summary>
+    /// <remarks>
+    /// Lists one issue&#39;s captured occurrences, scoped to a project — a project is an isolation unit, so the caller declares which project&#39;s occurrences to read.  Callers need the viewer role; the runtime&#39;s own gate enforces it.
+    /// </remarks>
+    /// <param name="id">ID is the issue id.</param>
+    /// <param name="project">Project is the project whose occurrences to read, by its id. Required.</param>
+    /// <param name="limit">Limit caps how many occurrences come back. Zero means the default. (optional, default to 0)</param>
+    pplx::task<std::shared_ptr<O11y_O11ySentryIssueEventsOut>> getO11ySentinelIssuesByIdEvents(
+        utility::string_t id,
+        utility::string_t project,
+        boost::optional<int32_t> limit
+    ) const;
+    /// <summary>
+    /// Lists a project&#39;s captured error events, newest first, optionally narrowed to those whose message or exception text contains a search string.
+    /// </summary>
+    /// <remarks>
+    /// Lists a project&#39;s captured error events, newest first, optionally narrowed to those whose message or exception text contains a search string.
+    /// </remarks>
+    /// <param name="project">Project is the project to read, as its id. Required.</param>
+    /// <param name="query">Query narrows the page to events whose text contains it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="period">Period is the window to read, relative to now — 1h, 24h, 7d, 14d, 30d. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="limit">Limit caps how many events come back. (optional, default to 0)</param>
+    pplx::task<std::shared_ptr<O11y_O11yLogsOut>> getO11ySentinelLogs(
+        utility::string_t project,
+        boost::optional<utility::string_t> query,
+        boost::optional<utility::string_t> period,
+        boost::optional<int32_t> limit
+    ) const;
+    /// <summary>
+    /// Lists the caller&#39;s org&#39;s Sentry projects, each with its freshly-derived DSN.
+    /// </summary>
+    /// <remarks>
+    /// Lists the caller&#39;s org&#39;s Sentry projects, each with its freshly-derived DSN.  Callers need the viewer role; the runtime&#39;s own gate enforces it.
+    /// </remarks>
+    pplx::task<std::shared_ptr<O11y_O11ySentryProjectsOut>> getO11ySentinelProjects(
+    ) const;
+    /// <summary>
+    /// Returns one Sentry project of the caller&#39;s org, DSN included.
+    /// </summary>
+    /// <remarks>
+    /// Returns one Sentry project of the caller&#39;s org, DSN included.  Callers need the viewer role; the runtime&#39;s own gate enforces it.
+    /// </remarks>
+    /// <param name="id">ID is the project id.</param>
+    pplx::task<std::shared_ptr<O11y_O11ySentryProjectOut>> getO11ySentinelProjectsById(
+        utility::string_t id
+    ) const;
+    /// <summary>
+    /// Returns a project&#39;s event-rate timeseries: one bucket per interval over the requested period, counting the events in it.
+    /// </summary>
+    /// <remarks>
+    /// Returns a project&#39;s event-rate timeseries: one bucket per interval over the requested period, counting the events in it.
+    /// </remarks>
+    /// <param name="project">Project is the project to read, as its id. Required.</param>
+    /// <param name="field">Field is the dimension to count over. Empty counts all events. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="period">Period is the window to read, relative to now — 1h, 24h, 7d, 14d, 30d. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<O11y_O11yStatsOut>> getO11ySentinelStats(
+        utility::string_t project,
+        boost::optional<utility::string_t> field,
+        boost::optional<utility::string_t> period
+    ) const;
+    /// <summary>
+    /// Lists the traces a project&#39;s captured errors reference, each with how many errors landed on it, when they started and stopped, and the latest message seen — the entry point for \&quot;which requests are failing\&quot;.
+    /// </summary>
+    /// <remarks>
+    /// Lists the traces a project&#39;s captured errors reference, each with how many errors landed on it, when they started and stopped, and the latest message seen — the entry point for \&quot;which requests are failing\&quot;.
+    /// </remarks>
+    /// <param name="project">Project is the project to read, as its id. Required.</param>
+    /// <param name="period">Period is the window to read, relative to now — 1h, 24h, 7d, 14d, 30d. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="limit">Limit caps how many traces come back. (optional, default to 0)</param>
+    pplx::task<std::shared_ptr<O11y_O11yTracesOut>> getO11ySentinelTraces(
+        utility::string_t project,
+        boost::optional<utility::string_t> period,
+        boost::optional<int32_t> limit
+    ) const;
+    /// <summary>
+    /// Returns one trace&#39;s captured errors for a project — every error event that carried the trace id, in the order the events plane holds them.
+    /// </summary>
+    /// <remarks>
+    /// Returns one trace&#39;s captured errors for a project — every error event that carried the trace id, in the order the events plane holds them.
+    /// </remarks>
+    /// <param name="id">ID is the trace id.</param>
+    /// <param name="project">Project is the project the trace&#39;s errors belong to. Required.</param>
+    pplx::task<std::shared_ptr<O11y_O11yTraceOut>> getO11ySentinelTracesById(
+        utility::string_t id,
+        utility::string_t project
     ) const;
     /// <summary>
     /// Lists the name of every service the trace store holds, with no window applied — the complete catalog, for pickers and autocomplete.
@@ -2390,6 +2551,14 @@ public:
     /// <param name="product">Product is the console product slug to probe, e.g. \&quot;kms\&quot;. Required. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<O11y_statusResult>> getO11yStatus(
         boost::optional<utility::string_t> product
+    ) const;
+    /// <summary>
+    /// Reports whether the platform is up.
+    /// </summary>
+    /// <remarks>
+    /// Reports whether the platform is up. It returns the public status document: the incidents currently open against Hanzo&#39;s own services, derived from the fleet health probes, plus the address of the human status page. No authentication is required and no tenant data is involved — the answer is the same for every caller.  A service that fails its health probe becomes one incident naming that service. When the availability source itself cannot be read the endpoint answers 503 rather than an empty incident list, because \&quot;we cannot tell\&quot; and \&quot;everything is fine\&quot; are different answers and only one of them is true.
+    /// </remarks>
+    pplx::task<std::shared_ptr<O11y_StatusSummary>> getO11ySummary(
     ) const;
     /// <summary>
     /// Lists the caller org&#39;s recent traces — one row per trace with its span count and wall-clock duration, most recently active first.
@@ -3405,7 +3574,7 @@ public:
     /// Receive a Sentry envelope on the SDK&#39;s own DSN path
     /// </summary>
     /// <remarks>
-    /// Accepts an application/x-sentry-envelope frame from a Sentry SDK — the batched wire format carrying events, sessions and attachments — and ingests it against the project named in the path.  THE /api/ SEGMENT IS NOT OURS TO NAME. An SDK appends its own fixed /api/&lt;project&gt;/envelope/ suffix to whatever DSN it is given, so this address is the SDK&#39;s, received verbatim. We receive this shape; we do not publish it. The clean spelling of the same wire is /v1/sentry/{project}/envelope/.  AUTHENTICATED BY THE DSN PUBLIC KEY, never a Hanzo session, and therefore exempt from the principal gate: the ingest verifier checks the key in constant time, fails closed, and derives the org from it. A keyless submission is a 401 from that verifier — not a 403 from the gate, and not a 404 — which is how you tell the hops apart. The exemption is matched by method plus prefix plus suffix, never a bare prefix, so no read is reachable through it.
+    /// Accepts an application/x-sentry-envelope frame from a Sentry SDK — the batched wire format carrying events, sessions and attachments — and ingests it against the project named in the path.  THE /api/ SEGMENT IS NOT OURS TO NAME. An SDK appends its own fixed /api/&lt;project&gt;/envelope/ suffix to whatever DSN it is given, so this address is the SDK&#39;s, received verbatim. We receive this shape; we do not publish it. The clean spelling of the same wire is /v1/event/{project}/envelope/.  AUTHENTICATED BY THE DSN PUBLIC KEY, never a Hanzo session, and therefore exempt from the principal gate: the ingest verifier checks the key in constant time, fails closed, and derives the org from it. A keyless submission is a 401 from that verifier — not a 403 from the gate, and not a 404 — which is how you tell the hops apart. The exemption is matched by method plus prefix plus suffix, never a bare prefix, so no read is reachable through it.
     /// </remarks>
     /// <param name="projectId"></param>
     pplx::task<void> postO11yApiByProjectIdEnvelope(
@@ -3962,6 +4131,36 @@ public:
         std::shared_ptr<O11y_addItemsIn> o11yAddItemsIn
     ) const;
     /// <summary>
+    /// Aggregates a project&#39;s captured errors into a table — the caller names the filters, the groupings and the aggregations, and gets back the columns and rows they asked for.
+    /// </summary>
+    /// <remarks>
+    /// Aggregates a project&#39;s captured errors into a table — the caller names the filters, the groupings and the aggregations, and gets back the columns and rows they asked for.  The project is mandatory and is checked against the caller&#39;s own org before it scopes anything, so a project id belonging to someone else reads as absent rather than as data.
+    /// </remarks>
+    /// <param name="o11yO11yDiscoverIn"></param>
+    pplx::task<std::shared_ptr<O11y_O11yDiscoverOut>> postO11ySentinelDiscover(
+        std::shared_ptr<O11y_O11yDiscoverIn> o11yO11yDiscoverIn
+    ) const;
+    /// <summary>
+    /// Creates a Sentry project under the caller&#39;s org and returns it, DSN included.
+    /// </summary>
+    /// <remarks>
+    /// Creates a Sentry project under the caller&#39;s org and returns it, DSN included. Only the name, and optionally a slug and platform, are the caller&#39;s to set; the org, id and key are server-assigned.  Callers need the editor role; the runtime&#39;s own gate enforces it.
+    /// </remarks>
+    /// <param name="o11yO11ySentryPostableProject"></param>
+    pplx::task<std::shared_ptr<O11y_O11ySentryProjectOut>> postO11ySentinelProjects(
+        std::shared_ptr<O11y_O11ySentryPostableProject> o11yO11ySentryPostableProject
+    ) const;
+    /// <summary>
+    /// Rotates a project&#39;s DSN key — bumping its rotation watermark so keys below it stop verifying — and returns the project with its new DSN.
+    /// </summary>
+    /// <remarks>
+    /// Rotates a project&#39;s DSN key — bumping its rotation watermark so keys below it stop verifying — and returns the project with its new DSN.  Callers need the editor role; the runtime&#39;s own gate enforces it.
+    /// </remarks>
+    /// <param name="id">ID is the project id.</param>
+    pplx::task<std::shared_ptr<O11y_O11ySentryProjectOut>> postO11ySentinelProjectsByIdKeysRotate(
+        utility::string_t id
+    ) const;
+    /// <summary>
     /// Returns one service&#39;s entry-point operations with the same latency and error profile topOperations reports.
     /// </summary>
     /// <remarks>
@@ -4112,6 +4311,18 @@ public:
     pplx::task<std::shared_ptr<O11y_O11ySavedViewOut>> putO11yExplorerViewsByViewid(
         utility::string_t viewId,
         std::shared_ptr<O11y_O11ySavedViewUpdateIn> o11yO11ySavedViewUpdateIn
+    ) const;
+    /// <summary>
+    /// Changes an issue&#39;s lifecycle — resolve, ignore, reopen or assign — and returns the updated issue.
+    /// </summary>
+    /// <remarks>
+    /// Changes an issue&#39;s lifecycle — resolve, ignore, reopen or assign — and returns the updated issue. Fields left unset are left unchanged.  Callers need the editor role; the runtime&#39;s own gate enforces it.
+    /// </remarks>
+    /// <param name="id">ID is the issue id.</param>
+    /// <param name="o11yO11ySentryUpdateIssueIn"></param>
+    pplx::task<std::shared_ptr<O11y_O11yErrorIssueOut>> putO11ySentinelIssuesById(
+        utility::string_t id,
+        std::shared_ptr<O11y_O11ySentryUpdateIssueIn> o11yO11ySentryUpdateIssueIn
     ) const;
     /// <summary>
     /// Records the deployment&#39;s profile in Zeus — how the team uses observability today and what they plan — overwriting any prior one.

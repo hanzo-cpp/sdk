@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -56,46 +56,64 @@ public:
 
 
     /// <summary>
-    /// proposed slug (software|cloud|office|…)
+    /// Category is the expense bucket the SCANNER guessed, as a slug — a hint only. Vendor rules override it whenever they know better, so this is the model&#39;s reading and not the account the entry will land on.
     /// </summary>
     utility::string_t getCategory() const;
     bool categoryIsSet() const;
     void unsetCategory();
     void setCategory(const utility::string_t& value);
 
+    /// <summary>
+    /// Currency is the ISO code the document is denominated in.
+    /// </summary>
     utility::string_t getCurrency() const;
     bool currencyIsSet() const;
     void unsetCurrency();
     void setCurrency(const utility::string_t& value);
 
     /// <summary>
-    /// YYYY-MM-DD
+    /// IssuedAt is the document&#39;s OWN date as YYYY-MM-DD — when the bill was issued, which is not when it was uploaded or when it will post.
     /// </summary>
     utility::string_t getIssuedAt() const;
     bool issuedAtIsSet() const;
     void unsetIssuedAt();
     void setIssuedAt(const utility::string_t& value);
 
+    /// <summary>
+    /// LineItems are the individual lines read off the document, where it had any. They need not sum to totalCents: a document may carry lines the scanner could not read, and the total is taken from the total.
+    /// </summary>
     std::vector<std::shared_ptr<LineItem>> getLineItems() const;
     bool lineItemsIsSet() const;
     void unsetLineItems();
     void setLineItems(const std::vector<std::shared_ptr<LineItem>>& value);
 
+    /// <summary>
+    /// Merchant is the supplier as printed on the document.
+    /// </summary>
     utility::string_t getMerchant() const;
     bool merchantIsSet() const;
     void unsetMerchant();
     void setMerchant(const utility::string_t& value);
 
+    /// <summary>
+    /// Note is anything else worth carrying from the document that has no field of its own.
+    /// </summary>
     utility::string_t getNote() const;
     bool noteIsSet() const;
     void unsetNote();
     void setNote(const utility::string_t& value);
 
+    /// <summary>
+    /// TaxCents is how much of that total is tax, in cents. It is part of totalCents, not additional to it.
+    /// </summary>
     int32_t getTaxCents() const;
     bool taxCentsIsSet() const;
     void unsetTaxCents();
     void setTaxCents(int32_t value);
 
+    /// <summary>
+    /// TotalCents is the document total in whole cents, tax INCLUDED.
+    /// </summary>
     int32_t getTotalCents() const;
     bool totalCentsIsSet() const;
     void unsetTotalCents();

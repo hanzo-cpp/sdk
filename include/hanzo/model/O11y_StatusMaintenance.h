@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -55,46 +55,73 @@ public:
     /// O11y_StatusMaintenance members
 
 
+    /// <summary>
+    /// AffectedComponents is what the window touches.
+    /// </summary>
     std::vector<std::shared_ptr<O11y_StatusComponent>> getAffectedComponents() const;
     bool affectedComponentsIsSet() const;
     void unsetAffected_components();
     void setAffectedComponents(const std::vector<std::shared_ptr<O11y_StatusComponent>>& value);
 
+    /// <summary>
+    /// EndsAt is when it is expected to finish, RFC3339 UTC.
+    /// </summary>
     utility::string_t getEndsAt() const;
     bool endsAtIsSet() const;
     void unsetEnds_at();
     void setEndsAt(const utility::string_t& value);
 
+    /// <summary>
+    /// ID is the window&#39;s handle.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
+    /// <summary>
+    /// LastUpdateAt is when the window was last revised, RFC3339 UTC.
+    /// </summary>
     utility::string_t getLastUpdateAt() const;
     bool lastUpdateAtIsSet() const;
     void unsetLast_update_at();
     void setLastUpdateAt(const utility::string_t& value);
 
+    /// <summary>
+    /// LastUpdateMessage is the text of that revision.
+    /// </summary>
     utility::string_t getLastUpdateMessage() const;
     bool lastUpdateMessageIsSet() const;
     void unsetLast_update_message();
     void setLastUpdateMessage(const utility::string_t& value);
 
+    /// <summary>
+    /// Name is its one-line headline.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
+    /// <summary>
+    /// StartsAt is when work begins, RFC3339 UTC.
+    /// </summary>
     utility::string_t getStartsAt() const;
     bool startsAtIsSet() const;
     void unsetStarts_at();
     void setStartsAt(const utility::string_t& value);
 
+    /// <summary>
+    /// Status is where the window is in its life, in the client&#39;s own vocabulary.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
+    /// <summary>
+    /// URL points at the human status page, as every link in this document does.
+    /// </summary>
     utility::string_t getUrl() const;
     bool urlIsSet() const;
     void unsetUrl();

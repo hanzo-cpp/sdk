@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -58,7 +58,7 @@ public:
 
 
     /// <summary>
-    /// Arch/CPUs/Memory are the connecting host&#39;s static CPU spec, mirrored from the registration: Arch is runtime.GOARCH (amd64 | arm64), Memory is total RAM in BYTES — the same fields a code-linked run-target carries, so the /v1/fleet board renders a linked node&#39;s arch + cores + RAM like any other unit.
+    /// Arch/CPUs/Memory are the connecting host&#39;s static CPU spec, mirrored from the registration: Arch is runtime.GOARCH (amd64 | arm64), Memory is total RAM in BYTES — the same fields a code-linked run-target carries, so the /v1/visor/fleet board renders a linked node&#39;s arch + cores + RAM like any other unit.
     /// </summary>
     utility::string_t getArch() const;
     bool archIsSet() const;
@@ -66,112 +66,160 @@ public:
     void setArch(const utility::string_t& value);
 
     /// <summary>
-    /// Capabilities the worker advertises (\&quot;studio.render\&quot;, \&quot;engine.serve\&quot;); Engine is present when it runs a hanzo-engine model server. Both additive + omitempty.
+    /// Capabilities is what this worker offers the org: \&quot;studio.render\&quot; when the node can render, \&quot;engine.serve\&quot; when it serves a model endpoint. A node advertises one only once it can honour it, so an absent list means a node that has dialed in but is not ready to serve any of them yet.
     /// </summary>
     std::vector<utility::string_t> getCapabilities() const;
     bool capabilitiesIsSet() const;
     void unsetCapabilities();
     void setCapabilities(const std::vector<utility::string_t>& value);
 
+    /// <summary>
+    /// CPUModel is the processor as the host names it (\&quot;Apple M3 Max\&quot;), for display.
+    /// </summary>
     utility::string_t getCpuModel() const;
     bool cpuModelIsSet() const;
     void unsetCpuModel();
     void setCpuModel(const utility::string_t& value);
 
+    /// <summary>
+    /// CPUs is the host&#39;s logical core count.
+    /// </summary>
     int32_t getCpus() const;
     bool cpusIsSet() const;
     void unsetCpus();
     void setCpus(int32_t value);
 
+    /// <summary>
+    /// Cuda is the host&#39;s CUDA toolkit version. NVIDIA hosts report it.
+    /// </summary>
     utility::string_t getCuda() const;
     bool cudaIsSet() const;
     void unsetCuda();
     void setCuda(const utility::string_t& value);
 
+    /// <summary>
+    /// Driver is the host&#39;s NVIDIA kernel driver version — distinct from Cuda, and the one that bounds which CUDA versions can run on this box.
+    /// </summary>
     utility::string_t getDriver() const;
     bool driverIsSet() const;
     void unsetDriver();
     void setDriver(const utility::string_t& value);
 
+    /// <summary>
+    /// Engine is the hanzo-engine model server this node runs, when it runs one (&#x60;hanzo link --serve-engine&#x60;). Absent means the node takes jobs but serves no model endpoint.
+    /// </summary>
     std::shared_ptr<EngineAdvertisement> getEngine() const;
     bool engineIsSet() const;
     void unsetEngine();
     void setEngine(const std::shared_ptr<EngineAdvertisement>& value);
 
+    /// <summary>
+    /// FirstSeen is when this node first dialed in, RFC 3339 — the start of its presence record, which &#x60;hanzo unlink&#x60; ends.
+    /// </summary>
     utility::string_t getFirstSeen() const;
     bool firstSeenIsSet() const;
     void unsetFirstSeen();
     void setFirstSeen(const utility::string_t& value);
 
+    /// <summary>
+    /// GPUs are the accelerators the host found on itself. Empty is a real answer: a CPU-only machine can dial in and take non-GPU work.
+    /// </summary>
     std::vector<std::shared_ptr<ByoGPU>> getGpus() const;
     bool gpusIsSet() const;
     void unsetGpus();
     void setGpus(const std::vector<std::shared_ptr<ByoGPU>>& value);
 
+    /// <summary>
+    /// Hip is the host&#39;s HIP runtime version, the AMD counterpart to Cuda.
+    /// </summary>
     utility::string_t getHip() const;
     bool hipIsSet() const;
     void unsetHip();
     void setHip(const utility::string_t& value);
 
+    /// <summary>
+    /// Hostname is what the host calls itself. It equals ID for any hostname already in the [a-z0-9-] alphabet, and differs when sanitizing had to change it.
+    /// </summary>
     utility::string_t getHostname() const;
     bool hostnameIsSet() const;
     void unsetHostname();
     void setHostname(const utility::string_t& value);
 
+    /// <summary>
+    /// ID is the node&#39;s id in the fleet — the sanitized hostname it registered under, which is also the &#x60;unit&#x60; its samples and its gpu-jobs lane key on. This is the id to use everywhere else on the compute surface.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
+    /// <summary>
+    /// JobQueue is the tasks NAMESPACE this worker claims render jobs out of — \&quot;gpu-jobs\&quot; unless &#x60;hanzo link&#x60; was pointed at another. Within it, a job aimed at this node alone rides the task-queue value \&quot;gpu:&lt;id&gt;\&quot;.
+    /// </summary>
     utility::string_t getJobQueue() const;
     bool jobQueueIsSet() const;
     void unsetJobQueue();
     void setJobQueue(const utility::string_t& value);
 
+    /// <summary>
+    /// LastHeartbeat is the most recent beat this node sent, RFC 3339. It is what Status is computed from, so a reader can check the judgement.
+    /// </summary>
     utility::string_t getLastHeartbeat() const;
     bool lastHeartbeatIsSet() const;
     void unsetLastHeartbeat();
     void setLastHeartbeat(const utility::string_t& value);
 
     /// <summary>
-    /// \&quot;on-prem\&quot; (BYO has no cloud region)
+    /// Location is always \&quot;on-prem\&quot; — a machine that dialed in has no cloud region, and inventing one would put it somewhere it is not.
     /// </summary>
     utility::string_t getLocation() const;
     bool locationIsSet() const;
     void unsetLocation();
     void setLocation(const utility::string_t& value);
 
+    /// <summary>
+    /// Memory is the host&#39;s total RAM in BYTES.
+    /// </summary>
     int32_t getMemory() const;
     bool memoryIsSet() const;
     void unsetMemory();
     void setMemory(int32_t value);
 
+    /// <summary>
+    /// Os is the host&#39;s operating system: linux, darwin or windows.
+    /// </summary>
     utility::string_t getOs() const;
     bool osIsSet() const;
     void unsetOs();
     void setOs(const utility::string_t& value);
 
     /// <summary>
-    /// always \&quot;byo\&quot;
+    /// Provider is always \&quot;byo\&quot;: this machine is the operator&#39;s, not one Hanzo provisioned. It exists so a fold into the machines/GPUs pages says which rows are rented and which are the customer&#39;s own.
     /// </summary>
     utility::string_t getProvider() const;
     bool providerIsSet() const;
     void unsetProvider();
     void setProvider(const utility::string_t& value);
 
+    /// <summary>
+    /// Rocm is the host&#39;s ROCm version. AMD hosts report it; empty otherwise.
+    /// </summary>
     utility::string_t getRocm() const;
     bool rocmIsSet() const;
     void unsetRocm();
     void setRocm(const utility::string_t& value);
 
     /// <summary>
-    /// online | offline
+    /// Status is \&quot;online\&quot; when the last heartbeat landed within 90s, else \&quot;offline\&quot; — so it is a fact about heartbeat freshness, not about the box being powered on. A worker that has never beaten reads offline.
     /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
+    /// <summary>
+    /// Version is the &#x60;hanzo&#x60; CLI version running on the node. It is what to check when a worker is missing a field a newer registration reports.
+    /// </summary>
     utility::string_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();

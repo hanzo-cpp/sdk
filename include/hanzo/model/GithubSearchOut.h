@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -54,11 +54,17 @@ public:
     /// GithubSearchOut members
 
 
+    /// <summary>
+    /// Count is how many hits Repos carries. It is that array&#39;s length, NOT GitHub&#39;s total_count, so it never exceeds limit and says nothing about how many more repositories matched.
+    /// </summary>
     int32_t getCount() const;
     bool countIsSet() const;
     void unsetCount();
     void setCount(int32_t value);
 
+    /// <summary>
+    /// Repos are the matching repositories in GitHub&#39;s own relevance order, capped at limit. Always an array, never null.
+    /// </summary>
     std::vector<std::shared_ptr<GithubSearchHit>> getRepos() const;
     bool reposIsSet() const;
     void unsetRepos();

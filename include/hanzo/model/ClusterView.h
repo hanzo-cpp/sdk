@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -55,64 +55,97 @@ public:
     /// ClusterView members
 
 
+    /// <summary>
+    /// AmdGPU is the same count for &#x60;amd.com/gpu&#x60;: AMD accelerators across the BYO cluster&#39;s nodes, as of the attach.
+    /// </summary>
     int32_t getAmdGpu() const;
     bool amdGpuIsSet() const;
     void unsetAmdGpu();
     void setAmdGpu(int32_t value);
 
+    /// <summary>
+    /// CreatedAt is when the cluster started existing: the earliest creation time among its pools for a managed cluster, and for a BYO one the RFC 3339 moment it was attached. Empty when the source states none.
+    /// </summary>
     utility::string_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
     void setCreatedAt(const utility::string_t& value);
 
+    /// <summary>
+    /// DoClusterID carries the SAME id as DoksClusterID. Both names exist because the console&#39;s Cluster type reads either one; neither is a second identifier.
+    /// </summary>
     utility::string_t getDoClusterId() const;
     bool doClusterIdIsSet() const;
     void unsetDoClusterId();
     void setDoClusterId(const utility::string_t& value);
 
+    /// <summary>
+    /// DoksClusterID is the provider&#39;s own id for the cluster, and the value the /v1/visor/k8s/clusters/:id routes take. Empty for a BYO cluster: an attached kubeconfig was never provisioned, so there is no provider id to state.
+    /// </summary>
     utility::string_t getDoksClusterId() const;
     bool doksClusterIdIsSet() const;
     void unsetDoksClusterId();
     void setDoksClusterId(const utility::string_t& value);
 
     /// <summary>
-    /// Fleet fields (additive): \&quot;managed\&quot; (Visor-provisioned) vs \&quot;byo\&quot; (attached kubeconfig), and the live GPU inventory a BYO cluster reports.
+    /// Kind says which of the two kinds of cluster this row is, and there are only two: \&quot;managed\&quot; — Visor provisioned it and Hanzo&#39;s account pays the provider — or \&quot;byo\&quot;, an existing cluster the org attached by kubeconfig.
     /// </summary>
     utility::string_t getKind() const;
     bool kindIsSet() const;
     void unsetKind();
     void setKind(const utility::string_t& value);
 
+    /// <summary>
+    /// Name is the cluster&#39;s name: the provider&#39;s for a managed cluster, and for a BYO one the lower-cased fleet name it was attached under — which is also how the detach route addresses it.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
+    /// <summary>
+    /// NodeCount is how many worker nodes the cluster has — the sum over its pools for a managed cluster, and for a BYO one the node count read off the cluster when it was attached.
+    /// </summary>
     int32_t getNodeCount() const;
     bool nodeCountIsSet() const;
     void unsetNodeCount();
     void setNodeCount(int32_t value);
 
+    /// <summary>
+    /// NodePools is the authoritative node inventory — every pool, each with its own size and count. It is empty in two cases that are not \&quot;no pools\&quot;: a row from the /v1/visor/k8s/clusters LIST, which is deliberately lightweight and whose :id detail carries them, and a BYO cluster, whose pools were never read.
+    /// </summary>
     std::vector<std::shared_ptr<NodePoolView>> getNodePools() const;
     bool nodePoolsIsSet() const;
     void unsetNodePools();
     void setNodePools(const std::vector<std::shared_ptr<NodePoolView>>& value);
 
+    /// <summary>
+    /// NodeSize is a display convenience: the size slug of the FIRST pool. A cluster mixing sizes has more than one, and NodePools is where they all are.
+    /// </summary>
     utility::string_t getNodeSize() const;
     bool nodeSizeIsSet() const;
     void unsetNodeSize();
     void setNodeSize(const utility::string_t& value);
 
+    /// <summary>
+    /// NvidiaGPU is how many NVIDIA accelerators the cluster&#39;s nodes advertise, the sum of &#x60;nvidia.com/gpu&#x60; allocatable across them. BYO only, and counted ONCE when the cluster was attached — it is an inventory, not live capacity.
+    /// </summary>
     int32_t getNvidiaGpu() const;
     bool nvidiaGpuIsSet() const;
     void unsetNvidiaGpu();
     void setNvidiaGpu(int32_t value);
 
+    /// <summary>
+    /// Region is the provider region slug for a managed cluster. A BYO cluster has no region we can read, so it carries the free-form &#x60;provider&#x60; label the attach named it with (\&quot;gke\&quot;, \&quot;on-prem\&quot;) instead.
+    /// </summary>
     utility::string_t getRegion() const;
     bool regionIsSet() const;
     void unsetRegion();
     void setRegion(const utility::string_t& value);
 
+    /// <summary>
+    /// Status is the cluster&#39;s state: the provider&#39;s own word for a managed cluster (\&quot;running\&quot;, \&quot;provisioning\&quot;), \&quot;unknown\&quot; when the provider stated none, and always \&quot;attached\&quot; for a BYO cluster — that one says the kubeconfig is on file, not that the cluster is reachable this second.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();

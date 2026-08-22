@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -55,56 +55,89 @@ public:
     /// BuildView members
 
 
+    /// <summary>
+    /// Agent is the label the surface that did the work calls itself by.
+    /// </summary>
     utility::string_t getAgent() const;
     bool agentIsSet() const;
     void unsetAgent();
     void setAgent(const utility::string_t& value);
 
+    /// <summary>
+    /// EndedAt is when it finished, same format. Empty means it has not — the build is still going.
+    /// </summary>
     utility::string_t getEndedAt() const;
     bool endedAtIsSet() const;
     void unsetEndedAt();
     void setEndedAt(const utility::string_t& value);
 
+    /// <summary>
+    /// Model is the model that did the work, taken from the FIRST turn whose body names one — a transcript states it, this route does not resolve it. Empty when no turn said.
+    /// </summary>
     utility::string_t getModel() const;
     bool modelIsSet() const;
     void unsetModel();
     void setModel(const utility::string_t& value);
 
+    /// <summary>
+    /// Org is the org that published this build, echoed from the URL. It is part of the build&#39;s public ADDRESS and not a tenant key — this route is anonymous, and the only rows it can reach are ones an author explicitly published.
+    /// </summary>
     utility::string_t getOrg() const;
     bool orgIsSet() const;
     void unsetOrg();
     void setOrg(const utility::string_t& value);
 
+    /// <summary>
+    /// Project is the product&#39;s slug, the other half of that address.
+    /// </summary>
     utility::string_t getProject() const;
     bool projectIsSet() const;
     void unsetProject();
     void setProject(const utility::string_t& value);
 
+    /// <summary>
+    /// Repo is the repository the work was done in, as the session reported it.
+    /// </summary>
     utility::string_t getRepo() const;
     bool repoIsSet() const;
     void unsetRepo();
     void setRepo(const utility::string_t& value);
 
+    /// <summary>
+    /// Session is the id of the agent session this story IS — the same value a produced commit carries in its &#x60;Hanzo-Session:&#x60; trailer, which is what ties the repository&#39;s history to this page.
+    /// </summary>
     utility::string_t getSession() const;
     bool sessionIsSet() const;
     void unsetSession();
     void setSession(const utility::string_t& value);
 
+    /// <summary>
+    /// StartedAt is when the session opened, RFC 3339 in UTC.
+    /// </summary>
     utility::string_t getStartedAt() const;
     bool startedAtIsSet() const;
     void unsetStartedAt();
     void setStartedAt(const utility::string_t& value);
 
+    /// <summary>
+    /// Status is the session&#39;s own: running, paused, done or error. A build can be read while it is still being written, so this is not always terminal — and an &#x60;error&#x60; build is still a readable story, not a missing page.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
+    /// <summary>
+    /// Title is the human line the session was opened or renamed with. Empty when nobody gave it one.
+    /// </summary>
     utility::string_t getTitle() const;
     bool titleIsSet() const;
     void unsetTitle();
     void setTitle(const utility::string_t& value);
 
+    /// <summary>
+    /// Turns is the whole transcript, oldest first, capped at 1000: a published build is a story to read down, not an archive to page.
+    /// </summary>
     std::vector<std::shared_ptr<BuildTurn>> getTurns() const;
     bool turnsIsSet() const;
     void unsetTurns();

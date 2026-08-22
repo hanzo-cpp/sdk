@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,11 +52,17 @@ public:
     /// RpcError members
 
 
+    /// <summary>
+    /// Code is the JSON-RPC error code the chain reported, passed through as it came. -32603 (internal error) is the one value this deployment mints itself, for an upstream that could not be reached at all.
+    /// </summary>
     int32_t getCode() const;
     bool codeIsSet() const;
     void unsetCode();
     void setCode(int32_t value);
 
+    /// <summary>
+    /// Message is the chain&#39;s own explanation, e.g. \&quot;execution reverted\&quot;. It is \&quot;upstream unavailable\&quot; when the deployment minted the error rather than the chain — that is the one message this side writes.
+    /// </summary>
     utility::string_t getMessage() const;
     bool messageIsSet() const;
     void unsetMessage();

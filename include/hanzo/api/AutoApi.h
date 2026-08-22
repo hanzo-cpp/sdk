@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -22,11 +22,19 @@
 
 #include "hanzo/ApiClient.h"
 
-#include "hanzo/AnyType.h"
-#include "hanzo/model/AutoCreate.h"
-#include "hanzo/model/AutoStart.h"
-#include "hanzo/model/AutoStatus.h"
-#include "hanzo/model/AutoUpdate.h"
+#include "hanzo/model/Catalog.h"
+#include "hanzo/model/CreateFlowReq.h"
+#include "hanzo/model/CreateVersionIn.h"
+#include "hanzo/model/Flow.h"
+#include "hanzo/model/FlowPage.h"
+#include "hanzo/model/FlowRun.h"
+#include "hanzo/model/FlowVersion.h"
+#include "hanzo/model/PatchFlowIn.h"
+#include "hanzo/model/PopulatedFlow.h"
+#include "hanzo/model/RunIn.h"
+#include "hanzo/model/RunPage.h"
+#include "hanzo/model/RunResp.h"
+#include "hanzo/model/VersionPage.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -46,110 +54,184 @@ public:
     virtual ~AutoApi();
 
     /// <summary>
-    /// Deletes one of the caller&#39;s flows.
+    /// Deletes one automation, its versions and its run history.
     /// </summary>
     /// <remarks>
-    /// Deletes one of the caller&#39;s flows. A foreign id answers 404 and deletes nothing.
+    /// Deletes one automation, its versions and its run history. It answers no content, and a flow of another org answers not-found.
     /// </remarks>
-    /// <param name="flow">Flow is the flow&#39;s id, taken from the path.</param>
-    pplx::task<std::shared_ptr<AnyType>> deleteAutoFlowsByFlow(
-        utility::string_t flow
+    /// <param name="id">ID is the flow to act on, from the path.</param>
+    pplx::task<void> deleteAutoFlowsById(
+        utility::string_t id
     ) const;
     /// <summary>
-    /// Flows lists the caller&#39;s flows, newest first.
+    /// Connectors returns the connector catalogue.
     /// </summary>
     /// <remarks>
-    /// Flows lists the caller&#39;s flows, newest first. The list is scoped by the product to the caller&#39;s org — it can only ever hold the caller&#39;s own flows.
+    /// Connectors returns the connector catalogue. Each entry is an external service a flow step can invoke, carrying its auth descriptor and the input properties of its actions and triggers. The catalogue is the same for every tenant, so the gate is a validated principal rather than a per-org view.
     /// </remarks>
-    pplx::task<std::shared_ptr<AnyType>> getAutoFlows(
+    pplx::task<std::shared_ptr<Catalog>> getAutoConnectors(
     ) const;
     /// <summary>
-    /// Flow reads one of the caller&#39;s flows — the full record, graph included.
+    /// Returns the caller org&#39;s automations, most-recently-updated first.
     /// </summary>
     /// <remarks>
-    /// Flow reads one of the caller&#39;s flows — the full record, graph included. A flow outside the caller&#39;s org answers 404, indistinguishable from one that does not exist.
+    /// Returns the caller org&#39;s automations, most-recently-updated first. The optional &#x60;limit&#x60; query bounds the page.
     /// </remarks>
-    /// <param name="flow">Flow is the flow&#39;s id, taken from the path.</param>
-    pplx::task<std::shared_ptr<AnyType>> getAutoFlowsByFlow(
-        utility::string_t flow
+    /// <param name="limit">Limit bounds the page (default 200, maximum 1000). (optional, default to 0)</param>
+    pplx::task<std::shared_ptr<FlowPage>> getAutoFlows(
+        boost::optional<int32_t> limit
     ) const;
     /// <summary>
-    /// Pieces lists the product&#39;s built-in piece catalog: the trigger and action types a flow&#39;s nodes can use (webhook, schedule, http, set, branch), each with its input descriptors.
+    /// Returns one automation and its latest version.
     /// </summary>
     /// <remarks>
-    /// Pieces lists the product&#39;s built-in piece catalog: the trigger and action types a flow&#39;s nodes can use (webhook, schedule, http, set, branch), each with its input descriptors. The catalog is compiled into the product — adding a piece is a product release, not a platform call.
+    /// Returns one automation and its latest version. That is the flow record plus the step tree the builder edits; a flow of another org answers not-found.
     /// </remarks>
-    pplx::task<std::shared_ptr<AnyType>> getAutoPieces(
+    /// <param name="id">ID is the flow to act on, from the path.</param>
+    pplx::task<std::shared_ptr<PopulatedFlow>> getAutoFlowsById(
+        utility::string_t id
     ) const;
     /// <summary>
-    /// Runs lists the caller&#39;s run records, newest first — optionally one flow&#39;s.
+    /// Returns one flow&#39;s versions, newest first.
     /// </summary>
     /// <remarks>
-    /// Runs lists the caller&#39;s run records, newest first — optionally one flow&#39;s. Each record carries the run&#39;s status (queued, running, completed, failed), its input, and its output once the run finished.
+    /// Returns one flow&#39;s versions, newest first. The optional &#x60;limit&#x60; query bounds the page.
     /// </remarks>
-    /// <param name="flow">Flow narrows the list to one flow&#39;s runs when present. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    pplx::task<std::shared_ptr<AnyType>> getAutoRuns(
-        boost::optional<utility::string_t> flow
+    /// <param name="id">ID is the flow whose versions to list, from the path.</param>
+    /// <param name="limit">Limit bounds the page (default 200, maximum 1000). (optional, default to 0)</param>
+    pplx::task<std::shared_ptr<VersionPage>> getAutoFlowsByIdVersions(
+        utility::string_t id,
+        boost::optional<int32_t> limit
     ) const;
     /// <summary>
-    /// Run reads one run record: status, input, output (each executed node&#39;s result keyed by node id once completed), error detail if it failed, and timestamps.
+    /// Returns the caller org&#39;s run history, newest first.
     /// </summary>
     /// <remarks>
-    /// Run reads one run record: status, input, output (each executed node&#39;s result keyed by node id once completed), error detail if it failed, and timestamps. A run outside the caller&#39;s org answers 404.
+    /// Returns the caller org&#39;s run history, newest first. The optional &#x60;flowId&#x60; query narrows it to one flow and &#x60;limit&#x60; bounds the page.
     /// </remarks>
-    /// <param name="run">Run is the run&#39;s id, taken from the path.</param>
-    pplx::task<std::shared_ptr<AnyType>> getAutoRunsByRun(
-        utility::string_t run
+    /// <param name="flowId">FlowID narrows the history to one flow. Omit it for the whole org&#39;s runs. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="limit">Limit bounds the page (default 200, maximum 1000). (optional, default to 0)</param>
+    pplx::task<std::shared_ptr<RunPage>> getAutoRuns(
+        boost::optional<utility::string_t> flowId,
+        boost::optional<int32_t> limit
     ) const;
     /// <summary>
-    /// Status reports whether the auto service is reachable — its own health endpoint as an honest lens for \&quot;is the automation plane up\&quot;.
+    /// Returns one run.
     /// </summary>
     /// <remarks>
-    /// Status reports whether the auto service is reachable — its own health endpoint as an honest lens for \&quot;is the automation plane up\&quot;.
+    /// Returns one run. A run that has not reached a terminal status is refreshed from the durable engine first — scoped to the org&#39;s own namespace — so the caller sees live progress rather than the last status that happened to be persisted.
     /// </remarks>
-    pplx::task<std::shared_ptr<AutoStatus>> getAutoStatus(
+    /// <param name="id">ID is the run to read, from the path.</param>
+    pplx::task<std::shared_ptr<FlowRun>> getAutoRunsById(
+        utility::string_t id
     ) const;
     /// <summary>
-    /// Patches one of the caller&#39;s flows: the name, the graph, or both — only the stated fields move.
+    /// Updates one automation&#39;s metadata in place.
     /// </summary>
     /// <remarks>
-    /// Patches one of the caller&#39;s flows: the name, the graph, or both — only the stated fields move.
+    /// Updates one automation&#39;s metadata in place. Every field is optional; a field the request omits is left alone. Publishing a version pins which one runs, and is refused unless that version belongs to this flow.
     /// </remarks>
-    /// <param name="flow">Flow is the flow&#39;s id, taken from the path.</param>
-    /// <param name="autoUpdate"></param>
-    pplx::task<std::shared_ptr<AnyType>> patchAutoFlowsByFlow(
-        utility::string_t flow,
-        std::shared_ptr<AutoUpdate> autoUpdate
+    /// <param name="id">ID is the flow to update, from the path.</param>
+    /// <param name="patchFlowIn"></param>
+    pplx::task<std::shared_ptr<Flow>> patchAutoFlowsById(
+        utility::string_t id,
+        std::shared_ptr<PatchFlowIn> patchFlowIn
     ) const;
     /// <summary>
-    /// Creates a flow in the caller&#39;s org.
+    /// Run executes one connector action in-process and answers the outcome.
     /// </summary>
     /// <remarks>
-    /// Creates a flow in the caller&#39;s org. The org is stamped server-side from the validated principal — there is no field by which a caller could place a flow in another org.
+    /// Run executes one connector action in-process and answers the outcome. The caller&#39;s resolved credential travels in &#x60;auth&#x60;, delivered to the action verbatim — the runtime resolves no credential itself. An action that ran and failed (or an action name the connector does not have) answers ok:false with the failure message, not an HTTP error; an unknown connector is 404 and a missing action 422.
     /// </remarks>
-    /// <param name="autoCreate"></param>
-    pplx::task<std::shared_ptr<AnyType>> postAutoFlows(
-        std::shared_ptr<AutoCreate> autoCreate
+    /// <param name="id">ID is the connector to run, from the path.</param>
+    /// <param name="runIn"></param>
+    pplx::task<std::shared_ptr<RunResp>> postAutoConnectorsByIdRun(
+        utility::string_t id,
+        std::shared_ptr<RunIn> runIn
     ) const;
     /// <summary>
-    /// Publish snapshots the flow&#39;s current graph as its next immutable version and arms the flow&#39;s triggers.
+    /// Creates an automation and its initial DRAFT version in one call.
     /// </summary>
     /// <remarks>
-    /// Publish snapshots the flow&#39;s current graph as its next immutable version and arms the flow&#39;s triggers. Past versions stay addressable in the product for rollback; runs always execute the graph as it was dispatched.
+    /// Creates an automation and its initial DRAFT version in one call. The new flow is DISABLED — creating it does not arm its trigger; POST /v1/auto/flows/{id}/enable does that.
     /// </remarks>
-    /// <param name="flow">Flow is the flow&#39;s id, taken from the path.</param>
-    pplx::task<std::shared_ptr<AnyType>> postAutoFlowsByFlowPublish(
-        utility::string_t flow
+    /// <param name="createFlowReq"></param>
+    pplx::task<std::shared_ptr<PopulatedFlow>> postAutoFlows(
+        std::shared_ptr<CreateFlowReq> createFlowReq
     ) const;
     /// <summary>
-    /// Start begins one asynchronous run of a flow: the product dispatches the graph to its durable execution engine (the hanzo tasks plane) and answers immediately with the run record in status running.
+    /// Disarms a flow&#39;s trigger and marks it DISABLED.
     /// </summary>
     /// <remarks>
-    /// Start begins one asynchronous run of a flow: the product dispatches the graph to its durable execution engine (the hanzo tasks plane) and answers immediately with the run record in status running. Poll the run until it reaches completed — its output then holds each node&#39;s result keyed by node id — or failed, with the error. A flow whose engine is unreachable answers the product&#39;s 503: dispatch is real or it is refused, never queued into the void.
+    /// Disarms a flow&#39;s trigger and marks it DISABLED. Its schedule and its event subscriptions are dropped, so a disabled flow is never a live target; runs already in flight are unaffected, and it can still be started on demand.
     /// </remarks>
-    /// <param name="autoStart"></param>
-    pplx::task<std::shared_ptr<AnyType>> postAutoRuns(
-        std::shared_ptr<AutoStart> autoStart
+    /// <param name="id">ID is the flow to act on, from the path.</param>
+    pplx::task<std::shared_ptr<Flow>> postAutoFlowsByIdDisable(
+        utility::string_t id
+    ) const;
+    /// <summary>
+    /// Arms a flow&#39;s trigger and marks it ENABLED.
+    /// </summary>
+    /// <remarks>
+    /// Arms a flow&#39;s trigger and marks it ENABLED. A POLLING trigger gets a cron schedule on the durable engine; a WEBHOOK trigger gets a subscription in the routing index, so an inbound event starts it; a MANUAL trigger arms nothing and still runs on demand.
+    /// </remarks>
+    /// <param name="id">ID is the flow to act on, from the path.</param>
+    pplx::task<std::shared_ptr<Flow>> postAutoFlowsByIdEnable(
+        utility::string_t id
+    ) const;
+    /// <summary>
+    /// Edit a flow — rename it, retarget its trigger, or add, move and delete steps
+    /// </summary>
+    /// <remarks>
+    /// Applies ONE flow operation and answers the thing it changed. The operation is named by &#x60;type&#x60;, with its arguments under &#x60;request&#x60;: &#x60;CHANGE_NAME&#x60;, &#x60;UPDATE_TRIGGER&#x60;, &#x60;ADD_ACTION&#x60;, &#x60;UPDATE_ACTION&#x60;, &#x60;MOVE_ACTION&#x60;, &#x60;DELETE_ACTION&#x60; edit the flow&#39;s LATEST version and answer with that version, and &#x60;CHANGE_STATUS&#x60; instead enables or disables the flow and answers with the FLOW. Two response shapes on one address is the rule a reader would otherwise get wrong, and it is why this route is not a typed op.  Edits land on the latest version only — the published version a run executes is untouched until it is republished — and the whole resulting step tree is re-validated against the step-count and size caps after every operation, so a long sequence of &#x60;ADD_ACTION&#x60; calls cannot grow a flow past a bound one step at a time (422 when it would). Org-scoped and fails closed: a validated principal is required (403 without one), the flow and its version are read under the caller&#39;s OWN org so another tenant&#39;s id is a 404, and an operation whose &#x60;request&#x60; does not decode is a 400.
+    /// </remarks>
+    /// <param name="id"></param>
+    pplx::task<void> postAutoFlowsByIdOperations(
+        utility::string_t id
+    ) const;
+    /// <summary>
+    /// Starts one durable run of a flow now.
+    /// </summary>
+    /// <remarks>
+    /// Starts one durable run of a flow now. It runs the flow&#39;s published version if one is pinned, else its latest, and answers the run record it created. The run is bounded by the org&#39;s per-minute run-start budget and its in-flight concurrency ceiling; over either, or with the engine not ready, no run is started and no run id is burned.
+    /// </remarks>
+    /// <param name="id">ID is the flow to act on, from the path.</param>
+    pplx::task<std::shared_ptr<FlowRun>> postAutoFlowsByIdRun(
+        utility::string_t id
+    ) const;
+    /// <summary>
+    /// Adds a new DRAFT version to a flow.
+    /// </summary>
+    /// <remarks>
+    /// Adds a new DRAFT version to a flow. The version is created invalid unless it carries a trigger, and it does not become the running version until it is published (PATCH the flow&#39;s publishedVersionId) or becomes the latest.
+    /// </remarks>
+    /// <param name="id">ID is the flow to add a version to, from the path.</param>
+    /// <param name="createVersionIn"></param>
+    pplx::task<std::shared_ptr<FlowVersion>> postAutoFlowsByIdVersions(
+        utility::string_t id,
+        std::shared_ptr<CreateVersionIn> createVersionIn
+    ) const;
+    /// <summary>
+    /// Fire an event that starts every enabled flow subscribed to it
+    /// </summary>
+    /// <remarks>
+    /// Delivers one event to the org&#39;s automation triggers and answers &#x60;{matched:n}&#x60; — how many enabled flows had a webhook trigger on this &#x60;(source, event)&#x60; key and were started by it. A zero match is a success, not an error: nothing was subscribed.  The path is the trigger key and the JSON object body is the event payload, threaded into each started run as &#x60;{{trigger.*}}&#x60; with all of its keys intact — which is why this is not a typed op, since a declared input struct would silently DISCARD every payload key it had no field for. Re-delivery is a no-op: an &#x60;X-Idempotency-Key&#x60; header dedupes, and with none the body is content-hashed instead, so a hammer of identical posts collapses to ONE run rather than minting a fresh one per post. An in-platform producer may propagate &#x60;X-Causation-Depth&#x60; so a firing that a flow caused is bounded against a loop; an absent or invalid header reads as depth 0, an external origin.  Authenticated and org-scoped, unlike a provider&#39;s public webhook URL: a validated principal is required (403 without one) and the org is that principal&#39;s, never the body&#39;s, so a producer can only fire into its own tenant&#39;s flows. Both path segments are required (400) and a payload over the size limit is a 413.
+    /// </remarks>
+    /// <param name="source"></param>
+    /// <param name="event"></param>
+    pplx::task<void> postAutoHooksBySourceByEvent(
+        utility::string_t source,
+        utility::string_t event
+    ) const;
+    /// <summary>
+    /// Release a run waiting at an approval step, with the approval payload
+    /// </summary>
+    /// <remarks>
+    /// Delivers the durable &#x60;resume&#x60; signal to a run parked on a &#x60;wait_for_approval&#x60; waitpoint and answers &#x60;{resumed:true}&#x60; once the engine has taken it.  The body is an ARBITRARY JSON value — object, array, string, number — delivered VERBATIM into the workflow as that waitpoint&#39;s output, so it is what the steps after the approval read as their input. An empty body resumes with no payload. That open shape is why this route is not a typed op: an operation&#39;s input can carry the payload or the run address, never both.  Org-scoped and fails closed: a validated principal is required (403 without one), the run is read under the caller&#39;s OWN org so another tenant&#39;s run id is a 404, a body that is not JSON is a 400, and a payload over the size limit is a 413 — it becomes durable engine state, so it is bounded here rather than after it lands. The resume is audited as &#x60;automations.run.resume&#x60;.
+    /// </remarks>
+    /// <param name="id"></param>
+    pplx::task<void> postAutoRunsByIdResume(
+        utility::string_t id
     ) const;
 
 protected:

@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -53,26 +53,41 @@ public:
     /// UpdateAgentIn members
 
 
+    /// <summary>
+    /// ComputeRef re-binds (or, with \&quot;\&quot;, unbinds) the visor machine. Opaque here.
+    /// </summary>
     utility::string_t getComputeRef() const;
     bool computeRefIsSet() const;
     void unsetComputeRef();
     void setComputeRef(const utility::string_t& value);
 
+    /// <summary>
+    /// Description replaces the line other agents read in the tool catalogue.
+    /// </summary>
     utility::string_t getDescription() const;
     bool descriptionIsSet() const;
     void unsetDescription();
     void setDescription(const utility::string_t& value);
 
+    /// <summary>
+    /// ExecutionMode switches between one-shot and long-running. The RESULTING mode+schedule are validated together, so switching to long-running without a stored or supplied cron is refused rather than accepted into an agent the scheduler would skip forever. A switch INTO long-running counts against the per-org cap and can be a 409.
+    /// </summary>
     utility::string_t getExecutionMode() const;
     bool executionModeIsSet() const;
     void unsetExecutionMode();
     void setExecutionMode(const utility::string_t& value);
 
+    /// <summary>
+    /// Instructions replaces the system prompt whole, up to 32 KiB. There is no append: a prompt is one text, and sending \&quot;\&quot; clears it.
+    /// </summary>
     utility::string_t getInstructions() const;
     bool instructionsIsSet() const;
     void unsetInstructions();
     void setInstructions(const utility::string_t& value);
 
+    /// <summary>
+    /// Model re-points the agent at another model, checked against the gateway&#39;s served catalogue exactly as create checks it. Empty STRING is refused — say nothing to keep the current one. Past runs keep the model that served them.
+    /// </summary>
     utility::string_t getModel() const;
     bool modelIsSet() const;
     void unsetModel();
@@ -86,16 +101,25 @@ public:
     void unsetRef();
     void setRef(const utility::string_t& value);
 
+    /// <summary>
+    /// Schedule replaces the cron. It is validated against the mode this update leaves behind, and dropped if that mode is one-shot.
+    /// </summary>
     utility::string_t getSchedule() const;
     bool scheduleIsSet() const;
     void unsetSchedule();
     void setSchedule(const utility::string_t& value);
 
+    /// <summary>
+    /// ServiceAccountID re-points (or, with \&quot;\&quot;, clears) the IAM service account a scheduled run is billed as. Clearing it puts that spend back on the org.
+    /// </summary>
     utility::string_t getServiceAccountId() const;
     bool serviceAccountIdIsSet() const;
     void unsetServiceAccountId();
     void setServiceAccountId(const utility::string_t& value);
 
+    /// <summary>
+    /// Tools replaces the whole allow-list, it does not add to it. Sending [] takes every tool away, which is the only way to say that.
+    /// </summary>
     std::vector<utility::string_t> getTools() const;
     bool toolsIsSet() const;
     void unsetTools();

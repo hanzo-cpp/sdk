@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,21 +52,33 @@ public:
     /// RegisterReq members
 
 
+    /// <summary>
+    /// Account is which subscription or API account under that provider served the run, up to 256 characters. It is what lets a revoke of that login stop exactly the sessions it was paying for.
+    /// </summary>
     utility::string_t getAccount() const;
     bool accountIsSet() const;
     void unsetAccount();
     void setAccount(const utility::string_t& value);
 
+    /// <summary>
+    /// Actor is the \&quot;org/sub\&quot; identity to record the session under, up to 256 characters. Omit it and the calling principal is used, which is almost always what you want: it is what a login revoke matches on to stop this session.
+    /// </summary>
     utility::string_t getActor() const;
     bool actorIsSet() const;
     void unsetActor();
     void setActor(const utility::string_t& value);
 
+    /// <summary>
+    /// Agent is the label the surface opening this session calls itself by (\&quot;hanzo-dev\&quot;). REQUIRED, up to 128 characters, and free text — nothing resolves it against a defined agent.
+    /// </summary>
     utility::string_t getAgent() const;
     bool agentIsSet() const;
     void unsetAgent();
     void setAgent(const utility::string_t& value);
 
+    /// <summary>
+    /// Cwd is the directory the session starts in, up to 1024 characters. It can be moved later, because a linked shell walks around.
+    /// </summary>
     utility::string_t getCwd() const;
     bool cwdIsSet() const;
     void unsetCwd();
@@ -80,6 +92,9 @@ public:
     void unsetHost();
     void setHost(const utility::string_t& value);
 
+    /// <summary>
+    /// ParentSessionID makes this a subagent of that session: it inherits the parent&#39;s root, so one flow stays one tree. The parent must exist IN THE SAME ORG — a foreign or unknown id is a 400, never a tree across tenants. Empty opens a root session.
+    /// </summary>
     utility::string_t getParentSessionId() const;
     bool parentSessionIdIsSet() const;
     void unsetParentSessionId();
@@ -101,31 +116,49 @@ public:
     void unsetProvider();
     void setProvider(const utility::string_t& value);
 
+    /// <summary>
+    /// Published opens this session&#39;s story to the public build route. It is refused without a Project, because that route is keyed on (org, project) — a build with no product is not a story anyone can open. False keeps it org-only.
+    /// </summary>
     bool isPublished() const;
     bool publishedIsSet() const;
     void unsetPublished();
     void setPublished(bool value);
 
+    /// <summary>
+    /// Repo is the code being worked on, up to 512 characters. A label the surface states; nothing resolves it against the forge.
+    /// </summary>
     utility::string_t getRepo() const;
     bool repoIsSet() const;
     void unsetRepo();
     void setRepo(const utility::string_t& value);
 
+    /// <summary>
+    /// Status opens the session in one of running, paused, done or error. Empty means running. A TERMINAL status here (done, error) records a session that has already finished — its end time is stamped now — and nothing can move it afterwards.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
+    /// <summary>
+    /// Target names a run-target the org has registered. Unlike Host and Repo it IS resolved: a target that does not exist in this org is a 400, so a session can never claim to run on another tenant&#39;s machine. Empty names no machine.
+    /// </summary>
     utility::string_t getTarget() const;
     bool targetIsSet() const;
     void unsetTarget();
     void setTarget(const utility::string_t& value);
 
+    /// <summary>
+    /// TaskRunID is that workflow&#39;s particular run, same bound. Recorded, not resolved: this surface does not check the workflow exists.
+    /// </summary>
     utility::string_t getTaskRunId() const;
     bool taskRunIdIsSet() const;
     void unsetTaskRunId();
     void setTaskRunId(const utility::string_t& value);
 
+    /// <summary>
+    /// TaskWorkflowID links this session to the hanzoai/tasks workflow that executes it, up to 256 characters. Set it and control commands are forwarded to that engine; leave it and the running surface polls for them instead.
+    /// </summary>
     utility::string_t getTaskWorkflowId() const;
     bool taskWorkflowIdIsSet() const;
     void unsetTaskWorkflowId();
@@ -139,6 +172,9 @@ public:
     void unsetTerminal();
     void setTerminal(const utility::string_t& value);
 
+    /// <summary>
+    /// Title is the human line a card shows, up to 512 characters. Optional, and changeable later.
+    /// </summary>
     utility::string_t getTitle() const;
     bool titleIsSet() const;
     void unsetTitle();

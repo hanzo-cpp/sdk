@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -55,21 +55,33 @@ public:
     /// AskAnswer members
 
 
+    /// <summary>
+    /// Answer is the synthesized prose. EMPTY is a real answer here: nothing in the index matched, or synthesis was unavailable — read &#x60;degraded&#x60; and &#x60;citations&#x60; to tell those apart. It is never written without grounding.
+    /// </summary>
     utility::string_t getAnswer() const;
     bool answerIsSet() const;
     void unsetAnswer();
     void setAnswer(const utility::string_t& value);
 
+    /// <summary>
+    /// Citations are the exact regions the answer was grounded on, and they are the point: an answer is checkable only because every claim in it can be read back at a file and line. Present even when Answer is empty.
+    /// </summary>
     std::vector<std::shared_ptr<Citation>> getCitations() const;
     bool citationsIsSet() const;
     void unsetCitations();
     void setCitations(const std::vector<std::shared_ptr<Citation>>& value);
 
+    /// <summary>
+    /// Degraded is true when retrieval worked but no synthesizer was reachable. The citations are still real code, so a caller can answer from them itself; a caller that treats this like an error throws away a usable result.
+    /// </summary>
     bool isDegraded() const;
     bool degradedIsSet() const;
     void unsetDegraded();
     void setDegraded(bool value);
 
+    /// <summary>
+    /// Question is the ask, echoed back.
+    /// </summary>
     utility::string_t getQuestion() const;
     bool questionIsSet() const;
     void unsetQuestion();

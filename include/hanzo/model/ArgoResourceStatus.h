@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -54,36 +54,57 @@ public:
     /// ArgoResourceStatus members
 
 
+    /// <summary>
+    /// Group is the object&#39;s API group: empty for the core group (Pod, Service, ConfigMap), otherwise apps, networking.k8s.io, autoscaling or policy — and hanzo.ai for the App CR itself.
+    /// </summary>
     utility::string_t getGroup() const;
     bool groupIsSet() const;
     void unsetGroup();
     void setGroup(const utility::string_t& value);
 
+    /// <summary>
+    /// Health is this object&#39;s own health, derived from its live state by the same rule the resource tree uses.
+    /// </summary>
     std::shared_ptr<ArgoHealth> getHealth() const;
     bool healthIsSet() const;
     void unsetHealth();
     void setHealth(const std::shared_ptr<ArgoHealth>& value);
 
+    /// <summary>
+    /// Kind is the object kind — App, Deployment, ReplicaSet, Pod, Service, Ingress, HorizontalPodAutoscaler, PodDisruptionBudget, ConfigMap. Never Secret: the walk that produces these does not visit them.
+    /// </summary>
     utility::string_t getKind() const;
     bool kindIsSet() const;
     void unsetKind();
     void setKind(const utility::string_t& value);
 
+    /// <summary>
+    /// Name is the object&#39;s metadata.name.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
+    /// <summary>
+    /// Namespace is the namespace the object was found in — the same one for every entry of an application, since the walk is confined to it.
+    /// </summary>
     utility::string_t getRNamespace() const;
     bool rNamespaceIsSet() const;
     void unsetr_namespace();
     void setRNamespace(const utility::string_t& value);
 
+    /// <summary>
+    /// Status is the APPLICATION&#39;s sync verdict repeated on every row, not a per-object one. The operator owns these children, so no child has a desired state of its own to compare against.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
+    /// <summary>
+    /// Version is the object&#39;s API version as the live object reports it: v1 for every kind here except the HorizontalPodAutoscaler, which is autoscaling/v2.
+    /// </summary>
     utility::string_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();

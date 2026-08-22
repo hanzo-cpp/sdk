@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -56,31 +56,49 @@ public:
     /// TransitionResult members
 
 
+    /// <summary>
+    /// Distribution is the channel fan-out this move triggered. Present ONLY on the move to published, the single edge that distributes — so its absence means no fan-out was attempted, never that one failed quietly. A fan-out that DID fail is present carrying its own honest status, because distribution never rolls the status change back.
+    /// </summary>
     std::shared_ptr<PublishResult> getDistribution() const;
     bool distributionIsSet() const;
     void unsetDistribution();
     void setDistribution(const std::shared_ptr<PublishResult>& value);
 
+    /// <summary>
+    /// DocType is the content type that moved — Campaign, SocialPost or Asset — echoed from the path.
+    /// </summary>
     utility::string_t getDoctype() const;
     bool doctypeIsSet() const;
     void unsetDoctype();
     void setDoctype(const utility::string_t& value);
 
+    /// <summary>
+    /// From is the state the item held when it was read. A document carrying no status yet reads as \&quot;draft\&quot;.
+    /// </summary>
     utility::string_t getFrom() const;
     bool fromIsSet() const;
     void unsetFrom();
     void setFrom(const utility::string_t& value);
 
+    /// <summary>
+    /// Name is the document that moved, echoed from the path.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
+    /// <summary>
+    /// Storefront is the catalog side effect, present only when a published Asset was product imagery — it carries a design and a kind of ecom, product or lifestyle. Absent for everything else, so absence reads as \&quot;not catalog imagery\&quot; rather than \&quot;the catalog failed\&quot;.
+    /// </summary>
     std::shared_ptr<StorefrontResult> getStorefront() const;
     bool storefrontIsSet() const;
     void unsetStorefront();
     void setStorefront(const std::shared_ptr<StorefrontResult>& value);
 
+    /// <summary>
+    /// To is the state it holds now. From &#x3D;&#x3D; To on an idempotent re-transition, which is legal and is where a caller that lost a publish race lands.
+    /// </summary>
     utility::string_t getTo() const;
     bool toIsSet() const;
     void unsetTo();

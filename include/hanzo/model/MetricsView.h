@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -65,6 +65,9 @@ public:
     void unsetRange();
     void setRange(const utility::string_t& value);
 
+    /// <summary>
+    /// Resource is the Resource Usage panel&#39;s rollup, and every field of it is currently null — see resourceUsage. It is present rather than omitted so a panel renders \&quot;—\&quot; instead of guessing.
+    /// </summary>
     std::shared_ptr<ResourceUsage> getResource() const;
     bool resourceIsSet() const;
     void unsetResource();

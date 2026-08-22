@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -59,31 +59,49 @@ public:
     /// OverviewView members
 
 
+    /// <summary>
+    /// Custom is true when the org replaced the shared playbook with one of its own — the difference between \&quot;everyone&#39;s checklist\&quot; and \&quot;the one you authored\&quot;.
+    /// </summary>
     bool isCustom() const;
     bool customIsSet() const;
     void unsetCustom();
     void setCustom(bool value);
 
+    /// <summary>
+    /// Funnel is the org&#39;s analytics lens, present only where the read asked for it — absent means it was not requested, never that the org has no traffic.
+    /// </summary>
     std::shared_ptr<Funnel> getFunnel() const;
     bool funnelIsSet() const;
     void unsetFunnel();
     void setFunnel(const std::shared_ptr<Funnel>& value);
 
+    /// <summary>
+    /// Progress is how far through the journey the org is.
+    /// </summary>
     std::shared_ptr<ProgressView> getProgress() const;
     bool progressIsSet() const;
     void unsetProgress();
     void setProgress(const std::shared_ptr<ProgressView>& value);
 
+    /// <summary>
+    /// Steps are every enabled step with the org&#39;s own state folded in, in authoring order.
+    /// </summary>
     std::vector<std::shared_ptr<StepView>> getSteps() const;
     bool stepsIsSet() const;
     void unsetSteps();
     void setSteps(const std::vector<std::shared_ptr<StepView>>& value);
 
+    /// <summary>
+    /// Title is the playbook&#39;s name as it heads the checklist.
+    /// </summary>
     utility::string_t getTitle() const;
     bool titleIsSet() const;
     void unsetTitle();
     void setTitle(const utility::string_t& value);
 
+    /// <summary>
+    /// Version identifies the playbook this journey came from, so a caller can tell that the checklist itself changed under them.
+    /// </summary>
     utility::string_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();

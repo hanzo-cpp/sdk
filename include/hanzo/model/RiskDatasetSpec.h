@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -70,7 +70,7 @@ public:
     void setDims(const std::vector<utility::string_t>& value);
 
     /// <summary>
-    /// From and To bound the event window, half-open, RFC 3339. The window may not be longer than the source&#39;s own retention: past that, its older half is already gone and the dataset would silently be shorter than it says.
+    /// From is where the event window opens, RFC 3339, INCLUSIVE. The window may not be longer than the source&#39;s own retention: past that, its older half is already gone and the dataset would silently be shorter than it says.
     /// </summary>
     utility::string_t getFrom() const;
     bool fromIsSet() const;
@@ -117,6 +117,9 @@ public:
     void unsetSeed();
     void setSeed(const utility::string_t& value);
 
+    /// <summary>
+    /// To is where the window ends, EXCLUSIVE, so two datasets meeting at one instant share no row. A materialisation reads less than this — the end is pulled back by Horizon, and the lineage reports the window it actually read.
+    /// </summary>
     utility::string_t getTo() const;
     bool toIsSet() const;
     void unsetTo();

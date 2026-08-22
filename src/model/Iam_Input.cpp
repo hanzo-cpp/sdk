@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -18,25 +18,34 @@ namespace model {
 
 Iam_Input::Iam_Input()
 {
+    m_Action = utility::conversions::to_string_t("");
+    m_ActionIsSet = false;
+    m_ClientIp = utility::conversions::to_string_t("");
+    m_ClientIpIsSet = false;
     m_CreatedTime = utility::conversions::to_string_t("");
     m_CreatedTimeIsSet = false;
-    m_Description = utility::conversions::to_string_t("");
-    m_DescriptionIsSet = false;
-    m_DisplayName = utility::conversions::to_string_t("");
-    m_DisplayNameIsSet = false;
-    m_IsDefault = false;
-    m_IsDefaultIsSet = false;
-    m_Metadata = utility::conversions::to_string_t("");
-    m_MetadataIsSet = false;
+    m_IsTriggered = false;
+    m_IsTriggeredIsSet = false;
+    m_Language = utility::conversions::to_string_t("");
+    m_LanguageIsSet = false;
+    m_Method = utility::conversions::to_string_t("");
+    m_MethodIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
+    m_object = utility::conversions::to_string_t("");
+    m_objectIsSet = false;
     m_Organization = utility::conversions::to_string_t("");
     m_OrganizationIsSet = false;
     m_Owner = utility::conversions::to_string_t("");
     m_OwnerIsSet = false;
-    m_TagsIsSet = false;
-    m_Workspace = utility::conversions::to_string_t("");
-    m_WorkspaceIsSet = false;
+    m_RequestUri = utility::conversions::to_string_t("");
+    m_RequestUriIsSet = false;
+    m_Response = utility::conversions::to_string_t("");
+    m_ResponseIsSet = false;
+    m_StatusCode = 0;
+    m_StatusCodeIsSet = false;
+    m_User = utility::conversions::to_string_t("");
+    m_UserIsSet = false;
 }
 
 Iam_Input::~Iam_Input()
@@ -51,35 +60,45 @@ void Iam_Input::validate()
 web::json::value Iam_Input::toJson() const
 {
     web::json::value val = web::json::value::object();
+    if(m_ActionIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("action"))] = ModelBase::toJson(m_Action);
+    }
+    if(m_ClientIpIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("clientIp"))] = ModelBase::toJson(m_ClientIp);
+    }
     if(m_CreatedTimeIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("createdTime"))] = ModelBase::toJson(m_CreatedTime);
     }
-    if(m_DescriptionIsSet)
+    if(m_IsTriggeredIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("description"))] = ModelBase::toJson(m_Description);
+        val[utility::conversions::to_string_t(_XPLATSTR("isTriggered"))] = ModelBase::toJson(m_IsTriggered);
     }
-    if(m_DisplayNameIsSet)
+    if(m_LanguageIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("displayName"))] = ModelBase::toJson(m_DisplayName);
+        val[utility::conversions::to_string_t(_XPLATSTR("language"))] = ModelBase::toJson(m_Language);
     }
-    if(m_IsDefaultIsSet)
+    if(m_MethodIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("isDefault"))] = ModelBase::toJson(m_IsDefault);
-    }
-    if(m_MetadataIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("metadata"))] = ModelBase::toJson(m_Metadata);
+        val[utility::conversions::to_string_t(_XPLATSTR("method"))] = ModelBase::toJson(m_Method);
     }
     if(m_NameIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("name"))] = ModelBase::toJson(m_Name);
+    }
+    if(m_objectIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("object"))] = ModelBase::toJson(m_object);
     }
     if(m_OrganizationIsSet)
     {
@@ -91,15 +110,25 @@ web::json::value Iam_Input::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("owner"))] = ModelBase::toJson(m_Owner);
     }
-    if(m_TagsIsSet)
+    if(m_RequestUriIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("tags"))] = ModelBase::toJson(m_Tags);
+        val[utility::conversions::to_string_t(_XPLATSTR("requestUri"))] = ModelBase::toJson(m_RequestUri);
     }
-    if(m_WorkspaceIsSet)
+    if(m_ResponseIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("workspace"))] = ModelBase::toJson(m_Workspace);
+        val[utility::conversions::to_string_t(_XPLATSTR("response"))] = ModelBase::toJson(m_Response);
+    }
+    if(m_StatusCodeIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("statusCode"))] = ModelBase::toJson(m_StatusCode);
+    }
+    if(m_UserIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("user"))] = ModelBase::toJson(m_User);
     }
 
     return val;
@@ -108,6 +137,28 @@ web::json::value Iam_Input::toJson() const
 bool Iam_Input::fromJson(const web::json::value& val)
 {
     bool ok = true;
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("action"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("action")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setAction;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setAction);
+            setAction(refVal_setAction);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("clientIp"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("clientIp")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setClientIp;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setClientIp);
+            setClientIp(refVal_setClientIp);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("createdTime"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdTime")));
@@ -119,47 +170,36 @@ bool Iam_Input::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("description"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("isTriggered"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("description")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("isTriggered")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setDescription;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setDescription);
-            setDescription(refVal_setDescription);
+            bool refVal_setIsTriggered;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setIsTriggered);
+            setIsTriggered(refVal_setIsTriggered);
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("displayName"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("language"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("displayName")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("language")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setDisplayName;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setDisplayName);
-            setDisplayName(refVal_setDisplayName);
+            utility::string_t refVal_setLanguage;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setLanguage);
+            setLanguage(refVal_setLanguage);
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("isDefault"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("method"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("isDefault")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("method")));
         if(!fieldValue.is_null())
         {
-            bool refVal_setIsDefault;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setIsDefault);
-            setIsDefault(refVal_setIsDefault);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("metadata"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("metadata")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setMetadata;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setMetadata);
-            setMetadata(refVal_setMetadata);
+            utility::string_t refVal_setMethod;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setMethod);
+            setMethod(refVal_setMethod);
             
         }
     }
@@ -171,6 +211,17 @@ bool Iam_Input::fromJson(const web::json::value& val)
             utility::string_t refVal_setName;
             ok &= ModelBase::fromJson(fieldValue, refVal_setName);
             setName(refVal_setName);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("object"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("object")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setObject;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setObject);
+            setObject(refVal_setObject);
             
         }
     }
@@ -196,25 +247,47 @@ bool Iam_Input::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("tags"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("requestUri"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tags")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("requestUri")));
         if(!fieldValue.is_null())
         {
-            std::vector<utility::string_t> refVal_setTags;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTags);
-            setTags(refVal_setTags);
+            utility::string_t refVal_setRequestUri;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setRequestUri);
+            setRequestUri(refVal_setRequestUri);
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("workspace"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("response"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("workspace")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("response")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setWorkspace;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setWorkspace);
-            setWorkspace(refVal_setWorkspace);
+            utility::string_t refVal_setResponse;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setResponse);
+            setResponse(refVal_setResponse);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("statusCode"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("statusCode")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setStatusCode;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setStatusCode);
+            setStatusCode(refVal_setStatusCode);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("user"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("user")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setUser;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setUser);
+            setUser(refVal_setUser);
             
         }
     }
@@ -228,29 +301,37 @@ void Iam_Input::toMultipart(std::shared_ptr<MultipartFormData> multipart, const 
     {
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
+    if(m_ActionIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("action")), m_Action));
+    }
+    if(m_ClientIpIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("clientIp")), m_ClientIp));
+    }
     if(m_CreatedTimeIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("createdTime")), m_CreatedTime));
     }
-    if(m_DescriptionIsSet)
+    if(m_IsTriggeredIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("description")), m_Description));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("isTriggered")), m_IsTriggered));
     }
-    if(m_DisplayNameIsSet)
+    if(m_LanguageIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("displayName")), m_DisplayName));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("language")), m_Language));
     }
-    if(m_IsDefaultIsSet)
+    if(m_MethodIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("isDefault")), m_IsDefault));
-    }
-    if(m_MetadataIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("metadata")), m_Metadata));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("method")), m_Method));
     }
     if(m_NameIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("name")), m_Name));
+    }
+    if(m_objectIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("object")), m_object));
     }
     if(m_OrganizationIsSet)
     {
@@ -260,13 +341,21 @@ void Iam_Input::toMultipart(std::shared_ptr<MultipartFormData> multipart, const 
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("owner")), m_Owner));
     }
-    if(m_TagsIsSet)
+    if(m_RequestUriIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("tags")), m_Tags));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("requestUri")), m_RequestUri));
     }
-    if(m_WorkspaceIsSet)
+    if(m_ResponseIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("workspace")), m_Workspace));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("response")), m_Response));
+    }
+    if(m_StatusCodeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("statusCode")), m_StatusCode));
+    }
+    if(m_UserIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("user")), m_User));
     }
 }
 
@@ -279,41 +368,53 @@ bool Iam_Input::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
 
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("action"))))
+    {
+        utility::string_t refVal_setAction;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("action"))), refVal_setAction );
+        setAction(refVal_setAction);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("clientIp"))))
+    {
+        utility::string_t refVal_setClientIp;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("clientIp"))), refVal_setClientIp );
+        setClientIp(refVal_setClientIp);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdTime"))))
     {
         utility::string_t refVal_setCreatedTime;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdTime"))), refVal_setCreatedTime );
         setCreatedTime(refVal_setCreatedTime);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("description"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("isTriggered"))))
     {
-        utility::string_t refVal_setDescription;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("description"))), refVal_setDescription );
-        setDescription(refVal_setDescription);
+        bool refVal_setIsTriggered;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("isTriggered"))), refVal_setIsTriggered );
+        setIsTriggered(refVal_setIsTriggered);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("displayName"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("language"))))
     {
-        utility::string_t refVal_setDisplayName;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("displayName"))), refVal_setDisplayName );
-        setDisplayName(refVal_setDisplayName);
+        utility::string_t refVal_setLanguage;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("language"))), refVal_setLanguage );
+        setLanguage(refVal_setLanguage);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("isDefault"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("method"))))
     {
-        bool refVal_setIsDefault;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("isDefault"))), refVal_setIsDefault );
-        setIsDefault(refVal_setIsDefault);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("metadata"))))
-    {
-        utility::string_t refVal_setMetadata;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("metadata"))), refVal_setMetadata );
-        setMetadata(refVal_setMetadata);
+        utility::string_t refVal_setMethod;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("method"))), refVal_setMethod );
+        setMethod(refVal_setMethod);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("name"))))
     {
         utility::string_t refVal_setName;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("name"))), refVal_setName );
         setName(refVal_setName);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("object"))))
+    {
+        utility::string_t refVal_setObject;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("object"))), refVal_setObject );
+        setObject(refVal_setObject);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("organization"))))
     {
@@ -327,22 +428,76 @@ bool Iam_Input::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("owner"))), refVal_setOwner );
         setOwner(refVal_setOwner);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tags"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("requestUri"))))
     {
-        std::vector<utility::string_t> refVal_setTags;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("tags"))), refVal_setTags );
-        setTags(refVal_setTags);
+        utility::string_t refVal_setRequestUri;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("requestUri"))), refVal_setRequestUri );
+        setRequestUri(refVal_setRequestUri);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("workspace"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("response"))))
     {
-        utility::string_t refVal_setWorkspace;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("workspace"))), refVal_setWorkspace );
-        setWorkspace(refVal_setWorkspace);
+        utility::string_t refVal_setResponse;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("response"))), refVal_setResponse );
+        setResponse(refVal_setResponse);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("statusCode"))))
+    {
+        int32_t refVal_setStatusCode;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("statusCode"))), refVal_setStatusCode );
+        setStatusCode(refVal_setStatusCode);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("user"))))
+    {
+        utility::string_t refVal_setUser;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("user"))), refVal_setUser );
+        setUser(refVal_setUser);
     }
     return ok;
 }
 
 
+utility::string_t Iam_Input::getAction() const
+{
+    return m_Action;
+}
+
+
+void Iam_Input::setAction(const utility::string_t& value)
+{
+    m_Action = value;
+    m_ActionIsSet = true;
+}
+
+bool Iam_Input::actionIsSet() const
+{
+    return m_ActionIsSet;
+}
+
+void Iam_Input::unsetAction()
+{
+    m_ActionIsSet = false;
+}
+utility::string_t Iam_Input::getClientIp() const
+{
+    return m_ClientIp;
+}
+
+
+void Iam_Input::setClientIp(const utility::string_t& value)
+{
+    m_ClientIp = value;
+    m_ClientIpIsSet = true;
+}
+
+bool Iam_Input::clientIpIsSet() const
+{
+    return m_ClientIpIsSet;
+}
+
+void Iam_Input::unsetClientIp()
+{
+    m_ClientIpIsSet = false;
+}
 utility::string_t Iam_Input::getCreatedTime() const
 {
     return m_CreatedTime;
@@ -364,89 +519,68 @@ void Iam_Input::unsetCreatedTime()
 {
     m_CreatedTimeIsSet = false;
 }
-utility::string_t Iam_Input::getDescription() const
+bool Iam_Input::isIsTriggered() const
 {
-    return m_Description;
+    return m_IsTriggered;
 }
 
 
-void Iam_Input::setDescription(const utility::string_t& value)
+void Iam_Input::setIsTriggered(bool value)
 {
-    m_Description = value;
-    m_DescriptionIsSet = true;
+    m_IsTriggered = value;
+    m_IsTriggeredIsSet = true;
 }
 
-bool Iam_Input::descriptionIsSet() const
+bool Iam_Input::isTriggeredIsSet() const
 {
-    return m_DescriptionIsSet;
+    return m_IsTriggeredIsSet;
 }
 
-void Iam_Input::unsetDescription()
+void Iam_Input::unsetIsTriggered()
 {
-    m_DescriptionIsSet = false;
+    m_IsTriggeredIsSet = false;
 }
-utility::string_t Iam_Input::getDisplayName() const
+utility::string_t Iam_Input::getLanguage() const
 {
-    return m_DisplayName;
-}
-
-
-void Iam_Input::setDisplayName(const utility::string_t& value)
-{
-    m_DisplayName = value;
-    m_DisplayNameIsSet = true;
-}
-
-bool Iam_Input::displayNameIsSet() const
-{
-    return m_DisplayNameIsSet;
-}
-
-void Iam_Input::unsetDisplayName()
-{
-    m_DisplayNameIsSet = false;
-}
-bool Iam_Input::isIsDefault() const
-{
-    return m_IsDefault;
+    return m_Language;
 }
 
 
-void Iam_Input::setIsDefault(bool value)
+void Iam_Input::setLanguage(const utility::string_t& value)
 {
-    m_IsDefault = value;
-    m_IsDefaultIsSet = true;
+    m_Language = value;
+    m_LanguageIsSet = true;
 }
 
-bool Iam_Input::isDefaultIsSet() const
+bool Iam_Input::languageIsSet() const
 {
-    return m_IsDefaultIsSet;
+    return m_LanguageIsSet;
 }
 
-void Iam_Input::unsetIsDefault()
+void Iam_Input::unsetLanguage()
 {
-    m_IsDefaultIsSet = false;
+    m_LanguageIsSet = false;
 }
-utility::string_t Iam_Input::getMetadata() const
+utility::string_t Iam_Input::getMethod() const
 {
-    return m_Metadata;
-}
-
-
-void Iam_Input::setMetadata(const utility::string_t& value)
-{
-    m_Metadata = value;
-    m_MetadataIsSet = true;
+    return m_Method;
 }
 
-bool Iam_Input::metadataIsSet() const
+
+void Iam_Input::setMethod(const utility::string_t& value)
 {
-    return m_MetadataIsSet;
+    m_Method = value;
+    m_MethodIsSet = true;
 }
 
-void Iam_Input::unsetMetadata()
+bool Iam_Input::methodIsSet() const
 {
-    m_MetadataIsSet = false;
+    return m_MethodIsSet;
+}
+
+void Iam_Input::unsetMethod()
+{
+    m_MethodIsSet = false;
 }
 utility::string_t Iam_Input::getName() const
 {
@@ -468,6 +602,27 @@ bool Iam_Input::nameIsSet() const
 void Iam_Input::unsetName()
 {
     m_NameIsSet = false;
+}
+utility::string_t Iam_Input::getObject() const
+{
+    return m_object;
+}
+
+
+void Iam_Input::setObject(const utility::string_t& value)
+{
+    m_object = value;
+    m_objectIsSet = true;
+}
+
+bool Iam_Input::objectIsSet() const
+{
+    return m_objectIsSet;
+}
+
+void Iam_Input::unsetobject()
+{
+    m_objectIsSet = false;
 }
 utility::string_t Iam_Input::getOrganization() const
 {
@@ -511,47 +666,89 @@ void Iam_Input::unsetOwner()
 {
     m_OwnerIsSet = false;
 }
-std::vector<utility::string_t> Iam_Input::getTags() const
+utility::string_t Iam_Input::getRequestUri() const
 {
-    return m_Tags;
+    return m_RequestUri;
 }
 
 
-void Iam_Input::setTags(const std::vector<utility::string_t>& value)
+void Iam_Input::setRequestUri(const utility::string_t& value)
 {
-    m_Tags = value;
-    m_TagsIsSet = true;
+    m_RequestUri = value;
+    m_RequestUriIsSet = true;
 }
 
-bool Iam_Input::tagsIsSet() const
+bool Iam_Input::requestUriIsSet() const
 {
-    return m_TagsIsSet;
+    return m_RequestUriIsSet;
 }
 
-void Iam_Input::unsetTags()
+void Iam_Input::unsetRequestUri()
 {
-    m_TagsIsSet = false;
+    m_RequestUriIsSet = false;
 }
-utility::string_t Iam_Input::getWorkspace() const
+utility::string_t Iam_Input::getResponse() const
 {
-    return m_Workspace;
+    return m_Response;
+}
+
+
+void Iam_Input::setResponse(const utility::string_t& value)
+{
+    m_Response = value;
+    m_ResponseIsSet = true;
+}
+
+bool Iam_Input::responseIsSet() const
+{
+    return m_ResponseIsSet;
+}
+
+void Iam_Input::unsetResponse()
+{
+    m_ResponseIsSet = false;
+}
+int32_t Iam_Input::getStatusCode() const
+{
+    return m_StatusCode;
 }
 
 
-void Iam_Input::setWorkspace(const utility::string_t& value)
+void Iam_Input::setStatusCode(int32_t value)
 {
-    m_Workspace = value;
-    m_WorkspaceIsSet = true;
+    m_StatusCode = value;
+    m_StatusCodeIsSet = true;
 }
 
-bool Iam_Input::workspaceIsSet() const
+bool Iam_Input::statusCodeIsSet() const
 {
-    return m_WorkspaceIsSet;
+    return m_StatusCodeIsSet;
 }
 
-void Iam_Input::unsetWorkspace()
+void Iam_Input::unsetStatusCode()
 {
-    m_WorkspaceIsSet = false;
+    m_StatusCodeIsSet = false;
+}
+utility::string_t Iam_Input::getUser() const
+{
+    return m_User;
+}
+
+
+void Iam_Input::setUser(const utility::string_t& value)
+{
+    m_User = value;
+    m_UserIsSet = true;
+}
+
+bool Iam_Input::userIsSet() const
+{
+    return m_UserIsSet;
+}
+
+void Iam_Input::unsetUser()
+{
+    m_UserIsSet = false;
 }
 
 }

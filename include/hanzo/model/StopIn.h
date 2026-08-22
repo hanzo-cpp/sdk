@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,6 +52,9 @@ public:
     /// StopIn members
 
 
+    /// <summary>
+    /// ID is the sandbox to interrupt, from an earlier lease. Every command running in it stops; the lease itself survives, so the checkout and the half-written files are still there to read. Use EndIn to give the computer back.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();

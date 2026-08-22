@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,49 +52,73 @@ public:
     /// GpuView members
 
 
+    /// <summary>
+    /// ID is the card&#39;s address: its host machine&#39;s id, \&quot;#\&quot;, and the card&#39;s ordinal within that machine (\&quot;gpu-1#0\&quot;). Stable for as long as the machine is, and the only id a single accelerator has — providers do not name cards.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
+    /// <summary>
+    /// Location is where the card physically sits, which for every source today is the same value Region carries — the console renders it in its own column.
+    /// </summary>
     utility::string_t getLocation() const;
     bool locationIsSet() const;
     void unsetLocation();
     void setLocation(const utility::string_t& value);
 
+    /// <summary>
+    /// Machine is the id of the machine holding this card, addressable as-is on /v1/visor/machines/:id.
+    /// </summary>
     utility::string_t getMachine() const;
     bool machineIsSet() const;
     void unsetMachine();
     void setMachine(const utility::string_t& value);
 
+    /// <summary>
+    /// Memory is the card&#39;s VRAM as its own tooling reported it (\&quot;122880 MiB\&quot;) — a display string in the reporter&#39;s units, not a byte count. BYO cards carry it (nvidia-smi); Visor&#39;s machine object states no VRAM, so a rented card leaves it empty and the console renders \&quot;—\&quot; rather than a fabricated 0.
+    /// </summary>
     utility::string_t getMemory() const;
     bool memoryIsSet() const;
     void unsetMemory();
     void setMemory(const utility::string_t& value);
 
+    /// <summary>
+    /// Model is the accelerator: the model token read out of the size slug for a Visor GPU droplet (\&quot;H100\&quot;, \&quot;MI300X\&quot;), or the name nvidia-smi reported for a BYO card (\&quot;NVIDIA GB10\&quot;).
+    /// </summary>
     utility::string_t getModel() const;
     bool modelIsSet() const;
     void unsetModel();
     void setModel(const utility::string_t& value);
 
+    /// <summary>
+    /// Name is the HOST MACHINE&#39;s display name, not the card&#39;s — every card in a gpu-h100x8 node repeats it. Model is what says which accelerator this is.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
     /// <summary>
-    /// Provider distinguishes a BYO accelerator (\&quot;byo\&quot;) from a Visor-provisioned one (the machine&#39;s real provider). Memory is VRAM when known (BYO reports it from nvidia-smi; Visor&#39;s machine object carries none, so it stays empty and the UI renders \&quot;—\&quot;). Both are additive + omitempty: existing rows are unaffected and the console normalizer ignores fields it does not read.
+    /// Provider distinguishes a BYO accelerator (\&quot;byo\&quot;) from a Visor-provisioned one (the host machine&#39;s real provider). It is what tells a card the org owns from a card the org rents.
     /// </summary>
     utility::string_t getProvider() const;
     bool providerIsSet() const;
     void unsetProvider();
     void setProvider(const utility::string_t& value);
 
+    /// <summary>
+    /// Region is the host machine&#39;s provider region slug; \&quot;on-prem\&quot; for a BYO card.
+    /// </summary>
     utility::string_t getRegion() const;
     bool regionIsSet() const;
     void unsetRegion();
     void setRegion(const utility::string_t& value);
 
+    /// <summary>
+    /// Status is the HOST MACHINE&#39;s lifecycle state, because nothing upstream reports a card&#39;s own health. A card reads running because its machine does.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();

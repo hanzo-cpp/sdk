@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -53,11 +53,17 @@ public:
     /// ControlCommandView members
 
 
+    /// <summary>
+    /// Command is what was asked, from a closed four: pause, resume, stop, message. It is an INTENT — the poller decides what to do about it, and the session&#39;s status changes only when the poller reports back that it did.
+    /// </summary>
     utility::string_t getCommand() const;
     bool commandIsSet() const;
     void unsetCommand();
     void setCommand(const utility::string_t& value);
 
+    /// <summary>
+    /// Message is the text that came with the command: what to say into the run for &#x60;message&#x60;, and the cancellation reason for &#x60;stop&#x60;. Up to 16 KiB. Empty on a bare pause or resume.
+    /// </summary>
     utility::string_t getMessage() const;
     bool messageIsSet() const;
     void unsetMessage();
@@ -68,6 +74,9 @@ public:
     void unsetPayload();
     void setPayload(const std::shared_ptr<AnyType>& value);
 
+    /// <summary>
+    /// Seq is this command&#39;s position in the session&#39;s log — the same monotonic number every other turn is ordered by, so a command sits in the transcript where it was issued. Send the highest one you applied back as &#x60;after&#x60; and it is never redelivered.
+    /// </summary>
     int32_t getSeq() const;
     bool seqIsSet() const;
     void unsetSeq();

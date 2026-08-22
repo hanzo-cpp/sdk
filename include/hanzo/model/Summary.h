@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -51,16 +51,25 @@ public:
     /// Summary members
 
 
+    /// <summary>
+    /// Calls is how many calls this org has placed or received, over its whole history — a running total, not a window.
+    /// </summary>
     int32_t getCalls() const;
     bool callsIsSet() const;
     void unsetCalls();
     void setCalls(int32_t value);
 
+    /// <summary>
+    /// Messages is the same running total for messages.
+    /// </summary>
     int32_t getMessages() const;
     bool messagesIsSet() const;
     void unsetMessages();
     void setMessages(int32_t value);
 
+    /// <summary>
+    /// Numbers is how many numbers this org holds right now.
+    /// </summary>
     int32_t getNumbers() const;
     bool numbersIsSet() const;
     void unsetNumbers();

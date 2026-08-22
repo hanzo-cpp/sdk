@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -24,11 +24,15 @@
 
 #include "hanzo/model/Admission.h"
 #include "hanzo/model/BenchmarkCatalog.h"
+#include "hanzo/model/ClaimsOut.h"
+#include "hanzo/model/HistoryOut.h"
 #include "hanzo/model/Leaderboard.h"
 #include "hanzo/model/Pairing.h"
 #include "hanzo/model/Preset.h"
 #include "hanzo/model/PresetAccepted.h"
 #include "hanzo/model/PresetList.h"
+#include "hanzo/model/PutClaimsIn.h"
+#include "hanzo/model/PutClaimsOut.h"
 #include "hanzo/model/Suite.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -57,6 +61,24 @@ public:
     pplx::task<std::shared_ptr<BenchmarkCatalog>> getBenchmarkCatalog(
     ) const;
     /// <summary>
+    /// Lists the effective published claims: what the leaderboard will use for each (benchmark, model) after the seed, the import and any stored correction are layered.
+    /// </summary>
+    /// <remarks>
+    /// Lists the effective published claims: what the leaderboard will use for each (benchmark, model) after the seed, the import and any stored correction are layered. It answers the operator&#39;s question — what does this arena currently believe someone else reported, and did we ship that or fix it.  Effective values only. The history of a key lives in the append-only file and is not what this op is for; a list that returned every superseded row would make the common question the hard one.
+    /// </remarks>
+    /// <param name="benchmark">Benchmark filters to one benchmark id. Empty returns every benchmark. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="model">Model filters to one model. Empty returns every model. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="provider">Provider filters to one lab or leaderboard — the way to read what a single source claims across every model it covers. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="source">Source filters to one citation, which is the finest grain there is: a source is what makes two claims about one model independent rather than a restatement of each other. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="protocol">Protocol filters by HOW a claim was scored, so provider cards can be read apart from third parties running their own harness. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<ClaimsOut>> getBenchmarkClaims(
+        boost::optional<utility::string_t> benchmark,
+        boost::optional<utility::string_t> model,
+        boost::optional<utility::string_t> provider,
+        boost::optional<utility::string_t> source,
+        boost::optional<utility::string_t> protocol
+    ) const;
+    /// <summary>
     /// Is the ONLY valid arm-vs-arm test: it pairs the two models on the items BOTH completed, and answers rescue and damage counts with an exact-McNemar p.
     /// </summary>
     /// <remarks>
@@ -69,6 +91,18 @@ public:
         utility::string_t a,
         utility::string_t b,
         boost::optional<utility::string_t> benchmark
+    ) const;
+    /// <summary>
+    /// Returns each model&#39;s measured score per run over time, oldest first, with the change between runs.
+    /// </summary>
+    /// <remarks>
+    /// Returns each model&#39;s measured score per run over time, oldest first, with the change between runs.  This is the counterweight to a leaderboard: the board shows the latest run because that is what \&quot;how good is it\&quot; means, and a single latest number cannot distinguish a model that has always been strong from one that just improved, or from one that regressed after a provider changed something. Both matter for routing, and only one of them is visible on a board.  Runs with no id — attempts recorded before runs existed — group under the empty run, which is honestly what they are: one undated measurement.
+    /// </remarks>
+    /// <param name="benchmark">Benchmark is the catalog id to read, defaulting to gpqa_diamond. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="model">Model filters to one model. Empty returns every model measured. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<HistoryOut>> getBenchmarkHistory(
+        boost::optional<utility::string_t> benchmark,
+        boost::optional<utility::string_t> model
     ) const;
     /// <summary>
     /// Answers one row per model for the benchmark named — what our own harness measured, beside what the vendor claims, and the gap between them.
@@ -87,6 +121,16 @@ public:
     /// Are the router blends available to compose from — a named set of model arms, the rank they escalate through and the panel width that bounds fan-out — each served by the model layer as enso-&lt;name&gt;.  Today it answers exactly one row, the reference blend: a worked example written in models we name, published as an example of the FORM. It is deliberately not the composition of a Hanzo-served tier — the tier name exists to abstract that — so fork it and swap arms by what the leaderboard measures on your own tasks rather than reading it as a disclosure.
     /// </remarks>
     pplx::task<std::shared_ptr<PresetList>> getBenchmarkPresets(
+    ) const;
+    /// <summary>
+    /// Records published claims: one to correct a number, many to import a leaderboard.
+    /// </summary>
+    /// <remarks>
+    /// Records published claims: one to correct a number, many to import a leaderboard. Every row must carry a Source, because a claim without its citation is a number nobody can check — and an unattributed number in the published plane is indistinguishable from a measurement, which is the one confusion this whole surface is built to prevent.  Writes are append-only, so this never destroys the value it replaces. A vendor restating a score leaves both rows on disk, which is how the restating itself becomes visible.
+    /// </remarks>
+    /// <param name="putClaimsIn"></param>
+    pplx::task<std::shared_ptr<PutClaimsOut>> postBenchmarkClaims(
+        std::shared_ptr<PutClaimsIn> putClaimsIn
     ) const;
     /// <summary>
     /// Validates a router blend — its name, its arms, the rank they escalate through and the panel fan-out width — and answers 202 with the preset and the enso-&lt;name&gt; it would be served as.

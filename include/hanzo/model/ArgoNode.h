@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -59,6 +59,9 @@ public:
     /// ArgoNode members
 
 
+    /// <summary>
+    /// CreatedAt is the object&#39;s creationTimestamp, RFC 3339 UTC to the second. Absent when the object carries none.
+    /// </summary>
     utility::string_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
@@ -69,16 +72,25 @@ public:
     void unsetGroup();
     void setGroup(const utility::string_t& value);
 
+    /// <summary>
+    /// Health is the node&#39;s own derived health. Always present on a node of this tree; a kind with no health signal of its own reports Healthy, since a ConfigMap existing IS its healthy state.
+    /// </summary>
     std::shared_ptr<ArgoHealth> getHealth() const;
     bool healthIsSet() const;
     void unsetHealth();
     void setHealth(const std::shared_ptr<ArgoHealth>& value);
 
+    /// <summary>
+    /// Images are the container images running on this node. Always absent — the tag travels as the \&quot;Image Tag\&quot; chip in Info instead, which is where the SPA reads it on a node.
+    /// </summary>
     std::vector<utility::string_t> getImages() const;
     bool imagesIsSet() const;
     void unsetImages();
     void setImages(const std::vector<utility::string_t>& value);
 
+    /// <summary>
+    /// Info are the chips shown on the node. At most one: the image tag — the RUNNING tag on a Deployment, ReplicaSet or Pod, and the DECLARED tag on the App CR at the root. Absent on a node that carries no image at all.
+    /// </summary>
     std::vector<std::shared_ptr<ArgoInfoItem>> getInfo() const;
     bool infoIsSet() const;
     void unsetInfo();
@@ -99,11 +111,17 @@ public:
     void unsetr_namespace();
     void setRNamespace(const utility::string_t& value);
 
+    /// <summary>
+    /// ParentRefs are the node&#39;s edges UPWARD, which is how the SPA draws the DAG from this flat list. Exactly one entry where present: a depth-1 object points at the App CR, a ReplicaSet at its Deployment, a Pod at its ReplicaSet (or at the Deployment whose selector matches it, when the ReplicaSet is gone). Absent on the root.
+    /// </summary>
     std::vector<std::shared_ptr<ArgoResourceRef>> getParentRefs() const;
     bool parentRefsIsSet() const;
     void unsetParentRefs();
     void setParentRefs(const std::vector<std::shared_ptr<ArgoResourceRef>>& value);
 
+    /// <summary>
+    /// ResourceVersion is the k8s version a watch would resume from. Always empty: the tree is rebuilt from live reads on every request, including on every frame of the SSE stream, so there is no revision to resume from.
+    /// </summary>
     utility::string_t getResourceVersion() const;
     bool resourceVersionIsSet() const;
     void unsetResourceVersion();

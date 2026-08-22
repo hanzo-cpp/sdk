@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -22,7 +22,6 @@
 
 #include "hanzo/ApiClient.h"
 
-#include "hanzo/model/Answer.h"
 #include "hanzo/model/AskAnswer.h"
 #include "hanzo/model/AskPostIn.h"
 #include "hanzo/model/ContextBundle.h"
@@ -30,7 +29,6 @@
 #include "hanzo/model/FileContent.h"
 #include "hanzo/model/IndexIn.h"
 #include "hanzo/model/IndexResult.h"
-#include "hanzo/model/Query.h"
 #include "hanzo/model/RepoTree.h"
 #include "hanzo/model/SearchResults.h"
 #include <cpprest/details/basic_types.h>
@@ -130,56 +128,6 @@ public:
     /// <param name="indexIn"></param>
     pplx::task<std::shared_ptr<IndexResult>> postCodeIndex(
         std::shared_ptr<IndexIn> indexIn
-    ) const;
-    /// <summary>
-    /// Offers the candidates a language server has at a position, typed and resolved through the repository&#39;s dependencies rather than guessed from text.
-    /// </summary>
-    /// <remarks>
-    /// Offers the candidates a language server has at a position, typed and resolved through the repository&#39;s dependencies rather than guessed from text.
-    /// </remarks>
-    /// <param name="query"></param>
-    pplx::task<std::shared_ptr<Answer>> postCodeLspComplete(
-        std::shared_ptr<Query> query
-    ) const;
-    /// <summary>
-    /// Reports every problem the language server finds in one file — compile errors, type errors and lints, each with its span and its severity (1 error, 2 warning, 3 information, 4 hint).
-    /// </summary>
-    /// <remarks>
-    /// Reports every problem the language server finds in one file — compile errors, type errors and lints, each with its span and its severity (1 error, 2 warning, 3 information, 4 hint). The position is ignored.
-    /// </remarks>
-    /// <param name="query"></param>
-    pplx::task<std::shared_ptr<Answer>> postCodeLspDiagnostics(
-        std::shared_ptr<Query> query
-    ) const;
-    /// <summary>
-    /// Renders the type and documentation of the symbol at a position, as the language server itself renders it.
-    /// </summary>
-    /// <remarks>
-    /// Renders the type and documentation of the symbol at a position, as the language server itself renders it.  Positions are the LSP&#39;s: line and character are 0-BASED and character counts UTF-16 code units, so an editor&#39;s 1-based line must have 1 subtracted before it is sent. The repository is named by slug and is always one in the caller&#39;s own org; rev pins a branch, tag or commit sha, and empty means the default branch.
-    /// </remarks>
-    /// <param name="query"></param>
-    pplx::task<std::shared_ptr<Answer>> postCodeLspHover(
-        std::shared_ptr<Query> query
-    ) const;
-    /// <summary>
-    /// Finds where a symbol lives: its definition, its references, its type or its implementations, chosen by relation (definition, reference, type, implementation — empty means definition).
-    /// </summary>
-    /// <remarks>
-    /// Finds where a symbol lives: its definition, its references, its type or its implementations, chosen by relation (definition, reference, type, implementation — empty means definition).  It resolves THROUGH dependencies. An answer whose external flag is set left the repository, and its path is then the module coordinate it landed in — which is the question a static index cannot answer and this service exists for.
-    /// </remarks>
-    /// <param name="query"></param>
-    pplx::task<std::shared_ptr<Answer>> postCodeLspLocate(
-        std::shared_ptr<Query> query
-    ) const;
-    /// <summary>
-    /// Outlines one file: every declaration in it, with its kind and its span.
-    /// </summary>
-    /// <remarks>
-    /// Outlines one file: every declaration in it, with its kind and its span. The position is ignored — the answer is the whole file.
-    /// </remarks>
-    /// <param name="query"></param>
-    pplx::task<std::shared_ptr<Answer>> postCodeLspSymbols(
-        std::shared_ptr<Query> query
     ) const;
 
 protected:

@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -22,14 +22,14 @@
 
 #include "hanzo/ModelBase.h"
 
-#include "hanzo/model/ProjectsCreate_repo.h"
+#include "hanzo/model/ProjectsUpdate_repo.h"
 #include <cpprest/details/basic_types.h>
 #include <map>
 
 namespace hanzo {
 namespace model {
 
-class ProjectsCreate_repo;
+class ProjectsUpdate_repo;
 
 
 class  ProjectsUpdate
@@ -55,16 +55,25 @@ public:
     /// ProjectsUpdate members
 
 
+    /// <summary>
+    /// CacheControl replaces the Cache-Control policy the edge serves this site&#39;s HTML under. Absent leaves it.
+    /// </summary>
     utility::string_t getCacheControl() const;
     bool cacheControlIsSet() const;
     void unsetCacheControl();
     void setCacheControl(const utility::string_t& value);
 
+    /// <summary>
+    /// Description replaces the one-line summary. Absent leaves it.
+    /// </summary>
     utility::string_t getDescription() const;
     bool descriptionIsSet() const;
     void unsetDescription();
     void setDescription(const utility::string_t& value);
 
+    /// <summary>
+    /// Framework replaces the build hint. It affects the NEXT build only — nothing already deployed is rebuilt.
+    /// </summary>
     utility::string_t getFramework() const;
     bool frameworkIsSet() const;
     void unsetFramework();
@@ -78,25 +87,34 @@ public:
     void unsetHidden();
     void setHidden(bool value);
 
+    /// <summary>
+    /// HiddenReason records WHY moderation hid it, so the action can be explained and reviewed later. Admin-gated like hidden itself.
+    /// </summary>
     utility::string_t getHiddenReason() const;
     bool hiddenReasonIsSet() const;
     void unsetHiddenReason();
     void setHiddenReason(const utility::string_t& value);
 
+    /// <summary>
+    /// License is the terms that upstream work carries, with the same clear-versus- leave rule.
+    /// </summary>
     utility::string_t getLicense() const;
     bool licenseIsSet() const;
     void unsetLicense();
     void setLicense(const utility::string_t& value);
 
+    /// <summary>
+    /// Name replaces the display name. Absent leaves it; the slug never moves with it.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
-    std::shared_ptr<ProjectsCreate_repo> getRepo() const;
+    std::shared_ptr<ProjectsUpdate_repo> getRepo() const;
     bool repoIsSet() const;
     void unsetRepo();
-    void setRepo(const std::shared_ptr<ProjectsCreate_repo>& value);
+    void setRepo(const std::shared_ptr<ProjectsUpdate_repo>& value);
 
     /// <summary>
     /// Slug is the project to update, from the path. The URL is the addressing authority — a &#x60;slug&#x60; in the body cannot move the write to another project.
@@ -107,7 +125,7 @@ public:
     void setSlug(const utility::string_t& value);
 
     /// <summary>
-    /// Tags sets the site&#39;s browser tag config: platform slug → non-secret pixel id (e.g. {\&quot;ga4\&quot;:\&quot;G-…\&quot;,\&quot;meta\&quot;:\&quot;…\&quot;}). track.js injects these first-party and the server CAPI reads them, per site. Absent LEAVES them; a present object REPLACES the set (send {} to clear). The ids are public — they ship in the page — so this is not the SECRET path (a CAPI token is sealed via POST /v1/destinations).
+    /// Tags sets the site&#39;s browser tag config: platform slug → non-secret pixel id (e.g. {\&quot;ga4\&quot;:\&quot;G-…\&quot;,\&quot;meta\&quot;:\&quot;…\&quot;}). track.js injects these first-party and the server CAPI reads them, per site. Absent LEAVES them; a present object REPLACES the set (send {} to clear). The ids are public — they ship in the page — so this is not the SECRET path (a CAPI token is sealed via POST /v1/destination).
     /// </summary>
     std::map<utility::string_t, utility::string_t> getTags() const;
     bool tagsIsSet() const;
@@ -115,7 +133,7 @@ public:
     void setTags(const std::map<utility::string_t, utility::string_t>& value);
 
     /// <summary>
-    /// Upstream/License credit the third-party work this app was published from — settable after the fact, because the demos that need crediting most are the ones already live. Pointers so \&quot;\&quot; clears a credit and absent leaves it.
+    /// Upstream credits the third-party work this project was published from, and is settable after the fact because the live demos are the ones that most need crediting. An explicit empty string CLEARS the credit; absent leaves it.
     /// </summary>
     utility::string_t getUpstream() const;
     bool upstreamIsSet() const;
@@ -153,7 +171,7 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    std::shared_ptr<ProjectsCreate_repo> m_Repo;
+    std::shared_ptr<ProjectsUpdate_repo> m_Repo;
     bool m_RepoIsSet;
 
     utility::string_t m_Slug;

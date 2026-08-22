@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,71 +52,113 @@ public:
     /// MachineView members
 
 
+    /// <summary>
+    /// CreatedTime is when the machine came into being: the provider&#39;s own creation timestamp for a Visor machine, passed through in whatever form it states it, and for a BYO machine the RFC 3339 moment it first dialed in.
+    /// </summary>
     utility::string_t getCreatedTime() const;
     bool createdTimeIsSet() const;
     void unsetCreatedTime();
     void setCreatedTime(const utility::string_t& value);
 
+    /// <summary>
+    /// GPU names the accelerators this machine holds (\&quot;H100\&quot;, or \&quot;2× NVIDIA GB10\&quot; for a BYO machine reporting a matched pair). Empty means the machine is not a GPU machine — the size slug does not parse as one, or nvidia-smi found nothing.
+    /// </summary>
     utility::string_t getGpu() const;
     bool gpuIsSet() const;
     void unsetGpu();
     void setGpu(const utility::string_t& value);
 
+    /// <summary>
+    /// ID addresses this machine on the /v1/visor/machines/:id routes: the org-scoped NAME Visor keys a machine by, falling back to the provider id for a machine that has no name. A BYO machine&#39;s is the id it dialed in under.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
+    /// <summary>
+    /// Image is the OS image the machine booted from, as the provider names it.
+    /// </summary>
     utility::string_t getImage() const;
     bool imageIsSet() const;
     void unsetImage();
     void setImage(const utility::string_t& value);
 
+    /// <summary>
+    /// Mem is system RAM rendered for a human (\&quot;8 GB\&quot;), not a number to compute with. Empty when the provider&#39;s figure is ambiguous, or when the only figure available is a GPU slug&#39;s gb — that is VRAM, and reporting it as system RAM would be a fabrication. A BYO machine&#39;s RAM is on /v1/visor/fleet/workers.
+    /// </summary>
     utility::string_t getMem() const;
     bool memIsSet() const;
     void unsetMem();
     void setMem(const utility::string_t& value);
 
+    /// <summary>
+    /// Name is the label to show a human — Visor&#39;s displayName, or the machine name when it carries none. A BYO machine&#39;s is its hostname. It is not an address: ID is what the routes take.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
+    /// <summary>
+    /// Os is the operating system on the machine — Visor&#39;s record for a provisioned one, the host&#39;s own report (linux, darwin, windows) for a BYO one.
+    /// </summary>
     utility::string_t getOs() const;
     bool osIsSet() const;
     void unsetOs();
     void setOs(const utility::string_t& value);
 
+    /// <summary>
+    /// PrivateIp is the address on the provider&#39;s own network, reachable from the org&#39;s other machines in the same region. Empty on the same terms as PublicIp.
+    /// </summary>
     utility::string_t getPrivateIp() const;
     bool privateIpIsSet() const;
     void unsetPrivateIp();
     void setPrivateIp(const utility::string_t& value);
 
+    /// <summary>
+    /// Provider is the cloud that runs the machine (\&quot;digitalocean\&quot;), or \&quot;byo\&quot; for one the operator dialed in with &#x60;hanzo link&#x60;.
+    /// </summary>
     utility::string_t getProvider() const;
     bool providerIsSet() const;
     void unsetProvider();
     void setProvider(const utility::string_t& value);
 
+    /// <summary>
+    /// PublicIp is the internet-facing address the provider assigned. Empty while a machine is still provisioning, and empty for a BYO machine — it dials out from behind NAT, so no address is ever learned for it.
+    /// </summary>
     utility::string_t getPublicIp() const;
     bool publicIpIsSet() const;
     void unsetPublicIp();
     void setPublicIp(const utility::string_t& value);
 
+    /// <summary>
+    /// Region is the provider region slug (\&quot;sfo3\&quot;), or the zone when the provider reports only that. \&quot;on-prem\&quot; for a BYO machine, which has no cloud region.
+    /// </summary>
     utility::string_t getRegion() const;
     bool regionIsSet() const;
     void unsetRegion();
     void setRegion(const utility::string_t& value);
 
+    /// <summary>
+    /// Status is the lifecycle state in the PROVIDER&#39;s own words (\&quot;active\&quot;, \&quot;running\&quot;, \&quot;off\&quot;), passed through rather than mapped onto a vocabulary of ours. A BYO machine&#39;s is \&quot;online\&quot; or \&quot;offline\&quot;, decided by whether its last heartbeat is within 90s.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
+    /// <summary>
+    /// Type is the provider SIZE SLUG the machine runs at (\&quot;s-2vcpu-4gb\&quot;, \&quot;gpu-h100x8-640gb\&quot;) — the value a launch asks for, and what Vcpu/Mem/GPU are read out of when the provider states them no other way. \&quot;byo-gpu\&quot; for a dialed-in machine, which was never bought from a size catalog.
+    /// </summary>
     utility::string_t getType() const;
     bool typeIsSet() const;
     void unsetType();
     void setType(const utility::string_t& value);
 
+    /// <summary>
+    /// Vcpu is logical cores — the provider&#39;s own cpuSize when that is a clean integer, else the count read out of the size slug (4 from \&quot;s-4vcpu-8gb\&quot;). ABSENT, never 0, when neither says. A BYO machine leaves it absent here; its real core count is on GET /v1/visor/fleet/workers.
+    /// </summary>
     int32_t getVcpu() const;
     bool vcpuIsSet() const;
     void unsetVcpu();

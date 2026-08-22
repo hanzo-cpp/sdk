@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -243,7 +243,7 @@ pplx::task<void> SocialApi::deleteSocialPostsById(utility::string_t id) const
         return void();
     });
 }
-pplx::task<void> SocialApi::getSocialAccounts() const
+pplx::task<std::shared_ptr<SocialAccounts>> SocialApi::getSocialAccounts(boost::optional<utility::string_t> provider, boost::optional<utility::string_t> limit) const
 {
 
 
@@ -256,6 +256,7 @@ pplx::task<void> SocialApi::getSocialAccounts() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -283,6 +284,14 @@ pplx::task<void> SocialApi::getSocialAccounts() const
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
+    if (provider)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("provider")] = ApiClient::parameterToString(*provider);
+    }
+    if (limit)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("limit")] = ApiClient::parameterToString(*limit);
+    }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
     utility::string_t localVarRequestHttpContentType;
@@ -344,10 +353,28 @@ pplx::task<void> SocialApi::getSocialAccounts() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<SocialAccounts> localVarResult(new SocialAccounts());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getSocialAccounts: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> SocialApi::getSocialAccountsById(utility::string_t id) const
+pplx::task<std::shared_ptr<SocialAccount>> SocialApi::getSocialAccountsById(utility::string_t id) const
 {
 
 
@@ -361,6 +388,7 @@ pplx::task<void> SocialApi::getSocialAccountsById(utility::string_t id) const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -449,10 +477,28 @@ pplx::task<void> SocialApi::getSocialAccountsById(utility::string_t id) const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<SocialAccount> localVarResult(new SocialAccount());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getSocialAccountsById: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> SocialApi::getSocialPosts() const
+pplx::task<std::shared_ptr<SocialPosts>> SocialApi::getSocialPosts(boost::optional<utility::string_t> status, boost::optional<utility::string_t> limit) const
 {
 
 
@@ -465,6 +511,7 @@ pplx::task<void> SocialApi::getSocialPosts() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -492,6 +539,14 @@ pplx::task<void> SocialApi::getSocialPosts() const
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
+    if (status)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("status")] = ApiClient::parameterToString(*status);
+    }
+    if (limit)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("limit")] = ApiClient::parameterToString(*limit);
+    }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
     utility::string_t localVarRequestHttpContentType;
@@ -553,10 +608,28 @@ pplx::task<void> SocialApi::getSocialPosts() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<SocialPosts> localVarResult(new SocialPosts());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getSocialPosts: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> SocialApi::getSocialPostsById(utility::string_t id) const
+pplx::task<std::shared_ptr<SocialPost>> SocialApi::getSocialPostsById(utility::string_t id) const
 {
 
 
@@ -570,6 +643,7 @@ pplx::task<void> SocialApi::getSocialPostsById(utility::string_t id) const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -658,10 +732,28 @@ pplx::task<void> SocialApi::getSocialPostsById(utility::string_t id) const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<SocialPost> localVarResult(new SocialPost());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getSocialPostsById: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> SocialApi::getSocialProviders() const
+pplx::task<std::shared_ptr<SocialProviders>> SocialApi::getSocialProviders() const
 {
 
 
@@ -674,6 +766,7 @@ pplx::task<void> SocialApi::getSocialProviders() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -762,10 +855,28 @@ pplx::task<void> SocialApi::getSocialProviders() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<SocialProviders> localVarResult(new SocialProviders());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getSocialProviders: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> SocialApi::getSocialSummary() const
+pplx::task<std::shared_ptr<SocialSummary>> SocialApi::getSocialSummary() const
 {
 
 
@@ -778,6 +889,7 @@ pplx::task<void> SocialApi::getSocialSummary() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -866,11 +978,35 @@ pplx::task<void> SocialApi::getSocialSummary() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<SocialSummary> localVarResult(new SocialSummary());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getSocialSummary: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> SocialApi::postSocialAccounts() const
+pplx::task<std::shared_ptr<SocialAccount>> SocialApi::postSocialAccounts(std::shared_ptr<SocialAccountBody> socialAccountBody) const
 {
+
+    // verify the required parameter 'socialAccountBody' is set
+    if (socialAccountBody == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'socialAccountBody' when calling SocialApi->postSocialAccounts"));
+    }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
@@ -882,6 +1018,7 @@ pplx::task<void> SocialApi::postSocialAccounts() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -908,6 +1045,7 @@ pplx::task<void> SocialApi::postSocialAccounts() const
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -917,11 +1055,27 @@ pplx::task<void> SocialApi::postSocialAccounts() const
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        localVarJson = ModelBase::toJson(socialAccountBody);
+        
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(socialAccountBody.get())
+        {
+            socialAccountBody->toMultipart(localVarMultipart, utility::conversions::to_string_t("socialAccountBody"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -970,11 +1124,35 @@ pplx::task<void> SocialApi::postSocialAccounts() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<SocialAccount> localVarResult(new SocialAccount());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postSocialAccounts: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> SocialApi::postSocialPosts() const
+pplx::task<std::shared_ptr<SocialPost>> SocialApi::postSocialPosts(std::shared_ptr<SocialPostBody> socialPostBody) const
 {
+
+    // verify the required parameter 'socialPostBody' is set
+    if (socialPostBody == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'socialPostBody' when calling SocialApi->postSocialPosts"));
+    }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
@@ -986,6 +1164,7 @@ pplx::task<void> SocialApi::postSocialPosts() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1012,6 +1191,7 @@ pplx::task<void> SocialApi::postSocialPosts() const
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -1021,11 +1201,27 @@ pplx::task<void> SocialApi::postSocialPosts() const
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        localVarJson = ModelBase::toJson(socialPostBody);
+        
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(socialPostBody.get())
+        {
+            socialPostBody->toMultipart(localVarMultipart, utility::conversions::to_string_t("socialPostBody"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1074,10 +1270,28 @@ pplx::task<void> SocialApi::postSocialPosts() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<SocialPost> localVarResult(new SocialPost());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postSocialPosts: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> SocialApi::postSocialPostsByIdPublish(utility::string_t id) const
+pplx::task<std::shared_ptr<SocialPost>> SocialApi::postSocialPostsByIdPublish(utility::string_t id) const
 {
 
 
@@ -1091,6 +1305,7 @@ pplx::task<void> SocialApi::postSocialPostsByIdPublish(utility::string_t id) con
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1179,11 +1394,35 @@ pplx::task<void> SocialApi::postSocialPostsByIdPublish(utility::string_t id) con
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<SocialPost> localVarResult(new SocialPost());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postSocialPostsByIdPublish: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> SocialApi::putSocialAccountsById(utility::string_t id) const
+pplx::task<std::shared_ptr<SocialAccount>> SocialApi::putSocialAccountsById(utility::string_t id, std::shared_ptr<SocialAccountWrite> socialAccountWrite) const
 {
+
+    // verify the required parameter 'socialAccountWrite' is set
+    if (socialAccountWrite == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'socialAccountWrite' when calling SocialApi->putSocialAccountsById"));
+    }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
@@ -1196,6 +1435,7 @@ pplx::task<void> SocialApi::putSocialAccountsById(utility::string_t id) const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1222,6 +1462,7 @@ pplx::task<void> SocialApi::putSocialAccountsById(utility::string_t id) const
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -1231,11 +1472,27 @@ pplx::task<void> SocialApi::putSocialAccountsById(utility::string_t id) const
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        localVarJson = ModelBase::toJson(socialAccountWrite);
+        
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(socialAccountWrite.get())
+        {
+            socialAccountWrite->toMultipart(localVarMultipart, utility::conversions::to_string_t("socialAccountWrite"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1284,11 +1541,35 @@ pplx::task<void> SocialApi::putSocialAccountsById(utility::string_t id) const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<SocialAccount> localVarResult(new SocialAccount());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putSocialAccountsById: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> SocialApi::putSocialPostsById(utility::string_t id) const
+pplx::task<std::shared_ptr<SocialPost>> SocialApi::putSocialPostsById(utility::string_t id, std::shared_ptr<SocialPostWrite> socialPostWrite) const
 {
+
+    // verify the required parameter 'socialPostWrite' is set
+    if (socialPostWrite == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'socialPostWrite' when calling SocialApi->putSocialPostsById"));
+    }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
@@ -1301,6 +1582,7 @@ pplx::task<void> SocialApi::putSocialPostsById(utility::string_t id) const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1327,6 +1609,7 @@ pplx::task<void> SocialApi::putSocialPostsById(utility::string_t id) const
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -1336,11 +1619,27 @@ pplx::task<void> SocialApi::putSocialPostsById(utility::string_t id) const
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        localVarJson = ModelBase::toJson(socialPostWrite);
+        
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(socialPostWrite.get())
+        {
+            socialPostWrite->toMultipart(localVarMultipart, utility::conversions::to_string_t("socialPostWrite"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1389,7 +1688,25 @@ pplx::task<void> SocialApi::putSocialPostsById(utility::string_t id) const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<SocialPost> localVarResult(new SocialPost());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putSocialPostsById: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
 

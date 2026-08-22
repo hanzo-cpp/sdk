@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,47 +52,65 @@ public:
     /// Txn members
 
 
+    /// <summary>
+    /// AmountCents is the voucher&#39;s total, in whole cents — its total debit, which equals its total credit because every voucher balances. It is the size of the entry and carries no direction; the category says which way it went.
+    /// </summary>
     int32_t getAmountCents() const;
     bool amountCentsIsSet() const;
     void unsetAmountCents();
     void setAmountCents(int32_t value);
 
     /// <summary>
-    /// COA account number of the P&amp;L line
+    /// Category is the chart-of-accounts NUMBER of the income or expense account this voucher touched — where it lands on the P&amp;L, not a free-text label.
     /// </summary>
     utility::string_t getCategory() const;
     bool categoryIsSet() const;
     void unsetCategory();
     void setCategory(const utility::string_t& value);
 
+    /// <summary>
+    /// CategoryName is that account&#39;s human name, so a caller need not carry the chart to render the row.
+    /// </summary>
     utility::string_t getCategoryName() const;
     bool categoryNameIsSet() const;
     void unsetCategoryName();
     void setCategoryName(const utility::string_t& value);
 
+    /// <summary>
+    /// Date is when the voucher POSTED — the accounting date the reports window on, which for an imported bank row is the bank&#39;s date and not the day it landed here.
+    /// </summary>
     utility::string_t getDate() const;
     bool dateIsSet() const;
     void unsetdate();
     void setDate(const utility::string_t& value);
 
+    /// <summary>
+    /// Description is the line a person reads: the memo carried in from the source.
+    /// </summary>
     utility::string_t getDescription() const;
     bool descriptionIsSet() const;
     void unsetDescription();
     void setDescription(const utility::string_t& value);
 
     /// <summary>
-    /// source_kind: bank_txn | scan | commerce_txn
+    /// Source is where the entry came from: bank_txn for an imported statement line, scan for a receipt or bill read by the scanner, commerce_txn for a sale booked by the store.
     /// </summary>
     utility::string_t getSource() const;
     bool sourceIsSet() const;
     void unsetSource();
     void setSource(const utility::string_t& value);
 
+    /// <summary>
+    /// Vendor is the counterparty, resolved from whatever the source knew — a bank row&#39;s merchant, a scanned bill&#39;s supplier. Absent when the source named none.
+    /// </summary>
     utility::string_t getVendor() const;
     bool vendorIsSet() const;
     void unsetVendor();
     void setVendor(const utility::string_t& value);
 
+    /// <summary>
+    /// VoucherID identifies the underlying double-entry voucher, so a caller can open the full set of legs behind this single register line.
+    /// </summary>
     int32_t getVoucherId() const;
     bool voucherIdIsSet() const;
     void unsetVoucherId();

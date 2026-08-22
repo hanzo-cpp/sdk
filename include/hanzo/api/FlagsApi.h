@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -29,7 +29,6 @@
 #include "hanzo/model/DeletedOut.h"
 #include "hanzo/model/EvaluateIn.h"
 #include "hanzo/model/HealthOut.h"
-#include "hanzo/model/WaitlistModeView.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -93,16 +92,6 @@ public:
     /// Health reports that the flag engine is serving. It is not gated: liveness must be probe-able without a token.
     /// </remarks>
     pplx::task<std::shared_ptr<HealthOut>> getFlagsHealth(
-    ) const;
-    /// <summary>
-    /// Reports whether ONE host is currently gated by the launch waitlist.
-    /// </summary>
-    /// <remarks>
-    /// Reports whether ONE host is currently gated by the launch waitlist. It resolves the host to the service that governs it and reads that service&#39;s waitlist switch, so a guard sitting in front of a hosted surface can decide in one call whether to show the waitlist or the product. It answers for the ONE host asked about and never enumerates the registry, which is why it needs no credential. It FAILS OPEN: an unregistered host, an unmounted registry and a store fault all answer known&#x3D;false with mode&#x3D;false, so a request is never gated pre-boot or on a registry fault.
-    /// </remarks>
-    /// <param name="host">Host is the host to resolve, e.g. \&quot;chat.hanzo.ai\&quot;. Defaults to the request&#39;s own Host header when omitted, which is what lets a guard running on the governed host ask about itself with no argument. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    pplx::task<std::shared_ptr<WaitlistModeView>> getFlagsWaitlist(
-        boost::optional<utility::string_t> host
     ) const;
     /// <summary>
     /// Evaluate runs the caller&#39;s flag definitions for one identity and returns the flag verdict: which flags are on (or which variant), their payloads, and whether any definition failed to compute.

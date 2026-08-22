@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,51 +52,81 @@ public:
     /// IssueHit members
 
 
+    /// <summary>
+    /// Assignee is who holds the work. EMPTY MEANS UNHELD, which is what makes the issue claimable: claiming one already held by someone else is refused with 409 rather than quietly taken.
+    /// </summary>
     utility::string_t getAssignee() const;
     bool assigneeIsSet() const;
     void unsetAssignee();
     void setAssignee(const utility::string_t& value);
 
+    /// <summary>
+    /// Kind is what the row IS: issue, pr or epic.
+    /// </summary>
     utility::string_t getKind() const;
     bool kindIsSet() const;
     void unsetKind();
     void setKind(const utility::string_t& value);
 
+    /// <summary>
+    /// Number is the issue&#39;s number on that board, from 1 and monotonic there. Unique per board, never across the org — so it addresses an issue only together with Project.
+    /// </summary>
     int32_t getNumber() const;
     bool numberIsSet() const;
     void unsetnumber();
     void setNumber(int32_t value);
 
+    /// <summary>
+    /// Priority is urgent, high, medium, low or none. Never empty — an unset priority is the value \&quot;none\&quot;.
+    /// </summary>
     utility::string_t getPriority() const;
     bool priorityIsSet() const;
     void unsetPriority();
     void setPriority(const utility::string_t& value);
 
+    /// <summary>
+    /// Project is the board key the issue is on. It and Number are the issue&#39;s address in every other route on this surface, which is why a hit carries it.
+    /// </summary>
     utility::string_t getProject() const;
     bool projectIsSet() const;
     void unsetProject();
     void setProject(const utility::string_t& value);
 
+    /// <summary>
+    /// Repo is the git repository the issue is bound to, empty when it is not repo-bound.
+    /// </summary>
     utility::string_t getRepo() const;
     bool repoIsSet() const;
     void unsetRepo();
     void setRepo(const utility::string_t& value);
 
+    /// <summary>
+    /// Source is which surface opened it: team, git, crm, helpdesk, cms or agent. \&quot;git\&quot; is how the mirrored forge and GitHub rows are spelled.
+    /// </summary>
     utility::string_t getSource() const;
     bool sourceIsSet() const;
     void unsetSource();
     void setSource(const utility::string_t& value);
 
+    /// <summary>
+    /// Status is the board column: backlog, todo, in_progress, done or canceled. Claiming moves backlog and todo to in_progress and leaves the other three where they are.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
+    /// <summary>
+    /// Title is the issue&#39;s one-line summary — what the q filter matched, along with the description.
+    /// </summary>
     utility::string_t getTitle() const;
     bool titleIsSet() const;
     void unsetTitle();
     void setTitle(const utility::string_t& value);
 
+    /// <summary>
+    /// URL is the row&#39;s external anchor — its extRef — which is a link only when the feeder sent one. A mirrored GitHub issue carries \&quot;github:owner/repo#123\&quot; and an agent&#39;s PR row carries the pushed branch. Empty for a row opened here.
+    /// </summary>
     utility::string_t getUrl() const;
     bool urlIsSet() const;
     void unsetUrl();

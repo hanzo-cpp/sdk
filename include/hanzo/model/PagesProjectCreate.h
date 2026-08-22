@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -56,21 +56,33 @@ public:
     /// PagesProjectCreate members
 
 
+    /// <summary>
+    /// BuildConfig says how to build the site. Omitted means no build step.
+    /// </summary>
     std::shared_ptr<PagesBuildConfig> getBuildConfig() const;
     bool buildConfigIsSet() const;
     void unsetBuild_config();
     void setBuildConfig(const std::shared_ptr<PagesBuildConfig>& value);
 
+    /// <summary>
+    /// DeploymentConfigs carries the preview and production runtime configs — the bindings and variables the built site&#39;s functions run with.
+    /// </summary>
     std::shared_ptr<PagesDeploymentConfigs> getDeploymentConfigs() const;
     bool deploymentConfigsIsSet() const;
     void unsetDeployment_configs();
     void setDeploymentConfigs(const std::shared_ptr<PagesDeploymentConfigs>& value);
 
+    /// <summary>
+    /// Name is the project name, and it is also the address: the site answers at &lt;name&gt;.pages.dev. Cloudflare will not rename a project afterwards.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
+    /// <summary>
+    /// ProductionBranch is which git branch builds to production; every other branch builds a preview. Omitted leaves Cloudflare&#39;s own default.
+    /// </summary>
     utility::string_t getProductionBranch() const;
     bool productionBranchIsSet() const;
     void unsetProduction_branch();

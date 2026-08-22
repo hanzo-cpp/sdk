@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -22,6 +22,8 @@
 
 #include "hanzo/ApiClient.h"
 
+#include "hanzo/model/EnablementBoard.h"
+#include "hanzo/model/EnablementOptRef.h"
 #include "hanzo/Object.h"
 #include "hanzo/model/PricingHealth.h"
 #include "hanzo/model/PricingModelList.h"
@@ -32,6 +34,7 @@
 #include "hanzo/model/PricingSyncOut.h"
 #include "hanzo/model/PricingTierList.h"
 #include "hanzo/model/PricingToolList.h"
+#include "hanzo/model/UserEnablementItem.h"
 #include <map>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -130,6 +133,14 @@ public:
     /// Returns the Hanzo Datastore rate card: the tier list, the per-GB storage and egress usage rates, the annual discount and the trial. It is the section as authored, un-gated — no provider identity appears in it.  The route was missing while the data existed, so this 404d and every visitor to hanzo.ai&#39;s Infrastructure tab was told pricing was \&quot;temporarily unavailable\&quot;.
     /// </remarks>
     pplx::task<std::map<utility::string_t, std::shared_ptr<Object>>> getPricingDatastore(
+    ) const;
+    /// <summary>
+    /// Returns what the caller&#39;s org can actually use: every managed item with its global state, whether it is effective here, whether this org is already opted into its beta, and whether it may still opt in.
+    /// </summary>
+    /// <remarks>
+    /// Returns what the caller&#39;s org can actually use: every managed item with its global state, whether it is effective here, whether this org is already opted into its beta, and whether it may still opt in. Read-only and safe for any caller — one without a validated principal simply sees the generally-available items and no opt-in affordance, never another org&#39;s state.
+    /// </remarks>
+    pplx::task<std::shared_ptr<EnablementBoard>> getPricingEnablement(
     ) const;
     /// <summary>
     /// Returns the models the catalog highlights, filtered to what the caller&#39;s org may see.
@@ -244,6 +255,26 @@ public:
     /// Returns the per-use tool prices — web search, code interpreter, file storage, image generation, speech-to-text and text-to-speech — each with the unit it is billed by and its price in that unit.
     /// </remarks>
     pplx::task<std::shared_ptr<PricingToolList>> getPricingTools(
+    ) const;
+    /// <summary>
+    /// Opts the caller&#39;s OWN org into a beta item.
+    /// </summary>
+    /// <remarks>
+    /// Opts the caller&#39;s OWN org into a beta item. The org is the caller&#39;s validated one, so this can never target another org, and the registry refuses anything not in beta — so it can neither re-open an item an operator turned off nor touch one that is already generally available. Requires a signed-in caller with an org.
+    /// </remarks>
+    /// <param name="enablementOptRef"></param>
+    pplx::task<std::shared_ptr<UserEnablementItem>> postPricingEnablementOptin(
+        std::shared_ptr<EnablementOptRef> enablementOptRef
+    ) const;
+    /// <summary>
+    /// Removes the caller&#39;s OWN org from a beta item&#39;s grant list, the reverse of OptIntoBeta and idempotent.
+    /// </summary>
+    /// <remarks>
+    /// Removes the caller&#39;s OWN org from a beta item&#39;s grant list, the reverse of OptIntoBeta and idempotent. The org is the caller&#39;s validated one, so this can never revoke another org&#39;s grant. Requires a signed-in caller with an org.
+    /// </remarks>
+    /// <param name="enablementOptRef"></param>
+    pplx::task<std::shared_ptr<UserEnablementItem>> postPricingEnablementOptout(
+        std::shared_ptr<EnablementOptRef> enablementOptRef
     ) const;
     /// <summary>
     /// Refreshes the third-party section of the catalog from its upstream listings and returns the time the refreshed catalog was stamped with.

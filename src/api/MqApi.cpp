@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -33,12 +33,12 @@ MqApi::~MqApi()
 {
 }
 
-pplx::task<void> MqApi::deleteMqStreamsByName(utility::string_t name) const
+pplx::task<void> MqApi::deleteMqStreamByName(utility::string_t name) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/streams/{name}");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/stream/{name}");
     boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("name") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(name)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
@@ -67,7 +67,7 @@ pplx::task<void> MqApi::deleteMqStreamsByName(utility::string_t name) const
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("MqApi->deleteMqStreamsByName does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("MqApi->deleteMqStreamByName does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -94,7 +94,7 @@ pplx::task<void> MqApi::deleteMqStreamsByName(utility::string_t name) const
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("MqApi->deleteMqStreamsByName does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("MqApi->deleteMqStreamByName does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -115,7 +115,7 @@ pplx::task<void> MqApi::deleteMqStreamsByName(utility::string_t name) const
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling deleteMqStreamsByName: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling deleteMqStreamByName: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -126,7 +126,7 @@ pplx::task<void> MqApi::deleteMqStreamsByName(utility::string_t name) const
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling deleteMqStreamsByName: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling deleteMqStreamByName: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -138,12 +138,12 @@ pplx::task<void> MqApi::deleteMqStreamsByName(utility::string_t name) const
         return void();
     });
 }
-pplx::task<void> MqApi::deleteMqStreamsByNameMessagesBySeq(utility::string_t name, int32_t seq) const
+pplx::task<void> MqApi::deleteMqStreamByNameMessageBySeq(utility::string_t name, int32_t seq) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/streams/{name}/messages/{seq}");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/stream/{name}/message/{seq}");
     boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("name") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(name)));
     boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("seq") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(seq)));
 
@@ -173,7 +173,7 @@ pplx::task<void> MqApi::deleteMqStreamsByNameMessagesBySeq(utility::string_t nam
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("MqApi->deleteMqStreamsByNameMessagesBySeq does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("MqApi->deleteMqStreamByNameMessageBySeq does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -200,7 +200,7 @@ pplx::task<void> MqApi::deleteMqStreamsByNameMessagesBySeq(utility::string_t nam
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("MqApi->deleteMqStreamsByNameMessagesBySeq does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("MqApi->deleteMqStreamByNameMessageBySeq does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -221,7 +221,7 @@ pplx::task<void> MqApi::deleteMqStreamsByNameMessagesBySeq(utility::string_t nam
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling deleteMqStreamsByNameMessagesBySeq: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling deleteMqStreamByNameMessageBySeq: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -232,7 +232,7 @@ pplx::task<void> MqApi::deleteMqStreamsByNameMessagesBySeq(utility::string_t nam
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling deleteMqStreamsByNameMessagesBySeq: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling deleteMqStreamByNameMessageBySeq: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -244,12 +244,12 @@ pplx::task<void> MqApi::deleteMqStreamsByNameMessagesBySeq(utility::string_t nam
         return void();
     });
 }
-pplx::task<void> MqApi::deleteMqStreamsByStreamConsumersByName(utility::string_t stream, utility::string_t name) const
+pplx::task<void> MqApi::deleteMqStreamByStreamConsumerByName(utility::string_t stream, utility::string_t name) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/streams/{stream}/consumers/{name}");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/stream/{stream}/consumer/{name}");
     boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("stream") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(stream)));
     boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("name") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(name)));
 
@@ -279,7 +279,7 @@ pplx::task<void> MqApi::deleteMqStreamsByStreamConsumersByName(utility::string_t
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("MqApi->deleteMqStreamsByStreamConsumersByName does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("MqApi->deleteMqStreamByStreamConsumerByName does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -306,7 +306,7 @@ pplx::task<void> MqApi::deleteMqStreamsByStreamConsumersByName(utility::string_t
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("MqApi->deleteMqStreamsByStreamConsumersByName does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("MqApi->deleteMqStreamByStreamConsumerByName does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -327,7 +327,7 @@ pplx::task<void> MqApi::deleteMqStreamsByStreamConsumersByName(utility::string_t
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling deleteMqStreamsByStreamConsumersByName: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling deleteMqStreamByStreamConsumerByName: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -338,7 +338,7 @@ pplx::task<void> MqApi::deleteMqStreamsByStreamConsumersByName(utility::string_t
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling deleteMqStreamsByStreamConsumersByName: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling deleteMqStreamByStreamConsumerByName: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -596,12 +596,12 @@ pplx::task<std::shared_ptr<InfoOut>> MqApi::getMqInfo() const
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Streams>> MqApi::getMqStreams(boost::optional<int32_t> limit, boost::optional<int32_t> offset) const
+pplx::task<std::shared_ptr<Streams>> MqApi::getMqStream(boost::optional<int32_t> limit, boost::optional<int32_t> offset) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/streams");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/stream");
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -630,7 +630,7 @@ pplx::task<std::shared_ptr<Streams>> MqApi::getMqStreams(boost::optional<int32_t
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("MqApi->getMqStreams does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("MqApi->getMqStream does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -665,7 +665,7 @@ pplx::task<std::shared_ptr<Streams>> MqApi::getMqStreams(boost::optional<int32_t
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("MqApi->getMqStreams does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("MqApi->getMqStream does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -686,7 +686,7 @@ pplx::task<std::shared_ptr<Streams>> MqApi::getMqStreams(boost::optional<int32_t
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling getMqStreams: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling getMqStream: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -697,7 +697,7 @@ pplx::task<std::shared_ptr<Streams>> MqApi::getMqStreams(boost::optional<int32_t
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getMqStreams: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling getMqStream: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -721,18 +721,18 @@ pplx::task<std::shared_ptr<Streams>> MqApi::getMqStreams(boost::optional<int32_t
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling getMqStreams: unsupported response type"));
+                , utility::conversions::to_string_t("error calling getMqStream: unsupported response type"));
         }
 
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Stream>> MqApi::getMqStreamsByName(utility::string_t name) const
+pplx::task<std::shared_ptr<Stream>> MqApi::getMqStreamByName(utility::string_t name) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/streams/{name}");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/stream/{name}");
     boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("name") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(name)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
@@ -762,7 +762,7 @@ pplx::task<std::shared_ptr<Stream>> MqApi::getMqStreamsByName(utility::string_t 
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("MqApi->getMqStreamsByName does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("MqApi->getMqStreamByName does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -789,7 +789,7 @@ pplx::task<std::shared_ptr<Stream>> MqApi::getMqStreamsByName(utility::string_t 
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("MqApi->getMqStreamsByName does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("MqApi->getMqStreamByName does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -810,7 +810,7 @@ pplx::task<std::shared_ptr<Stream>> MqApi::getMqStreamsByName(utility::string_t 
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling getMqStreamsByName: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling getMqStreamByName: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -821,7 +821,7 @@ pplx::task<std::shared_ptr<Stream>> MqApi::getMqStreamsByName(utility::string_t 
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getMqStreamsByName: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling getMqStreamByName: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -845,18 +845,18 @@ pplx::task<std::shared_ptr<Stream>> MqApi::getMqStreamsByName(utility::string_t 
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling getMqStreamsByName: unsupported response type"));
+                , utility::conversions::to_string_t("error calling getMqStreamByName: unsupported response type"));
         }
 
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ReadOut>> MqApi::getMqStreamsByNameMessages(utility::string_t name, boost::optional<int32_t> seq, boost::optional<utility::string_t> lastBySubject, boost::optional<utility::string_t> nextBySubject, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<ReadOut>> MqApi::getMqStreamByNameMessage(utility::string_t name, boost::optional<int32_t> seq, boost::optional<utility::string_t> lastBySubject, boost::optional<utility::string_t> nextBySubject, boost::optional<int32_t> limit) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/streams/{name}/messages");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/stream/{name}/message");
     boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("name") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(name)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
@@ -886,7 +886,7 @@ pplx::task<std::shared_ptr<ReadOut>> MqApi::getMqStreamsByNameMessages(utility::
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("MqApi->getMqStreamsByNameMessages does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("MqApi->getMqStreamByNameMessage does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -929,7 +929,7 @@ pplx::task<std::shared_ptr<ReadOut>> MqApi::getMqStreamsByNameMessages(utility::
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("MqApi->getMqStreamsByNameMessages does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("MqApi->getMqStreamByNameMessage does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -950,7 +950,7 @@ pplx::task<std::shared_ptr<ReadOut>> MqApi::getMqStreamsByNameMessages(utility::
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling getMqStreamsByNameMessages: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling getMqStreamByNameMessage: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -961,7 +961,7 @@ pplx::task<std::shared_ptr<ReadOut>> MqApi::getMqStreamsByNameMessages(utility::
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getMqStreamsByNameMessages: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling getMqStreamByNameMessage: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -985,18 +985,18 @@ pplx::task<std::shared_ptr<ReadOut>> MqApi::getMqStreamsByNameMessages(utility::
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling getMqStreamsByNameMessages: unsupported response type"));
+                , utility::conversions::to_string_t("error calling getMqStreamByNameMessage: unsupported response type"));
         }
 
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<PickOut>> MqApi::getMqStreamsByStreamConsumers(utility::string_t stream, boost::optional<int32_t> limit, boost::optional<int32_t> offset) const
+pplx::task<std::shared_ptr<PickOut>> MqApi::getMqStreamByStreamConsumer(utility::string_t stream, boost::optional<int32_t> limit, boost::optional<int32_t> offset) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/streams/{stream}/consumers");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/stream/{stream}/consumer");
     boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("stream") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(stream)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
@@ -1026,7 +1026,7 @@ pplx::task<std::shared_ptr<PickOut>> MqApi::getMqStreamsByStreamConsumers(utilit
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("MqApi->getMqStreamsByStreamConsumers does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("MqApi->getMqStreamByStreamConsumer does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -1061,7 +1061,7 @@ pplx::task<std::shared_ptr<PickOut>> MqApi::getMqStreamsByStreamConsumers(utilit
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("MqApi->getMqStreamsByStreamConsumers does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("MqApi->getMqStreamByStreamConsumer does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -1082,7 +1082,7 @@ pplx::task<std::shared_ptr<PickOut>> MqApi::getMqStreamsByStreamConsumers(utilit
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling getMqStreamsByStreamConsumers: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling getMqStreamByStreamConsumer: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -1093,7 +1093,7 @@ pplx::task<std::shared_ptr<PickOut>> MqApi::getMqStreamsByStreamConsumers(utilit
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getMqStreamsByStreamConsumers: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling getMqStreamByStreamConsumer: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -1117,18 +1117,18 @@ pplx::task<std::shared_ptr<PickOut>> MqApi::getMqStreamsByStreamConsumers(utilit
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling getMqStreamsByStreamConsumers: unsupported response type"));
+                , utility::conversions::to_string_t("error calling getMqStreamByStreamConsumer: unsupported response type"));
         }
 
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Consumer>> MqApi::getMqStreamsByStreamConsumersByName(utility::string_t stream, utility::string_t name) const
+pplx::task<std::shared_ptr<Consumer>> MqApi::getMqStreamByStreamConsumerByName(utility::string_t stream, utility::string_t name) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/streams/{stream}/consumers/{name}");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/stream/{stream}/consumer/{name}");
     boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("stream") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(stream)));
     boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("name") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(name)));
 
@@ -1159,7 +1159,7 @@ pplx::task<std::shared_ptr<Consumer>> MqApi::getMqStreamsByStreamConsumersByName
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("MqApi->getMqStreamsByStreamConsumersByName does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("MqApi->getMqStreamByStreamConsumerByName does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -1186,7 +1186,7 @@ pplx::task<std::shared_ptr<Consumer>> MqApi::getMqStreamsByStreamConsumersByName
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("MqApi->getMqStreamsByStreamConsumersByName does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("MqApi->getMqStreamByStreamConsumerByName does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -1207,7 +1207,7 @@ pplx::task<std::shared_ptr<Consumer>> MqApi::getMqStreamsByStreamConsumersByName
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling getMqStreamsByStreamConsumersByName: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling getMqStreamByStreamConsumerByName: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -1218,7 +1218,7 @@ pplx::task<std::shared_ptr<Consumer>> MqApi::getMqStreamsByStreamConsumersByName
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getMqStreamsByStreamConsumersByName: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling getMqStreamByStreamConsumerByName: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -1242,24 +1242,24 @@ pplx::task<std::shared_ptr<Consumer>> MqApi::getMqStreamsByStreamConsumersByName
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling getMqStreamsByStreamConsumersByName: unsupported response type"));
+                , utility::conversions::to_string_t("error calling getMqStreamByStreamConsumerByName: unsupported response type"));
         }
 
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Stream>> MqApi::postMqStreams(std::shared_ptr<Config> config) const
+pplx::task<std::shared_ptr<Stream>> MqApi::postMqStream(std::shared_ptr<Config> config) const
 {
 
     // verify the required parameter 'config' is set
     if (config == nullptr)
     {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'config' when calling MqApi->postMqStreams"));
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'config' when calling MqApi->postMqStream"));
     }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/streams");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/stream");
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -1288,7 +1288,7 @@ pplx::task<std::shared_ptr<Stream>> MqApi::postMqStreams(std::shared_ptr<Config>
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("MqApi->postMqStreams does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("MqApi->postMqStream does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -1332,7 +1332,7 @@ pplx::task<std::shared_ptr<Stream>> MqApi::postMqStreams(std::shared_ptr<Config>
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("MqApi->postMqStreams does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("MqApi->postMqStream does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -1353,7 +1353,7 @@ pplx::task<std::shared_ptr<Stream>> MqApi::postMqStreams(std::shared_ptr<Config>
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling postMqStreams: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling postMqStream: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -1364,7 +1364,7 @@ pplx::task<std::shared_ptr<Stream>> MqApi::postMqStreams(std::shared_ptr<Config>
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling postMqStreams: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling postMqStream: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -1388,24 +1388,24 @@ pplx::task<std::shared_ptr<Stream>> MqApi::postMqStreams(std::shared_ptr<Config>
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling postMqStreams: unsupported response type"));
+                , utility::conversions::to_string_t("error calling postMqStream: unsupported response type"));
         }
 
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<PurgeOut>> MqApi::postMqStreamsByNamePurge(utility::string_t name, std::shared_ptr<Purge> purge) const
+pplx::task<std::shared_ptr<PurgeOut>> MqApi::postMqStreamByNamePurge(utility::string_t name, std::shared_ptr<Purge> purge) const
 {
 
     // verify the required parameter 'purge' is set
     if (purge == nullptr)
     {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'purge' when calling MqApi->postMqStreamsByNamePurge"));
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'purge' when calling MqApi->postMqStreamByNamePurge"));
     }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/streams/{name}/purge");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/stream/{name}/purge");
     boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("name") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(name)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
@@ -1435,7 +1435,7 @@ pplx::task<std::shared_ptr<PurgeOut>> MqApi::postMqStreamsByNamePurge(utility::s
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("MqApi->postMqStreamsByNamePurge does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("MqApi->postMqStreamByNamePurge does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -1479,7 +1479,7 @@ pplx::task<std::shared_ptr<PurgeOut>> MqApi::postMqStreamsByNamePurge(utility::s
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("MqApi->postMqStreamsByNamePurge does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("MqApi->postMqStreamByNamePurge does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -1500,7 +1500,7 @@ pplx::task<std::shared_ptr<PurgeOut>> MqApi::postMqStreamsByNamePurge(utility::s
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling postMqStreamsByNamePurge: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling postMqStreamByNamePurge: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -1511,7 +1511,7 @@ pplx::task<std::shared_ptr<PurgeOut>> MqApi::postMqStreamsByNamePurge(utility::s
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling postMqStreamsByNamePurge: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling postMqStreamByNamePurge: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -1535,24 +1535,24 @@ pplx::task<std::shared_ptr<PurgeOut>> MqApi::postMqStreamsByNamePurge(utility::s
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling postMqStreamsByNamePurge: unsupported response type"));
+                , utility::conversions::to_string_t("error calling postMqStreamByNamePurge: unsupported response type"));
         }
 
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Consumer>> MqApi::postMqStreamsByStreamConsumers(utility::string_t stream, std::shared_ptr<MakeIn> makeIn) const
+pplx::task<std::shared_ptr<Consumer>> MqApi::postMqStreamByStreamConsumer(utility::string_t stream, std::shared_ptr<MakeIn> makeIn) const
 {
 
     // verify the required parameter 'makeIn' is set
     if (makeIn == nullptr)
     {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'makeIn' when calling MqApi->postMqStreamsByStreamConsumers"));
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'makeIn' when calling MqApi->postMqStreamByStreamConsumer"));
     }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/streams/{stream}/consumers");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/stream/{stream}/consumer");
     boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("stream") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(stream)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
@@ -1582,7 +1582,7 @@ pplx::task<std::shared_ptr<Consumer>> MqApi::postMqStreamsByStreamConsumers(util
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("MqApi->postMqStreamsByStreamConsumers does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("MqApi->postMqStreamByStreamConsumer does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -1626,7 +1626,7 @@ pplx::task<std::shared_ptr<Consumer>> MqApi::postMqStreamsByStreamConsumers(util
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("MqApi->postMqStreamsByStreamConsumers does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("MqApi->postMqStreamByStreamConsumer does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -1647,7 +1647,7 @@ pplx::task<std::shared_ptr<Consumer>> MqApi::postMqStreamsByStreamConsumers(util
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling postMqStreamsByStreamConsumers: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling postMqStreamByStreamConsumer: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -1658,7 +1658,7 @@ pplx::task<std::shared_ptr<Consumer>> MqApi::postMqStreamsByStreamConsumers(util
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling postMqStreamsByStreamConsumers: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling postMqStreamByStreamConsumer: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -1682,24 +1682,24 @@ pplx::task<std::shared_ptr<Consumer>> MqApi::postMqStreamsByStreamConsumers(util
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling postMqStreamsByStreamConsumers: unsupported response type"));
+                , utility::conversions::to_string_t("error calling postMqStreamByStreamConsumer: unsupported response type"));
         }
 
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ReadOut>> MqApi::postMqStreamsByStreamConsumersByNameNext(utility::string_t stream, utility::string_t name, std::shared_ptr<NextIn> nextIn) const
+pplx::task<std::shared_ptr<ReadOut>> MqApi::postMqStreamByStreamConsumerByNameNext(utility::string_t stream, utility::string_t name, std::shared_ptr<NextIn> nextIn) const
 {
 
     // verify the required parameter 'nextIn' is set
     if (nextIn == nullptr)
     {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'nextIn' when calling MqApi->postMqStreamsByStreamConsumersByNameNext"));
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'nextIn' when calling MqApi->postMqStreamByStreamConsumerByNameNext"));
     }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/streams/{stream}/consumers/{name}/next");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/stream/{stream}/consumer/{name}/next");
     boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("stream") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(stream)));
     boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("name") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(name)));
 
@@ -1730,7 +1730,7 @@ pplx::task<std::shared_ptr<ReadOut>> MqApi::postMqStreamsByStreamConsumersByName
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("MqApi->postMqStreamsByStreamConsumersByNameNext does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("MqApi->postMqStreamByStreamConsumerByNameNext does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -1774,7 +1774,7 @@ pplx::task<std::shared_ptr<ReadOut>> MqApi::postMqStreamsByStreamConsumersByName
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("MqApi->postMqStreamsByStreamConsumersByNameNext does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("MqApi->postMqStreamByStreamConsumerByNameNext does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -1795,7 +1795,7 @@ pplx::task<std::shared_ptr<ReadOut>> MqApi::postMqStreamsByStreamConsumersByName
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling postMqStreamsByStreamConsumersByNameNext: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling postMqStreamByStreamConsumerByNameNext: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -1806,7 +1806,7 @@ pplx::task<std::shared_ptr<ReadOut>> MqApi::postMqStreamsByStreamConsumersByName
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling postMqStreamsByStreamConsumersByNameNext: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling postMqStreamByStreamConsumerByNameNext: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -1830,24 +1830,24 @@ pplx::task<std::shared_ptr<ReadOut>> MqApi::postMqStreamsByStreamConsumersByName
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling postMqStreamsByStreamConsumersByNameNext: unsupported response type"));
+                , utility::conversions::to_string_t("error calling postMqStreamByStreamConsumerByNameNext: unsupported response type"));
         }
 
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Stream>> MqApi::putMqStreamsByName(utility::string_t name, std::shared_ptr<Config> config) const
+pplx::task<std::shared_ptr<Stream>> MqApi::putMqStreamByName(utility::string_t name, std::shared_ptr<Config> config) const
 {
 
     // verify the required parameter 'config' is set
     if (config == nullptr)
     {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'config' when calling MqApi->putMqStreamsByName"));
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'config' when calling MqApi->putMqStreamByName"));
     }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/streams/{name}");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/mq/stream/{name}");
     boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("name") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(name)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
@@ -1877,7 +1877,7 @@ pplx::task<std::shared_ptr<Stream>> MqApi::putMqStreamsByName(utility::string_t 
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("MqApi->putMqStreamsByName does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("MqApi->putMqStreamByName does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -1921,7 +1921,7 @@ pplx::task<std::shared_ptr<Stream>> MqApi::putMqStreamsByName(utility::string_t 
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("MqApi->putMqStreamsByName does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("MqApi->putMqStreamByName does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -1942,7 +1942,7 @@ pplx::task<std::shared_ptr<Stream>> MqApi::putMqStreamsByName(utility::string_t 
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling putMqStreamsByName: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling putMqStreamByName: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -1953,7 +1953,7 @@ pplx::task<std::shared_ptr<Stream>> MqApi::putMqStreamsByName(utility::string_t 
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling putMqStreamsByName: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling putMqStreamByName: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -1977,7 +1977,7 @@ pplx::task<std::shared_ptr<Stream>> MqApi::putMqStreamsByName(utility::string_t 
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling putMqStreamsByName: unsupported response type"));
+                , utility::conversions::to_string_t("error calling putMqStreamByName: unsupported response type"));
         }
 
         return localVarResult;

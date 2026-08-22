@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -56,59 +56,89 @@ public:
     /// FleetUnit members
 
 
+    /// <summary>
+    /// Host is the unit&#39;s hostname. Empty for a unit that is not one host: a cluster row has no hostname to report.
+    /// </summary>
     utility::string_t getHost() const;
     bool hostIsSet() const;
     void unsetHost();
     void setHost(const utility::string_t& value);
 
+    /// <summary>
+    /// Kind is what the unit IS: laptop, cloud, gpu, cluster, machine or worker.
+    /// </summary>
     utility::string_t getKind() const;
     bool kindIsSet() const;
     void unsetKind();
     void setKind(const utility::string_t& value);
 
+    /// <summary>
+    /// Label is the name to show a human — a target&#39;s label, a worker&#39;s hostname, a machine&#39;s display name. Empty when the source has none to give.
+    /// </summary>
     utility::string_t getLabel() const;
     bool labelIsSet() const;
     void unsetLabel();
     void setLabel(const utility::string_t& value);
 
+    /// <summary>
+    /// Metrics is the unit&#39;s latest utilization: its own live snapshot when it keeps one (a run-target&#39;s heartbeat wins), else the newest sample from the series for the SAME source. Absent means nothing is known about this unit&#39;s load — which is deliberately not the same as a reading of zero.
+    /// </summary>
     std::shared_ptr<FleetMetrics> getMetrics() const;
     bool metricsIsSet() const;
     void unsetMetrics();
     void setMetrics(const std::shared_ptr<FleetMetrics>& value);
 
+    /// <summary>
+    /// Queued is how many renders are waiting on THIS GPU&#39;s own lane in the org&#39;s gpu-jobs queue. BYO units only — an agent run-target dispatches, it does not queue — and omitted when nothing is waiting.
+    /// </summary>
     int32_t getQueued() const;
     bool queuedIsSet() const;
     void unsetQueued();
     void setQueued(int32_t value);
 
     /// <summary>
-    /// Running is what the unit is actively executing: agent sessions for a run-target, in-flight renders for a BYO GPU. Queued is the gpu-jobs backlog on this GPU&#39;s lane (BYO units only; an agent unit does not queue). Both come from the org&#39;s gpu-jobs queue for BYO units, overlaid in listFleet.
+    /// Running is what the unit is executing right now: agent sessions in flight for a run-target, claimed renders for a BYO GPU.
     /// </summary>
     int32_t getRunning() const;
     bool runningIsSet() const;
     void unsetRunning();
     void setRunning(int32_t value);
 
+    /// <summary>
+    /// Sessions is how many agent sessions are open on this unit. Always present, and 0 for a source that cannot host agent sessions at all — a fact about that plane, not a gap in the reading.
+    /// </summary>
     int32_t getSessions() const;
     bool sessionsIsSet() const;
     void unsetSessions();
     void setSessions(int32_t value);
 
+    /// <summary>
+    /// Source is the plane this row came from: \&quot;agent\&quot; (a linked run-target), \&quot;byo\&quot; (a worker or cluster the org dialed in) or \&quot;visor\&quot; (a machine Hanzo provisioned). It is half the row&#39;s identity, and it says which face owns the unit — /v1/agents/targets, /v1/visor/fleet/workers, /v1/visor/machines.
+    /// </summary>
     utility::string_t getSource() const;
     bool sourceIsSet() const;
     void unsetSource();
     void setSource(const utility::string_t& value);
 
+    /// <summary>
+    /// Spec is the unit&#39;s static capability. Absent when the source reported none — unknown capability, never a zeroed one.
+    /// </summary>
     std::shared_ptr<FleetSpec> getSpec() const;
     bool specIsSet() const;
     void unsetSpec();
     void setSpec(const std::shared_ptr<FleetSpec>& value);
 
+    /// <summary>
+    /// Status is liveness in the SOURCE&#39;s own vocabulary, because each plane decides it differently: a run-target&#39;s is derived from its heartbeat, a BYO worker&#39;s is online/offline on the 90s window, a BYO cluster&#39;s is \&quot;attached\&quot;, and a Visor machine&#39;s is the provider&#39;s word for its lifecycle state.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
+    /// <summary>
+    /// Unit is the SOURCE&#39;s own id for this unit — a run-target id, a BYO worker id, a Visor machine name — so a row links straight back to the face that owns it. It is unique within a source, not across them: two planes may mint the same id, which is why (source, unit) together is the identity.
+    /// </summary>
     utility::string_t getUnit() const;
     bool unitIsSet() const;
     void unsetUnit();

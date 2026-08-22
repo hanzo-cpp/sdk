@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,26 +52,41 @@ public:
     /// Blog members
 
 
+    /// <summary>
+    /// CaseStudy is one worked instance — somebody who ran it, and what happened.
+    /// </summary>
     utility::string_t getCaseStudy() const;
     bool caseStudyIsSet() const;
     void unsetCaseStudy();
     void setCaseStudy(const utility::string_t& value);
 
+    /// <summary>
+    /// How is the run book: the steps to execute the tactic.
+    /// </summary>
     utility::string_t getHow() const;
     bool howIsSet() const;
     void unsetHow();
     void setHow(const utility::string_t& value);
 
+    /// <summary>
+    /// Slug is the post&#39;s address — the last path segment it is published at.
+    /// </summary>
     utility::string_t getSlug() const;
     bool slugIsSet() const;
     void unsetSlug();
     void setSlug(const utility::string_t& value);
 
+    /// <summary>
+    /// Title is the post&#39;s headline.
+    /// </summary>
     utility::string_t getTitle() const;
     bool titleIsSet() const;
     void unsetTitle();
     void setTitle(const utility::string_t& value);
 
+    /// <summary>
+    /// Why is the mechanism: the reason the tactic works, stated as a principle rather than as instructions.
+    /// </summary>
     utility::string_t getWhy() const;
     bool whyIsSet() const;
     void unsetWhy();

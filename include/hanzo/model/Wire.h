@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,21 +52,33 @@ public:
     /// Wire members
 
 
+    /// <summary>
+    /// Action is the verb that was performed. It is the event&#39;s name, not the HTTP method — a request-sourced record carries both, and the pair is what makes a row readable (\&quot;grant.create\&quot; at POST /v1/admin/grants).
+    /// </summary>
     utility::string_t getAction() const;
     bool actionIsSet() const;
     void unsetAction();
     void setAction(const utility::string_t& value);
 
+    /// <summary>
+    /// Auth is the credential the actor presented: \&quot;jwt\&quot;, \&quot;api-key\&quot;, or \&quot;none\&quot;.
+    /// </summary>
     utility::string_t getAuthMethod() const;
     bool authMethodIsSet() const;
     void unsetAuthMethod();
     void setAuthMethod(const utility::string_t& value);
 
+    /// <summary>
+    /// Email is the actor&#39;s validated address, absent when the credential carried none. It comes from the verified token, never from a client header.
+    /// </summary>
     utility::string_t getEmail() const;
     bool emailIsSet() const;
     void unsetEmail();
     void setEmail(const utility::string_t& value);
 
+    /// <summary>
+    /// Hash is this record&#39;s SHA-256 over its own canonical JSON with both hash fields cleared, folded with prevHash. Recomputing it from the row&#39;s other fields is what proves the row has not been edited.
+    /// </summary>
     utility::string_t getHash() const;
     bool hashIsSet() const;
     void unsetHash();
@@ -80,81 +92,129 @@ public:
     void unsetHome();
     void setHome(const utility::string_t& value);
 
+    /// <summary>
+    /// IsAdmin is the VALIDATED platform-SuperAdmin bit at decision time (membership of the reserved admin org), never the client&#39;s own claim to be one.
+    /// </summary>
     bool isIsAdmin() const;
     bool isAdminIsSet() const;
     void unsetIsAdmin();
     void setIsAdmin(bool value);
 
+    /// <summary>
+    /// Method is the HTTP verb, on a record a request produced. Absent on an event emitted from inside the binary with no request behind it.
+    /// </summary>
     utility::string_t getMethod() const;
     bool methodIsSet() const;
     void unsetMethod();
     void setMethod(const utility::string_t& value);
 
+    /// <summary>
+    /// Org is the tenant the action was taken IN — the effective org, which for everyone but an impersonating SuperAdmin is also the actor&#39;s own. Empty on an unauthenticated request.
+    /// </summary>
     utility::string_t getOrg() const;
     bool orgIsSet() const;
     void unsetOrg();
     void setOrg(const utility::string_t& value);
 
+    /// <summary>
+    /// Path is the request&#39;s route. Any segment shaped like a credential is replaced before the record is written, so a key that rides in a path is not preserved here by the very control meant to watch it.
+    /// </summary>
     utility::string_t getPath() const;
     bool pathIsSet() const;
     void unsetPath();
     void setPath(const utility::string_t& value);
 
+    /// <summary>
+    /// PrevHash is the hash of record seq-1, which is what links the rows into a chain: a deleted or reordered record breaks the recomputation at that point. The first record of a chain carries 64 zeros rather than an empty string, so \&quot;start of chain\&quot; and \&quot;field missing\&quot; cannot look alike.
+    /// </summary>
     utility::string_t getPrevHash() const;
     bool prevHashIsSet() const;
     void unsetPrevHash();
     void setPrevHash(const utility::string_t& value);
 
+    /// <summary>
+    /// Reason is a short explanation for a deny or an error (\&quot;SuperAdmin required\&quot;, \&quot;insufficient_balance\&quot;). It is never a secret and never a raw upstream error body; absent on a success.
+    /// </summary>
     utility::string_t getReason() const;
     bool reasonIsSet() const;
     void unsetReason();
     void setReason(const utility::string_t& value);
 
+    /// <summary>
+    /// RequestID ties this row to the request-line log and any downstream trace — the X-Request-Id the pipeline minted for that request.
+    /// </summary>
     utility::string_t getRequestId() const;
     bool requestIdIsSet() const;
     void unsetRequestId();
     void setRequestId(const utility::string_t& value);
 
+    /// <summary>
+    /// Resource is the KIND of thing acted upon (\&quot;org\&quot;, \&quot;role\&quot;, \&quot;secret\&quot;, \&quot;provider-config\&quot;, \&quot;credit\&quot;). Where a mutation has no finer semantics than its route, this is the route family and resourceId is empty — the action and the path already pin the object.
+    /// </summary>
     utility::string_t getResource() const;
     bool resourceIsSet() const;
     void unsetResource();
     void setResource(const utility::string_t& value);
 
+    /// <summary>
+    /// ResourceID is the specific instance, absent when the kind alone identifies it.
+    /// </summary>
     utility::string_t getResourceId() const;
     bool resourceIdIsSet() const;
     void unsetResourceId();
     void setResourceId(const utility::string_t& value);
 
+    /// <summary>
+    /// Result is how the action ended: \&quot;success\&quot;, \&quot;deny\&quot; or \&quot;error\&quot;. A deny is a decision this binary made and is as much evidence as a success.
+    /// </summary>
     utility::string_t getResult() const;
     bool resultIsSet() const;
     void unsetResult();
     void setResult(const utility::string_t& value);
 
+    /// <summary>
+    /// Seq is the record&#39;s position in the chain, 0-based and gapless. The Recorder assigns it under its own lock, so it is a true total order: seq n+1 was written after seq n, and a missing number is a missing record.
+    /// </summary>
     int32_t getSeq() const;
     bool seqIsSet() const;
     void unsetSeq();
     void setSeq(int32_t value);
 
+    /// <summary>
+    /// SourceIP is the client address the edge resolved for the request, after the proxy chain — the address a responder would act on, not the socket peer.
+    /// </summary>
     utility::string_t getSourceIp() const;
     bool sourceIpIsSet() const;
     void unsetSourceIp();
     void setSourceIp(const utility::string_t& value);
 
+    /// <summary>
+    /// Status is the HTTP status the caller received. It is the outcome as the client saw it, so a 200 carrying a domain refusal still reads 200 here.
+    /// </summary>
     int32_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
     void setStatus(int32_t value);
 
+    /// <summary>
+    /// Sub is the acting user (the IAM subject). Empty for a machine principal or an anonymous request, which is how a service action is told from a person&#39;s.
+    /// </summary>
     utility::string_t getSub() const;
     bool subIsSet() const;
     void unsetSub();
     void setSub(const utility::string_t& value);
 
+    /// <summary>
+    /// Time is when the action happened, RFC3339Nano in UTC. The stored column has the same precision and sorts the same way, so a client can range and order on this string verbatim.
+    /// </summary>
     utility::string_t getTime() const;
     bool timeIsSet() const;
     void unsetTime();
     void setTime(const utility::string_t& value);
 
+    /// <summary>
+    /// UserAgent is the client the request announced itself as. Client-supplied, so it is evidence about what claimed to act, not proof of it.
+    /// </summary>
     utility::string_t getUserAgent() const;
     bool userAgentIsSet() const;
     void unsetUserAgent();

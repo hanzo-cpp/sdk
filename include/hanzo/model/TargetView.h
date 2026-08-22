@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -56,66 +56,105 @@ public:
     /// TargetView members
 
 
+    /// <summary>
+    /// Capacity is a human summary of what the machine has (\&quot;8 vCPU / 32G\&quot;, \&quot;1× GB10\&quot;), up to 256 characters. Prose for a card — Spec is the same thing in a form a scheduler can read, and nothing derives one from the other.
+    /// </summary>
     utility::string_t getCapacity() const;
     bool capacityIsSet() const;
     void unsetCapacity();
     void setCapacity(const utility::string_t& value);
 
+    /// <summary>
+    /// CreatedAt is when the machine was first registered, RFC 3339 in UTC. A re-link refreshes the row and leaves this alone, so it dates the machine and not the connection.
+    /// </summary>
     utility::string_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
     void setCreatedAt(const utility::string_t& value);
 
+    /// <summary>
+    /// Host is the hostname sessions on this machine report, and it is a JOIN KEY, not a label: a session naming this host counts against the load below even when it names no target id, and a re-link of the same (org, host, owner) refreshes this row instead of creating a second. Empty means the machine is addressable only by ID.
+    /// </summary>
     utility::string_t getHost() const;
     bool hostIsSet() const;
     void unsetHost();
     void setHost(const utility::string_t& value);
 
+    /// <summary>
+    /// ID is the machine&#39;s handle, minted as \&quot;tgt_\&quot; + 32 hex characters. It is what a session records to say it ran here, and what every later patch, claim or delete addresses.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
+    /// <summary>
+    /// Kind is what sort of destination this is, from a closed five: laptop | cloud | gpu | cluster | machine. A register that named none is a &#x60;machine&#x60;.
+    /// </summary>
     utility::string_t getKind() const;
     bool kindIsSet() const;
     void unsetKind();
     void setKind(const utility::string_t& value);
 
+    /// <summary>
+    /// Label is the name a person gave the machine (\&quot;workshop\&quot;), up to 128 characters. Required at register, free text, and the only field here meant for reading rather than matching.
+    /// </summary>
     utility::string_t getLabel() const;
     bool labelIsSet() const;
     void unsetLabel();
     void setLabel(const utility::string_t& value);
 
+    /// <summary>
+    /// Metrics is what the machine was DOING at its last heartbeat — loadavg, memory, accelerator utilization. Absent when it has never beaten. It is a SNAPSHOT: the series over time lives in the fleet samples, not here.
+    /// </summary>
     std::shared_ptr<Metrics> getMetrics() const;
     bool metricsIsSet() const;
     void unsetMetrics();
     void setMetrics(const std::shared_ptr<Metrics>& value);
 
+    /// <summary>
+    /// MetricsAt is when that heartbeat was recorded, RFC 3339 in UTC, and the SERVER stamps it — a client cannot backdate or forge the staleness clock. Absent means never beaten, which is exactly the case where Status is taken at its word.
+    /// </summary>
     utility::string_t getMetricsAt() const;
     bool metricsAtIsSet() const;
     void unsetMetricsAt();
     void setMetricsAt(const utility::string_t& value);
 
+    /// <summary>
+    /// Running is how many of those are in &#x60;running&#x60; right now — the number a dispatcher weighs against Capacity. paused sessions are in Sessions and not here.
+    /// </summary>
     int32_t getRunning() const;
     bool runningIsSet() const;
     void unsetRunning();
     void setRunning(int32_t value);
 
+    /// <summary>
+    /// Sessions is how many of the org&#39;s sessions are mapped to this machine, by target id OR by matching Host. All of them, whatever their status.
+    /// </summary>
     int32_t getSessions() const;
     bool sessionsIsSet() const;
     void unsetSessions();
     void setSessions(int32_t value);
 
+    /// <summary>
+    /// Spec is what the machine IS — os, arch, cores, RAM, accelerators — the static half, changed only when something reports it again. Absent when nothing has ever been reported, and a scheduler reads absence as \&quot;cannot satisfy a floor\&quot; rather than as \&quot;no limits\&quot;.
+    /// </summary>
     std::shared_ptr<Spec> getSpec() const;
     bool specIsSet() const;
     void unsetSpec();
     void setSpec(const std::shared_ptr<Spec>& value);
 
+    /// <summary>
+    /// Status is the EFFECTIVE liveness — online | offline | draining — not the stored one. offline and draining are operator INTENT and are reported as they stand; &#x60;online&#x60; is checked against the heartbeat, and a machine that has beaten before but not in the last 90 seconds reports offline whatever its row says. A target that has NEVER beaten keeps its stored status, because a hand-registered destination has no fact to check.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
+    /// <summary>
+    /// UpdatedAt is the last write to the row, same format — which for a beating machine is its last heartbeat, since a heartbeat IS a write.
+    /// </summary>
     utility::string_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();

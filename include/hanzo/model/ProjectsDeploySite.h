@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -55,16 +55,25 @@ public:
     /// ProjectsDeploySite members
 
 
+    /// <summary>
+    /// Files is the whole site, inline — every file it consists of. It REPLACES what is there rather than merging, so an omitted file is a deleted one.
+    /// </summary>
     std::vector<std::shared_ptr<ProjectsFile>> getFiles() const;
     bool filesIsSet() const;
     void unsetFiles();
     void setFiles(const std::vector<std::shared_ptr<ProjectsFile>>& value);
 
+    /// <summary>
+    /// Name is the site&#39;s display name.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
+    /// <summary>
+    /// Slug is the handle and public host label to publish under.
+    /// </summary>
     utility::string_t getSlug() const;
     bool slugIsSet() const;
     void unsetSlug();

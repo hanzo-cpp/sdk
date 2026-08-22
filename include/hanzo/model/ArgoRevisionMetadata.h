@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -53,26 +53,41 @@ public:
     /// ArgoRevisionMetadata members
 
 
+    /// <summary>
+    /// Author is the commit author. Always absent: an App CR pins an IMAGE, so this process has no commit to read one from and will not invent one.
+    /// </summary>
     utility::string_t getAuthor() const;
     bool authorIsSet() const;
     void unsetAuthor();
     void setAuthor(const utility::string_t& value);
 
+    /// <summary>
+    /// Date is when the App CR was created, RFC 3339 UTC — the only real timestamp there is here. It is NOT the date of the revision asked for.
+    /// </summary>
     utility::string_t getDate() const;
     bool dateIsSet() const;
     void unsetdate();
     void setDate(const utility::string_t& value);
 
+    /// <summary>
+    /// Message is the revision asked for, echoed back — not a commit message. The empty revision and \&quot;HEAD\&quot; resolve to the image tag the CR declares (spec.image.tag), and anything longer than 256 characters is truncated to it.
+    /// </summary>
     utility::string_t getMessage() const;
     bool messageIsSet() const;
     void unsetMessage();
     void setMessage(const utility::string_t& value);
 
+    /// <summary>
+    /// SignatureInfo is the GPG verification result for the revision. Always absent: nothing here verifies a signature, and an empty field says so rather than implying an unsigned commit.
+    /// </summary>
     utility::string_t getSignatureInfo() const;
     bool signatureInfoIsSet() const;
     void unsetSignatureInfo();
     void setSignatureInfo(const utility::string_t& value);
 
+    /// <summary>
+    /// Tags are the git tags pointing at the revision. Always absent, for the same reason as Author.
+    /// </summary>
     std::vector<utility::string_t> getTags() const;
     bool tagsIsSet() const;
     void unsetTags();

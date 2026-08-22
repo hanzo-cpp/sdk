@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -58,21 +58,33 @@ public:
     void unsetDefinition();
     void setDefinition(const std::shared_ptr<AnyType>& value);
 
+    /// <summary>
+    /// Key is the flag&#39;s primary key in the caller&#39;s (org, project) store, and the name evaluation looks it up by. On a write it is taken from the URL, never from the body: the stored document&#39;s own \&quot;key\&quot; is forced to match.
+    /// </summary>
     utility::string_t getKey() const;
     bool keyIsSet() const;
     void unsetKey();
     void setKey(const utility::string_t& value);
 
+    /// <summary>
+    /// UpdatedAt is when the definition was last written, RFC 3339 UTC.
+    /// </summary>
     utility::string_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdated_at();
     void setUpdatedAt(const utility::string_t& value);
 
+    /// <summary>
+    /// UpdatedBy is the email of the principal who last wrote it. Empty when the write came from an in-process composer (an experiment registering its own assignment flag) rather than from a signed-in person.
+    /// </summary>
     utility::string_t getUpdatedBy() const;
     bool updatedByIsSet() const;
     void unsetUpdated_by();
     void setUpdatedBy(const utility::string_t& value);
 
+    /// <summary>
+    /// Version is 1 when the key was created and rises by one on every overwrite. It counts writes, not content changes: re-storing an identical document bumps it.
+    /// </summary>
     int32_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();

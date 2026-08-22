@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -29,6 +29,8 @@
 #include "hanzo/model/BuildList.h"
 #include "hanzo/model/BuildView.h"
 #include "hanzo/model/ClaimKeyOut.h"
+#include "hanzo/model/CodingStartIn.h"
+#include "hanzo/model/CodingStarted.h"
 #include "hanzo/model/ControlDrain.h"
 #include "hanzo/model/CreateAgentIn.h"
 #include "hanzo/model/MetricsView.h"
@@ -145,6 +147,32 @@ public:
     pplx::task<std::shared_ptr<RunList>> getAgentsByRefRuns(
         utility::string_t ref,
         boost::optional<int32_t> limit
+    ) const;
+    /// <summary>
+    /// List the agent threads in your org
+    /// </summary>
+    /// <remarks>
+    /// Returns a summary of every agent conversation in the caller&#39;s org — id, derived title, and when it was last appended to — for populating a thread list.  Scoped to the caller&#39;s org and nothing else, and that isolation is structural rather than a filter: conversations are persisted in a store opened PER ORG, so there is no query in which another tenant&#39;s threads could appear. A validated principal with a non-empty org is required; 403 without one.
+    /// </remarks>
+    pplx::task<void> getAgentsChatConversations(
+    ) const;
+    /// <summary>
+    /// Read one agent thread in full
+    /// </summary>
+    /// <remarks>
+    /// Returns every message of one conversation in order — role, content, the assistant&#39;s tool calls where it made any, and each message&#39;s creation time — which is the transcript a client replays to resume a thread.  The lookup happens inside the caller&#39;s OWN per-org store, so an id belonging to another tenant is not refused, it is simply absent: the answer is 200 with an empty message list. Read it as \&quot;no such conversation for you\&quot; rather than as an empty thread. A validated principal with a non-empty org is required; 403 without one.
+    /// </remarks>
+    /// <param name="id"></param>
+    pplx::task<void> getAgentsChatConversationsById(
+        utility::string_t id
+    ) const;
+    /// <summary>
+    /// List the agent presets available to a caller
+    /// </summary>
+    /// <remarks>
+    /// Returns the preset catalog: each entry&#39;s id, its description and whether it is server-executing — the flag that decides if a preset&#39;s tool calls run here or come back for the client to apply. The ids are what the round accepts in &#x60;preset&#x60;.  The catalog is compiled into the build, identical for every caller, and this is the one read in the group that needs no principal.
+    /// </remarks>
+    pplx::task<void> getAgentsChatPresets(
     ) const;
     /// <summary>
     /// Serves the invocations-over-time histogram for the org&#39;s Agents dashboard.
@@ -299,6 +327,24 @@ public:
     /// <param name="ref"></param>
     pplx::task<void> postAgentsByRefRun(
         utility::string_t ref
+    ) const;
+    /// <summary>
+    /// Run one tool-calling round against your org&#39;s own tools
+    /// </summary>
+    /// <remarks>
+    /// Answers one turn of a conversation with four things: the model&#39;s &#x60;reply&#x60;, the &#x60;actions&#x60; the server executed on the caller&#39;s behalf, the &#x60;ops&#x60; the client must apply itself, and the &#x60;conversationId&#x60; the turn was recorded under.  The split between actions and ops is the rule most easily got wrong. A tool call is executed HERE only when the chosen preset is server-executing AND the tool resolves in the caller&#39;s own scope; every other call is handed back as an op for the client to apply to its own graph or UI. A tool that fails still comes back as an action, carrying its error rather than failing the round.  &#x60;preset&#x60; selects the system prompt and the tool set (&#x60;capability&#x60; is a legacy alias for it); an unknown one is refused. &#x60;conversationId&#x60; continues an existing thread, and its absence starts one. A validated principal with a non-empty org is required — the org is the sole authority for both persistence and tool scope, and is NEVER read from the body.  A completion refused for the caller&#39;s own reason — 402 insufficient balance, 429, 403 — is relayed with its own status and body verbatim, so the real billing message reaches the client instead of an opaque gateway error. Only a genuine upstream fault becomes a 502.
+    /// </remarks>
+    pplx::task<void> postAgentsChat(
+    ) const;
+    /// <summary>
+    /// Start one autonomous coding run against a repo in the caller&#39;s org
+    /// </summary>
+    /// <remarks>
+    /// Runs a coding task on a repository: clones it into a sandbox, lets a model read and edit the code, run the tests, and push the work to a branch. Say the thing you want done — \&quot;fix the failing auth test in hanzoai/cloud\&quot; — and the run infers the repo, the branch and the plan. No prefix, no ceremony.  It answers 202 with the run&#39;s handle the moment the run is ADMITTED — not when it finishes. A coding run takes minutes; holding a request open for one would tie a connection to a model loop and give the caller nothing it cannot get better from the session stream.  The handle is a session id, and that is deliberate: the session is already the run&#39;s durable record and its live stream (/v1/agents/sessions/{id}/stream), so this door does not grow a progress endpoint, a status endpoint or a cancel endpoint of its own. One way to watch a run, whoever started it.  It is also how work CONTINUES. Pass an earlier run&#39;s session as &#x60;after&#x60; and this one starts from where that one stopped, so \&quot;now add tests for it\&quot; builds on the branch already pushed instead of a fresh clone. The follow-up still gets its own branch and its own session — one run, one branch, always reviewable on its own.
+    /// </remarks>
+    /// <param name="codingStartIn"></param>
+    pplx::task<std::shared_ptr<CodingStarted>> postAgentsCoding(
+        std::shared_ptr<CodingStartIn> codingStartIn
     ) const;
     /// <summary>
     /// Opens a live agent session in the caller&#39;s org — the row every surface (the CLI&#39;s outer agent, hanzo.bot, the console, chat) hangs its activity off.

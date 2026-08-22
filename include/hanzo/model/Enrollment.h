@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -77,7 +77,7 @@ public:
     void setCurrentStep(int32_t value);
 
     /// <summary>
-    /// EnrolledAt and UpdatedAt are unix seconds.
+    /// EnrolledAt is unix seconds when the contact joined the walk, and orders the enrollment list (newest first).
     /// </summary>
     int32_t getEnrolledAt() const;
     bool enrolledAtIsSet() const;
@@ -116,6 +116,9 @@ public:
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
+    /// <summary>
+    /// UpdatedAt is unix seconds of the last move: the drip engine writes it each time it advances the walk a step, completes it or cancels it. Together with Status it says when the walk last did anything, which is how a stalled enrollment is told from a finished one.
+    /// </summary>
     int32_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();

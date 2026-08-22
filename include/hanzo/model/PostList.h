@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -54,6 +54,9 @@ public:
     /// PostList members
 
 
+    /// <summary>
+    /// Data is the page, ordered by scheduledAt descending — the furthest-out post first and unscheduled drafts (scheduledAt 0) last. An empty array when the org&#39;s calendar holds no matching post.
+    /// </summary>
     std::vector<std::shared_ptr<CalendarPost>> getData() const;
     bool dataIsSet() const;
     void unsetData();

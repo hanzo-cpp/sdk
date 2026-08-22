@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -55,44 +55,56 @@ public:
     /// Strategy members
 
 
+    /// <summary>
+    /// Action is the tactic itself: the thing to go and do, stated imperatively.
+    /// </summary>
     utility::string_t getAction() const;
     bool actionIsSet() const;
     void unsetAction();
     void setAction(const utility::string_t& value);
 
     /// <summary>
-    /// long-form explainer (nil for un-blogged tactics)
+    /// Blog is the tactic&#39;s long-form explainer; absent for tactics that have none.
     /// </summary>
     std::shared_ptr<Blog> getBlog() const;
     bool blogIsSet() const;
     void unsetBlog();
     void setBlog(const std::shared_ptr<Blog>& value);
 
+    /// <summary>
+    /// Category is the growth discipline the tactic belongs to — the axis &#x60;?category&#x3D;&#x60; narrows the corpus on, and one of the facets a caller browses by.
+    /// </summary>
     utility::string_t getCategory() const;
     bool categoryIsSet() const;
     void unsetCategory();
     void setCategory(const utility::string_t& value);
 
+    /// <summary>
+    /// Enabled is the admin lever. Absent reads as ON; an explicit false drops the tactic from every org-facing corpus read while leaving it in the document.
+    /// </summary>
     bool isEnabled() const;
     bool enabledIsSet() const;
     void unsetEnabled();
     void setEnabled(bool value);
 
     /// <summary>
-    /// modern | heritage
+    /// Era separates an AI-era tactic (&#x60;modern&#x60;) from a classical one (&#x60;heritage&#x60;).
     /// </summary>
     utility::string_t getEra() const;
     bool eraIsSet() const;
     void unsetEra();
     void setEra(const utility::string_t& value);
 
+    /// <summary>
+    /// ID is the tactic&#39;s stable slug, unique across the corpus.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
     /// <summary>
-    /// the spine slug this tactic files under
+    /// Principle is the spine slug this tactic files under (a Principle.Slug).
     /// </summary>
     utility::string_t getPrinciple() const;
     bool principleIsSet() const;
@@ -100,18 +112,24 @@ public:
     void setPrinciple(const utility::string_t& value);
 
     /// <summary>
-    /// provenance / attribution
+    /// Source is where the tactic came from — the attribution a reader is owed.
     /// </summary>
     utility::string_t getSource() const;
     bool sourceIsSet() const;
     void unsetSource();
     void setSource(const utility::string_t& value);
 
+    /// <summary>
+    /// Tags are PRECONDITIONS, not labels — every one must be satisfied by the org&#39;s observed profile before the tactic surfaces, so an untagged tactic is universally applicable. Two vocabularies: &#x60;stage:&lt;research|formed|launched| activated|scaling&gt;&#x60; reads the org&#39;s growth stage, &#x60;has:&lt;capability&gt;&#x60; reads an observed signal.
+    /// </summary>
     std::vector<utility::string_t> getTags() const;
     bool tagsIsSet() const;
     void unsetTags();
     void setTags(const std::vector<utility::string_t>& value);
 
+    /// <summary>
+    /// Workload is how much effort running the tactic costs, so a corpus can be narrowed to what an org has the hands for right now.
+    /// </summary>
     utility::string_t getWorkload() const;
     bool workloadIsSet() const;
     void unsetWorkload();

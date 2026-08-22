@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -54,21 +54,33 @@ public:
     /// Symbol members
 
 
+    /// <summary>
+    /// Detail is the server&#39;s short elaboration, typically the signature. Absent when it offered none.
+    /// </summary>
     utility::string_t getDetail() const;
     bool detailIsSet() const;
     void unsetDetail();
     void setDetail(const utility::string_t& value);
 
+    /// <summary>
+    /// Kind is the LSP SymbolKind number (5 class, 6 method, 12 function, 23 struct, …), passed through rather than translated to a word — these callers already speak LSP, and inventing a second vocabulary is how the two drift.
+    /// </summary>
     int32_t getKind() const;
     bool kindIsSet() const;
     void unsetKind();
     void setKind(int32_t value);
 
+    /// <summary>
+    /// Name is the declared identifier.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
+    /// <summary>
+    /// Range is the declaration&#39;s span in the file.
+    /// </summary>
     std::shared_ptr<Range> getRange() const;
     bool rangeIsSet() const;
     void unsetRange();

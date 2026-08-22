@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -51,16 +51,6 @@ public:
 
     virtual ~DeployApi();
 
-    /// <summary>
-    /// Compatibility answer the console UI asks before enabling its buttons
-    /// </summary>
-    /// <remarks>
-    /// Always answers &#x60;yes&#x60;, whatever resource, action or subresource the path names. It exists for the ArgoCD-compatible console, which asks this before enabling a control, and it is NOT the authorization decision: nothing downstream consults it, and every route that returns fleet data or mutates a CR carries its own gate. Reaching it at all already requires SuperAdmin, so a caller who can read the &#x60;yes&#x60; is one for whom it is true.
-    /// </remarks>
-    /// <param name="wildcard1"></param>
-    pplx::task<void> getDeployAccountCanIByWildcard1(
-        utility::string_t wildcard1
-    ) const;
     /// <summary>
     /// Returns the fleet as an argocd ApplicationList: one projected Application per operator App CR, carrying the image tag the CR DECLARES, the tag actually RUNNING in the cluster&#39;s Deployment, the reconciled health, and the sync verdict those two produce (declared &#x3D;&#x3D; running ⇒ Synced, both known and different ⇒ OutOfSync, either unknown ⇒ Unknown).
     /// </summary>

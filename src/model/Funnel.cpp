@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -18,12 +18,20 @@ namespace model {
 
 Funnel::Funnel()
 {
-    m_ConvertedOrgs = 0;
-    m_ConvertedOrgsIsSet = false;
-    m_RatePct = 0.0;
-    m_RatePctIsSet = false;
-    m_ReferredOrgs = 0;
-    m_ReferredOrgsIsSet = false;
+    m_Available = false;
+    m_AvailableIsSet = false;
+    m_Orders = 0;
+    m_OrdersIsSet = false;
+    m_Pageviews = 0;
+    m_PageviewsIsSet = false;
+    m_Revenue = 0.0;
+    m_RevenueIsSet = false;
+    m_Signups = 0;
+    m_SignupsIsSet = false;
+    m_Visitors = 0;
+    m_VisitorsIsSet = false;
+    m_WindowDays = 0;
+    m_WindowDaysIsSet = false;
 }
 
 Funnel::~Funnel()
@@ -38,20 +46,40 @@ void Funnel::validate()
 web::json::value Funnel::toJson() const
 {
     web::json::value val = web::json::value::object();
-    if(m_ConvertedOrgsIsSet)
+    if(m_AvailableIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("convertedOrgs"))] = ModelBase::toJson(m_ConvertedOrgs);
+        val[utility::conversions::to_string_t(_XPLATSTR("available"))] = ModelBase::toJson(m_Available);
     }
-    if(m_RatePctIsSet)
+    if(m_OrdersIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("ratePct"))] = ModelBase::toJson(m_RatePct);
+        val[utility::conversions::to_string_t(_XPLATSTR("orders"))] = ModelBase::toJson(m_Orders);
     }
-    if(m_ReferredOrgsIsSet)
+    if(m_PageviewsIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("referredOrgs"))] = ModelBase::toJson(m_ReferredOrgs);
+        val[utility::conversions::to_string_t(_XPLATSTR("pageviews"))] = ModelBase::toJson(m_Pageviews);
+    }
+    if(m_RevenueIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("revenue"))] = ModelBase::toJson(m_Revenue);
+    }
+    if(m_SignupsIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("signups"))] = ModelBase::toJson(m_Signups);
+    }
+    if(m_VisitorsIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("visitors"))] = ModelBase::toJson(m_Visitors);
+    }
+    if(m_WindowDaysIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("windowDays"))] = ModelBase::toJson(m_WindowDays);
     }
 
     return val;
@@ -60,36 +88,80 @@ web::json::value Funnel::toJson() const
 bool Funnel::fromJson(const web::json::value& val)
 {
     bool ok = true;
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("convertedOrgs"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("available"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("convertedOrgs")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("available")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setConvertedOrgs;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setConvertedOrgs);
-            setConvertedOrgs(refVal_setConvertedOrgs);
+            bool refVal_setAvailable;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setAvailable);
+            setAvailable(refVal_setAvailable);
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("ratePct"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("orders"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("ratePct")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("orders")));
         if(!fieldValue.is_null())
         {
-            double refVal_setRatePct;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setRatePct);
-            setRatePct(refVal_setRatePct);
+            int32_t refVal_setOrders;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setOrders);
+            setOrders(refVal_setOrders);
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("referredOrgs"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("pageviews"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("referredOrgs")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("pageviews")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setReferredOrgs;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setReferredOrgs);
-            setReferredOrgs(refVal_setReferredOrgs);
+            int32_t refVal_setPageviews;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setPageviews);
+            setPageviews(refVal_setPageviews);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("revenue"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("revenue")));
+        if(!fieldValue.is_null())
+        {
+            double refVal_setRevenue;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setRevenue);
+            setRevenue(refVal_setRevenue);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("signups"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("signups")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setSignups;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSignups);
+            setSignups(refVal_setSignups);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("visitors"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("visitors")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setVisitors;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setVisitors);
+            setVisitors(refVal_setVisitors);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("windowDays"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("windowDays")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setWindowDays;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setWindowDays);
+            setWindowDays(refVal_setWindowDays);
             
         }
     }
@@ -103,17 +175,33 @@ void Funnel::toMultipart(std::shared_ptr<MultipartFormData> multipart, const uti
     {
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
-    if(m_ConvertedOrgsIsSet)
+    if(m_AvailableIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("convertedOrgs")), m_ConvertedOrgs));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("available")), m_Available));
     }
-    if(m_RatePctIsSet)
+    if(m_OrdersIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("ratePct")), m_RatePct));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("orders")), m_Orders));
     }
-    if(m_ReferredOrgsIsSet)
+    if(m_PageviewsIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("referredOrgs")), m_ReferredOrgs));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("pageviews")), m_Pageviews));
+    }
+    if(m_RevenueIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("revenue")), m_Revenue));
+    }
+    if(m_SignupsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("signups")), m_Signups));
+    }
+    if(m_VisitorsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("visitors")), m_Visitors));
+    }
+    if(m_WindowDaysIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("windowDays")), m_WindowDays));
     }
 }
 
@@ -126,90 +214,198 @@ bool Funnel::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("convertedOrgs"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("available"))))
     {
-        int32_t refVal_setConvertedOrgs;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("convertedOrgs"))), refVal_setConvertedOrgs );
-        setConvertedOrgs(refVal_setConvertedOrgs);
+        bool refVal_setAvailable;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("available"))), refVal_setAvailable );
+        setAvailable(refVal_setAvailable);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("ratePct"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("orders"))))
     {
-        double refVal_setRatePct;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ratePct"))), refVal_setRatePct );
-        setRatePct(refVal_setRatePct);
+        int32_t refVal_setOrders;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("orders"))), refVal_setOrders );
+        setOrders(refVal_setOrders);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("referredOrgs"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("pageviews"))))
     {
-        int32_t refVal_setReferredOrgs;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("referredOrgs"))), refVal_setReferredOrgs );
-        setReferredOrgs(refVal_setReferredOrgs);
+        int32_t refVal_setPageviews;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("pageviews"))), refVal_setPageviews );
+        setPageviews(refVal_setPageviews);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("revenue"))))
+    {
+        double refVal_setRevenue;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("revenue"))), refVal_setRevenue );
+        setRevenue(refVal_setRevenue);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("signups"))))
+    {
+        int32_t refVal_setSignups;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("signups"))), refVal_setSignups );
+        setSignups(refVal_setSignups);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("visitors"))))
+    {
+        int32_t refVal_setVisitors;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("visitors"))), refVal_setVisitors );
+        setVisitors(refVal_setVisitors);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("windowDays"))))
+    {
+        int32_t refVal_setWindowDays;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("windowDays"))), refVal_setWindowDays );
+        setWindowDays(refVal_setWindowDays);
     }
     return ok;
 }
 
 
-int32_t Funnel::getConvertedOrgs() const
+bool Funnel::isAvailable() const
 {
-    return m_ConvertedOrgs;
+    return m_Available;
 }
 
 
-void Funnel::setConvertedOrgs(int32_t value)
+void Funnel::setAvailable(bool value)
 {
-    m_ConvertedOrgs = value;
-    m_ConvertedOrgsIsSet = true;
+    m_Available = value;
+    m_AvailableIsSet = true;
 }
 
-bool Funnel::convertedOrgsIsSet() const
+bool Funnel::availableIsSet() const
 {
-    return m_ConvertedOrgsIsSet;
+    return m_AvailableIsSet;
 }
 
-void Funnel::unsetConvertedOrgs()
+void Funnel::unsetAvailable()
 {
-    m_ConvertedOrgsIsSet = false;
+    m_AvailableIsSet = false;
 }
-double Funnel::getRatePct() const
+int32_t Funnel::getOrders() const
 {
-    return m_RatePct;
-}
-
-
-void Funnel::setRatePct(double value)
-{
-    m_RatePct = value;
-    m_RatePctIsSet = true;
-}
-
-bool Funnel::ratePctIsSet() const
-{
-    return m_RatePctIsSet;
-}
-
-void Funnel::unsetRatePct()
-{
-    m_RatePctIsSet = false;
-}
-int32_t Funnel::getReferredOrgs() const
-{
-    return m_ReferredOrgs;
+    return m_Orders;
 }
 
 
-void Funnel::setReferredOrgs(int32_t value)
+void Funnel::setOrders(int32_t value)
 {
-    m_ReferredOrgs = value;
-    m_ReferredOrgsIsSet = true;
+    m_Orders = value;
+    m_OrdersIsSet = true;
 }
 
-bool Funnel::referredOrgsIsSet() const
+bool Funnel::ordersIsSet() const
 {
-    return m_ReferredOrgsIsSet;
+    return m_OrdersIsSet;
 }
 
-void Funnel::unsetReferredOrgs()
+void Funnel::unsetOrders()
 {
-    m_ReferredOrgsIsSet = false;
+    m_OrdersIsSet = false;
+}
+int32_t Funnel::getPageviews() const
+{
+    return m_Pageviews;
+}
+
+
+void Funnel::setPageviews(int32_t value)
+{
+    m_Pageviews = value;
+    m_PageviewsIsSet = true;
+}
+
+bool Funnel::pageviewsIsSet() const
+{
+    return m_PageviewsIsSet;
+}
+
+void Funnel::unsetPageviews()
+{
+    m_PageviewsIsSet = false;
+}
+double Funnel::getRevenue() const
+{
+    return m_Revenue;
+}
+
+
+void Funnel::setRevenue(double value)
+{
+    m_Revenue = value;
+    m_RevenueIsSet = true;
+}
+
+bool Funnel::revenueIsSet() const
+{
+    return m_RevenueIsSet;
+}
+
+void Funnel::unsetRevenue()
+{
+    m_RevenueIsSet = false;
+}
+int32_t Funnel::getSignups() const
+{
+    return m_Signups;
+}
+
+
+void Funnel::setSignups(int32_t value)
+{
+    m_Signups = value;
+    m_SignupsIsSet = true;
+}
+
+bool Funnel::signupsIsSet() const
+{
+    return m_SignupsIsSet;
+}
+
+void Funnel::unsetSignups()
+{
+    m_SignupsIsSet = false;
+}
+int32_t Funnel::getVisitors() const
+{
+    return m_Visitors;
+}
+
+
+void Funnel::setVisitors(int32_t value)
+{
+    m_Visitors = value;
+    m_VisitorsIsSet = true;
+}
+
+bool Funnel::visitorsIsSet() const
+{
+    return m_VisitorsIsSet;
+}
+
+void Funnel::unsetVisitors()
+{
+    m_VisitorsIsSet = false;
+}
+int32_t Funnel::getWindowDays() const
+{
+    return m_WindowDays;
+}
+
+
+void Funnel::setWindowDays(int32_t value)
+{
+    m_WindowDays = value;
+    m_WindowDaysIsSet = true;
+}
+
+bool Funnel::windowDaysIsSet() const
+{
+    return m_WindowDaysIsSet;
+}
+
+void Funnel::unsetWindowDays()
+{
+    m_WindowDaysIsSet = false;
 }
 
 }

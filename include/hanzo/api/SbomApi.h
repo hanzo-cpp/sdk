@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -25,7 +25,6 @@
 #include "hanzo/model/SbomHealth.h"
 #include "hanzo/model/SbomIngest.h"
 #include "hanzo/model/SbomIngested.h"
-#include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
 namespace hanzo {
@@ -43,16 +42,6 @@ public:
 
     virtual ~SbomApi();
 
-    /// <summary>
-    /// Resolve everything inside a container image
-    /// </summary>
-    /// <remarks>
-    /// Answers with the component set of one container image — each component&#39;s name, version, type, package URL and license — addressed by either the image digest or the image ref. The captured segment is greedy and percent-decoded, so a ref carrying slashes and a tag is passed whole.  This read is GLOBAL, not tenant-scoped, and deliberately so: a bill of materials belongs to a content-addressed digest rather than to an org, so every caller deploying the same image resolves the same components, and nothing tenant-owned is exposed by it. Ingest is the gated half of the pair.  A miss is not the end of the lookup. The registry is the source of truth, so an unmaterialized ref is pulled from the SBOM attached to that image, persisted, and answered from the store — the first read of a freshly built image pays for the pull, later ones do not. A bare digest with no repository is not pullable and answers an honest 404, as does a ref with no attached document. Repeated ingests collapse to the latest, components come back ordered by type then name, and a result over 5000 components is capped with &#x60;truncated&#x60; set. When the datastore is not connected the answer is 503 rather than a fabricated empty image.
-    /// </remarks>
-    /// <param name="wildcard1"></param>
-    pplx::task<void> getSbomByWildcard1(
-        utility::string_t wildcard1
-    ) const;
     /// <summary>
     /// Health is a pure liveness probe: the service is up; datastore reflects whether the datastore store is connected.
     /// </summary>

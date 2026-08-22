@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -69,11 +69,17 @@ public:
     void unsetChargeCents();
     void setChargeCents(int32_t value);
 
+    /// <summary>
+    /// DiscountCents is the discount claimed for month one, in USD cents, at the single-seat floor. It is the same figure recorded on the Redemption, and it is evidence an admin may later grant against — not a balance.
+    /// </summary>
     int32_t getDiscountCents() const;
     bool discountCentsIsSet() const;
     void unsetDiscountCents();
     void setDiscountCents(int32_t value);
 
+    /// <summary>
+    /// Redemption is the row that was recorded — the org&#39;s claim on this promo, with the server-derived plan and seat count. On a replay it is the ORIGINAL row, so its redeemedAt is when the org first took the promo, not now.
+    /// </summary>
     std::shared_ptr<Redemption> getRedemption() const;
     bool redemptionIsSet() const;
     void unsetRedemption();

@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -53,59 +53,89 @@ public:
     /// Endpoint members
 
 
+    /// <summary>
+    /// CreatedAt is when the endpoint was registered, RFC3339 in UTC — stored in that spelling because it sorts as a string.
+    /// </summary>
     utility::string_t getCreated() const;
     bool createdIsSet() const;
     void unsetCreated();
     void setCreated(const utility::string_t& value);
 
     /// <summary>
-    /// Deliveries7d / Failures7d are cheap usage counters computed from the delivery log over usageWindow (not stored columns) and populated ONLY on list/get. They are 0 when there is no delivery history — never omitempty, so the console always sees them.
+    /// Deliveries7d is how many deliveries SETTLED in the trailing 7 days — the attempts that ended ok or failed, so a delivery still retrying is in neither counter yet. It is counted from the log at read time rather than stored, and it is filled only on a list or a get; a create answers 0 because there is no history, which is why it is never omitted.
     /// </summary>
     int32_t getDeliveries7d() const;
     bool deliveries7dIsSet() const;
     void unsetDeliveries7d();
     void setDeliveries7d(int32_t value);
 
+    /// <summary>
+    /// Description is the operator&#39;s own label for the endpoint. Never sent anywhere.
+    /// </summary>
     utility::string_t getDescription() const;
     bool descriptionIsSet() const;
     void unsetDescription();
     void setDescription(const utility::string_t& value);
 
+    /// <summary>
+    /// Events are the subject patterns this endpoint subscribes to (\&quot;commerce.order.&gt;\&quot;). An EMPTY list means every event, not none.
+    /// </summary>
     std::vector<utility::string_t> getEvents() const;
     bool eventsIsSet() const;
     void unsetEvents();
     void setEvents(const std::vector<utility::string_t>& value);
 
+    /// <summary>
+    /// Failures7d is how many of those settled as failed — the subscriber never accepted it and no further attempt will be made. It is the numerator to Deliveries7d, over the same window.
+    /// </summary>
     int32_t getFailures7d() const;
     bool failures7dIsSet() const;
     void unsetFailures7d();
     void setFailures7d(int32_t value);
 
+    /// <summary>
+    /// ID is the endpoint&#39;s handle, server-minted and stable for its life. It is what every other route here addresses.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
+    /// <summary>
+    /// Org is the tenant that owns the endpoint, taken from the validated principal rather than from any request field.
+    /// </summary>
     utility::string_t getOrg() const;
     bool orgIsSet() const;
     void unsetOrg();
     void setOrg(const utility::string_t& value);
 
+    /// <summary>
+    /// Secret is the HMAC-SHA256 signing key a subscriber recomputes the signature with. It is returned exactly ONCE, on create: a later read of the endpoint omits it, so a lost secret is replaced rather than recovered.
+    /// </summary>
     utility::string_t getSecret() const;
     bool secretIsSet() const;
     void unsetSecret();
     void setSecret(const utility::string_t& value);
 
+    /// <summary>
+    /// Status is \&quot;active\&quot; or \&quot;disabled\&quot; — nothing else is accepted. A disabled endpoint keeps its subscription and receives no deliveries, except a manual test send, which goes out anyway.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
+    /// <summary>
+    /// UpdatedAt is when its url, events, status or description last changed.
+    /// </summary>
     utility::string_t getUpdated() const;
     bool updatedIsSet() const;
     void unsetUpdated();
     void setUpdated(const utility::string_t& value);
 
+    /// <summary>
+    /// URL is where the POST goes. Changing it is the one edit that redirects an org&#39;s events, which is why it is never bindable from a query string.
+    /// </summary>
     utility::string_t getUrl() const;
     bool urlIsSet() const;
     void unsetUrl();

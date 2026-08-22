@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -18,8 +18,8 @@ namespace model {
 
 Iam_ListOrganizationsOutput::Iam_ListOrganizationsOutput()
 {
-    m_Count = 0;
-    m_CountIsSet = false;
+    m_Cursor = utility::conversions::to_string_t("");
+    m_CursorIsSet = false;
     m_OrganizationsIsSet = false;
 }
 
@@ -35,10 +35,10 @@ void Iam_ListOrganizationsOutput::validate()
 web::json::value Iam_ListOrganizationsOutput::toJson() const
 {
     web::json::value val = web::json::value::object();
-    if(m_CountIsSet)
+    if(m_CursorIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("count"))] = ModelBase::toJson(m_Count);
+        val[utility::conversions::to_string_t(_XPLATSTR("cursor"))] = ModelBase::toJson(m_Cursor);
     }
     if(m_OrganizationsIsSet)
     {
@@ -52,14 +52,14 @@ web::json::value Iam_ListOrganizationsOutput::toJson() const
 bool Iam_ListOrganizationsOutput::fromJson(const web::json::value& val)
 {
     bool ok = true;
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("count"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("cursor"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("count")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cursor")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCount;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setCount);
-            setCount(refVal_setCount);
+            utility::string_t refVal_setCursor;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setCursor);
+            setCursor(refVal_setCursor);
             
         }
     }
@@ -84,9 +84,9 @@ void Iam_ListOrganizationsOutput::toMultipart(std::shared_ptr<MultipartFormData>
     {
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
-    if(m_CountIsSet)
+    if(m_CursorIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("count")), m_Count));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("cursor")), m_Cursor));
     }
     if(m_OrganizationsIsSet)
     {
@@ -103,11 +103,11 @@ bool Iam_ListOrganizationsOutput::fromMultiPart(std::shared_ptr<MultipartFormDat
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("count"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cursor"))))
     {
-        int32_t refVal_setCount;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("count"))), refVal_setCount );
-        setCount(refVal_setCount);
+        utility::string_t refVal_setCursor;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cursor"))), refVal_setCursor );
+        setCursor(refVal_setCursor);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("organizations"))))
     {
@@ -119,26 +119,26 @@ bool Iam_ListOrganizationsOutput::fromMultiPart(std::shared_ptr<MultipartFormDat
 }
 
 
-int32_t Iam_ListOrganizationsOutput::getCount() const
+utility::string_t Iam_ListOrganizationsOutput::getCursor() const
 {
-    return m_Count;
+    return m_Cursor;
 }
 
 
-void Iam_ListOrganizationsOutput::setCount(int32_t value)
+void Iam_ListOrganizationsOutput::setCursor(const utility::string_t& value)
 {
-    m_Count = value;
-    m_CountIsSet = true;
+    m_Cursor = value;
+    m_CursorIsSet = true;
 }
 
-bool Iam_ListOrganizationsOutput::countIsSet() const
+bool Iam_ListOrganizationsOutput::cursorIsSet() const
 {
-    return m_CountIsSet;
+    return m_CursorIsSet;
 }
 
-void Iam_ListOrganizationsOutput::unsetCount()
+void Iam_ListOrganizationsOutput::unsetCursor()
 {
-    m_CountIsSet = false;
+    m_CursorIsSet = false;
 }
 std::vector<std::shared_ptr<Iam_Organization>> Iam_ListOrganizationsOutput::getOrganizations() const
 {
