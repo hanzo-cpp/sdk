@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -53,7 +53,7 @@ public:
 
 
     /// <summary>
-    /// AccessKey (pk-*) is the publishable identifier and lookup index; AccessSecret (sk-*) is the confidential secret.
+    /// AccessKey (pk-*) is the publishable identifier and lookup index; AccessSecret (sk-*) is the confidential secret. AccessSecret IS NOT PERSISTED for a key minted at or after the digest change: it carries the secret out to its holder once, in the mint response, and the row keeps only AccessSecretDigest. It stays on the struct because that one-time reveal is the whole point of minting, and it stays in the schema because rows written before the change still hold a plaintext secret that the resolver drains on first use.
     /// </summary>
     utility::string_t getAccessKey() const;
     bool accessKeyIsSet() const;
@@ -64,6 +64,22 @@ public:
     bool accessSecretIsSet() const;
     void unsetAccessSecret();
     void setAccessSecret(const utility::string_t& value);
+
+    /// <summary>
+    /// AccessSecretDigest is how a presented secret finds its key: the resolver digests what the caller sent and looks THAT up. It is what lets the row hold no plaintext and still be found in one indexed read — a salted hash cannot be looked up by value, which is the reason the plaintext was here.
+    /// </summary>
+    utility::string_t getAccessSecretDigest() const;
+    bool accessSecretDigestIsSet() const;
+    void unsetAccessSecretDigest();
+    void setAccessSecretDigest(const utility::string_t& value);
+
+    /// <summary>
+    /// Act is the durable, opt-in grant that lets this key act FOR a user in its own org — the credential behind as(): presenting it authorizes minting a short-lived, user-bound token for a member of the key&#39;s tenant. Default false, so a server key mints nothing on anyone&#39;s behalf until the grant is set deliberately — the capability is never inherited by every key. It is confined at mint time to the key&#39;s OWN Owner, and a reserved-org or SuperAdmin target is refused, so the grant reaches only ordinary members of the one tenant that holds the key.
+    /// </summary>
+    bool isAct() const;
+    bool actIsSet() const;
+    void unsetAct();
+    void setAct(bool value);
 
     utility::string_t getApplication() const;
     bool applicationIsSet() const;
@@ -170,6 +186,12 @@ protected:
 
     utility::string_t m_AccessSecret;
     bool m_AccessSecretIsSet;
+
+    utility::string_t m_AccessSecretDigest;
+    bool m_AccessSecretDigestIsSet;
+
+    bool m_Act;
+    bool m_ActIsSet;
 
     utility::string_t m_Application;
     bool m_ApplicationIsSet;

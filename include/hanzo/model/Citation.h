@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,26 +52,41 @@ public:
     /// Citation members
 
 
+    /// <summary>
+    /// EndLine is its last line, inclusive.
+    /// </summary>
     int32_t getEndLine() const;
     bool endLineIsSet() const;
     void unsetEndLine();
     void setEndLine(int32_t value);
 
+    /// <summary>
+    /// File is the path inside the repo, relative to its root.
+    /// </summary>
     utility::string_t getFile() const;
     bool fileIsSet() const;
     void unsetfile();
     void setFile(const utility::string_t& value);
 
+    /// <summary>
+    /// Line is the first line of the cited region, 1-based.
+    /// </summary>
     int32_t getLine() const;
     bool lineIsSet() const;
     void unsetLine();
     void setLine(int32_t value);
 
+    /// <summary>
+    /// Repo is the repository the cited code lives in (\&quot;owner/name\&quot;), absent when the ask was already scoped to one.
+    /// </summary>
     utility::string_t getRepo() const;
     bool repoIsSet() const;
     void unsetRepo();
     void setRepo(const utility::string_t& value);
 
+    /// <summary>
+    /// Symbol is the declaration the region belongs to, when it belongs to one.
+    /// </summary>
     utility::string_t getSymbol() const;
     bool symbolIsSet() const;
     void unsetSymbol();

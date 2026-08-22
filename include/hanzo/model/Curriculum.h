@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -55,16 +55,25 @@ public:
     /// Curriculum members
 
 
+    /// <summary>
+    /// Steps are the enabled steps in authoring order. Order is the tiebreak the next-step logic walks, so it is part of the contract rather than cosmetic.
+    /// </summary>
     std::vector<std::shared_ptr<JourneyStep>> getSteps() const;
     bool stepsIsSet() const;
     void unsetSteps();
     void setSteps(const std::vector<std::shared_ptr<JourneyStep>>& value);
 
+    /// <summary>
+    /// Title is the playbook&#39;s name as it heads the checklist.
+    /// </summary>
     utility::string_t getTitle() const;
     bool titleIsSet() const;
     void unsetTitle();
     void setTitle(const utility::string_t& value);
 
+    /// <summary>
+    /// Version identifies the authored playbook this journey was projected from, so two orgs on different playbooks can be told apart. It is the blueprint&#39;s own &#x60;version&#x60; string, not the store&#39;s numeric revision.
+    /// </summary>
     utility::string_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();

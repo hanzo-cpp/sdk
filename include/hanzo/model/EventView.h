@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -53,21 +53,33 @@ public:
     /// EventView members
 
 
+    /// <summary>
+    /// Actor is who produced the turn. A write that names nobody takes the calling principal, so this is rarely empty in practice.
+    /// </summary>
     utility::string_t getActor() const;
     bool actorIsSet() const;
     void unsetActor();
     void setActor(const utility::string_t& value);
 
+    /// <summary>
+    /// CreatedAt is when the turn was recorded, RFC 3339 in UTC to the second. Seconds are coarse enough that two turns can share one, which is why Seq and not this is the order.
+    /// </summary>
     utility::string_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
     void setCreatedAt(const utility::string_t& value);
 
+    /// <summary>
+    /// ID is the event&#39;s own handle, minted as \&quot;evt_\&quot; + 32 hex characters. It identifies the turn; Seq is what ORDERS it.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
+    /// <summary>
+    /// Kind is what the turn IS, from a closed six: message (a model turn), tool-call, spawn (a subagent started), log, status, control (a steering command the running surface consumes). Anything else is refused at the write.
+    /// </summary>
     utility::string_t getKind() const;
     bool kindIsSet() const;
     void unsetKind();
@@ -78,11 +90,17 @@ public:
     void unsetPayload();
     void setPayload(const std::shared_ptr<AnyType>& value);
 
+    /// <summary>
+    /// Seq is the turn&#39;s position in this session&#39;s log: monotonic from 1, assigned by the store inside the insert, and unique PER SESSION rather than globally. It is the cursor a reader resumes from after a reconnect — ask for everything after your last-seen seq.
+    /// </summary>
     int32_t getSeq() const;
     bool seqIsSet() const;
     void unsetSeq();
     void setSeq(int32_t value);
 
+    /// <summary>
+    /// SessionID is the session this turn belongs to. Carried on every event so a stream frame stands alone — a subscriber watching a whole tree gets turns from several sessions down one connection.
+    /// </summary>
     utility::string_t getSessionId() const;
     bool sessionIdIsSet() const;
     void unsetSessionId();

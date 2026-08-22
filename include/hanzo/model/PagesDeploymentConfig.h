@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -62,31 +62,49 @@ public:
     /// PagesDeploymentConfig members
 
 
+    /// <summary>
+    /// CompatibilityDate pins which Workers runtime behaviour the functions run under, as a date (\&quot;2024-01-01\&quot;). It is a pin, not a version: the runtime keeps that date&#39;s semantics for code deployed against it.
+    /// </summary>
     utility::string_t getCompatibilityDate() const;
     bool compatibilityDateIsSet() const;
     void unsetCompatibility_date();
     void setCompatibilityDate(const utility::string_t& value);
 
+    /// <summary>
+    /// CompatibilityFlags turn individual runtime behaviours on or off ahead of, or behind, the date above (\&quot;nodejs_compat\&quot;).
+    /// </summary>
     std::vector<utility::string_t> getCompatibilityFlags() const;
     bool compatibilityFlagsIsSet() const;
     void unsetCompatibility_flags();
     void setCompatibilityFlags(const std::vector<utility::string_t>& value);
 
+    /// <summary>
+    /// D1Databases binds D1 databases in, keyed by binding name.
+    /// </summary>
     std::map<utility::string_t, std::shared_ptr<PagesD1Binding>> getD1Databases() const;
     bool d1DatabasesIsSet() const;
     void unsetD1_databases();
     void setD1Databases(const std::map<utility::string_t, std::shared_ptr<PagesD1Binding>>& value);
 
+    /// <summary>
+    /// EnvVars are the environment variables the functions see, KEYED BY VARIABLE NAME. The key is the name; the value carries the value and whether it is a secret.
+    /// </summary>
     std::map<utility::string_t, std::shared_ptr<PagesEnvVar>> getEnvVars() const;
     bool envVarsIsSet() const;
     void unsetEnv_vars();
     void setEnvVars(const std::map<utility::string_t, std::shared_ptr<PagesEnvVar>>& value);
 
+    /// <summary>
+    /// KVNamespaces binds KV namespaces into the functions, KEYED BY THE BINDING NAME the code reads (&#x60;env.SESSIONS&#x60;). Same shape for the two below.
+    /// </summary>
     std::map<utility::string_t, std::shared_ptr<PagesKVBinding>> getKvNamespaces() const;
     bool kvNamespacesIsSet() const;
     void unsetKv_namespaces();
     void setKvNamespaces(const std::map<utility::string_t, std::shared_ptr<PagesKVBinding>>& value);
 
+    /// <summary>
+    /// R2Buckets binds R2 buckets in, keyed by binding name.
+    /// </summary>
     std::map<utility::string_t, std::shared_ptr<PagesR2Binding>> getR2Buckets() const;
     bool r2BucketsIsSet() const;
     void unsetR2_buckets();

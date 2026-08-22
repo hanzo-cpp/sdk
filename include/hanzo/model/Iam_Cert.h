@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -132,11 +132,6 @@ public:
     void unsetOwner();
     void setOwner(const utility::string_t& value);
 
-    utility::string_t getPrivateKey() const;
-    bool privateKeyIsSet() const;
-    void unsetPrivateKey();
-    void setPrivateKey(const utility::string_t& value);
-
     utility::string_t getProvider() const;
     bool providerIsSet() const;
     void unsetProvider();
@@ -206,9 +201,6 @@ protected:
 
     utility::string_t m_Owner;
     bool m_OwnerIsSet;
-
-    utility::string_t m_PrivateKey;
-    bool m_PrivateKeyIsSet;
 
     utility::string_t m_Provider;
     bool m_ProviderIsSet;

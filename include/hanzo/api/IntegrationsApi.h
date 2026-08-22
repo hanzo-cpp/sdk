@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -26,6 +26,14 @@
 #include "hanzo/model/AuthorizeOut.h"
 #include "hanzo/model/ConnectIn.h"
 #include "hanzo/model/ConnectOut.h"
+#include "hanzo/model/ConnectorProvidersOut.h"
+#include "hanzo/model/ConnectorTokenOut.h"
+#include "hanzo/model/ConnectorsOut.h"
+#include "hanzo/model/CredentialIn.h"
+#include "hanzo/model/CredentialOut.h"
+#include "hanzo/model/DevicePollOut.h"
+#include "hanzo/model/DeviceStartIn.h"
+#include "hanzo/model/DeviceStartOut.h"
 #include "hanzo/model/DisconnectOut.h"
 #include "hanzo/model/GithubBackfillIn.h"
 #include "hanzo/model/GithubBackfillResult.h"
@@ -45,8 +53,10 @@
 #include "hanzo/model/GithubReposOut.h"
 #include "hanzo/model/GithubSearchOut.h"
 #include "hanzo/model/GithubSearchReq.h"
+#include "hanzo/model/GitlabProjectsOut.h"
 #include "hanzo/model/ListOut.h"
 #include "hanzo/model/ProviderView.h"
+#include "hanzo/model/RefreshOut.h"
 #include "hanzo/model/VerifyOut.h"
 #include <map>
 #include <cpprest/details/basic_types.h>
@@ -68,6 +78,16 @@ public:
     virtual ~IntegrationsApi();
 
     /// <summary>
+    /// Forgets a connector: every custodied secret, then the row.
+    /// </summary>
+    /// <remarks>
+    /// Forgets a connector: every custodied secret, then the row. Idempotent — dropping a never-connected id still answers {disconnected:true} (disconnect() parity). No provider Revoke: none of the user-plane providers exposes a revoke endpoint.
+    /// </remarks>
+    /// <param name="id">ID is the connector id, provider + \&quot;:\&quot; + label (\&quot;openai:default\&quot;) — the auth-profile-id shape. Another user&#39;s id is simply no row, so 404.</param>
+    pplx::task<std::shared_ptr<DisconnectOut>> deleteIntegrationsConnectorsById(
+        utility::string_t id
+    ) const;
+    /// <summary>
     /// Deletes the repo&#39;s Pages site.
     /// </summary>
     /// <remarks>
@@ -81,7 +101,7 @@ public:
     /// Returns every registered integration provider together with THIS org&#39;s connection status for it — the catalog the console&#39;s Integrations page renders.
     /// </summary>
     /// <remarks>
-    /// Returns every registered integration provider together with THIS org&#39;s connection status for it — the catalog the console&#39;s Integrations page renders. Org-authed: a caller with no validated principal is 403, because the status is per-org and there is no org-less answer. User-plane providers (the /v1/connectors surface) are omitted; the two planes are disjoint.
+    /// Returns every registered integration provider together with THIS org&#39;s connection status for it — the catalog the console&#39;s Integrations page renders. Org-authed: a caller with no validated principal is 403, because the status is per-org and there is no org-less answer. User-plane providers (the /v1/integrations/connectors surface) are omitted; the two planes are disjoint.
     /// </remarks>
     pplx::task<std::shared_ptr<ListOut>> getIntegrations(
     ) const;
@@ -91,7 +111,7 @@ public:
     /// <remarks>
     /// Returns ONE provider with this org&#39;s connection status — the same view list carries, for a single id. An unknown id is 404, and so is a user-plane provider: the org surface never resolves one.
     /// </remarks>
-    /// <param name="provider">Provider is the registry id of the connector — \&quot;slack\&quot;, \&quot;github\&quot;, \&quot;cloudflare\&quot;. Unknown ids are 404, as are the user-plane (/v1/connectors) providers, which this surface never resolves.</param>
+    /// <param name="provider">Provider is the registry id of the connector — \&quot;slack\&quot;, \&quot;github\&quot;, \&quot;cloudflare\&quot;. Unknown ids are 404, as are the user-plane (/v1/integrations/connectors) providers, which this surface never resolves.</param>
     pplx::task<std::shared_ptr<ProviderView>> getIntegrationsByProvider(
         utility::string_t provider
     ) const;
@@ -104,6 +124,32 @@ public:
     /// <param name="provider"></param>
     pplx::task<void> getIntegrationsByProviderCallback(
         utility::string_t provider
+    ) const;
+    /// <summary>
+    /// Lists the caller&#39;s OWN connectors across every provider — the set &#x60;hanzo connector ls&#x60; prints.
+    /// </summary>
+    /// <remarks>
+    /// Lists the caller&#39;s OWN connectors across every provider — the set &#x60;hanzo connector ls&#x60; prints. Rows are keyed (org,user), so this can never surface another user&#39;s connector, and no secret is in the view.
+    /// </remarks>
+    pplx::task<std::shared_ptr<ConnectorsOut>> getIntegrationsConnectors(
+    ) const;
+    /// <summary>
+    /// Hands the custodied access token to its owner — the ONE place custody exits.
+    /// </summary>
+    /// <remarks>
+    /// Hands the custodied access token to its owner — the ONE place custody exits. The (org,user)-keyed row IS the same-user gate: another user&#39;s id is simply \&quot;no row\&quot; → 404. fresh() auto-rotates within the refreshSkew window; static providers degenerate to a plain kmsGet of Secrets[0]. Refresh tokens are NEVER returned — custody keeps the sink. The token is never logged.
+    /// </remarks>
+    /// <param name="id">ID is the connector id, provider + \&quot;:\&quot; + label (\&quot;openai:default\&quot;) — the auth-profile-id shape. Another user&#39;s id is simply no row, so 404.</param>
+    pplx::task<std::shared_ptr<ConnectorTokenOut>> getIntegrationsConnectorsByIdToken(
+        utility::string_t id
+    ) const;
+    /// <summary>
+    /// Lists the user-scoped provider cards — the catalog of what a user can connect, and how.
+    /// </summary>
+    /// <remarks>
+    /// Lists the user-scoped provider cards — the catalog of what a user can connect, and how. Methods derive from capabilities (Device/Adopt/Verify — Mount asserts at least one), never from a parallel kind enum.
+    /// </remarks>
+    pplx::task<std::shared_ptr<ConnectorProvidersOut>> getIntegrationsConnectorsProviders(
     ) const;
     /// <summary>
     /// Begin linking a Hanzo account from Discord
@@ -154,6 +200,14 @@ public:
     /// <param name="repo">Repo is the repository&#39;s short name within the org&#39;s installation, with no owner prefix (the owner is server-derived from the grant). A trailing \&quot;.git\&quot; is stripped.</param>
     pplx::task<std::shared_ptr<GithubPagesView>> getIntegrationsGithubReposByRepoPages(
         utility::string_t repo
+    ) const;
+    /// <summary>
+    /// Lists the projects the org&#39;s GitLab connection can reach — membership projects, most recently active first.
+    /// </summary>
+    /// <remarks>
+    /// Lists the projects the org&#39;s GitLab connection can reach — membership projects, most recently active first.
+    /// </remarks>
+    pplx::task<std::shared_ptr<GitlabProjectsOut>> getIntegrationsGitlabProjects(
     ) const;
     /// <summary>
     /// Install the Hanzo app into a Slack workspace
@@ -253,7 +307,7 @@ public:
     /// <remarks>
     /// Revokes (best-effort) and forgets an org&#39;s connection: it deletes every custodied KMS secret and the connection row. Idempotent — disconnecting a provider that was never connected still returns {disconnected:true}. Symmetric with connect: an AdminOnly connector needs the caller&#39;s own-org admin bit.
     /// </remarks>
-    /// <param name="provider">Provider is the registry id of the connector — \&quot;slack\&quot;, \&quot;github\&quot;, \&quot;cloudflare\&quot;. Unknown ids are 404, as are the user-plane (/v1/connectors) providers, which this surface never resolves.</param>
+    /// <param name="provider">Provider is the registry id of the connector — \&quot;slack\&quot;, \&quot;github\&quot;, \&quot;cloudflare\&quot;. Unknown ids are 404, as are the user-plane (/v1/integrations/connectors) providers, which this surface never resolves.</param>
     pplx::task<std::shared_ptr<DisconnectOut>> postIntegrationsByProviderDisconnect(
         utility::string_t provider
     ) const;
@@ -263,9 +317,55 @@ public:
     /// <remarks>
     /// Re-checks a CONNECTED apikey connector&#39;s stored credential against the provider, live (&#x60;hanzo connector verify&#x60;). Org-scoped (any member may check status); the credential is read from KMS, verified, and NEVER returned or logged. A verification failure is reported as {active:false}, not an error — the console/ CLI renders it. Only apikey providers support verify (OAuth tokens are checked at use, not re-verified here).
     /// </remarks>
-    /// <param name="provider">Provider is the registry id of the connector — \&quot;slack\&quot;, \&quot;github\&quot;, \&quot;cloudflare\&quot;. Unknown ids are 404, as are the user-plane (/v1/connectors) providers, which this surface never resolves.</param>
+    /// <param name="provider">Provider is the registry id of the connector — \&quot;slack\&quot;, \&quot;github\&quot;, \&quot;cloudflare\&quot;. Unknown ids are 404, as are the user-plane (/v1/integrations/connectors) providers, which this surface never resolves.</param>
     pplx::task<std::shared_ptr<VerifyOut>> postIntegrationsByProviderVerify(
         utility::string_t provider
+    ) const;
+    /// <summary>
+    /// Forces a token rotation for a connected connector, ahead of the automatic rotation a token read would do inside the expiry window.
+    /// </summary>
+    /// <remarks>
+    /// Forces a token rotation for a connected connector, ahead of the automatic rotation a token read would do inside the expiry window. Only providers that declare a Refresh support it.
+    /// </remarks>
+    /// <param name="id">ID is the connector id, provider + \&quot;:\&quot; + label (\&quot;openai:default\&quot;) — the auth-profile-id shape. Another user&#39;s id is simply no row, so 404.</param>
+    pplx::task<std::shared_ptr<RefreshOut>> postIntegrationsConnectorsByIdRefresh(
+        utility::string_t id
+    ) const;
+    /// <summary>
+    /// Is the direct intake path: a customer-held token/setup-token (Verify) or an externally obtained OAuth bundle from the CLI&#39;s local PKCE (Adopt).
+    /// </summary>
+    /// <remarks>
+    /// Is the direct intake path: a customer-held token/setup-token (Verify) or an externally obtained OAuth bundle from the CLI&#39;s local PKCE (Adopt). ALWAYS verify-before-store: a bad credential is refused and NOTHING is persisted (connectByCredential&#39;s fail-closed order).
+    /// </remarks>
+    /// <param name="provider">Provider is the user-scoped provider&#39;s registry id, from the path.</param>
+    /// <param name="credentialIn"></param>
+    pplx::task<std::shared_ptr<CredentialOut>> postIntegrationsConnectorsByProviderCredential(
+        utility::string_t provider,
+        std::shared_ptr<CredentialIn> credentialIn
+    ) const;
+    /// <summary>
+    /// Begins a device sign-in and returns the code to show the user plus how to poll for completion.
+    /// </summary>
+    /// <remarks>
+    /// Begins a device sign-in and returns the code to show the user plus how to poll for completion. KMS readiness is checked NOW rather than dead-ending the user at poll-done (connect() parity), and the per-provider connector cap is checked before the provider is called. The provider&#39;s device code is persisted only in the encrypted grants table and is NEVER returned.
+    /// </remarks>
+    /// <param name="provider">Provider is the user-scoped provider&#39;s registry id, from the path.</param>
+    /// <param name="deviceStartIn"></param>
+    pplx::task<std::shared_ptr<DeviceStartOut>> postIntegrationsConnectorsByProviderDevice(
+        utility::string_t provider,
+        std::shared_ptr<DeviceStartIn> deviceStartIn
+    ) const;
+    /// <summary>
+    /// Advances a device sign-in.
+    /// </summary>
+    /// <remarks>
+    /// Advances a device sign-in. Terminal outcomes are DATA, not errors (verifyConn {active:false} discipline) — the status set is closed: pending|connected|denied|expired. pollSlow collapses to \&quot;pending\&quot; on the wire; the raised cadence rides interval.
+    /// </remarks>
+    /// <param name="provider">Provider is the user-scoped provider&#39;s registry id, from the path.</param>
+    /// <param name="flow">Flow is the id deviceStartOut returned. Expired or another user&#39;s flow is indistinguishable from an unknown one: 404.</param>
+    pplx::task<std::shared_ptr<DevicePollOut>> postIntegrationsConnectorsByProviderDeviceByFlowPoll(
+        utility::string_t provider,
+        utility::string_t flow
     ) const;
     /// <summary>
     /// Discord interactions endpoint

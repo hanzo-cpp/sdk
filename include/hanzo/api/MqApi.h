@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -59,7 +59,7 @@ public:
     /// Removes a stream with all its messages and consumers. Irreversible.
     /// </remarks>
     /// <param name="name">Name is the stream name, from the path.</param>
-    pplx::task<void> deleteMqStreamsByName(
+    pplx::task<void> deleteMqStreamByName(
         utility::string_t name
     ) const;
     /// <summary>
@@ -70,7 +70,7 @@ public:
     /// </remarks>
     /// <param name="name">Name is the stream name, from the path.</param>
     /// <param name="seq">Seq is the message&#39;s stream sequence, from the path.</param>
-    pplx::task<void> deleteMqStreamsByNameMessagesBySeq(
+    pplx::task<void> deleteMqStreamByNameMessageBySeq(
         utility::string_t name,
         int32_t seq
     ) const;
@@ -82,7 +82,7 @@ public:
     /// </remarks>
     /// <param name="stream">Stream is the stream name, from the path.</param>
     /// <param name="name">Name is the consumer name, from the path.</param>
-    pplx::task<void> deleteMqStreamsByStreamConsumersByName(
+    pplx::task<void> deleteMqStreamByStreamConsumerByName(
         utility::string_t stream,
         utility::string_t name
     ) const;
@@ -110,7 +110,7 @@ public:
     /// </remarks>
     /// <param name="limit">Limit caps the streams returned (1–1000, default 100). (optional, default to 0)</param>
     /// <param name="offset">Offset skips that many streams, name-ordered. (optional, default to 0)</param>
-    pplx::task<std::shared_ptr<Streams>> getMqStreams(
+    pplx::task<std::shared_ptr<Streams>> getMqStream(
         boost::optional<int32_t> limit,
         boost::optional<int32_t> offset
     ) const;
@@ -121,7 +121,7 @@ public:
     /// Returns one stream&#39;s configuration and live state.
     /// </remarks>
     /// <param name="name">Name is the stream name, from the path.</param>
-    pplx::task<std::shared_ptr<Stream>> getMqStreamsByName(
+    pplx::task<std::shared_ptr<Stream>> getMqStreamByName(
         utility::string_t name
     ) const;
     /// <summary>
@@ -135,7 +135,7 @@ public:
     /// <param name="lastBySubject">LastBySubject reads the newest message on this org-relative subject. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="nextBySubject">NextBySubject walks forward from seq collecting messages on this org-relative subject (wildcards supported). (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="limit">Limit caps a next_by_subject walk (1–1000, default 100). (optional, default to 0)</param>
-    pplx::task<std::shared_ptr<ReadOut>> getMqStreamsByNameMessages(
+    pplx::task<std::shared_ptr<ReadOut>> getMqStreamByNameMessage(
         utility::string_t name,
         boost::optional<int32_t> seq,
         boost::optional<utility::string_t> lastBySubject,
@@ -151,7 +151,7 @@ public:
     /// <param name="stream">Stream is the stream name, from the path.</param>
     /// <param name="limit">Limit caps the consumers returned (1–1000, default 100). (optional, default to 0)</param>
     /// <param name="offset">Offset skips that many consumers, name-ordered. (optional, default to 0)</param>
-    pplx::task<std::shared_ptr<PickOut>> getMqStreamsByStreamConsumers(
+    pplx::task<std::shared_ptr<PickOut>> getMqStreamByStreamConsumer(
         utility::string_t stream,
         boost::optional<int32_t> limit,
         boost::optional<int32_t> offset
@@ -164,7 +164,7 @@ public:
     /// </remarks>
     /// <param name="stream">Stream is the stream name, from the path.</param>
     /// <param name="name">Name is the consumer name, from the path.</param>
-    pplx::task<std::shared_ptr<Consumer>> getMqStreamsByStreamConsumersByName(
+    pplx::task<std::shared_ptr<Consumer>> getMqStreamByStreamConsumerByName(
         utility::string_t stream,
         utility::string_t name
     ) const;
@@ -175,7 +175,7 @@ public:
     /// Creates a durable stream in the org&#39;s namespace and returns it.
     /// </remarks>
     /// <param name="config"></param>
-    pplx::task<std::shared_ptr<Stream>> postMqStreams(
+    pplx::task<std::shared_ptr<Stream>> postMqStream(
         std::shared_ptr<Config> config
     ) const;
     /// <summary>
@@ -186,7 +186,7 @@ public:
     /// </remarks>
     /// <param name="name">Name is the stream name, from the path.</param>
     /// <param name="purge"></param>
-    pplx::task<std::shared_ptr<PurgeOut>> postMqStreamsByNamePurge(
+    pplx::task<std::shared_ptr<PurgeOut>> postMqStreamByNamePurge(
         utility::string_t name,
         std::shared_ptr<Purge> purge
     ) const;
@@ -198,7 +198,7 @@ public:
     /// </remarks>
     /// <param name="stream">Stream is the stream name, from the path.</param>
     /// <param name="makeIn"></param>
-    pplx::task<std::shared_ptr<Consumer>> postMqStreamsByStreamConsumers(
+    pplx::task<std::shared_ptr<Consumer>> postMqStreamByStreamConsumer(
         utility::string_t stream,
         std::shared_ptr<MakeIn> makeIn
     ) const;
@@ -211,7 +211,7 @@ public:
     /// <param name="stream">Stream is the stream name, from the path.</param>
     /// <param name="name">Name is the consumer name, from the path.</param>
     /// <param name="nextIn"></param>
-    pplx::task<std::shared_ptr<ReadOut>> postMqStreamsByStreamConsumersByNameNext(
+    pplx::task<std::shared_ptr<ReadOut>> postMqStreamByStreamConsumerByNameNext(
         utility::string_t stream,
         utility::string_t name,
         std::shared_ptr<NextIn> nextIn
@@ -224,7 +224,7 @@ public:
     /// </remarks>
     /// <param name="name">Name is the stream name, unique within the org (alphanumeric, hyphens, underscores).</param>
     /// <param name="config"></param>
-    pplx::task<std::shared_ptr<Stream>> putMqStreamsByName(
+    pplx::task<std::shared_ptr<Stream>> putMqStreamByName(
         utility::string_t name,
         std::shared_ptr<Config> config
     ) const;

@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -54,41 +54,65 @@ public:
     /// SessionView members
 
 
+    /// <summary>
+    /// Account is which subscription or API account under that provider served it. Together with Provider it is what a login revoke matches on to stop the sessions a withdrawn account was paying for.
+    /// </summary>
     utility::string_t getAccount() const;
     bool accountIsSet() const;
     void unsetAccount();
     void setAccount(const utility::string_t& value);
 
+    /// <summary>
+    /// Actor is WHO this session belongs to, as \&quot;org/sub\&quot; — the same identity a run is billed under. A register that names none takes the calling principal. It is what scopes a login revoke, so a session with the wrong actor is a session the right person cannot stop.
+    /// </summary>
     utility::string_t getActor() const;
     bool actorIsSet() const;
     void unsetActor();
     void setActor(const utility::string_t& value);
 
+    /// <summary>
+    /// Agent is the label the surface running this session calls itself by (\&quot;hanzo-dev\&quot;), up to 128 characters. Required at register. It is free text, not a reference: it need not name a defined agent, and nothing resolves it.
+    /// </summary>
     utility::string_t getAgent() const;
     bool agentIsSet() const;
     void unsetAgent();
     void setAgent(const utility::string_t& value);
 
+    /// <summary>
+    /// Children is the DIRECT fan-out — how many sessions name this one as parent — and not the size of the subtree. Read the tree for that.
+    /// </summary>
     int32_t getChildren() const;
     bool childrenIsSet() const;
     void unsetChildren();
     void setChildren(int32_t value);
 
+    /// <summary>
+    /// CreatedAt is when the row was written, same format. Every path that opens a session stamps it and StartedAt from one clock reading, so the two are equal on every session this surface has ever produced.
+    /// </summary>
     utility::string_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
     void setCreatedAt(const utility::string_t& value);
 
+    /// <summary>
+    /// Cwd is the directory the session is working in NOW, not the one it started in: a linked shell moves around, and a card showing where &#x60;hanzo link&#x60; was run answers \&quot;which work is this\&quot; with something that was true once.
+    /// </summary>
     utility::string_t getCwd() const;
     bool cwdIsSet() const;
     void unsetCwd();
     void setCwd(const utility::string_t& value);
 
+    /// <summary>
+    /// EndedAt is when it reached done or error, same format. Empty while it is still running or paused, which is how absence reads here: not over yet.
+    /// </summary>
     utility::string_t getEndedAt() const;
     bool endedAtIsSet() const;
     void unsetEndedAt();
     void setEndedAt(const utility::string_t& value);
 
+    /// <summary>
+    /// Events is how many turns the session&#39;s log holds, counted at read time. It is the whole log, however few of them RecentEvents carries.
+    /// </summary>
     int32_t getEvents() const;
     bool eventsIsSet() const;
     void unsetEvents();
@@ -102,6 +126,9 @@ public:
     void unsetHost();
     void setHost(const utility::string_t& value);
 
+    /// <summary>
+    /// ID is the session&#39;s handle, minted here as \&quot;sess_\&quot; + 32 hex characters. Every later read, patch, event append and control command is addressed with it, and a caller cannot choose it.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
@@ -123,6 +150,9 @@ public:
     void unsetOrg();
     void setOrg(const utility::string_t& value);
 
+    /// <summary>
+    /// ParentSessionID is the session that spawned this one, making this a subagent of it. Empty means this session is a root — a flow of its own. A parent always belongs to the same org, so a tree never crosses a tenant.
+    /// </summary>
     utility::string_t getParentSessionId() const;
     bool parentSessionIdIsSet() const;
     void unsetParentSessionId();
@@ -136,46 +166,73 @@ public:
     void unsetProject();
     void setProject(const utility::string_t& value);
 
+    /// <summary>
+    /// Provider is the linked AI account&#39;s provider (claude | codex | hanzo | …) that served this run. Empty when the surface did not say.
+    /// </summary>
     utility::string_t getProvider() const;
     bool providerIsSet() const;
     void unsetProvider();
     void setProvider(const utility::string_t& value);
 
+    /// <summary>
+    /// Published is the author&#39;s decision to let anyone read this session&#39;s story at the public build route. It only ever widens READ access to a session that already exists and grants nothing else; false, an unpublished session is invisible there no matter who asks. It cannot be true without a Project, because that route is keyed on (org, project).
+    /// </summary>
     bool isPublished() const;
     bool publishedIsSet() const;
     void unsetPublished();
     void setPublished(bool value);
 
+    /// <summary>
+    /// Repo is the code the session is working on, as the surface reported it. It is truth the SURFACE states, so it is a label rather than something resolved here.
+    /// </summary>
     utility::string_t getRepo() const;
     bool repoIsSet() const;
     void unsetRepo();
     void setRepo(const utility::string_t& value);
 
+    /// <summary>
+    /// RootSessionID is the top of this session&#39;s tree, inherited from the parent and shared by every node in one flow. A root session&#39;s own id, when it has no parent. It is the key one indexed read pulls a whole flow by, and what ?root&#x3D; narrows a list or a stream to.
+    /// </summary>
     utility::string_t getRootSessionId() const;
     bool rootSessionIdIsSet() const;
     void unsetRootSessionId();
     void setRootSessionId(const utility::string_t& value);
 
+    /// <summary>
+    /// StartedAt is when the session opened, RFC 3339 in UTC to the second.
+    /// </summary>
     utility::string_t getStartedAt() const;
     bool startedAtIsSet() const;
     void unsetStartedAt();
     void setStartedAt(const utility::string_t& value);
 
+    /// <summary>
+    /// Status is one of exactly four: running, paused, done, error. running and paused are LIVE; done and error are TERMINAL and monotonic — once a session reaches one it can never go back, because reopening a finished run would fabricate liveness. A control command never moves it: the surface running the agent reports the new status, and until it does the command is only recorded.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
+    /// <summary>
+    /// Target is the registered run-target this session is dispatched to — a machine the org claimed, resolved same-org when it was set, so it can never point at another tenant&#39;s computer. Empty means the session names no machine.
+    /// </summary>
     utility::string_t getTarget() const;
     bool targetIsSet() const;
     void unsetTarget();
     void setTarget(const utility::string_t& value);
 
+    /// <summary>
+    /// TaskRunID is that workflow&#39;s particular run. A workflow is the definition and a run is one execution of it, which is why both are carried.
+    /// </summary>
     utility::string_t getTaskRunId() const;
     bool taskRunIdIsSet() const;
     void unsetTaskRunId();
     void setTaskRunId(const utility::string_t& value);
 
+    /// <summary>
+    /// TaskWorkflowID is the hanzoai/tasks durable workflow that actually EXECUTES this session — this registry is the view, control and stream layer over it. Set, a control command is FORWARDED to that engine; empty, the running surface polls for commands instead, which is every session today.
+    /// </summary>
     utility::string_t getTaskWorkflowId() const;
     bool taskWorkflowIdIsSet() const;
     void unsetTaskWorkflowId();
@@ -189,11 +246,17 @@ public:
     void unsetTerminal();
     void setTerminal(const utility::string_t& value);
 
+    /// <summary>
+    /// Title is the human line a card shows (\&quot;ship the landing page\&quot;), up to 512 characters. Free text, and the one field a surface may rewrite as the work turns out to be something else.
+    /// </summary>
     utility::string_t getTitle() const;
     bool titleIsSet() const;
     void unsetTitle();
     void setTitle(const utility::string_t& value);
 
+    /// <summary>
+    /// UpdatedAt is the session&#39;s last-activity clock, same format. It moves on a write to the row — a status, a title, a re-dispatch — AND on every appended turn, because the append bumps it in the same transaction. The list is ordered on CreatedAt, so this is the field that says whether a session is still saying anything.
+    /// </summary>
     utility::string_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();

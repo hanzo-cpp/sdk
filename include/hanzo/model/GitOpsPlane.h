@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -55,16 +55,25 @@ public:
     /// GitOpsPlane members
 
 
+    /// <summary>
+    /// Applications is every CD Application in the cluster, ordered by namespace then name. Empty (never null) when the plane is not installed, and equally empty when it is installed and tracks nothing — Installed is what separates those two.
+    /// </summary>
     std::vector<std::shared_ptr<GitOpsApp>> getApplications() const;
     bool applicationsIsSet() const;
     void unsetApplications();
     void setApplications(const std::vector<std::shared_ptr<GitOpsApp>>& value);
 
+    /// <summary>
+    /// Installed is whether this cluster serves the CD Application CRD at all. False is a fact about the cluster, not a failure of the request: the caller says \&quot;no CD plane here\&quot; rather than rendering an error it cannot act on.
+    /// </summary>
     bool isInstalled() const;
     bool installedIsSet() const;
     void unsetInstalled();
     void setInstalled(bool value);
 
+    /// <summary>
+    /// Reason says why the plane is absent, in words a caller can show. Empty when Installed.
+    /// </summary>
     utility::string_t getReason() const;
     bool reasonIsSet() const;
     void unsetReason();

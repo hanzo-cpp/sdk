@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -62,6 +62,14 @@ public:
     bool attachmentIsSet() const;
     void unsetAttachment();
     void setAttachment(const utility::string_t& value);
+
+    /// <summary>
+    /// AttestationFormat is the statement format the authenticator attested in (\&quot;packed\&quot;, \&quot;apple\&quot;, \&quot;none\&quot;, …), which is a DIFFERENT value from the attestation type above. The library reads it back when resolving the FIDO AppID extension, so a row that dropped it would round-trip a credential the verifier no longer recognises as the one it stored.
+    /// </summary>
+    utility::string_t getAttestationFormat() const;
+    bool attestationFormatIsSet() const;
+    void unsetAttestationFormat();
+    void setAttestationFormat(const utility::string_t& value);
 
     utility::string_t getAttestationType() const;
     bool attestationTypeIsSet() const;
@@ -160,6 +168,9 @@ protected:
 
     utility::string_t m_Attachment;
     bool m_AttachmentIsSet;
+
+    utility::string_t m_AttestationFormat;
+    bool m_AttestationFormatIsSet;
 
     utility::string_t m_AttestationType;
     bool m_AttestationTypeIsSet;

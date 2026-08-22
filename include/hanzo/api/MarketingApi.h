@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -144,10 +144,10 @@ public:
         utility::string_t id
     ) const;
     /// <summary>
-    /// Returns the org&#39;s calendar, soonest scheduled first, optionally narrowed to one status.
+    /// Returns the org&#39;s calendar, latest scheduled first, optionally narrowed to one status.
     /// </summary>
     /// <remarks>
-    /// Returns the org&#39;s calendar, soonest scheduled first, optionally narrowed to one status.
+    /// Returns the org&#39;s calendar, latest scheduled first, optionally narrowed to one status.
     /// </remarks>
     /// <param name="status">Status keeps only posts in that state (draft, scheduled, published, failed, canceled). Empty means every post. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="limit">Limit caps the rows returned; 0 means 200 and nothing above 1000 is honoured. (optional, default to 0)</param>

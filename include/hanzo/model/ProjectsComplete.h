@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -53,16 +53,25 @@ public:
     /// ProjectsComplete members
 
 
+    /// <summary>
+    /// Bytes is their total size in bytes.
+    /// </summary>
     int32_t getBytes() const;
     bool bytesIsSet() const;
     void unsetBytes();
     void setBytes(int32_t value);
 
+    /// <summary>
+    /// Commit is the revision that was built, recorded on the deployment.
+    /// </summary>
     utility::string_t getCommit() const;
     bool commitIsSet() const;
     void unsetCommit();
     void setCommit(const utility::string_t& value);
 
+    /// <summary>
+    /// Files is how many objects CI published.
+    /// </summary>
     int32_t getFiles() const;
     bool filesIsSet() const;
     void unsetFiles();
@@ -84,11 +93,17 @@ public:
     void unsetKeys();
     void setKeys(const std::vector<utility::string_t>& value);
 
+    /// <summary>
+    /// LiveURL is a HINT at the address the site should serve at. The public host is claimed by cloud first, so this can refine the URL a deployment reports but can never assert a subdomain another tenant holds.
+    /// </summary>
     utility::string_t getLiveUrl() const;
     bool liveUrlIsSet() const;
     void unsetLiveUrl();
     void setLiveUrl(const utility::string_t& value);
 
+    /// <summary>
+    /// Message is what happened, in words — on an error completion, why it failed.
+    /// </summary>
     utility::string_t getMessage() const;
     bool messageIsSet() const;
     void unsetMessage();
@@ -103,7 +118,7 @@ public:
     void setSlug(const utility::string_t& value);
 
     /// <summary>
-    /// live | error
+    /// Status is how the build ended: &#x60;live&#x60; if it succeeded, &#x60;error&#x60; if it did not. Nothing else is accepted.
     /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;

@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,11 +52,17 @@ public:
     /// CallInput members
 
 
+    /// <summary>
+    /// Agent hands the answered call to a Hanzo assistant by name instead of connecting it to a person. Empty places an ordinary call.
+    /// </summary>
     utility::string_t getAgent() const;
     bool agentIsSet() const;
     void unsetAgent();
     void setAgent(const utility::string_t& value);
 
+    /// <summary>
+    /// From is the number to call FROM, in E.164. It must be one this org holds.
+    /// </summary>
     utility::string_t getFrom() const;
     bool fromIsSet() const;
     void unsetFrom();
@@ -70,11 +76,17 @@ public:
     void unsetRecord();
     void setRecord(bool value);
 
+    /// <summary>
+    /// To is the number to call, in E.164.
+    /// </summary>
     utility::string_t getTo() const;
     bool toIsSet() const;
     void unsetTo();
     void setTo(const utility::string_t& value);
 
+    /// <summary>
+    /// Webhook is a URL the carrier posts this call&#39;s events to as it progresses. Empty means the call&#39;s outcome is only visible by reading it back.
+    /// </summary>
     utility::string_t getWebhook() const;
     bool webhookIsSet() const;
     void unsetWebhook();

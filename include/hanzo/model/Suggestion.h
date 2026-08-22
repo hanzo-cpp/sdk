@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,26 +52,41 @@ public:
     /// Suggestion members
 
 
+    /// <summary>
+    /// Automatable is true when the step names a tool, so the Business AI can do it rather than only describe it.
+    /// </summary>
     bool isAutomatable() const;
     bool automatableIsSet() const;
     void unsetAutomatable();
     void setAutomatable(bool value);
 
+    /// <summary>
+    /// Detail is the step&#39;s own prose — what it asks for.
+    /// </summary>
     utility::string_t getDetail() const;
     bool detailIsSet() const;
     void unsetDetail();
     void setDetail(const utility::string_t& value);
 
+    /// <summary>
+    /// Rationale is why this step is being suggested NOW, written for the person reading it. It explains the ranking, not the step.
+    /// </summary>
     utility::string_t getRationale() const;
     bool rationaleIsSet() const;
     void unsetRationale();
     void setRationale(const utility::string_t& value);
 
+    /// <summary>
+    /// StepID is the checklist step being recommended — the id every step route takes, so a caller can act on the suggestion directly.
+    /// </summary>
     utility::string_t getStepId() const;
     bool stepIdIsSet() const;
     void unsetStepId();
     void setStepId(const utility::string_t& value);
 
+    /// <summary>
+    /// Title is the step&#39;s own one-line quest.
+    /// </summary>
     utility::string_t getTitle() const;
     bool titleIsSet() const;
     void unsetTitle();

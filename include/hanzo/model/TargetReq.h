@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -56,36 +56,57 @@ public:
     /// TargetReq members
 
 
+    /// <summary>
+    /// Capacity is a human summary of the machine&#39;s size, up to 256 characters. Prose only; a scheduler reads Spec.
+    /// </summary>
     utility::string_t getCapacity() const;
     bool capacityIsSet() const;
     void unsetCapacity();
     void setCapacity(const utility::string_t& value);
 
+    /// <summary>
+    /// Host is the hostname sessions on this machine will report. It is what makes a re-link IDEMPOTENT: the same (org, host, owner) refreshes the existing row and answers 200, while a request with no host always creates a new target and answers 201. It never adopts a row owned by somebody else.
+    /// </summary>
     utility::string_t getHost() const;
     bool hostIsSet() const;
     void unsetHost();
     void setHost(const utility::string_t& value);
 
+    /// <summary>
+    /// Kind is laptop | cloud | gpu | cluster | machine. Empty registers a &#x60;machine&#x60;; anything outside the five is a 400.
+    /// </summary>
     utility::string_t getKind() const;
     bool kindIsSet() const;
     void unsetKind();
     void setKind(const utility::string_t& value);
 
+    /// <summary>
+    /// Label is the name to show for this machine, up to 128 characters. REQUIRED — it is the only field here a person reads.
+    /// </summary>
     utility::string_t getLabel() const;
     bool labelIsSet() const;
     void unsetLabel();
     void setLabel(const utility::string_t& value);
 
+    /// <summary>
+    /// Metrics is a live sample, and sending one IS A HEARTBEAT: it refreshes the row and starts the 90-second liveness window, and it is appended to the fleet series as one point. Its own &#x60;at&#x60; is ignored — the server stamps the time, so a client can never age or backdate its own machine. Omit it to register a machine without claiming it is alive.
+    /// </summary>
     std::shared_ptr<Metrics> getMetrics() const;
     bool metricsIsSet() const;
     void unsetMetrics();
     void setMetrics(const std::shared_ptr<Metrics>& value);
 
+    /// <summary>
+    /// Spec is the machine&#39;s static capability — os, arch, cores, RAM, accelerators. Every field is bounded on write and at most 32 accelerators are accepted, so what comes back may be clamped. Omit it for a destination nothing probes.
+    /// </summary>
     std::shared_ptr<Spec> getSpec() const;
     bool specIsSet() const;
     void unsetSpec();
     void setSpec(const std::shared_ptr<Spec>& value);
 
+    /// <summary>
+    /// Status is online | offline | draining. Empty registers &#x60;online&#x60;. It states INTENT — a heartbeat is what decides whether an online machine is actually reachable, so declaring online does not make it so.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();

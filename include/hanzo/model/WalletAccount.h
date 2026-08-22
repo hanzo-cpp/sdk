@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,21 +52,33 @@ public:
     /// WalletAccount members
 
 
+    /// <summary>
+    /// CreatedAt is when the account was opened, Unix seconds. Listings order by it, newest first.
+    /// </summary>
     int32_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
     void setCreatedAt(int32_t value);
 
+    /// <summary>
+    /// ID is the account id, minted by the server as \&quot;acct_\&quot; + 24 hex. Wallets name it as their accountId, and it becomes a segment of each of their key refs — so it addresses key material and cannot be reassigned.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
+    /// <summary>
+    /// Name is the label given at creation, trimmed and required. It groups wallets: it is not a key, holds no balance, and is not unique in the org.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
+    /// <summary>
+    /// Org is the tenant that owns the account, stamped from the validated principal rather than taken from the request. Every read is physically scoped to it, so another tenant&#39;s accounts are not reachable at all.
+    /// </summary>
     utility::string_t getOrg() const;
     bool orgIsSet() const;
     void unsetOrg();

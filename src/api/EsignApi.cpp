@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -33,7 +33,7 @@ EsignApi::~EsignApi()
 {
 }
 
-pplx::task<void> EsignApi::getEsignDocuments() const
+pplx::task<std::shared_ptr<EsignDocuments>> EsignApi::getEsignDocuments() const
 {
 
 
@@ -46,6 +46,7 @@ pplx::task<void> EsignApi::getEsignDocuments() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -134,10 +135,28 @@ pplx::task<void> EsignApi::getEsignDocuments() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<EsignDocuments> localVarResult(new EsignDocuments());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getEsignDocuments: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> EsignApi::getEsignDocumentsById(utility::string_t id) const
+pplx::task<std::shared_ptr<EsignDocument>> EsignApi::getEsignDocumentsById(utility::string_t id) const
 {
 
 
@@ -151,6 +170,7 @@ pplx::task<void> EsignApi::getEsignDocumentsById(utility::string_t id) const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -239,10 +259,28 @@ pplx::task<void> EsignApi::getEsignDocumentsById(utility::string_t id) const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<EsignDocument> localVarResult(new EsignDocument());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getEsignDocumentsById: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> EsignApi::getEsignDocumentsByIdAudit(utility::string_t id) const
+pplx::task<std::shared_ptr<EsignTrail>> EsignApi::getEsignDocumentsByIdAudit(utility::string_t id) const
 {
 
 
@@ -256,6 +294,7 @@ pplx::task<void> EsignApi::getEsignDocumentsByIdAudit(utility::string_t id) cons
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -344,10 +383,28 @@ pplx::task<void> EsignApi::getEsignDocumentsByIdAudit(utility::string_t id) cons
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<EsignTrail> localVarResult(new EsignTrail());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getEsignDocumentsByIdAudit: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> EsignApi::getEsignDocumentsByIdDownload(utility::string_t id) const
+pplx::task<std::shared_ptr<EsignPDF>> EsignApi::getEsignDocumentsByIdDownload(utility::string_t id) const
 {
 
 
@@ -361,6 +418,7 @@ pplx::task<void> EsignApi::getEsignDocumentsByIdDownload(utility::string_t id) c
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -449,10 +507,28 @@ pplx::task<void> EsignApi::getEsignDocumentsByIdDownload(utility::string_t id) c
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<EsignPDF> localVarResult(new EsignPDF());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getEsignDocumentsByIdDownload: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> EsignApi::getEsignHealth() const
+pplx::task<std::shared_ptr<EsignHealth>> EsignApi::getEsignHealth() const
 {
 
 
@@ -465,6 +541,7 @@ pplx::task<void> EsignApi::getEsignHealth() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -553,10 +630,28 @@ pplx::task<void> EsignApi::getEsignHealth() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<EsignHealth> localVarResult(new EsignHealth());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getEsignHealth: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> EsignApi::getEsignOByOrgSignByToken(utility::string_t org, utility::string_t token) const
+pplx::task<std::shared_ptr<EsignSession>> EsignApi::getEsignOByOrgSignByToken(utility::string_t org, utility::string_t token) const
 {
 
 
@@ -571,6 +666,7 @@ pplx::task<void> EsignApi::getEsignOByOrgSignByToken(utility::string_t org, util
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -659,11 +755,35 @@ pplx::task<void> EsignApi::getEsignOByOrgSignByToken(utility::string_t org, util
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<EsignSession> localVarResult(new EsignSession());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getEsignOByOrgSignByToken: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> EsignApi::postEsignDocuments() const
+pplx::task<std::shared_ptr<EsignDocument>> EsignApi::postEsignDocuments(std::shared_ptr<EsignUploadIn> esignUploadIn) const
 {
+
+    // verify the required parameter 'esignUploadIn' is set
+    if (esignUploadIn == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'esignUploadIn' when calling EsignApi->postEsignDocuments"));
+    }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
@@ -675,6 +795,7 @@ pplx::task<void> EsignApi::postEsignDocuments() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -701,6 +822,7 @@ pplx::task<void> EsignApi::postEsignDocuments() const
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -710,11 +832,27 @@ pplx::task<void> EsignApi::postEsignDocuments() const
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        localVarJson = ModelBase::toJson(esignUploadIn);
+        
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(esignUploadIn.get())
+        {
+            esignUploadIn->toMultipart(localVarMultipart, utility::conversions::to_string_t("esignUploadIn"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -763,11 +901,35 @@ pplx::task<void> EsignApi::postEsignDocuments() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<EsignDocument> localVarResult(new EsignDocument());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postEsignDocuments: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> EsignApi::postEsignDocumentsByIdFields(utility::string_t id) const
+pplx::task<std::shared_ptr<EsignPlacement>> EsignApi::postEsignDocumentsByIdFields(utility::string_t id, std::shared_ptr<EsignFieldIn> esignFieldIn) const
 {
+
+    // verify the required parameter 'esignFieldIn' is set
+    if (esignFieldIn == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'esignFieldIn' when calling EsignApi->postEsignDocumentsByIdFields"));
+    }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
@@ -780,6 +942,7 @@ pplx::task<void> EsignApi::postEsignDocumentsByIdFields(utility::string_t id) co
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -806,6 +969,7 @@ pplx::task<void> EsignApi::postEsignDocumentsByIdFields(utility::string_t id) co
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -815,11 +979,27 @@ pplx::task<void> EsignApi::postEsignDocumentsByIdFields(utility::string_t id) co
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        localVarJson = ModelBase::toJson(esignFieldIn);
+        
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(esignFieldIn.get())
+        {
+            esignFieldIn->toMultipart(localVarMultipart, utility::conversions::to_string_t("esignFieldIn"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -868,11 +1048,35 @@ pplx::task<void> EsignApi::postEsignDocumentsByIdFields(utility::string_t id) co
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<EsignPlacement> localVarResult(new EsignPlacement());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postEsignDocumentsByIdFields: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> EsignApi::postEsignDocumentsByIdRecipients(utility::string_t id) const
+pplx::task<std::shared_ptr<EsignInvite>> EsignApi::postEsignDocumentsByIdRecipients(utility::string_t id, std::shared_ptr<EsignRecipientIn> esignRecipientIn) const
 {
+
+    // verify the required parameter 'esignRecipientIn' is set
+    if (esignRecipientIn == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'esignRecipientIn' when calling EsignApi->postEsignDocumentsByIdRecipients"));
+    }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
@@ -885,6 +1089,7 @@ pplx::task<void> EsignApi::postEsignDocumentsByIdRecipients(utility::string_t id
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -911,6 +1116,7 @@ pplx::task<void> EsignApi::postEsignDocumentsByIdRecipients(utility::string_t id
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -920,11 +1126,27 @@ pplx::task<void> EsignApi::postEsignDocumentsByIdRecipients(utility::string_t id
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        localVarJson = ModelBase::toJson(esignRecipientIn);
+        
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(esignRecipientIn.get())
+        {
+            esignRecipientIn->toMultipart(localVarMultipart, utility::conversions::to_string_t("esignRecipientIn"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -973,10 +1195,28 @@ pplx::task<void> EsignApi::postEsignDocumentsByIdRecipients(utility::string_t id
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<EsignInvite> localVarResult(new EsignInvite());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postEsignDocumentsByIdRecipients: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> EsignApi::postEsignDocumentsByIdSend(utility::string_t id) const
+pplx::task<std::shared_ptr<EsignLinks>> EsignApi::postEsignDocumentsByIdSend(utility::string_t id) const
 {
 
 
@@ -990,6 +1230,7 @@ pplx::task<void> EsignApi::postEsignDocumentsByIdSend(utility::string_t id) cons
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1078,10 +1319,28 @@ pplx::task<void> EsignApi::postEsignDocumentsByIdSend(utility::string_t id) cons
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<EsignLinks> localVarResult(new EsignLinks());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postEsignDocumentsByIdSend: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> EsignApi::postEsignOByOrgSignByTokenComplete(utility::string_t org, utility::string_t token) const
+pplx::task<std::shared_ptr<EsignCompletion>> EsignApi::postEsignOByOrgSignByTokenComplete(utility::string_t org, utility::string_t token) const
 {
 
 
@@ -1096,6 +1355,7 @@ pplx::task<void> EsignApi::postEsignOByOrgSignByTokenComplete(utility::string_t 
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1184,11 +1444,35 @@ pplx::task<void> EsignApi::postEsignOByOrgSignByTokenComplete(utility::string_t 
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<EsignCompletion> localVarResult(new EsignCompletion());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postEsignOByOrgSignByTokenComplete: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> EsignApi::postEsignOByOrgSignByTokenFieldsByFieldid(utility::string_t org, utility::string_t token, utility::string_t fieldId) const
+pplx::task<std::shared_ptr<EsignInsertion>> EsignApi::postEsignOByOrgSignByTokenFieldsByFieldid(utility::string_t org, utility::string_t token, utility::string_t fieldId, std::shared_ptr<EsignValueIn> esignValueIn) const
 {
+
+    // verify the required parameter 'esignValueIn' is set
+    if (esignValueIn == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'esignValueIn' when calling EsignApi->postEsignOByOrgSignByTokenFieldsByFieldid"));
+    }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
@@ -1203,6 +1487,7 @@ pplx::task<void> EsignApi::postEsignOByOrgSignByTokenFieldsByFieldid(utility::st
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1229,6 +1514,7 @@ pplx::task<void> EsignApi::postEsignOByOrgSignByTokenFieldsByFieldid(utility::st
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -1238,11 +1524,27 @@ pplx::task<void> EsignApi::postEsignOByOrgSignByTokenFieldsByFieldid(utility::st
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        localVarJson = ModelBase::toJson(esignValueIn);
+        
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(esignValueIn.get())
+        {
+            esignValueIn->toMultipart(localVarMultipart, utility::conversions::to_string_t("esignValueIn"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1291,11 +1593,35 @@ pplx::task<void> EsignApi::postEsignOByOrgSignByTokenFieldsByFieldid(utility::st
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<EsignInsertion> localVarResult(new EsignInsertion());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postEsignOByOrgSignByTokenFieldsByFieldid: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> EsignApi::postEsignOByOrgSignByTokenReject(utility::string_t org, utility::string_t token) const
+pplx::task<std::shared_ptr<EsignRejection>> EsignApi::postEsignOByOrgSignByTokenReject(utility::string_t org, utility::string_t token, std::shared_ptr<EsignRejectIn> esignRejectIn) const
 {
+
+    // verify the required parameter 'esignRejectIn' is set
+    if (esignRejectIn == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'esignRejectIn' when calling EsignApi->postEsignOByOrgSignByTokenReject"));
+    }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
@@ -1309,6 +1635,7 @@ pplx::task<void> EsignApi::postEsignOByOrgSignByTokenReject(utility::string_t or
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1335,6 +1662,7 @@ pplx::task<void> EsignApi::postEsignOByOrgSignByTokenReject(utility::string_t or
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -1344,11 +1672,27 @@ pplx::task<void> EsignApi::postEsignOByOrgSignByTokenReject(utility::string_t or
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        localVarJson = ModelBase::toJson(esignRejectIn);
+        
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(esignRejectIn.get())
+        {
+            esignRejectIn->toMultipart(localVarMultipart, utility::conversions::to_string_t("esignRejectIn"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1397,7 +1741,25 @@ pplx::task<void> EsignApi::postEsignOByOrgSignByTokenReject(utility::string_t or
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<EsignRejection> localVarResult(new EsignRejection());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postEsignOByOrgSignByTokenReject: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
 

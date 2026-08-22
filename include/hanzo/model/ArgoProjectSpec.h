@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -57,21 +57,33 @@ public:
     /// ArgoProjectSpec members
 
 
+    /// <summary>
+    /// ClusterResourceWhitelist are the cluster-scoped kinds it may create — [{group:\&quot;*\&quot;, kind:\&quot;*\&quot;}] on a synthesized project.
+    /// </summary>
     std::vector<std::shared_ptr<ArgoGroupKind>> getClusterResourceWhitelist() const;
     bool clusterResourceWhitelistIsSet() const;
     void unsetClusterResourceWhitelist();
     void setClusterResourceWhitelist(const std::vector<std::shared_ptr<ArgoGroupKind>>& value);
 
+    /// <summary>
+    /// Description is the project&#39;s human label: the IAM project&#39;s display name, or its description when it has no display name. Absent when IAM carries neither.
+    /// </summary>
     utility::string_t getDescription() const;
     bool descriptionIsSet() const;
     void unsetDescription();
     void setDescription(const utility::string_t& value);
 
+    /// <summary>
+    /// Destinations are the cluster/namespace pairs it may write to — a single {server:\&quot;*\&quot;, namespace:\&quot;*\&quot;} on a synthesized project, for the same reason.
+    /// </summary>
     std::vector<std::shared_ptr<ArgoDestination>> getDestinations() const;
     bool destinationsIsSet() const;
     void unsetDestinations();
     void setDestinations(const std::vector<std::shared_ptr<ArgoDestination>>& value);
 
+    /// <summary>
+    /// SourceRepos are the git repos applications in this project may pull from. [\&quot;*\&quot;] for every project this plane synthesizes or reflects from IAM: the boundary that actually holds on this platform is the IAM org, resolved before a row is ever projected, so the projected fence is deliberately permissive and is NOT an authorization statement.
+    /// </summary>
     std::vector<utility::string_t> getSourceRepos() const;
     bool sourceReposIsSet() const;
     void unsetSourceRepos();

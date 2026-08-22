@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,34 +52,49 @@ public:
     /// SMS members
 
 
+    /// <summary>
+    /// From is the sending number in E.164, and must be one this org holds.
+    /// </summary>
     utility::string_t getFrom() const;
     bool fromIsSet() const;
     void unsetFrom();
     void setFrom(const utility::string_t& value);
 
+    /// <summary>
+    /// ID is the carrier&#39;s handle for the message.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
+    /// <summary>
+    /// Org is the tenant the message was sent for or received by.
+    /// </summary>
     utility::string_t getOrg() const;
     bool orgIsSet() const;
     void unsetOrg();
     void setOrg(const utility::string_t& value);
 
     /// <summary>
-    /// queued | sent | delivered | failed
+    /// Status is where the message is: \&quot;queued\&quot;, \&quot;sent\&quot;, \&quot;delivered\&quot; or \&quot;failed\&quot;. \&quot;sent\&quot; means the carrier took it; \&quot;delivered\&quot; means the handset got it, and not every carrier or destination reports that.
     /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
+    /// <summary>
+    /// Text is the message body. Empty is legal when the message carried only media.
+    /// </summary>
     utility::string_t getText() const;
     bool textIsSet() const;
     void unsetText();
     void setText(const utility::string_t& value);
 
+    /// <summary>
+    /// To is the receiving number in E.164.
+    /// </summary>
     utility::string_t getTo() const;
     bool toIsSet() const;
     void unsetTo();

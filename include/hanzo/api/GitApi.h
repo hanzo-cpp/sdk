@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -114,6 +114,14 @@ public:
         utility::string_t id
     ) const;
     /// <summary>
+    /// Browse your org&#39;s repositories
+    /// </summary>
+    /// <remarks>
+    /// The repository list for the signed-in caller&#39;s org — each repo with its description, default branch, size and last update. SIGNED OUT it renders the public explore page instead of refusing, because most Hanzo repos are open source and the open face is the default one; signed in, the caller&#39;s own org shows its private repositories alongside its public ones. This is a server-rendered browser page, not JSON — the console repo-browser reads the same repository through the JSON ops under /v1/git/repos. Repository names, paths and file contents all render through auto-escaping templates rather than being concatenated into HTML.
+    /// </remarks>
+    pplx::task<void> getGit(
+    ) const;
+    /// <summary>
     /// Advertise a repository&#39;s refs to a git client
     /// </summary>
     /// <remarks>
@@ -128,6 +136,30 @@ public:
         utility::string_t repo
     ) const;
     /// <summary>
+    /// Open a repository&#39;s home page
+    /// </summary>
+    /// <remarks>
+    /// A repository at a glance: its branches, the tree at the tip, its most recent commits, its README rendered, and the HTTPS and SSH clone URLs. &#x60;?ref&#x3D;&#x60; selects a branch, tag or commit; the default branch is used when it is omitted. A repository with no commits yet renders its clone instructions rather than an error, which is what a caller who has just created one needs to see. A public repository is readable by anyone; a private one only by its own org. A repository that does not exist and one belonging to another org answer the SAME 404, so the page is never an existence oracle. This is a server-rendered browser page, not JSON — the console repo-browser reads the same repository through the JSON ops under /v1/git/repos. Repository names, paths and file contents all render through auto-escaping templates rather than being concatenated into HTML.
+    /// </remarks>
+    /// <param name="org"></param>
+    /// <param name="repo"></param>
+    pplx::task<void> getGitByOrgByRepo(
+        utility::string_t org,
+        utility::string_t repo
+    ) const;
+    /// <summary>
+    /// Read a repository&#39;s commit log
+    /// </summary>
+    /// <remarks>
+    /// The hundred most recent commits on one ref, each with its author, message and date. &#x60;?ref&#x3D;&#x60; selects the branch, tag or commit, defaulting to the repository&#39;s default branch; an unknown one is 404. A public repository is readable by anyone; a private one only by its own org. A repository that does not exist and one belonging to another org answer the SAME 404, so the page is never an existence oracle. This is a server-rendered browser page, not JSON — the console repo-browser reads the same repository through the JSON ops under /v1/git/repos. Repository names, paths and file contents all render through auto-escaping templates rather than being concatenated into HTML.
+    /// </remarks>
+    /// <param name="org"></param>
+    /// <param name="repo"></param>
+    pplx::task<void> getGitByOrgByRepoCommits(
+        utility::string_t org,
+        utility::string_t repo
+    ) const;
+    /// <summary>
     /// Advertise a repository&#39;s refs to a git client
     /// </summary>
     /// <remarks>
@@ -138,6 +170,14 @@ public:
     pplx::task<void> getGitByOrgByRepoInfoRefs(
         utility::string_t org,
         utility::string_t repo
+    ) const;
+    /// <summary>
+    /// Discover public repositories across every org
+    /// </summary>
+    /// <remarks>
+    /// The open, unauthenticated face of the git host: every PUBLIC repository in the fleet, org-qualified, so a project can be found and cloned with no account at all — signing in is for private repos and for writes. Repositories live in per-org stores with no global index, so this unions each org&#39;s public rows and is bounded to a fixed number of stores per request, keeping discovery quick however many orgs exist. A fleet with no orgs yet is an empty page, not an error. This is a server-rendered browser page, not JSON — the console repo-browser reads the same repository through the JSON ops under /v1/git/repos. Repository names, paths and file contents all render through auto-escaping templates rather than being concatenated into HTML.
+    /// </remarks>
+    pplx::task<void> getGitExplore(
     ) const;
     /// <summary>
     /// Returns the SSH public keys registered to the caller&#39;s org — the keys that authenticate &#x60;git clone git@&lt;host&gt;:&lt;org&gt;/&lt;repo&gt;.git&#x60;.

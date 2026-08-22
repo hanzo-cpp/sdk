@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -55,39 +55,57 @@ public:
     /// PnL members
 
 
+    /// <summary>
+    /// Expense is the cost lines that moved in the period, one per account.
+    /// </summary>
     std::vector<std::shared_ptr<PnLLine>> getExpense() const;
     bool expenseIsSet() const;
     void unsetExpense();
     void setExpense(const std::vector<std::shared_ptr<PnLLine>>& value);
 
+    /// <summary>
+    /// From opens the period and is EXCLUSIVE — movement strictly after it, matching the trial balance&#39;s opening boundary so the two reports agree on what belongs to a period. Absent means from the beginning of the ledger.
+    /// </summary>
     utility::string_t getFrom() const;
     bool fromIsSet() const;
     void unsetFrom();
     void setFrom(const utility::string_t& value);
 
+    /// <summary>
+    /// Income is the revenue lines that moved in the period, one per account. Accounts that did not move are omitted rather than listed at zero.
+    /// </summary>
     std::vector<std::shared_ptr<PnLLine>> getIncome() const;
     bool incomeIsSet() const;
     void unsetIncome();
     void setIncome(const std::vector<std::shared_ptr<PnLLine>>& value);
 
     /// <summary>
-    /// TotalIncome − TotalExpense
+    /// NetIncome is totalIncome minus totalExpense, in cents. Negative is a loss.
     /// </summary>
     int32_t getNetIncome() const;
     bool netIncomeIsSet() const;
     void unsetNetIncome();
     void setNetIncome(int32_t value);
 
+    /// <summary>
+    /// To closes the period and is inclusive. Absent means up to now.
+    /// </summary>
     utility::string_t getTo() const;
     bool toIsSet() const;
     void unsetTo();
     void setTo(const utility::string_t& value);
 
+    /// <summary>
+    /// TotalExpense is cost MATCHED to that revenue, in cents, including accrued infrastructure that has not been billed yet.
+    /// </summary>
     int32_t getTotalExpense() const;
     bool totalExpenseIsSet() const;
     void unsetTotalExpense();
     void setTotalExpense(int32_t value);
 
+    /// <summary>
+    /// TotalIncome is revenue RECOGNIZED in the period, in cents — accrual, not cash, so a prepaid top-up is not in it until the credit is consumed.
+    /// </summary>
     int32_t getTotalIncome() const;
     bool totalIncomeIsSet() const;
     void unsetTotalIncome();

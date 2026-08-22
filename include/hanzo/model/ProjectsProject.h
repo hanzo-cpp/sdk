@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -56,36 +56,48 @@ public:
 
 
     /// <summary>
-    /// Analytics is the wired-by-default web-analytics flag (default true). It is the value the app&#39;s static-builder reads as deployment.analytics to inject the beacon. Space is the project&#39;s Base data space (\&quot;&lt;org&gt;/&lt;slug&gt;\&quot;) a deployed site posts form/forum/data submissions to under /v1/base.
+    /// Analytics is whether the web-analytics beacon is injected into this site&#39;s pages. It is ON by default — a project has to opt out — and it is what the static builder reads to decide whether to inject at all.
     /// </summary>
     bool isAnalytics() const;
     bool analyticsIsSet() const;
     void unsetAnalytics();
     void setAnalytics(bool value);
 
+    /// <summary>
+    /// Bucket is the object-store bucket the site&#39;s files are served out of.
+    /// </summary>
     utility::string_t getBucket() const;
     bool bucketIsSet() const;
     void unsetBucket();
     void setBucket(const utility::string_t& value);
 
     /// <summary>
-    /// Cache is the site&#39;s edge-cache state: the HTML/document Cache-Control policy in effect (TTL) and the last edge-purge time, so a console can show freshness.
+    /// CacheControl is the Cache-Control policy the edge serves this site&#39;s HTML under — how long a reader may hold a stale page before asking again. Assets are content-addressed and are not governed by it.
     /// </summary>
     utility::string_t getCacheControl() const;
     bool cacheControlIsSet() const;
     void unsetCacheControl();
     void setCacheControl(const utility::string_t& value);
 
+    /// <summary>
+    /// CreatedAt is when the project was created, as Unix seconds.
+    /// </summary>
     int32_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
     void setCreatedAt(int32_t value);
 
+    /// <summary>
+    /// CurrentDeploymentID names the deployment currently serving, so a caller can ask what is live without scanning the history.
+    /// </summary>
     utility::string_t getCurrentDeploymentId() const;
     bool currentDeploymentIdIsSet() const;
     void unsetCurrentDeploymentId();
     void setCurrentDeploymentId(const utility::string_t& value);
 
+    /// <summary>
+    /// Description is the one-line summary, which is copied onto forks of this project and shown on a gallery card.
+    /// </summary>
     utility::string_t getDescription() const;
     bool descriptionIsSet() const;
     void unsetDescription();
@@ -99,21 +111,33 @@ public:
     void unsetForkedFrom();
     void setForkedFrom(const utility::string_t& value);
 
+    /// <summary>
+    /// Framework is a BUILD HINT from a closed set, defaulting to static. It tells CI how to build a linked repo and never gates a deploy, so a wrong value costs a build rather than access.
+    /// </summary>
     utility::string_t getFramework() const;
     bool frameworkIsSet() const;
     void unsetFramework();
     void setFramework(const utility::string_t& value);
 
+    /// <summary>
+    /// Hidden is PLATFORM MODERATION, and it is a different axis from visibility: it pulls a public project out of the catalogue without editing the publisher&#39;s own choice, so un-hiding restores exactly what they asked for. A project is listed only when it is public AND not hidden. Always present, never omitted, for the same reason as visibility.
+    /// </summary>
     bool isHidden() const;
     bool hiddenIsSet() const;
     void unsetHidden();
     void setHidden(bool value);
 
+    /// <summary>
+    /// HiddenReason is why moderation hid it. Absent when it is not hidden.
+    /// </summary>
     utility::string_t getHiddenReason() const;
     bool hiddenReasonIsSet() const;
     void unsetHiddenReason();
     void setHiddenReason(const utility::string_t& value);
 
+    /// <summary>
+    /// ID is the project&#39;s internal identifier. It is stable across a rename, but it is not what the API addresses this project by — &#x60;slug&#x60; is.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
@@ -127,46 +151,81 @@ public:
     void unsetKey();
     void setKey(const utility::string_t& value);
 
+    /// <summary>
+    /// LastPurgeAt is when the edge cache was last cleared, as Unix seconds, so a console can say how fresh what readers see actually is. Absent means never.
+    /// </summary>
     int32_t getLastPurgeAt() const;
     bool lastPurgeAtIsSet() const;
     void unsetLastPurgeAt();
     void setLastPurgeAt(int32_t value);
 
+    /// <summary>
+    /// License is the terms that upstream work carries. Absent has the same reading: undeclared, not unencumbered.
+    /// </summary>
     utility::string_t getLicense() const;
     bool licenseIsSet() const;
     void unsetLicense();
     void setLicense(const utility::string_t& value);
 
+    /// <summary>
+    /// LiveURL is where the site answers today. Absent until something has been deployed.
+    /// </summary>
     utility::string_t getLiveUrl() const;
     bool liveUrlIsSet() const;
     void unsetLiveUrl();
     void setLiveUrl(const utility::string_t& value);
 
+    /// <summary>
+    /// Name is the project&#39;s display name, free text a person chose.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
+    /// <summary>
+    /// Org is the organisation that owns the project, and therefore who pays for it and who may change it. It is also the AUTHORSHIP line a gallery credits; there is no separate author field.
+    /// </summary>
     utility::string_t getOrg() const;
     bool orgIsSet() const;
     void unsetOrg();
     void setOrg(const utility::string_t& value);
 
+    /// <summary>
+    /// Repo is the git source this project builds from, empty when it is deployed by uploading an artifact instead.
+    /// </summary>
     std::shared_ptr<ProjectsRepo> getRepo() const;
     bool repoIsSet() const;
     void unsetRepo();
     void setRepo(const std::shared_ptr<ProjectsRepo>& value);
 
+    /// <summary>
+    /// Slug is the identifier that MATTERS: the handle every later call addresses, the S3 key segment the site&#39;s objects live under, and the label of the public host &#x60;&lt;slug&gt;.hanzo.app&#x60;. Because it is a hostname it is constrained and reserved labels such as &#x60;api&#x60; are refused.
+    /// </summary>
     utility::string_t getSlug() const;
     bool slugIsSet() const;
     void unsetSlug();
     void setSlug(const utility::string_t& value);
 
+    /// <summary>
+    /// Space is the project&#39;s Base data space, which is where a deployed site&#39;s form, forum and data submissions land. Absent means the site stores nothing.
+    /// </summary>
     utility::string_t getSpace() const;
     bool spaceIsSet() const;
     void unsetSpace();
     void setSpace(const utility::string_t& value);
 
+    /// <summary>
+    /// Starred is THIS CALLER&#39;s star, not a property of the project — two people in the same org see different values for the same row, which is the whole point of it. Always present so a client can tell \&quot;not starred\&quot; from \&quot;this API is too old to say\&quot;, the same reason visibility and hidden are.
+    /// </summary>
+    bool isStarred() const;
+    bool starredIsSet() const;
+    void unsetStarred();
+    void setStarred(bool value);
+
+    /// <summary>
+    /// Status is where the project stands — whether a build has ever succeeded and whether anything is serving right now.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
@@ -180,13 +239,16 @@ public:
     void unsetTags();
     void setTags(const std::map<utility::string_t, utility::string_t>& value);
 
+    /// <summary>
+    /// UpdatedAt is when the project&#39;s own record last changed, as Unix seconds. A deploy is not an edit of the project, so this does not move on every publish.
+    /// </summary>
     int32_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
     void setUpdatedAt(int32_t value);
 
     /// <summary>
-    /// Upstream/License credit the third-party work this project was published from, and the terms it carries. Omitted when nothing is declared: an absent credit means \&quot;nobody has said\&quot;, not \&quot;there is nothing to say\&quot;.
+    /// Upstream credits the third-party work this project was published from — a free-text line, because the honest answer is a name and a title that no enum could hold. Absent means NOBODY HAS SAID, not that there is nothing to say.
     /// </summary>
     utility::string_t getUpstream() const;
     bool upstreamIsSet() const;
@@ -262,6 +324,9 @@ protected:
 
     utility::string_t m_Space;
     bool m_SpaceIsSet;
+
+    bool m_Starred;
+    bool m_StarredIsSet;
 
     utility::string_t m_Status;
     bool m_StatusIsSet;

@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,11 +52,17 @@ public:
     /// ArgoInfoItem members
 
 
+    /// <summary>
+    /// Name is the chip&#39;s label. The only one this projection produces is \&quot;Image Tag\&quot;.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
+    /// <summary>
+    /// Value is the chip&#39;s value — for \&quot;Image Tag\&quot;, the tag the node runs.
+    /// </summary>
     utility::string_t getValue() const;
     bool valueIsSet() const;
     void unsetValue();

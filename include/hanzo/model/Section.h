@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,26 +52,41 @@ public:
     /// Section members
 
 
+    /// <summary>
+    /// Detail is what this phase of the journey is for, in prose.
+    /// </summary>
     utility::string_t getDetail() const;
     bool detailIsSet() const;
     void unsetDetail();
     void setDetail(const utility::string_t& value);
 
+    /// <summary>
+    /// Enabled is the admin lever. Absent reads as ON, so only an explicit false turns a phase off — and it takes every step filed under it out of the journey, not just the heading.
+    /// </summary>
     bool isEnabled() const;
     bool enabledIsSet() const;
     void unsetEnabled();
     void setEnabled(bool value);
 
+    /// <summary>
+    /// ID is the slug a step&#39;s &#x60;section&#x60; names to file itself under this phase.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
+    /// <summary>
+    /// Order places the phase in the journey, ascending. Ties fall back to authoring order, and an omitted order sorts as 0 — ahead of everything.
+    /// </summary>
     int32_t getOrder() const;
     bool orderIsSet() const;
     void unsetOrder();
     void setOrder(int32_t value);
 
+    /// <summary>
+    /// Title is the phase heading a person reads above its steps.
+    /// </summary>
     utility::string_t getTitle() const;
     bool titleIsSet() const;
     void unsetTitle();

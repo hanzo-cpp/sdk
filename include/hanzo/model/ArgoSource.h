@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,16 +52,25 @@ public:
     /// ArgoSource members
 
 
+    /// <summary>
+    /// Path is the directory within RepoURL. Display-only alongside a display-only RepoURL; CD&#39;s own value for a CD row.
+    /// </summary>
     utility::string_t getPath() const;
     bool pathIsSet() const;
     void unsetPath();
     void setPath(const utility::string_t& value);
 
+    /// <summary>
+    /// RepoURL is the git repository the desired state comes from. For an application projected from an App CR it is the fleet manifest repo and is DISPLAY ONLY — an App CR pins an image, and nothing is rendered from this repo to produce it. For a CD row it is the repo CD actually polls.
+    /// </summary>
     utility::string_t getRepoURL() const;
     bool repoURLIsSet() const;
     void unsetRepoURL();
     void setRepoURL(const utility::string_t& value);
 
+    /// <summary>
+    /// TargetRevision is the git ref tracked there — a branch such as \&quot;main\&quot;. Display-only for a projected App CR; the ref CD tracks for a CD row.
+    /// </summary>
     utility::string_t getTargetRevision() const;
     bool targetRevisionIsSet() const;
     void unsetTargetRevision();

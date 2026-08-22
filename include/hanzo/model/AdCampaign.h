@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -53,61 +53,88 @@ public:
 
 
     /// <summary>
-    /// provider ad-account ref (Meta act_&lt;id&gt;)
+    /// Account is the provider ad-account the campaign runs under, in Meta&#39;s act_&lt;id&gt; form. Empty until the org supplies one or a launch resolves it.
     /// </summary>
     utility::string_t getAccount() const;
     bool accountIsSet() const;
     void unsetAccount();
     void setAccount(const utility::string_t& value);
 
+    /// <summary>
+    /// Budget is the campaign&#39;s authorized spend in MINOR units (cents). Negative clamps to 0. It is the org&#39;s stored plan: a Meta launch creates the campaign object only, and the delivering budget lives on the ad set.
+    /// </summary>
     int32_t getBudget() const;
     bool budgetIsSet() const;
     void unsetBudget();
     void setBudget(int32_t value);
 
+    /// <summary>
+    /// CreatedAt is when the campaign was first stored, in unix seconds. It never changes, including across a full-replace update.
+    /// </summary>
     int32_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
     void setCreatedAt(int32_t value);
 
     /// <summary>
-    /// provider campaign id after a launch
+    /// ExternalID is the ad network&#39;s own campaign id, written by a successful launch and by nothing else — an update never touches it. Empty means this campaign has never reached its network.
     /// </summary>
     utility::string_t getExternalId() const;
     bool externalIdIsSet() const;
     void unsetExternalId();
     void setExternalId(const utility::string_t& value);
 
+    /// <summary>
+    /// ID is the campaign&#39;s server-minted handle, \&quot;camp_\&quot; + 32 hex. A create body cannot choose it, and it is the id every other route addresses.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
+    /// <summary>
+    /// Name is the campaign&#39;s display label, and the name Meta creates the campaign object under at launch. Required; trimmed and bounded to 1024 bytes.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
+    /// <summary>
+    /// Objective is the campaign goal spelled as the provider names it (\&quot;conversions\&quot;, \&quot;OUTCOME_TRAFFIC\&quot;), passed through to the network verbatim at launch — Meta defaults an empty one to OUTCOME_TRAFFIC. Free text, bounded to 1024 bytes; no vocabulary is enforced here.
+    /// </summary>
     utility::string_t getObjective() const;
     bool objectiveIsSet() const;
     void unsetObjective();
     void setObjective(const utility::string_t& value);
 
+    /// <summary>
+    /// Platform is the ad network: meta, google, tiktok or x, and nothing else — a write naming another is 400. Empty stores as meta. Only meta executes today; launching any of the other three is 501.
+    /// </summary>
     utility::string_t getPlatform() const;
     bool platformIsSet() const;
     void unsetPlatform();
     void setPlatform(const utility::string_t& value);
 
+    /// <summary>
+    /// Spend is spend-to-date in MINOR units (cents), as last written through create or update. Negative clamps to 0. It is NOT read back from the network — that is a separate insights call — so 0 means nothing was recorded here, not that nothing was spent.
+    /// </summary>
     int32_t getSpend() const;
     bool spendIsSet() const;
     void unsetSpend();
     void setSpend(int32_t value);
 
+    /// <summary>
+    /// Status is the lifecycle: draft, active, paused or completed, and nothing else — a write naming another is 400. Empty stores as draft; a successful launch sets active. It records what this deployment did, not what the ad network currently reports.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
+    /// <summary>
+    /// UpdatedAt is when the row was last written, in unix seconds — set by create, update and launch. Listings are ordered by it, newest first.
+    /// </summary>
     int32_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();

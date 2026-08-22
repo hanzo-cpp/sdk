@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,51 +52,81 @@ public:
     /// ProvisionResult members
 
 
+    /// <summary>
+    /// ConnectionString is the ready-to-use DSN, credential included. RETURNED HERE ONCE: no read beside this one carries it, so a caller that does not keep it must provision again.
+    /// </summary>
     utility::string_t getConnectionString() const;
     bool connectionStringIsSet() const;
     void unsetConnectionString();
     void setConnectionString(const utility::string_t& value);
 
+    /// <summary>
+    /// Database is the logical database, collection, index or bucket this resource resolves to on its backend. It is derived from Name under an org-namespacing hash, so it is not Name and two orgs cannot land on one.
+    /// </summary>
     utility::string_t getDatabase() const;
     bool databaseIsSet() const;
     void unsetDatabase();
     void setDatabase(const utility::string_t& value);
 
+    /// <summary>
+    /// Host is the address that routes to this resource — a dedicated instance&#39;s own in-cluster Service, or the public gateway for a shared one. Never the internal admin address of a shared backend.
+    /// </summary>
     utility::string_t getHost() const;
     bool hostIsSet() const;
     void unsetHost();
     void setHost(const utility::string_t& value);
 
+    /// <summary>
+    /// ID is the resource&#39;s server-minted handle, \&quot;rs_\&quot;-prefixed. The caller does not choose it, and it is what every read and the delete address.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
+    /// <summary>
+    /// Kind is the product provisioned: sql, vector, datastore, kv, search, s3 or docdb. It is the route that was called, not a body field.
+    /// </summary>
     utility::string_t getKind() const;
     bool kindIsSet() const;
     void unsetKind();
     void setKind(const utility::string_t& value);
 
+    /// <summary>
+    /// Name is the org-unique slug the caller asked for, lower-cased. Every physical name on the backend derives from it.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
+    /// <summary>
+    /// Password is the minted credential, in plaintext, for the kinds that have one. RETURNED HERE ONCE — where KMS is configured it is sealed there and only a reference is persisted; where it is not, it is stored nowhere at all. It is never held in plaintext on either side.
+    /// </summary>
     utility::string_t getPassword() const;
     bool passwordIsSet() const;
     void unsetPassword();
     void setPassword(const utility::string_t& value);
 
+    /// <summary>
+    /// Port is the port a client connects to on Host.
+    /// </summary>
     int32_t getPort() const;
     bool portIsSet() const;
     void unsetPort();
     void setPort(int32_t value);
 
+    /// <summary>
+    /// Status is \&quot;ready\&quot;, or \&quot;provisioning\&quot; while a dedicated instance is still being materialized by the operator. A shared-backend create is \&quot;ready\&quot; here; a dedicated one answers 201 still launching, and reaches ready only when a later read reconciles it against the operator&#39;s live CR — never fabricated.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
+    /// <summary>
+    /// Username is the credential&#39;s user, for the kinds that mint one per resource. Absent for a kind whose backend authenticates with a shared, out-of-band key.
+    /// </summary>
     utility::string_t getUsername() const;
     bool usernameIsSet() const;
     void unsetUsername();

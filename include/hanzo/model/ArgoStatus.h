@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -61,26 +61,41 @@ public:
     /// ArgoStatus members
 
 
+    /// <summary>
+    /// Health is the application&#39;s reconciled health.
+    /// </summary>
     std::shared_ptr<ArgoHealth> getHealth() const;
     bool healthIsSet() const;
     void unsetHealth();
     void setHealth(const std::shared_ptr<ArgoHealth>& value);
 
+    /// <summary>
+    /// ReconciledAt is when the desired state was last compared against the cluster, RFC 3339. Empty for an App CR — the projection derives its verdict at read time and nothing records a comparison — and CD&#39;s own status.reconciledAt for a CD row.
+    /// </summary>
     utility::string_t getReconciledAt() const;
     bool reconciledAtIsSet() const;
     void unsetReconciledAt();
     void setReconciledAt(const utility::string_t& value);
 
+    /// <summary>
+    /// Resources are the objects the application owns. EMPTY on the list — filling it would walk the cluster once per row — and populated only by the read of ONE application, which is what makes that the detail view.
+    /// </summary>
     std::vector<std::shared_ptr<ArgoResourceStatus>> getResources() const;
     bool resourcesIsSet() const;
     void unsetResources();
     void setResources(const std::vector<std::shared_ptr<ArgoResourceStatus>>& value);
 
+    /// <summary>
+    /// Summary is the small aggregate the list column renders: the images.
+    /// </summary>
     std::shared_ptr<ArgoSummary> getSummary() const;
     bool summaryIsSet() const;
     void unsetSummary();
     void setSummary(const std::shared_ptr<ArgoSummary>& value);
 
+    /// <summary>
+    /// Sync is the declared-versus-running verdict and what it was reached against.
+    /// </summary>
     std::shared_ptr<ArgoSyncStatus> getSync() const;
     bool syncIsSet() const;
     void unsetSync();

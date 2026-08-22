@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,41 +52,65 @@ public:
     /// ActionRecord members
 
 
+    /// <summary>
+    /// Args is the JSON the tool was called with, recorded as TEXT exactly as sent — including whatever the AI drafted into it — so a run can be read back and reproduced. It is a string, not an object.
+    /// </summary>
     utility::string_t getArgs() const;
     bool argsIsSet() const;
     void unsetArgs();
     void setArgs(const utility::string_t& value);
 
+    /// <summary>
+    /// CreatedAt is when the run was recorded, as Unix seconds. The ledger is read newest-first on this column.
+    /// </summary>
     int32_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
     void setCreatedAt(int32_t value);
 
+    /// <summary>
+    /// Err is why the run failed, when it did. Empty on a successful run.
+    /// </summary>
     utility::string_t getErr() const;
     bool errIsSet() const;
     void unsetErr();
     void setErr(const utility::string_t& value);
 
+    /// <summary>
+    /// ID identifies this one execution. The ledger is append-only, so an id is never reused and never updated.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
+    /// <summary>
+    /// OK is whether the tool ran to completion. It is the ledger&#39;s own verdict, not the tool&#39;s opinion of the outcome — a tool that succeeded at reporting bad news is ok.
+    /// </summary>
     bool isOk() const;
     bool okIsSet() const;
     void unsetOk();
     void setOk(bool value);
 
+    /// <summary>
+    /// Result is the tool&#39;s own answer, likewise recorded as JSON text. Present on a failed run too, where the tool answered but the answer was a refusal.
+    /// </summary>
     utility::string_t getResult() const;
     bool resultIsSet() const;
     void unsetResult();
     void setResult(const utility::string_t& value);
 
+    /// <summary>
+    /// StepID is the checklist step the Business AI was acting on.
+    /// </summary>
     utility::string_t getStepId() const;
     bool stepIdIsSet() const;
     void unsetStepId();
     void setStepId(const utility::string_t& value);
 
+    /// <summary>
+    /// Tool is the MCP tool that was dispatched, by name.
+    /// </summary>
     utility::string_t getTool() const;
     bool toolIsSet() const;
     void unsetTool();

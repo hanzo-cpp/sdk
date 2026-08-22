@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,81 +52,129 @@ public:
     /// SampleView members
 
 
+    /// <summary>
+    /// At is when the reading was MEASURED, RFC 3339 in UTC — the x-axis a chart plots against. The series is returned oldest first, so it only increases.
+    /// </summary>
     utility::string_t getAt() const;
     bool atIsSet() const;
     void unsetAt();
     void setAt(const utility::string_t& value);
 
+    /// <summary>
+    /// CostCents is what this unit resold for over the hour the reading falls in, in whole US cents. 0 means UNPRICED, not free: the operator&#39;s own machines — a linked run-target, a dialed-in BYO worker — are metered for utilization and never resold, so only a priced source ever fills it.
+    /// </summary>
     int32_t getCostCents() const;
     bool costCentsIsSet() const;
     void unsetCostCents();
     void setCostCents(int32_t value);
 
+    /// <summary>
+    /// CPUs is logical cores. The static capability rides every row on purpose: a chart can size load against cores without joining a registry whose row may since have been rewritten or the unit deregistered.
+    /// </summary>
     int32_t getCpus() const;
     bool cpusIsSet() const;
     void unsetCpus();
     void setCpus(int32_t value);
 
+    /// <summary>
+    /// GPUModel names the representative accelerator (\&quot;GB10\&quot;); GPUs carries how many.
+    /// </summary>
     utility::string_t getGpuModel() const;
     bool gpuModelIsSet() const;
     void unsetGpuModel();
     void setGpuModel(const utility::string_t& value);
 
+    /// <summary>
+    /// GPUUtil is aggregate accelerator utilization as a FRACTION of 1 — 0.42 is 42% busy. Anything a reporter sends outside 0..1 is clamped into it on write.
+    /// </summary>
     double getGpuUtil() const;
     bool gpuUtilIsSet() const;
     void unsetGpuUtil();
     void setGpuUtil(double value);
 
+    /// <summary>
+    /// GPUs is how many accelerators the reading covers.
+    /// </summary>
     int32_t getGpus() const;
     bool gpusIsSet() const;
     void unsetGpus();
     void setGpus(int32_t value);
 
+    /// <summary>
+    /// Host is the hostname the unit reported at the time of the reading.
+    /// </summary>
     utility::string_t getHost() const;
     bool hostIsSet() const;
     void unsetHost();
     void setHost(const utility::string_t& value);
 
+    /// <summary>
+    /// Kind is what the measured unit is: laptop, cloud, gpu, cluster, machine or worker.
+    /// </summary>
     utility::string_t getKind() const;
     bool kindIsSet() const;
     void unsetKind();
     void setKind(const utility::string_t& value);
 
+    /// <summary>
+    /// Load1 is the 1-minute load average — runnable processes, not a percentage.
+    /// </summary>
     double getLoad1() const;
     bool load1IsSet() const;
     void unsetLoad1();
     void setLoad1(double value);
 
+    /// <summary>
+    /// Load5 is the 5-minute load average, the same units as Load1.
+    /// </summary>
     double getLoad5() const;
     bool load5IsSet() const;
     void unsetLoad5();
     void setLoad5(double value);
 
+    /// <summary>
+    /// Load15 is the 15-minute load average, the same units as Load1.
+    /// </summary>
     double getLoad15() const;
     bool load15IsSet() const;
     void unsetLoad15();
     void setLoad15(double value);
 
+    /// <summary>
+    /// MemFree is host memory available, in BYTES, as reported rather than derived.
+    /// </summary>
     int32_t getMemFree() const;
     bool memFreeIsSet() const;
     void unsetMemFree();
     void setMemFree(int32_t value);
 
+    /// <summary>
+    /// MemUsed is host memory in use, in BYTES.
+    /// </summary>
     int32_t getMemUsed() const;
     bool memUsedIsSet() const;
     void unsetMemUsed();
     void setMemUsed(int32_t value);
 
+    /// <summary>
+    /// Memory is total system RAM in BYTES at the time of the reading.
+    /// </summary>
     int32_t getMemory() const;
     bool memoryIsSet() const;
     void unsetMemory();
     void setMemory(int32_t value);
 
+    /// <summary>
+    /// Source is the plane that reported the reading: \&quot;agent\&quot;, \&quot;byo\&quot; or \&quot;visor\&quot; — the same vocabulary the board&#39;s rows carry, and what ?source&#x3D; narrows on.
+    /// </summary>
     utility::string_t getSource() const;
     bool sourceIsSet() const;
     void unsetSource();
     void setSource(const utility::string_t& value);
 
+    /// <summary>
+    /// Unit is the source&#39;s own id for the measured unit. With Source it is the key the chart groups by, and the key the board joins a unit&#39;s latest reading on.
+    /// </summary>
     utility::string_t getUnit() const;
     bool unitIsSet() const;
     void unsetUnit();

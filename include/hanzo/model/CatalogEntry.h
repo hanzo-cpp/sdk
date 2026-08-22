@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,16 +52,25 @@ public:
     /// CatalogEntry members
 
 
+    /// <summary>
+    /// Configured is whether THIS DEPLOYMENT holds the OAuth client credentials for the provider. False means Connect would dead-end, so the console can offer it disabled instead of broken. It is deployment-wide and says nothing about whether the caller&#39;s org has connected the source — that is the connector list&#39;s &#x60;status&#x60;.
+    /// </summary>
     bool isConfigured() const;
     bool configuredIsSet() const;
     void unsetConfigured();
     void setConfigured(bool value);
 
+    /// <summary>
+    /// Description is one line of shop copy: what connecting this source pulls in. Native connectors carry written prose; a piece-backed one reads \&quot;activepieces connector (&lt;piece&gt;)\&quot;.
+    /// </summary>
     utility::string_t getDescription() const;
     bool descriptionIsSet() const;
     void unsetDescription();
     void setDescription(const utility::string_t& value);
 
+    /// <summary>
+    /// DisplayName is the label to show a person. First-party connectors carry a written name (\&quot;GitHub\&quot;, \&quot;Google Drive\&quot;); a piece-backed one falls back to the provider capitalized, because the rich activepieces metadata lives behind a cross-service call this read will not make.
+    /// </summary>
     utility::string_t getDisplayName() const;
     bool displayNameIsSet() const;
     void unsetDisplayName();
@@ -75,6 +84,9 @@ public:
     void unsetKind();
     void setKind(const utility::string_t& value);
 
+    /// <summary>
+    /// Provider is the source&#39;s id and the address every connector op takes it by (/v1/knowledge/connectors/:provider). One of github, slack, google, notion.
+    /// </summary>
     utility::string_t getProvider() const;
     bool providerIsSet() const;
     void unsetProvider();

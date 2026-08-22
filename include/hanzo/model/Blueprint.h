@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -63,49 +63,73 @@ public:
     /// Blueprint members
 
 
+    /// <summary>
+    /// Brand is the white-label key this playbook serves. Empty is the shared default every unbranded deployment falls back to.
+    /// </summary>
     utility::string_t getBrand() const;
     bool brandIsSet() const;
     void unsetBrand();
     void setBrand(const utility::string_t& value);
 
+    /// <summary>
+    /// Enabled is the whole-playbook lever. Absent reads as ON; an explicit false makes resolution skip this playbook entirely and fall through to the next tier, rather than serving an empty journey.
+    /// </summary>
     bool isEnabled() const;
     bool enabledIsSet() const;
     void unsetEnabled();
     void setEnabled(bool value);
 
     /// <summary>
-    /// the 64-principle spine (Zen of Hanzo archetypes)
+    /// Principles are the fixed 64-archetype spine a tactic files under. It is authored data an operator organises the corpus by; nothing in the checklist engine reads it.
     /// </summary>
     std::vector<std::shared_ptr<Principle>> getPrinciples() const;
     bool principlesIsSet() const;
     void unsetPrinciples();
     void setPrinciples(const std::vector<std::shared_ptr<Principle>>& value);
 
+    /// <summary>
+    /// Sections are the journey&#39;s ordered phases.
+    /// </summary>
     std::vector<std::shared_ptr<Section>> getSections() const;
     bool sectionsIsSet() const;
     void unsetSections();
     void setSections(const std::vector<std::shared_ptr<Section>>& value);
 
+    /// <summary>
+    /// Steps are every checklist item, disabled ones included — this is the authored document, not the projection an org runs.
+    /// </summary>
     std::vector<std::shared_ptr<JourneyStep>> getSteps() const;
     bool stepsIsSet() const;
     void unsetSteps();
     void setSteps(const std::vector<std::shared_ptr<JourneyStep>>& value);
 
+    /// <summary>
+    /// Strategies are the tactics corpus the recommendation reads narrow.
+    /// </summary>
     std::vector<std::shared_ptr<Strategy>> getStrategies() const;
     bool strategiesIsSet() const;
     void unsetStrategies();
     void setStrategies(const std::vector<std::shared_ptr<Strategy>>& value);
 
+    /// <summary>
+    /// Templates are the reusable prompts and snippets steps reference by id.
+    /// </summary>
     std::vector<std::shared_ptr<Page>> getTemplates() const;
     bool templatesIsSet() const;
     void unsetTemplates();
     void setTemplates(const std::vector<std::shared_ptr<Page>>& value);
 
+    /// <summary>
+    /// Title is the playbook&#39;s name as a person reads it.
+    /// </summary>
     utility::string_t getTitle() const;
     bool titleIsSet() const;
     void unsetTitle();
     void setTitle(const utility::string_t& value);
 
+    /// <summary>
+    /// Version is the playbook&#39;s own name for this edition of its content, chosen by whoever authored it. It travels onto every journey projected from it. The store&#39;s numeric revision is a separate value and lives beside it.
+    /// </summary>
     utility::string_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();

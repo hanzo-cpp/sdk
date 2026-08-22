@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -50,8 +50,6 @@ Iam_Cert::Iam_Cert()
     m_NameIsSet = false;
     m_Owner = utility::conversions::to_string_t("");
     m_OwnerIsSet = false;
-    m_PrivateKey = utility::conversions::to_string_t("");
-    m_PrivateKeyIsSet = false;
     m_Provider = utility::conversions::to_string_t("");
     m_ProviderIsSet = false;
     m_Scope = utility::conversions::to_string_t("");
@@ -153,11 +151,6 @@ web::json::value Iam_Cert::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("owner"))] = ModelBase::toJson(m_Owner);
-    }
-    if(m_PrivateKeyIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("privateKey"))] = ModelBase::toJson(m_PrivateKey);
     }
     if(m_ProviderIsSet)
     {
@@ -362,17 +355,6 @@ bool Iam_Cert::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("privateKey"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("privateKey")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setPrivateKey;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setPrivateKey);
-            setPrivateKey(refVal_setPrivateKey);
-            
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("provider"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("provider")));
@@ -490,10 +472,6 @@ void Iam_Cert::toMultipart(std::shared_ptr<MultipartFormData> multipart, const u
     if(m_OwnerIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("owner")), m_Owner));
-    }
-    if(m_PrivateKeyIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("privateKey")), m_PrivateKey));
     }
     if(m_ProviderIsSet)
     {
@@ -617,12 +595,6 @@ bool Iam_Cert::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
         utility::string_t refVal_setOwner;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("owner"))), refVal_setOwner );
         setOwner(refVal_setOwner);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("privateKey"))))
-    {
-        utility::string_t refVal_setPrivateKey;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("privateKey"))), refVal_setPrivateKey );
-        setPrivateKey(refVal_setPrivateKey);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("provider"))))
     {
@@ -987,27 +959,6 @@ bool Iam_Cert::ownerIsSet() const
 void Iam_Cert::unsetOwner()
 {
     m_OwnerIsSet = false;
-}
-utility::string_t Iam_Cert::getPrivateKey() const
-{
-    return m_PrivateKey;
-}
-
-
-void Iam_Cert::setPrivateKey(const utility::string_t& value)
-{
-    m_PrivateKey = value;
-    m_PrivateKeyIsSet = true;
-}
-
-bool Iam_Cert::privateKeyIsSet() const
-{
-    return m_PrivateKeyIsSet;
-}
-
-void Iam_Cert::unsetPrivateKey()
-{
-    m_PrivateKeyIsSet = false;
 }
 utility::string_t Iam_Cert::getProvider() const
 {

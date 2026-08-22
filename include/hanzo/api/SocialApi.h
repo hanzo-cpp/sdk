@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -21,7 +21,17 @@
 
 
 #include "hanzo/ApiClient.h"
-#include "hanzo/ModelBase.h"
+
+#include "hanzo/model/SocialAccount.h"
+#include "hanzo/model/SocialAccountBody.h"
+#include "hanzo/model/SocialAccountWrite.h"
+#include "hanzo/model/SocialAccounts.h"
+#include "hanzo/model/SocialPost.h"
+#include "hanzo/model/SocialPostBody.h"
+#include "hanzo/model/SocialPostWrite.h"
+#include "hanzo/model/SocialPosts.h"
+#include "hanzo/model/SocialProviders.h"
+#include "hanzo/model/SocialSummary.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -41,122 +51,138 @@ public:
     virtual ~SocialApi();
 
     /// <summary>
-    /// Disconnect one account
+    /// Removes one connected account from the org and answers 204 with no body; an id that is not there is 404.
     /// </summary>
     /// <remarks>
-    /// Removes one connected account from the org and answers 204 with no body; an id that is not there is 404.  It removes the account record only. Posts that already published through it keep their published state and their recorded external ids — this does not retract anything from the network.  A validated principal is required; 403 without one. Every row is keyed by the caller&#39;s org taken from that principal and never from the request, so an id belonging to another tenant reads as not found rather than as a refusal.
+    /// Removes one connected account from the org and answers 204 with no body; an id that is not there is 404.  It removes the account record only. Posts that already published through it keep their published state and their recorded external ids — this does not retract anything from the network.
     /// </remarks>
-    /// <param name="id"></param>
+    /// <param name="id">ID is the account or post to act on, taken from the path.</param>
     pplx::task<void> deleteSocialAccountsById(
         utility::string_t id
     ) const;
     /// <summary>
-    /// Delete one post
+    /// Removes one post from the org and answers 204 with no body; an id that is not there is 404.
     /// </summary>
     /// <remarks>
-    /// Removes one post from the org and answers 204 with no body; an id that is not there is 404.  It deletes the record here only. A post that has already published is not retracted from the network by deleting it.  A validated principal is required; 403 without one. Every row is keyed by the caller&#39;s org taken from that principal and never from the request, so an id belonging to another tenant reads as not found rather than as a refusal.
+    /// Removes one post from the org and answers 204 with no body; an id that is not there is 404.  It deletes the record here only. A post that has already published is not retracted from the network by deleting it.
     /// </remarks>
-    /// <param name="id"></param>
+    /// <param name="id">ID is the account or post to act on, taken from the path.</param>
     pplx::task<void> deleteSocialPostsById(
         utility::string_t id
     ) const;
     /// <summary>
-    /// List the social accounts connected to your org
+    /// Returns the org&#39;s connected accounts — each one&#39;s id, network, handle, status and timestamps, most-recently-updated first.
     /// </summary>
     /// <remarks>
-    /// Returns the org&#39;s connected accounts — each one&#39;s id, network, handle, status and timestamps. &#x60;provider&#x60; filters to one network; &#x60;limit&#x60; bounds the page, defaulting to 200 and capped at 1000.  An account&#39;s provider access token is NEVER included in any response on this surface. Only the publisher reads it.  A validated principal is required; 403 without one. Every row is keyed by the caller&#39;s org taken from that principal and never from the request, so an id belonging to another tenant reads as not found rather than as a refusal.
+    /// Returns the org&#39;s connected accounts — each one&#39;s id, network, handle, status and timestamps, most-recently-updated first.  An account&#39;s provider access token is NEVER included in any response on this surface. Only the publisher reads it.
     /// </remarks>
-    pplx::task<void> getSocialAccounts(
+    /// <param name="provider">Provider keeps only accounts on one network — x, facebook, instagram, linkedin, tiktok, youtube or threads. Omit it for every network. It is lower-cased and trimmed before it is matched, and a value that names no network simply matches nothing rather than being refused. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="limit">Limit bounds the page, defaulting to 200 and capped at 1000. It is a string rather than an integer on purpose: the route parses it with a leading trim and falls back to the default on anything it cannot read, so &#x60;?limit&#x3D;%2050&#x60; is a page of fifty today. An integer field would refuse the space and read an unparseable value as zero, which is a different page. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<SocialAccounts>> getSocialAccounts(
+        boost::optional<utility::string_t> provider,
+        boost::optional<utility::string_t> limit
     ) const;
     /// <summary>
-    /// Read one connected account
+    /// Returns one of the org&#39;s connected accounts by id — its network, handle, status and timestamps — or 404.
     /// </summary>
     /// <remarks>
-    /// Returns one of the org&#39;s connected accounts by id — its network, handle, status and timestamps — or 404. The provider access token is not part of the response.  A validated principal is required; 403 without one. Every row is keyed by the caller&#39;s org taken from that principal and never from the request, so an id belonging to another tenant reads as not found rather than as a refusal.
+    /// Returns one of the org&#39;s connected accounts by id — its network, handle, status and timestamps — or 404. The provider access token is not part of the response.
     /// </remarks>
-    /// <param name="id"></param>
-    pplx::task<void> getSocialAccountsById(
+    /// <param name="id">ID is the account or post to act on, taken from the path.</param>
+    pplx::task<std::shared_ptr<SocialAccount>> getSocialAccountsById(
         utility::string_t id
     ) const;
     /// <summary>
-    /// List your org&#39;s posts
+    /// Returns the org&#39;s posts — content, channel, status, scheduled time, media and timestamps — most-recently-updated first.
     /// </summary>
     /// <remarks>
-    /// Returns the org&#39;s posts — content, channel, status, scheduled time, media and timestamps. &#x60;status&#x60; filters to one of draft, scheduled, published or failed; &#x60;limit&#x60; bounds the page, defaulting to 200 and capped at 1000.  A validated principal is required; 403 without one. Every row is keyed by the caller&#39;s org taken from that principal and never from the request, so an id belonging to another tenant reads as not found rather than as a refusal.
+    /// Returns the org&#39;s posts — content, channel, status, scheduled time, media and timestamps — most-recently-updated first.
     /// </remarks>
-    pplx::task<void> getSocialPosts(
+    /// <param name="status">Status keeps only posts in one state — draft, scheduled, published or failed. Omit it for every state. The transient publishing claim is not a user-visible state and matching it is not useful. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="limit">Limit bounds the page, defaulting to 200 and capped at 1000. A string for the same reason accountFilter.Limit is. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<SocialPosts>> getSocialPosts(
+        boost::optional<utility::string_t> status,
+        boost::optional<utility::string_t> limit
     ) const;
     /// <summary>
-    /// Read one post
+    /// Returns one of the org&#39;s posts by id, with its current status, scheduled time, media and — once it has published — the account and external id it published under.
     /// </summary>
     /// <remarks>
-    /// Returns one of the org&#39;s posts by id, with its current status, scheduled time, media and — once it has published — the account and external id it published under. 404 when there is no such post for this org.  A validated principal is required; 403 without one. Every row is keyed by the caller&#39;s org taken from that principal and never from the request, so an id belonging to another tenant reads as not found rather than as a refusal.
+    /// Returns one of the org&#39;s posts by id, with its current status, scheduled time, media and — once it has published — the account and external id it published under. 404 when there is no such post for this org.
     /// </remarks>
-    /// <param name="id"></param>
-    pplx::task<void> getSocialPostsById(
+    /// <param name="id">ID is the account or post to act on, taken from the path.</param>
+    pplx::task<std::shared_ptr<SocialPost>> getSocialPostsById(
         utility::string_t id
     ) const;
     /// <summary>
-    /// Which networks this deployment can actually publish to
+    /// Reports each supported network&#39;s publish-readiness: whether this deployment holds the OAuth application credentials for it and, when it does not, exactly which environment variables are missing.
     /// </summary>
     /// <remarks>
-    /// Reports each supported network&#39;s publish-readiness: whether this deployment holds the OAuth application credentials for it and, when it does not, exactly which environment variables are missing.  This is a live read of the deployment&#39;s own configuration, not a static list of networks — it answers \&quot;can I connect this today\&quot;, which is what a connect affordance and a pre-cutover checklist both need. It says nothing about whether the caller has connected an account; that is the accounts listing.  A validated principal is required; 403 without one. Every row is keyed by the caller&#39;s org taken from that principal and never from the request, so an id belonging to another tenant reads as not found rather than as a refusal.
+    /// Reports each supported network&#39;s publish-readiness: whether this deployment holds the OAuth application credentials for it and, when it does not, exactly which environment variables are missing.  This is a live read of the deployment&#39;s own configuration, not a static list of networks — it answers \&quot;can I connect this today\&quot;, which is what a connect affordance and a pre-cutover checklist both need. It says nothing about whether the caller has connected an account; that is the accounts listing.
     /// </remarks>
-    pplx::task<void> getSocialProviders(
+    pplx::task<std::shared_ptr<SocialProviders>> getSocialProviders(
     ) const;
     /// <summary>
-    /// Counts across your org&#39;s social presence
+    /// Returns four counts for the caller&#39;s org: total posts, how many are scheduled, how many have published, and how many accounts are connected.
     /// </summary>
     /// <remarks>
-    /// Returns four counts for the caller&#39;s org: total posts, how many are scheduled, how many have published, and how many accounts are connected. It is the dashboard roll-up, computed over the org&#39;s own rows in one read.  A validated principal is required; 403 without one. Every row is keyed by the caller&#39;s org taken from that principal and never from the request, so an id belonging to another tenant reads as not found rather than as a refusal.
+    /// Returns four counts for the caller&#39;s org: total posts, how many are scheduled, how many have published, and how many accounts are connected. It is the dashboard roll-up, computed over the org&#39;s own rows in one read.
     /// </remarks>
-    pplx::task<void> getSocialSummary(
+    pplx::task<std::shared_ptr<SocialSummary>> getSocialSummary(
     ) const;
     /// <summary>
-    /// Connect a social account to your org
+    /// Records a social account for the org and answers 201 with the stored row, including the generated id later calls address it by.
     /// </summary>
     /// <remarks>
-    /// Records a social account for the org and answers 201 with the stored row, including the generated id later calls address it by.  &#x60;provider&#x60; must be one of x, facebook, instagram, linkedin, tiktok, youtube or threads, defaulting to x when omitted. &#x60;status&#x60; is one of connected, disconnected or error, defaulting to connected. The handle is trimmed and bounded at 1024 characters.  A validated principal is required; 403 without one. Every row is keyed by the caller&#39;s org taken from that principal and never from the request, so an id belonging to another tenant reads as not found rather than as a refusal.
+    /// Records a social account for the org and answers 201 with the stored row, including the generated id later calls address it by.
     /// </remarks>
-    pplx::task<void> postSocialAccounts(
+    /// <param name="socialAccountBody"></param>
+    pplx::task<std::shared_ptr<SocialAccount>> postSocialAccounts(
+        std::shared_ptr<SocialAccountBody> socialAccountBody
     ) const;
     /// <summary>
-    /// Create a post, and publish it if it is already due
+    /// Stores a post for the org and answers 201 with the stored row.
     /// </summary>
     /// <remarks>
-    /// Stores a post for the org and answers 201 with the stored row.  A post created as scheduled for a time that has already passed is published IMMEDIATELY, and the row returned carries that outcome — this is the one behaviour a reader would otherwise miss. A future-scheduled post is left for the scheduler, and a draft is left alone. Publishing never fails the creation: the post is stored either way, and a publish that could not run leaves the row for the scheduler to retry.  &#x60;content&#x60; is required and bounded at 8192 characters; &#x60;channel&#x60; is one of the seven supported networks, defaulting to x; &#x60;status&#x60; is one of draft, scheduled, published or failed, defaulting to draft; up to 10 media URLs are kept, each bounded at 1024 characters.  A validated principal is required; 403 without one. Every row is keyed by the caller&#39;s org taken from that principal and never from the request, so an id belonging to another tenant reads as not found rather than as a refusal.
+    /// Stores a post for the org and answers 201 with the stored row.  A post created as scheduled for a time that has already passed is published IMMEDIATELY, and the row returned carries that outcome — this is the one behaviour a reader would otherwise miss. A future-scheduled post is left for the scheduler, and a draft is left alone. Publishing never fails the creation: the post is stored either way, and a publish that could not run leaves the row for the scheduler to retry.
     /// </remarks>
-    pplx::task<void> postSocialPosts(
+    /// <param name="socialPostBody"></param>
+    pplx::task<std::shared_ptr<SocialPost>> postSocialPosts(
+        std::shared_ptr<SocialPostBody> socialPostBody
     ) const;
     /// <summary>
-    /// Publish one post now
+    /// Publishes the post immediately to the connected accounts on its channel and answers with the updated row, carrying the account and external id it published under.
     /// </summary>
     /// <remarks>
-    /// Publishes the post immediately to the connected accounts on its channel and answers with the updated row, carrying the account and external id it published under.  It is IDEMPOTENT: a post that has already published, or that another caller is publishing right now, comes back unchanged rather than being posted twice. That claim is taken before any network call, which is what makes a double submit safe.  The two failure shapes differ on purpose. Having no connected account for the channel is the caller&#39;s to fix, so it is recorded ON the post as failed with the reason and answers normally. A deployment that lacks the network&#39;s own credentials cannot publish for anyone, so that is a 503 naming exactly what is missing.  A validated principal is required; 403 without one. Every row is keyed by the caller&#39;s org taken from that principal and never from the request, so an id belonging to another tenant reads as not found rather than as a refusal.
+    /// Publishes the post immediately to the connected accounts on its channel and answers with the updated row, carrying the account and external id it published under.  It is IDEMPOTENT: a post that has already published, or that another caller is publishing right now, comes back unchanged rather than being posted twice. That claim is taken before any network call, which is what makes a double submit safe.  The two failure shapes differ on purpose. Having no connected account for the channel is the caller&#39;s to fix, so it is recorded ON the post as failed with the reason and answers normally. A deployment that lacks the network&#39;s own credentials cannot publish for anyone, so that is a 503 naming exactly what is missing.
     /// </remarks>
-    /// <param name="id"></param>
-    pplx::task<void> postSocialPostsByIdPublish(
+    /// <param name="id">ID is the account or post to act on, taken from the path.</param>
+    pplx::task<std::shared_ptr<SocialPost>> postSocialPostsByIdPublish(
         utility::string_t id
     ) const;
     /// <summary>
-    /// Replace one connected account
+    /// Replaces the account&#39;s network, handle and status with what the body carries, and answers with the stored row.
     /// </summary>
     /// <remarks>
-    /// Replaces the account&#39;s network, handle and status with what the body carries, and answers with the stored row.  This is a REPLACEMENT, not a merge, which is the rule most easily got wrong: a field the body omits is written as its default, so leaving out the handle blanks it and leaving out the status resets it to connected. Send the whole record. The same vocabularies as create apply, and an unknown network or status is refused rather than coerced.  A validated principal is required; 403 without one. Every row is keyed by the caller&#39;s org taken from that principal and never from the request, so an id belonging to another tenant reads as not found rather than as a refusal.
+    /// Replaces the account&#39;s network, handle and status with what the body carries, and answers with the stored row.  This is a REPLACEMENT, not a merge, which is the rule most easily got wrong: a field the body omits is written as its default, so leaving out the handle blanks it and leaving out the status resets it to connected. Send the whole record. The same vocabularies as create apply, and an unknown network or status is refused rather than coerced.
     /// </remarks>
     /// <param name="id"></param>
-    pplx::task<void> putSocialAccountsById(
-        utility::string_t id
+    /// <param name="socialAccountWrite"></param>
+    pplx::task<std::shared_ptr<SocialAccount>> putSocialAccountsById(
+        utility::string_t id,
+        std::shared_ptr<SocialAccountWrite> socialAccountWrite
     ) const;
     /// <summary>
-    /// Replace one post
+    /// Replaces the post&#39;s content, channel, status, scheduled time and media with what the body carries, and answers with the stored row.
     /// </summary>
     /// <remarks>
-    /// Replaces the post&#39;s content, channel, status, scheduled time and media with what the body carries, and answers with the stored row.  A REPLACEMENT, not a merge: an omitted field is written as its default, so omitting media clears it and omitting the status resets the post to draft. &#x60;content&#x60; is required on every update. Unlike create, this never triggers a publish — moving a post&#39;s scheduled time into the past here leaves it for the scheduler; publish now is its own operation.  A validated principal is required; 403 without one. Every row is keyed by the caller&#39;s org taken from that principal and never from the request, so an id belonging to another tenant reads as not found rather than as a refusal.
+    /// Replaces the post&#39;s content, channel, status, scheduled time and media with what the body carries, and answers with the stored row.  A REPLACEMENT, not a merge: an omitted field is written as its default, so omitting media clears it and omitting the status resets the post to draft. &#x60;content&#x60; is required on every update. Unlike create, this never triggers a publish — moving a post&#39;s scheduled time into the past here leaves it for the scheduler; publish now is its own operation.
     /// </remarks>
     /// <param name="id"></param>
-    pplx::task<void> putSocialPostsById(
-        utility::string_t id
+    /// <param name="socialPostWrite"></param>
+    pplx::task<std::shared_ptr<SocialPost>> putSocialPostsById(
+        utility::string_t id,
+        std::shared_ptr<SocialPostWrite> socialPostWrite
     ) const;
 
 protected:

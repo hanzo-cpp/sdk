@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,34 +52,49 @@ public:
     /// Call members
 
 
+    /// <summary>
+    /// Agent names the Hanzo assistant handling the call. Set means the call was answered by that assistant rather than connected to a person.
+    /// </summary>
     utility::string_t getAgent() const;
     bool agentIsSet() const;
     void unsetAgent();
     void setAgent(const utility::string_t& value);
 
+    /// <summary>
+    /// From is the calling number in E.164. It must be one this org holds: a carrier refuses an origination from a number nobody proved they own.
+    /// </summary>
     utility::string_t getFrom() const;
     bool fromIsSet() const;
     void unsetFrom();
     void setFrom(const utility::string_t& value);
 
+    /// <summary>
+    /// ID is the carrier&#39;s handle for the call — what a hangup or a lookup names.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
+    /// <summary>
+    /// Org is the tenant the call was placed for or received by.
+    /// </summary>
     utility::string_t getOrg() const;
     bool orgIsSet() const;
     void unsetOrg();
     void setOrg(const utility::string_t& value);
 
     /// <summary>
-    /// queued | ringing | answered | completed | failed
+    /// Status is where the call is: \&quot;queued\&quot;, \&quot;ringing\&quot;, \&quot;answered\&quot;, \&quot;completed\&quot; or \&quot;failed\&quot;. Only the last two are terminal.
     /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
+    /// <summary>
+    /// To is the called number in E.164.
+    /// </summary>
     utility::string_t getTo() const;
     bool toIsSet() const;
     void unsetTo();

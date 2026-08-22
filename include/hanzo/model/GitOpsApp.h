@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -57,85 +57,121 @@ public:
     /// GitOpsApp members
 
 
+    /// <summary>
+    /// Automated is whether CD applies new commits without being asked. It reads the PRESENCE of spec.syncPolicy.automated, which is a block rather than a boolean; false means drift is reported and nothing moves.
+    /// </summary>
     bool isAutomated() const;
     bool automatedIsSet() const;
     void unsetAutomated();
     void setAutomated(bool value);
 
     /// <summary>
-    /// Healthy|Degraded|Progressing|…
+    /// Health is CD&#39;s verdict on the objects it manages, verbatim: Healthy, Progressing, Degraded, Suspended, Missing or Unknown.
     /// </summary>
     utility::string_t getHealth() const;
     bool healthIsSet() const;
     void unsetHealth();
     void setHealth(const utility::string_t& value);
 
+    /// <summary>
+    /// History is the recent deploy log, NEWEST FIRST and capped at ten. CD appends oldest-first and bounds the list itself; the reversal happens here so a caller never has to know the storage order to show what shipped last. Empty (never null) for an Application that has deployed nothing.
+    /// </summary>
     std::vector<std::shared_ptr<GitOpsDeploy>> getHistory() const;
     bool historyIsSet() const;
     void unsetHistory();
     void setHistory(const std::vector<std::shared_ptr<GitOpsDeploy>>& value);
 
+    /// <summary>
+    /// Name is what CD calls this tracked source, not the workload it deploys — the Application CR&#39;s own metadata.name. The fleet ApplicationSet mints these as &lt;namespace&gt;-&lt;app&gt;.
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
+    /// <summary>
+    /// Namespace is where the Application OBJECT lives: CD&#39;s own controller namespace, which is the same one for every row here. It is NOT the destination the workloads land in — this endpoint lists cluster-wide and never reads spec.destination.
+    /// </summary>
     utility::string_t getRNamespace() const;
     bool rNamespaceIsSet() const;
     void unsetr_namespace();
     void setRNamespace(const utility::string_t& value);
 
+    /// <summary>
+    /// Operation is the last sync attempt and how it ended. Absent when CD has run none, which is the honest gap between \&quot;never tried\&quot; and \&quot;tried and failed\&quot;.
+    /// </summary>
     std::shared_ptr<GitOpsOperation> getOperation() const;
     bool operationIsSet() const;
     void unsetOperation();
     void setOperation(const std::shared_ptr<GitOpsOperation>& value);
 
+    /// <summary>
+    /// Path is the directory inside that repository CD renders, relative to its root.
+    /// </summary>
     utility::string_t getPath() const;
     bool pathIsSet() const;
     void unsetPath();
     void setPath(const utility::string_t& value);
 
+    /// <summary>
+    /// Project is the AppProject fence the sync is admitted under: which repos this Application may pull from and which destinations it may write to. Empty when the CR declares none.
+    /// </summary>
     utility::string_t getProject() const;
     bool projectIsSet() const;
     void unsetProject();
     void setProject(const utility::string_t& value);
 
+    /// <summary>
+    /// ReconciledAt is when CD last COMPARED this Application against git, RFC 3339. It moves on every comparison, including ones that applied nothing.
+    /// </summary>
     utility::string_t getReconciledAt() const;
     bool reconciledAtIsSet() const;
     void unsetReconciledAt();
     void setReconciledAt(const utility::string_t& value);
 
+    /// <summary>
+    /// RepoURL is the git repository CD polls for this Application&#39;s desired state.
+    /// </summary>
     utility::string_t getRepoURL() const;
     bool repoURLIsSet() const;
     void unsetRepoURL();
     void setRepoURL(const utility::string_t& value);
 
+    /// <summary>
+    /// Resources is how MANY objects CD manages for this Application (len(status.resources)) — a count, not the objects. Zero for an Application CD has not reconciled.
+    /// </summary>
     int32_t getResources() const;
     bool resourcesIsSet() const;
     void unsetResources();
     void setResources(int32_t value);
 
     /// <summary>
-    /// the commit last applied
+    /// Revision is the commit CD last APPLIED (status.sync.revision). Empty means it has applied none — never read that as the head of TargetRevision.
     /// </summary>
     utility::string_t getRevision() const;
     bool revisionIsSet() const;
     void unsetRevision();
     void setRevision(const utility::string_t& value);
 
+    /// <summary>
+    /// SelfHeal is whether CD also reverts changes made directly in the cluster (syncPolicy.automated.selfHeal). Meaningless unless Automated.
+    /// </summary>
     bool isSelfHeal() const;
     bool selfHealIsSet() const;
     void unsetSelfHeal();
     void setSelfHeal(bool value);
 
     /// <summary>
-    /// Synced|OutOfSync|Unknown
+    /// Sync is CD&#39;s verdict on git versus cluster, verbatim: Synced, OutOfSync or Unknown. It is about the applied REVISION, so an Application can be Synced to a commit that is several behind the branch it tracks.
     /// </summary>
     utility::string_t getSync() const;
     bool syncIsSet() const;
     void unsetSync();
     void setSync(const utility::string_t& value);
 
+    /// <summary>
+    /// TargetRevision is the git ref CD TRACKS — usually a branch such as \&quot;main\&quot;. It is what CD aims at; Revision is what it has reached.
+    /// </summary>
     utility::string_t getTargetRevision() const;
     bool targetRevisionIsSet() const;
     void unsetTargetRevision();

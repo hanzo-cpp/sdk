@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -56,11 +56,17 @@ public:
     /// ArgoProjectList members
 
 
+    /// <summary>
+    /// Items is the projects visible to the caller — its own organization&#39;s, or every organization&#39;s for a SuperAdmin. A project named \&quot;default\&quot; is always present and is prepended when IAM does not carry one, because that is what an application with no project label groups under.
+    /// </summary>
     std::vector<std::shared_ptr<ArgoProject>> getItems() const;
     bool itemsIsSet() const;
     void unsetItems();
     void setItems(const std::vector<std::shared_ptr<ArgoProject>>& value);
 
+    /// <summary>
+    /// Metadata is the list envelope the SPA expects; it carries no resume point.
+    /// </summary>
     std::shared_ptr<ArgoListMeta> getMetadata() const;
     bool metadataIsSet() const;
     void unsetMetadata();

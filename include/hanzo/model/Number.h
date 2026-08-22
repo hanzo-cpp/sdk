@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -54,46 +54,64 @@ public:
 
 
     /// <summary>
-    /// voice | sms | mms | fax
+    /// Capable is what the number can carry: any of \&quot;voice\&quot;, \&quot;sms\&quot;, \&quot;mms\&quot;, \&quot;fax\&quot;. A number missing \&quot;sms\&quot; cannot send one no matter what this platform does.
     /// </summary>
     std::vector<utility::string_t> getCapable() const;
     bool capableIsSet() const;
     void unsetCapable();
     void setCapable(const std::vector<utility::string_t>& value);
 
+    /// <summary>
+    /// Country is the ISO 3166-1 alpha-2 code the number is issued under. Numbering is national, so this is what makes a search answerable at all.
+    /// </summary>
     utility::string_t getCountry() const;
     bool countryIsSet() const;
     void unsetCountry();
     void setCountry(const utility::string_t& value);
 
+    /// <summary>
+    /// Currency is the ISO 4217 code Monthly is denominated in. Without it the number beside it means nothing, so the two are always read together.
+    /// </summary>
     utility::string_t getCurrency() const;
     bool currencyIsSet() const;
     void unsetCurrency();
     void setCurrency(const utility::string_t& value);
 
+    /// <summary>
+    /// E164 is the number in E.164: a leading + and digits only, no spaces or dashes. That is what a carrier accepts and what a search result must be bought by.
+    /// </summary>
     utility::string_t getE164() const;
     bool e164IsSet() const;
     void unsetE164();
     void setE164(const utility::string_t& value);
 
+    /// <summary>
+    /// ID is the carrier&#39;s handle for the number, and the id every route here addresses it by. It is not the number itself — see E164.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
     /// <summary>
-    /// minor units, as the carrier quoted it
+    /// Monthly is the recurring rental in the MINOR unit of Currency (cents for USD), exactly as the carrier quoted it. It is a price, not a charge: nothing is billed by this field.
     /// </summary>
     int32_t getMonthly() const;
     bool monthlyIsSet() const;
     void unsetMonthly();
     void setMonthly(int32_t value);
 
+    /// <summary>
+    /// Org is the tenant holding the number. A search result carries none — nobody holds it yet — which is how an available number is told from a held one.
+    /// </summary>
     utility::string_t getOrg() const;
     bool orgIsSet() const;
     void unsetOrg();
     void setOrg(const utility::string_t& value);
 
+    /// <summary>
+    /// Type is what kind of number it is: \&quot;local\&quot;, \&quot;national\&quot;, \&quot;tollfree\&quot; or \&quot;mobile\&quot;. It decides both price and what a carrier will let it originate.
+    /// </summary>
     utility::string_t getType() const;
     bool typeIsSet() const;
     void unsetType();

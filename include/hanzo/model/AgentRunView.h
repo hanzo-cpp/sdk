@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,6 +52,9 @@ public:
     /// AgentRunView members
 
 
+    /// <summary>
+    /// Actor is the \&quot;org/sub\&quot; identity the run was executed and billed AS. Empty means there was no PERSON — a schedule or a service token — which is a different fact from \&quot;we do not know\&quot;, and the difference is what an audit asks about.
+    /// </summary>
     utility::string_t getActor() const;
     bool actorIsSet() const;
     void unsetActor();
@@ -65,61 +68,97 @@ public:
     void unsetAgent();
     void setAgent(const utility::string_t& value);
 
+    /// <summary>
+    /// CompletionTokens is the same measurement for what the model produced, on the same final completion. It is a count of TOKENS, not of turns and not of money.
+    /// </summary>
     int32_t getCompletionTokens() const;
     bool completionTokensIsSet() const;
     void unsetCompletionTokens();
     void setCompletionTokens(int32_t value);
 
+    /// <summary>
+    /// CreatedAt is when the run finished, RFC 3339 in UTC to the second — the duration above already says how long it had been going.
+    /// </summary>
     utility::string_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
     void setCreatedAt(const utility::string_t& value);
 
+    /// <summary>
+    /// DurationMs is wall-clock milliseconds around the completion, including a failover&#39;s retries. It is time SPENT, not time billed.
+    /// </summary>
     int32_t getDurationMs() const;
     bool durationMsIsSet() const;
     void unsetDurationMs();
     void setDurationMs(int32_t value);
 
+    /// <summary>
+    /// Error is why an \&quot;ok\&quot;-less run failed, as the failing call reported it. Empty on every successful run.
+    /// </summary>
     utility::string_t getError() const;
     bool errorIsSet() const;
     void unsetError();
     void setError(const utility::string_t& value);
 
+    /// <summary>
+    /// ID is the run&#39;s handle, minted as \&quot;run_\&quot; + 32 hex characters. It is the key the metering ledger records this run&#39;s per-round token spend under, so it is how a bill and a run are joined.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
+    /// <summary>
+    /// Input is the text the run was given, verbatim.
+    /// </summary>
     utility::string_t getInput() const;
     bool inputIsSet() const;
     void unsetInput();
     void setInput(const utility::string_t& value);
 
+    /// <summary>
+    /// Model is the model that actually SERVED this run, which is not always the one the agent is defined on — a failover records what answered. Normalized to our name on the way out; the stored row is left exactly as it happened, because a run is a record and rewriting it would be worse than the name it carries.
+    /// </summary>
     utility::string_t getModel() const;
     bool modelIsSet() const;
     void unsetModel();
     void setModel(const utility::string_t& value);
 
+    /// <summary>
+    /// Output is what the model produced. Empty on an error run, and empty is also a legitimate answer from a run that succeeded with nothing to say — Status is what separates those.
+    /// </summary>
     utility::string_t getOutput() const;
     bool outputIsSet() const;
     void unsetOutput();
     void setOutput(const utility::string_t& value);
 
+    /// <summary>
+    /// PromptTokens is what the gateway reported for the run&#39;s FINAL completion, and only that one — a tool loop&#39;s earlier rounds are the metering ledger&#39;s account, joined by this run&#39;s id. Reading it as the run&#39;s total spend undercounts a loop.
+    /// </summary>
     int32_t getPromptTokens() const;
     bool promptTokensIsSet() const;
     void unsetPromptTokens();
     void setPromptTokens(int32_t value);
 
+    /// <summary>
+    /// Status is the run&#39;s outcome, and there are exactly two: \&quot;ok\&quot; when the model answered, \&quot;error\&quot; when it did not. It is written when the run ends, so no row here is in flight.
+    /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
+    /// <summary>
+    /// ToolCalls is how many tool dispatches the run made — a count of ACTIONS, which is a different measurement from the token counts above and from the turns a build reports. Zero is a run that answered straight from the model.
+    /// </summary>
     int32_t getToolCalls() const;
     bool toolCallsIsSet() const;
     void unsetToolCalls();
     void setToolCalls(int32_t value);
 
+    /// <summary>
+    /// TraceID is the trace this run IS, so the record and its spans are one thing to move between: it opens the waterfall for THIS run rather than a search that lands near it. Empty when the process had no tracer, never a fabricated id.
+    /// </summary>
     utility::string_t getTraceId() const;
     bool traceIdIsSet() const;
     void unsetTraceId();

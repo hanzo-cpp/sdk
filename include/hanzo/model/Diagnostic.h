@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -55,26 +55,41 @@ public:
     /// Diagnostic members
 
 
+    /// <summary>
+    /// Code is the checker&#39;s own identifier for the rule, a string or a number depending on the server. Absent when it published none.
+    /// </summary>
     std::shared_ptr<Object> getCode() const;
     bool codeIsSet() const;
     void unsetCode();
     void setCode(const std::shared_ptr<Object>& value);
 
+    /// <summary>
+    /// Message is the problem in the server&#39;s own words, meant to be shown.
+    /// </summary>
     utility::string_t getMessage() const;
     bool messageIsSet() const;
     void unsetMessage();
     void setMessage(const utility::string_t& value);
 
+    /// <summary>
+    /// Range is the span the problem is about.
+    /// </summary>
     std::shared_ptr<Range> getRange() const;
     bool rangeIsSet() const;
     void unsetRange();
     void setRange(const std::shared_ptr<Range>& value);
 
+    /// <summary>
+    /// Severity is the LSP&#39;s: 1 error, 2 warning, 3 information, 4 hint. A file with only 3s and 4s still compiles.
+    /// </summary>
     int32_t getSeverity() const;
     bool severityIsSet() const;
     void unsetSeverity();
     void setSeverity(int32_t value);
 
+    /// <summary>
+    /// Source is which checker reported it (\&quot;compiler\&quot;, \&quot;go vet\&quot;, a linter&#39;s name), which is what separates a build error from a style opinion.
+    /// </summary>
     utility::string_t getSource() const;
     bool sourceIsSet() const;
     void unsetSource();

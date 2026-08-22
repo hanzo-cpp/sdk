@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,16 +52,25 @@ public:
     /// Ran members
 
 
+    /// <summary>
+    /// ExitCode is the PROGRAM&#39;s own status — 0 succeeded, anything else is what it returned, and a Command runs under &#x60;sh -c&#x60; so its shell&#39;s conventions apply. A command that never reached an exit does not arrive here at all: a timeout or a stop cancels the channel, and that is an error on the call rather than a code of ours invented to fill this field.
+    /// </summary>
     int32_t getExitCode() const;
     bool exitCodeIsSet() const;
     void unsetExitCode();
     void setExitCode(int32_t value);
 
+    /// <summary>
+    /// Stderr is standard error, kept apart from Stdout so a caller reading a program&#39;s OUTPUT is not reading its diagnostics as data. Same 1 MiB cap, same redaction. A program that failed usually says why here and nowhere else.
+    /// </summary>
     utility::string_t getStderr() const;
     bool stderrIsSet() const;
     void unsetStderr();
     void setStderr(const utility::string_t& value);
 
+    /// <summary>
+    /// Stdout is what the program wrote to standard output, collected whole rather than streamed — to watch it arrive instead, name a RunIn.Session and read that session&#39;s feed. Capped at 1 MiB, past which it ends in \&quot;[truncated at 1MiB]\&quot;. Every string named in RunIn.Blind is replaced by \&quot;[redacted]\&quot; before it gets here, and before it reaches the session.
+    /// </summary>
     utility::string_t getStdout() const;
     bool stdoutIsSet() const;
     void unsetStdout();

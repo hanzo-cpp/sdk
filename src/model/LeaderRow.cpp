@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -18,10 +18,20 @@ namespace model {
 
 LeaderRow::LeaderRow()
 {
+    m_CiHigh = 0.0;
+    m_CiHighIsSet = false;
+    m_CiLow = 0.0;
+    m_CiLowIsSet = false;
+    m_Claims = 0;
+    m_ClaimsIsSet = false;
     m_Gap = 0.0;
     m_GapIsSet = false;
+    m_Mean = 0.0;
+    m_MeanIsSet = false;
     m_Measured = 0.0;
     m_MeasuredIsSet = false;
+    m_MeasuredAt = utility::datetime();
+    m_MeasuredAtIsSet = false;
     m_Model = utility::conversions::to_string_t("");
     m_ModelIsSet = false;
     m_n = 0;
@@ -30,6 +40,10 @@ LeaderRow::LeaderRow()
     m_ProtocolIsSet = false;
     m_Published = 0.0;
     m_PublishedIsSet = false;
+    m_Run = utility::conversions::to_string_t("");
+    m_RunIsSet = false;
+    m_Spread = 0.0;
+    m_SpreadIsSet = false;
 }
 
 LeaderRow::~LeaderRow()
@@ -44,15 +58,40 @@ void LeaderRow::validate()
 web::json::value LeaderRow::toJson() const
 {
     web::json::value val = web::json::value::object();
+    if(m_CiHighIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("ciHigh"))] = ModelBase::toJson(m_CiHigh);
+    }
+    if(m_CiLowIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("ciLow"))] = ModelBase::toJson(m_CiLow);
+    }
+    if(m_ClaimsIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("claims"))] = ModelBase::toJson(m_Claims);
+    }
     if(m_GapIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("gap"))] = ModelBase::toJson(m_Gap);
     }
+    if(m_MeanIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("mean"))] = ModelBase::toJson(m_Mean);
+    }
     if(m_MeasuredIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("measured"))] = ModelBase::toJson(m_Measured);
+    }
+    if(m_MeasuredAtIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("measuredAt"))] = ModelBase::toJson(m_MeasuredAt);
     }
     if(m_ModelIsSet)
     {
@@ -74,6 +113,16 @@ web::json::value LeaderRow::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("published"))] = ModelBase::toJson(m_Published);
     }
+    if(m_RunIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("run"))] = ModelBase::toJson(m_Run);
+    }
+    if(m_SpreadIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("spread"))] = ModelBase::toJson(m_Spread);
+    }
 
     return val;
 }
@@ -81,6 +130,39 @@ web::json::value LeaderRow::toJson() const
 bool LeaderRow::fromJson(const web::json::value& val)
 {
     bool ok = true;
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("ciHigh"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("ciHigh")));
+        if(!fieldValue.is_null())
+        {
+            double refVal_setCiHigh;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setCiHigh);
+            setCiHigh(refVal_setCiHigh);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("ciLow"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("ciLow")));
+        if(!fieldValue.is_null())
+        {
+            double refVal_setCiLow;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setCiLow);
+            setCiLow(refVal_setCiLow);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("claims"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("claims")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setClaims;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setClaims);
+            setClaims(refVal_setClaims);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("gap"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("gap")));
@@ -92,6 +174,17 @@ bool LeaderRow::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("mean"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("mean")));
+        if(!fieldValue.is_null())
+        {
+            double refVal_setMean;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setMean);
+            setMean(refVal_setMean);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("measured"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("measured")));
@@ -100,6 +193,17 @@ bool LeaderRow::fromJson(const web::json::value& val)
             double refVal_setMeasured;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMeasured);
             setMeasured(refVal_setMeasured);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("measuredAt"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("measuredAt")));
+        if(!fieldValue.is_null())
+        {
+            utility::datetime refVal_setMeasuredAt;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setMeasuredAt);
+            setMeasuredAt(refVal_setMeasuredAt);
             
         }
     }
@@ -147,6 +251,28 @@ bool LeaderRow::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("run"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("run")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setRun;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setRun);
+            setRun(refVal_setRun);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("spread"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("spread")));
+        if(!fieldValue.is_null())
+        {
+            double refVal_setSpread;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSpread);
+            setSpread(refVal_setSpread);
+            
+        }
+    }
     return ok;
 }
 
@@ -157,13 +283,33 @@ void LeaderRow::toMultipart(std::shared_ptr<MultipartFormData> multipart, const 
     {
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
+    if(m_CiHighIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("ciHigh")), m_CiHigh));
+    }
+    if(m_CiLowIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("ciLow")), m_CiLow));
+    }
+    if(m_ClaimsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("claims")), m_Claims));
+    }
     if(m_GapIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("gap")), m_Gap));
     }
+    if(m_MeanIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("mean")), m_Mean));
+    }
     if(m_MeasuredIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("measured")), m_Measured));
+    }
+    if(m_MeasuredAtIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("measuredAt")), m_MeasuredAt));
     }
     if(m_ModelIsSet)
     {
@@ -181,6 +327,14 @@ void LeaderRow::toMultipart(std::shared_ptr<MultipartFormData> multipart, const 
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("published")), m_Published));
     }
+    if(m_RunIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("run")), m_Run));
+    }
+    if(m_SpreadIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("spread")), m_Spread));
+    }
 }
 
 bool LeaderRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
@@ -192,17 +346,47 @@ bool LeaderRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
 
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("ciHigh"))))
+    {
+        double refVal_setCiHigh;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ciHigh"))), refVal_setCiHigh );
+        setCiHigh(refVal_setCiHigh);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("ciLow"))))
+    {
+        double refVal_setCiLow;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ciLow"))), refVal_setCiLow );
+        setCiLow(refVal_setCiLow);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("claims"))))
+    {
+        int32_t refVal_setClaims;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("claims"))), refVal_setClaims );
+        setClaims(refVal_setClaims);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("gap"))))
     {
         double refVal_setGap;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("gap"))), refVal_setGap );
         setGap(refVal_setGap);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("mean"))))
+    {
+        double refVal_setMean;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("mean"))), refVal_setMean );
+        setMean(refVal_setMean);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("measured"))))
     {
         double refVal_setMeasured;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("measured"))), refVal_setMeasured );
         setMeasured(refVal_setMeasured);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("measuredAt"))))
+    {
+        utility::datetime refVal_setMeasuredAt;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("measuredAt"))), refVal_setMeasuredAt );
+        setMeasuredAt(refVal_setMeasuredAt);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("model"))))
     {
@@ -228,10 +412,85 @@ bool LeaderRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("published"))), refVal_setPublished );
         setPublished(refVal_setPublished);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("run"))))
+    {
+        utility::string_t refVal_setRun;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("run"))), refVal_setRun );
+        setRun(refVal_setRun);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("spread"))))
+    {
+        double refVal_setSpread;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("spread"))), refVal_setSpread );
+        setSpread(refVal_setSpread);
+    }
     return ok;
 }
 
 
+double LeaderRow::getCiHigh() const
+{
+    return m_CiHigh;
+}
+
+
+void LeaderRow::setCiHigh(double value)
+{
+    m_CiHigh = value;
+    m_CiHighIsSet = true;
+}
+
+bool LeaderRow::ciHighIsSet() const
+{
+    return m_CiHighIsSet;
+}
+
+void LeaderRow::unsetCiHigh()
+{
+    m_CiHighIsSet = false;
+}
+double LeaderRow::getCiLow() const
+{
+    return m_CiLow;
+}
+
+
+void LeaderRow::setCiLow(double value)
+{
+    m_CiLow = value;
+    m_CiLowIsSet = true;
+}
+
+bool LeaderRow::ciLowIsSet() const
+{
+    return m_CiLowIsSet;
+}
+
+void LeaderRow::unsetCiLow()
+{
+    m_CiLowIsSet = false;
+}
+int32_t LeaderRow::getClaims() const
+{
+    return m_Claims;
+}
+
+
+void LeaderRow::setClaims(int32_t value)
+{
+    m_Claims = value;
+    m_ClaimsIsSet = true;
+}
+
+bool LeaderRow::claimsIsSet() const
+{
+    return m_ClaimsIsSet;
+}
+
+void LeaderRow::unsetClaims()
+{
+    m_ClaimsIsSet = false;
+}
 double LeaderRow::getGap() const
 {
     return m_Gap;
@@ -253,6 +512,27 @@ void LeaderRow::unsetGap()
 {
     m_GapIsSet = false;
 }
+double LeaderRow::getMean() const
+{
+    return m_Mean;
+}
+
+
+void LeaderRow::setMean(double value)
+{
+    m_Mean = value;
+    m_MeanIsSet = true;
+}
+
+bool LeaderRow::meanIsSet() const
+{
+    return m_MeanIsSet;
+}
+
+void LeaderRow::unsetMean()
+{
+    m_MeanIsSet = false;
+}
 double LeaderRow::getMeasured() const
 {
     return m_Measured;
@@ -273,6 +553,27 @@ bool LeaderRow::measuredIsSet() const
 void LeaderRow::unsetMeasured()
 {
     m_MeasuredIsSet = false;
+}
+utility::datetime LeaderRow::getMeasuredAt() const
+{
+    return m_MeasuredAt;
+}
+
+
+void LeaderRow::setMeasuredAt(const utility::datetime& value)
+{
+    m_MeasuredAt = value;
+    m_MeasuredAtIsSet = true;
+}
+
+bool LeaderRow::measuredAtIsSet() const
+{
+    return m_MeasuredAtIsSet;
+}
+
+void LeaderRow::unsetMeasuredAt()
+{
+    m_MeasuredAtIsSet = false;
 }
 utility::string_t LeaderRow::getModel() const
 {
@@ -357,6 +658,48 @@ bool LeaderRow::publishedIsSet() const
 void LeaderRow::unsetPublished()
 {
     m_PublishedIsSet = false;
+}
+utility::string_t LeaderRow::getRun() const
+{
+    return m_Run;
+}
+
+
+void LeaderRow::setRun(const utility::string_t& value)
+{
+    m_Run = value;
+    m_RunIsSet = true;
+}
+
+bool LeaderRow::runIsSet() const
+{
+    return m_RunIsSet;
+}
+
+void LeaderRow::unsetRun()
+{
+    m_RunIsSet = false;
+}
+double LeaderRow::getSpread() const
+{
+    return m_Spread;
+}
+
+
+void LeaderRow::setSpread(double value)
+{
+    m_Spread = value;
+    m_SpreadIsSet = true;
+}
+
+bool LeaderRow::spreadIsSet() const
+{
+    return m_SpreadIsSet;
+}
+
+void LeaderRow::unsetSpread()
+{
+    m_SpreadIsSet = false;
 }
 
 }

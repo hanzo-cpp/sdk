@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -203,7 +203,7 @@ bool ProjectsUpdate::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("repo")));
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<ProjectsCreate_repo> refVal_setRepo;
+            std::shared_ptr<ProjectsUpdate_repo> refVal_setRepo;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRepo);
             setRepo(refVal_setRepo);
             
@@ -366,7 +366,7 @@ bool ProjectsUpdate::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("repo"))))
     {
-        std::shared_ptr<ProjectsCreate_repo> refVal_setRepo;
+        std::shared_ptr<ProjectsUpdate_repo> refVal_setRepo;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("repo"))), refVal_setRepo );
         setRepo(refVal_setRepo);
     }
@@ -545,13 +545,13 @@ void ProjectsUpdate::unsetName()
 {
     m_NameIsSet = false;
 }
-std::shared_ptr<ProjectsCreate_repo> ProjectsUpdate::getRepo() const
+std::shared_ptr<ProjectsUpdate_repo> ProjectsUpdate::getRepo() const
 {
     return m_Repo;
 }
 
 
-void ProjectsUpdate::setRepo(const std::shared_ptr<ProjectsCreate_repo>& value)
+void ProjectsUpdate::setRepo(const std::shared_ptr<ProjectsUpdate_repo>& value)
 {
     m_Repo = value;
     m_RepoIsSet = true;

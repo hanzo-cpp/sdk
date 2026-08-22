@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -21,6 +21,8 @@ Iam_UpdateOrganizationInput::Iam_UpdateOrganizationInput()
     m_AccountItemsIsSet = false;
     m_AccountMenu = utility::conversions::to_string_t("");
     m_AccountMenuIsSet = false;
+    m_Avatar = utility::conversions::to_string_t("");
+    m_AvatarIsSet = false;
     m_BalanceCredit = 0.0;
     m_BalanceCreditIsSet = false;
     m_BalanceCurrency = utility::conversions::to_string_t("");
@@ -44,6 +46,8 @@ Iam_UpdateOrganizationInput::Iam_UpdateOrganizationInput()
     m_DisableSigninIsSet = false;
     m_DisplayName = utility::conversions::to_string_t("");
     m_DisplayNameIsSet = false;
+    m_Emoji = utility::conversions::to_string_t("");
+    m_EmojiIsSet = false;
     m_EnableSoftDeletion = false;
     m_EnableSoftDeletionIsSet = false;
     m_EnableTour = false;
@@ -148,6 +152,11 @@ web::json::value Iam_UpdateOrganizationInput::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("accountMenu"))] = ModelBase::toJson(m_AccountMenu);
     }
+    if(m_AvatarIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("avatar"))] = ModelBase::toJson(m_Avatar);
+    }
     if(m_BalanceCreditIsSet)
     {
         
@@ -207,6 +216,11 @@ web::json::value Iam_UpdateOrganizationInput::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("displayName"))] = ModelBase::toJson(m_DisplayName);
+    }
+    if(m_EmojiIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("emoji"))] = ModelBase::toJson(m_Emoji);
     }
     if(m_EnableSoftDeletionIsSet)
     {
@@ -462,6 +476,17 @@ bool Iam_UpdateOrganizationInput::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("avatar"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("avatar")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setAvatar;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setAvatar);
+            setAvatar(refVal_setAvatar);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("balanceCredit"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("balanceCredit")));
@@ -591,6 +616,17 @@ bool Iam_UpdateOrganizationInput::fromJson(const web::json::value& val)
             utility::string_t refVal_setDisplayName;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDisplayName);
             setDisplayName(refVal_setDisplayName);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("emoji"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("emoji")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setEmoji;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setEmoji);
+            setEmoji(refVal_setEmoji);
             
         }
     }
@@ -1107,6 +1143,10 @@ void Iam_UpdateOrganizationInput::toMultipart(std::shared_ptr<MultipartFormData>
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("accountMenu")), m_AccountMenu));
     }
+    if(m_AvatarIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("avatar")), m_Avatar));
+    }
     if(m_BalanceCreditIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("balanceCredit")), m_BalanceCredit));
@@ -1154,6 +1194,10 @@ void Iam_UpdateOrganizationInput::toMultipart(std::shared_ptr<MultipartFormData>
     if(m_DisplayNameIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("displayName")), m_DisplayName));
+    }
+    if(m_EmojiIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("emoji")), m_Emoji));
     }
     if(m_EnableSoftDeletionIsSet)
     {
@@ -1358,6 +1402,12 @@ bool Iam_UpdateOrganizationInput::fromMultiPart(std::shared_ptr<MultipartFormDat
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("accountMenu"))), refVal_setAccountMenu );
         setAccountMenu(refVal_setAccountMenu);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("avatar"))))
+    {
+        utility::string_t refVal_setAvatar;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("avatar"))), refVal_setAvatar );
+        setAvatar(refVal_setAvatar);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("balanceCredit"))))
     {
         double refVal_setBalanceCredit;
@@ -1429,6 +1479,12 @@ bool Iam_UpdateOrganizationInput::fromMultiPart(std::shared_ptr<MultipartFormDat
         utility::string_t refVal_setDisplayName;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("displayName"))), refVal_setDisplayName );
         setDisplayName(refVal_setDisplayName);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("emoji"))))
+    {
+        utility::string_t refVal_setEmoji;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("emoji"))), refVal_setEmoji );
+        setEmoji(refVal_setEmoji);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("enableSoftDeletion"))))
     {
@@ -1746,6 +1802,27 @@ void Iam_UpdateOrganizationInput::unsetAccountMenu()
 {
     m_AccountMenuIsSet = false;
 }
+utility::string_t Iam_UpdateOrganizationInput::getAvatar() const
+{
+    return m_Avatar;
+}
+
+
+void Iam_UpdateOrganizationInput::setAvatar(const utility::string_t& value)
+{
+    m_Avatar = value;
+    m_AvatarIsSet = true;
+}
+
+bool Iam_UpdateOrganizationInput::avatarIsSet() const
+{
+    return m_AvatarIsSet;
+}
+
+void Iam_UpdateOrganizationInput::unsetAvatar()
+{
+    m_AvatarIsSet = false;
+}
 double Iam_UpdateOrganizationInput::getBalanceCredit() const
 {
     return m_BalanceCredit;
@@ -1997,6 +2074,27 @@ bool Iam_UpdateOrganizationInput::displayNameIsSet() const
 void Iam_UpdateOrganizationInput::unsetDisplayName()
 {
     m_DisplayNameIsSet = false;
+}
+utility::string_t Iam_UpdateOrganizationInput::getEmoji() const
+{
+    return m_Emoji;
+}
+
+
+void Iam_UpdateOrganizationInput::setEmoji(const utility::string_t& value)
+{
+    m_Emoji = value;
+    m_EmojiIsSet = true;
+}
+
+bool Iam_UpdateOrganizationInput::emojiIsSet() const
+{
+    return m_EmojiIsSet;
+}
+
+void Iam_UpdateOrganizationInput::unsetEmoji()
+{
+    m_EmojiIsSet = false;
 }
 bool Iam_UpdateOrganizationInput::isEnableSoftDeletion() const
 {

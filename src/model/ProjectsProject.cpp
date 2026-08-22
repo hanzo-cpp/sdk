@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -57,6 +57,8 @@ ProjectsProject::ProjectsProject()
     m_SlugIsSet = false;
     m_Space = utility::conversions::to_string_t("");
     m_SpaceIsSet = false;
+    m_Starred = false;
+    m_StarredIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
     m_TagsIsSet = false;
@@ -179,6 +181,11 @@ web::json::value ProjectsProject::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("space"))] = ModelBase::toJson(m_Space);
+    }
+    if(m_StarredIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("starred"))] = ModelBase::toJson(m_Starred);
     }
     if(m_StatusIsSet)
     {
@@ -432,6 +439,17 @@ bool ProjectsProject::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("starred"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("starred")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_setStarred;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setStarred);
+            setStarred(refVal_setStarred);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("status"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("status")));
@@ -576,6 +594,10 @@ void ProjectsProject::toMultipart(std::shared_ptr<MultipartFormData> multipart, 
     if(m_SpaceIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("space")), m_Space));
+    }
+    if(m_StarredIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("starred")), m_Starred));
     }
     if(m_StatusIsSet)
     {
@@ -727,6 +749,12 @@ bool ProjectsProject::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
         utility::string_t refVal_setSpace;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("space"))), refVal_setSpace );
         setSpace(refVal_setSpace);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("starred"))))
+    {
+        bool refVal_setStarred;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("starred"))), refVal_setStarred );
+        setStarred(refVal_setStarred);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("status"))))
     {
@@ -1181,6 +1209,27 @@ bool ProjectsProject::spaceIsSet() const
 void ProjectsProject::unsetSpace()
 {
     m_SpaceIsSet = false;
+}
+bool ProjectsProject::isStarred() const
+{
+    return m_Starred;
+}
+
+
+void ProjectsProject::setStarred(bool value)
+{
+    m_Starred = value;
+    m_StarredIsSet = true;
+}
+
+bool ProjectsProject::starredIsSet() const
+{
+    return m_StarredIsSet;
+}
+
+void ProjectsProject::unsetStarred()
+{
+    m_StarredIsSet = false;
 }
 utility::string_t ProjectsProject::getStatus() const
 {

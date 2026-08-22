@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -60,13 +60,16 @@ public:
     void setJudged(int32_t value);
 
     /// <summary>
-    /// Productive and Unproductive are the two judged classes, so the imbalance is visible before anyone trains on it.
+    /// Productive is how many judged rows carry the one disposition.
     /// </summary>
     int32_t getProductive() const;
     bool productiveIsSet() const;
     void unsetProductive();
     void setProductive(int32_t value);
 
+    /// <summary>
+    /// Rows is how many rows the version holds across every split. It is the size of the version, not of the source window — the horizon, the cuts and the row cap all bind before this number.
+    /// </summary>
     int32_t getRows() const;
     bool rowsIsSet() const;
     void unsetRows();
@@ -80,21 +83,33 @@ public:
     void unsetSubjects();
     void setSubjects(int32_t value);
 
+    /// <summary>
+    /// Test is how many fall after the second cut — the LATEST slice, and the only one a score is honest about, since the split is temporal.
+    /// </summary>
     int32_t getTest() const;
     bool testIsSet() const;
     void unsetTest();
     void setTest(int32_t value);
 
+    /// <summary>
+    /// Train is how many rows fall before the first cut — the EARLIEST slice of the window, which is what a model is fitted on.
+    /// </summary>
     int32_t getTrain() const;
     bool trainIsSet() const;
     void unsetTrain();
     void setTrain(int32_t value);
 
+    /// <summary>
+    /// Unproductive is how many carry the other. With Productive it accounts for Judged, so the class imbalance is visible before anyone trains on it; both stay 0 while Judged is 0.
+    /// </summary>
     int32_t getUnproductive() const;
     bool unproductiveIsSet() const;
     void unsetUnproductive();
     void setUnproductive(int32_t value);
 
+    /// <summary>
+    /// Val is how many fall between the two cuts, held out for tuning.
+    /// </summary>
     int32_t getVal() const;
     bool valIsSet() const;
     void unsetVal();

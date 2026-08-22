@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -86,7 +86,7 @@ bool O11y_metricsResponse::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("range")));
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<O11y_availabilityResponse_range> refVal_setRange;
+            std::shared_ptr<O11y_metricsResponse_range> refVal_setRange;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRange);
             setRange(refVal_setRange);
             
@@ -174,7 +174,7 @@ bool O11y_metricsResponse::fromMultiPart(std::shared_ptr<MultipartFormData> mult
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("range"))))
     {
-        std::shared_ptr<O11y_availabilityResponse_range> refVal_setRange;
+        std::shared_ptr<O11y_metricsResponse_range> refVal_setRange;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("range"))), refVal_setRange );
         setRange(refVal_setRange);
     }
@@ -221,13 +221,13 @@ void O11y_metricsResponse::unsetProduct()
 {
     m_ProductIsSet = false;
 }
-std::shared_ptr<O11y_availabilityResponse_range> O11y_metricsResponse::getRange() const
+std::shared_ptr<O11y_metricsResponse_range> O11y_metricsResponse::getRange() const
 {
     return m_Range;
 }
 
 
-void O11y_metricsResponse::setRange(const std::shared_ptr<O11y_availabilityResponse_range>& value)
+void O11y_metricsResponse::setRange(const std::shared_ptr<O11y_metricsResponse_range>& value)
 {
     m_Range = value;
     m_RangeIsSet = true;

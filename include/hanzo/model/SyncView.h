@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -54,48 +54,72 @@ public:
     /// SyncView members
 
 
+    /// <summary>
+    /// Actor is the identity a reconcile writes AS. It is the loop guard: a change this identity made is one we already have, so it is not synced back.
+    /// </summary>
     utility::string_t getActor() const;
     bool actorIsSet() const;
     void unsetActor();
     void setActor(const utility::string_t& value);
 
+    /// <summary>
+    /// CreatedAt is when the link was first declared, RFC3339 in UTC.
+    /// </summary>
     utility::string_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
     void setCreatedAt(const utility::string_t& value);
 
+    /// <summary>
+    /// Direction is which way work flows: \&quot;both\&quot;, \&quot;pull\&quot; (target ← source), \&quot;push\&quot; (source → target), or \&quot;off\&quot; — which keeps the link declared and moves nothing.
+    /// </summary>
     utility::string_t getDirection() const;
     bool directionIsSet() const;
     void unsetDirection();
     void setDirection(const utility::string_t& value);
 
+    /// <summary>
+    /// ID is the link&#39;s handle, derived from its source and target — which is what makes re-declaring the same pair an update rather than a duplicate.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
+    /// <summary>
+    /// Kind is what is being synced. \&quot;git\&quot; today; the field exists so a storage or database link is a value here rather than a second route family.
+    /// </summary>
     utility::string_t getKind() const;
     bool kindIsSet() const;
     void unsetKind();
     void setKind(const utility::string_t& value);
 
+    /// <summary>
+    /// Source is the side read FROM on a pull.
+    /// </summary>
     std::shared_ptr<EndpointView> getSource() const;
     bool sourceIsSet() const;
     void unsetSource();
     void setSource(const std::shared_ptr<EndpointView>& value);
 
+    /// <summary>
+    /// Target is the side written TO on a push.
+    /// </summary>
     std::shared_ptr<EndpointView> getTarget() const;
     bool targetIsSet() const;
     void unsetTarget();
     void setTarget(const std::shared_ptr<EndpointView>& value);
 
+    /// <summary>
+    /// Trigger is what starts a reconcile: \&quot;webhook\&quot; (the provider tells us), \&quot;poll\&quot; (we ask on a schedule), or \&quot;manual\&quot; (only an explicit call).
+    /// </summary>
     utility::string_t getTrigger() const;
     bool triggerIsSet() const;
     void unsetTrigger();
     void setTrigger(const utility::string_t& value);
 
     /// <summary>
-    /// bumped on every reconcile — the last-synced time
+    /// UpdatedAt is bumped by every reconcile, so it reads as the LAST-SYNCED time rather than the last edit. Absent until the first one runs.
     /// </summary>
     utility::string_t getUpdatedAt() const;
     bool updatedAtIsSet() const;

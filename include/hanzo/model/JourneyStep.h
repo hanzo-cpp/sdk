@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -55,6 +55,9 @@ public:
     /// JourneyStep members
 
 
+    /// <summary>
+    /// Args are the tool&#39;s default arguments, merged under whatever the caller passes at run time, so a step ships with the arguments that make it work.
+    /// </summary>
     std::map<utility::string_t, std::shared_ptr<Object>> getArgs() const;
     bool argsIsSet() const;
     void unsetArgs();
@@ -69,18 +72,24 @@ public:
     void setDeps(const std::vector<utility::string_t>& value);
 
     /// <summary>
-    /// the prose/juncture — what the Guide asks/explains here
+    /// Detail is the juncture — what the Guide explains, or asks for, at this step.
     /// </summary>
     utility::string_t getDetail() const;
     bool detailIsSet() const;
     void unsetDetail();
     void setDetail(const utility::string_t& value);
 
+    /// <summary>
+    /// Draft, when set, is the prompt the embedded AI answers first; its output is folded into one of Args before the tool runs, so the model writes the content and the tool only delivers it.
+    /// </summary>
     utility::string_t getDraft() const;
     bool draftIsSet() const;
     void unsetDraft();
     void setDraft(const utility::string_t& value);
 
+    /// <summary>
+    /// DraftInto names the argument the drafted text lands in. Empty means \&quot;brief\&quot;.
+    /// </summary>
     utility::string_t getDraftInto() const;
     bool draftIntoIsSet() const;
     void unsetDraftInto();
@@ -94,13 +103,16 @@ public:
     void unsetEnabled();
     void setEnabled(bool value);
 
+    /// <summary>
+    /// ID is the stable slug the whole plane addresses this step by — the value in &#x60;deps&#x60;, in &#x60;next&#x60;, in the progress rows, and in the URL of every step route. Renaming it orphans an org&#39;s recorded progress for this step.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
     /// <summary>
-    /// the phase (section id) this step groups under
+    /// Section is the id of the phase this step groups under. A disabled section takes its steps out of the journey with it.
     /// </summary>
     utility::string_t getSection() const;
     bool sectionIsSet() const;
@@ -115,13 +127,16 @@ public:
     void unsetSignal();
     void setSignal(const utility::string_t& value);
 
+    /// <summary>
+    /// Title is the one-line quest as a person reads it in the checklist.
+    /// </summary>
     utility::string_t getTitle() const;
     bool titleIsSet() const;
     void unsetTitle();
     void setTitle(const utility::string_t& value);
 
     /// <summary>
-    /// Tool, when set, is the MCP tool the Business AI runs for \&quot;do it for me\&quot;. Args are its default arguments; Draft is an optional AI prompt whose output fills the DraftInto arg (default \&quot;brief\&quot;).
+    /// Tool, when set, names the MCP tool the Business AI runs for \&quot;do it for me\&quot;. A step with no tool can only be completed by a person; it is the field the &#x60;automatable&#x60; flag on every projection of this step is derived from.
     /// </summary>
     utility::string_t getTool() const;
     bool toolIsSet() const;

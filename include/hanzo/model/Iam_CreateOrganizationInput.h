@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -69,6 +69,11 @@ public:
     void unsetAccountMenu();
     void setAccountMenu(const utility::string_t& value);
 
+    utility::string_t getAvatar() const;
+    bool avatarIsSet() const;
+    void unsetAvatar();
+    void setAvatar(const utility::string_t& value);
+
     double getBalanceCredit() const;
     bool balanceCreditIsSet() const;
     void unsetBalanceCredit();
@@ -128,6 +133,11 @@ public:
     bool displayNameIsSet() const;
     void unsetDisplayName();
     void setDisplayName(const utility::string_t& value);
+
+    utility::string_t getEmoji() const;
+    bool emojiIsSet() const;
+    void unsetEmoji();
+    void setEmoji(const utility::string_t& value);
 
     bool isEnableSoftDeletion() const;
     bool enableSoftDeletionIsSet() const;
@@ -362,6 +372,9 @@ protected:
     utility::string_t m_AccountMenu;
     bool m_AccountMenuIsSet;
 
+    utility::string_t m_Avatar;
+    bool m_AvatarIsSet;
+
     double m_BalanceCredit;
     bool m_BalanceCreditIsSet;
 
@@ -397,6 +410,9 @@ protected:
 
     utility::string_t m_DisplayName;
     bool m_DisplayNameIsSet;
+
+    utility::string_t m_Emoji;
+    bool m_EmojiIsSet;
 
     bool m_EnableSoftDeletion;
     bool m_EnableSoftDeletionIsSet;

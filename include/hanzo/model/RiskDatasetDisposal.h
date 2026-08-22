@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,18 +52,24 @@ public:
     /// RiskDatasetDisposal members
 
 
+    /// <summary>
+    /// Dataset is the dataset that was disposed of. The NAME survives: declaring it again continues the version count rather than starting over at 1.
+    /// </summary>
     utility::string_t getDataset() const;
     bool datasetIsSet() const;
     void unsetDataset();
     void setDataset(const utility::string_t& value);
 
+    /// <summary>
+    /// Rows is how many rows they held between them, as the REGISTER recorded them when each was materialised — not a count of what the drop deleted, which is gone by the time this answers.
+    /// </summary>
     int32_t getRows() const;
     bool rowsIsSet() const;
     void unsetRows();
     void setRows(int32_t value);
 
     /// <summary>
-    /// Versions is how many versions went, and Rows how many rows they held between them, as the register recorded them.
+    /// Versions is how many versions went.
     /// </summary>
     int32_t getVersions() const;
     bool versionsIsSet() const;

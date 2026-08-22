@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -105,7 +105,7 @@ public:
     void setFields(const std::vector<std::shared_ptr<DestinationField>>& value);
 
     /// <summary>
-    /// Live is whether a credential resolves RIGHT NOW: a KMS-sealed secret for this org, else the integrations connection named by the platform&#39;s Fallback, else no credential needed at all (a public-ingest sink like Umami). False on a connected destination whose secret has gone missing — Connected &amp;&amp; !Live is exactly the \&quot;reconnect me\&quot; state.
+    /// Live is whether a credential resolves RIGHT NOW: a KMS-sealed secret for this org, else the integrations connection named by the platform&#39;s Fallback, else no credential needed at all (a public-ingest sink like Analytics). False on a connected destination whose secret has gone missing — Connected &amp;&amp; !Live is exactly the \&quot;reconnect me\&quot; state.
     /// </summary>
     bool isLive() const;
     bool liveIsSet() const;
@@ -119,6 +119,14 @@ public:
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
+
+    /// <summary>
+    /// Pixel is whether the hosted tag can inject a browser pixel for this platform, so a console offers a per-SITE pixel input for exactly these. False means the platform receives conversions server-side only, and an input would promise an injection that never happens. Derived from the tag&#39;s own map (event.BrowserTags), never restated — a second list is how a console offers a pixel nothing fires.
+    /// </summary>
+    bool isPixel() const;
+    bool pixelIsSet() const;
+    void unsetPixel();
+    void setPixel(bool value);
 
     /// <summary>
     /// the platform slug, and the path segment every route addresses it by
@@ -161,6 +169,9 @@ protected:
 
     utility::string_t m_Name;
     bool m_NameIsSet;
+
+    bool m_Pixel;
+    bool m_PixelIsSet;
 
     utility::string_t m_Platform;
     bool m_PlatformIsSet;

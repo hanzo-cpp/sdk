@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -55,6 +55,9 @@ public:
     /// RiskDatasetRows members
 
 
+    /// <summary>
+    /// Dataset is the dataset the page was read from.
+    /// </summary>
     utility::string_t getDataset() const;
     bool datasetIsSet() const;
     void unsetDataset();
@@ -76,13 +79,16 @@ public:
     void unsetDims();
     void setDims(const std::vector<utility::string_t>& value);
 
+    /// <summary>
+    /// Limit is the page size actually served: the one asked for, clamped to the plane&#39;s own bound of 5000. Fewer rows than Limit means the version ended.
+    /// </summary>
     int32_t getLimit() const;
     bool limitIsSet() const;
     void unsetLimit();
     void setLimit(int32_t value);
 
     /// <summary>
-    /// Offset and Limit are the page actually served, which may be smaller than the one asked for.
+    /// Offset is where this page starts in the version&#39;s own row order, which is by row id and therefore stable forever.
     /// </summary>
     int32_t getOffset() const;
     bool offsetIsSet() const;
@@ -97,6 +103,9 @@ public:
     void unsetRows();
     void setRows(const std::vector<std::shared_ptr<RiskDatasetRow>>& value);
 
+    /// <summary>
+    /// Version is which published version it was read from — the one asked for, or the newest published one when the request named none.
+    /// </summary>
     int32_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();

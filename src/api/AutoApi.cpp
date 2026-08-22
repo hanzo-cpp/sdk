@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * Composed from each subsystem's own projection of its router, in the fleet's mount order — every operation below is a route the subsystem that publishes it registered. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -33,13 +33,117 @@ AutoApi::~AutoApi()
 {
 }
 
-pplx::task<std::shared_ptr<AnyType>> AutoApi::deleteAutoFlowsByFlow(utility::string_t flow) const
+pplx::task<void> AutoApi::deleteAutoFlowsById(utility::string_t id) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/auto/flows/{flow}");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("flow") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(flow)));
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/auto/flows/{id}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("AutoApi->deleteAutoFlowsById does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("AutoApi->deleteAutoFlowsById does not consume any supported media type"));
+    }
+
+    // authentication (bearer) required
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("DELETE"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling deleteAutoFlowsById: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling deleteAutoFlowsById: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        return void();
+    });
+}
+pplx::task<std::shared_ptr<Catalog>> AutoApi::getAutoConnectors() const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/auto/connectors");
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -68,7 +172,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::deleteAutoFlowsByFlow(utility::str
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("AutoApi->deleteAutoFlowsByFlow does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("AutoApi->getAutoConnectors does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -95,12 +199,12 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::deleteAutoFlowsByFlow(utility::str
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("AutoApi->deleteAutoFlowsByFlow does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("AutoApi->getAutoConnectors does not consume any supported media type"));
     }
 
     // authentication (bearer) required
 
-    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("DELETE"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=, this](web::http::http_response localVarResponse)
     {
         if (m_ApiClient->getResponseHandler())
@@ -116,7 +220,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::deleteAutoFlowsByFlow(utility::str
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling deleteAutoFlowsByFlow: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling getAutoConnectors: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -127,7 +231,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::deleteAutoFlowsByFlow(utility::str
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling deleteAutoFlowsByFlow: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling getAutoConnectors: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -136,7 +240,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::deleteAutoFlowsByFlow(utility::str
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<AnyType> localVarResult(nullptr);
+        std::shared_ptr<Catalog> localVarResult(new Catalog());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
@@ -151,13 +255,13 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::deleteAutoFlowsByFlow(utility::str
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling deleteAutoFlowsByFlow: unsupported response type"));
+                , utility::conversions::to_string_t("error calling getAutoConnectors: unsupported response type"));
         }
 
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoFlows() const
+pplx::task<std::shared_ptr<FlowPage>> AutoApi::getAutoFlows(boost::optional<int32_t> limit) const
 {
 
 
@@ -198,6 +302,10 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoFlows() const
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
+    if (limit)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("limit")] = ApiClient::parameterToString(*limit);
+    }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
     utility::string_t localVarRequestHttpContentType;
@@ -259,7 +367,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoFlows() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<AnyType> localVarResult(nullptr);
+        std::shared_ptr<FlowPage> localVarResult(new FlowPage());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
@@ -280,13 +388,13 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoFlows() const
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoFlowsByFlow(utility::string_t flow) const
+pplx::task<std::shared_ptr<PopulatedFlow>> AutoApi::getAutoFlowsById(utility::string_t id) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/auto/flows/{flow}");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("flow") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(flow)));
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/auto/flows/{id}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -315,7 +423,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoFlowsByFlow(utility::string
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("AutoApi->getAutoFlowsByFlow does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("AutoApi->getAutoFlowsById does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -342,7 +450,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoFlowsByFlow(utility::string
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("AutoApi->getAutoFlowsByFlow does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("AutoApi->getAutoFlowsById does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -363,7 +471,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoFlowsByFlow(utility::string
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling getAutoFlowsByFlow: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling getAutoFlowsById: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -374,7 +482,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoFlowsByFlow(utility::string
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getAutoFlowsByFlow: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling getAutoFlowsById: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -383,7 +491,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoFlowsByFlow(utility::string
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<AnyType> localVarResult(nullptr);
+        std::shared_ptr<PopulatedFlow> localVarResult(new PopulatedFlow());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
@@ -398,18 +506,19 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoFlowsByFlow(utility::string
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling getAutoFlowsByFlow: unsupported response type"));
+                , utility::conversions::to_string_t("error calling getAutoFlowsById: unsupported response type"));
         }
 
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoPieces() const
+pplx::task<std::shared_ptr<VersionPage>> AutoApi::getAutoFlowsByIdVersions(utility::string_t id, boost::optional<int32_t> limit) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/auto/pieces");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/auto/flows/{id}/versions");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -438,13 +547,17 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoPieces() const
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("AutoApi->getAutoPieces does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("AutoApi->getAutoFlowsByIdVersions does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
+    if (limit)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("limit")] = ApiClient::parameterToString(*limit);
+    }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
     utility::string_t localVarRequestHttpContentType;
@@ -465,7 +578,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoPieces() const
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("AutoApi->getAutoPieces does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("AutoApi->getAutoFlowsByIdVersions does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -486,7 +599,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoPieces() const
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling getAutoPieces: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling getAutoFlowsByIdVersions: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -497,7 +610,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoPieces() const
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getAutoPieces: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling getAutoFlowsByIdVersions: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -506,7 +619,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoPieces() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<AnyType> localVarResult(nullptr);
+        std::shared_ptr<VersionPage> localVarResult(new VersionPage());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
@@ -521,13 +634,13 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoPieces() const
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling getAutoPieces: unsupported response type"));
+                , utility::conversions::to_string_t("error calling getAutoFlowsByIdVersions: unsupported response type"));
         }
 
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoRuns(boost::optional<utility::string_t> flow) const
+pplx::task<std::shared_ptr<RunPage>> AutoApi::getAutoRuns(boost::optional<utility::string_t> flowId, boost::optional<int32_t> limit) const
 {
 
 
@@ -568,9 +681,13 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoRuns(boost::optional<utilit
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
-    if (flow)
+    if (flowId)
     {
-        localVarQueryParams[utility::conversions::to_string_t("flow")] = ApiClient::parameterToString(*flow);
+        localVarQueryParams[utility::conversions::to_string_t("flowId")] = ApiClient::parameterToString(*flowId);
+    }
+    if (limit)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("limit")] = ApiClient::parameterToString(*limit);
     }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -633,7 +750,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoRuns(boost::optional<utilit
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<AnyType> localVarResult(nullptr);
+        std::shared_ptr<RunPage> localVarResult(new RunPage());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
@@ -654,13 +771,13 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoRuns(boost::optional<utilit
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoRunsByRun(utility::string_t run) const
+pplx::task<std::shared_ptr<FlowRun>> AutoApi::getAutoRunsById(utility::string_t id) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/auto/runs/{run}");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("run") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(run)));
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/auto/runs/{id}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -689,7 +806,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoRunsByRun(utility::string_t
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("AutoApi->getAutoRunsByRun does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("AutoApi->getAutoRunsById does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -716,7 +833,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoRunsByRun(utility::string_t
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("AutoApi->getAutoRunsByRun does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("AutoApi->getAutoRunsById does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -737,7 +854,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoRunsByRun(utility::string_t
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling getAutoRunsByRun: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling getAutoRunsById: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -748,7 +865,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoRunsByRun(utility::string_t
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getAutoRunsByRun: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling getAutoRunsById: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -757,7 +874,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoRunsByRun(utility::string_t
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<AnyType> localVarResult(nullptr);
+        std::shared_ptr<FlowRun> localVarResult(new FlowRun());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
@@ -772,18 +889,25 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::getAutoRunsByRun(utility::string_t
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling getAutoRunsByRun: unsupported response type"));
+                , utility::conversions::to_string_t("error calling getAutoRunsById: unsupported response type"));
         }
 
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<AutoStatus>> AutoApi::getAutoStatus() const
+pplx::task<std::shared_ptr<Flow>> AutoApi::patchAutoFlowsById(utility::string_t id, std::shared_ptr<PatchFlowIn> patchFlowIn) const
 {
+
+    // verify the required parameter 'patchFlowIn' is set
+    if (patchFlowIn == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'patchFlowIn' when calling AutoApi->patchAutoFlowsById"));
+    }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/auto/status");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/auto/flows/{id}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -812,137 +936,7 @@ pplx::task<std::shared_ptr<AutoStatus>> AutoApi::getAutoStatus() const
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("AutoApi->getAutoStatus does not produce any supported media type"));
-    }
-
-    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
-
-    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
-
-
-    std::shared_ptr<IHttpBody> localVarHttpBody;
-    utility::string_t localVarRequestHttpContentType;
-
-    // use JSON if possible
-    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
-    }
-    else
-    {
-        throw ApiException(415, utility::conversions::to_string_t("AutoApi->getAutoStatus does not consume any supported media type"));
-    }
-
-    // authentication (bearer) required
-
-    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
-    .then([=, this](web::http::http_response localVarResponse)
-    {
-        if (m_ApiClient->getResponseHandler())
-        {
-            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
-        }
-
-        // 1xx - informational : OK
-        // 2xx - successful       : OK
-        // 3xx - redirection   : OK
-        // 4xx - client error  : not OK
-        // 5xx - client error  : not OK
-        if (localVarResponse.status_code() >= 400)
-        {
-            throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling getAutoStatus: ") + localVarResponse.reason_phrase()
-                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
-        }
-
-        // check response content type
-        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
-        {
-            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
-            {
-                throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getAutoStatus: unexpected response type: ") + localVarContentType
-                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
-            }
-        }
-
-        return localVarResponse.extract_string();
-    })
-    .then([=, this](utility::string_t localVarResponse)
-    {
-        std::shared_ptr<AutoStatus> localVarResult(new AutoStatus());
-
-        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value localVarJson = web::json::value::parse(localVarResponse);
-
-            ModelBase::fromJson(localVarJson, localVarResult);
-        }
-        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling getAutoStatus: unsupported response type"));
-        }
-
-        return localVarResult;
-    });
-}
-pplx::task<std::shared_ptr<AnyType>> AutoApi::patchAutoFlowsByFlow(utility::string_t flow, std::shared_ptr<AutoUpdate> autoUpdate) const
-{
-
-    // verify the required parameter 'autoUpdate' is set
-    if (autoUpdate == nullptr)
-    {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'autoUpdate' when calling AutoApi->patchAutoFlowsByFlow"));
-    }
-
-
-    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/auto/flows/{flow}");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("flow") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(flow)));
-
-    std::map<utility::string_t, utility::string_t> localVarQueryParams;
-    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
-    std::map<utility::string_t, utility::string_t> localVarFormParams;
-    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
-
-    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-    utility::string_t localVarResponseHttpContentType;
-
-    // use JSON if possible
-    if ( localVarResponseHttpContentTypes.size() == 0 )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // JSON
-    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(400, utility::conversions::to_string_t("AutoApi->patchAutoFlowsByFlow does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("AutoApi->patchAutoFlowsById does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -960,7 +954,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::patchAutoFlowsByFlow(utility::stri
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        localVarJson = ModelBase::toJson(autoUpdate);
+        localVarJson = ModelBase::toJson(patchFlowIn);
         
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
@@ -971,9 +965,9 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::patchAutoFlowsByFlow(utility::stri
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(autoUpdate.get())
+        if(patchFlowIn.get())
         {
-            autoUpdate->toMultipart(localVarMultipart, utility::conversions::to_string_t("autoUpdate"));
+            patchFlowIn->toMultipart(localVarMultipart, utility::conversions::to_string_t("patchFlowIn"));
         }
         
 
@@ -986,7 +980,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::patchAutoFlowsByFlow(utility::stri
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("AutoApi->patchAutoFlowsByFlow does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("AutoApi->patchAutoFlowsById does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -1007,7 +1001,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::patchAutoFlowsByFlow(utility::stri
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling patchAutoFlowsByFlow: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling patchAutoFlowsById: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -1018,7 +1012,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::patchAutoFlowsByFlow(utility::stri
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling patchAutoFlowsByFlow: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling patchAutoFlowsById: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -1027,7 +1021,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::patchAutoFlowsByFlow(utility::stri
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<AnyType> localVarResult(nullptr);
+        std::shared_ptr<Flow> localVarResult(new Flow());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
@@ -1042,19 +1036,166 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::patchAutoFlowsByFlow(utility::stri
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling patchAutoFlowsByFlow: unsupported response type"));
+                , utility::conversions::to_string_t("error calling patchAutoFlowsById: unsupported response type"));
         }
 
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<AnyType>> AutoApi::postAutoFlows(std::shared_ptr<AutoCreate> autoCreate) const
+pplx::task<std::shared_ptr<RunResp>> AutoApi::postAutoConnectorsByIdRun(utility::string_t id, std::shared_ptr<RunIn> runIn) const
 {
 
-    // verify the required parameter 'autoCreate' is set
-    if (autoCreate == nullptr)
+    // verify the required parameter 'runIn' is set
+    if (runIn == nullptr)
     {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'autoCreate' when calling AutoApi->postAutoFlows"));
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'runIn' when calling AutoApi->postAutoConnectorsByIdRun"));
+    }
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/auto/connectors/{id}/run");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("AutoApi->postAutoConnectorsByIdRun does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        localVarJson = ModelBase::toJson(runIn);
+        
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(runIn.get())
+        {
+            runIn->toMultipart(localVarMultipart, utility::conversions::to_string_t("runIn"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("AutoApi->postAutoConnectorsByIdRun does not consume any supported media type"));
+    }
+
+    // authentication (bearer) required
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("POST"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling postAutoConnectorsByIdRun: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling postAutoConnectorsByIdRun: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::shared_ptr<RunResp> localVarResult(new RunResp());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAutoConnectorsByIdRun: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::shared_ptr<PopulatedFlow>> AutoApi::postAutoFlows(std::shared_ptr<CreateFlowReq> createFlowReq) const
+{
+
+    // verify the required parameter 'createFlowReq' is set
+    if (createFlowReq == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'createFlowReq' when calling AutoApi->postAutoFlows"));
     }
 
 
@@ -1106,7 +1247,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::postAutoFlows(std::shared_ptr<Auto
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        localVarJson = ModelBase::toJson(autoCreate);
+        localVarJson = ModelBase::toJson(createFlowReq);
         
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
@@ -1117,9 +1258,9 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::postAutoFlows(std::shared_ptr<Auto
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(autoCreate.get())
+        if(createFlowReq.get())
         {
-            autoCreate->toMultipart(localVarMultipart, utility::conversions::to_string_t("autoCreate"));
+            createFlowReq->toMultipart(localVarMultipart, utility::conversions::to_string_t("createFlowReq"));
         }
         
 
@@ -1173,7 +1314,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::postAutoFlows(std::shared_ptr<Auto
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<AnyType> localVarResult(nullptr);
+        std::shared_ptr<PopulatedFlow> localVarResult(new PopulatedFlow());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
@@ -1194,13 +1335,13 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::postAutoFlows(std::shared_ptr<Auto
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<AnyType>> AutoApi::postAutoFlowsByFlowPublish(utility::string_t flow) const
+pplx::task<std::shared_ptr<Flow>> AutoApi::postAutoFlowsByIdDisable(utility::string_t id) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/auto/flows/{flow}/publish");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("flow") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(flow)));
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/auto/flows/{id}/disable");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -1229,7 +1370,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::postAutoFlowsByFlowPublish(utility
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("AutoApi->postAutoFlowsByFlowPublish does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("AutoApi->postAutoFlowsByIdDisable does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -1256,7 +1397,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::postAutoFlowsByFlowPublish(utility
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("AutoApi->postAutoFlowsByFlowPublish does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("AutoApi->postAutoFlowsByIdDisable does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -1277,7 +1418,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::postAutoFlowsByFlowPublish(utility
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling postAutoFlowsByFlowPublish: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling postAutoFlowsByIdDisable: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -1288,7 +1429,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::postAutoFlowsByFlowPublish(utility
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling postAutoFlowsByFlowPublish: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling postAutoFlowsByIdDisable: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -1297,7 +1438,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::postAutoFlowsByFlowPublish(utility
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<AnyType> localVarResult(nullptr);
+        std::shared_ptr<Flow> localVarResult(new Flow());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
@@ -1312,24 +1453,19 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::postAutoFlowsByFlowPublish(utility
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling postAutoFlowsByFlowPublish: unsupported response type"));
+                , utility::conversions::to_string_t("error calling postAutoFlowsByIdDisable: unsupported response type"));
         }
 
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<AnyType>> AutoApi::postAutoRuns(std::shared_ptr<AutoStart> autoStart) const
+pplx::task<std::shared_ptr<Flow>> AutoApi::postAutoFlowsByIdEnable(utility::string_t id) const
 {
-
-    // verify the required parameter 'autoStart' is set
-    if (autoStart == nullptr)
-    {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'autoStart' when calling AutoApi->postAutoRuns"));
-    }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/auto/runs");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/auto/flows/{id}/enable");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -1358,7 +1494,366 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::postAutoRuns(std::shared_ptr<AutoS
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("AutoApi->postAutoRuns does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("AutoApi->postAutoFlowsByIdEnable does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("AutoApi->postAutoFlowsByIdEnable does not consume any supported media type"));
+    }
+
+    // authentication (bearer) required
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("POST"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling postAutoFlowsByIdEnable: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling postAutoFlowsByIdEnable: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::shared_ptr<Flow> localVarResult(new Flow());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAutoFlowsByIdEnable: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<void> AutoApi::postAutoFlowsByIdOperations(utility::string_t id) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/auto/flows/{id}/operations");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("AutoApi->postAutoFlowsByIdOperations does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("AutoApi->postAutoFlowsByIdOperations does not consume any supported media type"));
+    }
+
+    // authentication (bearer) required
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("POST"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling postAutoFlowsByIdOperations: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling postAutoFlowsByIdOperations: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        return void();
+    });
+}
+pplx::task<std::shared_ptr<FlowRun>> AutoApi::postAutoFlowsByIdRun(utility::string_t id) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/auto/flows/{id}/run");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("AutoApi->postAutoFlowsByIdRun does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("AutoApi->postAutoFlowsByIdRun does not consume any supported media type"));
+    }
+
+    // authentication (bearer) required
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("POST"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling postAutoFlowsByIdRun: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling postAutoFlowsByIdRun: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::shared_ptr<FlowRun> localVarResult(new FlowRun());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAutoFlowsByIdRun: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::shared_ptr<FlowVersion>> AutoApi::postAutoFlowsByIdVersions(utility::string_t id, std::shared_ptr<CreateVersionIn> createVersionIn) const
+{
+
+    // verify the required parameter 'createVersionIn' is set
+    if (createVersionIn == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'createVersionIn' when calling AutoApi->postAutoFlowsByIdVersions"));
+    }
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/auto/flows/{id}/versions");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("AutoApi->postAutoFlowsByIdVersions does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -1376,7 +1871,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::postAutoRuns(std::shared_ptr<AutoS
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        localVarJson = ModelBase::toJson(autoStart);
+        localVarJson = ModelBase::toJson(createVersionIn);
         
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
@@ -1387,9 +1882,9 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::postAutoRuns(std::shared_ptr<AutoS
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(autoStart.get())
+        if(createVersionIn.get())
         {
-            autoStart->toMultipart(localVarMultipart, utility::conversions::to_string_t("autoStart"));
+            createVersionIn->toMultipart(localVarMultipart, utility::conversions::to_string_t("createVersionIn"));
         }
         
 
@@ -1402,7 +1897,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::postAutoRuns(std::shared_ptr<AutoS
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("AutoApi->postAutoRuns does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("AutoApi->postAutoFlowsByIdVersions does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -1423,7 +1918,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::postAutoRuns(std::shared_ptr<AutoS
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling postAutoRuns: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling postAutoFlowsByIdVersions: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -1434,7 +1929,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::postAutoRuns(std::shared_ptr<AutoS
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling postAutoRuns: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling postAutoFlowsByIdVersions: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -1443,7 +1938,7 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::postAutoRuns(std::shared_ptr<AutoS
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<AnyType> localVarResult(nullptr);
+        std::shared_ptr<FlowVersion> localVarResult(new FlowVersion());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
@@ -1458,10 +1953,221 @@ pplx::task<std::shared_ptr<AnyType>> AutoApi::postAutoRuns(std::shared_ptr<AutoS
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling postAutoRuns: unsupported response type"));
+                , utility::conversions::to_string_t("error calling postAutoFlowsByIdVersions: unsupported response type"));
         }
 
         return localVarResult;
+    });
+}
+pplx::task<void> AutoApi::postAutoHooksBySourceByEvent(utility::string_t source, utility::string_t event) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/auto/hooks/{source}/{event}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("source") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(source)));
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("event") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(event)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("AutoApi->postAutoHooksBySourceByEvent does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("AutoApi->postAutoHooksBySourceByEvent does not consume any supported media type"));
+    }
+
+    // authentication (bearer) required
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("POST"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling postAutoHooksBySourceByEvent: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling postAutoHooksBySourceByEvent: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        return void();
+    });
+}
+pplx::task<void> AutoApi::postAutoRunsByIdResume(utility::string_t id) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/auto/runs/{id}/resume");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("AutoApi->postAutoRunsByIdResume does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("AutoApi->postAutoRunsByIdResume does not consume any supported media type"));
+    }
+
+    // authentication (bearer) required
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("POST"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling postAutoRunsByIdResume: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling postAutoRunsByIdResume: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        return void();
     });
 }
 
