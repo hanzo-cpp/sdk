@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -246,7 +246,7 @@ pplx::task<void> PlatformApi::deletePlatformProjectsByProjectAppsByAppDomainsByH
         return void();
     });
 }
-pplx::task<void> PlatformApi::getPlatformApps() const
+pplx::task<std::shared_ptr<DeclaredResp>> PlatformApi::getPlatformApps(boost::optional<utility::string_t> org) const
 {
 
 
@@ -259,6 +259,7 @@ pplx::task<void> PlatformApi::getPlatformApps() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -286,6 +287,10 @@ pplx::task<void> PlatformApi::getPlatformApps() const
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
+    if (org)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("org")] = ApiClient::parameterToString(*org);
+    }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
     utility::string_t localVarRequestHttpContentType;
@@ -347,10 +352,28 @@ pplx::task<void> PlatformApi::getPlatformApps() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<DeclaredResp> localVarResult(new DeclaredResp());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getPlatformApps: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> PlatformApi::getPlatformAppsByApp(utility::string_t app) const
+pplx::task<std::shared_ptr<Declaration>> PlatformApi::getPlatformAppsByApp(utility::string_t app, boost::optional<utility::string_t> org) const
 {
 
 
@@ -364,6 +387,7 @@ pplx::task<void> PlatformApi::getPlatformAppsByApp(utility::string_t app) const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -391,6 +415,10 @@ pplx::task<void> PlatformApi::getPlatformAppsByApp(utility::string_t app) const
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
+    if (org)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("org")] = ApiClient::parameterToString(*org);
+    }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
     utility::string_t localVarRequestHttpContentType;
@@ -452,10 +480,28 @@ pplx::task<void> PlatformApi::getPlatformAppsByApp(utility::string_t app) const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Declaration> localVarResult(new Declaration());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getPlatformAppsByApp: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> PlatformApi::getPlatformAppsByAppCd(utility::string_t app) const
+pplx::task<std::shared_ptr<CDApp>> PlatformApi::getPlatformAppsByAppCd(utility::string_t app, boost::optional<utility::string_t> org) const
 {
 
 
@@ -469,6 +515,7 @@ pplx::task<void> PlatformApi::getPlatformAppsByAppCd(utility::string_t app) cons
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -496,6 +543,10 @@ pplx::task<void> PlatformApi::getPlatformAppsByAppCd(utility::string_t app) cons
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
+    if (org)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("org")] = ApiClient::parameterToString(*org);
+    }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
     utility::string_t localVarRequestHttpContentType;
@@ -557,7 +608,25 @@ pplx::task<void> PlatformApi::getPlatformAppsByAppCd(utility::string_t app) cons
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<CDApp> localVarResult(new CDApp());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getPlatformAppsByAppCd: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
 pplx::task<std::shared_ptr<BuildBoard>> PlatformApi::getPlatformBuilds() const
@@ -683,7 +752,7 @@ pplx::task<std::shared_ptr<BuildBoard>> PlatformApi::getPlatformBuilds() const
         return localVarResult;
     });
 }
-pplx::task<void> PlatformApi::getPlatformCd() const
+pplx::task<std::shared_ptr<CdResp>> PlatformApi::getPlatformCd() const
 {
 
 
@@ -696,6 +765,7 @@ pplx::task<void> PlatformApi::getPlatformCd() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -784,7 +854,25 @@ pplx::task<void> PlatformApi::getPlatformCd() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<CdResp> localVarResult(new CdResp());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getPlatformCd: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
 pplx::task<void> PlatformApi::getPlatformCi() const

@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -142,7 +142,7 @@ public:
     void setStatus(const utility::string_t& value);
 
     /// <summary>
-    /// Tools are the tool names this agent may call, and the list IS the authority: an agent that declares none gets none. The single entry \&quot;*\&quot; means whatever the fleet&#39;s tool door serves at the moment of the run, resolved per run rather than frozen here, which is how the default assistant reaches subsystems that shipped after it was defined. Empty array, never null.
+    /// Tools are the tool names this agent may call, and the list IS the authority: an agent that declares none gets none. The single entry \&quot;*\&quot; means whatever the fleet&#39;s MCP server serves at the moment of the run, resolved per run rather than frozen here, which is how the default assistant reaches subsystems that shipped after it was defined. Empty array, never null.
     /// </summary>
     std::vector<utility::string_t> getTools() const;
     bool toolsIsSet() const;

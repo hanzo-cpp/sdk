@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -23,6 +23,9 @@
 #include "hanzo/ApiClient.h"
 
 #include "hanzo/model/MeetHealth.h"
+#include "hanzo/model/RecordIn.h"
+#include "hanzo/model/Recording.h"
+#include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
 namespace hanzo {
@@ -55,6 +58,36 @@ public:
     /// Answers the three facts the native lobby cannot know on its own: the identity a seat would be taken under, the LiveKit address the browser dials, and the workspaces this caller may open a room in.  It is the SAME decision getToken makes, asked before the room exists rather than after it is named. A room is bound to its tenant by its name&#39;s leading workspace segment, and only a workspace this answer lists will be admitted — so the lobby offers exactly what the mint would grant, and a person is never shown a room they would then be refused. Workspaces the caller holds only a guest role in are omitted for that reason.  An empty list is a real answer, not a fault: an IAM identity with no workspace has no room to open, and the lobby says so instead of failing.  &#x60;ws&#x60; is empty when this deployment has not been told where its media plane is (LIVEKIT_WS). Token minting is unaffected — the published office client supplies its own address — so this is a degraded native UI, not a degraded service, and the lobby refuses to dial rather than guessing a host.
     /// </remarks>
     pplx::task<void> getMeetSession(
+    ) const;
+    /// <summary>
+    /// What is being recorded in a room, and where the file goes
+    /// </summary>
+    /// <remarks>
+    /// Answers what is being recorded in a room, and where the file went.  It reports the recording that is RUNNING, and once none is, the most recent one the media server still holds — with its final status and its object. That second case is the one that matters for finding a file: the answer to a start is the only other place the location appears, and a client that lost it, or a colleague who was not the one to press record, has nowhere else to look.  It is behind the same check as starting one: where a recording of a private conversation is kept is a fact about that conversation, so it is told to the people the room admits and to nobody else.
+    /// </remarks>
+    /// <param name="room">Room is the LiveKit room, named the way the office client names one (&#x60;&lt;workspace&gt;_&lt;name&gt;_&lt;id&gt;&#x60;). Its leading segment is what binds the room to a tenant, and it is the segment the caller&#39;s membership is checked against.</param>
+    pplx::task<std::shared_ptr<Recording>> meetRecordRead(
+        utility::string_t room
+    ) const;
+    /// <summary>
+    /// Start recording a room, or return the recording already running
+    /// </summary>
+    /// <remarks>
+    /// Begins recording a room, or hands back the recording already running.  A recording is a durable artifact of a conversation, so only someone this room would admit may make one: the caller is authorized by the SAME decision /v1/meet/getToken makes about the same room, and refused with the same 401.  A SECOND START RETURNS THE FIRST rather than refusing it. There is at most one recording per room and this operation&#39;s job is to establish that there is one — which is already true when a colleague, or the caller&#39;s own double-click, started it a moment ago. The answer is the same shape either way, naming the recording that is actually running, so a client never has to tell the two cases apart to find the id.  A deployment with no media server address or no object store answers 503 naming which, because a recording that silently does not happen is worse than one that is refused. The reason reaches only a caller this room already admits.
+    /// </remarks>
+    /// <param name="recordIn"></param>
+    pplx::task<std::shared_ptr<Recording>> meetRecordStart(
+        std::shared_ptr<RecordIn> recordIn
+    ) const;
+    /// <summary>
+    /// Stop a room&#39;s recording
+    /// </summary>
+    /// <remarks>
+    /// Ends a room&#39;s recording — EVERY one of them.  Whoever the room admits may stop it, including someone who did not start it: a person being recorded has to be able to end it, and a rule that only the starter may stop would deny exactly that. Stopping is free — a caller made to pay to stop being recorded would be paying for the wrong thing.  200 MEANS THE ROOM IS NOT BEING RECORDED, and that is why this ends all of them rather than the first. \&quot;At most one per room\&quot; is an invariant this surface wants and cannot impose: reading the list and starting are two calls, and two replicas racing through that window both start. When the list comes back holding two, two is the truth — and ending one while answering 200 tells the person withdrawing consent that it stopped while a second worker keeps writing. A stop that cannot finish the job says so instead.  Stopping a room that is not being recorded is not an error. The answer names the room with no recording on it, which is the state the caller asked for.
+    /// </remarks>
+    /// <param name="room">Room is the LiveKit room, named the way the office client names one (&#x60;&lt;workspace&gt;_&lt;name&gt;_&lt;id&gt;&#x60;). Its leading segment is what binds the room to a tenant, and it is the segment the caller&#39;s membership is checked against.</param>
+    pplx::task<std::shared_ptr<Recording>> meetRecordStop(
+        utility::string_t room
     ) const;
     /// <summary>
     /// Mint a join token for one video room

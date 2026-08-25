@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -196,7 +196,7 @@ public:
     /// Mints a short-lived grant to open the screen of a desktop sandbox.
     /// </summary>
     /// <remarks>
-    /// Mints a short-lived grant to open the screen of a desktop sandbox. Same properties as the terminal ticket, for the other door.
+    /// Mints a short-lived grant to open the screen of a desktop sandbox. Same properties as the terminal ticket, for the other endpoint.
     /// </remarks>
     /// <param name="id">ID is the sandbox to address, from the path.</param>
     pplx::task<std::shared_ptr<TicketGrant>> postSandboxByIdScreenTicket(

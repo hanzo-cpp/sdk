@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -409,7 +409,7 @@ pplx::task<void> BillingApi::deleteBillingAlertsById(utility::string_t id) const
         return void();
     });
 }
-pplx::task<void> BillingApi::deleteBillingMethodsById(utility::string_t id) const
+pplx::task<std::shared_ptr<Detachment>> BillingApi::deleteBillingMethodsById(utility::string_t id) const
 {
 
 
@@ -423,6 +423,7 @@ pplx::task<void> BillingApi::deleteBillingMethodsById(utility::string_t id) cons
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -511,10 +512,28 @@ pplx::task<void> BillingApi::deleteBillingMethodsById(utility::string_t id) cons
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Detachment> localVarResult(new Detachment());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteBillingMethodsById: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> BillingApi::deleteBillingPortalMethodsById(utility::string_t id) const
+pplx::task<std::shared_ptr<Detachment>> BillingApi::deleteBillingPortalMethodsById(utility::string_t id) const
 {
 
 
@@ -528,6 +547,7 @@ pplx::task<void> BillingApi::deleteBillingPortalMethodsById(utility::string_t id
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -616,7 +636,25 @@ pplx::task<void> BillingApi::deleteBillingPortalMethodsById(utility::string_t id
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Detachment> localVarResult(new Detachment());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteBillingPortalMethodsById: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
 pplx::task<std::vector<std::shared_ptr<BillingAccount>>> BillingApi::getBillingAccounts() const
@@ -4676,7 +4714,7 @@ pplx::task<void> BillingApi::postBillingPortalMethods() const
         return void();
     });
 }
-pplx::task<void> BillingApi::postBillingRechargeRunAll() const
+pplx::task<std::shared_ptr<Recharge>> BillingApi::postBillingRechargeRunAll() const
 {
 
 
@@ -4689,6 +4727,7 @@ pplx::task<void> BillingApi::postBillingRechargeRunAll() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -4777,7 +4816,25 @@ pplx::task<void> BillingApi::postBillingRechargeRunAll() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Recharge> localVarResult(new Recharge());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postBillingRechargeRunAll: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
 pplx::task<void> BillingApi::postBillingSubscribeCard() const
@@ -4884,8 +4941,14 @@ pplx::task<void> BillingApi::postBillingSubscribeCard() const
         return void();
     });
 }
-pplx::task<void> BillingApi::postBillingTopup() const
+pplx::task<std::shared_ptr<Charged>> BillingApi::postBillingTopup(std::shared_ptr<TopupIn> topupIn, boost::optional<utility::string_t> xIdempotencyKey) const
 {
+
+    // verify the required parameter 'topupIn' is set
+    if (topupIn == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'topupIn' when calling BillingApi->postBillingTopup"));
+    }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
@@ -4897,6 +4960,7 @@ pplx::task<void> BillingApi::postBillingTopup() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -4923,7 +4987,12 @@ pplx::task<void> BillingApi::postBillingTopup() const
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
+    if (xIdempotencyKey)
+    {
+        localVarHeaderParams[utility::conversions::to_string_t("X-Idempotency-Key")] = ApiClient::parameterToString(*xIdempotencyKey);
+    }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
     utility::string_t localVarRequestHttpContentType;
@@ -4932,11 +5001,27 @@ pplx::task<void> BillingApi::postBillingTopup() const
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        localVarJson = ModelBase::toJson(topupIn);
+        
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(topupIn.get())
+        {
+            topupIn->toMultipart(localVarMultipart, utility::conversions::to_string_t("topupIn"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -4985,11 +5070,35 @@ pplx::task<void> BillingApi::postBillingTopup() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Charged> localVarResult(new Charged());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postBillingTopup: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> BillingApi::postBillingTopupToken() const
+pplx::task<std::shared_ptr<Charged>> BillingApi::postBillingTopupToken(std::shared_ptr<TopupIn> topupIn, boost::optional<utility::string_t> xIdempotencyKey) const
 {
+
+    // verify the required parameter 'topupIn' is set
+    if (topupIn == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'topupIn' when calling BillingApi->postBillingTopupToken"));
+    }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
@@ -5001,6 +5110,7 @@ pplx::task<void> BillingApi::postBillingTopupToken() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -5027,7 +5137,12 @@ pplx::task<void> BillingApi::postBillingTopupToken() const
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
+    if (xIdempotencyKey)
+    {
+        localVarHeaderParams[utility::conversions::to_string_t("X-Idempotency-Key")] = ApiClient::parameterToString(*xIdempotencyKey);
+    }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
     utility::string_t localVarRequestHttpContentType;
@@ -5036,11 +5151,27 @@ pplx::task<void> BillingApi::postBillingTopupToken() const
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        localVarJson = ModelBase::toJson(topupIn);
+        
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(topupIn.get())
+        {
+            topupIn->toMultipart(localVarMultipart, utility::conversions::to_string_t("topupIn"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -5089,7 +5220,25 @@ pplx::task<void> BillingApi::postBillingTopupToken() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Charged> localVarResult(new Charged());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postBillingTopupToken: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
 pplx::task<std::shared_ptr<Invoice>> BillingApi::raiseInvoice(std::shared_ptr<RaiseIn> raiseIn) const

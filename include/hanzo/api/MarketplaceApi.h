@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -86,7 +86,7 @@ public:
     /// Publish offers one tool on the marketplace, optionally monetized.
     /// </summary>
     /// <remarks>
-    /// Publish offers one tool on the marketplace, optionally monetized. The tool must already resolve in the publisher&#39;s own scope, so a listing can never advertise a capability that does not exist; a listing with a price must name the payout wallet the x402 seam settles to, so a monetized offer is never unpayable. The price is exact to 18 decimal places, so a per-call price below a cent is a real price and not a rounded-away zero. The listing is owned by the publishing org, paid into a wallet of that same org, and answers 201 with the created row.
+    /// Publish offers one tool on the marketplace, optionally monetized. The tool must already resolve in the publisher&#39;s own scope, so a listing can never advertise a capability that does not exist; a listing with a price must name the payout wallet the x402 client settles to, so a monetized offer is never unpayable. The price is exact to 18 decimal places, so a per-call price below a cent is a real price and not a rounded-away zero. The listing is owned by the publishing org, paid into a wallet of that same org, and answers 201 with the created row.
     /// </remarks>
     /// <param name="publishReq"></param>
     pplx::task<std::shared_ptr<Listing>> postMarketplaceListings(

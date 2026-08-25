@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -25,7 +25,11 @@
 #include "hanzo/model/AddDomainReq.h"
 #include "hanzo/model/AppView.h"
 #include "hanzo/model/BuildBoard.h"
+#include "hanzo/model/CDApp.h"
+#include "hanzo/model/CdResp.h"
 #include "hanzo/model/CreateAppReq.h"
+#include "hanzo/model/Declaration.h"
+#include "hanzo/model/DeclaredResp.h"
 #include "hanzo/model/DeployLogs.h"
 #include "hanzo/model/DeployReq.h"
 #include "hanzo/model/DeploymentView.h"
@@ -95,32 +99,38 @@ public:
         utility::string_t host
     ) const;
     /// <summary>
-    /// What this organization has declared, and what CD did with it
+    /// Answers what this organisation has declared, joined with what the delivery plane has done about it.
     /// </summary>
     /// <remarks>
-    /// Returns the declarations in the caller&#39;s own org directory, each joined with the Hanzo CD Application reconciling it — sync verdict, health, the universe commit last applied. &#x60;cd&#x60; is null for a declaration the delivery plane has no Application for, which is the normal state of one that exists only on a branch.  If the delivery plane cannot be read, the declarations are still returned and &#x60;cdUnavailable&#x60; says why. An unreadable plane never renders as \&quot;nothing has been reconciled\&quot;.
+    /// Answers what this organisation has declared, joined with what the delivery plane has done about it.  The join is best-effort BY DESIGN and says so when it is missing: the declarations ARE the answer to \&quot;what have I deployed\&quot;, so refusing the whole board because the cluster is unreadable would lose the half that is readable. What must never happen is a silent null — an unreadable plane is reported as &#x60;cd.unavailable&#x60; carrying the reason, never as an app with no reconciliation.
     /// </remarks>
-    pplx::task<void> getPlatformApps(
+    /// <param name="org">Org names the organisation whose declarations to read, defaulting to the caller&#39;s own. Only a SuperAdmin may name one that is not theirs; anyone else naming a foreign org is refused, so this widens nothing by itself. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<DeclaredResp>> getPlatformApps(
+        boost::optional<utility::string_t> org
     ) const;
     /// <summary>
-    /// One declaration
+    /// Answers ONE declaration — what git says this app is, before the delivery plane has had any say in it.
     /// </summary>
     /// <remarks>
-    /// The values file for one app as git declares it: image repository and tag, hosts, replicas, and whether CD is automated on it. 404 when this organization declares no such app.
+    /// Answers ONE declaration — what git says this app is, before the delivery plane has had any say in it.
     /// </remarks>
-    /// <param name="app"></param>
-    pplx::task<void> getPlatformAppsByApp(
-        utility::string_t app
+    /// <param name="app">App is the DNS-1123 label of the declaration. The URL is the addressing authority — a path segment binds after the body and after the query — so the address decides which app is read whatever else is sent.</param>
+    /// <param name="org">Org names the organisation the declaration lives in, defaulting to the caller&#39;s own and subject to the same SuperAdmin rule as the listing. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<Declaration>> getPlatformAppsByApp(
+        utility::string_t app,
+        boost::optional<utility::string_t> org
     ) const;
     /// <summary>
-    /// One app&#39;s reconciliation
+    /// Answers ONE app&#39;s reconciliation alone — the poll a deploy console makes while it waits, without re-reading the whole inventory each time.
     /// </summary>
     /// <remarks>
-    /// The Hanzo CD Application for one declaration, on its own — the poll a deploy view makes while it waits, without re-reading the whole inventory. 404 while the declaration exists only on a branch, because the generator reads main.
+    /// Answers ONE app&#39;s reconciliation alone — the poll a deploy console makes while it waits, without re-reading the whole inventory each time.
     /// </remarks>
-    /// <param name="app"></param>
-    pplx::task<void> getPlatformAppsByAppCd(
-        utility::string_t app
+    /// <param name="app">App is the DNS-1123 label of the declaration. The URL is the addressing authority — a path segment binds after the body and after the query — so the address decides which app is read whatever else is sent.</param>
+    /// <param name="org">Org names the organisation the declaration lives in, defaulting to the caller&#39;s own and subject to the same SuperAdmin rule as the listing. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<CDApp>> getPlatformAppsByAppCd(
+        utility::string_t app,
+        boost::optional<utility::string_t> org
     ) const;
     /// <summary>
     /// Returns real build records for your org.
@@ -131,12 +141,12 @@ public:
     pplx::task<std::shared_ptr<BuildBoard>> getPlatformBuilds(
     ) const;
     /// <summary>
-    /// The delivery plane
+    /// Answers every Application the delivery plane holds.
     /// </summary>
     /// <remarks>
-    /// Every Hanzo CD Application this caller may observe, with its sync verdict, health, the universe revision last applied, and whether automation and self-heal are on. A SuperAdmin sees the fleet; an org admin sees only Applications whose destination namespace IS its own organization, and never a reserved one.  A cluster with no CD installed answers an empty plane. A plane that cannot be READ answers 503 and says why — the two are opposite facts and never share a shape.
+    /// Answers every Application the delivery plane holds.  Scoped to the namespaces the caller&#39;s own validated org owns: the ROLE admits the caller and the tenant boundary is applied inside, so an admin of one org never observes another&#39;s.
     /// </remarks>
-    pplx::task<void> getPlatformCd(
+    pplx::task<std::shared_ptr<CdResp>> getPlatformCd(
     ) const;
     /// <summary>
     /// Continuous integration (not wired)
@@ -322,7 +332,7 @@ public:
     /// Receive a push from the forge and trigger its build
     /// </summary>
     /// <remarks>
-    /// The forge&#39;s push-to-deploy door. git.hanzo.ai runs as a separate server, so its pushes never reach this fleet&#39;s own receive-pack; without this a push to the host we call canonical builds nothing. A verified push is handed to the SAME two seams a native push travels — the single-registrant deploy trigger, and the many-subscriber lifecycle stream that notifies and indexes — and the build decision itself stays downstream in the one place that knows what a push means.  PUBLIC at the JWT layer, because the forge carries no Hanzo session: AUTHENTICATION IS THE SIGNATURE. The HMAC covers the raw bytes and is verified BEFORE the payload is parsed, so an unauthenticated body is never decoded. The secret is read from KMS; a deployment that cannot read it answers 503 and processes nothing, rather than trusting a delivery it could not check. The body is read UNCOMPRESSED — a request declaring a Content-Encoding is refused 415 before it is touched, because decoding one is unbounded work bought with a few bytes and no credential. A bad signature is 401, a payload over 8 MiB is 413, and a malformed one 400.  A verified push that reaches both seams answers 200 with fired true and the NUMBER OF BUILDS it launched — zero is ordinary, since most pushes track no application, and it is the answer &#39;fired&#39; cannot give. A push that could not be dispatched answers 500: the delivery page shows it red, and the Replay that prompts reaches a fresh attempt rather than being declined as already landed.  The deliveries deliberately ignored answer 200 with a reason and nothing else: a payload that is not a push, a ref DELETE (a zero &#x60;after&#x60; has no commit to build), a BOT-authored push (release automation pushes as the forge&#39;s own Actions user, and a release must never rebuild itself), a push from a forge namespace that maps to no org, and a redelivery of a push already fired. Branches and tags both reach the build trigger, because releases are cut by tag and filtering here would silently stop publishing.
+    /// The forge&#39;s push-to-deploy endpoint. git.hanzo.ai runs as a separate server, so its pushes never reach this fleet&#39;s own receive-pack; without this a push to the host we call canonical builds nothing. A verified push is handed to the SAME two clients a native push travels — the single-registrant deploy trigger, and the many-subscriber lifecycle stream that notifies and indexes — and the build decision itself stays downstream in the one place that knows what a push means.  PUBLIC at the JWT layer, because the forge carries no Hanzo session: AUTHENTICATION IS THE SIGNATURE. The HMAC covers the raw bytes and is verified BEFORE the payload is parsed, so an unauthenticated body is never decoded. The secret is read from KMS; a deployment that cannot read it answers 503 and processes nothing, rather than trusting a delivery it could not check. The body is read UNCOMPRESSED — a request declaring a Content-Encoding is refused 415 before it is touched, because decoding one is unbounded work bought with a few bytes and no credential. A bad signature is 401, a payload over 8 MiB is 413, and a malformed one 400.  A verified push that reaches both clients answers 200 with fired true and the NUMBER OF BUILDS it launched — zero is ordinary, since most pushes track no application, and it is the answer &#39;fired&#39; cannot give. A push that could not be dispatched answers 500: the delivery page shows it red, and the Replay that prompts reaches a fresh attempt rather than being declined as already landed.  The deliveries deliberately ignored answer 200 with a reason and nothing else: a payload that is not a push, a ref DELETE (a zero &#x60;after&#x60; has no commit to build), a BOT-authored push (release automation pushes as the forge&#39;s own Actions user, and a release must never rebuild itself), a push from a forge namespace that maps to no org, and a redelivery of a push already fired. Branches and tags both reach the build trigger, because releases are cut by tag and filtering here would silently stop publishing.
     /// </remarks>
     /// <param name="push"> (optional)</param>
     pplx::task<std::shared_ptr<Verdict>> postPlatformHook(

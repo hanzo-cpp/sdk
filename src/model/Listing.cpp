@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -18,26 +18,10 @@ namespace model {
 
 Listing::Listing()
 {
-    m_Category = utility::conversions::to_string_t("");
-    m_CategoryIsSet = false;
-    m_CreatedAt = 0;
-    m_CreatedAtIsSet = false;
-    m_Currency = utility::conversions::to_string_t("");
-    m_CurrencyIsSet = false;
-    m_Description = utility::conversions::to_string_t("");
-    m_DescriptionIsSet = false;
-    m_Id = utility::conversions::to_string_t("");
-    m_IdIsSet = false;
-    m_r_public = false;
-    m_r_publicIsSet = false;
-    m_PublisherOrg = utility::conversions::to_string_t("");
-    m_PublisherOrgIsSet = false;
-    m_Recipient = utility::conversions::to_string_t("");
-    m_RecipientIsSet = false;
-    m_Title = utility::conversions::to_string_t("");
-    m_TitleIsSet = false;
-    m_Tool = utility::conversions::to_string_t("");
-    m_ToolIsSet = false;
+    m_LastModified = utility::conversions::to_string_t("");
+    m_LastModifiedIsSet = false;
+    m_Name = utility::conversions::to_string_t("");
+    m_NameIsSet = false;
 }
 
 Listing::~Listing()
@@ -52,60 +36,15 @@ void Listing::validate()
 web::json::value Listing::toJson() const
 {
     web::json::value val = web::json::value::object();
-    if(m_CategoryIsSet)
+    if(m_LastModifiedIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("category"))] = ModelBase::toJson(m_Category);
+        val[utility::conversions::to_string_t(_XPLATSTR("lastModified"))] = ModelBase::toJson(m_LastModified);
     }
-    if(m_CreatedAtIsSet)
+    if(m_NameIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("createdAt"))] = ModelBase::toJson(m_CreatedAt);
-    }
-    if(m_CurrencyIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("currency"))] = ModelBase::toJson(m_Currency);
-    }
-    if(m_DescriptionIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("description"))] = ModelBase::toJson(m_Description);
-    }
-    if(m_IdIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("id"))] = ModelBase::toJson(m_Id);
-    }
-    if(m_Price.has_value())
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("price"))] = ModelBase::toJson(m_Price.get());
-    }
-    if(m_r_publicIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("public"))] = ModelBase::toJson(m_r_public);
-    }
-    if(m_PublisherOrgIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("publisherOrg"))] = ModelBase::toJson(m_PublisherOrg);
-    }
-    if(m_RecipientIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("recipient"))] = ModelBase::toJson(m_Recipient);
-    }
-    if(m_TitleIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("title"))] = ModelBase::toJson(m_Title);
-    }
-    if(m_ToolIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("tool"))] = ModelBase::toJson(m_Tool);
+        val[utility::conversions::to_string_t(_XPLATSTR("name"))] = ModelBase::toJson(m_Name);
     }
 
     return val;
@@ -114,124 +53,25 @@ web::json::value Listing::toJson() const
 bool Listing::fromJson(const web::json::value& val)
 {
     bool ok = true;
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("category"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("lastModified"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("category")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("lastModified")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setCategory;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setCategory);
-            setCategory(refVal_setCategory);
+            utility::string_t refVal_setLastModified;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setLastModified);
+            setLastModified(refVal_setLastModified);
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("name"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("name")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
-            setCreatedAt(refVal_setCreatedAt);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("currency"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("currency")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setCurrency;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setCurrency);
-            setCurrency(refVal_setCurrency);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("description"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("description")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setDescription;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setDescription);
-            setDescription(refVal_setDescription);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("id"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("id")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setId);
-            setId(refVal_setId);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("price"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("price")));
-        if(!fieldValue.is_null())
-        {
-            std::shared_ptr<AnyType> refVal_setPrice;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setPrice);
-            setPrice(refVal_setPrice);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("public"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("public")));
-        if(!fieldValue.is_null())
-        {
-            bool refVal_setRPublic;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setRPublic);
-            setRPublic(refVal_setRPublic);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("publisherOrg"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("publisherOrg")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setPublisherOrg;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setPublisherOrg);
-            setPublisherOrg(refVal_setPublisherOrg);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("recipient"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("recipient")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setRecipient;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setRecipient);
-            setRecipient(refVal_setRecipient);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("title"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("title")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTitle;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTitle);
-            setTitle(refVal_setTitle);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("tool"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tool")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTool;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTool);
-            setTool(refVal_setTool);
+            utility::string_t refVal_setName;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setName);
+            setName(refVal_setName);
             
         }
     }
@@ -245,49 +85,13 @@ void Listing::toMultipart(std::shared_ptr<MultipartFormData> multipart, const ut
     {
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
-    if(m_CategoryIsSet)
+    if(m_LastModifiedIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("category")), m_Category));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("lastModified")), m_LastModified));
     }
-    if(m_CreatedAtIsSet)
+    if(m_NameIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("createdAt")), m_CreatedAt));
-    }
-    if(m_CurrencyIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("currency")), m_Currency));
-    }
-    if(m_DescriptionIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("description")), m_Description));
-    }
-    if(m_IdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("id")), m_Id));
-    }
-    if(m_Price.has_value())
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("price")), m_Price.get()));
-    }
-    if(m_r_publicIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("public")), m_r_public));
-    }
-    if(m_PublisherOrgIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("publisherOrg")), m_PublisherOrg));
-    }
-    if(m_RecipientIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("recipient")), m_Recipient));
-    }
-    if(m_TitleIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("title")), m_Title));
-    }
-    if(m_ToolIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("tool")), m_Tool));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("name")), m_Name));
     }
 }
 
@@ -300,305 +104,63 @@ bool Listing::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("category"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("lastModified"))))
     {
-        utility::string_t refVal_setCategory;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("category"))), refVal_setCategory );
-        setCategory(refVal_setCategory);
+        utility::string_t refVal_setLastModified;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("lastModified"))), refVal_setLastModified );
+        setLastModified(refVal_setLastModified);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("name"))))
     {
-        int32_t refVal_setCreatedAt;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
-        setCreatedAt(refVal_setCreatedAt);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("currency"))))
-    {
-        utility::string_t refVal_setCurrency;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("currency"))), refVal_setCurrency );
-        setCurrency(refVal_setCurrency);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("description"))))
-    {
-        utility::string_t refVal_setDescription;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("description"))), refVal_setDescription );
-        setDescription(refVal_setDescription);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("id"))))
-    {
-        utility::string_t refVal_setId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("id"))), refVal_setId );
-        setId(refVal_setId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("price"))))
-    {
-        std::shared_ptr<AnyType> refVal_setPrice;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("price"))), refVal_setPrice );
-        setPrice(refVal_setPrice);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("public"))))
-    {
-        bool refVal_setRPublic;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("public"))), refVal_setRPublic );
-        setRPublic(refVal_setRPublic);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("publisherOrg"))))
-    {
-        utility::string_t refVal_setPublisherOrg;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("publisherOrg"))), refVal_setPublisherOrg );
-        setPublisherOrg(refVal_setPublisherOrg);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("recipient"))))
-    {
-        utility::string_t refVal_setRecipient;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("recipient"))), refVal_setRecipient );
-        setRecipient(refVal_setRecipient);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("title"))))
-    {
-        utility::string_t refVal_setTitle;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("title"))), refVal_setTitle );
-        setTitle(refVal_setTitle);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tool"))))
-    {
-        utility::string_t refVal_setTool;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("tool"))), refVal_setTool );
-        setTool(refVal_setTool);
+        utility::string_t refVal_setName;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("name"))), refVal_setName );
+        setName(refVal_setName);
     }
     return ok;
 }
 
 
-utility::string_t Listing::getCategory() const
+utility::string_t Listing::getLastModified() const
 {
-    return m_Category;
+    return m_LastModified;
 }
 
 
-void Listing::setCategory(const utility::string_t& value)
+void Listing::setLastModified(const utility::string_t& value)
 {
-    m_Category = value;
-    m_CategoryIsSet = true;
+    m_LastModified = value;
+    m_LastModifiedIsSet = true;
 }
 
-bool Listing::categoryIsSet() const
+bool Listing::lastModifiedIsSet() const
 {
-    return m_CategoryIsSet;
+    return m_LastModifiedIsSet;
 }
 
-void Listing::unsetCategory()
+void Listing::unsetLastModified()
 {
-    m_CategoryIsSet = false;
+    m_LastModifiedIsSet = false;
 }
-int32_t Listing::getCreatedAt() const
+utility::string_t Listing::getName() const
 {
-    return m_CreatedAt;
-}
-
-
-void Listing::setCreatedAt(int32_t value)
-{
-    m_CreatedAt = value;
-    m_CreatedAtIsSet = true;
-}
-
-bool Listing::createdAtIsSet() const
-{
-    return m_CreatedAtIsSet;
-}
-
-void Listing::unsetCreatedAt()
-{
-    m_CreatedAtIsSet = false;
-}
-utility::string_t Listing::getCurrency() const
-{
-    return m_Currency;
+    return m_Name;
 }
 
 
-void Listing::setCurrency(const utility::string_t& value)
+void Listing::setName(const utility::string_t& value)
 {
-    m_Currency = value;
-    m_CurrencyIsSet = true;
+    m_Name = value;
+    m_NameIsSet = true;
 }
 
-bool Listing::currencyIsSet() const
+bool Listing::nameIsSet() const
 {
-    return m_CurrencyIsSet;
+    return m_NameIsSet;
 }
 
-void Listing::unsetCurrency()
+void Listing::unsetName()
 {
-    m_CurrencyIsSet = false;
-}
-utility::string_t Listing::getDescription() const
-{
-    return m_Description;
-}
-
-
-void Listing::setDescription(const utility::string_t& value)
-{
-    m_Description = value;
-    m_DescriptionIsSet = true;
-}
-
-bool Listing::descriptionIsSet() const
-{
-    return m_DescriptionIsSet;
-}
-
-void Listing::unsetDescription()
-{
-    m_DescriptionIsSet = false;
-}
-utility::string_t Listing::getId() const
-{
-    return m_Id;
-}
-
-
-void Listing::setId(const utility::string_t& value)
-{
-    m_Id = value;
-    m_IdIsSet = true;
-}
-
-bool Listing::idIsSet() const
-{
-    return m_IdIsSet;
-}
-
-void Listing::unsetId()
-{
-    m_IdIsSet = false;
-}
-std::shared_ptr<AnyType> Listing::getPrice() const
-{
-    return m_Price.get();
-}
-
-
-void Listing::setPrice(const std::shared_ptr<AnyType>& value)
-{
-    m_Price = value;
-}
-
-bool Listing::priceIsSet() const
-{
-    return m_Price.has_value();
-}
-
-void Listing::unsetPrice()
-{
-    m_Price.reset();
-}
-bool Listing::isRPublic() const
-{
-    return m_r_public;
-}
-
-
-void Listing::setRPublic(bool value)
-{
-    m_r_public = value;
-    m_r_publicIsSet = true;
-}
-
-bool Listing::rPublicIsSet() const
-{
-    return m_r_publicIsSet;
-}
-
-void Listing::unsetr_public()
-{
-    m_r_publicIsSet = false;
-}
-utility::string_t Listing::getPublisherOrg() const
-{
-    return m_PublisherOrg;
-}
-
-
-void Listing::setPublisherOrg(const utility::string_t& value)
-{
-    m_PublisherOrg = value;
-    m_PublisherOrgIsSet = true;
-}
-
-bool Listing::publisherOrgIsSet() const
-{
-    return m_PublisherOrgIsSet;
-}
-
-void Listing::unsetPublisherOrg()
-{
-    m_PublisherOrgIsSet = false;
-}
-utility::string_t Listing::getRecipient() const
-{
-    return m_Recipient;
-}
-
-
-void Listing::setRecipient(const utility::string_t& value)
-{
-    m_Recipient = value;
-    m_RecipientIsSet = true;
-}
-
-bool Listing::recipientIsSet() const
-{
-    return m_RecipientIsSet;
-}
-
-void Listing::unsetRecipient()
-{
-    m_RecipientIsSet = false;
-}
-utility::string_t Listing::getTitle() const
-{
-    return m_Title;
-}
-
-
-void Listing::setTitle(const utility::string_t& value)
-{
-    m_Title = value;
-    m_TitleIsSet = true;
-}
-
-bool Listing::titleIsSet() const
-{
-    return m_TitleIsSet;
-}
-
-void Listing::unsetTitle()
-{
-    m_TitleIsSet = false;
-}
-utility::string_t Listing::getTool() const
-{
-    return m_Tool;
-}
-
-
-void Listing::setTool(const utility::string_t& value)
-{
-    m_Tool = value;
-    m_ToolIsSet = true;
-}
-
-bool Listing::toolIsSet() const
-{
-    return m_ToolIsSet;
-}
-
-void Listing::unsetTool()
-{
-    m_ToolIsSet = false;
+    m_NameIsSet = false;
 }
 
 }

@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -319,7 +319,7 @@ public:
     /// Publishes a post NOW, synchronously, whatever its schedule.
     /// </summary>
     /// <remarks>
-    /// Publishes a post NOW, synchronously, whatever its schedule. No social connector is wired today, so every channel answers an honest 501 naming the seam a real one would plug into, and the post is recorded failed with that exact reason — never a faked \&quot;published\&quot;.
+    /// Publishes a post NOW, synchronously, whatever its schedule. No social connector is wired today, so every channel answers an honest 501 naming the client a real one would plug into, and the post is recorded failed with that exact reason — never a faked \&quot;published\&quot;.
     /// </remarks>
     /// <param name="id">ID is the post id from the path, as returned by create.</param>
     pplx::task<std::shared_ptr<CalendarPost>> postMarketingCalendarByIdPublish(

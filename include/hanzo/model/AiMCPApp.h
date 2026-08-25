@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -61,7 +61,7 @@ public:
     void setName(const utility::string_t& value);
 
     /// <summary>
-    /// Served reports that THIS process mounted it, so its tools are on this process&#39;s door rather than behind a sibling this process only knows the name of.
+    /// Served reports that THIS process mounted it, so its tools are on this process&#39;s MCP server rather than behind a sibling this process only knows the name of.
     /// </summary>
     bool isServed() const;
     bool servedIsSet() const;

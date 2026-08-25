@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -23,6 +23,9 @@
 #include "hanzo/ApiClient.h"
 
 #include "hanzo/model/BaseHealth.h"
+#include "hanzo/model/BaseView.h"
+#include <vector>
+#include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
 namespace hanzo {
@@ -40,6 +43,24 @@ public:
 
     virtual ~BaseApi();
 
+    /// <summary>
+    /// Lists every Base the caller can reach, one per org their token carries.
+    /// </summary>
+    /// <remarks>
+    /// Lists every Base the caller can reach, one per org their token carries.  The orgs come from IAM&#39;s signed membership set, so the list is exactly the orgs the caller is a member of and cannot be widened by asking. It is the account-wide view: a Base is per org, so this is one entry per org and there is nothing to page.  A caller with no membership set — a machine credential, an API key — reaches no Base and receives an empty list rather than a refusal, because holding no membership is an answer and not a failure.
+    /// </remarks>
+    pplx::task<std::vector<std::shared_ptr<BaseView>>> getBaseBases(
+    ) const;
+    /// <summary>
+    /// Describes ONE org&#39;s Base — whether its store exists, and what it occupies.
+    /// </summary>
+    /// <remarks>
+    /// Describes ONE org&#39;s Base — whether its store exists, and what it occupies.  The org must be one the caller&#39;s token carries; any other is not found, so this cannot be used to learn which orgs exist. That check is the same membership set the listing is built from, which is why the two can never disagree about what a caller may see.
+    /// </remarks>
+    /// <param name="org">Org is the org whose Base to describe, from the path. An org the caller&#39;s token does not carry is not found — the same answer a nonexistent one gets, so the listing cannot be used to discover which orgs exist.</param>
+    pplx::task<std::shared_ptr<BaseView>> getBaseBasesByOrg(
+        utility::string_t org
+    ) const;
     /// <summary>
     /// Reports that the base subsystem is serving.
     /// </summary>

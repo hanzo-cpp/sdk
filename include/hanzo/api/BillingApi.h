@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -29,12 +29,14 @@
 #include "hanzo/AnyType.h"
 #include "hanzo/model/BillingAccount.h"
 #include "hanzo/model/CapVerdict.h"
+#include "hanzo/model/Charged.h"
 #include "hanzo/model/Collected.h"
 #include "hanzo/model/CreditBalance.h"
 #include "hanzo/model/CreditGrants.h"
 #include "hanzo/model/CryptoAsset.h"
 #include "hanzo/model/CryptoDeposit.h"
 #include "hanzo/model/CryptoOptions.h"
+#include "hanzo/model/Detachment.h"
 #include "hanzo/model/FinanceLedgerEntry.h"
 #include "hanzo/model/Holder.h"
 #include "hanzo/model/Invoice.h"
@@ -44,11 +46,13 @@
 #include "hanzo/model/PaymentConfig.h"
 #include "hanzo/model/Payout.h"
 #include "hanzo/model/RaiseIn.h"
+#include "hanzo/model/Recharge.h"
 #include "hanzo/model/Rollup.h"
 #include "hanzo/model/Subscription.h"
 #include "hanzo/model/SubscriptionRef.h"
 #include "hanzo/model/Subscriptions.h"
 #include "hanzo/model/Tier.h"
+#include "hanzo/model/TopupIn.h"
 #include "hanzo/model/Transactions.h"
 #include "hanzo/model/WireInstructions.h"
 #include <vector>
@@ -93,33 +97,33 @@ public:
         utility::string_t id
     ) const;
     /// <summary>
-    /// Remove one spend cap
+    /// Removes one of the caller&#39;s spend caps and answers 204.
     /// </summary>
     /// <remarks>
-    /// Deletes a budget the caller&#39;s org owns and answers 204.  Removing a cap REMOVES A CEILING, so it takes the same bar as setting one: a validated org admin, the platform SuperAdmin, or the trusted in-process service token. A member who could delete the org&#39;s cap would have unbounded spend.  A cap this org does not own is NOT FOUND rather than refused — the same answer whether the id is unknown or belongs to another customer — so an id cannot be probed for existence by trying to delete it.
+    /// Removes one of the caller&#39;s spend caps and answers 204.  Removing a cap RAISES what the org may spend, so it takes the same authority setting one does. The caps that remain still bind: this drops one, never the whole policy.
     /// </remarks>
-    /// <param name="id"></param>
+    /// <param name="id">ID is the cap to remove, from the path.</param>
     pplx::task<void> deleteBillingAlertsById(
         utility::string_t id
     ) const;
     /// <summary>
-    /// Remove one saved card or account
+    /// Removes one card or account the caller has saved.
     /// </summary>
     /// <remarks>
-    /// Detaches the method at the processor and drops the row.  A method the caller does not own is NOT FOUND rather than refused — the same answer whether the id names nothing or names somebody else&#39;s card — so an id cannot be probed for existence.  A platform operator or the trusted in-process service token may act on any subject inside the org; everyone else may only remove their own.
+    /// Removes one card or account the caller has saved.  It detaches only the CALLER&#39;S own — the wallet this request bills from, resolved server-side — so an id belonging to another customer of the same org is not something this operation can reach. A platform or service caller detaches on the subject&#39;s behalf, and that authority is decided HERE, where the credential is, and travels as a value: authority decided twice is authority that eventually disagrees with itself.  The card is vaulted at the processor, so what goes is our token for it.
     /// </remarks>
-    /// <param name="id"></param>
-    pplx::task<void> deleteBillingMethodsById(
+    /// <param name="id">ID is the saved method to detach, from the path.</param>
+    pplx::task<std::shared_ptr<Detachment>> deleteBillingMethodsById(
         utility::string_t id
     ) const;
     /// <summary>
-    /// Remove one saved card or account
+    /// DetachPortalMethod is DetachMethod at the address a hosted checkout addresses it by.
     /// </summary>
     /// <remarks>
-    /// Detaches the method at the processor and drops the row.  A method the caller does not own is NOT FOUND rather than refused — the same answer whether the id names nothing or names somebody else&#39;s card — so an id cannot be probed for existence.  A platform operator or the trusted in-process service token may act on any subject inside the org; everyone else may only remove their own.
+    /// DetachPortalMethod is DetachMethod at the address a hosted checkout addresses it by. One set of rows, two spellings: a card detached at either is gone from both, because there is one store behind them.
     /// </remarks>
-    /// <param name="id"></param>
-    pplx::task<void> deleteBillingPortalMethodsById(
+    /// <param name="id">ID is the saved method to detach, from the path.</param>
+    pplx::task<std::shared_ptr<Detachment>> deleteBillingPortalMethodsById(
         utility::string_t id
     ) const;
     /// <summary>
@@ -423,12 +427,12 @@ public:
     pplx::task<void> postBillingPortalMethods(
     ) const;
     /// <summary>
-    /// Recharge every org that has fallen below its threshold
+    /// Sweeps every org&#39;s auto-recharge and answers what it did.
     /// </summary>
     /// <remarks>
-    /// Sweeps every organization and, for those with auto-recharge on whose available balance has dropped below their own threshold, charges the default card and credits the balance.  It charges cards across EVERY tenant, so it is platform authority only — never an org owner, who could otherwise sweep-charge saved cards estate-wide. Its caller is a schedule, not a person.  &#x60;orgs&#x60; is the population considered, not the row count: that difference is how a reader tells &#39;nobody was below threshold&#39; from &#39;the sweep never ran&#39;. One org&#39;s failure is reported in its own row and does not stop the rest.
+    /// Sweeps every org&#39;s auto-recharge and answers what it did.  PLATFORM AUTHORITY ONLY. It charges saved cards across every tenant, so an org owner reaching it could sweep-charge the estate; a caller without it is refused before anything is charged.  The answer explains a sweep that charged nobody as readily as one that charged: it names how many orgs were considered and how many needed charging, with a row each.
     /// </remarks>
-    pplx::task<void> postBillingRechargeRunAll(
+    pplx::task<std::shared_ptr<Recharge>> postBillingRechargeRunAll(
     ) const;
     /// <summary>
     /// Buy a plan with a card
@@ -439,20 +443,28 @@ public:
     pplx::task<void> postBillingSubscribeCard(
     ) const;
     /// <summary>
-    /// Add funds with a card already on file
+    /// Charges a card the caller already saved and credits the balance.
     /// </summary>
     /// <remarks>
-    /// Charges a saved card and credits the caller&#39;s prepaid wallet.  The method must belong to the caller: one that does not is NOT FOUND rather than refused, so an id cannot be probed for existence. A saved row whose card is no longer chargeable is 422 — add the card again — which is a different thing to do than a decline (402) or a bad amount (400).  Retries behave exactly as they do for a token top-up: same key, same replay, same exactly-once at the processor.
+    /// Charges a card the caller already saved and credits the balance. Same receipt and the same retry safety as the token endpoint; the only difference is which card, so a caller topping up from a saved method never re-enters one.
     /// </remarks>
-    pplx::task<void> postBillingTopup(
+    /// <param name="topupIn"></param>
+    /// <param name="xIdempotencyKey"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<Charged>> postBillingTopup(
+        std::shared_ptr<TopupIn> topupIn,
+        boost::optional<utility::string_t> xIdempotencyKey
     ) const;
     /// <summary>
-    /// Add funds with a single-use card token
+    /// Charges a single-use card token and credits the caller&#39;s balance.
     /// </summary>
     /// <remarks>
-    /// Charges a card token from the browser&#39;s payment SDK and credits the caller&#39;s prepaid wallet — the cold-customer path, where nothing has to be saved first.  The wallet credited is the CALLER&#39;S OWN, resolved from their signed identity. It is never a value in the request: a client-set selector is how a customer once topped up one account while their usage drew from another.  &#x60;X-Idempotency-Key&#x60; makes a retry safe. With one, a repeat replays the first result; without one, the same amount from the same subject inside a short window does too. The key reaches the processor as well as our own guard, so the charge is exactly-once at the gateway even if our guard store is down.  The amount is bounded server-side. A decline is 402 and nothing is credited.
+    /// Charges a single-use card token and credits the caller&#39;s balance.  The token comes from the payment form and is vaulted as part of the charge, so no card number reaches this service and none is stored here. The receipt names the ledger entry, the new balance, and the PROCESSOR&#39;s own reference — which is the only field that proves money moved at the gateway rather than only in our ledger.  Retry-safe on X-Idempotency-Key: the same key settles one charge and returns the first receipt.
     /// </remarks>
-    pplx::task<void> postBillingTopupToken(
+    /// <param name="topupIn"></param>
+    /// <param name="xIdempotencyKey"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<Charged>> postBillingTopupToken(
+        std::shared_ptr<TopupIn> topupIn,
+        boost::optional<utility::string_t> xIdempotencyKey
     ) const;
     /// <summary>
     /// Raise a draft invoice against a customer
