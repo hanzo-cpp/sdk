@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -299,16 +299,16 @@ public:
         std::shared_ptr<DatabaseCreateIn> databaseCreateIn
     ) const;
     /// <summary>
-    /// Run a SQL statement against a D1 database
+    /// Runs one SQL statement against a D1 database.
     /// </summary>
     /// <remarks>
-    /// Executes a statement on one D1 database on the org&#39;s OWN Cloudflare account and relays D1&#39;s result set. &#x60;sql&#x60; is required and &#x60;params&#x60; carries the bound values in placeholder order — use them rather than interpolating values into the statement.  The body is checked for a non-empty &#x60;sql&#x60; and then forwarded VERBATIM, so every field D1 accepts reaches D1 even though only two are named here; the declared schema is open for that reason. That verbatim forward is why this is not a typed op — decoding and re-encoding the body would drop &#x60;params&#x60;, where the query&#39;s bound values live. Requires ORG ADMIN (403 otherwise); a malformed body or missing &#x60;sql&#x60; is 400; 503 if the org has never connected a Cloudflare token.
+    /// Runs one SQL statement against a D1 database. It executes on the org&#39;s OWN Cloudflare account and relays D1&#39;s result set. The body is checked for a non-empty &#x60;sql&#x60; and then forwarded VERBATIM, so every field D1 accepts reaches D1 even though only two are named here.  Requires ORG ADMIN — a statement may INSERT, UPDATE or DROP, so a query takes the write gate rather than the read one — and a caller who is only an org member is refused 403. A missing &#x60;sql&#x60; is 400; 503 if the org has never connected a Cloudflare token.
     /// </remarks>
     /// <param name="database"></param>
-    /// <param name="d1Query"> (optional)</param>
+    /// <param name="d1Query"></param>
     pplx::task<std::shared_ptr<AnyType>> postCloudflareD1DatabasesByDatabaseQuery(
         utility::string_t database,
-        boost::optional<std::shared_ptr<D1Query>> d1Query
+        std::shared_ptr<D1Query> d1Query
     ) const;
     /// <summary>
     /// KVNamespaceCreate creates a Workers KV namespace on the org&#39;s Cloudflare account.
@@ -413,16 +413,16 @@ public:
         utility::string_t key
     ) const;
     /// <summary>
-    /// Upload or replace a module Worker script
+    /// Uploads or replaces a module Worker script.
     /// </summary>
     /// <remarks>
-    /// Publishes a module Worker to the org&#39;s OWN Cloudflare account under the name in the path, replacing whatever was there, and relays Cloudflare&#39;s result. &#x60;script&#x60; carries the module SOURCE; the optional compatibility date, compatibility flags and bindings are packed into the multipart upload Cloudflare expects.  The path names the script and the body field named &#x60;script&#x60; is its source — two different things that share a name, which is exactly why this cannot be a typed op: a binder that gives the URL the last word would overwrite the source with the script&#39;s name. Requires ORG ADMIN (403 otherwise); an unparseable body or empty source is 400; 503 if the org has never connected a Cloudflare token.
+    /// Uploads or replaces a module Worker script. It publishes to the org&#39;s OWN Cloudflare account under the name in the path, replacing whatever was there, and relays Cloudflare&#39;s result. The compatibility date, compatibility flags and bindings are packed into the multipart upload Cloudflare expects, beside the module source.  Requires ORG ADMIN — a Worker is arbitrary code on the org&#39;s own account and domains — so a caller who is only an org member is refused 403. An empty source is 400, as is a &#x60;mainModule&#x60; that is not a plain file name; 503 if the org has never connected a Cloudflare token.
     /// </remarks>
-    /// <param name="script"></param>
-    /// <param name="workerScriptPut"> (optional)</param>
+    /// <param name="script">Script means two things on this route, and the document says so in both places it appears: the PATH segment names the Worker to publish, and the BODY field carries that Worker&#39;s ES-module source — the code itself, never a name or a URL. A blank or absent source is refused; there is no empty Worker.</param>
+    /// <param name="workerScriptPut"></param>
     pplx::task<std::shared_ptr<AnyType>> putCloudflareWorkersScriptsByScript(
         utility::string_t script,
-        boost::optional<std::shared_ptr<WorkerScriptPut>> workerScriptPut
+        std::shared_ptr<WorkerScriptPut> workerScriptPut
     ) const;
 
 protected:

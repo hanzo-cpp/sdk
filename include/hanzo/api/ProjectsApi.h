@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -40,6 +40,7 @@
 #include "hanzo/model/ProjectsRelease.h"
 #include "hanzo/model/ProjectsSite.h"
 #include "hanzo/model/ProjectsSiteDeploy.h"
+#include "hanzo/model/ProjectsStar.h"
 #include "hanzo/model/ProjectsUpdate.h"
 #include "hanzo/model/TagConfig.h"
 #include <vector>
@@ -82,6 +83,16 @@ public:
     pplx::task<void> deleteProjectsBySlugDomainsByHost(
         utility::string_t slug,
         utility::string_t host
+    ) const;
+    /// <summary>
+    /// Removes the caller&#39;s own bookmark from a project, and answers whether it is starred afterwards.
+    /// </summary>
+    /// <remarks>
+    /// Removes the caller&#39;s own bookmark from a project, and answers whether it is starred afterwards.  It removes only YOUR star — the same one star wrote — so a project other people have starred stays on their lists. Unstarring one you had not starred is not an error; it leaves it unstarred.
+    /// </remarks>
+    /// <param name="slug">Slug is the project to act on, from the path. It is unique within the caller&#39;s org and nowhere else, so another tenant&#39;s slug is a 404.</param>
+    pplx::task<std::shared_ptr<ProjectsStar>> deleteProjectsBySlugStar(
+        utility::string_t slug
     ) const;
     /// <summary>
     /// Returns every project your org owns.
@@ -331,7 +342,7 @@ public:
     /// Generates a self-contained, mobile-responsive static site from a natural-language brief and deploys it live in one call.
     /// </summary>
     /// <remarks>
-    /// Generates a self-contained, mobile-responsive static site from a natural-language brief and deploys it live in one call.  One inference call turns &#x60;brief&#x60; (capped at 8 KiB) into a file manifest, which then runs through the SAME validation, guards and viewport guarantee as a hand-supplied manifest: index.html required at the root, absolute and traversal paths rejected, per-file and total size capped, and a mobile viewport meta tag injected into every HTML document that lacks one. The generated site is fully inline — no CDNs, no remote fonts or images — so it is CSP-safe. &#x60;slug&#x60; and &#x60;name&#x60; are optional: the model&#39;s own title is preferred, and a slug is derived or minted when none is given.  It writes into the SAME org-scoped store as /v1/projects — it ensures a project (framework &#x60;static&#x60;) for the resolved slug and records a deployment — so this is a second door onto one publish pipeline, not a second copy of project state. Ordering is the billing contract: the hosting gate runs BEFORE any inference or upload, so a denied gate generates and uploads NOTHING, and the debit lands once, only after the site is actually live. The tokens are billed to the same ledger the hosting fee was reserved against.  Answers 503 when object storage or inference is unconfigured, and 400 when the model&#39;s manifest cannot be parsed or fails the guards.  Scope: a validated principal is required (403 without one) and the site is published into THAT principal&#39;s org.
+    /// Generates a self-contained, mobile-responsive static site from a natural-language brief and deploys it live in one call.  One inference call turns &#x60;brief&#x60; (capped at 8 KiB) into a file manifest, which then runs through the SAME validation, guards and viewport guarantee as a hand-supplied manifest: index.html required at the root, absolute and traversal paths rejected, per-file and total size capped, and a mobile viewport meta tag injected into every HTML document that lacks one. The generated site is fully inline — no CDNs, no remote fonts or images — so it is CSP-safe. &#x60;slug&#x60; and &#x60;name&#x60; are optional: the model&#39;s own title is preferred, and a slug is derived or minted when none is given.  It writes into the SAME org-scoped store as /v1/projects — it ensures a project (framework &#x60;static&#x60;) for the resolved slug and records a deployment — so this is a second entry point to one publish pipeline, not a second copy of project state. Ordering is the billing contract: the hosting gate runs BEFORE any inference or upload, so a denied gate generates and uploads NOTHING, and the debit lands once, only after the site is actually live. The tokens are billed to the same ledger the hosting fee was reserved against.  Answers 503 when object storage or inference is unconfigured, and 400 when the model&#39;s manifest cannot be parsed or fails the guards.  Scope: a validated principal is required (403 without one) and the site is published into THAT principal&#39;s org.
     /// </remarks>
     /// <param name="projectsBuildSite"></param>
     pplx::task<std::shared_ptr<ProjectsSiteDeploy>> postProjectsSites(
@@ -346,6 +357,16 @@ public:
     /// <param name="projectsDeploySite"></param>
     pplx::task<std::shared_ptr<ProjectsSiteDeploy>> postProjectsSitesDeploy(
         std::shared_ptr<ProjectsDeploySite> projectsDeploySite
+    ) const;
+    /// <summary>
+    /// Bookmarks a project for the person calling, and answers whether it is starred afterwards.
+    /// </summary>
+    /// <remarks>
+    /// Bookmarks a project for the person calling, and answers whether it is starred afterwards.  The star is YOURS: it is keyed by you as well as by the project, so two people see two answers for the same one and starring it says nothing about anybody else&#39;s list. Starring a project you have already starred leaves it starred.
+    /// </remarks>
+    /// <param name="slug">Slug is the project to act on, from the path. It is unique within the caller&#39;s org and nowhere else, so another tenant&#39;s slug is a 404.</param>
+    pplx::task<std::shared_ptr<ProjectsStar>> putProjectsBySlugStar(
+        utility::string_t slug
     ) const;
 
 protected:

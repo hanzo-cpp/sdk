@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -93,7 +93,7 @@ public:
     void setName(const utility::string_t& value);
 
     /// <summary>
-    /// Price is what a call costs and who is paid, absent for a free tool. Enforcement is the x402 settlement seam; this is the declaration.
+    /// Price is what a call costs and who is paid, absent for a free tool. Enforcement is the x402 settlement client; this is the declaration.
     /// </summary>
     std::shared_ptr<Price> getPrice() const;
     bool priceIsSet() const;

@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -1003,7 +1003,7 @@ pplx::task<std::shared_ptr<GitOpsPlane>> DeployApi::getDeployGitops() const
         return localVarResult;
     });
 }
-pplx::task<void> DeployApi::getDeployHealth() const
+pplx::task<std::shared_ptr<DeployHealth>> DeployApi::getDeployHealth() const
 {
 
 
@@ -1016,6 +1016,7 @@ pplx::task<void> DeployApi::getDeployHealth() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1104,7 +1105,25 @@ pplx::task<void> DeployApi::getDeployHealth() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<DeployHealth> localVarResult(new DeployHealth());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getDeployHealth: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
 pplx::task<void> DeployApi::getDeployLogin() const
@@ -1912,7 +1931,7 @@ pplx::task<std::shared_ptr<VersionMessage>> DeployApi::getDeployVersion() const
         return localVarResult;
     });
 }
-pplx::task<void> DeployApi::postDeployApplicationsByNameRollback(utility::string_t name) const
+pplx::task<std::shared_ptr<ArgoApp>> DeployApi::postDeployApplicationsByNameRollback(utility::string_t name) const
 {
 
 
@@ -1926,6 +1945,7 @@ pplx::task<void> DeployApi::postDeployApplicationsByNameRollback(utility::string
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -2014,10 +2034,28 @@ pplx::task<void> DeployApi::postDeployApplicationsByNameRollback(utility::string
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<ArgoApp> localVarResult(new ArgoApp());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postDeployApplicationsByNameRollback: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> DeployApi::postDeployApplicationsByNameSync(utility::string_t name) const
+pplx::task<std::shared_ptr<ArgoApp>> DeployApi::postDeployApplicationsByNameSync(utility::string_t name) const
 {
 
 
@@ -2031,6 +2069,7 @@ pplx::task<void> DeployApi::postDeployApplicationsByNameSync(utility::string_t n
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -2119,10 +2158,28 @@ pplx::task<void> DeployApi::postDeployApplicationsByNameSync(utility::string_t n
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<ArgoApp> localVarResult(new ArgoApp());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postDeployApplicationsByNameSync: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> DeployApi::postDeployLogout() const
+pplx::task<std::shared_ptr<SessionEnded>> DeployApi::postDeployLogout() const
 {
 
 
@@ -2135,6 +2192,7 @@ pplx::task<void> DeployApi::postDeployLogout() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -2223,10 +2281,28 @@ pplx::task<void> DeployApi::postDeployLogout() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<SessionEnded> localVarResult(new SessionEnded());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postDeployLogout: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> DeployApi::postDeployReconcile() const
+pplx::task<std::shared_ptr<ReconcileReport>> DeployApi::postDeployReconcile() const
 {
 
 
@@ -2239,6 +2315,7 @@ pplx::task<void> DeployApi::postDeployReconcile() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -2327,7 +2404,25 @@ pplx::task<void> DeployApi::postDeployReconcile() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<ReconcileReport> localVarResult(new ReconcileReport());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postDeployReconcile: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
 

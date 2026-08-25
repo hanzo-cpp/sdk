@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -53,7 +53,7 @@ public:
 
 
     /// <summary>
-    /// At is when it happened, RFC 3339. Empty means now. It must sit inside the thirty-day window the aggregates keep and no more than two minutes ahead of this plane&#39;s clock; anything outside that is REFUSED rather than quietly accepted, because a future timestamp moves the aggregates&#39; leading edge and leaves every later event for that subject reading as though it never happened. History older than the window is folded in from your own event surface, not through this door.
+    /// At is when it happened, RFC 3339. Empty means now. It must sit inside the thirty-day window the aggregates keep and no more than two minutes ahead of this plane&#39;s clock; anything outside that is REFUSED rather than quietly accepted, because a future timestamp moves the aggregates&#39; leading edge and leaves every later event for that subject reading as though it never happened. History older than the window is folded in from your own event surface, not through this endpoint.
     /// </summary>
     utility::string_t getAt() const;
     bool atIsSet() const;

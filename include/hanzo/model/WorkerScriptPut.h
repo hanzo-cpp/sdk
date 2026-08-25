@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -59,21 +59,33 @@ public:
     void unsetBindings();
     void setBindings(const std::shared_ptr<AnyType>& value);
 
+    /// <summary>
+    /// CompatibilityDate pins which Workers runtime behaviour the script runs under, as a plain calendar date (\&quot;2024-01-01\&quot;). Absent leaves the account&#39;s own default in force.
+    /// </summary>
     utility::string_t getCompatibilityDate() const;
     bool compatibilityDateIsSet() const;
     void unsetCompatibilityDate();
     void setCompatibilityDate(const utility::string_t& value);
 
+    /// <summary>
+    /// CompatibilityFlags turn individual runtime behaviours on or off around that date (\&quot;nodejs_compat\&quot;), in Cloudflare&#39;s own flag vocabulary. Absent means the date alone decides.
+    /// </summary>
     std::vector<utility::string_t> getCompatibilityFlags() const;
     bool compatibilityFlagsIsSet() const;
     void unsetCompatibilityFlags();
     void setCompatibilityFlags(const std::vector<utility::string_t>& value);
 
+    /// <summary>
+    /// MainModule is the module file the runtime starts at. Absent means \&quot;worker.js\&quot;.
+    /// </summary>
     utility::string_t getMainModule() const;
     bool mainModuleIsSet() const;
     void unsetMainModule();
     void setMainModule(const utility::string_t& value);
 
+    /// <summary>
+    /// Script means two things on this route, and the document says so in both places it appears: the PATH segment names the Worker to publish, and the BODY field carries that Worker&#39;s ES-module source — the code itself, never a name or a URL. A blank or absent source is refused; there is no empty Worker.
+    /// </summary>
     utility::string_t getScript() const;
     bool scriptIsSet() const;
     void unsetScript();

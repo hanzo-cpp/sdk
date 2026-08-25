@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -27,6 +27,7 @@
 #include "hanzo/model/CollabRequest.h"
 #include "hanzo/model/CollabResult.h"
 #include "hanzo/model/CookieAck.h"
+#include "hanzo/HttpContent.h"
 #include "hanzo/model/PlanInfo.h"
 #include "hanzo/model/ProviderInfo.h"
 #include "hanzo/model/StatsOut.h"
@@ -75,7 +76,7 @@ public:
     /// Start a sign-in at hanzo.id
     /// </summary>
     /// <remarks>
-    /// STARTS the OAuth hop: answers 302 to hanzo.id&#39;s authorize endpoint and sets the short-lived HttpOnly state cookie that binds the flow to this browser. NO TOKEN COMES BACK FROM THIS CALL — the session is minted by the callback below, and a client that expects JSON here gets a redirect with no body.  A browser is the intended caller. Anything else must follow the Location AND keep the Set-Cookie, because the callback refuses a flow whose state it cannot match. That cookie carries the random nonce plus the client&#39;s navigateUrl, so the round trip needs no second channel, and it lives ten minutes — the whole budget for the hop.  The provider segment only picks a hint: the redirect_uri is ALWAYS the canonical openid callback, the one IAM has registered. Measured end to end, hanzo.id strips that hint today, so /auth/google and /auth/openid land on the same Hanzo sign-in page — the federation shortcut is an upstream fix, not a second door here.
+    /// STARTS the OAuth hop: answers 302 to hanzo.id&#39;s authorize endpoint and sets the short-lived HttpOnly state cookie that binds the flow to this browser. NO TOKEN COMES BACK FROM THIS CALL — the session is minted by the callback below, and a client that expects JSON here gets a redirect with no body.  A browser is the intended caller. Anything else must follow the Location AND keep the Set-Cookie, because the callback refuses a flow whose state it cannot match. That cookie carries the random nonce plus the client&#39;s navigateUrl, so the round trip needs no second channel, and it lives ten minutes — the whole budget for the hop.  The provider segment only picks a hint: the redirect_uri is ALWAYS the canonical openid callback, the one IAM has registered. Measured end to end, hanzo.id strips that hint today, so /auth/google and /auth/openid land on the same Hanzo sign-in page — the federation shortcut is an upstream fix, not a second endpoint here.
     /// </remarks>
     /// <param name="provider"></param>
     pplx::task<void> getTeamAccountAuthByProvider(
@@ -95,7 +96,7 @@ public:
     /// Returns the identity providers this deployment starts a login with.
     /// </summary>
     /// <remarks>
-    /// Returns the identity providers this deployment starts a login with. It is always exactly one — hanzo.id. Which identities that door accepts (Google, GitHub, passkey, password) is IAM&#39;s question, answered on IAM&#39;s own page next to the identity check and the training-data consent that must precede a first session; listing them here would be a second place holding that answer, and the two drift the moment IAM gains or drops one.
+    /// Returns the identity providers this deployment starts a login with. It is always exactly one — hanzo.id. Which identities that provider accepts (Google, GitHub, passkey, password) is IAM&#39;s question, answered on IAM&#39;s own page next to the identity check and the training-data consent that must precede a first session; listing them here would be a second place holding that answer, and the two drift the moment IAM gains or drops one.
     /// </remarks>
     pplx::task<std::vector<std::shared_ptr<ProviderInfo>>> getTeamAccountProviders(
     ) const;
@@ -113,7 +114,7 @@ public:
     /// <remarks>
     /// Serves the usage-and-wallet page the Team front links to — HTML, not JSON. It is a static React build compiled into this binary, so there is no upstream to be down and no build step at request time.  SESSION-GATED: without a verified team session token — bearer, else the HttpOnly account cookie — the caller gets 401 and not one byte of the page, so an anonymous browser meets a refusal rather than a shell that then fails to load anything.  The page is markup only. It reads money SAME-ORIGIN from cloud&#39;s own balance and usage endpoints, which pin the org from the IAM cookie the team OAuth callback set — nothing under this path proxies a money read, so there is no second auth mechanism here to get wrong. A deployment whose page was never built answers 503 naming the missing bundle, never a blank 200.
     /// </remarks>
-    pplx::task<void> getTeamBillingUi(
+    pplx::task<std::shared_ptr<HttpContent>> getTeamBillingUi(
     ) const;
     /// <summary>
     /// Returns the caller org&#39;s bot members — the org&#39;s agents projected as the workspace Employees they become, each with the member account uuid and Person reference the roster addresses it by.
@@ -139,7 +140,7 @@ public:
     /// </remarks>
     /// <param name="workspace"></param>
     /// <param name="filename"></param>
-    pplx::task<void> getTeamFilesByWorkspaceByFilename(
+    pplx::task<std::shared_ptr<HttpContent>> getTeamFilesByWorkspaceByFilename(
         utility::string_t workspace,
         utility::string_t filename
     ) const;
@@ -177,7 +178,7 @@ public:
     /// Read the caller&#39;s account and switch workspace
     /// </summary>
     /// <remarks>
-    /// The account control plane the Team client speaks: one POST carries a &#x60;method&#x60; verb and its &#x60;params&#x60;, and answers {\&quot;result\&quot;: …}. The verbs are the session&#39;s own reads and the workspace switch — getLoginInfoByToken, getUserWorkspaces, selectWorkspace, getWorkspaceInfo, getMemberships, getPerson, getSocialIds, getRegionInfo, isReadOnlyGuest — plus sendInvite, which adds a member to a workspace and is refused for a caller who is not its owner or admin.  A REFUSAL IS HTTP 200 carrying {\&quot;error\&quot;: {severity, code, params}} — the platform Status the client translates — not a 4xx. An unreadable body, an unauthorized session and an unknown verb all arrive that way, so a caller that reads only the status code reads every failure here as a success.  NO CREDENTIAL IS EVER HANDLED HERE. login, signUp, the OTP verbs, password change and reset, join and the guest-token exchange each answer Unauthorized with \&quot;sign in at hanzo.id\&quot; — a stated policy, not an unknown method, so the door being shut is a fact a test can pin. Sessions come from the OAuth pair under /account/auth.  Auth is the team session token: Authorization: Bearer, else the HttpOnly account-token cookie. The tenant is that token&#39;s SIGNED org claim, never a header, and selectWorkspace resolves only among the orgs the token proves membership of. It also demands an explicit workspaceUrl — it never falls back to a first workspace, and a slug that resolves in two of the caller&#39;s orgs answers Ambiguous rather than picking one.
+    /// The account control plane the Team client speaks: one POST carries a &#x60;method&#x60; verb and its &#x60;params&#x60;, and answers {\&quot;result\&quot;: …}. The verbs are the session&#39;s own reads and the workspace switch — getLoginInfoByToken, getUserWorkspaces, selectWorkspace, getWorkspaceInfo, getMemberships, getPerson, getSocialIds, getRegionInfo, isReadOnlyGuest — plus sendInvite, which adds a member to a workspace and is refused for a caller who is not its owner or admin.  A REFUSAL IS HTTP 200 carrying {\&quot;error\&quot;: {severity, code, params}} — the platform Status the client translates — not a 4xx. An unreadable body, an unauthorized session and an unknown verb all arrive that way, so a caller that reads only the status code reads every failure here as a success.  NO CREDENTIAL IS EVER HANDLED HERE. login, signUp, the OTP verbs, password change and reset, join and the guest-token exchange each answer Unauthorized with \&quot;sign in at hanzo.id\&quot; — a stated policy, not an unknown method, so the refusal is a fact a test can pin. Sessions come from the OAuth pair under /account/auth.  Auth is the team session token: Authorization: Bearer, else the HttpOnly account-token cookie. The tenant is that token&#39;s SIGNED org claim, never a header, and selectWorkspace resolves only among the orgs the token proves membership of. It also demands an explicit workspaceUrl — it never falls back to a first workspace, and a slug that resolves in two of the caller&#39;s orgs answers Ambiguous rather than picking one.
     /// </remarks>
     pplx::task<void> postTeamAccount(
     ) const;
@@ -208,16 +209,18 @@ public:
     /// Stores one file in a workspace&#39;s blob store and answers the blob id it is addressable by, as plain text — the front discards that body, it is there for a caller driving this by hand.  The body is a multipart form with a &#x60;file&#x60; part, and THAT PART&#39;S FILENAME IS THE BLOB ID: the client mints it (a uuid v4) and the server stores under it, so a part whose filename is not a uuid is refused rather than assigned one. A file over 100 MiB is 413 and an empty one is 400.  The caller must hold a verified session or workspace token AND be a member of the workspace; an unknown workspace, another tenant&#39;s workspace and a workspace the caller is not in all answer the same 404, so a probe learns nothing about what exists. The stored key embeds the verified org and the workspace, so an upload cannot land in another tenant&#39;s box whatever id it names. A storage backend that is unavailable fails closed with 502 rather than reporting a write it never made.
     /// </remarks>
     /// <param name="workspace"></param>
-    pplx::task<void> postTeamFilesByWorkspace(
-        utility::string_t workspace
+    /// <param name="body"> (optional)</param>
+    pplx::task<std::shared_ptr<HttpContent>> postTeamFilesByWorkspace(
+        utility::string_t workspace,
+        boost::optional<std::shared_ptr<HttpContent>> body
     ) const;
     /// <summary>
     /// Store the session token as this browser&#39;s cookie
     /// </summary>
     /// <remarks>
-    /// Writes the team session token into the HttpOnly &#x60;account-token&#x60; cookie — Secure, SameSite&#x3D;Lax, whole-origin scope, thirty days — and answers {\&quot;result\&quot;: true}. This is how the client turns the token it caught off the OAuth bounce into a credential page JS can no longer read, which IS the security property: script that cannot see the cookie cannot exfiltrate it, and every later call on the files, billing and collaborator planes authenticates from it when no bearer is sent.  The token is VERIFIED — signature and expiry, against this service&#39;s own signing secret — BEFORE it is stored. Anything this service did not sign is 401 and nothing is written; persisting a caller-supplied value unchecked would be a session-fixation door, where an attacker pins a cookie the victim&#39;s browser then presents as its own.  The token may arrive as &#x60;token&#x60; in the JSON body or, when the body is absent or unparseable, from the Authorization bearer — an unreadable body is NOT an error here. The sibling DELETE clears this same cookie and signs the browser out of team only: the IAM cookie set alongside it is a different credential with its own lifetime and is left alone.
+    /// Writes the team session token into the HttpOnly &#x60;account-token&#x60; cookie — Secure, SameSite&#x3D;Lax, whole-origin scope, thirty days — and answers {\&quot;result\&quot;: true}. This is how the client turns the token it caught off the OAuth bounce into a credential page JS can no longer read, which IS the security property: script that cannot see the cookie cannot exfiltrate it, and every later call on the files, billing and collaborator planes authenticates from it when no bearer is sent.  The token is VERIFIED — signature and expiry, against this service&#39;s own signing secret — BEFORE it is stored. Anything this service did not sign is 401 and nothing is written; persisting a caller-supplied value unchecked would be a session-fixation hole, where an attacker pins a cookie the victim&#39;s browser then presents as its own.  The token may arrive as &#x60;token&#x60; in the JSON body or, when the body is absent or unparseable, from the Authorization bearer — an unreadable body is NOT an error here. The sibling DELETE clears this same cookie and signs the browser out of team only: the IAM cookie set alongside it is a different credential with its own lifetime and is left alone.
     /// </remarks>
-    pplx::task<void> putTeamAccountCookie(
+    pplx::task<std::shared_ptr<CookieAck>> putTeamAccountCookie(
     ) const;
 
 protected:

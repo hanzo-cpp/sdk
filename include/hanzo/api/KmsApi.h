@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -69,10 +69,10 @@ public:
     /// <remarks>
     /// Lists the secrets your org holds, without their values.  Returns the METADATA of the caller&#39;s own secrets: each one&#39;s name, path, environment and sealing scheme. No value and no ciphertext is included — this operation exists to enumerate what is held, and reading a value is a separate, per-secret call.  Scoped to the caller&#39;s own org and nothing else, structurally: there is no org in the path, the store root is derived from the validated org claim, and a caller therefore has no way to name another tenant&#39;s namespace. &#x60;path&#x60; narrows to a subpath and &#x60;env&#x60; selects the environment; both are also accepted under the operator&#39;s spellings, &#x60;secretPath&#x60; and &#x60;environment&#x60;. An omitted &#x60;env&#x60; means every environment and an omitted &#x60;path&#x60; means the whole org, because a default here reported a populated store as empty.  Admission is fail-closed and in order: a validated member, an org that is a DNS-1123 label, and a store holding a master key — 403, 400 and 503 respectively, all decided before any record is touched.
     /// </remarks>
-    /// <param name="env"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="environment"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="path"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="secretPath"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="env">Env selects the environment, which is part of a secret&#39;s storage key. OMITTED means EVERY environment — this is the enumeration surface, so it must be able to answer \&quot;what is in here\&quot; without being told where to look. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="environment">Environment is the KMS operator&#39;s spelling of Env, accepted so one caller need not learn the other&#39;s vocabulary. Env wins when both are sent. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="path">Path narrows the listing to one subtree beneath the caller&#39;s org root, as a &#x60;/&#x60;-separated path such as &#x60;/ci&#x60;. OMITTED means the whole org. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="secretPath">SecretPath is the KMS operator&#39;s spelling of Path. Path wins when both are sent. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<KmsSecrets>> getKmsSecrets(
         boost::optional<utility::string_t> env,
         boost::optional<utility::string_t> environment,
@@ -83,7 +83,7 @@ public:
     /// Exchanges a machine credential for an IAM bearer token.
     /// </summary>
     /// <remarks>
-    /// Exchanges a machine credential for an IAM bearer token.  Takes a tenant&#39;s machine credential — a client id and client secret — and returns an owner-scoped IAM access token with its lifetime, which is the bearer the caller then carries on the org-scoped secret operations.  It is deliberately public and unauthenticated, because it IS the credential exchange and runs before any principal exists. That makes it the one route in this subsystem rate-limited PER SOURCE IP, keyed on the real TCP peer rather than on any caller-supplied header, and body-capped at the same door.  The submitted secret is never logged and never echoed, and failures collapse to one clean status with no upstream detail: 401 when the credential does not authenticate, 502 when the identity provider is unreachable, 503 when no issuer is configured. That is on purpose — a richer error would be a validity oracle for guessed credentials.
+    /// Exchanges a machine credential for an IAM bearer token.  Takes a tenant&#39;s machine credential — a client id and client secret — and returns an owner-scoped IAM access token with its lifetime, which is the bearer the caller then carries on the org-scoped secret operations.  It is deliberately public and unauthenticated, because it IS the credential exchange and runs before any principal exists. That makes it the one route in this subsystem rate-limited PER SOURCE IP, keyed on the real TCP peer rather than on any caller-supplied header, and body-capped in the same place.  The submitted secret is never logged and never echoed, and failures collapse to one clean status with no upstream detail: 401 when the credential does not authenticate, 502 when the identity provider is unreachable, 503 when no issuer is configured. That is on purpose — a richer error would be a validity oracle for guessed credentials.
     /// </remarks>
     /// <param name="kmsLogin"></param>
     pplx::task<std::shared_ptr<KmsToken>> postKmsAuthLogin(

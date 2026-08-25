@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -52,6 +52,9 @@ public:
     /// ObjectItem members
 
 
+    /// <summary>
+    /// ETag is the store&#39;s entity tag for the bytes currently at this key, with the quotes the store wraps it in stripped. It is an opaque VERSION and not a checksum to verify against: a single-part upload&#39;s tag happens to be the MD5 of the content and a multipart upload&#39;s is not, and nothing here says which this was. Compare two reads of one key to learn whether the object changed; absent for a folder entry, and for an object the store reports none for.
+    /// </summary>
     utility::string_t getEtag() const;
     bool etagIsSet() const;
     void unsetEtag();

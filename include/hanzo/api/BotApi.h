@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -51,10 +51,10 @@ public:
     pplx::task<std::shared_ptr<BotRuns>> getBotRuns(
     ) const;
     /// <summary>
-    /// Reserved address for launching a bot run — not implemented, always 501
+    /// Answers 501 to every call: launching a bot run is not implemented.
     /// </summary>
     /// <remarks>
-    /// Answers 501 to every call. The bot runtime exposes no launch operation, so nothing here can start a sandbox, and this address is published rather than dropped because it is the collection every run is created in: GET lists them, POST would launch one.  The refusal is total and takes no input. The handler never reads the body, so any bytes at all — malformed JSON included — get the same 501; no run id is minted, no session URL is handed back, and no per-run fee is charged. That is the point: the earlier version minted an id the runtime had never heard of, pointed it at a VNC node that did not exist, and took real money for it.  Listing and stopping runs are live and org-scoped. Only the launch is missing, and it returns in the same change that can prove a bot boots.
+    /// Answers 501 to every call: launching a bot run is not implemented.  The bot runtime exposes no launch operation, so nothing here can start a sandbox. This address is published rather than dropped because it is the collection every run is created in: GET lists them, POST would launch one.  The refusal is total and takes no input. No run id is minted, no session URL is handed back, and no per-run fee is charged. That is the point: the earlier version minted an id the runtime had never heard of, pointed it at a VNC node that did not exist, and took real money for it. 501 is the truth, and the truth is cheaper than a plausible lie.  Listing and stopping runs are live and org-scoped. Only the launch is missing, and it returns in the same change that can prove a bot boots — a runtime-side launch operation first (TS, cross-repo), with the entitlement gate and the meter beside it.
     /// </remarks>
     pplx::task<void> postBotRuns(
     ) const;
@@ -64,7 +64,7 @@ public:
     /// <remarks>
     /// Stop terminates one of the caller org&#39;s own bot runs and reports its terminal state.  The own-key guard is the org: it is the caller&#39;s validated org, never theirs to choose, and the runtime resolves the run id UNDER it. A run belonging to another tenant is not among this org&#39;s runs, so it answers absent — the same 404 a nonexistent id gets, which is what keeps this from being an oracle.  Absence is honoured ONLY when the runtime answers it. A runtime that does not serve stop reports nothing about the run, and reporting \&quot;stopped\&quot; on that basis would be a stop that cannot fail — so it is a 502.
     /// </remarks>
-    /// <param name="runId"></param>
+    /// <param name="runId">RunID is the run to stop, as the bot runtime named it. It is read from the URL — the &#x60;{runId}&#x60; segment the router matched on — and a body carrying a different id cannot redirect the stop.</param>
     pplx::task<std::shared_ptr<BotStopped>> postBotRunsByRunidStop(
         utility::string_t runId
     ) const;

@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -768,13 +768,14 @@ pplx::task<void> CommerceApi::deleteCommerceProductByProductid(utility::string_t
         return void();
     });
 }
-pplx::task<void> CommerceApi::deleteCommerceRatesEntriesBySlug(utility::string_t slug) const
+pplx::task<void> CommerceApi::deleteCommerceRatesEntriesByProductByMeter(utility::string_t product, utility::string_t meter) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/commerce/rates/entries/{slug}");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("slug") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(slug)));
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/commerce/rates/entries/{product}/{meter}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("product") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(product)));
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("meter") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(meter)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -802,7 +803,7 @@ pplx::task<void> CommerceApi::deleteCommerceRatesEntriesBySlug(utility::string_t
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("CommerceApi->deleteCommerceRatesEntriesBySlug does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("CommerceApi->deleteCommerceRatesEntriesByProductByMeter does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -829,7 +830,7 @@ pplx::task<void> CommerceApi::deleteCommerceRatesEntriesBySlug(utility::string_t
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("CommerceApi->deleteCommerceRatesEntriesBySlug does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("CommerceApi->deleteCommerceRatesEntriesByProductByMeter does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -850,7 +851,7 @@ pplx::task<void> CommerceApi::deleteCommerceRatesEntriesBySlug(utility::string_t
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling deleteCommerceRatesEntriesBySlug: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling deleteCommerceRatesEntriesByProductByMeter: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -861,7 +862,7 @@ pplx::task<void> CommerceApi::deleteCommerceRatesEntriesBySlug(utility::string_t
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling deleteCommerceRatesEntriesBySlug: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling deleteCommerceRatesEntriesByProductByMeter: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -17434,13 +17435,14 @@ pplx::task<void> CommerceApi::putCommerceProductByProductid(utility::string_t pr
         return void();
     });
 }
-pplx::task<void> CommerceApi::putCommerceRatesEntriesBySlug(utility::string_t slug) const
+pplx::task<void> CommerceApi::putCommerceRatesEntriesByProductByMeter(utility::string_t product, utility::string_t meter) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/commerce/rates/entries/{slug}");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("slug") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(slug)));
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/commerce/rates/entries/{product}/{meter}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("product") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(product)));
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("meter") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(meter)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -17468,7 +17470,7 @@ pplx::task<void> CommerceApi::putCommerceRatesEntriesBySlug(utility::string_t sl
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("CommerceApi->putCommerceRatesEntriesBySlug does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("CommerceApi->putCommerceRatesEntriesByProductByMeter does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -17495,7 +17497,7 @@ pplx::task<void> CommerceApi::putCommerceRatesEntriesBySlug(utility::string_t sl
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("CommerceApi->putCommerceRatesEntriesBySlug does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("CommerceApi->putCommerceRatesEntriesByProductByMeter does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -17516,7 +17518,7 @@ pplx::task<void> CommerceApi::putCommerceRatesEntriesBySlug(utility::string_t sl
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling putCommerceRatesEntriesBySlug: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling putCommerceRatesEntriesByProductByMeter: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -17527,7 +17529,7 @@ pplx::task<void> CommerceApi::putCommerceRatesEntriesBySlug(utility::string_t sl
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling putCommerceRatesEntriesBySlug: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling putCommerceRatesEntriesByProductByMeter: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
