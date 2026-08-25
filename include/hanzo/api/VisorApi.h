@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -23,6 +23,7 @@
 #include "hanzo/ApiClient.h"
 
 #include "hanzo/model/AgentBinding.h"
+#include "hanzo/AnyType.h"
 #include "hanzo/model/BindAgentReq.h"
 #include "hanzo/model/BindingList.h"
 #include "hanzo/model/BotList.h"
@@ -218,20 +219,20 @@ public:
         utility::string_t id
     ) const;
     /// <summary>
-    /// The regions a machine or GPU can be launched into
+    /// Regions lists the regions a machine can be launched in.
     /// </summary>
     /// <remarks>
-    /// Lists the launch regions the compute catalog offers, passed through verbatim from the provider so the shape stays the provider&#39;s single source of truth. The catalog is GLOBAL, not per-tenant: no owner is forwarded and every org sees the same list. It is still gated — a validated principal is required, 403 without one — because the catalog is what backs the launch drawer, not public marketing copy.
+    /// Regions lists the regions a machine can be launched in.  The catalog is GLOBAL — identical for every tenant — so no owner is forwarded upstream. It is still org-gated, because a catalog is a map of what this deployment can spend money in and an anonymous caller has no business reading it.
     /// </remarks>
-    pplx::task<void> getVisorComputeRegions(
+    pplx::task<std::shared_ptr<AnyType>> getVisorComputeRegions(
     ) const;
     /// <summary>
-    /// The machine and GPU sizes that can be launched
+    /// Sizes lists the machine sizes available to launch, with their specifications.
     /// </summary>
     /// <remarks>
-    /// Lists the instance sizes the compute catalog offers, passed through verbatim from the provider so the shape stays the provider&#39;s single source of truth. These are the values &#x60;size&#x60; accepts on a launch. The catalog is GLOBAL, not per-tenant: no owner is forwarded and every org sees the same list. It is still gated — a validated principal is required, 403 without one.
+    /// Sizes lists the machine sizes available to launch, with their specifications.  Global and org-gated, exactly as the region catalog is, and for the same reasons.
     /// </remarks>
-    pplx::task<void> getVisorComputeSizes(
+    pplx::task<std::shared_ptr<AnyType>> getVisorComputeSizes(
     ) const;
     /// <summary>
     /// Returns the caller org&#39;s bot machines — the kind&#x3D;bot machines — each joined with the agent binding that says which cloud Agent it runs.

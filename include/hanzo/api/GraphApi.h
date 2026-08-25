@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -99,6 +99,22 @@ public:
         std::shared_ptr<GraphResolveIn> graphResolveIn
     ) const;
     /// <summary>
+    /// Find assertions by their text rather than by an entity key
+    /// </summary>
+    /// <remarks>
+    /// Finds assertions by their text where read finds them by their keys.  It is the READ with one more term, not a second way to leave the store: same order, same ceiling, same tenancy, and searching composes with narrowing by relation and by instant because all of them are terms of one filter.  It resolves nothing. What matches is what was asserted, including claims that were later corrected — which is the honest answer to \&quot;where is this mentioned\&quot; and the reason the caller then asks resolve about what it found.
+    /// </remarks>
+    /// <param name="q">Q is what to look for: words, matched as prefixes, all of them required. Punctuation is text here rather than syntax, so an entity key searches as itself. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="relation">Relation narrows to one relation. Absent matches every relation. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="asOf">AsOf bounds the search to what was knowable at an instant, RFC 3339. Absent searches everything this plane holds. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="limit">Limit caps how many assertions come back. Absent, zero, or anything above the walk ceiling is the ceiling. (optional, default to 0)</param>
+    pplx::task<std::shared_ptr<GraphReadOut>> graphSearch(
+        boost::optional<utility::string_t> q,
+        boost::optional<utility::string_t> relation,
+        boost::optional<utility::string_t> asOf,
+        boost::optional<int32_t> limit
+    ) const;
+    /// <summary>
     /// The relations in use, and the rule that resolves a conflict
     /// </summary>
     /// <remarks>
@@ -110,7 +126,7 @@ public:
     /// Ask the graph in one request, traversing.
     /// </summary>
     /// <remarks>
-    /// Runs a GraphQL query against this organization&#39;s assertions.  It is the one door here a caller can TRAVERSE: the REST ops each answer a single question, so composing them — the entities this one points at, and what each of those resolves to — costs a request per hop with the intermediate keys held by the caller. Here that is one query and the nesting is the answer&#39;s shape.  It adds no way to ask anything new. Every field runs the SAME operation the matching REST route runs, so the tenancy, the as-of bound, the traversal bounds and the conflict rule are the ones already in force; the schema is served by introspection.  A query that cannot run answers 200 with an &#x60;errors&#x60; list, which is the wire every GraphQL client parses.
+    /// Runs a GraphQL query against this organization&#39;s assertions.  It is the one endpoint here a caller can TRAVERSE: the REST ops each answer a single question, so composing them — the entities this one points at, and what each of those resolves to — costs a request per hop with the intermediate keys held by the caller. Here that is one query and the nesting is the answer&#39;s shape.  It adds no way to ask anything new. Every field runs the SAME operation the matching REST route runs, so the tenancy, the as-of bound, the traversal bounds and the conflict rule are the ones already in force; the schema is served by introspection.  A query that cannot run answers 200 with an &#x60;errors&#x60; list, which is the wire every GraphQL client parses.
     /// </remarks>
     /// <param name="graphQLIn"> (optional)</param>
     pplx::task<std::shared_ptr<GraphQLOut>> postGraphGraphql(

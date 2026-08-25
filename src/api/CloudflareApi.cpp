@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -2721,8 +2721,14 @@ pplx::task<std::shared_ptr<AnyType>> CloudflareApi::postCloudflareD1Databases(st
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<AnyType>> CloudflareApi::postCloudflareD1DatabasesByDatabaseQuery(utility::string_t database, boost::optional<std::shared_ptr<D1Query>> d1Query) const
+pplx::task<std::shared_ptr<AnyType>> CloudflareApi::postCloudflareD1DatabasesByDatabaseQuery(utility::string_t database, std::shared_ptr<D1Query> d1Query) const
 {
+
+    // verify the required parameter 'd1Query' is set
+    if (d1Query == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'd1Query' when calling CloudflareApi->postCloudflareD1DatabasesByDatabaseQuery"));
+    }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
@@ -2774,8 +2780,8 @@ pplx::task<std::shared_ptr<AnyType>> CloudflareApi::postCloudflareD1DatabasesByD
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        if (d1Query)
-            localVarJson = ModelBase::toJson(*d1Query);
+        localVarJson = ModelBase::toJson(d1Query);
+        
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
@@ -2785,9 +2791,9 @@ pplx::task<std::shared_ptr<AnyType>> CloudflareApi::postCloudflareD1DatabasesByD
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(d1Query && (*d1Query).get())
+        if(d1Query.get())
         {
-            (*d1Query)->toMultipart(localVarMultipart, utility::conversions::to_string_t("d1Query"));
+            d1Query->toMultipart(localVarMultipart, utility::conversions::to_string_t("d1Query"));
         }
         
 
@@ -4135,8 +4141,14 @@ pplx::task<void> CloudflareApi::putCloudflareKvNamespacesByNamespaceValuesByKey(
         return void();
     });
 }
-pplx::task<std::shared_ptr<AnyType>> CloudflareApi::putCloudflareWorkersScriptsByScript(utility::string_t script, boost::optional<std::shared_ptr<WorkerScriptPut>> workerScriptPut) const
+pplx::task<std::shared_ptr<AnyType>> CloudflareApi::putCloudflareWorkersScriptsByScript(utility::string_t script, std::shared_ptr<WorkerScriptPut> workerScriptPut) const
 {
+
+    // verify the required parameter 'workerScriptPut' is set
+    if (workerScriptPut == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'workerScriptPut' when calling CloudflareApi->putCloudflareWorkersScriptsByScript"));
+    }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
@@ -4188,8 +4200,8 @@ pplx::task<std::shared_ptr<AnyType>> CloudflareApi::putCloudflareWorkersScriptsB
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        if (workerScriptPut)
-            localVarJson = ModelBase::toJson(*workerScriptPut);
+        localVarJson = ModelBase::toJson(workerScriptPut);
+        
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
@@ -4199,9 +4211,9 @@ pplx::task<std::shared_ptr<AnyType>> CloudflareApi::putCloudflareWorkersScriptsB
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(workerScriptPut && (*workerScriptPut).get())
+        if(workerScriptPut.get())
         {
-            (*workerScriptPut)->toMultipart(localVarMultipart, utility::conversions::to_string_t("workerScriptPut"));
+            workerScriptPut->toMultipart(localVarMultipart, utility::conversions::to_string_t("workerScriptPut"));
         }
         
 

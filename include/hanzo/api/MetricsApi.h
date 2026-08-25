@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -99,7 +99,7 @@ public:
     /// Ingest a MetricBatch — the same payload the ZAP transport carries
     /// </summary>
     /// <remarks>
-    /// Writes every sample in a luxfi/metric &#x60;MetricBatch&#x60; into the calling org&#39;s store and answers &#x60;{written}&#x60;: the number of SAMPLES stored, not families and not metrics. This is the exact wire shape the ZAP &#x60;MsgMetricBatch&#x60; transport carries, so the HTTP door and the optional ZAP push receiver share one code path and one meaning — the transport is an optimisation, never a different contract.  A counter or gauge lands as one sample. A histogram or summary contributes DERIVED &#x60;&lt;name&gt;_sum&#x60; and &#x60;&lt;name&gt;_count&#x60; series, so one metric can write more than one sample and &#x60;written&#x60; can exceed the number of metrics you sent. The batch&#39;s own &#x60;TimestampNs&#x60; stamps every sample it carries.  The tenant is the gateway-minted &#x60;X-Org-Id&#x60; header, falling back to the deployment brand and then &#x60;default&#x60;; each org gets its own store, WAL-durable under the deployment&#39;s data dir. A body that does not decode is 400.
+    /// Writes every sample in a luxfi/metric &#x60;MetricBatch&#x60; into the calling org&#39;s store and answers &#x60;{written}&#x60;: the number of SAMPLES stored, not families and not metrics. This is the exact wire shape the ZAP &#x60;MsgMetricBatch&#x60; transport carries, so the HTTP endpoint and the optional ZAP push receiver share one code path and one meaning — the transport is an optimisation, never a different contract.  A counter or gauge lands as one sample. A histogram or summary contributes DERIVED &#x60;&lt;name&gt;_sum&#x60; and &#x60;&lt;name&gt;_count&#x60; series, so one metric can write more than one sample and &#x60;written&#x60; can exceed the number of metrics you sent. The batch&#39;s own &#x60;TimestampNs&#x60; stamps every sample it carries.  The tenant is the gateway-minted &#x60;X-Org-Id&#x60; header, falling back to the deployment brand and then &#x60;default&#x60;; each org gets its own store, WAL-durable under the deployment&#39;s data dir. A body that does not decode is 400.
     /// </remarks>
     pplx::task<void> postMetricsBatch(
     ) const;

@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -20,6 +20,8 @@ Sandbox::Sandbox()
 {
     m_r_class = utility::conversions::to_string_t("");
     m_r_classIsSet = false;
+    m_ConnectedAt = 0;
+    m_ConnectedAtIsSet = false;
     m_CreatedAt = 0;
     m_CreatedAtIsSet = false;
     m_Error = utility::conversions::to_string_t("");
@@ -62,6 +64,11 @@ web::json::value Sandbox::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("class"))] = ModelBase::toJson(m_r_class);
+    }
+    if(m_ConnectedAtIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("connectedAt"))] = ModelBase::toJson(m_ConnectedAt);
     }
     if(m_CreatedAtIsSet)
     {
@@ -138,6 +145,17 @@ bool Sandbox::fromJson(const web::json::value& val)
             utility::string_t refVal_setRClass;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRClass);
             setRClass(refVal_setRClass);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("connectedAt"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("connectedAt")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setConnectedAt;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setConnectedAt);
+            setConnectedAt(refVal_setConnectedAt);
             
         }
     }
@@ -287,6 +305,10 @@ void Sandbox::toMultipart(std::shared_ptr<MultipartFormData> multipart, const ut
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("class")), m_r_class));
     }
+    if(m_ConnectedAtIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("connectedAt")), m_ConnectedAt));
+    }
     if(m_CreatedAtIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("createdAt")), m_CreatedAt));
@@ -351,6 +373,12 @@ bool Sandbox::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
         utility::string_t refVal_setRClass;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("class"))), refVal_setRClass );
         setRClass(refVal_setRClass);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("connectedAt"))))
+    {
+        int32_t refVal_setConnectedAt;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("connectedAt"))), refVal_setConnectedAt );
+        setConnectedAt(refVal_setConnectedAt);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
@@ -448,6 +476,27 @@ bool Sandbox::rClassIsSet() const
 void Sandbox::unsetr_class()
 {
     m_r_classIsSet = false;
+}
+int32_t Sandbox::getConnectedAt() const
+{
+    return m_ConnectedAt;
+}
+
+
+void Sandbox::setConnectedAt(int32_t value)
+{
+    m_ConnectedAt = value;
+    m_ConnectedAtIsSet = true;
+}
+
+bool Sandbox::connectedAtIsSet() const
+{
+    return m_ConnectedAtIsSet;
+}
+
+void Sandbox::unsetConnectedAt()
+{
+    m_ConnectedAtIsSet = false;
 }
 int32_t Sandbox::getCreatedAt() const
 {

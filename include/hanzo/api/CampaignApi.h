@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -141,7 +141,7 @@ public:
     /// Launch a campaign across every channel it declares
     /// </summary>
     /// <remarks>
-    /// Pushes the campaign live on each of its channels through that channel&#39;s executor and answers the whole campaign with the per-channel outcome written back onto it.  The fan-out is BEST-EFFORT PER CHANNEL, and the honest reading of the result is the rule most callers get wrong: one channel failing never aborts the others, so each channel row carries its own &#x60;live&#x60;, &#x60;failed&#x60; or &#x60;unavailable&#x60; status and detail, and a paid launch can be live while an email launch failed. The campaign itself is &#x60;live&#x60; when AT LEAST ONE channel launched and &#x60;failed&#x60; only when none did — &#x60;live&#x60; is not a claim that every channel launched. Repeating the call is safe: a channel already live is skipped, never re-launched. A campaign carrying more than one creative has its variant assigned here by the experiment seam and tagged as &#x60;utm_content&#x60;.  Org-scoped and fails closed: a valid bearer is required (403 without one), the campaign is read under the caller&#39;s OWN org so another tenant&#39;s id is a 404, and a campaign with no channels is a 400 — there is nothing to launch. Each executor resolves its own org&#39;s connector token from the org passed to it, so a launch can never spend through another tenant&#39;s connector.
+    /// Pushes the campaign live on each of its channels through that channel&#39;s executor and answers the whole campaign with the per-channel outcome written back onto it.  The fan-out is BEST-EFFORT PER CHANNEL, and the honest reading of the result is the rule most callers get wrong: one channel failing never aborts the others, so each channel row carries its own &#x60;live&#x60;, &#x60;failed&#x60; or &#x60;unavailable&#x60; status and detail, and a paid launch can be live while an email launch failed. The campaign itself is &#x60;live&#x60; when AT LEAST ONE channel launched and &#x60;failed&#x60; only when none did — &#x60;live&#x60; is not a claim that every channel launched. Repeating the call is safe: a channel already live is skipped, never re-launched. A campaign carrying more than one creative has its variant assigned here by the experiment client and tagged as &#x60;utm_content&#x60;.  Org-scoped and fails closed: a valid bearer is required (403 without one), the campaign is read under the caller&#39;s OWN org so another tenant&#39;s id is a 404, and a campaign with no channels is a 400 — there is nothing to launch. Each executor resolves its own org&#39;s connector token from the org passed to it, so a launch can never spend through another tenant&#39;s connector.
     /// </remarks>
     /// <param name="id"></param>
     pplx::task<void> postCampaignByIdLaunch(

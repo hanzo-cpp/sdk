@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -1468,7 +1468,7 @@ public:
     /// Complete a Google sign-in
     /// </summary>
     /// <remarks>
-    /// The callback Google redirects a user back to after they approve the sign-in. It exchanges the authorization code, establishes the session and answers 303 to the console.  The answer is a Location header and no body, which is why it is not a typed operation — declaring a JSON response for a redirect would publish a shape that does not exist and hide the header that is the entire point.  UNAUTHENTICATED by necessity: it is how a caller GETS a principal, so requiring one would be circular. It is not an open door — the code it carries is single-use and verified against the provider.
+    /// The callback Google redirects a user back to after they approve the sign-in. It exchanges the authorization code, establishes the session and answers 303 to the console.  The answer is a Location header and no body, which is why it is not a typed operation — declaring a JSON response for a redirect would publish a shape that does not exist and hide the header that is the entire point.  UNAUTHENTICATED by necessity: it is how a caller GETS a principal, so requiring one would be circular. It is not an open endpoint — the code it carries is single-use and verified against the provider.
     /// </remarks>
     pplx::task<void> getO11yCompleteGoogle(
     ) const;

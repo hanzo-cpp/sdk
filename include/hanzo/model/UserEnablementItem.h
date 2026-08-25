@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -53,7 +53,7 @@ public:
 
 
     /// <summary>
-    /// beta &amp;&amp; not yet opted in
+    /// CanOptIn is whether POST /v1/pricing/enablement/optin would do anything here: the item is in beta and this org is not on its list yet. False for a caller with no validated org, who has no org to enrol.
     /// </summary>
     bool isCanOptIn() const;
     bool canOptInIsSet() const;
@@ -61,25 +61,31 @@ public:
     void setCanOptIn(bool value);
 
     /// <summary>
-    /// visible to the caller&#39;s org
+    /// Effective is whether the caller&#39;s org may use the item right now, which is the field to branch on: true for any ga item, for a beta this org holds, and never for an off one.
     /// </summary>
     bool isEffective() const;
     bool effectiveIsSet() const;
     void unsetEffective();
     void setEffective(bool value);
 
+    /// <summary>
+    /// ID is the item within that namespace — a model id, a provider name, or a feature key.
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(const utility::string_t& value);
 
+    /// <summary>
+    /// Kind is the namespace the id lives in: \&quot;model\&quot;, \&quot;provider\&quot; or \&quot;feature\&quot;.
+    /// </summary>
     utility::string_t getKind() const;
     bool kindIsSet() const;
     void unsetKind();
     void setKind(const utility::string_t& value);
 
     /// <summary>
-    /// caller&#39;s org on the beta list
+    /// OptedIn is whether the caller&#39;s org is on this item&#39;s beta grant list. It can be true on an \&quot;off\&quot; item — the list survives the kill switch and is simply ignored while it is thrown — so it does not imply Effective.
     /// </summary>
     bool isOptedIn() const;
     bool optedInIsSet() const;
@@ -87,7 +93,7 @@ public:
     void setOptedIn(bool value);
 
     /// <summary>
-    /// off|beta|ga
+    /// State is the item&#39;s GLOBAL availability — \&quot;off\&quot;, \&quot;beta\&quot; or \&quot;ga\&quot; — which is the operator&#39;s setting and not this caller&#39;s answer. Effective is that.
     /// </summary>
     utility::string_t getState() const;
     bool stateIsSet() const;

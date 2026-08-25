@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -118,7 +118,7 @@ public:
     void setServiceAccountId(const utility::string_t& value);
 
     /// <summary>
-    /// Tools are the tool names this agent may call. Omitted or empty grants NONE — that default is the agent&#39;s authority and is not widened anywhere. The single entry \&quot;*\&quot; means whatever the fleet&#39;s tool door serves at the time of each run.
+    /// Tools are the tool names this agent may call. Omitted or empty grants NONE — that default is the agent&#39;s authority and is not widened anywhere. The single entry \&quot;*\&quot; means whatever the fleet&#39;s MCP server serves at the time of each run.
     /// </summary>
     std::vector<utility::string_t> getTools() const;
     bool toolsIsSet() const;

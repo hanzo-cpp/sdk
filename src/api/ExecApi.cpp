@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -33,7 +33,7 @@ ExecApi::~ExecApi()
 {
 }
 
-pplx::task<void> ExecApi::getExecFilesBySid(utility::string_t sid) const
+pplx::task<std::vector<std::shared_ptr<Listing>>> ExecApi::getExecFilesBySid(utility::string_t sid) const
 {
 
 
@@ -47,6 +47,7 @@ pplx::task<void> ExecApi::getExecFilesBySid(utility::string_t sid) const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -135,7 +136,29 @@ pplx::task<void> ExecApi::getExecFilesBySid(utility::string_t sid) const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::vector<std::shared_ptr<Listing>> localVarResult;
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+            for( auto& localVarItem : localVarJson.as_array() )
+            {
+                std::vector<std::shared_ptr<Listing>>::value_type localVarItemObj;
+                ModelBase::fromJson(localVarItem, localVarItemObj);
+                localVarResult.push_back(localVarItemObj);
+            }
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getExecFilesBySid: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
 pplx::task<std::shared_ptr<CodeResult>> ExecApi::postExec(std::shared_ptr<CodeRun> codeRun) const

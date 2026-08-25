@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -48,7 +48,7 @@ public:
     /// Every capability this deployment answers, and where to follow each one
     /// </summary>
     /// <remarks>
-    /// The API root. One row per capability — its name, the address it answers under, whether it is generally available, and the sentence it says about itself — plus the links to the document at /v1/openapi.json and the agent door.  It is a projection of that same document and carries the same surface a customer calls: the operator&#39;s admin product, the relay doors, the legacy spellings and any capability that is not yet generally available are in neither.  Unauthenticated by design, exactly as the document it derives from: a client has to be able to read the contract before it holds a credential, and a list of capability names grants nothing.
+    /// The API root. One row per capability — its name, the address it answers under, whether it is generally available, and the sentence it says about itself — plus the links to the document at /v1/openapi.json and the agent MCP server.  It is a projection of that same document and carries the same surface a customer calls: the operator&#39;s admin product, the relays, the legacy spellings and any capability that is not yet generally available are in neither.  Unauthenticated by design, exactly as the document it derives from: a client has to be able to read the contract before it holds a credential, and a list of capability names grants nothing.
     /// </remarks>
     pplx::task<std::shared_ptr<Root>> getCapabilities(
     ) const;
@@ -74,12 +74,12 @@ public:
     /// The API description this SDK was generated from
     /// </summary>
     /// <remarks>
-    /// Serves the OpenAPI document for the routes this process actually answers — generated from the live router at request time, not from a checked-in file that can disagree with it.  On an app it is that app&#39;s own surface; on the fleet&#39;s front door it is the woven document for every mounted app. Unauthenticated by design: a client has to be able to read the contract before it holds a credential, and the document grants nothing.  Rendered once and served as bytes thereafter, so the route table&#39;s immutability is what makes a repeat request a memcpy rather than a re-encode of a megabyte document.
+    /// Serves the OpenAPI document for the routes this process actually answers — generated from the live router at request time, not from a checked-in file that can disagree with it.  On an app it is that app&#39;s own surface; on the fleet&#39;s public endpoint it is the composed document for every mounted app. Unauthenticated by design: a client has to be able to read the contract before it holds a credential, and the document grants nothing.  Rendered once and served as bytes thereafter, so the route table&#39;s immutability is what makes a repeat request a memcpy rather than a re-encode of a megabyte document.
     /// </remarks>
     pplx::task<void> getOpenapi_json(
     ) const;
     /// <summary>
-    /// The agent door: every subsystem&#39;s operations as MCP tools
+    /// The agent endpoint: every subsystem&#39;s operations as MCP tools
     /// </summary>
     /// <remarks>
     /// Model Context Protocol over JSON-RPC 2.0 — one POST per message, stateless, protocol revision 2026-07-28. tools/list answers without a credential with one tool per subsystem (its operations in the \&quot;op\&quot; enum) plus \&quot;describe\&quot;, which returns one operation&#39;s input schema. tools/call names a subsystem tool and carries {\&quot;op\&quot;: &lt;operation&gt;, \&quot;input\&quot;: &lt;its arguments&gt;}; it takes the same bearer the REST API does, and a call that carries none is answered 401 with a WWW-Authenticate header naming the resource metadata at /.well-known/oauth-protected-resource, which names the authorization server to sign in at. The tool surface is the public contract: the operator&#39;s admin product is not offered, and a name that would disclose a secret or mutate an identity is withheld — the list says how many, under _meta.

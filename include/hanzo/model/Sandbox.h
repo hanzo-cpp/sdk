@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -59,6 +59,14 @@ public:
     bool rClassIsSet() const;
     void unsetr_class();
     void setRClass(const utility::string_t& value);
+
+    /// <summary>
+    /// ConnectedAt is when somebody was last known to have this sandbox&#39;s project OPEN, Unix seconds. It is a fact with an EXPIRY rather than a flag: a watcher restamps it every beat of its stream, and it goes stale on its own when the stream dies, so nothing has to be turned off by a process that may not be there any more. The reaper reads it to choose WHICH idle allowance applies — see lifecycle.go.  Zero means nobody has said so, which puts the sandbox on the short clock.
+    /// </summary>
+    int32_t getConnectedAt() const;
+    bool connectedAtIsSet() const;
+    void unsetConnectedAt();
+    void setConnectedAt(int32_t value);
 
     /// <summary>
     /// CreatedAt is when the lease was first taken, Unix seconds.
@@ -160,6 +168,9 @@ public:
 protected:
     utility::string_t m_r_class;
     bool m_r_classIsSet;
+
+    int32_t m_ConnectedAt;
+    bool m_ConnectedAtIsSet;
 
     int32_t m_CreatedAt;
     bool m_CreatedAtIsSet;

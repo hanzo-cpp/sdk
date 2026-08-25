@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -24,20 +24,33 @@
 
 #include "hanzo/model/CaptableCompany.h"
 #include "hanzo/model/CaptableCompanyUpdate.h"
+#include "hanzo/model/CaptableConvertibleIn.h"
+#include "hanzo/model/CaptableCreated.h"
 #include "hanzo/model/CaptableDeleted.h"
+#include "hanzo/model/CaptableEquityPlanIn.h"
 #include "hanzo/model/CaptableEquityPlans.h"
+#include "hanzo/model/CaptableInvested.h"
+#include "hanzo/model/CaptableInvestmentIn.h"
 #include "hanzo/model/CaptableInvestments.h"
 #include "hanzo/model/CaptableNotes.h"
+#include "hanzo/model/CaptableOptionIn.h"
 #include "hanzo/model/CaptableOptions.h"
 #include "hanzo/model/CaptableRoundCloseRequest.h"
 #include "hanzo/model/CaptableRoundDetail.h"
+#include "hanzo/model/CaptableRoundIn.h"
 #include "hanzo/model/CaptableRounds.h"
+#include "hanzo/model/CaptableSafeIn.h"
 #include "hanzo/model/CaptableSafes.h"
 #include "hanzo/model/CaptableShareClass.h"
+#include "hanzo/model/CaptableShareClassAmend.h"
+#include "hanzo/model/CaptableShareClassIn.h"
+#include "hanzo/model/CaptableShareIn.h"
+#include "hanzo/model/CaptableShareTransfer.h"
 #include "hanzo/model/CaptableShares.h"
 #include "hanzo/model/CaptableStakeholder.h"
 #include "hanzo/model/CaptableStakeholderPatch.h"
 #include "hanzo/model/CaptableSummary.h"
+#include "hanzo/model/CaptableTransferred.h"
 #include "hanzo/model/CaptableUpdated.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
@@ -207,14 +220,16 @@ public:
     pplx::task<std::shared_ptr<CaptableSummary>> getCaptableSummary(
     ) const;
     /// <summary>
-    /// Amend a share class
+    /// Replaces one share class&#39;s terms.
     /// </summary>
     /// <remarks>
-    /// Rewrites one share class — the amendment path for a class whose authorized count, price, seniority or preference terms have changed.  It REPLACES the class rather than merging into it: every field is taken from this body, so an omitted field resets to the create-time default instead of keeping its current value. Send the full class. The index and the derived prefix are unchanged by an amendment. An id that is not this company&#39;s is not found.  Writes the caller&#39;s OWN cap table: the org resolved from the validated principal selects the tenant&#39;s store and scopes every row, so there is no field by which a caller can write into another company&#39;s table; a request with no validated org is refused. The whole write runs in one transaction, so a refusal leaves nothing behind. Validation is the cap-table bundle&#39;s and so is its refusal: a bad body comes back as {success:false, message, errors:[…]} with the failing fields listed, and numeric fields accept a number OR a numeric string. Bodies are capped at 1 MiB.
+    /// Replaces one share class&#39;s terms.  It is a full REPLACE and not a merge, despite the PATCH: every field is written as sent, so a field omitted is written empty rather than left alone. Send the whole class. The method is PATCH because the resource is addressed by id, not because the body is partial — and getting that backwards silently blanks terms every later issuance prices against.
     /// </remarks>
-    /// <param name="id"></param>
-    pplx::task<void> patchCaptableClassesById(
-        utility::string_t id
+    /// <param name="id">ID addresses the resource. The URL is the addressing authority — a path segment binds after the body and after the query — so the address decides which row is written whatever a body claims.</param>
+    /// <param name="captableShareClassAmend"></param>
+    pplx::task<std::shared_ptr<CaptableUpdated>> patchCaptableClassesById(
+        utility::string_t id,
+        std::shared_ptr<CaptableShareClassAmend> captableShareClassAmend
     ) const;
     /// <summary>
     /// Changes one of the caller org&#39;s stakeholders.
@@ -229,44 +244,54 @@ public:
         std::shared_ptr<CaptableStakeholderPatch> captableStakeholderPatch
     ) const;
     /// <summary>
-    /// Define a share class
+    /// Defines a new class of shares.
     /// </summary>
     /// <remarks>
-    /// Creates a class of stock — its authorized share count, votes per share, par and issue price, seniority, conversion rights and liquidation/participation multiples — which is what shares, priced rounds and equity plans are then issued against.  Two fields are the company&#39;s to assign, not the caller&#39;s: the class index auto-increments per company, and the certificate prefix is DERIVED from the class type (CS for COMMON, PS for anything else), so a prefix in the body is ignored.  Writes the caller&#39;s OWN cap table: the org resolved from the validated principal selects the tenant&#39;s store and scopes every row, so there is no field by which a caller can write into another company&#39;s table; a request with no validated org is refused. The whole write runs in one transaction, so a refusal leaves nothing behind. Validation is the cap-table bundle&#39;s and so is its refusal: a bad body comes back as {success:false, message, errors:[…]} with the failing fields listed, and numeric fields accept a number OR a numeric string. Bodies are capped at 1 MiB.
+    /// Defines a new class of shares.  Every field but convertsToShareClassId is required — a class is the instrument every later issuance prices against, so a partially-specified one would silently mis-value every share issued into it. &#x60;seniority&#x60; orders liquidation preference with LOWER first.
     /// </remarks>
-    pplx::task<void> postCaptableClasses(
+    /// <param name="captableShareClassIn"></param>
+    pplx::task<std::shared_ptr<CaptableCreated>> postCaptableClasses(
+        std::shared_ptr<CaptableShareClassIn> captableShareClassIn
     ) const;
     /// <summary>
-    /// Record a convertible note
+    /// Records a convertible note.
     /// </summary>
     /// <remarks>
-    /// Records a convertible note held by a stakeholder: the principal, the conversion cap, discount and interest rate, MFN, and the issue and board-approval dates.  The stakeholder must already exist in this company, and the note&#39;s public id must be unused there — a reused id is a conflict rather than an overwrite. Like a SAFE, this records the instrument only; conversion is not performed here.  Writes the caller&#39;s OWN cap table: the org resolved from the validated principal selects the tenant&#39;s store and scopes every row, so there is no field by which a caller can write into another company&#39;s table; a request with no validated org is refused. The whole write runs in one transaction, so a refusal leaves nothing behind. Validation is the cap-table bundle&#39;s and so is its refusal: a bad body comes back as {success:false, message, errors:[…]} with the failing fields listed, and numeric fields accept a number OR a numeric string. Bodies are capped at 1 MiB.
+    /// Records a convertible note.
     /// </remarks>
-    pplx::task<void> postCaptableConvertibles(
+    /// <param name="captableConvertibleIn"></param>
+    pplx::task<std::shared_ptr<CaptableCreated>> postCaptableConvertibles(
+        std::shared_ptr<CaptableConvertibleIn> captableConvertibleIn
     ) const;
     /// <summary>
-    /// Grant options from an equity plan
+    /// Grants options to a stakeholder from an equity plan.
     /// </summary>
     /// <remarks>
-    /// Records an option grant to a stakeholder under an equity plan — quantity, exercise price, ISO/NSO type, cliff and vesting years, and the issue, expiration, vesting-start, board-approval and Rule 144 dates.  The stakeholder and the equity plan must both already exist in this company, and the grant id must be unused there — a reused grant id is a conflict, so a grant can never be overwritten by a later one carrying the same number.  Writes the caller&#39;s OWN cap table: the org resolved from the validated principal selects the tenant&#39;s store and scopes every row, so there is no field by which a caller can write into another company&#39;s table; a request with no validated org is refused. The whole write runs in one transaction, so a refusal leaves nothing behind. Validation is the cap-table bundle&#39;s and so is its refusal: a bad body comes back as {success:false, message, errors:[…]} with the failing fields listed, and numeric fields accept a number OR a numeric string. Bodies are capped at 1 MiB.
+    /// Grants options to a stakeholder from an equity plan.
     /// </remarks>
-    pplx::task<void> postCaptableOptions(
+    /// <param name="captableOptionIn"></param>
+    pplx::task<std::shared_ptr<CaptableCreated>> postCaptableOptions(
+        std::shared_ptr<CaptableOptionIn> captableOptionIn
     ) const;
     /// <summary>
-    /// Open an equity incentive plan
+    /// Opens an equity plan that options are granted from.
     /// </summary>
     /// <remarks>
-    /// Reserves a pool of shares out of a share class for option grants, with the board approval and effective dates and what happens to cancelled options.  The share class must already exist in this company — a plan cannot reserve out of nothing. Note the field name the bundle reads for the cancellation behaviour is &#x60;defaultCancellatonBehavior&#x60;; that spelling is the wire, and a correctly spelled key is simply not seen.  Writes the caller&#39;s OWN cap table: the org resolved from the validated principal selects the tenant&#39;s store and scopes every row, so there is no field by which a caller can write into another company&#39;s table; a request with no validated org is refused. The whole write runs in one transaction, so a refusal leaves nothing behind. Validation is the cap-table bundle&#39;s and so is its refusal: a bad body comes back as {success:false, message, errors:[…]} with the failing fields listed, and numeric fields accept a number OR a numeric string. Bodies are capped at 1 MiB.
+    /// Opens an equity plan that options are granted from.
     /// </remarks>
-    pplx::task<void> postCaptablePlans(
+    /// <param name="captableEquityPlanIn"></param>
+    pplx::task<std::shared_ptr<CaptableCreated>> postCaptablePlans(
+        std::shared_ptr<CaptableEquityPlanIn> captableEquityPlanIn
     ) const;
     /// <summary>
-    /// Open a funding round
+    /// Opens a priced round that investments can be added to.
     /// </summary>
     /// <remarks>
-    /// Opens a round with its name, type and target amount. It starts OPEN with nothing raised; investments are then added to it, and closing it is its own call.  A PRICED round is the constrained case: it requires a share class that exists in this company and a price per share above zero, because that price is what converts each investment into issued shares. Its pre-money valuation is optional. A non-priced round carries none of the three.  Writes the caller&#39;s OWN cap table: the org resolved from the validated principal selects the tenant&#39;s store and scopes every row, so there is no field by which a caller can write into another company&#39;s table; a request with no validated org is refused. The whole write runs in one transaction, so a refusal leaves nothing behind. Validation is the cap-table bundle&#39;s and so is its refusal: a bad body comes back as {success:false, message, errors:[…]} with the failing fields listed, and numeric fields accept a number OR a numeric string. Bodies are capped at 1 MiB.
+    /// Opens a priced round that investments can be added to.  The round opens OPEN; investing into a closed one is refused.
     /// </remarks>
-    pplx::task<void> postCaptableRounds(
+    /// <param name="captableRoundIn"></param>
+    pplx::task<std::shared_ptr<CaptableCreated>> postCaptableRounds(
+        std::shared_ptr<CaptableRoundIn> captableRoundIn
     ) const;
     /// <summary>
     /// Closes one of the caller org&#39;s fundraising rounds, recording the close date and moving its status to CLOSED.
@@ -281,38 +306,46 @@ public:
         std::shared_ptr<CaptableRoundCloseRequest> captableRoundCloseRequest
     ) const;
     /// <summary>
-    /// Record an investment into a round
+    /// Records one investor&#39;s money into an open round.
     /// </summary>
     /// <remarks>
-    /// Records what a stakeholder put into a round and adds it to the round&#39;s raised total.  On a PRICED round this ISSUES SHARES as well as recording the money: the amount is divided by the round&#39;s price per share, rounded DOWN to whole shares, and a new certificate for them is issued to the investor in the round&#39;s share class — so an amount too small to buy one whole share is refused rather than recorded as a zero-share investment. On a non-priced round the money is recorded and no shares are issued.  The round must exist in this company and still be OPEN — a closed round refuses further investment — and the investor must already be a stakeholder here. The date defaults to today when omitted.  Writes the caller&#39;s OWN cap table: the org resolved from the validated principal selects the tenant&#39;s store and scopes every row, so there is no field by which a caller can write into another company&#39;s table; a request with no validated org is refused. The whole write runs in one transaction, so a refusal leaves nothing behind. Validation is the cap-table bundle&#39;s and so is its refusal: a bad body comes back as {success:false, message, errors:[…]} with the failing fields listed, and numeric fields accept a number OR a numeric string. Bodies are capped at 1 MiB.
+    /// Records one investor&#39;s money into an open round.  The round must be OPEN; investing into a closed one is refused. Where the round carries a price per share, the investment also issues the shares it buys and the answer names them.
     /// </remarks>
-    /// <param name="id"></param>
-    pplx::task<void> postCaptableRoundsByIdInvestments(
-        utility::string_t id
+    /// <param name="id">ID is the round to invest in. The URL is the addressing authority — a path segment binds after the body and after the query — so the address decides which round is written whatever a body claims.</param>
+    /// <param name="captableInvestmentIn"></param>
+    pplx::task<std::shared_ptr<CaptableInvested>> postCaptableRoundsByIdInvestments(
+        utility::string_t id,
+        std::shared_ptr<CaptableInvestmentIn> captableInvestmentIn
     ) const;
     /// <summary>
-    /// Record a SAFE
+    /// Records a SAFE — a simple agreement for future equity.
     /// </summary>
     /// <remarks>
-    /// Records a Simple Agreement for Future Equity held by a stakeholder: the capital in, the valuation cap and discount, MFN and pro-rata rights, pre- or post-money type, and the issue and board-approval dates.  The stakeholder must already exist in this company, and the SAFE&#39;s public id must be unused there — a reused id is a conflict rather than an overwrite. This records the instrument; it does not convert it, so nothing is issued against a share class until a round does that.  Writes the caller&#39;s OWN cap table: the org resolved from the validated principal selects the tenant&#39;s store and scopes every row, so there is no field by which a caller can write into another company&#39;s table; a request with no validated org is refused. The whole write runs in one transaction, so a refusal leaves nothing behind. Validation is the cap-table bundle&#39;s and so is its refusal: a bad body comes back as {success:false, message, errors:[…]} with the failing fields listed, and numeric fields accept a number OR a numeric string. Bodies are capped at 1 MiB.
+    /// Records a SAFE — a simple agreement for future equity.
     /// </remarks>
-    pplx::task<void> postCaptableSafes(
+    /// <param name="captableSafeIn"></param>
+    pplx::task<std::shared_ptr<CaptableCreated>> postCaptableSafes(
+        std::shared_ptr<CaptableSafeIn> captableSafeIn
     ) const;
     /// <summary>
-    /// Issue a share certificate
+    /// Issues a share certificate to a stakeholder.
     /// </summary>
     /// <remarks>
-    /// Issues shares of a class to a stakeholder as a certificate: quantity, price and capital contributed, the vesting cliff and term, the legends on the certificate, and the issue, Rule 144, vesting-start and board-approval dates.  Both the stakeholder and the share class must already exist in this company, and the certificate id must be unused there — a reused id is a conflict, never a silent overwrite of an existing certificate.  Writes the caller&#39;s OWN cap table: the org resolved from the validated principal selects the tenant&#39;s store and scopes every row, so there is no field by which a caller can write into another company&#39;s table; a request with no validated org is refused. The whole write runs in one transaction, so a refusal leaves nothing behind. Validation is the cap-table bundle&#39;s and so is its refusal: a bad body comes back as {success:false, message, errors:[…]} with the failing fields listed, and numeric fields accept a number OR a numeric string. Bodies are capped at 1 MiB.
+    /// Issues a share certificate to a stakeholder.  The certificate id must be UNIQUE within the company — a duplicate is refused 409, not silently merged — and both the stakeholder and the share class must belong to this company, so an id from another tenant is a 400 rather than a cross-company issuance.
     /// </remarks>
-    pplx::task<void> postCaptableShares(
+    /// <param name="captableShareIn"></param>
+    pplx::task<std::shared_ptr<CaptableCreated>> postCaptableShares(
+        std::shared_ptr<CaptableShareIn> captableShareIn
     ) const;
     /// <summary>
-    /// Transfer shares to another stakeholder
+    /// Moves shares from one stakeholder to another.
     /// </summary>
     /// <remarks>
-    /// Moves shares from one certificate to another stakeholder, in one atomic step.  OMITTING &#x60;quantity&#x60; transfers the WHOLE certificate, which simply reassigns it and answers newShareId null — that is the difference between a full and a partial transfer, and it is why quantity is absent rather than zero. A partial transfer shrinks the source certificate and issues a NEW one to the recipient, so it requires a &#x60;certificateId&#x60; for that new certificate and refuses a reused one. The quantity must be between 1 and what the source certificate actually holds; the recipient must be a stakeholder of this same company.  Writes the caller&#39;s OWN cap table: the org resolved from the validated principal selects the tenant&#39;s store and scopes every row, so there is no field by which a caller can write into another company&#39;s table; a request with no validated org is refused. The whole write runs in one transaction, so a refusal leaves nothing behind. Validation is the cap-table bundle&#39;s and so is its refusal: a bad body comes back as {success:false, message, errors:[…]} with the failing fields listed, and numeric fields accept a number OR a numeric string. Bodies are capped at 1 MiB.
+    /// Moves shares from one stakeholder to another.  Omit &#x60;quantity&#x60; to transfer the whole certificate, which REASSIGNS it and mints no new share. Send a quantity below the amount held to SPLIT it — the source certificate keeps the remainder, and a split additionally requires &#x60;certificateId&#x60; for the new certificate, which must be unique in the company. A quantity outside 1..held is refused, so a transfer can never over-issue.  Both outcomes answer 200: a transfer records a movement between holders and mints no security of its own, which is why this is not a 201 the way an investment is.
     /// </remarks>
-    pplx::task<void> postCaptableSharesTransfer(
+    /// <param name="captableShareTransfer"></param>
+    pplx::task<std::shared_ptr<CaptableTransferred>> postCaptableSharesTransfer(
+        std::shared_ptr<CaptableShareTransfer> captableShareTransfer
     ) const;
     /// <summary>
     /// Add stakeholders to the cap table

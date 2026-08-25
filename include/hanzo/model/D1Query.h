@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -54,11 +54,17 @@ public:
     /// D1Query members
 
 
+    /// <summary>
+    /// Params are the statement&#39;s bound values, in the order its &#x60;?&#x60; placeholders appear — a string, a number, a boolean or null, whatever the column takes. Absent means the statement carries no placeholders; bind values here rather than interpolating them into the statement.
+    /// </summary>
     std::vector<std::shared_ptr<AnyType>> getParams() const;
     bool paramsIsSet() const;
     void unsetParams();
     void setParams(const std::vector<std::shared_ptr<AnyType>>& value);
 
+    /// <summary>
+    /// SQL is the statement to run. Blank (or absent) is refused before anything reaches D1.
+    /// </summary>
     utility::string_t getSql() const;
     bool sqlIsSet() const;
     void unsetSql();

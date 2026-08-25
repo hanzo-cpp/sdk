@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -170,13 +170,13 @@ public:
         utility::string_t id
     ) const;
     /// <summary>
-    /// Mark a step of your org&#39;s journey finished
+    /// Marks one step of the caller org&#39;s journey complete and returns the refreshed journey.
     /// </summary>
     /// <remarks>
-    /// Moves one step of the caller org&#39;s journey to done and answers the whole refreshed journey, which is what unblocks everything downstream of it.  Dependency-GATED like start: finishing a step whose prerequisites are themselves unfinished is 409 carrying &#x60;{error, step, blockedBy}&#x60; naming what is in the way, not a silent success. A step id the org&#39;s active journey does not contain is 404. Skipping is the ungated alternative — a founder declaring a step does not apply — and it lives at /skip.  Requires a validated org; 403 without one. The mark is recorded as &#x60;manual&#x60;, and /reset returns the step to todo.
+    /// Marks one step of the caller org&#39;s journey complete and returns the refreshed journey.  Dependency-GATED, exactly as start is: a step whose prerequisites are unfinished is refused 409 carrying {error, step, blockedBy} naming what is in the way.
     /// </remarks>
-    /// <param name="id"></param>
-    pplx::task<void> postGuideStepsByIdDone(
+    /// <param name="id">ID is the step&#39;s id, as it appears in the journey (e.g. \&quot;gsuite\&quot;).</param>
+    pplx::task<std::shared_ptr<OverviewView>> postGuideStepsByIdDone(
         utility::string_t id
     ) const;
     /// <summary>
@@ -200,13 +200,13 @@ public:
         utility::string_t id
     ) const;
     /// <summary>
-    /// Mark a step of your org&#39;s journey started
+    /// Marks one step of the caller org&#39;s journey in progress and returns the refreshed journey.
     /// </summary>
     /// <remarks>
-    /// Moves one step of the caller org&#39;s journey to in-progress and answers the whole refreshed journey, so a console needs no second read.  The transition is dependency-GATED, and that is why the answer set is wider than a success: a step whose prerequisites are unfinished is 409 carrying &#x60;{error, step, blockedBy}&#x60;, where &#x60;blockedBy&#x60; names the exact steps in the way — enough to render the blockage rather than merely report it. A step id the org&#39;s active journey does not contain is 404.  Requires a validated org; 403 without one, and the journey read and written is that org&#39;s alone. The mark is recorded as &#x60;manual&#x60;, and the journey is reconciled against the auto-detectors on every read, so a step the org has demonstrably completed elsewhere can still be moved to done underneath it.
+    /// Marks one step of the caller org&#39;s journey in progress and returns the refreshed journey.  Dependency-GATED: a step whose prerequisites are unfinished is refused 409 carrying {error, step, blockedBy}, where blockedBy names the exact steps in the way — enough to render the reason without asking again.
     /// </remarks>
-    /// <param name="id"></param>
-    pplx::task<void> postGuideStepsByIdStart(
+    /// <param name="id">ID is the step&#39;s id, as it appears in the journey (e.g. \&quot;gsuite\&quot;).</param>
+    pplx::task<std::shared_ptr<OverviewView>> postGuideStepsByIdStart(
         utility::string_t id
     ) const;
     /// <summary>

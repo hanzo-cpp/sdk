@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -726,7 +726,7 @@ pplx::task<std::shared_ptr<PlanInfo>> TeamApi::getTeamBillingPlan() const
         return localVarResult;
     });
 }
-pplx::task<void> TeamApi::getTeamBillingUi() const
+pplx::task<std::shared_ptr<HttpContent>> TeamApi::getTeamBillingUi() const
 {
 
 
@@ -739,6 +739,7 @@ pplx::task<void> TeamApi::getTeamBillingUi() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/html; charset=utf-8") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -759,7 +760,8 @@ pplx::task<void> TeamApi::getTeamBillingUi() const
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("TeamApi->getTeamBillingUi does not produce any supported media type"));
+        //It's going to be binary, so just use the first one.
+        localVarResponseHttpContentType = *localVarResponseHttpContentTypes.begin();
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -823,11 +825,14 @@ pplx::task<void> TeamApi::getTeamBillingUi() const
             }
         }
 
-        return localVarResponse.extract_string();
+        return localVarResponse.extract_vector();
     })
-    .then([=, this](utility::string_t localVarResponse)
+    .then([=, this](std::vector<unsigned char> localVarResponse)
     {
-        return void();
+        std::shared_ptr<HttpContent> localVarResult = std::make_shared<HttpContent>();
+        std::shared_ptr<std::stringstream> stream = std::make_shared<std::stringstream>(std::string(localVarResponse.begin(), localVarResponse.end()));
+        localVarResult->setData(stream);
+        return localVarResult;
     });
 }
 pplx::task<std::shared_ptr<BotRoster>> TeamApi::getTeamBots() const
@@ -1057,7 +1062,7 @@ pplx::task<void> TeamApi::getTeamCollaborator() const
         return void();
     });
 }
-pplx::task<void> TeamApi::getTeamFilesByWorkspaceByFilename(utility::string_t workspace, utility::string_t filename) const
+pplx::task<std::shared_ptr<HttpContent>> TeamApi::getTeamFilesByWorkspaceByFilename(utility::string_t workspace, utility::string_t filename) const
 {
 
 
@@ -1072,6 +1077,7 @@ pplx::task<void> TeamApi::getTeamFilesByWorkspaceByFilename(utility::string_t wo
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/octet-stream") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1092,7 +1098,8 @@ pplx::task<void> TeamApi::getTeamFilesByWorkspaceByFilename(utility::string_t wo
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("TeamApi->getTeamFilesByWorkspaceByFilename does not produce any supported media type"));
+        //It's going to be binary, so just use the first one.
+        localVarResponseHttpContentType = *localVarResponseHttpContentTypes.begin();
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -1156,11 +1163,14 @@ pplx::task<void> TeamApi::getTeamFilesByWorkspaceByFilename(utility::string_t wo
             }
         }
 
-        return localVarResponse.extract_string();
+        return localVarResponse.extract_vector();
     })
-    .then([=, this](utility::string_t localVarResponse)
+    .then([=, this](std::vector<unsigned char> localVarResponse)
     {
-        return void();
+        std::shared_ptr<HttpContent> localVarResult = std::make_shared<HttpContent>();
+        std::shared_ptr<std::stringstream> stream = std::make_shared<std::stringstream>(std::string(localVarResponse.begin(), localVarResponse.end()));
+        localVarResult->setData(stream);
+        return localVarResult;
     });
 }
 pplx::task<std::shared_ptr<StatsOut>> TeamApi::getTeamTransactorApiV1Statistics(boost::optional<utility::string_t> token) const
@@ -1896,7 +1906,7 @@ pplx::task<std::shared_ptr<CollabResult>> TeamApi::postTeamCollaboratorRpcByDocu
         return localVarResult;
     });
 }
-pplx::task<void> TeamApi::postTeamFilesByWorkspace(utility::string_t workspace) const
+pplx::task<std::shared_ptr<HttpContent>> TeamApi::postTeamFilesByWorkspace(utility::string_t workspace, boost::optional<std::shared_ptr<HttpContent>> body) const
 {
 
 
@@ -1910,6 +1920,7 @@ pplx::task<void> TeamApi::postTeamFilesByWorkspace(utility::string_t workspace) 
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain; charset=utf-8") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1930,12 +1941,14 @@ pplx::task<void> TeamApi::postTeamFilesByWorkspace(utility::string_t workspace) 
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("TeamApi->postTeamFilesByWorkspace does not produce any supported media type"));
+        //It's going to be binary, so just use the first one.
+        localVarResponseHttpContentType = *localVarResponseHttpContentTypes.begin();
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/octet-stream") );
 
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -1945,11 +1958,22 @@ pplx::task<void> TeamApi::postTeamFilesByWorkspace(utility::string_t workspace) 
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        localVarJson = ModelBase::toJson(body.get());
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+        localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("body"), body.get()));
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1994,14 +2018,17 @@ pplx::task<void> TeamApi::postTeamFilesByWorkspace(utility::string_t workspace) 
             }
         }
 
-        return localVarResponse.extract_string();
+        return localVarResponse.extract_vector();
     })
-    .then([=, this](utility::string_t localVarResponse)
+    .then([=, this](std::vector<unsigned char> localVarResponse)
     {
-        return void();
+        std::shared_ptr<HttpContent> localVarResult = std::make_shared<HttpContent>();
+        std::shared_ptr<std::stringstream> stream = std::make_shared<std::stringstream>(std::string(localVarResponse.begin(), localVarResponse.end()));
+        localVarResult->setData(stream);
+        return localVarResult;
     });
 }
-pplx::task<void> TeamApi::putTeamAccountCookie() const
+pplx::task<std::shared_ptr<CookieAck>> TeamApi::putTeamAccountCookie() const
 {
 
 
@@ -2014,6 +2041,7 @@ pplx::task<void> TeamApi::putTeamAccountCookie() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -2102,7 +2130,25 @@ pplx::task<void> TeamApi::putTeamAccountCookie() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<CookieAck> localVarResult(new CookieAck());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putTeamAccountCookie: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
 

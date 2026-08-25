@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -1632,7 +1632,7 @@ pplx::task<void> GuideApi::postGuideStepsByIdDo(utility::string_t id) const
         return void();
     });
 }
-pplx::task<void> GuideApi::postGuideStepsByIdDone(utility::string_t id) const
+pplx::task<std::shared_ptr<OverviewView>> GuideApi::postGuideStepsByIdDone(utility::string_t id) const
 {
 
 
@@ -1646,6 +1646,7 @@ pplx::task<void> GuideApi::postGuideStepsByIdDone(utility::string_t id) const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1734,7 +1735,25 @@ pplx::task<void> GuideApi::postGuideStepsByIdDone(utility::string_t id) const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<OverviewView> localVarResult(new OverviewView());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postGuideStepsByIdDone: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
 pplx::task<std::shared_ptr<OverviewView>> GuideApi::postGuideStepsByIdReset(utility::string_t id) const
@@ -1985,7 +2004,7 @@ pplx::task<std::shared_ptr<OverviewView>> GuideApi::postGuideStepsByIdSkip(utili
         return localVarResult;
     });
 }
-pplx::task<void> GuideApi::postGuideStepsByIdStart(utility::string_t id) const
+pplx::task<std::shared_ptr<OverviewView>> GuideApi::postGuideStepsByIdStart(utility::string_t id) const
 {
 
 
@@ -1999,6 +2018,7 @@ pplx::task<void> GuideApi::postGuideStepsByIdStart(utility::string_t id) const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -2087,7 +2107,25 @@ pplx::task<void> GuideApi::postGuideStepsByIdStart(utility::string_t id) const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<OverviewView> localVarResult(new OverviewView());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postGuideStepsByIdStart: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
 pplx::task<void> GuideApi::putGuideBlueprint() const

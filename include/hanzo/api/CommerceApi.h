@@ -1,6 +1,6 @@
 /**
  * Hanzo Cloud API
- * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay doors, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
+ * The Hanzo Cloud API as a customer calls it: every operation under /v1/ except the operator's admin product, relay routes, legacy spellings and capabilities still reached by flag. Tagged by product: the first path segment after /v1/.
  *
  * The version of the OpenAPI document: v1
  *
@@ -123,9 +123,11 @@ public:
     /// <remarks>
     /// Deletes the row. ARCHIVING is usually what is wanted instead — a deleted rate cannot price a historical charge, so a past invoice that has to re-resolve its rate finds nothing to read. Reach for status&#x3D;archived unless the rate never priced anything. SuperAdmin only.
     /// </remarks>
-    /// <param name="slug"></param>
-    pplx::task<void> deleteCommerceRatesEntriesBySlug(
-        utility::string_t slug
+    /// <param name="product"></param>
+    /// <param name="meter"></param>
+    pplx::task<void> deleteCommerceRatesEntriesByProductByMeter(
+        utility::string_t product,
+        utility::string_t meter
     ) const;
     /// <summary>
     /// Delete a return, keeping a recoverable copy
@@ -981,7 +983,7 @@ public:
     /// Refresh the model catalog by reading the upstream provider
     /// </summary>
     /// <remarks>
-    /// Pulls the upstream model list and lands it through the same upsert the push door uses, so the rule that a sync owns cost and an administrator owns price holds no matter which door a row came through. It takes no body — the upstream is READ rather than told. If that upstream cannot be read the call answers 502 and writes NOTHING: a sync that cannot see its source must never conclude the source is empty, because that conclusion would withdraw every model on sale. The gate is a PLATFORM principal so the scheduled job&#39;s service token qualifies.
+    /// Pulls the upstream model list and lands it through the same upsert the push endpoint uses, so the rule that a sync owns cost and an administrator owns price holds no matter which endpoint a row came through. It takes no body — the upstream is READ rather than told. If that upstream cannot be read the call answers 502 and writes NOTHING: a sync that cannot see its source must never conclude the source is empty, because that conclusion would withdraw every model on sale. The gate is a PLATFORM principal so the scheduled job&#39;s service token qualifies.
     /// </remarks>
     pplx::task<void> postCommerceCatalogModelsRefresh(
     ) const;
@@ -1129,7 +1131,7 @@ public:
     /// Load the published price document, reconciling rather than replacing
     /// </summary>
     /// <remarks>
-    /// Takes an array of rates and seeds the authority from it. This is the seed, driven from admin rather than compiled in, because 506 published prices in an embed made a price change wait for a build. It RECONCILES: a row that matches is left alone, a row that has drifted is corrected, and a row an operator edited is skipped — so importing the same document twice is a no-op and importing a corrected one moves exactly the rows that changed. Answers what it received, created, corrected and left unchanged, so an import that changes nothing reads as nothing to do rather than as a failure. An empty array is refused 400. SuperAdmin only.
+    /// Takes an array of rates and seeds the authority from it — the same reconcile the boot catalog runs, driven from admin instead. It RECONCILES: a row that matches is left alone, a row that has drifted is corrected, and a row an operator edited is skipped — so importing the same document twice is a no-op and importing a corrected one moves exactly the rows that changed. Answers what it received, created, corrected and left unchanged, so an import that changes nothing reads as nothing to do rather than as a failure. An empty array is refused 400. SuperAdmin only.
     /// </remarks>
     pplx::task<void> postCommerceRatesImport(
     ) const;
@@ -1621,9 +1623,11 @@ public:
     /// <remarks>
     /// Edits one rate and MARKS it edited, which is the whole contract with the importer: an operator&#39;s price outranks the document it came from, so a later import leaves this row alone. Without that mark a price set here would apply, work, and silently revert on the next import. Only the editable fields move; identity and bookkeeping are not writable from the body. SuperAdmin only.
     /// </remarks>
-    /// <param name="slug"></param>
-    pplx::task<void> putCommerceRatesEntriesBySlug(
-        utility::string_t slug
+    /// <param name="product"></param>
+    /// <param name="meter"></param>
+    pplx::task<void> putCommerceRatesEntriesByProductByMeter(
+        utility::string_t product,
+        utility::string_t meter
     ) const;
     /// <summary>
     /// Replace a return outright
@@ -1773,7 +1777,7 @@ public:
     /// Take a card payment and credit the org&#39;s balance
     /// </summary>
     /// <remarks>
-    /// Takes a payment: charges a single-use card token and credits the caller&#39;s org balance, exactly once.  This is the operation behind \&quot;collect money from a customer\&quot;. It runs the SAME core the console&#39;s card top-up runs (commerce billing.TakePayment), so the server-side amount bounds, the idempotency guard and the ledger credit are shared rather than reimplemented — a second charge path would eventually double-charge somebody.  The ORG is the caller&#39;s, taken from the validated principal and never from the input, so a payment can only ever credit the account of whoever made the call.  A payment is RISK-SCREENED before the card is charged, so this can be refused without any money moving: 403 means the screen did not authorise it, and 503 means the screen could not reach a decision — that one is worth retrying, and no charge was attempted either way.  Send an idempotencyKey. An agent retries by construction, and the key is what turns a retry into a replay of the first receipt instead of a second charge.  The answer states whether it settled in SANDBOX or live mode (&#x60;test&#x60;), and carries the processor&#39;s own reference (&#x60;processorRef&#x60;) so the charge can be reconciled against the processor rather than taken on trust.  A named builder, not a closure, so zipdoc can lift this prose into the registry.  It BUILDS the handler rather than being it, because the screen has to sit inside the value every projection of this op dispatches to — see exposePayments. &#x60;charge&#x60; is the money move, &#x60;take&#x60; is the screened door onto it, and the only registrable one is the second.
+    /// Takes a payment: charges a single-use card token and credits the caller&#39;s org balance, exactly once.  This is the operation behind \&quot;collect money from a customer\&quot;. It runs the SAME core the console&#39;s card top-up runs (commerce billing.TakePayment), so the server-side amount bounds, the idempotency guard and the ledger credit are shared rather than reimplemented — a second charge path would eventually double-charge somebody.  The ORG is the caller&#39;s, taken from the validated principal and never from the input, so a payment can only ever credit the account of whoever made the call.  A payment is RISK-SCREENED before the card is charged, so this can be refused without any money moving: 403 means the screen did not authorise it, and 503 means the screen could not reach a decision — that one is worth retrying, and no charge was attempted either way.  Send an idempotencyKey. An agent retries by construction, and the key is what turns a retry into a replay of the first receipt instead of a second charge.  The answer states whether it settled in SANDBOX or live mode (&#x60;test&#x60;), and carries the processor&#39;s own reference (&#x60;processorRef&#x60;) so the charge can be reconciled against the processor rather than taken on trust.  A named builder, not a closure, so zipdoc can lift this prose into the registry.  It BUILDS the handler rather than being it, because the screen has to sit inside the value every projection of this op dispatches to — see exposePayments. &#x60;charge&#x60; is the money move, &#x60;take&#x60; is the screened entry point onto it, and the only registrable one is the second.
     /// </remarks>
     /// <param name="paymentIn"></param>
     pplx::task<std::shared_ptr<PaymentOut>> takePayment(
