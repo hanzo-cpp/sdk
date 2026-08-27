@@ -41,6 +41,7 @@ include/hanzo/api/DataroomApi.h
 include/hanzo/api/DatasetApi.h
 include/hanzo/api/DeployApi.h
 include/hanzo/api/DestinationApi.h
+include/hanzo/api/DnsApi.h
 include/hanzo/api/DomainApi.h
 include/hanzo/api/EngineApi.h
 include/hanzo/api/EntitlementApi.h
@@ -2128,6 +2129,7 @@ include/hanzo/model/RollbackReq.h
 include/hanzo/model/Rollup.h
 include/hanzo/model/RollupAllotment.h
 include/hanzo/model/RollupBalance.h
+include/hanzo/model/RoomWork.h
 include/hanzo/model/Root.h
 include/hanzo/model/RoundInput.h
 include/hanzo/model/RoundOut.h
@@ -2329,6 +2331,9 @@ include/hanzo/model/TariffIn.h
 include/hanzo/model/Taxon.h
 include/hanzo/model/TaxonIn.h
 include/hanzo/model/Taxonomy.h
+include/hanzo/model/TeamRoom.h
+include/hanzo/model/TeamRoomBind.h
+include/hanzo/model/TeamRooms.h
 include/hanzo/model/TemplateCatalog.h
 include/hanzo/model/TemplateOverride.h
 include/hanzo/model/TemplateReply.h
@@ -2493,6 +2498,7 @@ src/api/DataroomApi.cpp
 src/api/DatasetApi.cpp
 src/api/DeployApi.cpp
 src/api/DestinationApi.cpp
+src/api/DnsApi.cpp
 src/api/DomainApi.cpp
 src/api/EngineApi.cpp
 src/api/EntitlementApi.cpp
@@ -4580,6 +4586,7 @@ src/model/RollbackReq.cpp
 src/model/Rollup.cpp
 src/model/RollupAllotment.cpp
 src/model/RollupBalance.cpp
+src/model/RoomWork.cpp
 src/model/Root.cpp
 src/model/RoundInput.cpp
 src/model/RoundOut.cpp
@@ -4781,6 +4788,9 @@ src/model/TariffIn.cpp
 src/model/Taxon.cpp
 src/model/TaxonIn.cpp
 src/model/Taxonomy.cpp
+src/model/TeamRoom.cpp
+src/model/TeamRoomBind.cpp
+src/model/TeamRooms.cpp
 src/model/TemplateCatalog.cpp
 src/model/TemplateOverride.cpp
 src/model/TemplateReply.cpp

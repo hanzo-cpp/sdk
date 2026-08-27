@@ -85,7 +85,7 @@ public:
     void setStatus(const utility::string_t& value);
 
     /// <summary>
-    /// Title is required.
+    /// Title is the one line the card is read by on the board. Blank or whitespace is refused — an untitled card cannot be told apart from any other.
     /// </summary>
     utility::string_t getTitle() const;
     bool titleIsSet() const;

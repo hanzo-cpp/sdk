@@ -133,6 +133,14 @@ public:
     void setRepo(const utility::string_t& value);
 
     /// <summary>
+    /// Room is the collaborative room this run was started in (HIP-0523), so a workspace view can list the sessions of one room. It is PROVENANCE and is set only here: there is deliberately no way to move a session to another room, so it is absent from the patch input and from UpdateSession&#39;s SET list.
+    /// </summary>
+    utility::string_t getRoom() const;
+    bool roomIsSet() const;
+    void unsetRoom();
+    void setRoom(const utility::string_t& value);
+
+    /// <summary>
     /// Status opens the session in one of running, paused, done or error. Empty means running. A TERMINAL status here (done, error) records a session that has already finished — its end time is stamped now — and nothing can move it afterwards.
     /// </summary>
     utility::string_t getStatus() const;
@@ -211,6 +219,9 @@ protected:
 
     utility::string_t m_Repo;
     bool m_RepoIsSet;
+
+    utility::string_t m_Room;
+    bool m_RoomIsSet;
 
     utility::string_t m_Status;
     bool m_StatusIsSet;

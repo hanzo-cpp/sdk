@@ -85,7 +85,7 @@ public:
     void setName(const utility::string_t& value);
 
     /// <summary>
-    /// ShareClassID is the share class.
+    /// ShareClassID addresses the class this position is for.
     /// </summary>
     utility::string_t getShareClassId() const;
     bool shareClassIdIsSet() const;

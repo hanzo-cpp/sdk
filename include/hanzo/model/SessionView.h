@@ -191,6 +191,14 @@ public:
     void setRepo(const utility::string_t& value);
 
     /// <summary>
+    /// Room is the collaborative room this run was started in (HIP-0523), empty when it came from anywhere else — a CLI, a schedule, an API call. It is what lets a workspace view show the runs of one room beside its messages.
+    /// </summary>
+    utility::string_t getRoom() const;
+    bool roomIsSet() const;
+    void unsetRoom();
+    void setRoom(const utility::string_t& value);
+
+    /// <summary>
     /// RootSessionID is the top of this session&#39;s tree, inherited from the parent and shared by every node in one flow. A root session&#39;s own id, when it has no parent. It is the key one indexed read pulls a whole flow by, and what ?root&#x3D; narrows a list or a stream to.
     /// </summary>
     utility::string_t getRootSessionId() const;
@@ -314,6 +322,9 @@ protected:
 
     utility::string_t m_Repo;
     bool m_RepoIsSet;
+
+    utility::string_t m_Room;
+    bool m_RoomIsSet;
 
     utility::string_t m_RootSessionId;
     bool m_RootSessionIdIsSet;

@@ -69,7 +69,7 @@ public:
     void setPlan(const utility::string_t& value);
 
     /// <summary>
-    /// unix seconds; when the count starts again
+    /// unix seconds; when THAT window starts again
     /// </summary>
     int32_t getResets() const;
     bool resetsIsSet() const;
@@ -92,6 +92,14 @@ public:
     void unsetUsed();
     void setUsed(int32_t value);
 
+    /// <summary>
+    /// Window is which ceiling these numbers describe — \&quot;hour\&quot; or \&quot;day\&quot; — because a caller is held to both and only one of them is the answer. It is the window that REFUSED where one did, and otherwise the one with least left, so Limit-Used is always the number that will actually stop them next. Empty where no window bounds the subject at all.
+    /// </summary>
+    utility::string_t getWindow() const;
+    bool windowIsSet() const;
+    void unsetWindow();
+    void setWindow(const utility::string_t& value);
+
 
 protected:
     int32_t m_Limit;
@@ -108,6 +116,9 @@ protected:
 
     int32_t m_Used;
     bool m_UsedIsSet;
+
+    utility::string_t m_Window;
+    bool m_WindowIsSet;
 
 };
 

@@ -18,18 +18,12 @@ namespace model {
 
 Call::Call()
 {
-    m_Agent = utility::conversions::to_string_t("");
-    m_AgentIsSet = false;
-    m_From = utility::conversions::to_string_t("");
-    m_FromIsSet = false;
-    m_Id = utility::conversions::to_string_t("");
-    m_IdIsSet = false;
-    m_Org = utility::conversions::to_string_t("");
-    m_OrgIsSet = false;
-    m_Status = utility::conversions::to_string_t("");
-    m_StatusIsSet = false;
-    m_To = utility::conversions::to_string_t("");
-    m_ToIsSet = false;
+    m_Name = utility::conversions::to_string_t("");
+    m_NameIsSet = false;
+    m_Ready = false;
+    m_ReadyIsSet = false;
+    m_Ws = utility::conversions::to_string_t("");
+    m_WsIsSet = false;
 }
 
 Call::~Call()
@@ -44,35 +38,20 @@ void Call::validate()
 web::json::value Call::toJson() const
 {
     web::json::value val = web::json::value::object();
-    if(m_AgentIsSet)
+    if(m_NameIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("agent"))] = ModelBase::toJson(m_Agent);
+        val[utility::conversions::to_string_t(_XPLATSTR("name"))] = ModelBase::toJson(m_Name);
     }
-    if(m_FromIsSet)
+    if(m_ReadyIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("from"))] = ModelBase::toJson(m_From);
+        val[utility::conversions::to_string_t(_XPLATSTR("ready"))] = ModelBase::toJson(m_Ready);
     }
-    if(m_IdIsSet)
+    if(m_WsIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("id"))] = ModelBase::toJson(m_Id);
-    }
-    if(m_OrgIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("org"))] = ModelBase::toJson(m_Org);
-    }
-    if(m_StatusIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("status"))] = ModelBase::toJson(m_Status);
-    }
-    if(m_ToIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("to"))] = ModelBase::toJson(m_To);
+        val[utility::conversions::to_string_t(_XPLATSTR("ws"))] = ModelBase::toJson(m_Ws);
     }
 
     return val;
@@ -81,69 +60,36 @@ web::json::value Call::toJson() const
 bool Call::fromJson(const web::json::value& val)
 {
     bool ok = true;
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("agent"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("name"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("agent")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("name")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setAgent;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setAgent);
-            setAgent(refVal_setAgent);
+            utility::string_t refVal_setName;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setName);
+            setName(refVal_setName);
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("from"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("ready"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("from")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("ready")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setFrom;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setFrom);
-            setFrom(refVal_setFrom);
+            bool refVal_setReady;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setReady);
+            setReady(refVal_setReady);
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("id"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("ws"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("id")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("ws")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setId);
-            setId(refVal_setId);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("org"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("org")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setOrg;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setOrg);
-            setOrg(refVal_setOrg);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("status"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("status")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setStatus;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setStatus);
-            setStatus(refVal_setStatus);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("to"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("to")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTo;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTo);
-            setTo(refVal_setTo);
+            utility::string_t refVal_setWs;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setWs);
+            setWs(refVal_setWs);
             
         }
     }
@@ -157,29 +103,17 @@ void Call::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utili
     {
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
-    if(m_AgentIsSet)
+    if(m_NameIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("agent")), m_Agent));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("name")), m_Name));
     }
-    if(m_FromIsSet)
+    if(m_ReadyIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("from")), m_From));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("ready")), m_Ready));
     }
-    if(m_IdIsSet)
+    if(m_WsIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("id")), m_Id));
-    }
-    if(m_OrgIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("org")), m_Org));
-    }
-    if(m_StatusIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("status")), m_Status));
-    }
-    if(m_ToIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("to")), m_To));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("ws")), m_Ws));
     }
 }
 
@@ -192,171 +126,90 @@ bool Call::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("agent"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("name"))))
     {
-        utility::string_t refVal_setAgent;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("agent"))), refVal_setAgent );
-        setAgent(refVal_setAgent);
+        utility::string_t refVal_setName;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("name"))), refVal_setName );
+        setName(refVal_setName);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("from"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("ready"))))
     {
-        utility::string_t refVal_setFrom;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("from"))), refVal_setFrom );
-        setFrom(refVal_setFrom);
+        bool refVal_setReady;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ready"))), refVal_setReady );
+        setReady(refVal_setReady);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("id"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("ws"))))
     {
-        utility::string_t refVal_setId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("id"))), refVal_setId );
-        setId(refVal_setId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("org"))))
-    {
-        utility::string_t refVal_setOrg;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("org"))), refVal_setOrg );
-        setOrg(refVal_setOrg);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("status"))))
-    {
-        utility::string_t refVal_setStatus;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("status"))), refVal_setStatus );
-        setStatus(refVal_setStatus);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("to"))))
-    {
-        utility::string_t refVal_setTo;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("to"))), refVal_setTo );
-        setTo(refVal_setTo);
+        utility::string_t refVal_setWs;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ws"))), refVal_setWs );
+        setWs(refVal_setWs);
     }
     return ok;
 }
 
 
-utility::string_t Call::getAgent() const
+utility::string_t Call::getName() const
 {
-    return m_Agent;
+    return m_Name;
 }
 
 
-void Call::setAgent(const utility::string_t& value)
+void Call::setName(const utility::string_t& value)
 {
-    m_Agent = value;
-    m_AgentIsSet = true;
+    m_Name = value;
+    m_NameIsSet = true;
 }
 
-bool Call::agentIsSet() const
+bool Call::nameIsSet() const
 {
-    return m_AgentIsSet;
+    return m_NameIsSet;
 }
 
-void Call::unsetAgent()
+void Call::unsetName()
 {
-    m_AgentIsSet = false;
+    m_NameIsSet = false;
 }
-utility::string_t Call::getFrom() const
+bool Call::isReady() const
 {
-    return m_From;
-}
-
-
-void Call::setFrom(const utility::string_t& value)
-{
-    m_From = value;
-    m_FromIsSet = true;
-}
-
-bool Call::fromIsSet() const
-{
-    return m_FromIsSet;
-}
-
-void Call::unsetFrom()
-{
-    m_FromIsSet = false;
-}
-utility::string_t Call::getId() const
-{
-    return m_Id;
+    return m_Ready;
 }
 
 
-void Call::setId(const utility::string_t& value)
+void Call::setReady(bool value)
 {
-    m_Id = value;
-    m_IdIsSet = true;
+    m_Ready = value;
+    m_ReadyIsSet = true;
 }
 
-bool Call::idIsSet() const
+bool Call::readyIsSet() const
 {
-    return m_IdIsSet;
+    return m_ReadyIsSet;
 }
 
-void Call::unsetId()
+void Call::unsetReady()
 {
-    m_IdIsSet = false;
+    m_ReadyIsSet = false;
 }
-utility::string_t Call::getOrg() const
+utility::string_t Call::getWs() const
 {
-    return m_Org;
-}
-
-
-void Call::setOrg(const utility::string_t& value)
-{
-    m_Org = value;
-    m_OrgIsSet = true;
-}
-
-bool Call::orgIsSet() const
-{
-    return m_OrgIsSet;
-}
-
-void Call::unsetOrg()
-{
-    m_OrgIsSet = false;
-}
-utility::string_t Call::getStatus() const
-{
-    return m_Status;
+    return m_Ws;
 }
 
 
-void Call::setStatus(const utility::string_t& value)
+void Call::setWs(const utility::string_t& value)
 {
-    m_Status = value;
-    m_StatusIsSet = true;
+    m_Ws = value;
+    m_WsIsSet = true;
 }
 
-bool Call::statusIsSet() const
+bool Call::wsIsSet() const
 {
-    return m_StatusIsSet;
+    return m_WsIsSet;
 }
 
-void Call::unsetStatus()
+void Call::unsetWs()
 {
-    m_StatusIsSet = false;
-}
-utility::string_t Call::getTo() const
-{
-    return m_To;
-}
-
-
-void Call::setTo(const utility::string_t& value)
-{
-    m_To = value;
-    m_ToIsSet = true;
-}
-
-bool Call::toIsSet() const
-{
-    return m_ToIsSet;
-}
-
-void Call::unsetTo()
-{
-    m_ToIsSet = false;
+    m_WsIsSet = false;
 }
 
 }
