@@ -26,6 +26,7 @@
 #include "hanzo/model/SessionView.h"
 #include "hanzo/model/EventView.h"
 #include <cpprest/details/basic_types.h>
+#include "hanzo/model/SessionProgress.h"
 #include <vector>
 
 namespace hanzo {
@@ -33,6 +34,7 @@ namespace model {
 
 class SessionView;
 class LastEventView;
+class SessionProgress;
 class EventView;
 
 
@@ -131,6 +133,11 @@ public:
     bool parentSessionIdIsSet() const;
     void unsetParentSessionId();
     void setParentSessionId(const utility::string_t& value);
+
+    std::shared_ptr<SessionProgress> getProgress() const;
+    bool progressIsSet() const;
+    void unsetProgress();
+    void setProgress(const std::shared_ptr<SessionProgress>& value);
 
     utility::string_t getProject() const;
     bool projectIsSet() const;
@@ -253,6 +260,9 @@ protected:
 
     utility::string_t m_ParentSessionId;
     bool m_ParentSessionIdIsSet;
+
+    std::shared_ptr<SessionProgress> m_Progress;
+    bool m_ProgressIsSet;
 
     utility::string_t m_Project;
     bool m_ProjectIsSet;

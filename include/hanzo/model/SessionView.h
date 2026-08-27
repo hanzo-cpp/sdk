@@ -24,11 +24,13 @@
 
 #include "hanzo/model/LastEventView.h"
 #include <cpprest/details/basic_types.h>
+#include "hanzo/model/SessionProgress.h"
 
 namespace hanzo {
 namespace model {
 
 class LastEventView;
+class SessionProgress;
 
 
 class  SessionView
@@ -157,6 +159,14 @@ public:
     bool parentSessionIdIsSet() const;
     void unsetParentSessionId();
     void setParentSessionId(const utility::string_t& value);
+
+    /// <summary>
+    /// Progress is how far along this run is — a share of its goal, a phase, and a line saying what it is doing. Always present, so a board never branches on whether it is there; &#x60;phase&#x60; says \&quot;unknown\&quot; when nothing has estimated it. It is a MODEL ESTIMATE wherever &#x60;estimated&#x60; is true, and the row&#39;s own word where it is false. See progress.go.
+    /// </summary>
+    std::shared_ptr<SessionProgress> getProgress() const;
+    bool progressIsSet() const;
+    void unsetProgress();
+    void setProgress(const std::shared_ptr<SessionProgress>& value);
 
     /// <summary>
     /// The readable build: the product this session built and whether its story is public (provenance.go).
@@ -310,6 +320,9 @@ protected:
 
     utility::string_t m_ParentSessionId;
     bool m_ParentSessionIdIsSet;
+
+    std::shared_ptr<SessionProgress> m_Progress;
+    bool m_ProgressIsSet;
 
     utility::string_t m_Project;
     bool m_ProjectIsSet;
