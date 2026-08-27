@@ -2228,6 +2228,7 @@ include/hanzo/model/SeriesPoint.h
 include/hanzo/model/SessionDetail.h
 include/hanzo/model/SessionEnded.h
 include/hanzo/model/SessionList.h
+include/hanzo/model/SessionProgress.h
 include/hanzo/model/SessionUser.h
 include/hanzo/model/SessionView.h
 include/hanzo/model/SetEnvReq.h
@@ -4685,6 +4686,7 @@ src/model/SeriesPoint.cpp
 src/model/SessionDetail.cpp
 src/model/SessionEnded.cpp
 src/model/SessionList.cpp
+src/model/SessionProgress.cpp
 src/model/SessionUser.cpp
 src/model/SessionView.cpp
 src/model/SetEnvReq.cpp

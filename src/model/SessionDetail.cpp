@@ -44,6 +44,7 @@ SessionDetail::SessionDetail()
     m_OrgIsSet = false;
     m_ParentSessionId = utility::conversions::to_string_t("");
     m_ParentSessionIdIsSet = false;
+    m_ProgressIsSet = false;
     m_Project = utility::conversions::to_string_t("");
     m_ProjectIsSet = false;
     m_Provider = utility::conversions::to_string_t("");
@@ -156,6 +157,11 @@ web::json::value SessionDetail::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("parentSessionId"))] = ModelBase::toJson(m_ParentSessionId);
+    }
+    if(m_ProgressIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("progress"))] = ModelBase::toJson(m_Progress);
     }
     if(m_ProjectIsSet)
     {
@@ -393,6 +399,17 @@ bool SessionDetail::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("progress"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("progress")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<SessionProgress> refVal_setProgress;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setProgress);
+            setProgress(refVal_setProgress);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("project"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("project")));
@@ -624,6 +641,10 @@ void SessionDetail::toMultipart(std::shared_ptr<MultipartFormData> multipart, co
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("parentSessionId")), m_ParentSessionId));
     }
+    if(m_ProgressIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("progress")), m_Progress));
+    }
     if(m_ProjectIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("project")), m_Project));
@@ -778,6 +799,12 @@ bool SessionDetail::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
         utility::string_t refVal_setParentSessionId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("parentSessionId"))), refVal_setParentSessionId );
         setParentSessionId(refVal_setParentSessionId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("progress"))))
+    {
+        std::shared_ptr<SessionProgress> refVal_setProgress;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("progress"))), refVal_setProgress );
+        setProgress(refVal_setProgress);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("project"))))
     {
@@ -1166,6 +1193,27 @@ bool SessionDetail::parentSessionIdIsSet() const
 void SessionDetail::unsetParentSessionId()
 {
     m_ParentSessionIdIsSet = false;
+}
+std::shared_ptr<SessionProgress> SessionDetail::getProgress() const
+{
+    return m_Progress;
+}
+
+
+void SessionDetail::setProgress(const std::shared_ptr<SessionProgress>& value)
+{
+    m_Progress = value;
+    m_ProgressIsSet = true;
+}
+
+bool SessionDetail::progressIsSet() const
+{
+    return m_ProgressIsSet;
+}
+
+void SessionDetail::unsetProgress()
+{
+    m_ProgressIsSet = false;
 }
 utility::string_t SessionDetail::getProject() const
 {
