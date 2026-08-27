@@ -10,7 +10,7 @@
  */
 
 
-#include "hanzo/api/TodoApi.h"
+#include "hanzo/api/DnsApi.h"
 #include "hanzo/IHttpBody.h"
 #include "hanzo/JsonBody.h"
 #include "hanzo/MultipartFormData.h"
@@ -24,22 +24,22 @@ namespace api {
 
 using namespace hanzo::model;
 
-TodoApi::TodoApi( std::shared_ptr<const ApiClient> apiClient )
+DnsApi::DnsApi( std::shared_ptr<const ApiClient> apiClient )
     : m_ApiClient(apiClient)
 {
 }
 
-TodoApi::~TodoApi()
+DnsApi::~DnsApi()
 {
 }
 
-pplx::task<void> TodoApi::deleteTodoProjectsByKey(utility::string_t key) const
+pplx::task<void> DnsApi::deleteDnsZonesByZone(utility::string_t zone) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/todo/projects/{key}");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("key") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(key)));
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/dns/zones/{zone}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("zone") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(zone)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -67,7 +67,7 @@ pplx::task<void> TodoApi::deleteTodoProjectsByKey(utility::string_t key) const
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("TodoApi->deleteTodoProjectsByKey does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("DnsApi->deleteDnsZonesByZone does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -94,7 +94,7 @@ pplx::task<void> TodoApi::deleteTodoProjectsByKey(utility::string_t key) const
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("TodoApi->deleteTodoProjectsByKey does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("DnsApi->deleteDnsZonesByZone does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -115,7 +115,7 @@ pplx::task<void> TodoApi::deleteTodoProjectsByKey(utility::string_t key) const
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling deleteTodoProjectsByKey: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling deleteDnsZonesByZone: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -126,7 +126,7 @@ pplx::task<void> TodoApi::deleteTodoProjectsByKey(utility::string_t key) const
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling deleteTodoProjectsByKey: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling deleteDnsZonesByZone: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -138,12 +138,14 @@ pplx::task<void> TodoApi::deleteTodoProjectsByKey(utility::string_t key) const
         return void();
     });
 }
-pplx::task<std::vector<std::shared_ptr<IssueView>>> TodoApi::getTodoBoard(boost::optional<utility::string_t> key, boost::optional<utility::string_t> status, boost::optional<utility::string_t> kind, boost::optional<utility::string_t> repo, boost::optional<utility::string_t> label, boost::optional<utility::string_t> source, boost::optional<bool> scheduled) const
+pplx::task<void> DnsApi::deleteDnsZonesByZoneRecordsByRecord(utility::string_t zone, utility::string_t record) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/todo/board");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/dns/zones/{zone}/records/{record}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("zone") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(zone)));
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("record") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(record)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -151,7 +153,6 @@ pplx::task<std::vector<std::shared_ptr<IssueView>>> TodoApi::getTodoBoard(boost:
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -172,41 +173,13 @@ pplx::task<std::vector<std::shared_ptr<IssueView>>> TodoApi::getTodoBoard(boost:
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("TodoApi->getTodoBoard does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("DnsApi->deleteDnsZonesByZoneRecordsByRecord does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
-    if (key)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("key")] = ApiClient::parameterToString(*key);
-    }
-    if (status)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("status")] = ApiClient::parameterToString(*status);
-    }
-    if (kind)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("kind")] = ApiClient::parameterToString(*kind);
-    }
-    if (repo)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("repo")] = ApiClient::parameterToString(*repo);
-    }
-    if (label)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("label")] = ApiClient::parameterToString(*label);
-    }
-    if (source)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("source")] = ApiClient::parameterToString(*source);
-    }
-    if (scheduled)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("scheduled")] = ApiClient::parameterToString(*scheduled);
-    }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
     utility::string_t localVarRequestHttpContentType;
@@ -227,7 +200,111 @@ pplx::task<std::vector<std::shared_ptr<IssueView>>> TodoApi::getTodoBoard(boost:
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("TodoApi->getTodoBoard does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("DnsApi->deleteDnsZonesByZoneRecordsByRecord does not consume any supported media type"));
+    }
+
+    // authentication (bearer) required
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("DELETE"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling deleteDnsZonesByZoneRecordsByRecord: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling deleteDnsZonesByZoneRecordsByRecord: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        return void();
+    });
+}
+pplx::task<void> DnsApi::getDnsHealth() const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/dns/health");
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("DnsApi->getDnsHealth does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("DnsApi->getDnsHealth does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -248,7 +325,7 @@ pplx::task<std::vector<std::shared_ptr<IssueView>>> TodoApi::getTodoBoard(boost:
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling getTodoBoard: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling getDnsHealth: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -259,7 +336,7 @@ pplx::task<std::vector<std::shared_ptr<IssueView>>> TodoApi::getTodoBoard(boost:
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getTodoBoard: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling getDnsHealth: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -268,37 +345,15 @@ pplx::task<std::vector<std::shared_ptr<IssueView>>> TodoApi::getTodoBoard(boost:
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::vector<std::shared_ptr<IssueView>> localVarResult;
-
-        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value localVarJson = web::json::value::parse(localVarResponse);
-            for( auto& localVarItem : localVarJson.as_array() )
-            {
-                std::vector<std::shared_ptr<IssueView>>::value_type localVarItemObj;
-                ModelBase::fromJson(localVarItem, localVarItemObj);
-                localVarResult.push_back(localVarItemObj);
-            }
-        }
-        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling getTodoBoard: unsupported response type"));
-        }
-
-        return localVarResult;
+        return void();
     });
 }
-pplx::task<std::shared_ptr<IssueHits>> TodoApi::getTodoIssues(boost::optional<utility::string_t> q, boost::optional<utility::string_t> project, boost::optional<utility::string_t> status, boost::optional<utility::string_t> kind, boost::optional<utility::string_t> repo, boost::optional<utility::string_t> room, boost::optional<utility::string_t> source, boost::optional<utility::string_t> assignee, boost::optional<int32_t> limit) const
+pplx::task<void> DnsApi::getDnsZones() const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/todo/issues");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/dns/zones");
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -306,7 +361,6 @@ pplx::task<std::shared_ptr<IssueHits>> TodoApi::getTodoIssues(boost::optional<ut
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -327,49 +381,13 @@ pplx::task<std::shared_ptr<IssueHits>> TodoApi::getTodoIssues(boost::optional<ut
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("TodoApi->getTodoIssues does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("DnsApi->getDnsZones does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
-    if (q)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("q")] = ApiClient::parameterToString(*q);
-    }
-    if (project)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("project")] = ApiClient::parameterToString(*project);
-    }
-    if (status)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("status")] = ApiClient::parameterToString(*status);
-    }
-    if (kind)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("kind")] = ApiClient::parameterToString(*kind);
-    }
-    if (repo)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("repo")] = ApiClient::parameterToString(*repo);
-    }
-    if (room)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("room")] = ApiClient::parameterToString(*room);
-    }
-    if (source)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("source")] = ApiClient::parameterToString(*source);
-    }
-    if (assignee)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("assignee")] = ApiClient::parameterToString(*assignee);
-    }
-    if (limit)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("limit")] = ApiClient::parameterToString(*limit);
-    }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
     utility::string_t localVarRequestHttpContentType;
@@ -390,7 +408,7 @@ pplx::task<std::shared_ptr<IssueHits>> TodoApi::getTodoIssues(boost::optional<ut
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("TodoApi->getTodoIssues does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("DnsApi->getDnsZones does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -411,7 +429,7 @@ pplx::task<std::shared_ptr<IssueHits>> TodoApi::getTodoIssues(boost::optional<ut
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling getTodoIssues: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling getDnsZones: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -422,7 +440,7 @@ pplx::task<std::shared_ptr<IssueHits>> TodoApi::getTodoIssues(boost::optional<ut
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getTodoIssues: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling getDnsZones: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -431,33 +449,16 @@ pplx::task<std::shared_ptr<IssueHits>> TodoApi::getTodoIssues(boost::optional<ut
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<IssueHits> localVarResult(new IssueHits());
-
-        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value localVarJson = web::json::value::parse(localVarResponse);
-
-            ModelBase::fromJson(localVarJson, localVarResult);
-        }
-        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling getTodoIssues: unsupported response type"));
-        }
-
-        return localVarResult;
+        return void();
     });
 }
-pplx::task<std::vector<std::shared_ptr<TodoProject>>> TodoApi::getTodoProjects() const
+pplx::task<void> DnsApi::getDnsZonesByZone(utility::string_t zone) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/todo/projects");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/dns/zones/{zone}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("zone") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(zone)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -465,7 +466,6 @@ pplx::task<std::vector<std::shared_ptr<TodoProject>>> TodoApi::getTodoProjects()
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -486,7 +486,7 @@ pplx::task<std::vector<std::shared_ptr<TodoProject>>> TodoApi::getTodoProjects()
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("TodoApi->getTodoProjects does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("DnsApi->getDnsZonesByZone does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -513,7 +513,7 @@ pplx::task<std::vector<std::shared_ptr<TodoProject>>> TodoApi::getTodoProjects()
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("TodoApi->getTodoProjects does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("DnsApi->getDnsZonesByZone does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -534,7 +534,7 @@ pplx::task<std::vector<std::shared_ptr<TodoProject>>> TodoApi::getTodoProjects()
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling getTodoProjects: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling getDnsZonesByZone: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -545,7 +545,7 @@ pplx::task<std::vector<std::shared_ptr<TodoProject>>> TodoApi::getTodoProjects()
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getTodoProjects: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling getDnsZonesByZone: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -554,38 +554,16 @@ pplx::task<std::vector<std::shared_ptr<TodoProject>>> TodoApi::getTodoProjects()
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::vector<std::shared_ptr<TodoProject>> localVarResult;
-
-        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value localVarJson = web::json::value::parse(localVarResponse);
-            for( auto& localVarItem : localVarJson.as_array() )
-            {
-                std::vector<std::shared_ptr<TodoProject>>::value_type localVarItemObj;
-                ModelBase::fromJson(localVarItem, localVarItemObj);
-                localVarResult.push_back(localVarItemObj);
-            }
-        }
-        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling getTodoProjects: unsupported response type"));
-        }
-
-        return localVarResult;
+        return void();
     });
 }
-pplx::task<std::shared_ptr<TodoProject>> TodoApi::getTodoProjectsByKey(utility::string_t key) const
+pplx::task<void> DnsApi::getDnsZonesByZoneRecords(utility::string_t zone) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/todo/projects/{key}");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("key") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(key)));
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/dns/zones/{zone}/records");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("zone") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(zone)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -593,7 +571,6 @@ pplx::task<std::shared_ptr<TodoProject>> TodoApi::getTodoProjectsByKey(utility::
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -614,7 +591,7 @@ pplx::task<std::shared_ptr<TodoProject>> TodoApi::getTodoProjectsByKey(utility::
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("TodoApi->getTodoProjectsByKey does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("DnsApi->getDnsZonesByZoneRecords does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -641,7 +618,7 @@ pplx::task<std::shared_ptr<TodoProject>> TodoApi::getTodoProjectsByKey(utility::
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("TodoApi->getTodoProjectsByKey does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("DnsApi->getDnsZonesByZoneRecords does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -662,7 +639,7 @@ pplx::task<std::shared_ptr<TodoProject>> TodoApi::getTodoProjectsByKey(utility::
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling getTodoProjectsByKey: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling getDnsZonesByZoneRecords: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -673,7 +650,7 @@ pplx::task<std::shared_ptr<TodoProject>> TodoApi::getTodoProjectsByKey(utility::
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getTodoProjectsByKey: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling getDnsZonesByZoneRecords: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -682,34 +659,17 @@ pplx::task<std::shared_ptr<TodoProject>> TodoApi::getTodoProjectsByKey(utility::
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<TodoProject> localVarResult(new TodoProject());
-
-        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value localVarJson = web::json::value::parse(localVarResponse);
-
-            ModelBase::fromJson(localVarJson, localVarResult);
-        }
-        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling getTodoProjectsByKey: unsupported response type"));
-        }
-
-        return localVarResult;
+        return void();
     });
 }
-pplx::task<std::vector<std::shared_ptr<IssueView>>> TodoApi::getTodoProjectsByKeyIssues(utility::string_t key, boost::optional<utility::string_t> status, boost::optional<utility::string_t> kind, boost::optional<utility::string_t> repo, boost::optional<utility::string_t> label, boost::optional<utility::string_t> source, boost::optional<bool> scheduled) const
+pplx::task<void> DnsApi::getDnsZonesByZoneRecordsByRecord(utility::string_t zone, utility::string_t record) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/todo/projects/{key}/issues");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("key") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(key)));
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/dns/zones/{zone}/records/{record}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("zone") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(zone)));
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("record") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(record)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -717,7 +677,6 @@ pplx::task<std::vector<std::shared_ptr<IssueView>>> TodoApi::getTodoProjectsByKe
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -738,37 +697,13 @@ pplx::task<std::vector<std::shared_ptr<IssueView>>> TodoApi::getTodoProjectsByKe
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("TodoApi->getTodoProjectsByKeyIssues does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("DnsApi->getDnsZonesByZoneRecordsByRecord does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
-    if (status)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("status")] = ApiClient::parameterToString(*status);
-    }
-    if (kind)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("kind")] = ApiClient::parameterToString(*kind);
-    }
-    if (repo)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("repo")] = ApiClient::parameterToString(*repo);
-    }
-    if (label)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("label")] = ApiClient::parameterToString(*label);
-    }
-    if (source)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("source")] = ApiClient::parameterToString(*source);
-    }
-    if (scheduled)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("scheduled")] = ApiClient::parameterToString(*scheduled);
-    }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
     utility::string_t localVarRequestHttpContentType;
@@ -789,7 +724,7 @@ pplx::task<std::vector<std::shared_ptr<IssueView>>> TodoApi::getTodoProjectsByKe
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("TodoApi->getTodoProjectsByKeyIssues does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("DnsApi->getDnsZonesByZoneRecordsByRecord does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -810,7 +745,7 @@ pplx::task<std::vector<std::shared_ptr<IssueView>>> TodoApi::getTodoProjectsByKe
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling getTodoProjectsByKeyIssues: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling getDnsZonesByZoneRecordsByRecord: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -821,7 +756,7 @@ pplx::task<std::vector<std::shared_ptr<IssueView>>> TodoApi::getTodoProjectsByKe
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getTodoProjectsByKeyIssues: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling getDnsZonesByZoneRecordsByRecord: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -830,287 +765,17 @@ pplx::task<std::vector<std::shared_ptr<IssueView>>> TodoApi::getTodoProjectsByKe
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::vector<std::shared_ptr<IssueView>> localVarResult;
-
-        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value localVarJson = web::json::value::parse(localVarResponse);
-            for( auto& localVarItem : localVarJson.as_array() )
-            {
-                std::vector<std::shared_ptr<IssueView>>::value_type localVarItemObj;
-                ModelBase::fromJson(localVarItem, localVarItemObj);
-                localVarResult.push_back(localVarItemObj);
-            }
-        }
-        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling getTodoProjectsByKeyIssues: unsupported response type"));
-        }
-
-        return localVarResult;
+        return void();
     });
 }
-pplx::task<std::shared_ptr<IssueView>> TodoApi::getTodoProjectsByKeyIssuesByNum(utility::string_t key, int32_t num) const
+pplx::task<void> DnsApi::patchDnsZonesByZoneRecordsByRecord(utility::string_t zone, utility::string_t record) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/todo/projects/{key}/issues/{num}");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("key") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(key)));
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("num") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(num)));
-
-    std::map<utility::string_t, utility::string_t> localVarQueryParams;
-    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
-    std::map<utility::string_t, utility::string_t> localVarFormParams;
-    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
-
-    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-    utility::string_t localVarResponseHttpContentType;
-
-    // use JSON if possible
-    if ( localVarResponseHttpContentTypes.size() == 0 )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // JSON
-    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(400, utility::conversions::to_string_t("TodoApi->getTodoProjectsByKeyIssuesByNum does not produce any supported media type"));
-    }
-
-    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
-
-    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
-
-
-    std::shared_ptr<IHttpBody> localVarHttpBody;
-    utility::string_t localVarRequestHttpContentType;
-
-    // use JSON if possible
-    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
-    }
-    else
-    {
-        throw ApiException(415, utility::conversions::to_string_t("TodoApi->getTodoProjectsByKeyIssuesByNum does not consume any supported media type"));
-    }
-
-    // authentication (bearer) required
-
-    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
-    .then([=, this](web::http::http_response localVarResponse)
-    {
-        if (m_ApiClient->getResponseHandler())
-        {
-            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
-        }
-
-        // 1xx - informational : OK
-        // 2xx - successful       : OK
-        // 3xx - redirection   : OK
-        // 4xx - client error  : not OK
-        // 5xx - client error  : not OK
-        if (localVarResponse.status_code() >= 400)
-        {
-            throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling getTodoProjectsByKeyIssuesByNum: ") + localVarResponse.reason_phrase()
-                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
-        }
-
-        // check response content type
-        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
-        {
-            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
-            {
-                throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getTodoProjectsByKeyIssuesByNum: unexpected response type: ") + localVarContentType
-                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
-            }
-        }
-
-        return localVarResponse.extract_string();
-    })
-    .then([=, this](utility::string_t localVarResponse)
-    {
-        std::shared_ptr<IssueView> localVarResult(new IssueView());
-
-        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value localVarJson = web::json::value::parse(localVarResponse);
-
-            ModelBase::fromJson(localVarJson, localVarResult);
-        }
-        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling getTodoProjectsByKeyIssuesByNum: unsupported response type"));
-        }
-
-        return localVarResult;
-    });
-}
-pplx::task<std::shared_ptr<RoomWork>> TodoApi::getTodoRoomsByRoom(utility::string_t room) const
-{
-
-
-    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/todo/rooms/{room}");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("room") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(room)));
-
-    std::map<utility::string_t, utility::string_t> localVarQueryParams;
-    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
-    std::map<utility::string_t, utility::string_t> localVarFormParams;
-    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
-
-    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-    utility::string_t localVarResponseHttpContentType;
-
-    // use JSON if possible
-    if ( localVarResponseHttpContentTypes.size() == 0 )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // JSON
-    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(400, utility::conversions::to_string_t("TodoApi->getTodoRoomsByRoom does not produce any supported media type"));
-    }
-
-    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
-
-    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
-
-
-    std::shared_ptr<IHttpBody> localVarHttpBody;
-    utility::string_t localVarRequestHttpContentType;
-
-    // use JSON if possible
-    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
-    }
-    else
-    {
-        throw ApiException(415, utility::conversions::to_string_t("TodoApi->getTodoRoomsByRoom does not consume any supported media type"));
-    }
-
-    // authentication (bearer) required
-
-    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
-    .then([=, this](web::http::http_response localVarResponse)
-    {
-        if (m_ApiClient->getResponseHandler())
-        {
-            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
-        }
-
-        // 1xx - informational : OK
-        // 2xx - successful       : OK
-        // 3xx - redirection   : OK
-        // 4xx - client error  : not OK
-        // 5xx - client error  : not OK
-        if (localVarResponse.status_code() >= 400)
-        {
-            throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling getTodoRoomsByRoom: ") + localVarResponse.reason_phrase()
-                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
-        }
-
-        // check response content type
-        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
-        {
-            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
-            {
-                throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getTodoRoomsByRoom: unexpected response type: ") + localVarContentType
-                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
-            }
-        }
-
-        return localVarResponse.extract_string();
-    })
-    .then([=, this](utility::string_t localVarResponse)
-    {
-        std::shared_ptr<RoomWork> localVarResult(new RoomWork());
-
-        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value localVarJson = web::json::value::parse(localVarResponse);
-
-            ModelBase::fromJson(localVarJson, localVarResult);
-        }
-        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling getTodoRoomsByRoom: unsupported response type"));
-        }
-
-        return localVarResult;
-    });
-}
-pplx::task<void> TodoApi::patchTodoProjectsByKey(utility::string_t key) const
-{
-
-
-    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/todo/projects/{key}");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("key") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(key)));
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/dns/zones/{zone}/records/{record}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("zone") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(zone)));
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("record") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(record)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -1138,7 +803,7 @@ pplx::task<void> TodoApi::patchTodoProjectsByKey(utility::string_t key) const
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("TodoApi->patchTodoProjectsByKey does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("DnsApi->patchDnsZonesByZoneRecordsByRecord does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -1165,7 +830,7 @@ pplx::task<void> TodoApi::patchTodoProjectsByKey(utility::string_t key) const
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("TodoApi->patchTodoProjectsByKey does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("DnsApi->patchDnsZonesByZoneRecordsByRecord does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -1186,7 +851,7 @@ pplx::task<void> TodoApi::patchTodoProjectsByKey(utility::string_t key) const
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling patchTodoProjectsByKey: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling patchDnsZonesByZoneRecordsByRecord: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -1197,7 +862,7 @@ pplx::task<void> TodoApi::patchTodoProjectsByKey(utility::string_t key) const
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling patchTodoProjectsByKey: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling patchDnsZonesByZoneRecordsByRecord: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -1209,160 +874,12 @@ pplx::task<void> TodoApi::patchTodoProjectsByKey(utility::string_t key) const
         return void();
     });
 }
-pplx::task<std::shared_ptr<IssueView>> TodoApi::patchTodoProjectsByKeyIssuesByNum(utility::string_t key, int32_t num, std::shared_ptr<IssueEdit> issueEdit) const
-{
-
-    // verify the required parameter 'issueEdit' is set
-    if (issueEdit == nullptr)
-    {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'issueEdit' when calling TodoApi->patchTodoProjectsByKeyIssuesByNum"));
-    }
-
-
-    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/todo/projects/{key}/issues/{num}");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("key") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(key)));
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("num") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(num)));
-
-    std::map<utility::string_t, utility::string_t> localVarQueryParams;
-    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
-    std::map<utility::string_t, utility::string_t> localVarFormParams;
-    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
-
-    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-    utility::string_t localVarResponseHttpContentType;
-
-    // use JSON if possible
-    if ( localVarResponseHttpContentTypes.size() == 0 )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // JSON
-    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(400, utility::conversions::to_string_t("TodoApi->patchTodoProjectsByKeyIssuesByNum does not produce any supported media type"));
-    }
-
-    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
-
-    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
-    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-
-    std::shared_ptr<IHttpBody> localVarHttpBody;
-    utility::string_t localVarRequestHttpContentType;
-
-    // use JSON if possible
-    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
-        web::json::value localVarJson;
-
-        localVarJson = ModelBase::toJson(issueEdit);
-        
-
-        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
-    }
-    // multipart formdata
-    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
-
-        if(issueEdit.get())
-        {
-            issueEdit->toMultipart(localVarMultipart, utility::conversions::to_string_t("issueEdit"));
-        }
-        
-
-        localVarHttpBody = localVarMultipart;
-        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
-    }
-    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
-    }
-    else
-    {
-        throw ApiException(415, utility::conversions::to_string_t("TodoApi->patchTodoProjectsByKeyIssuesByNum does not consume any supported media type"));
-    }
-
-    // authentication (bearer) required
-
-    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("PATCH"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
-    .then([=, this](web::http::http_response localVarResponse)
-    {
-        if (m_ApiClient->getResponseHandler())
-        {
-            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
-        }
-
-        // 1xx - informational : OK
-        // 2xx - successful       : OK
-        // 3xx - redirection   : OK
-        // 4xx - client error  : not OK
-        // 5xx - client error  : not OK
-        if (localVarResponse.status_code() >= 400)
-        {
-            throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling patchTodoProjectsByKeyIssuesByNum: ") + localVarResponse.reason_phrase()
-                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
-        }
-
-        // check response content type
-        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
-        {
-            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
-            {
-                throw ApiException(500
-                    , utility::conversions::to_string_t("error calling patchTodoProjectsByKeyIssuesByNum: unexpected response type: ") + localVarContentType
-                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
-            }
-        }
-
-        return localVarResponse.extract_string();
-    })
-    .then([=, this](utility::string_t localVarResponse)
-    {
-        std::shared_ptr<IssueView> localVarResult(new IssueView());
-
-        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value localVarJson = web::json::value::parse(localVarResponse);
-
-            ModelBase::fromJson(localVarJson, localVarResult);
-        }
-        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling patchTodoProjectsByKeyIssuesByNum: unsupported response type"));
-        }
-
-        return localVarResult;
-    });
-}
-pplx::task<void> TodoApi::postTodoProjects() const
+pplx::task<void> DnsApi::postDnsSync() const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/todo/projects");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/dns/sync");
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -1390,7 +907,7 @@ pplx::task<void> TodoApi::postTodoProjects() const
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("TodoApi->postTodoProjects does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("DnsApi->postDnsSync does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -1417,7 +934,7 @@ pplx::task<void> TodoApi::postTodoProjects() const
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("TodoApi->postTodoProjects does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("DnsApi->postDnsSync does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -1438,7 +955,7 @@ pplx::task<void> TodoApi::postTodoProjects() const
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling postTodoProjects: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling postDnsSync: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -1449,7 +966,7 @@ pplx::task<void> TodoApi::postTodoProjects() const
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling postTodoProjects: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling postDnsSync: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -1461,19 +978,12 @@ pplx::task<void> TodoApi::postTodoProjects() const
         return void();
     });
 }
-pplx::task<std::shared_ptr<IssueView>> TodoApi::postTodoProjectsByKeyIssues(utility::string_t key, std::shared_ptr<NewIssue> newIssue) const
+pplx::task<void> DnsApi::postDnsZones() const
 {
-
-    // verify the required parameter 'newIssue' is set
-    if (newIssue == nullptr)
-    {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'newIssue' when calling TodoApi->postTodoProjectsByKeyIssues"));
-    }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/todo/projects/{key}/issues");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("key") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(key)));
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/dns/zones");
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -1481,7 +991,6 @@ pplx::task<std::shared_ptr<IssueView>> TodoApi::postTodoProjectsByKeyIssues(util
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1502,13 +1011,12 @@ pplx::task<std::shared_ptr<IssueView>> TodoApi::postTodoProjectsByKeyIssues(util
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("TodoApi->postTodoProjectsByKeyIssues does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("DnsApi->postDnsZones does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
-    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -1518,27 +1026,11 @@ pplx::task<std::shared_ptr<IssueView>> TodoApi::postTodoProjectsByKeyIssues(util
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
-        web::json::value localVarJson;
-
-        localVarJson = ModelBase::toJson(newIssue);
-        
-
-        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
-
-        if(newIssue.get())
-        {
-            newIssue->toMultipart(localVarMultipart, utility::conversions::to_string_t("newIssue"));
-        }
-        
-
-        localVarHttpBody = localVarMultipart;
-        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1546,7 +1038,7 @@ pplx::task<std::shared_ptr<IssueView>> TodoApi::postTodoProjectsByKeyIssues(util
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("TodoApi->postTodoProjectsByKeyIssues does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("DnsApi->postDnsZones does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -1567,7 +1059,7 @@ pplx::task<std::shared_ptr<IssueView>> TodoApi::postTodoProjectsByKeyIssues(util
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling postTodoProjectsByKeyIssues: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling postDnsZones: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -1578,7 +1070,7 @@ pplx::task<std::shared_ptr<IssueView>> TodoApi::postTodoProjectsByKeyIssues(util
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling postTodoProjectsByKeyIssues: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling postDnsZones: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -1587,35 +1079,16 @@ pplx::task<std::shared_ptr<IssueView>> TodoApi::postTodoProjectsByKeyIssues(util
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<IssueView> localVarResult(new IssueView());
-
-        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value localVarJson = web::json::value::parse(localVarResponse);
-
-            ModelBase::fromJson(localVarJson, localVarResult);
-        }
-        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling postTodoProjectsByKeyIssues: unsupported response type"));
-        }
-
-        return localVarResult;
+        return void();
     });
 }
-pplx::task<std::shared_ptr<IssueHit>> TodoApi::postTodoProjectsByKeyIssuesByNumClaim(utility::string_t key, int32_t num) const
+pplx::task<void> DnsApi::postDnsZonesByZoneRecords(utility::string_t zone) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/todo/projects/{key}/issues/{num}/claim");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("key") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(key)));
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("num") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(num)));
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/dns/zones/{zone}/records");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("zone") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(zone)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -1623,7 +1096,6 @@ pplx::task<std::shared_ptr<IssueHit>> TodoApi::postTodoProjectsByKeyIssuesByNumC
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1644,7 +1116,7 @@ pplx::task<std::shared_ptr<IssueHit>> TodoApi::postTodoProjectsByKeyIssuesByNumC
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("TodoApi->postTodoProjectsByKeyIssuesByNumClaim does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("DnsApi->postDnsZonesByZoneRecords does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -1671,7 +1143,7 @@ pplx::task<std::shared_ptr<IssueHit>> TodoApi::postTodoProjectsByKeyIssuesByNumC
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("TodoApi->postTodoProjectsByKeyIssuesByNumClaim does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("DnsApi->postDnsZonesByZoneRecords does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -1692,7 +1164,7 @@ pplx::task<std::shared_ptr<IssueHit>> TodoApi::postTodoProjectsByKeyIssuesByNumC
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling postTodoProjectsByKeyIssuesByNumClaim: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling postDnsZonesByZoneRecords: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -1703,7 +1175,7 @@ pplx::task<std::shared_ptr<IssueHit>> TodoApi::postTodoProjectsByKeyIssuesByNumC
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling postTodoProjectsByKeyIssuesByNumClaim: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling postDnsZonesByZoneRecords: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -1712,25 +1184,113 @@ pplx::task<std::shared_ptr<IssueHit>> TodoApi::postTodoProjectsByKeyIssuesByNumC
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<IssueHit> localVarResult(new IssueHit());
+        return void();
+    });
+}
+pplx::task<void> DnsApi::putDnsZonesByZoneRecordsByRecord(utility::string_t zone, utility::string_t record) const
+{
 
-        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/dns/zones/{zone}/records/{record}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("zone") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(zone)));
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("record") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(record)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("DnsApi->putDnsZonesByZoneRecordsByRecord does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("DnsApi->putDnsZonesByZoneRecordsByRecord does not consume any supported media type"));
+    }
+
+    // authentication (bearer) required
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("PUT"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
         {
-            web::json::value localVarJson = web::json::value::parse(localVarResponse);
-
-            ModelBase::fromJson(localVarJson, localVarResult);
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
         }
-        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
         {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling postTodoProjectsByKeyIssuesByNumClaim: unsupported response type"));
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling putDnsZonesByZoneRecordsByRecord: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
-        return localVarResult;
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling putDnsZonesByZoneRecordsByRecord: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        return void();
     });
 }
 

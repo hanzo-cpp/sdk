@@ -160,6 +160,11 @@ public:
     void unsetRepo();
     void setRepo(const utility::string_t& value);
 
+    utility::string_t getRoom() const;
+    bool roomIsSet() const;
+    void unsetRoom();
+    void setRoom(const utility::string_t& value);
+
     utility::string_t getRootSessionId() const;
     bool rootSessionIdIsSet() const;
     void unsetRootSessionId();
@@ -263,6 +268,9 @@ protected:
 
     utility::string_t m_Repo;
     bool m_RepoIsSet;
+
+    utility::string_t m_Room;
+    bool m_RoomIsSet;
 
     utility::string_t m_RootSessionId;
     bool m_RootSessionIdIsSet;

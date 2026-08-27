@@ -53,6 +53,8 @@ SessionDetail::SessionDetail()
     m_RecentEventsIsSet = false;
     m_Repo = utility::conversions::to_string_t("");
     m_RepoIsSet = false;
+    m_Room = utility::conversions::to_string_t("");
+    m_RoomIsSet = false;
     m_RootSessionId = utility::conversions::to_string_t("");
     m_RootSessionIdIsSet = false;
     m_StartedAt = utility::conversions::to_string_t("");
@@ -179,6 +181,11 @@ web::json::value SessionDetail::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("repo"))] = ModelBase::toJson(m_Repo);
+    }
+    if(m_RoomIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("room"))] = ModelBase::toJson(m_Room);
     }
     if(m_RootSessionIdIsSet)
     {
@@ -441,6 +448,17 @@ bool SessionDetail::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("room"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("room")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setRoom;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setRoom);
+            setRoom(refVal_setRoom);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("rootSessionId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("rootSessionId")));
@@ -626,6 +644,10 @@ void SessionDetail::toMultipart(std::shared_ptr<MultipartFormData> multipart, co
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("repo")), m_Repo));
     }
+    if(m_RoomIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("room")), m_Room));
+    }
     if(m_RootSessionIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("rootSessionId")), m_RootSessionId));
@@ -786,6 +808,12 @@ bool SessionDetail::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
         utility::string_t refVal_setRepo;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("repo"))), refVal_setRepo );
         setRepo(refVal_setRepo);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("room"))))
+    {
+        utility::string_t refVal_setRoom;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("room"))), refVal_setRoom );
+        setRoom(refVal_setRoom);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("rootSessionId"))))
     {
@@ -1243,6 +1271,27 @@ bool SessionDetail::repoIsSet() const
 void SessionDetail::unsetRepo()
 {
     m_RepoIsSet = false;
+}
+utility::string_t SessionDetail::getRoom() const
+{
+    return m_Room;
+}
+
+
+void SessionDetail::setRoom(const utility::string_t& value)
+{
+    m_Room = value;
+    m_RoomIsSet = true;
+}
+
+bool SessionDetail::roomIsSet() const
+{
+    return m_RoomIsSet;
+}
+
+void SessionDetail::unsetRoom()
+{
+    m_RoomIsSet = false;
 }
 utility::string_t SessionDetail::getRootSessionId() const
 {

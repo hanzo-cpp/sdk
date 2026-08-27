@@ -61,7 +61,7 @@ public:
     void setFilename(const utility::string_t& value);
 
     /// <summary>
-    /// ID is the document.
+    /// ID is the document this PDF was rendered from.
     /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;

@@ -10,32 +10,33 @@
  */
 
 /*
- * DataroomDocumentOne.h
+ * TeamRooms.h
  *
  * 
  */
 
-#ifndef HANZO_MODEL_DataroomDocumentOne_H_
-#define HANZO_MODEL_DataroomDocumentOne_H_
+#ifndef HANZO_MODEL_TeamRooms_H_
+#define HANZO_MODEL_TeamRooms_H_
 
 #include <boost/optional.hpp>
 
 #include "hanzo/ModelBase.h"
 
-#include "hanzo/model/DataroomDocument.h"
+#include "hanzo/model/TeamRoom.h"
+#include <vector>
 
 namespace hanzo {
 namespace model {
 
-class DataroomDocument;
+class TeamRoom;
 
 
-class  DataroomDocumentOne
+class  TeamRooms
     : public ModelBase
 {
 public:
-    DataroomDocumentOne();
-    virtual ~DataroomDocumentOne();
+    TeamRooms();
+    virtual ~TeamRooms();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -50,21 +51,21 @@ public:
 
 
     /////////////////////////////////////////////
-    /// DataroomDocumentOne members
+    /// TeamRooms members
 
 
     /// <summary>
-    /// Document is the requested document&#39;s METADATA. Its bytes are a separate read, GET /v1/dataroom/documents/{id}/file.
+    /// Rooms is every room of every workspace the caller&#39;s org owns, each with the work facet it carries.
     /// </summary>
-    std::shared_ptr<DataroomDocument> getDocument() const;
-    bool documentIsSet() const;
-    void unsetDocument();
-    void setDocument(const std::shared_ptr<DataroomDocument>& value);
+    std::vector<std::shared_ptr<TeamRoom>> getRooms() const;
+    bool roomsIsSet() const;
+    void unsetRooms();
+    void setRooms(const std::vector<std::shared_ptr<TeamRoom>>& value);
 
 
 protected:
-    std::shared_ptr<DataroomDocument> m_Document;
-    bool m_DocumentIsSet;
+    std::vector<std::shared_ptr<TeamRoom>> m_Rooms;
+    bool m_RoomsIsSet;
 
 };
 
@@ -72,4 +73,4 @@ protected:
 }
 }
 
-#endif /* HANZO_MODEL_DataroomDocumentOne_H_ */
+#endif /* HANZO_MODEL_TeamRooms_H_ */

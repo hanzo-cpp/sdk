@@ -28,6 +28,8 @@ Allowance::Allowance()
     m_SpentIsSet = false;
     m_Used = 0;
     m_UsedIsSet = false;
+    m_Window = utility::conversions::to_string_t("");
+    m_WindowIsSet = false;
 }
 
 Allowance::~Allowance()
@@ -66,6 +68,11 @@ web::json::value Allowance::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("used"))] = ModelBase::toJson(m_Used);
+    }
+    if(m_WindowIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("window"))] = ModelBase::toJson(m_Window);
     }
 
     return val;
@@ -129,6 +136,17 @@ bool Allowance::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("window"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("window")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setWindow;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setWindow);
+            setWindow(refVal_setWindow);
+            
+        }
+    }
     return ok;
 }
 
@@ -158,6 +176,10 @@ void Allowance::toMultipart(std::shared_ptr<MultipartFormData> multipart, const 
     if(m_UsedIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("used")), m_Used));
+    }
+    if(m_WindowIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("window")), m_Window));
     }
 }
 
@@ -199,6 +221,12 @@ bool Allowance::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
         int32_t refVal_setUsed;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("used"))), refVal_setUsed );
         setUsed(refVal_setUsed);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("window"))))
+    {
+        utility::string_t refVal_setWindow;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("window"))), refVal_setWindow );
+        setWindow(refVal_setWindow);
     }
     return ok;
 }
@@ -308,6 +336,27 @@ bool Allowance::usedIsSet() const
 void Allowance::unsetUsed()
 {
     m_UsedIsSet = false;
+}
+utility::string_t Allowance::getWindow() const
+{
+    return m_Window;
+}
+
+
+void Allowance::setWindow(const utility::string_t& value)
+{
+    m_Window = value;
+    m_WindowIsSet = true;
+}
+
+bool Allowance::windowIsSet() const
+{
+    return m_WindowIsSet;
+}
+
+void Allowance::unsetWindow()
+{
+    m_WindowIsSet = false;
 }
 
 }

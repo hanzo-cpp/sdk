@@ -1583,7 +1583,7 @@ pplx::task<std::shared_ptr<RunList>> AgentsApi::getAgentsRuns(boost::optional<in
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<SessionList>> AgentsApi::getAgentsSessions(boost::optional<utility::string_t> root, boost::optional<utility::string_t> parent, boost::optional<utility::string_t> status, boost::optional<utility::string_t> project, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<SessionList>> AgentsApi::getAgentsSessions(boost::optional<utility::string_t> root, boost::optional<utility::string_t> parent, boost::optional<utility::string_t> status, boost::optional<utility::string_t> project, boost::optional<utility::string_t> room, boost::optional<int32_t> limit) const
 {
 
 
@@ -1639,6 +1639,10 @@ pplx::task<std::shared_ptr<SessionList>> AgentsApi::getAgentsSessions(boost::opt
     if (project)
     {
         localVarQueryParams[utility::conversions::to_string_t("project")] = ApiClient::parameterToString(*project);
+    }
+    if (room)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("room")] = ApiClient::parameterToString(*room);
     }
     if (limit)
     {

@@ -210,12 +210,14 @@ public:
     /// <param name="parent">Parent scopes the page to the direct children of one session. Ignored when root is set; with neither, only ROOT sessions come back. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="status">Status filters to running, paused, done or error. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="project">Project filters to the sessions tagged with one product slug. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="room">Room filters to the sessions started in one collaborative room — the query a workspace view runs to show what has been run in it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="limit">Limit caps the page. Absent, zero or over 500 reads as 100. (optional, default to 0)</param>
     pplx::task<std::shared_ptr<SessionList>> getAgentsSessions(
         boost::optional<utility::string_t> root,
         boost::optional<utility::string_t> parent,
         boost::optional<utility::string_t> status,
         boost::optional<utility::string_t> project,
+        boost::optional<utility::string_t> room,
         boost::optional<int32_t> limit
     ) const;
     /// <summary>

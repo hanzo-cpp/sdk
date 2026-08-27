@@ -101,6 +101,14 @@ public:
     void setRepo(const utility::string_t& value);
 
     /// <summary>
+    /// Room is the collaboration room the issue belongs to, spelled \&quot;&lt;workspace&gt;_&lt;room&gt;\&quot; — empty when it is not room-bound, which is most of them. It is here so an org-wide search says which channel each item came from without a second read.
+    /// </summary>
+    utility::string_t getRoom() const;
+    bool roomIsSet() const;
+    void unsetRoom();
+    void setRoom(const utility::string_t& value);
+
+    /// <summary>
     /// Source is which surface opened it: team, git, crm, helpdesk, cms or agent. \&quot;git\&quot; is how the mirrored forge and GitHub rows are spelled.
     /// </summary>
     utility::string_t getSource() const;
@@ -151,6 +159,9 @@ protected:
 
     utility::string_t m_Repo;
     bool m_RepoIsSet;
+
+    utility::string_t m_Room;
+    bool m_RoomIsSet;
 
     utility::string_t m_Source;
     bool m_SourceIsSet;

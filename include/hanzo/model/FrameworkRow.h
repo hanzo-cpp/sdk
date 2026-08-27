@@ -101,7 +101,7 @@ public:
     void setUnit(const utility::string_t& value);
 
     /// <summary>
-    /// Units is the plural of Unit.
+    /// Units is Unit&#39;s plural, carried so a caller renders \&quot;12 controls\&quot; without having to pluralise a word it does not know.
     /// </summary>
     utility::string_t getUnits() const;
     bool unitsIsSet() const;
