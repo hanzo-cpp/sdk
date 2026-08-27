@@ -47,6 +47,7 @@
 #include "hanzo/model/RunList.h"
 #include "hanzo/model/SessionDetail.h"
 #include "hanzo/model/SessionList.h"
+#include "hanzo/model/SessionProgress.h"
 #include "hanzo/model/SessionView.h"
 #include "hanzo/model/TargetDeleted.h"
 #include "hanzo/model/TargetList.h"
@@ -241,6 +242,16 @@ public:
     pplx::task<std::shared_ptr<ControlDrain>> getAgentsSessionsByIdControl(
         utility::string_t id,
         boost::optional<int32_t> after
+    ) const;
+    /// <summary>
+    /// Returns how far along one run is: the share of its goal that is done, whether it is running, blocked or finished, and a line saying what it is doing right now.
+    /// </summary>
+    /// <remarks>
+    /// Returns how far along one run is: the share of its goal that is done, whether it is running, blocked or finished, and a line saying what it is doing right now.  It is a MODEL ESTIMATE read off the run&#39;s own transcript, not a measurement — &#x60;estimated&#x60; says so on every answer, and a run whose progress cannot be told reports phase \&quot;unknown\&quot; with no percentage rather than a zero it does not mean. A session that has already finished answers from its own status instead, and is marked not estimated.  The list and detail reads carry the same value; this address is the one that WAITS. Where the stored estimate has gone stale it is remade before answering, so a human deciding whether to step into a run gets a current reading rather than the last poll&#39;s — which costs one small completion, charged to the same wallet the session already names, at most once every thirty seconds per run.
+    /// </remarks>
+    /// <param name="id">ID is the session to act on, from the path.</param>
+    pplx::task<std::shared_ptr<SessionProgress>> getAgentsSessionsByIdProgress(
+        utility::string_t id
     ) const;
     /// <summary>
     /// Returns the subagent-flow graph rooted at this session: the session, its children, their children, each node carrying its own event count.
