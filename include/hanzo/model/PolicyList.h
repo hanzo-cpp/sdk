@@ -54,7 +54,7 @@ public:
 
 
     /// <summary>
-    /// Policies is the list.
+    /// Policies is the organization&#39;s published policy documents, each as the centre holds it.
     /// </summary>
     std::vector<std::shared_ptr<AnyType>> getPolicies() const;
     bool policiesIsSet() const;

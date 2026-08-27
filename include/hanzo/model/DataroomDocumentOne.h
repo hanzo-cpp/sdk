@@ -54,7 +54,7 @@ public:
 
 
     /// <summary>
-    /// Document is the document itself.
+    /// Document is the requested document&#39;s METADATA. Its bytes are a separate read, GET /v1/dataroom/documents/{id}/file.
     /// </summary>
     std::shared_ptr<DataroomDocument> getDocument() const;
     bool documentIsSet() const;

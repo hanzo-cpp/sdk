@@ -53,7 +53,7 @@ public:
 
 
     /// <summary>
-    /// Token is the value to send back in the X-CSRF-Token header. It is bound to the caller&#39;s identity, so it authorizes writes as them and as nobody else.
+    /// Token is the value to send back in the X-CSRF-Token header. It is bound to the caller&#39;s identity, so it authorizes changes as them and as nobody else.
     /// </summary>
     utility::string_t getCsrfToken() const;
     bool csrfTokenIsSet() const;
@@ -61,7 +61,7 @@ public:
     void setCsrfToken(const utility::string_t& value);
 
     /// <summary>
-    /// ExpiresIn is the token&#39;s lifetime in seconds. Fetch a new one when it lapses; a write with an expired token is refused.
+    /// ExpiresIn is the token&#39;s lifetime in seconds. Fetch a new one when it lapses; a change with an expired token is refused.
     /// </summary>
     int32_t getExpiresIn() const;
     bool expiresInIsSet() const;

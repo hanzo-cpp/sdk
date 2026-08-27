@@ -101,7 +101,7 @@ public:
     void setId(const utility::string_t& value);
 
     /// <summary>
-    /// Kind is what it is.
+    /// Kind is one of report, letter, policy, questionnaire, subprocessor, article or update — the closed set the public centre knows how to draw.
     /// </summary>
     utility::string_t getKind() const;
     bool kindIsSet() const;
@@ -109,7 +109,7 @@ public:
     void setKind(const utility::string_t& value);
 
     /// <summary>
-    /// Name is its title.
+    /// Name is the label the centre lists it under.
     /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;

@@ -93,7 +93,7 @@ public:
     void setShares(int32_t value);
 
     /// <summary>
-    /// StakeholderID is the stakeholder.
+    /// StakeholderID addresses the stakeholder these totals are for.
     /// </summary>
     utility::string_t getStakeholderId() const;
     bool stakeholderIdIsSet() const;

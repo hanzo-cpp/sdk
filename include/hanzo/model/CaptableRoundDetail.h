@@ -65,7 +65,7 @@ public:
     void setInvestments(const std::vector<std::shared_ptr<CaptableRoundInvestment>>& value);
 
     /// <summary>
-    /// Round is the round itself.
+    /// Round is the round&#39;s own terms — name, type, valuation, target and status — as against the investments beside it.
     /// </summary>
     std::shared_ptr<CaptableRound> getRound() const;
     bool roundIsSet() const;

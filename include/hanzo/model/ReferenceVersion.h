@@ -69,7 +69,7 @@ public:
     void setRefusal(const utility::string_t& value);
 
     /// <summary>
-    /// Set is the set.
+    /// Set is the name the consulted set is addressed by.
     /// </summary>
     utility::string_t getSet() const;
     bool setIsSet() const;

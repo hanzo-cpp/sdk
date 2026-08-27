@@ -31,6 +31,9 @@
 #include "hanzo/model/PlanInfo.h"
 #include "hanzo/model/ProviderInfo.h"
 #include "hanzo/model/StatsOut.h"
+#include "hanzo/model/TeamRoom.h"
+#include "hanzo/model/TeamRoomBind.h"
+#include "hanzo/model/TeamRooms.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -145,6 +148,14 @@ public:
         utility::string_t filename
     ) const;
     /// <summary>
+    /// Returns every room of the caller&#39;s org, across the workspaces it owns, with the work facet each carries.
+    /// </summary>
+    /// <remarks>
+    /// Returns every room of the caller&#39;s org, across the workspaces it owns, with the work facet each carries.  It reads the SAME Chunter documents the transactor serves, so a room opened in the Team client appears here with no sync, and a facet written here is read by anything holding the document. Direct messages are included: a room between two people is a room with no name, not a different kind of thing.
+    /// </remarks>
+    pplx::task<std::shared_ptr<TeamRooms>> getTeamRooms(
+    ) const;
+    /// <summary>
     /// Statistics returns the transactor&#39;s live sessions for the workspace the caller&#39;s credential names — the endpoint the front&#39;s workspace switcher and server panel poll on the transactor base.
     /// </summary>
     /// <remarks>
@@ -221,6 +232,18 @@ public:
     /// Writes the team session token into the HttpOnly &#x60;account-token&#x60; cookie — Secure, SameSite&#x3D;Lax, whole-origin scope, thirty days — and answers {\&quot;result\&quot;: true}. This is how the client turns the token it caught off the OAuth bounce into a credential page JS can no longer read, which IS the security property: script that cannot see the cookie cannot exfiltrate it, and every later call on the files, billing and collaborator planes authenticates from it when no bearer is sent.  The token is VERIFIED — signature and expiry, against this service&#39;s own signing secret — BEFORE it is stored. Anything this service did not sign is 401 and nothing is written; persisting a caller-supplied value unchecked would be a session-fixation hole, where an attacker pins a cookie the victim&#39;s browser then presents as its own.  The token may arrive as &#x60;token&#x60; in the JSON body or, when the body is absent or unparseable, from the Authorization bearer — an unreadable body is NOT an error here. The sibling DELETE clears this same cookie and signs the browser out of team only: the IAM cookie set alongside it is a different credential with its own lifetime and is left alone.
     /// </remarks>
     pplx::task<std::shared_ptr<CookieAck>> putTeamAccountCookie(
+    ) const;
+    /// <summary>
+    /// States what a room is for: its lifecycle intent, and what it is about.
+    /// </summary>
+    /// <remarks>
+    /// States what a room is for: its lifecycle intent, and what it is about. It answers the room as it now stands.  The write is a platform MIXIN on the room document, applied through the SAME applyTx path the Team client&#39;s own writes take and broadcast to every connected client — so a room bound here updates live in an open workspace rather than on the next reload.
+    /// </remarks>
+    /// <param name="id">ID is the room to bind, from the path. The URL is the authority; a body carrying another id cannot redirect the write.</param>
+    /// <param name="teamRoomBind"></param>
+    pplx::task<std::shared_ptr<TeamRoom>> putTeamRoomsById(
+        utility::string_t id,
+        std::shared_ptr<TeamRoomBind> teamRoomBind
     ) const;
 
 protected:
