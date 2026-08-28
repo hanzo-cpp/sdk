@@ -290,6 +290,14 @@ public:
     pplx::task<void> getIntegrationsTelegramLinkCallback(
     ) const;
     /// <summary>
+    /// WhatsApp Cloud API subscription challenge
+    /// </summary>
+    /// <remarks>
+    /// Meta calls this once when the webhook is subscribed, carrying the verify token this deployment was configured with and a challenge to echo. The token is compared in constant time before the echo — answering the challenge without checking it would let anyone point their own app at this address and have it confirm the subscription.
+    /// </remarks>
+    pplx::task<void> getIntegrationsWhatsappWebhook(
+    ) const;
+    /// <summary>
     /// Acquires the org&#39;s credential for one provider.
     /// </summary>
     /// <remarks>
@@ -504,6 +512,14 @@ public:
     /// The update webhook for the Telegram bot. It does two jobs: &#x60;/start &lt;code&gt;&#x60; or &#x60;/connect &lt;code&gt;&#x60; binds the chat it was sent from to an org, idempotently; anything else is treated as a possible agent trigger.  What counts as a trigger differs by chat type, and it is easy to get wrong: in a private chat every message is a trigger, while in a group the message must mention the bot or use the &#x60;/hanzo&#x60; command. Non-triggers and non-message updates are acknowledged and dropped.  Authentication is the secret token Telegram echoes on every update, compared in constant time. A message in a chat that has never been bound is dropped, which is why the bind command exists.  The caller here is the PLATFORM, not a Hanzo tenant, so there is no bearer and no principal. The signature check IS the authentication, and it fails closed. The tenant is never read from the payload either: it is resolved from the verified platform identifier through the connection map, so an event from a workspace nobody connected does nothing. Refusals are written with their own status rather than being flattened to a 500, so a rejected signature reads as 401 and a malformed body as 400.  The answer is acknowledged immediately and the work happens afterwards, because every one of these platforms times out a slow webhook. Duplicate deliveries are absorbed durably, so a platform retry of an event that already ran never runs it a second time or bills for it twice. When the agent pool is full nothing at all is recorded and the delivery is refused as retriable, so the message is re-delivered later rather than being lost or half-processed.
     /// </remarks>
     pplx::task<void> postIntegrationsTelegramWebhook(
+    ) const;
+    /// <summary>
+    /// WhatsApp Cloud API webhook
+    /// </summary>
+    /// <remarks>
+    /// One delivery from Meta. Authenticity is the X-Hub-Signature-256 HMAC over the raw body, and it is the whole of it: a message accepted here creates the reply route that authorises this org to answer, so an unsigned delivery would let anyone hand an org a conversation to answer under its own number.  Meta batches (entry × changes × messages) and sends status callbacks — sent/delivered/read — through this same address with no message at all. Those are acknowledged and dropped rather than refused, because a non-2xx is retried with backoff and eventually disables the subscription: the only refusals here are an unconfigured endpoint and a bad signature, which are ours to fix and not Meta&#39;s to retry.  The answer is acknowledged immediately and the work happens afterwards, because every one of these platforms times out a slow webhook. Duplicate deliveries are absorbed durably, so a platform retry of an event that already ran never runs it a second time or bills for it twice. When the agent pool is full nothing at all is recorded and the delivery is refused as retriable, so the message is re-delivered later rather than being lost or half-processed.
+    /// </remarks>
+    pplx::task<void> postIntegrationsWhatsappWebhook(
     ) const;
     /// <summary>
     /// Sets or clears the custom domain (cname) and updates HTTPS enforcement, build type, or source.
