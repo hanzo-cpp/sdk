@@ -10,13 +10,13 @@
  */
 
 /*
- * Response.h
+ * Fusion.h
  *
  * 
  */
 
-#ifndef HANZO_MODEL_Response_H_
-#define HANZO_MODEL_Response_H_
+#ifndef HANZO_MODEL_Fusion_H_
+#define HANZO_MODEL_Fusion_H_
 
 #include <boost/optional.hpp>
 
@@ -34,12 +34,12 @@ class BackendStatus;
 class Hit;
 
 
-class  Response
+class  Fusion
     : public ModelBase
 {
 public:
-    Response();
-    virtual ~Response();
+    Fusion();
+    virtual ~Fusion();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -54,7 +54,7 @@ public:
 
 
     /////////////////////////////////////////////
-    /// Response members
+    /// Fusion members
 
 
     /// <summary>
@@ -120,4 +120,4 @@ protected:
 }
 }
 
-#endif /* HANZO_MODEL_Response_H_ */
+#endif /* HANZO_MODEL_Fusion_H_ */

@@ -677,6 +677,7 @@ include/hanzo/model/FrameworkRow.h
 include/hanzo/model/FunctionDetail.h
 include/hanzo/model/FunctionView.h
 include/hanzo/model/Funnel.h
+include/hanzo/model/Fusion.h
 include/hanzo/model/GLRow.h
 include/hanzo/model/GPU.h
 include/hanzo/model/GcOut.h
@@ -988,7 +989,6 @@ include/hanzo/model/MachineView.h
 include/hanzo/model/MakeIn.h
 include/hanzo/model/MarketCatalog.h
 include/hanzo/model/MarketItem.h
-include/hanzo/model/Match.h
 include/hanzo/model/McpCatalog.h
 include/hanzo/model/McpCatalogSync.h
 include/hanzo/model/McpServerList.h
@@ -1958,6 +1958,7 @@ include/hanzo/model/PromptList.h
 include/hanzo/model/PromptMeta.h
 include/hanzo/model/PromptReq.h
 include/hanzo/model/PropSpec.h
+include/hanzo/model/Provenance.h
 include/hanzo/model/ProviderBreakdown.h
 include/hanzo/model/ProviderInfo.h
 include/hanzo/model/ProviderRow.h
@@ -2063,7 +2064,6 @@ include/hanzo/model/Request.h
 include/hanzo/model/ResolveReferenceIn.h
 include/hanzo/model/ResolveReferenceOut.h
 include/hanzo/model/ResourceUsage.h
-include/hanzo/model/Response.h
 include/hanzo/model/Responsible.h
 include/hanzo/model/RestartRef.h
 include/hanzo/model/Restarted.h
@@ -3135,6 +3135,7 @@ src/model/FrameworkRow.cpp
 src/model/FunctionDetail.cpp
 src/model/FunctionView.cpp
 src/model/Funnel.cpp
+src/model/Fusion.cpp
 src/model/GLRow.cpp
 src/model/GPU.cpp
 src/model/GcOut.cpp
@@ -3446,7 +3447,6 @@ src/model/MachineView.cpp
 src/model/MakeIn.cpp
 src/model/MarketCatalog.cpp
 src/model/MarketItem.cpp
-src/model/Match.cpp
 src/model/McpCatalog.cpp
 src/model/McpCatalogSync.cpp
 src/model/McpServerList.cpp
@@ -4416,6 +4416,7 @@ src/model/PromptList.cpp
 src/model/PromptMeta.cpp
 src/model/PromptReq.cpp
 src/model/PropSpec.cpp
+src/model/Provenance.cpp
 src/model/ProviderBreakdown.cpp
 src/model/ProviderInfo.cpp
 src/model/ProviderRow.cpp
@@ -4521,7 +4522,6 @@ src/model/Request.cpp
 src/model/ResolveReferenceIn.cpp
 src/model/ResolveReferenceOut.cpp
 src/model/ResourceUsage.cpp
-src/model/Response.cpp
 src/model/Responsible.cpp
 src/model/RestartRef.cpp
 src/model/Restarted.cpp
