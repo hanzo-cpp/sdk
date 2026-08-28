@@ -156,16 +156,6 @@ public:
     pplx::task<std::shared_ptr<TeamRooms>> getTeamRooms(
     ) const;
     /// <summary>
-    /// Statistics returns the transactor&#39;s live sessions for the workspace the caller&#39;s credential names — the endpoint the front&#39;s workspace switcher and server panel poll on the transactor base.
-    /// </summary>
-    /// <remarks>
-    /// Statistics returns the transactor&#39;s live sessions for the workspace the caller&#39;s credential names — the endpoint the front&#39;s workspace switcher and server panel poll on the transactor base. &#x60;token&#x60; carries the same two lanes the socket&#39;s path segment does: a workspace UUID names the workspace and is authorized against the membership rows, an HS256 workspace token names it in its signed claims. activeSessions carries ONLY that one workspace, never another tenant&#39;s sessions. An unverifiable credential, or one the caller is no member under, is 401.
-    /// </remarks>
-    /// <param name="token">Token is the workspace token minted by selectWorkspace. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    pplx::task<std::shared_ptr<StatsOut>> getTeamTransactorApiV1Statistics(
-        boost::optional<utility::string_t> token
-    ) const;
-    /// <summary>
     /// Open the workspace data-plane socket
     /// </summary>
     /// <remarks>
