@@ -22,10 +22,10 @@
 
 #include "hanzo/ApiClient.h"
 
-#include "hanzo/model/Call.h"
 #include "hanzo/model/MeetHealth.h"
 #include "hanzo/model/RecordIn.h"
 #include "hanzo/model/Recording.h"
+#include "hanzo/model/Venue.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -68,7 +68,7 @@ public:
     /// </remarks>
     /// <param name="workspace">Workspace is the workspace uuid holding the room, as GET /v1/team/rooms reports it. It is the segment the caller&#39;s membership is checked against.</param>
     /// <param name="room">Room is the room&#39;s own id within that workspace, as GET /v1/team/rooms reports it. It is opaque here: meet keeps no rooms and cannot say whether one exists, only whether this caller may be seated in the workspace holding it.</param>
-    pplx::task<std::shared_ptr<Call>> meetCall(
+    pplx::task<std::shared_ptr<Venue>> meetCall(
         utility::string_t workspace,
         utility::string_t room
     ) const;
