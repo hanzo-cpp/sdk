@@ -260,7 +260,7 @@ pplx::task<void> MeetApi::getMeetSession() const
         return void();
     });
 }
-pplx::task<std::shared_ptr<Call>> MeetApi::meetCall(utility::string_t workspace, utility::string_t room) const
+pplx::task<std::shared_ptr<Venue>> MeetApi::meetCall(utility::string_t workspace, utility::string_t room) const
 {
 
 
@@ -368,7 +368,7 @@ pplx::task<std::shared_ptr<Call>> MeetApi::meetCall(utility::string_t workspace,
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<Call> localVarResult(new Call());
+        std::shared_ptr<Venue> localVarResult(new Venue());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {

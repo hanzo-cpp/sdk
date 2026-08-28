@@ -2423,6 +2423,7 @@ include/hanzo/model/ValidatorList.h
 include/hanzo/model/Variant.h
 include/hanzo/model/VendorRow.h
 include/hanzo/model/VendorsOut.h
+include/hanzo/model/Venue.h
 include/hanzo/model/Verdict.h
 include/hanzo/model/VerificationDecision.h
 include/hanzo/model/VerificationReq.h
@@ -4880,6 +4881,7 @@ src/model/ValidatorList.cpp
 src/model/Variant.cpp
 src/model/VendorRow.cpp
 src/model/VendorsOut.cpp
+src/model/Venue.cpp
 src/model/Verdict.cpp
 src/model/VerificationDecision.cpp
 src/model/VerificationReq.cpp

@@ -53,39 +53,72 @@ public:
 
 
     /// <summary>
-    /// Name is the media room to join: the value POST /v1/meet/getToken takes as roomName, and the value the media server keys participants on.
+    /// Agent names the Hanzo assistant handling the call. Set means the call was answered by that assistant rather than connected to a person.
     /// </summary>
-    utility::string_t getName() const;
-    bool nameIsSet() const;
-    void unsetName();
-    void setName(const utility::string_t& value);
+    utility::string_t getAgent() const;
+    bool agentIsSet() const;
+    void unsetAgent();
+    void setAgent(const utility::string_t& value);
 
     /// <summary>
-    /// Ready reports that this deployment can mint a join token for this room. It is false on a deployment holding no media-server key, where Name is still correct — the name is a property of the room and the key is a property of the deployment, so a caller learns the room&#39;s identity either way and learns not to offer a join button.
+    /// From is the calling number in E.164. It must be one this org holds: a carrier refuses an origination from a number nobody proved they own.
     /// </summary>
-    bool isReady() const;
-    bool readyIsSet() const;
-    void unsetReady();
-    void setReady(bool value);
+    utility::string_t getFrom() const;
+    bool fromIsSet() const;
+    void unsetFrom();
+    void setFrom(const utility::string_t& value);
 
     /// <summary>
-    /// WS is where the media plane is — the address a client opens its own browser-to-server connection to. Empty when this deployment has not been told where its media server lives, which is reported rather than refused: a surface can say a call is unavailable without a second request.
+    /// ID is the carrier&#39;s handle for the call — what a hangup or a lookup names.
     /// </summary>
-    utility::string_t getWs() const;
-    bool wsIsSet() const;
-    void unsetWs();
-    void setWs(const utility::string_t& value);
+    utility::string_t getId() const;
+    bool idIsSet() const;
+    void unsetId();
+    void setId(const utility::string_t& value);
+
+    /// <summary>
+    /// Org is the tenant the call was placed for or received by.
+    /// </summary>
+    utility::string_t getOrg() const;
+    bool orgIsSet() const;
+    void unsetOrg();
+    void setOrg(const utility::string_t& value);
+
+    /// <summary>
+    /// Status is where the call is: \&quot;queued\&quot;, \&quot;ringing\&quot;, \&quot;answered\&quot;, \&quot;completed\&quot; or \&quot;failed\&quot;. Only the last two are terminal.
+    /// </summary>
+    utility::string_t getStatus() const;
+    bool statusIsSet() const;
+    void unsetStatus();
+    void setStatus(const utility::string_t& value);
+
+    /// <summary>
+    /// To is the called number in E.164.
+    /// </summary>
+    utility::string_t getTo() const;
+    bool toIsSet() const;
+    void unsetTo();
+    void setTo(const utility::string_t& value);
 
 
 protected:
-    utility::string_t m_Name;
-    bool m_NameIsSet;
+    utility::string_t m_Agent;
+    bool m_AgentIsSet;
 
-    bool m_Ready;
-    bool m_ReadyIsSet;
+    utility::string_t m_From;
+    bool m_FromIsSet;
 
-    utility::string_t m_Ws;
-    bool m_WsIsSet;
+    utility::string_t m_Id;
+    bool m_IdIsSet;
+
+    utility::string_t m_Org;
+    bool m_OrgIsSet;
+
+    utility::string_t m_Status;
+    bool m_StatusIsSet;
+
+    utility::string_t m_To;
+    bool m_ToIsSet;
 
 };
 
