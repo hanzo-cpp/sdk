@@ -33,7 +33,7 @@ SearchApi::~SearchApi()
 {
 }
 
-pplx::task<std::shared_ptr<Response>> SearchApi::search(std::shared_ptr<Request> request) const
+pplx::task<std::shared_ptr<Fusion>> SearchApi::search(std::shared_ptr<Request> request) const
 {
 
     // verify the required parameter 'request' is set
@@ -158,7 +158,7 @@ pplx::task<std::shared_ptr<Response>> SearchApi::search(std::shared_ptr<Request>
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<Response> localVarResult(new Response());
+        std::shared_ptr<Fusion> localVarResult(new Fusion());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {

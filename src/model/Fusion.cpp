@@ -11,12 +11,12 @@
 
 
 
-#include "hanzo/model/Response.h"
+#include "hanzo/model/Fusion.h"
 
 namespace hanzo {
 namespace model {
 
-Response::Response()
+Fusion::Fusion()
 {
     m_BackendsIsSet = false;
     m_HitsIsSet = false;
@@ -28,16 +28,16 @@ Response::Response()
     m_Took_msIsSet = false;
 }
 
-Response::~Response()
+Fusion::~Fusion()
 {
 }
 
-void Response::validate()
+void Fusion::validate()
 {
     // TODO: implement validation
 }
 
-web::json::value Response::toJson() const
+web::json::value Fusion::toJson() const
 {
     web::json::value val = web::json::value::object();
     if(m_BackendsIsSet)
@@ -69,7 +69,7 @@ web::json::value Response::toJson() const
     return val;
 }
 
-bool Response::fromJson(const web::json::value& val)
+bool Fusion::fromJson(const web::json::value& val)
 {
     bool ok = true;
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("backends"))))
@@ -130,7 +130,7 @@ bool Response::fromJson(const web::json::value& val)
     return ok;
 }
 
-void Response::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
+void Fusion::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
 {
     utility::string_t namePrefix = prefix;
     if(namePrefix.size() > 0 && namePrefix.substr(namePrefix.size() - 1) != utility::conversions::to_string_t(_XPLATSTR(".")))
@@ -159,7 +159,7 @@ void Response::toMultipart(std::shared_ptr<MultipartFormData> multipart, const u
     }
 }
 
-bool Response::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
+bool Fusion::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
 {
     bool ok = true;
     utility::string_t namePrefix = prefix;
@@ -202,108 +202,108 @@ bool Response::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 }
 
 
-std::vector<std::shared_ptr<BackendStatus>> Response::getBackends() const
+std::vector<std::shared_ptr<BackendStatus>> Fusion::getBackends() const
 {
     return m_Backends;
 }
 
 
-void Response::setBackends(const std::vector<std::shared_ptr<BackendStatus>>& value)
+void Fusion::setBackends(const std::vector<std::shared_ptr<BackendStatus>>& value)
 {
     m_Backends = value;
     m_BackendsIsSet = true;
 }
 
-bool Response::backendsIsSet() const
+bool Fusion::backendsIsSet() const
 {
     return m_BackendsIsSet;
 }
 
-void Response::unsetBackends()
+void Fusion::unsetBackends()
 {
     m_BackendsIsSet = false;
 }
-std::vector<std::shared_ptr<Hit>> Response::getHits() const
+std::vector<std::shared_ptr<Hit>> Fusion::getHits() const
 {
     return m_Hits;
 }
 
 
-void Response::setHits(const std::vector<std::shared_ptr<Hit>>& value)
+void Fusion::setHits(const std::vector<std::shared_ptr<Hit>>& value)
 {
     m_Hits = value;
     m_HitsIsSet = true;
 }
 
-bool Response::hitsIsSet() const
+bool Fusion::hitsIsSet() const
 {
     return m_HitsIsSet;
 }
 
-void Response::unsetHits()
+void Fusion::unsetHits()
 {
     m_HitsIsSet = false;
 }
-utility::string_t Response::getMode() const
+utility::string_t Fusion::getMode() const
 {
     return m_Mode;
 }
 
 
-void Response::setMode(const utility::string_t& value)
+void Fusion::setMode(const utility::string_t& value)
 {
     m_Mode = value;
     m_ModeIsSet = true;
 }
 
-bool Response::modeIsSet() const
+bool Fusion::modeIsSet() const
 {
     return m_ModeIsSet;
 }
 
-void Response::unsetMode()
+void Fusion::unsetMode()
 {
     m_ModeIsSet = false;
 }
-utility::string_t Response::getStatus() const
+utility::string_t Fusion::getStatus() const
 {
     return m_Status;
 }
 
 
-void Response::setStatus(const utility::string_t& value)
+void Fusion::setStatus(const utility::string_t& value)
 {
     m_Status = value;
     m_StatusIsSet = true;
 }
 
-bool Response::statusIsSet() const
+bool Fusion::statusIsSet() const
 {
     return m_StatusIsSet;
 }
 
-void Response::unsetStatus()
+void Fusion::unsetStatus()
 {
     m_StatusIsSet = false;
 }
-int32_t Response::getTookMs() const
+int32_t Fusion::getTookMs() const
 {
     return m_Took_ms;
 }
 
 
-void Response::setTookMs(int32_t value)
+void Fusion::setTookMs(int32_t value)
 {
     m_Took_ms = value;
     m_Took_msIsSet = true;
 }
 
-bool Response::tookMsIsSet() const
+bool Fusion::tookMsIsSet() const
 {
     return m_Took_msIsSet;
 }
 
-void Response::unsetTook_ms()
+void Fusion::unsetTook_ms()
 {
     m_Took_msIsSet = false;
 }
