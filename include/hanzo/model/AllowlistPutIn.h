@@ -63,7 +63,7 @@ public:
     void setAccessGroups(const std::map<utility::string_t, std::map<utility::string_t, std::vector<utility::string_t>>>& value);
 
     /// <summary>
-    /// Channel is the transport to edit: discord, slack, teams or telegram. Required; an unknown value is a 404.
+    /// Channel is the transport to edit: discord, slack, teams, telegram or whatsapp. Required; an unknown value is a 404.
     /// </summary>
     utility::string_t getChannel() const;
     bool channelIsSet() const;

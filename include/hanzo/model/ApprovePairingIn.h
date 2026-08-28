@@ -53,7 +53,7 @@ public:
 
 
     /// <summary>
-    /// Channel is the transport the request came in on: discord, slack, teams or telegram.
+    /// Channel is the transport the request came in on: discord, slack, teams, telegram or whatsapp.
     /// </summary>
     utility::string_t getChannel() const;
     bool channelIsSet() const;

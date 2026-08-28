@@ -55,7 +55,7 @@ public:
 
 
     /// <summary>
-    /// AccessGroups is the org&#39;s named sender sets, as group name -&gt; channel -&gt; member entries, held once for the whole org. A DM or Group entry written &#x60;accessGroup:&lt;name&gt;&#x60; admits any sender listed under that name for THIS channel, or under the channel &#x60;*&#x60;, which is how one set covers all four transports. Replaced wholesale by the PUT.
+    /// AccessGroups is the org&#39;s named sender sets, as group name -&gt; channel -&gt; member entries, held once for the whole org. A DM or Group entry written &#x60;accessGroup:&lt;name&gt;&#x60; admits any sender listed under that name for THIS channel, or under the channel &#x60;*&#x60;, which is how one set covers every transport at once. Replaced wholesale by the PUT.
     /// </summary>
     std::map<utility::string_t, std::map<utility::string_t, std::vector<utility::string_t>>> getAccessGroups() const;
     bool accessGroupsIsSet() const;
