@@ -1848,7 +1848,7 @@ pplx::task<std::shared_ptr<IndexEnqueued>> IndexApi::postIndexIndexesByUidDocume
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<IndexEnqueued>> IndexApi::postIndexIndexesByUidDocumentsDeleteBatch(utility::string_t uid, boost::optional<std::shared_ptr<Post_index_indexes_by_uid_documents_delete_batch_request>> postIndexIndexesByUidDocumentsDeleteBatchRequest) const
+pplx::task<std::shared_ptr<IndexEnqueued>> IndexApi::postIndexIndexesByUidDocumentsDeleteBatch(utility::string_t uid, boost::optional<std::vector<std::shared_ptr<AnyType>>> requestBody) const
 {
 
 
@@ -1901,9 +1901,16 @@ pplx::task<std::shared_ptr<IndexEnqueued>> IndexApi::postIndexIndexesByUidDocume
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        if (postIndexIndexesByUidDocumentsDeleteBatchRequest)
-            localVarJson = ModelBase::toJson(*postIndexIndexesByUidDocumentsDeleteBatchRequest);
-
+        {
+            std::vector<web::json::value> localVarJsonArray;
+            for( auto& localVarItem : requestBody.get() )
+            {
+                localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
+                
+            }
+            localVarJson = web::json::value::array(localVarJsonArray);
+        }
+        
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
@@ -1912,9 +1919,13 @@ pplx::task<std::shared_ptr<IndexEnqueued>> IndexApi::postIndexIndexesByUidDocume
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(postIndexIndexesByUidDocumentsDeleteBatchRequest && (*postIndexIndexesByUidDocumentsDeleteBatchRequest).get())
         {
-            (*postIndexIndexesByUidDocumentsDeleteBatchRequest)->toMultipart(localVarMultipart, utility::conversions::to_string_t("postIndexIndexesByUidDocumentsDeleteBatchRequest"));
+            std::vector<web::json::value> localVarJsonArray;
+            for( auto& localVarItem : requestBody.get() )
+            {
+                localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
+            }
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("requestBody"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

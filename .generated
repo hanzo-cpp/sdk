@@ -1900,7 +1900,6 @@ include/hanzo/model/PopulatedFlow.h
 include/hanzo/model/Position.h
 include/hanzo/model/PostList.h
 include/hanzo/model/Post_event_request.h
-include/hanzo/model/Post_index_indexes_by_uid_documents_delete_batch_request.h
 include/hanzo/model/PrefsView.h
 include/hanzo/model/Preset.h
 include/hanzo/model/PresetAccepted.h
@@ -4358,7 +4357,6 @@ src/model/PopulatedFlow.cpp
 src/model/Position.cpp
 src/model/PostList.cpp
 src/model/Post_event_request.cpp
-src/model/Post_index_indexes_by_uid_documents_delete_batch_request.cpp
 src/model/PrefsView.cpp
 src/model/Preset.cpp
 src/model/PresetAccepted.cpp

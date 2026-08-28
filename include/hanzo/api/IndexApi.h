@@ -36,7 +36,6 @@
 #include "hanzo/model/IndexTask.h"
 #include "hanzo/model/IndexVersion.h"
 #include "hanzo/model/IndexView.h"
-#include "hanzo/model/Post_index_indexes_by_uid_documents_delete_batch_request.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -207,10 +206,10 @@ public:
     /// Removes every named document from the caller&#39;s own index. The body is the dialect&#39;s own: a bare array of primary keys, which may be strings or numbers. A key that is not there is not an error, so a client reconciling its own corpus can send one list rather than checking each key first.  The tenant is the org minted from the VALIDATED bearer&#39;s owner claim, never a client-supplied header. Without a validated principal the answer is 403 carrying the dialect&#39;s &#x60;invalid_api_key&#x60; body.  The 202 and its &#x60;enqueued&#x60; task are DIALECT COMPATIBILITY, not a promise of later work: the documents are already gone when this answers.
     /// </remarks>
     /// <param name="uid"></param>
-    /// <param name="postIndexIndexesByUidDocumentsDeleteBatchRequest"> (optional)</param>
+    /// <param name="requestBody"> (optional)</param>
     pplx::task<std::shared_ptr<IndexEnqueued>> postIndexIndexesByUidDocumentsDeleteBatch(
         utility::string_t uid,
-        boost::optional<std::shared_ptr<Post_index_indexes_by_uid_documents_delete_batch_request>> postIndexIndexesByUidDocumentsDeleteBatchRequest
+        boost::optional<std::vector<std::shared_ptr<AnyType>>> requestBody
     ) const;
     /// <summary>
     /// Searches an index, forgiving typos.
