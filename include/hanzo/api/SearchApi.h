@@ -22,8 +22,8 @@
 
 #include "hanzo/ApiClient.h"
 
+#include "hanzo/model/Fusion.h"
 #include "hanzo/model/Request.h"
-#include "hanzo/model/Response.h"
 #include <boost/optional.hpp>
 
 namespace hanzo {
@@ -48,7 +48,7 @@ public:
     /// Is the typed op behind POST /v1/search. It does exactly two things the in-process entry point must not do: resolve the tenant from the validated principal, and refuse when there is none. Everything else is ForOrg.
     /// </remarks>
     /// <param name="request"></param>
-    pplx::task<std::shared_ptr<Response>> search(
+    pplx::task<std::shared_ptr<Fusion>> search(
         std::shared_ptr<Request> request
     ) const;
 

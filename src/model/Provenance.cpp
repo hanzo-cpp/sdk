@@ -11,12 +11,12 @@
 
 
 
-#include "hanzo/model/Match.h"
+#include "hanzo/model/Provenance.h"
 
 namespace hanzo {
 namespace model {
 
-Match::Match()
+Provenance::Provenance()
 {
     m_Backend = utility::conversions::to_string_t("");
     m_BackendIsSet = false;
@@ -26,16 +26,16 @@ Match::Match()
     m_ScoreIsSet = false;
 }
 
-Match::~Match()
+Provenance::~Provenance()
 {
 }
 
-void Match::validate()
+void Provenance::validate()
 {
     // TODO: implement validation
 }
 
-web::json::value Match::toJson() const
+web::json::value Provenance::toJson() const
 {
     web::json::value val = web::json::value::object();
     if(m_BackendIsSet)
@@ -57,7 +57,7 @@ web::json::value Match::toJson() const
     return val;
 }
 
-bool Match::fromJson(const web::json::value& val)
+bool Provenance::fromJson(const web::json::value& val)
 {
     bool ok = true;
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("backend"))))
@@ -96,7 +96,7 @@ bool Match::fromJson(const web::json::value& val)
     return ok;
 }
 
-void Match::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
+void Provenance::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
 {
     utility::string_t namePrefix = prefix;
     if(namePrefix.size() > 0 && namePrefix.substr(namePrefix.size() - 1) != utility::conversions::to_string_t(_XPLATSTR(".")))
@@ -117,7 +117,7 @@ void Match::toMultipart(std::shared_ptr<MultipartFormData> multipart, const util
     }
 }
 
-bool Match::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
+bool Provenance::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
 {
     bool ok = true;
     utility::string_t namePrefix = prefix;
@@ -148,66 +148,66 @@ bool Match::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
 }
 
 
-utility::string_t Match::getBackend() const
+utility::string_t Provenance::getBackend() const
 {
     return m_Backend;
 }
 
 
-void Match::setBackend(const utility::string_t& value)
+void Provenance::setBackend(const utility::string_t& value)
 {
     m_Backend = value;
     m_BackendIsSet = true;
 }
 
-bool Match::backendIsSet() const
+bool Provenance::backendIsSet() const
 {
     return m_BackendIsSet;
 }
 
-void Match::unsetBackend()
+void Provenance::unsetBackend()
 {
     m_BackendIsSet = false;
 }
-int32_t Match::getRank() const
+int32_t Provenance::getRank() const
 {
     return m_Rank;
 }
 
 
-void Match::setRank(int32_t value)
+void Provenance::setRank(int32_t value)
 {
     m_Rank = value;
     m_RankIsSet = true;
 }
 
-bool Match::rankIsSet() const
+bool Provenance::rankIsSet() const
 {
     return m_RankIsSet;
 }
 
-void Match::unsetRank()
+void Provenance::unsetRank()
 {
     m_RankIsSet = false;
 }
-double Match::getScore() const
+double Provenance::getScore() const
 {
     return m_Score;
 }
 
 
-void Match::setScore(double value)
+void Provenance::setScore(double value)
 {
     m_Score = value;
     m_ScoreIsSet = true;
 }
 
-bool Match::scoreIsSet() const
+bool Provenance::scoreIsSet() const
 {
     return m_ScoreIsSet;
 }
 
-void Match::unsetScore()
+void Provenance::unsetScore()
 {
     m_ScoreIsSet = false;
 }

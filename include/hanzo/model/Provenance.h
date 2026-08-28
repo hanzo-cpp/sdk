@@ -10,13 +10,13 @@
  */
 
 /*
- * Match.h
+ * Provenance.h
  *
  * 
  */
 
-#ifndef HANZO_MODEL_Match_H_
-#define HANZO_MODEL_Match_H_
+#ifndef HANZO_MODEL_Provenance_H_
+#define HANZO_MODEL_Provenance_H_
 
 #include <boost/optional.hpp>
 
@@ -29,12 +29,12 @@ namespace model {
 
 
 
-class  Match
+class  Provenance
     : public ModelBase
 {
 public:
-    Match();
-    virtual ~Match();
+    Provenance();
+    virtual ~Provenance();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -49,11 +49,11 @@ public:
 
 
     /////////////////////////////////////////////
-    /// Match members
+    /// Provenance members
 
 
     /// <summary>
-    /// Backend is the leg that contributed this match: \&quot;index\&quot; (lexical), \&quot;vector\&quot; (semantic) or \&quot;code\&quot; (the org&#39;s repositories). It is the same name that leg reports itself under in Response.Backends, so a hit can be traced to a status.
+    /// Backend is the leg that contributed this match: \&quot;index\&quot; (lexical), \&quot;vector\&quot; (semantic) or \&quot;code\&quot; (the org&#39;s repositories). It is the same name that leg reports itself under in Fusion.Backends, so a hit can be traced to a status.
     /// </summary>
     utility::string_t getBackend() const;
     bool backendIsSet() const;
@@ -93,4 +93,4 @@ protected:
 }
 }
 
-#endif /* HANZO_MODEL_Match_H_ */
+#endif /* HANZO_MODEL_Provenance_H_ */
