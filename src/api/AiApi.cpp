@@ -160,7 +160,7 @@ pplx::task<std::shared_ptr<AiMCPSurface>> AiApi::aiMCPTools(boost::optional<bool
         return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiArticlesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_articles_200_response>> AiApi::deleteAiArticlesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -175,6 +175,7 @@ pplx::task<void> AiApi::deleteAiArticlesByOwnerByName(utility::string_t owner, u
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -263,10 +264,28 @@ pplx::task<void> AiApi::deleteAiArticlesByOwnerByName(utility::string_t owner, u
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_articles_200_response> localVarResult(new Post_ai_articles_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiArticlesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiAssetsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_assets_200_response>> AiApi::deleteAiAssetsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -281,6 +300,7 @@ pplx::task<void> AiApi::deleteAiAssetsByOwnerByName(utility::string_t owner, uti
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -369,10 +389,28 @@ pplx::task<void> AiApi::deleteAiAssetsByOwnerByName(utility::string_t owner, uti
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_assets_200_response> localVarResult(new Post_ai_assets_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiAssetsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiChatsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_chats_200_response>> AiApi::deleteAiChatsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -387,6 +425,7 @@ pplx::task<void> AiApi::deleteAiChatsByOwnerByName(utility::string_t owner, util
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -475,10 +514,28 @@ pplx::task<void> AiApi::deleteAiChatsByOwnerByName(utility::string_t owner, util
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_chats_200_response> localVarResult(new Post_ai_chats_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiChatsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiConnectionsByProvider(utility::string_t provider) const
+pplx::task<std::shared_ptr<Post_ai_connections_200_response>> AiApi::deleteAiConnectionsByProvider(utility::string_t provider) const
 {
 
 
@@ -492,6 +549,7 @@ pplx::task<void> AiApi::deleteAiConnectionsByProvider(utility::string_t provider
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -580,10 +638,28 @@ pplx::task<void> AiApi::deleteAiConnectionsByProvider(utility::string_t provider
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_connections_200_response> localVarResult(new Post_ai_connections_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiConnectionsByProvider: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiDeploymentsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_deployments_200_response>> AiApi::deleteAiDeploymentsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -598,6 +674,7 @@ pplx::task<void> AiApi::deleteAiDeploymentsByOwnerByName(utility::string_t owner
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -686,10 +763,28 @@ pplx::task<void> AiApi::deleteAiDeploymentsByOwnerByName(utility::string_t owner
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_deployments_200_response> localVarResult(new Post_ai_deployments_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiDeploymentsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiFilesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_files_200_response>> AiApi::deleteAiFilesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -704,6 +799,7 @@ pplx::task<void> AiApi::deleteAiFilesByOwnerByName(utility::string_t owner, util
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -792,10 +888,28 @@ pplx::task<void> AiApi::deleteAiFilesByOwnerByName(utility::string_t owner, util
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_files_200_response> localVarResult(new Post_ai_files_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiFilesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiFormsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_forms_200_response>> AiApi::deleteAiFormsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -810,6 +924,7 @@ pplx::task<void> AiApi::deleteAiFormsByOwnerByName(utility::string_t owner, util
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -898,10 +1013,28 @@ pplx::task<void> AiApi::deleteAiFormsByOwnerByName(utility::string_t owner, util
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_forms_200_response> localVarResult(new Post_ai_forms_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiFormsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiGraphsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_graphs_200_response>> AiApi::deleteAiGraphsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -916,6 +1049,7 @@ pplx::task<void> AiApi::deleteAiGraphsByOwnerByName(utility::string_t owner, uti
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1004,10 +1138,28 @@ pplx::task<void> AiApi::deleteAiGraphsByOwnerByName(utility::string_t owner, uti
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_graphs_200_response> localVarResult(new Post_ai_graphs_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiGraphsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiMessagesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_messages_200_response>> AiApi::deleteAiMessagesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -1022,6 +1174,7 @@ pplx::task<void> AiApi::deleteAiMessagesByOwnerByName(utility::string_t owner, u
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1110,10 +1263,28 @@ pplx::task<void> AiApi::deleteAiMessagesByOwnerByName(utility::string_t owner, u
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_messages_200_response> localVarResult(new Post_ai_messages_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiMessagesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiMessagesWelcome() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::deleteAiMessagesWelcome() const
 {
 
 
@@ -1126,6 +1297,7 @@ pplx::task<void> AiApi::deleteAiMessagesWelcome() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1214,10 +1386,28 @@ pplx::task<void> AiApi::deleteAiMessagesWelcome() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiMessagesWelcome: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiNodesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_nodes_200_response>> AiApi::deleteAiNodesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -1232,6 +1422,7 @@ pplx::task<void> AiApi::deleteAiNodesByOwnerByName(utility::string_t owner, util
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1320,10 +1511,28 @@ pplx::task<void> AiApi::deleteAiNodesByOwnerByName(utility::string_t owner, util
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_nodes_200_response> localVarResult(new Post_ai_nodes_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiNodesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiOrgSettings() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::deleteAiOrgSettings() const
 {
 
 
@@ -1336,6 +1545,7 @@ pplx::task<void> AiApi::deleteAiOrgSettings() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1424,10 +1634,28 @@ pplx::task<void> AiApi::deleteAiOrgSettings() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiOrgSettings: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiOrgSettingsList() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::deleteAiOrgSettingsList() const
 {
 
 
@@ -1440,6 +1668,7 @@ pplx::task<void> AiApi::deleteAiOrgSettingsList() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1528,10 +1757,28 @@ pplx::task<void> AiApi::deleteAiOrgSettingsList() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiOrgSettingsList: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiProvidersByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_providers_200_response>> AiApi::deleteAiProvidersByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -1546,6 +1793,7 @@ pplx::task<void> AiApi::deleteAiProvidersByOwnerByName(utility::string_t owner, 
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1634,10 +1882,28 @@ pplx::task<void> AiApi::deleteAiProvidersByOwnerByName(utility::string_t owner, 
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_providers_200_response> localVarResult(new Post_ai_providers_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiProvidersByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiRecordsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_records_200_response>> AiApi::deleteAiRecordsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -1652,6 +1918,7 @@ pplx::task<void> AiApi::deleteAiRecordsByOwnerByName(utility::string_t owner, ut
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1740,10 +2007,28 @@ pplx::task<void> AiApi::deleteAiRecordsByOwnerByName(utility::string_t owner, ut
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_records_200_response> localVarResult(new Post_ai_records_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiRecordsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiRemoteConnectionsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_remote_connections_200_response>> AiApi::deleteAiRemoteConnectionsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -1758,6 +2043,7 @@ pplx::task<void> AiApi::deleteAiRemoteConnectionsByOwnerByName(utility::string_t
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1846,10 +2132,28 @@ pplx::task<void> AiApi::deleteAiRemoteConnectionsByOwnerByName(utility::string_t
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_remote_connections_200_response> localVarResult(new Post_ai_remote_connections_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiRemoteConnectionsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiRouterArtifactMeta() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::deleteAiRouterArtifactMeta() const
 {
 
 
@@ -1862,6 +2166,7 @@ pplx::task<void> AiApi::deleteAiRouterArtifactMeta() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1950,10 +2255,28 @@ pplx::task<void> AiApi::deleteAiRouterArtifactMeta() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiRouterArtifactMeta: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiRouterData() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::deleteAiRouterData() const
 {
 
 
@@ -1966,6 +2289,7 @@ pplx::task<void> AiApi::deleteAiRouterData() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -2054,10 +2378,28 @@ pplx::task<void> AiApi::deleteAiRouterData() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiRouterData: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiRouterDefaults() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::deleteAiRouterDefaults() const
 {
 
 
@@ -2070,6 +2412,7 @@ pplx::task<void> AiApi::deleteAiRouterDefaults() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -2158,10 +2501,28 @@ pplx::task<void> AiApi::deleteAiRouterDefaults() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiRouterDefaults: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiRouterLedger() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::deleteAiRouterLedger() const
 {
 
 
@@ -2174,6 +2535,7 @@ pplx::task<void> AiApi::deleteAiRouterLedger() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -2262,10 +2624,28 @@ pplx::task<void> AiApi::deleteAiRouterLedger() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiRouterLedger: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiRouterPolicy() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::deleteAiRouterPolicy() const
 {
 
 
@@ -2278,6 +2658,7 @@ pplx::task<void> AiApi::deleteAiRouterPolicy() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -2366,10 +2747,28 @@ pplx::task<void> AiApi::deleteAiRouterPolicy() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiRouterPolicy: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiRouterRewards() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::deleteAiRouterRewards() const
 {
 
 
@@ -2382,6 +2781,7 @@ pplx::task<void> AiApi::deleteAiRouterRewards() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -2470,10 +2870,28 @@ pplx::task<void> AiApi::deleteAiRouterRewards() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiRouterRewards: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiRoutesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_routes_200_response>> AiApi::deleteAiRoutesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -2488,6 +2906,7 @@ pplx::task<void> AiApi::deleteAiRoutesByOwnerByName(utility::string_t owner, uti
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -2576,10 +2995,28 @@ pplx::task<void> AiApi::deleteAiRoutesByOwnerByName(utility::string_t owner, uti
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_routes_200_response> localVarResult(new Post_ai_routes_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiRoutesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiScalesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_scales_200_response>> AiApi::deleteAiScalesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -2594,6 +3031,7 @@ pplx::task<void> AiApi::deleteAiScalesByOwnerByName(utility::string_t owner, uti
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -2682,10 +3120,28 @@ pplx::task<void> AiApi::deleteAiScalesByOwnerByName(utility::string_t owner, uti
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_scales_200_response> localVarResult(new Post_ai_scales_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiScalesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiScansByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_scans_200_response>> AiApi::deleteAiScansByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -2700,6 +3156,7 @@ pplx::task<void> AiApi::deleteAiScansByOwnerByName(utility::string_t owner, util
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -2788,10 +3245,28 @@ pplx::task<void> AiApi::deleteAiScansByOwnerByName(utility::string_t owner, util
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_scans_200_response> localVarResult(new Post_ai_scans_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiScansByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiSigninSessionsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_signin_sessions_200_response>> AiApi::deleteAiSigninSessionsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -2806,6 +3281,7 @@ pplx::task<void> AiApi::deleteAiSigninSessionsByOwnerByName(utility::string_t ow
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -2894,10 +3370,28 @@ pplx::task<void> AiApi::deleteAiSigninSessionsByOwnerByName(utility::string_t ow
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_signin_sessions_200_response> localVarResult(new Post_ai_signin_sessions_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiSigninSessionsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiStoresByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_stores_200_response>> AiApi::deleteAiStoresByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -2912,6 +3406,7 @@ pplx::task<void> AiApi::deleteAiStoresByOwnerByName(utility::string_t owner, uti
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -3000,10 +3495,28 @@ pplx::task<void> AiApi::deleteAiStoresByOwnerByName(utility::string_t owner, uti
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_stores_200_response> localVarResult(new Post_ai_stores_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiStoresByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiTasksByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_tasks_200_response>> AiApi::deleteAiTasksByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -3018,6 +3531,7 @@ pplx::task<void> AiApi::deleteAiTasksByOwnerByName(utility::string_t owner, util
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -3106,10 +3620,28 @@ pplx::task<void> AiApi::deleteAiTasksByOwnerByName(utility::string_t owner, util
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_tasks_200_response> localVarResult(new Post_ai_tasks_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiTasksByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiTemplatesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_templates_200_response>> AiApi::deleteAiTemplatesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -3124,6 +3656,7 @@ pplx::task<void> AiApi::deleteAiTemplatesByOwnerByName(utility::string_t owner, 
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -3212,10 +3745,28 @@ pplx::task<void> AiApi::deleteAiTemplatesByOwnerByName(utility::string_t owner, 
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_templates_200_response> localVarResult(new Post_ai_templates_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiTemplatesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiTreeFilesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_tree_files_200_response>> AiApi::deleteAiTreeFilesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -3230,6 +3781,7 @@ pplx::task<void> AiApi::deleteAiTreeFilesByOwnerByName(utility::string_t owner, 
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -3318,10 +3870,28 @@ pplx::task<void> AiApi::deleteAiTreeFilesByOwnerByName(utility::string_t owner, 
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_tree_files_200_response> localVarResult(new Post_ai_tree_files_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiTreeFilesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiVectorsAll() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::deleteAiVectorsAll() const
 {
 
 
@@ -3334,6 +3904,7 @@ pplx::task<void> AiApi::deleteAiVectorsAll() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -3422,10 +3993,28 @@ pplx::task<void> AiApi::deleteAiVectorsAll() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiVectorsAll: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiVectorsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_vectors_200_response>> AiApi::deleteAiVectorsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -3440,6 +4029,7 @@ pplx::task<void> AiApi::deleteAiVectorsByOwnerByName(utility::string_t owner, ut
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -3528,10 +4118,28 @@ pplx::task<void> AiApi::deleteAiVectorsByOwnerByName(utility::string_t owner, ut
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_vectors_200_response> localVarResult(new Post_ai_vectors_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiVectorsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiVideosByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_videos_200_response>> AiApi::deleteAiVideosByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -3546,6 +4154,7 @@ pplx::task<void> AiApi::deleteAiVideosByOwnerByName(utility::string_t owner, uti
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -3634,10 +4243,28 @@ pplx::task<void> AiApi::deleteAiVideosByOwnerByName(utility::string_t owner, uti
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_videos_200_response> localVarResult(new Post_ai_videos_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiVideosByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::deleteAiWorkflowsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_workflows_200_response>> AiApi::deleteAiWorkflowsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -3652,6 +4279,7 @@ pplx::task<void> AiApi::deleteAiWorkflowsByOwnerByName(utility::string_t owner, 
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -3740,10 +4368,28 @@ pplx::task<void> AiApi::deleteAiWorkflowsByOwnerByName(utility::string_t owner, 
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_workflows_200_response> localVarResult(new Post_ai_workflows_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteAiWorkflowsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiAccount() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::getAiAccount() const
 {
 
 
@@ -3756,6 +4402,7 @@ pplx::task<void> AiApi::getAiAccount() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -3844,10 +4491,28 @@ pplx::task<void> AiApi::getAiAccount() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiAccount: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiActivities() const
+pplx::task<std::shared_ptr<Get_ai_activities_200_response>> AiApi::getAiActivities() const
 {
 
 
@@ -3860,6 +4525,7 @@ pplx::task<void> AiApi::getAiActivities() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -3948,10 +4614,28 @@ pplx::task<void> AiApi::getAiActivities() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_activities_200_response> localVarResult(new Get_ai_activities_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiActivities: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiAnswer() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::getAiAnswer() const
 {
 
 
@@ -3964,6 +4648,7 @@ pplx::task<void> AiApi::getAiAnswer() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -4052,10 +4737,28 @@ pplx::task<void> AiApi::getAiAnswer() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiAnswer: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiArticles() const
+pplx::task<std::shared_ptr<Get_ai_articles_200_response>> AiApi::getAiArticles() const
 {
 
 
@@ -4068,6 +4771,7 @@ pplx::task<void> AiApi::getAiArticles() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -4156,10 +4860,28 @@ pplx::task<void> AiApi::getAiArticles() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_articles_200_response> localVarResult(new Get_ai_articles_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiArticles: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiArticlesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_articles_200_response>> AiApi::getAiArticlesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -4174,6 +4896,7 @@ pplx::task<void> AiApi::getAiArticlesByOwnerByName(utility::string_t owner, util
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -4262,10 +4985,28 @@ pplx::task<void> AiApi::getAiArticlesByOwnerByName(utility::string_t owner, util
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_articles_200_response> localVarResult(new Post_ai_articles_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiArticlesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiArticlesGlobal() const
+pplx::task<std::shared_ptr<Get_ai_articles_200_response>> AiApi::getAiArticlesGlobal() const
 {
 
 
@@ -4278,6 +5019,7 @@ pplx::task<void> AiApi::getAiArticlesGlobal() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -4366,10 +5108,28 @@ pplx::task<void> AiApi::getAiArticlesGlobal() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_articles_200_response> localVarResult(new Get_ai_articles_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiArticlesGlobal: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiAssets() const
+pplx::task<std::shared_ptr<Get_ai_assets_200_response>> AiApi::getAiAssets() const
 {
 
 
@@ -4382,6 +5142,7 @@ pplx::task<void> AiApi::getAiAssets() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -4470,10 +5231,28 @@ pplx::task<void> AiApi::getAiAssets() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_assets_200_response> localVarResult(new Get_ai_assets_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiAssets: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiAssetsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_assets_200_response>> AiApi::getAiAssetsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -4488,6 +5267,7 @@ pplx::task<void> AiApi::getAiAssetsByOwnerByName(utility::string_t owner, utilit
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -4576,10 +5356,28 @@ pplx::task<void> AiApi::getAiAssetsByOwnerByName(utility::string_t owner, utilit
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_assets_200_response> localVarResult(new Post_ai_assets_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiAssetsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiChats() const
+pplx::task<std::shared_ptr<Get_ai_chats_200_response>> AiApi::getAiChats() const
 {
 
 
@@ -4592,6 +5390,7 @@ pplx::task<void> AiApi::getAiChats() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -4680,10 +5479,28 @@ pplx::task<void> AiApi::getAiChats() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_chats_200_response> localVarResult(new Get_ai_chats_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiChats: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiChatsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_chats_200_response>> AiApi::getAiChatsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -4698,6 +5515,7 @@ pplx::task<void> AiApi::getAiChatsByOwnerByName(utility::string_t owner, utility
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -4786,10 +5604,28 @@ pplx::task<void> AiApi::getAiChatsByOwnerByName(utility::string_t owner, utility
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_chats_200_response> localVarResult(new Post_ai_chats_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiChatsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiChatsGlobal() const
+pplx::task<std::shared_ptr<Get_ai_chats_200_response>> AiApi::getAiChatsGlobal() const
 {
 
 
@@ -4802,6 +5638,7 @@ pplx::task<void> AiApi::getAiChatsGlobal() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -4890,10 +5727,28 @@ pplx::task<void> AiApi::getAiChatsGlobal() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_chats_200_response> localVarResult(new Get_ai_chats_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiChatsGlobal: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiConnections() const
+pplx::task<std::shared_ptr<Get_ai_connections_200_response>> AiApi::getAiConnections() const
 {
 
 
@@ -4906,6 +5761,7 @@ pplx::task<void> AiApi::getAiConnections() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -4994,10 +5850,28 @@ pplx::task<void> AiApi::getAiConnections() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_connections_200_response> localVarResult(new Get_ai_connections_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiConnections: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiConnectionsByProviderAuthorize(utility::string_t provider) const
+pplx::task<std::shared_ptr<Get_ai_connections_by_provider_authorize_200_response>> AiApi::getAiConnectionsByProviderAuthorize(utility::string_t provider) const
 {
 
 
@@ -5011,6 +5885,7 @@ pplx::task<void> AiApi::getAiConnectionsByProviderAuthorize(utility::string_t pr
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -5099,7 +5974,25 @@ pplx::task<void> AiApi::getAiConnectionsByProviderAuthorize(utility::string_t pr
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_connections_by_provider_authorize_200_response> localVarResult(new Get_ai_connections_by_provider_authorize_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiConnectionsByProviderAuthorize: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
 pplx::task<void> AiApi::getAiConnectionsByProviderCallback(utility::string_t provider) const
@@ -5207,7 +6100,7 @@ pplx::task<void> AiApi::getAiConnectionsByProviderCallback(utility::string_t pro
         return void();
     });
 }
-pplx::task<void> AiApi::getAiConnectionsByProviderUsage(utility::string_t provider) const
+pplx::task<std::shared_ptr<Get_ai_connections_by_provider_usage_200_response>> AiApi::getAiConnectionsByProviderUsage(utility::string_t provider) const
 {
 
 
@@ -5221,6 +6114,7 @@ pplx::task<void> AiApi::getAiConnectionsByProviderUsage(utility::string_t provid
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -5309,10 +6203,28 @@ pplx::task<void> AiApi::getAiConnectionsByProviderUsage(utility::string_t provid
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_connections_by_provider_usage_200_response> localVarResult(new Get_ai_connections_by_provider_usage_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiConnectionsByProviderUsage: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiDashboardsAgents() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::getAiDashboardsAgents() const
 {
 
 
@@ -5325,6 +6237,7 @@ pplx::task<void> AiApi::getAiDashboardsAgents() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -5413,10 +6326,28 @@ pplx::task<void> AiApi::getAiDashboardsAgents() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiDashboardsAgents: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiDashboardsVm() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::getAiDashboardsVm() const
 {
 
 
@@ -5429,6 +6360,7 @@ pplx::task<void> AiApi::getAiDashboardsVm() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -5517,10 +6449,28 @@ pplx::task<void> AiApi::getAiDashboardsVm() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiDashboardsVm: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiDeployments() const
+pplx::task<std::shared_ptr<Get_ai_deployments_200_response>> AiApi::getAiDeployments() const
 {
 
 
@@ -5533,6 +6483,7 @@ pplx::task<void> AiApi::getAiDeployments() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -5621,10 +6572,28 @@ pplx::task<void> AiApi::getAiDeployments() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_deployments_200_response> localVarResult(new Get_ai_deployments_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiDeployments: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiDeploymentsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_deployments_200_response>> AiApi::getAiDeploymentsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -5639,6 +6608,7 @@ pplx::task<void> AiApi::getAiDeploymentsByOwnerByName(utility::string_t owner, u
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -5727,10 +6697,28 @@ pplx::task<void> AiApi::getAiDeploymentsByOwnerByName(utility::string_t owner, u
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_deployments_200_response> localVarResult(new Post_ai_deployments_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiDeploymentsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiFiles() const
+pplx::task<std::shared_ptr<Get_ai_files_200_response>> AiApi::getAiFiles() const
 {
 
 
@@ -5743,6 +6731,7 @@ pplx::task<void> AiApi::getAiFiles() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -5831,10 +6820,28 @@ pplx::task<void> AiApi::getAiFiles() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_files_200_response> localVarResult(new Get_ai_files_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiFiles: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiFilesActive() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::getAiFilesActive() const
 {
 
 
@@ -5847,6 +6854,7 @@ pplx::task<void> AiApi::getAiFilesActive() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -5935,10 +6943,28 @@ pplx::task<void> AiApi::getAiFilesActive() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiFilesActive: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiFilesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_files_200_response>> AiApi::getAiFilesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -5953,6 +6979,7 @@ pplx::task<void> AiApi::getAiFilesByOwnerByName(utility::string_t owner, utility
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -6041,10 +7068,28 @@ pplx::task<void> AiApi::getAiFilesByOwnerByName(utility::string_t owner, utility
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_files_200_response> localVarResult(new Post_ai_files_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiFilesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiFilesGlobal() const
+pplx::task<std::shared_ptr<Get_ai_files_200_response>> AiApi::getAiFilesGlobal() const
 {
 
 
@@ -6057,6 +7102,7 @@ pplx::task<void> AiApi::getAiFilesGlobal() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -6145,10 +7191,28 @@ pplx::task<void> AiApi::getAiFilesGlobal() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_files_200_response> localVarResult(new Get_ai_files_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiFilesGlobal: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiFinetuneHfDatasets() const
+pplx::task<std::shared_ptr<Get_ai_finetune_hf_datasets_200_response>> AiApi::getAiFinetuneHfDatasets() const
 {
 
 
@@ -6161,6 +7225,7 @@ pplx::task<void> AiApi::getAiFinetuneHfDatasets() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -6249,10 +7314,28 @@ pplx::task<void> AiApi::getAiFinetuneHfDatasets() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_finetune_hf_datasets_200_response> localVarResult(new Get_ai_finetune_hf_datasets_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiFinetuneHfDatasets: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiFinetuneHfModels() const
+pplx::task<std::shared_ptr<Get_ai_finetune_hf_models_200_response>> AiApi::getAiFinetuneHfModels() const
 {
 
 
@@ -6265,6 +7348,7 @@ pplx::task<void> AiApi::getAiFinetuneHfModels() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -6353,10 +7437,28 @@ pplx::task<void> AiApi::getAiFinetuneHfModels() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_finetune_hf_models_200_response> localVarResult(new Get_ai_finetune_hf_models_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiFinetuneHfModels: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiFinetuneHfRepo() const
+pplx::task<std::shared_ptr<Get_ai_finetune_hf_repo_200_response>> AiApi::getAiFinetuneHfRepo() const
 {
 
 
@@ -6369,6 +7471,7 @@ pplx::task<void> AiApi::getAiFinetuneHfRepo() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -6457,10 +7560,28 @@ pplx::task<void> AiApi::getAiFinetuneHfRepo() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_finetune_hf_repo_200_response> localVarResult(new Get_ai_finetune_hf_repo_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiFinetuneHfRepo: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiFinetuneJob() const
+pplx::task<std::shared_ptr<Post_ai_finetune_cancel_200_response>> AiApi::getAiFinetuneJob() const
 {
 
 
@@ -6473,6 +7594,7 @@ pplx::task<void> AiApi::getAiFinetuneJob() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -6561,10 +7683,28 @@ pplx::task<void> AiApi::getAiFinetuneJob() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_finetune_cancel_200_response> localVarResult(new Post_ai_finetune_cancel_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiFinetuneJob: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiFinetuneJobs() const
+pplx::task<std::shared_ptr<Get_ai_finetune_jobs_200_response>> AiApi::getAiFinetuneJobs() const
 {
 
 
@@ -6577,6 +7717,7 @@ pplx::task<void> AiApi::getAiFinetuneJobs() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -6665,10 +7806,28 @@ pplx::task<void> AiApi::getAiFinetuneJobs() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_finetune_jobs_200_response> localVarResult(new Get_ai_finetune_jobs_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiFinetuneJobs: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiFinetunePresets() const
+pplx::task<std::shared_ptr<Get_ai_finetune_presets_200_response>> AiApi::getAiFinetunePresets() const
 {
 
 
@@ -6681,6 +7840,7 @@ pplx::task<void> AiApi::getAiFinetunePresets() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -6769,10 +7929,28 @@ pplx::task<void> AiApi::getAiFinetunePresets() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_finetune_presets_200_response> localVarResult(new Get_ai_finetune_presets_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiFinetunePresets: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiForms() const
+pplx::task<std::shared_ptr<Get_ai_forms_200_response>> AiApi::getAiForms() const
 {
 
 
@@ -6785,6 +7963,7 @@ pplx::task<void> AiApi::getAiForms() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -6873,10 +8052,28 @@ pplx::task<void> AiApi::getAiForms() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_forms_200_response> localVarResult(new Get_ai_forms_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiForms: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiFormsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_forms_200_response>> AiApi::getAiFormsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -6891,6 +8088,7 @@ pplx::task<void> AiApi::getAiFormsByOwnerByName(utility::string_t owner, utility
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -6979,10 +8177,28 @@ pplx::task<void> AiApi::getAiFormsByOwnerByName(utility::string_t owner, utility
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_forms_200_response> localVarResult(new Post_ai_forms_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiFormsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiFormsData() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::getAiFormsData() const
 {
 
 
@@ -6995,6 +8211,7 @@ pplx::task<void> AiApi::getAiFormsData() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -7083,10 +8300,28 @@ pplx::task<void> AiApi::getAiFormsData() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiFormsData: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiFormsGlobal() const
+pplx::task<std::shared_ptr<Get_ai_forms_200_response>> AiApi::getAiFormsGlobal() const
 {
 
 
@@ -7099,6 +8334,7 @@ pplx::task<void> AiApi::getAiFormsGlobal() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -7187,10 +8423,28 @@ pplx::task<void> AiApi::getAiFormsGlobal() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_forms_200_response> localVarResult(new Get_ai_forms_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiFormsGlobal: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiGraphs() const
+pplx::task<std::shared_ptr<Get_ai_graphs_200_response>> AiApi::getAiGraphs() const
 {
 
 
@@ -7203,6 +8457,7 @@ pplx::task<void> AiApi::getAiGraphs() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -7291,10 +8546,28 @@ pplx::task<void> AiApi::getAiGraphs() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_graphs_200_response> localVarResult(new Get_ai_graphs_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiGraphs: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiGraphsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_graphs_200_response>> AiApi::getAiGraphsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -7309,6 +8582,7 @@ pplx::task<void> AiApi::getAiGraphsByOwnerByName(utility::string_t owner, utilit
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -7397,10 +8671,28 @@ pplx::task<void> AiApi::getAiGraphsByOwnerByName(utility::string_t owner, utilit
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_graphs_200_response> localVarResult(new Post_ai_graphs_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiGraphsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiGraphsGlobal() const
+pplx::task<std::shared_ptr<Get_ai_graphs_200_response>> AiApi::getAiGraphsGlobal() const
 {
 
 
@@ -7413,6 +8705,7 @@ pplx::task<void> AiApi::getAiGraphsGlobal() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -7501,10 +8794,28 @@ pplx::task<void> AiApi::getAiGraphsGlobal() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_graphs_200_response> localVarResult(new Get_ai_graphs_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiGraphsGlobal: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiK8sStatus() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::getAiK8sStatus() const
 {
 
 
@@ -7517,6 +8828,7 @@ pplx::task<void> AiApi::getAiK8sStatus() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -7605,10 +8917,28 @@ pplx::task<void> AiApi::getAiK8sStatus() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiK8sStatus: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiMemoryFacts() const
+pplx::task<std::shared_ptr<Get_ai_memory_facts_200_response>> AiApi::getAiMemoryFacts() const
 {
 
 
@@ -7621,6 +8951,7 @@ pplx::task<void> AiApi::getAiMemoryFacts() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -7709,10 +9040,28 @@ pplx::task<void> AiApi::getAiMemoryFacts() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_memory_facts_200_response> localVarResult(new Get_ai_memory_facts_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiMemoryFacts: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiMemoryList() const
+pplx::task<std::shared_ptr<Get_ai_memory_facts_200_response>> AiApi::getAiMemoryList() const
 {
 
 
@@ -7725,6 +9074,7 @@ pplx::task<void> AiApi::getAiMemoryList() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -7813,10 +9163,28 @@ pplx::task<void> AiApi::getAiMemoryList() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_memory_facts_200_response> localVarResult(new Get_ai_memory_facts_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiMemoryList: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiMemoryRecall() const
+pplx::task<std::shared_ptr<Get_ai_memory_facts_200_response>> AiApi::getAiMemoryRecall() const
 {
 
 
@@ -7829,6 +9197,7 @@ pplx::task<void> AiApi::getAiMemoryRecall() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -7917,10 +9286,28 @@ pplx::task<void> AiApi::getAiMemoryRecall() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_memory_facts_200_response> localVarResult(new Get_ai_memory_facts_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiMemoryRecall: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiMemorySearch() const
+pplx::task<std::shared_ptr<Get_ai_memory_facts_200_response>> AiApi::getAiMemorySearch() const
 {
 
 
@@ -7933,6 +9320,7 @@ pplx::task<void> AiApi::getAiMemorySearch() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -8021,10 +9409,28 @@ pplx::task<void> AiApi::getAiMemorySearch() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_memory_facts_200_response> localVarResult(new Get_ai_memory_facts_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiMemorySearch: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiMessages() const
+pplx::task<std::shared_ptr<Get_ai_messages_200_response>> AiApi::getAiMessages() const
 {
 
 
@@ -8037,6 +9443,7 @@ pplx::task<void> AiApi::getAiMessages() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -8125,10 +9532,28 @@ pplx::task<void> AiApi::getAiMessages() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_messages_200_response> localVarResult(new Get_ai_messages_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiMessages: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiMessagesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_messages_200_response>> AiApi::getAiMessagesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -8143,6 +9568,7 @@ pplx::task<void> AiApi::getAiMessagesByOwnerByName(utility::string_t owner, util
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -8231,10 +9657,28 @@ pplx::task<void> AiApi::getAiMessagesByOwnerByName(utility::string_t owner, util
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_messages_200_response> localVarResult(new Post_ai_messages_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiMessagesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiMessagesByOwnerByNameAnswer(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Envelope>> AiApi::getAiMessagesByOwnerByNameAnswer(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -8249,6 +9693,7 @@ pplx::task<void> AiApi::getAiMessagesByOwnerByNameAnswer(utility::string_t owner
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -8337,10 +9782,28 @@ pplx::task<void> AiApi::getAiMessagesByOwnerByNameAnswer(utility::string_t owner
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiMessagesByOwnerByNameAnswer: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiMessagesGlobal() const
+pplx::task<std::shared_ptr<Get_ai_messages_200_response>> AiApi::getAiMessagesGlobal() const
 {
 
 
@@ -8353,6 +9816,7 @@ pplx::task<void> AiApi::getAiMessagesGlobal() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -8441,10 +9905,28 @@ pplx::task<void> AiApi::getAiMessagesGlobal() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_messages_200_response> localVarResult(new Get_ai_messages_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiMessagesGlobal: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiNodes() const
+pplx::task<std::shared_ptr<Get_ai_nodes_200_response>> AiApi::getAiNodes() const
 {
 
 
@@ -8457,6 +9939,7 @@ pplx::task<void> AiApi::getAiNodes() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -8545,10 +10028,28 @@ pplx::task<void> AiApi::getAiNodes() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_nodes_200_response> localVarResult(new Get_ai_nodes_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiNodes: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiNodesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_nodes_200_response>> AiApi::getAiNodesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -8563,6 +10064,7 @@ pplx::task<void> AiApi::getAiNodesByOwnerByName(utility::string_t owner, utility
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -8651,10 +10153,28 @@ pplx::task<void> AiApi::getAiNodesByOwnerByName(utility::string_t owner, utility
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_nodes_200_response> localVarResult(new Post_ai_nodes_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiNodesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiNodesByOwnerByNameTunnel(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Envelope>> AiApi::getAiNodesByOwnerByNameTunnel(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -8669,6 +10189,7 @@ pplx::task<void> AiApi::getAiNodesByOwnerByNameTunnel(utility::string_t owner, u
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -8757,10 +10278,28 @@ pplx::task<void> AiApi::getAiNodesByOwnerByNameTunnel(utility::string_t owner, u
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiNodesByOwnerByNameTunnel: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiOrgSettings() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::getAiOrgSettings() const
 {
 
 
@@ -8773,6 +10312,7 @@ pplx::task<void> AiApi::getAiOrgSettings() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -8861,10 +10401,28 @@ pplx::task<void> AiApi::getAiOrgSettings() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiOrgSettings: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiOrgSettingsList() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::getAiOrgSettingsList() const
 {
 
 
@@ -8877,6 +10435,7 @@ pplx::task<void> AiApi::getAiOrgSettingsList() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -8965,10 +10524,28 @@ pplx::task<void> AiApi::getAiOrgSettingsList() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiOrgSettingsList: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiPrometheus() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::getAiPrometheus() const
 {
 
 
@@ -8981,6 +10558,7 @@ pplx::task<void> AiApi::getAiPrometheus() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -9069,10 +10647,28 @@ pplx::task<void> AiApi::getAiPrometheus() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiPrometheus: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiProviders() const
+pplx::task<std::shared_ptr<Get_ai_providers_200_response>> AiApi::getAiProviders() const
 {
 
 
@@ -9085,6 +10681,7 @@ pplx::task<void> AiApi::getAiProviders() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -9173,10 +10770,28 @@ pplx::task<void> AiApi::getAiProviders() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_providers_200_response> localVarResult(new Get_ai_providers_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiProviders: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiProvidersByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_providers_200_response>> AiApi::getAiProvidersByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -9191,6 +10806,7 @@ pplx::task<void> AiApi::getAiProvidersByOwnerByName(utility::string_t owner, uti
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -9279,10 +10895,28 @@ pplx::task<void> AiApi::getAiProvidersByOwnerByName(utility::string_t owner, uti
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_providers_200_response> localVarResult(new Post_ai_providers_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiProvidersByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiProvidersGlobal() const
+pplx::task<std::shared_ptr<Get_ai_providers_200_response>> AiApi::getAiProvidersGlobal() const
 {
 
 
@@ -9295,6 +10929,7 @@ pplx::task<void> AiApi::getAiProvidersGlobal() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -9383,10 +11018,28 @@ pplx::task<void> AiApi::getAiProvidersGlobal() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_providers_200_response> localVarResult(new Get_ai_providers_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiProvidersGlobal: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiRagContext() const
+pplx::task<std::vector<std::shared_ptr<DocSearchResult>>> AiApi::getAiRagContext() const
 {
 
 
@@ -9399,6 +11052,7 @@ pplx::task<void> AiApi::getAiRagContext() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -9487,10 +11141,32 @@ pplx::task<void> AiApi::getAiRagContext() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::vector<std::shared_ptr<DocSearchResult>> localVarResult;
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+            for( auto& localVarItem : localVarJson.as_array() )
+            {
+                std::vector<std::shared_ptr<DocSearchResult>>::value_type localVarItemObj;
+                ModelBase::fromJson(localVarItem, localVarItemObj);
+                localVarResult.push_back(localVarItemObj);
+            }
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiRagContext: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiRecords() const
+pplx::task<std::shared_ptr<Get_ai_records_200_response>> AiApi::getAiRecords() const
 {
 
 
@@ -9503,6 +11179,7 @@ pplx::task<void> AiApi::getAiRecords() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -9591,10 +11268,28 @@ pplx::task<void> AiApi::getAiRecords() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_records_200_response> localVarResult(new Get_ai_records_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiRecords: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiRecordsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_records_200_response>> AiApi::getAiRecordsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -9609,6 +11304,7 @@ pplx::task<void> AiApi::getAiRecordsByOwnerByName(utility::string_t owner, utili
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -9697,10 +11393,28 @@ pplx::task<void> AiApi::getAiRecordsByOwnerByName(utility::string_t owner, utili
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_records_200_response> localVarResult(new Post_ai_records_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiRecordsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiRecordsQuery() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::getAiRecordsQuery() const
 {
 
 
@@ -9713,6 +11427,7 @@ pplx::task<void> AiApi::getAiRecordsQuery() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -9801,10 +11516,28 @@ pplx::task<void> AiApi::getAiRecordsQuery() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiRecordsQuery: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiRecordsQuerySecond() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::getAiRecordsQuerySecond() const
 {
 
 
@@ -9817,6 +11550,7 @@ pplx::task<void> AiApi::getAiRecordsQuerySecond() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -9905,10 +11639,28 @@ pplx::task<void> AiApi::getAiRecordsQuerySecond() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiRecordsQuerySecond: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiRemoteConnections() const
+pplx::task<std::shared_ptr<Get_ai_remote_connections_200_response>> AiApi::getAiRemoteConnections() const
 {
 
 
@@ -9921,6 +11673,7 @@ pplx::task<void> AiApi::getAiRemoteConnections() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -10009,10 +11762,28 @@ pplx::task<void> AiApi::getAiRemoteConnections() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_remote_connections_200_response> localVarResult(new Get_ai_remote_connections_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiRemoteConnections: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiRemoteConnectionsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_remote_connections_200_response>> AiApi::getAiRemoteConnectionsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -10027,6 +11798,7 @@ pplx::task<void> AiApi::getAiRemoteConnectionsByOwnerByName(utility::string_t ow
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -10115,10 +11887,28 @@ pplx::task<void> AiApi::getAiRemoteConnectionsByOwnerByName(utility::string_t ow
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_remote_connections_200_response> localVarResult(new Post_ai_remote_connections_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiRemoteConnectionsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiRouterArtifactMeta() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::getAiRouterArtifactMeta() const
 {
 
 
@@ -10131,6 +11921,7 @@ pplx::task<void> AiApi::getAiRouterArtifactMeta() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -10219,10 +12010,28 @@ pplx::task<void> AiApi::getAiRouterArtifactMeta() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiRouterArtifactMeta: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiRouterData() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::getAiRouterData() const
 {
 
 
@@ -10235,6 +12044,7 @@ pplx::task<void> AiApi::getAiRouterData() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -10323,10 +12133,28 @@ pplx::task<void> AiApi::getAiRouterData() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiRouterData: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiRouterDefaults() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::getAiRouterDefaults() const
 {
 
 
@@ -10339,6 +12167,7 @@ pplx::task<void> AiApi::getAiRouterDefaults() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -10427,10 +12256,28 @@ pplx::task<void> AiApi::getAiRouterDefaults() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiRouterDefaults: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiRouterHistory() const
+pplx::task<std::shared_ptr<Get_ai_router_history_200_response>> AiApi::getAiRouterHistory() const
 {
 
 
@@ -10443,6 +12290,7 @@ pplx::task<void> AiApi::getAiRouterHistory() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -10531,10 +12379,28 @@ pplx::task<void> AiApi::getAiRouterHistory() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_router_history_200_response> localVarResult(new Get_ai_router_history_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiRouterHistory: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiRouterJudgePanel() const
+pplx::task<std::shared_ptr<Get_ai_router_judge_panel_200_response>> AiApi::getAiRouterJudgePanel() const
 {
 
 
@@ -10547,6 +12413,7 @@ pplx::task<void> AiApi::getAiRouterJudgePanel() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -10635,10 +12502,28 @@ pplx::task<void> AiApi::getAiRouterJudgePanel() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_router_judge_panel_200_response> localVarResult(new Get_ai_router_judge_panel_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiRouterJudgePanel: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiRouterLedger() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::getAiRouterLedger() const
 {
 
 
@@ -10651,6 +12536,7 @@ pplx::task<void> AiApi::getAiRouterLedger() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -10739,10 +12625,28 @@ pplx::task<void> AiApi::getAiRouterLedger() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiRouterLedger: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiRouterPolicy() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::getAiRouterPolicy() const
 {
 
 
@@ -10755,6 +12659,7 @@ pplx::task<void> AiApi::getAiRouterPolicy() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -10843,10 +12748,28 @@ pplx::task<void> AiApi::getAiRouterPolicy() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiRouterPolicy: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiRouterRewards() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::getAiRouterRewards() const
 {
 
 
@@ -10859,6 +12782,7 @@ pplx::task<void> AiApi::getAiRouterRewards() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -10947,10 +12871,28 @@ pplx::task<void> AiApi::getAiRouterRewards() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiRouterRewards: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiRouterStats() const
+pplx::task<std::shared_ptr<Get_ai_router_stats_200_response>> AiApi::getAiRouterStats() const
 {
 
 
@@ -10963,6 +12905,7 @@ pplx::task<void> AiApi::getAiRouterStats() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -11051,10 +12994,28 @@ pplx::task<void> AiApi::getAiRouterStats() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_router_stats_200_response> localVarResult(new Get_ai_router_stats_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiRouterStats: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiRoutes() const
+pplx::task<std::shared_ptr<Get_ai_routes_200_response>> AiApi::getAiRoutes() const
 {
 
 
@@ -11067,6 +13028,7 @@ pplx::task<void> AiApi::getAiRoutes() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -11155,10 +13117,28 @@ pplx::task<void> AiApi::getAiRoutes() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_routes_200_response> localVarResult(new Get_ai_routes_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiRoutes: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiRoutesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_routes_200_response>> AiApi::getAiRoutesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -11173,6 +13153,7 @@ pplx::task<void> AiApi::getAiRoutesByOwnerByName(utility::string_t owner, utilit
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -11261,10 +13242,28 @@ pplx::task<void> AiApi::getAiRoutesByOwnerByName(utility::string_t owner, utilit
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_routes_200_response> localVarResult(new Post_ai_routes_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiRoutesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiScales() const
+pplx::task<std::shared_ptr<Get_ai_scales_200_response>> AiApi::getAiScales() const
 {
 
 
@@ -11277,6 +13276,7 @@ pplx::task<void> AiApi::getAiScales() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -11365,10 +13365,28 @@ pplx::task<void> AiApi::getAiScales() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_scales_200_response> localVarResult(new Get_ai_scales_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiScales: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiScalesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_scales_200_response>> AiApi::getAiScalesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -11383,6 +13401,7 @@ pplx::task<void> AiApi::getAiScalesByOwnerByName(utility::string_t owner, utilit
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -11471,10 +13490,28 @@ pplx::task<void> AiApi::getAiScalesByOwnerByName(utility::string_t owner, utilit
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_scales_200_response> localVarResult(new Post_ai_scales_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiScalesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiScalesGlobal() const
+pplx::task<std::shared_ptr<Get_ai_scales_200_response>> AiApi::getAiScalesGlobal() const
 {
 
 
@@ -11487,6 +13524,7 @@ pplx::task<void> AiApi::getAiScalesGlobal() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -11575,10 +13613,28 @@ pplx::task<void> AiApi::getAiScalesGlobal() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_scales_200_response> localVarResult(new Get_ai_scales_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiScalesGlobal: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiScalesPublic() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::getAiScalesPublic() const
 {
 
 
@@ -11591,6 +13647,7 @@ pplx::task<void> AiApi::getAiScalesPublic() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -11679,10 +13736,28 @@ pplx::task<void> AiApi::getAiScalesPublic() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiScalesPublic: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiScans() const
+pplx::task<std::shared_ptr<Get_ai_scans_200_response>> AiApi::getAiScans() const
 {
 
 
@@ -11695,6 +13770,7 @@ pplx::task<void> AiApi::getAiScans() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -11783,10 +13859,28 @@ pplx::task<void> AiApi::getAiScans() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_scans_200_response> localVarResult(new Get_ai_scans_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiScans: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiScansByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_scans_200_response>> AiApi::getAiScansByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -11801,6 +13895,7 @@ pplx::task<void> AiApi::getAiScansByOwnerByName(utility::string_t owner, utility
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -11889,10 +13984,28 @@ pplx::task<void> AiApi::getAiScansByOwnerByName(utility::string_t owner, utility
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_scans_200_response> localVarResult(new Post_ai_scans_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiScansByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiSigninSessions() const
+pplx::task<std::shared_ptr<Get_ai_signin_sessions_200_response>> AiApi::getAiSigninSessions() const
 {
 
 
@@ -11905,6 +14018,7 @@ pplx::task<void> AiApi::getAiSigninSessions() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -11993,10 +14107,28 @@ pplx::task<void> AiApi::getAiSigninSessions() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_signin_sessions_200_response> localVarResult(new Get_ai_signin_sessions_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiSigninSessions: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiSigninSessionsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_signin_sessions_200_response>> AiApi::getAiSigninSessionsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -12011,6 +14143,7 @@ pplx::task<void> AiApi::getAiSigninSessionsByOwnerByName(utility::string_t owner
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -12099,10 +14232,28 @@ pplx::task<void> AiApi::getAiSigninSessionsByOwnerByName(utility::string_t owner
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_signin_sessions_200_response> localVarResult(new Post_ai_signin_sessions_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiSigninSessionsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiSigninSessionsDuplicated() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::getAiSigninSessionsDuplicated() const
 {
 
 
@@ -12115,6 +14266,7 @@ pplx::task<void> AiApi::getAiSigninSessionsDuplicated() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -12203,10 +14355,28 @@ pplx::task<void> AiApi::getAiSigninSessionsDuplicated() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiSigninSessionsDuplicated: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiStores() const
+pplx::task<std::shared_ptr<Get_ai_stores_200_response>> AiApi::getAiStores() const
 {
 
 
@@ -12219,6 +14389,7 @@ pplx::task<void> AiApi::getAiStores() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -12307,10 +14478,28 @@ pplx::task<void> AiApi::getAiStores() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_stores_200_response> localVarResult(new Get_ai_stores_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiStores: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiStoresByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_stores_200_response>> AiApi::getAiStoresByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -12325,6 +14514,7 @@ pplx::task<void> AiApi::getAiStoresByOwnerByName(utility::string_t owner, utilit
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -12413,10 +14603,28 @@ pplx::task<void> AiApi::getAiStoresByOwnerByName(utility::string_t owner, utilit
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_stores_200_response> localVarResult(new Post_ai_stores_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiStoresByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiStoresGlobal() const
+pplx::task<std::shared_ptr<Get_ai_stores_200_response>> AiApi::getAiStoresGlobal() const
 {
 
 
@@ -12429,6 +14637,7 @@ pplx::task<void> AiApi::getAiStoresGlobal() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -12517,10 +14726,28 @@ pplx::task<void> AiApi::getAiStoresGlobal() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_stores_200_response> localVarResult(new Get_ai_stores_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiStoresGlobal: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiStoresNames() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::getAiStoresNames() const
 {
 
 
@@ -12533,6 +14760,7 @@ pplx::task<void> AiApi::getAiStoresNames() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -12621,10 +14849,28 @@ pplx::task<void> AiApi::getAiStoresNames() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiStoresNames: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiStoresProviders() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::getAiStoresProviders() const
 {
 
 
@@ -12637,6 +14883,7 @@ pplx::task<void> AiApi::getAiStoresProviders() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -12725,10 +14972,28 @@ pplx::task<void> AiApi::getAiStoresProviders() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiStoresProviders: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiSystem() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::getAiSystem() const
 {
 
 
@@ -12741,6 +15006,7 @@ pplx::task<void> AiApi::getAiSystem() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -12829,10 +15095,28 @@ pplx::task<void> AiApi::getAiSystem() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiSystem: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiTasks() const
+pplx::task<std::shared_ptr<Get_ai_tasks_200_response>> AiApi::getAiTasks() const
 {
 
 
@@ -12845,6 +15129,7 @@ pplx::task<void> AiApi::getAiTasks() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -12933,10 +15218,28 @@ pplx::task<void> AiApi::getAiTasks() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_tasks_200_response> localVarResult(new Get_ai_tasks_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiTasks: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiTasksByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_tasks_200_response>> AiApi::getAiTasksByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -12951,6 +15254,7 @@ pplx::task<void> AiApi::getAiTasksByOwnerByName(utility::string_t owner, utility
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -13039,10 +15343,28 @@ pplx::task<void> AiApi::getAiTasksByOwnerByName(utility::string_t owner, utility
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_tasks_200_response> localVarResult(new Post_ai_tasks_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiTasksByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiTasksGlobal() const
+pplx::task<std::shared_ptr<Get_ai_tasks_200_response>> AiApi::getAiTasksGlobal() const
 {
 
 
@@ -13055,6 +15377,7 @@ pplx::task<void> AiApi::getAiTasksGlobal() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -13143,10 +15466,28 @@ pplx::task<void> AiApi::getAiTasksGlobal() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_tasks_200_response> localVarResult(new Get_ai_tasks_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiTasksGlobal: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiTemplates() const
+pplx::task<std::shared_ptr<Get_ai_templates_200_response>> AiApi::getAiTemplates() const
 {
 
 
@@ -13159,6 +15500,7 @@ pplx::task<void> AiApi::getAiTemplates() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -13247,10 +15589,28 @@ pplx::task<void> AiApi::getAiTemplates() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_templates_200_response> localVarResult(new Get_ai_templates_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiTemplates: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiTemplatesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_templates_200_response>> AiApi::getAiTemplatesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -13265,6 +15625,7 @@ pplx::task<void> AiApi::getAiTemplatesByOwnerByName(utility::string_t owner, uti
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -13353,10 +15714,28 @@ pplx::task<void> AiApi::getAiTemplatesByOwnerByName(utility::string_t owner, uti
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_templates_200_response> localVarResult(new Post_ai_templates_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiTemplatesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiTrafficGlobe() const
+pplx::task<std::shared_ptr<Get_ai_traffic_globe_200_response>> AiApi::getAiTrafficGlobe() const
 {
 
 
@@ -13369,6 +15748,7 @@ pplx::task<void> AiApi::getAiTrafficGlobe() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -13457,10 +15837,28 @@ pplx::task<void> AiApi::getAiTrafficGlobe() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_traffic_globe_200_response> localVarResult(new Get_ai_traffic_globe_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiTrafficGlobe: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiTrainingContribution() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::getAiTrainingContribution() const
 {
 
 
@@ -13473,6 +15871,7 @@ pplx::task<void> AiApi::getAiTrainingContribution() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -13561,10 +15960,28 @@ pplx::task<void> AiApi::getAiTrainingContribution() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiTrainingContribution: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiUsages() const
+pplx::task<std::shared_ptr<Get_ai_usages_200_response>> AiApi::getAiUsages() const
 {
 
 
@@ -13577,6 +15994,7 @@ pplx::task<void> AiApi::getAiUsages() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -13665,10 +16083,28 @@ pplx::task<void> AiApi::getAiUsages() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_usages_200_response> localVarResult(new Get_ai_usages_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiUsages: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiUsagesByUser() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::getAiUsagesByUser() const
 {
 
 
@@ -13681,6 +16117,7 @@ pplx::task<void> AiApi::getAiUsagesByUser() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -13769,10 +16206,28 @@ pplx::task<void> AiApi::getAiUsagesByUser() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiUsagesByUser: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiUsagesCloud() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::getAiUsagesCloud() const
 {
 
 
@@ -13785,6 +16240,7 @@ pplx::task<void> AiApi::getAiUsagesCloud() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -13873,10 +16329,28 @@ pplx::task<void> AiApi::getAiUsagesCloud() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiUsagesCloud: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiUsagesRange() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::getAiUsagesRange() const
 {
 
 
@@ -13889,6 +16363,7 @@ pplx::task<void> AiApi::getAiUsagesRange() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -13977,10 +16452,28 @@ pplx::task<void> AiApi::getAiUsagesRange() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiUsagesRange: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiUsagesUserNames() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::getAiUsagesUserNames() const
 {
 
 
@@ -13993,6 +16486,7 @@ pplx::task<void> AiApi::getAiUsagesUserNames() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -14081,10 +16575,28 @@ pplx::task<void> AiApi::getAiUsagesUserNames() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiUsagesUserNames: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiVectors() const
+pplx::task<std::shared_ptr<Get_ai_vectors_200_response>> AiApi::getAiVectors() const
 {
 
 
@@ -14097,6 +16609,7 @@ pplx::task<void> AiApi::getAiVectors() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -14185,10 +16698,28 @@ pplx::task<void> AiApi::getAiVectors() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_vectors_200_response> localVarResult(new Get_ai_vectors_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiVectors: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiVectorsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_vectors_200_response>> AiApi::getAiVectorsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -14203,6 +16734,7 @@ pplx::task<void> AiApi::getAiVectorsByOwnerByName(utility::string_t owner, utili
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -14291,10 +16823,28 @@ pplx::task<void> AiApi::getAiVectorsByOwnerByName(utility::string_t owner, utili
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_vectors_200_response> localVarResult(new Post_ai_vectors_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiVectorsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiVectorsGlobal() const
+pplx::task<std::shared_ptr<Get_ai_vectors_200_response>> AiApi::getAiVectorsGlobal() const
 {
 
 
@@ -14307,6 +16857,7 @@ pplx::task<void> AiApi::getAiVectorsGlobal() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -14395,10 +16946,28 @@ pplx::task<void> AiApi::getAiVectorsGlobal() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_vectors_200_response> localVarResult(new Get_ai_vectors_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiVectorsGlobal: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiVersion() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::getAiVersion() const
 {
 
 
@@ -14411,6 +16980,7 @@ pplx::task<void> AiApi::getAiVersion() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -14499,10 +17069,28 @@ pplx::task<void> AiApi::getAiVersion() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiVersion: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiVideos() const
+pplx::task<std::shared_ptr<Get_ai_videos_200_response>> AiApi::getAiVideos() const
 {
 
 
@@ -14515,6 +17103,7 @@ pplx::task<void> AiApi::getAiVideos() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -14603,10 +17192,28 @@ pplx::task<void> AiApi::getAiVideos() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_videos_200_response> localVarResult(new Get_ai_videos_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiVideos: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiVideosByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_videos_200_response>> AiApi::getAiVideosByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -14621,6 +17228,7 @@ pplx::task<void> AiApi::getAiVideosByOwnerByName(utility::string_t owner, utilit
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -14709,10 +17317,28 @@ pplx::task<void> AiApi::getAiVideosByOwnerByName(utility::string_t owner, utilit
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_videos_200_response> localVarResult(new Post_ai_videos_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiVideosByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiVideosGlobal() const
+pplx::task<std::shared_ptr<Get_ai_videos_200_response>> AiApi::getAiVideosGlobal() const
 {
 
 
@@ -14725,6 +17351,7 @@ pplx::task<void> AiApi::getAiVideosGlobal() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -14813,10 +17440,28 @@ pplx::task<void> AiApi::getAiVideosGlobal() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_videos_200_response> localVarResult(new Get_ai_videos_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiVideosGlobal: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiWorkflows() const
+pplx::task<std::shared_ptr<Get_ai_workflows_200_response>> AiApi::getAiWorkflows() const
 {
 
 
@@ -14829,6 +17474,7 @@ pplx::task<void> AiApi::getAiWorkflows() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -14917,10 +17563,28 @@ pplx::task<void> AiApi::getAiWorkflows() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_workflows_200_response> localVarResult(new Get_ai_workflows_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiWorkflows: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiWorkflowsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_workflows_200_response>> AiApi::getAiWorkflowsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -14935,6 +17599,7 @@ pplx::task<void> AiApi::getAiWorkflowsByOwnerByName(utility::string_t owner, uti
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -15023,10 +17688,28 @@ pplx::task<void> AiApi::getAiWorkflowsByOwnerByName(utility::string_t owner, uti
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_workflows_200_response> localVarResult(new Post_ai_workflows_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiWorkflowsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getAiWorkflowsGlobal() const
+pplx::task<std::shared_ptr<Get_ai_workflows_200_response>> AiApi::getAiWorkflowsGlobal() const
 {
 
 
@@ -15039,6 +17722,7 @@ pplx::task<void> AiApi::getAiWorkflowsGlobal() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -15127,10 +17811,28 @@ pplx::task<void> AiApi::getAiWorkflowsGlobal() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_workflows_200_response> localVarResult(new Get_ai_workflows_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAiWorkflowsGlobal: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getModels() const
+pplx::task<std::shared_ptr<Ai_ModelList>> AiApi::getModels() const
 {
 
 
@@ -15143,6 +17845,7 @@ pplx::task<void> AiApi::getModels() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -15231,10 +17934,28 @@ pplx::task<void> AiApi::getModels() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_ModelList> localVarResult(new Ai_ModelList());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getModels: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getModelsByModelAccess(utility::string_t model) const
+pplx::task<std::shared_ptr<Get_ai_connections_by_provider_authorize_200_response>> AiApi::getModelsByModelAccess(utility::string_t model) const
 {
 
 
@@ -15248,6 +17969,7 @@ pplx::task<void> AiApi::getModelsByModelAccess(utility::string_t model) const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -15336,10 +18058,28 @@ pplx::task<void> AiApi::getModelsByModelAccess(utility::string_t model) const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_connections_by_provider_authorize_200_response> localVarResult(new Get_ai_connections_by_provider_authorize_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getModelsByModelAccess: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getModelsProviders() const
+pplx::task<std::shared_ptr<Get_models_providers_200_response>> AiApi::getModelsProviders() const
 {
 
 
@@ -15352,6 +18092,7 @@ pplx::task<void> AiApi::getModelsProviders() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -15440,10 +18181,28 @@ pplx::task<void> AiApi::getModelsProviders() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_models_providers_200_response> localVarResult(new Get_models_providers_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getModelsProviders: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::getVideosById(utility::string_t id) const
+pplx::task<std::shared_ptr<Ai_VideoStatus>> AiApi::getVideosById(utility::string_t id) const
 {
 
 
@@ -15457,6 +18216,7 @@ pplx::task<void> AiApi::getVideosById(utility::string_t id) const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -15545,7 +18305,25 @@ pplx::task<void> AiApi::getVideosById(utility::string_t id) const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_VideoStatus> localVarResult(new Ai_VideoStatus());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getVideosById: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
 pplx::task<void> AiApi::getVideosByIdContent(utility::string_t id) const
@@ -15653,7 +18431,7 @@ pplx::task<void> AiApi::getVideosByIdContent(utility::string_t id) const
         return void();
     });
 }
-pplx::task<void> AiApi::patchAiArticlesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_articles_200_response>> AiApi::patchAiArticlesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -15668,6 +18446,7 @@ pplx::task<void> AiApi::patchAiArticlesByOwnerByName(utility::string_t owner, ut
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -15756,10 +18535,28 @@ pplx::task<void> AiApi::patchAiArticlesByOwnerByName(utility::string_t owner, ut
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_articles_200_response> localVarResult(new Post_ai_articles_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiArticlesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiAssetsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_assets_200_response>> AiApi::patchAiAssetsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -15774,6 +18571,7 @@ pplx::task<void> AiApi::patchAiAssetsByOwnerByName(utility::string_t owner, util
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -15862,10 +18660,28 @@ pplx::task<void> AiApi::patchAiAssetsByOwnerByName(utility::string_t owner, util
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_assets_200_response> localVarResult(new Post_ai_assets_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiAssetsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiChatsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_chats_200_response>> AiApi::patchAiChatsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -15880,6 +18696,7 @@ pplx::task<void> AiApi::patchAiChatsByOwnerByName(utility::string_t owner, utili
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -15968,10 +18785,28 @@ pplx::task<void> AiApi::patchAiChatsByOwnerByName(utility::string_t owner, utili
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_chats_200_response> localVarResult(new Post_ai_chats_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiChatsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiDeploymentsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_deployments_200_response>> AiApi::patchAiDeploymentsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -15986,6 +18821,7 @@ pplx::task<void> AiApi::patchAiDeploymentsByOwnerByName(utility::string_t owner,
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -16074,10 +18910,28 @@ pplx::task<void> AiApi::patchAiDeploymentsByOwnerByName(utility::string_t owner,
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_deployments_200_response> localVarResult(new Post_ai_deployments_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiDeploymentsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiFilesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_files_200_response>> AiApi::patchAiFilesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -16092,6 +18946,7 @@ pplx::task<void> AiApi::patchAiFilesByOwnerByName(utility::string_t owner, utili
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -16180,10 +19035,28 @@ pplx::task<void> AiApi::patchAiFilesByOwnerByName(utility::string_t owner, utili
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_files_200_response> localVarResult(new Post_ai_files_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiFilesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiFormsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_forms_200_response>> AiApi::patchAiFormsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -16198,6 +19071,7 @@ pplx::task<void> AiApi::patchAiFormsByOwnerByName(utility::string_t owner, utili
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -16286,10 +19160,28 @@ pplx::task<void> AiApi::patchAiFormsByOwnerByName(utility::string_t owner, utili
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_forms_200_response> localVarResult(new Post_ai_forms_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiFormsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiGraphsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_graphs_200_response>> AiApi::patchAiGraphsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -16304,6 +19196,7 @@ pplx::task<void> AiApi::patchAiGraphsByOwnerByName(utility::string_t owner, util
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -16392,10 +19285,28 @@ pplx::task<void> AiApi::patchAiGraphsByOwnerByName(utility::string_t owner, util
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_graphs_200_response> localVarResult(new Post_ai_graphs_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiGraphsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiMessagesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_messages_200_response>> AiApi::patchAiMessagesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -16410,6 +19321,7 @@ pplx::task<void> AiApi::patchAiMessagesByOwnerByName(utility::string_t owner, ut
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -16498,10 +19410,28 @@ pplx::task<void> AiApi::patchAiMessagesByOwnerByName(utility::string_t owner, ut
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_messages_200_response> localVarResult(new Post_ai_messages_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiMessagesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiNodesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_nodes_200_response>> AiApi::patchAiNodesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -16516,6 +19446,7 @@ pplx::task<void> AiApi::patchAiNodesByOwnerByName(utility::string_t owner, utili
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -16604,10 +19535,28 @@ pplx::task<void> AiApi::patchAiNodesByOwnerByName(utility::string_t owner, utili
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_nodes_200_response> localVarResult(new Post_ai_nodes_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiNodesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiOrgSettings() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::patchAiOrgSettings() const
 {
 
 
@@ -16620,6 +19569,7 @@ pplx::task<void> AiApi::patchAiOrgSettings() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -16708,10 +19658,28 @@ pplx::task<void> AiApi::patchAiOrgSettings() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiOrgSettings: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiOrgSettingsList() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::patchAiOrgSettingsList() const
 {
 
 
@@ -16724,6 +19692,7 @@ pplx::task<void> AiApi::patchAiOrgSettingsList() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -16812,10 +19781,28 @@ pplx::task<void> AiApi::patchAiOrgSettingsList() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiOrgSettingsList: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiPreferences() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::patchAiPreferences() const
 {
 
 
@@ -16828,6 +19815,7 @@ pplx::task<void> AiApi::patchAiPreferences() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -16916,10 +19904,28 @@ pplx::task<void> AiApi::patchAiPreferences() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiPreferences: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiProvidersByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_providers_200_response>> AiApi::patchAiProvidersByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -16934,6 +19940,7 @@ pplx::task<void> AiApi::patchAiProvidersByOwnerByName(utility::string_t owner, u
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -17022,10 +20029,28 @@ pplx::task<void> AiApi::patchAiProvidersByOwnerByName(utility::string_t owner, u
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_providers_200_response> localVarResult(new Post_ai_providers_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiProvidersByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiRecordsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_records_200_response>> AiApi::patchAiRecordsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -17040,6 +20065,7 @@ pplx::task<void> AiApi::patchAiRecordsByOwnerByName(utility::string_t owner, uti
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -17128,10 +20154,28 @@ pplx::task<void> AiApi::patchAiRecordsByOwnerByName(utility::string_t owner, uti
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_records_200_response> localVarResult(new Post_ai_records_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiRecordsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiRemoteConnectionsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_remote_connections_200_response>> AiApi::patchAiRemoteConnectionsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -17146,6 +20190,7 @@ pplx::task<void> AiApi::patchAiRemoteConnectionsByOwnerByName(utility::string_t 
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -17234,10 +20279,28 @@ pplx::task<void> AiApi::patchAiRemoteConnectionsByOwnerByName(utility::string_t 
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_remote_connections_200_response> localVarResult(new Post_ai_remote_connections_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiRemoteConnectionsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiRouterArtifactMeta() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::patchAiRouterArtifactMeta() const
 {
 
 
@@ -17250,6 +20313,7 @@ pplx::task<void> AiApi::patchAiRouterArtifactMeta() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -17338,10 +20402,28 @@ pplx::task<void> AiApi::patchAiRouterArtifactMeta() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiRouterArtifactMeta: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiRouterDefaults() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::patchAiRouterDefaults() const
 {
 
 
@@ -17354,6 +20436,7 @@ pplx::task<void> AiApi::patchAiRouterDefaults() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -17442,10 +20525,28 @@ pplx::task<void> AiApi::patchAiRouterDefaults() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiRouterDefaults: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiRouterLedger() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::patchAiRouterLedger() const
 {
 
 
@@ -17458,6 +20559,7 @@ pplx::task<void> AiApi::patchAiRouterLedger() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -17546,10 +20648,28 @@ pplx::task<void> AiApi::patchAiRouterLedger() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiRouterLedger: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiRouterPolicy() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::patchAiRouterPolicy() const
 {
 
 
@@ -17562,6 +20682,7 @@ pplx::task<void> AiApi::patchAiRouterPolicy() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -17650,10 +20771,28 @@ pplx::task<void> AiApi::patchAiRouterPolicy() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiRouterPolicy: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiRouterRewards() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::patchAiRouterRewards() const
 {
 
 
@@ -17666,6 +20805,7 @@ pplx::task<void> AiApi::patchAiRouterRewards() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -17754,10 +20894,28 @@ pplx::task<void> AiApi::patchAiRouterRewards() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiRouterRewards: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiRoutesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_routes_200_response>> AiApi::patchAiRoutesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -17772,6 +20930,7 @@ pplx::task<void> AiApi::patchAiRoutesByOwnerByName(utility::string_t owner, util
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -17860,10 +21019,28 @@ pplx::task<void> AiApi::patchAiRoutesByOwnerByName(utility::string_t owner, util
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_routes_200_response> localVarResult(new Post_ai_routes_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiRoutesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiScalesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_scales_200_response>> AiApi::patchAiScalesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -17878,6 +21055,7 @@ pplx::task<void> AiApi::patchAiScalesByOwnerByName(utility::string_t owner, util
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -17966,10 +21144,28 @@ pplx::task<void> AiApi::patchAiScalesByOwnerByName(utility::string_t owner, util
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_scales_200_response> localVarResult(new Post_ai_scales_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiScalesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiScansByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_scans_200_response>> AiApi::patchAiScansByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -17984,6 +21180,7 @@ pplx::task<void> AiApi::patchAiScansByOwnerByName(utility::string_t owner, utili
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -18072,10 +21269,28 @@ pplx::task<void> AiApi::patchAiScansByOwnerByName(utility::string_t owner, utili
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_scans_200_response> localVarResult(new Post_ai_scans_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiScansByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiSigninSessionsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_signin_sessions_200_response>> AiApi::patchAiSigninSessionsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -18090,6 +21305,7 @@ pplx::task<void> AiApi::patchAiSigninSessionsByOwnerByName(utility::string_t own
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -18178,10 +21394,28 @@ pplx::task<void> AiApi::patchAiSigninSessionsByOwnerByName(utility::string_t own
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_signin_sessions_200_response> localVarResult(new Post_ai_signin_sessions_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiSigninSessionsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiStoresByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_stores_200_response>> AiApi::patchAiStoresByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -18196,6 +21430,7 @@ pplx::task<void> AiApi::patchAiStoresByOwnerByName(utility::string_t owner, util
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -18284,10 +21519,28 @@ pplx::task<void> AiApi::patchAiStoresByOwnerByName(utility::string_t owner, util
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_stores_200_response> localVarResult(new Post_ai_stores_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiStoresByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiTasksByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_tasks_200_response>> AiApi::patchAiTasksByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -18302,6 +21555,7 @@ pplx::task<void> AiApi::patchAiTasksByOwnerByName(utility::string_t owner, utili
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -18390,10 +21644,28 @@ pplx::task<void> AiApi::patchAiTasksByOwnerByName(utility::string_t owner, utili
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_tasks_200_response> localVarResult(new Post_ai_tasks_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiTasksByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiTemplatesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_templates_200_response>> AiApi::patchAiTemplatesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -18408,6 +21680,7 @@ pplx::task<void> AiApi::patchAiTemplatesByOwnerByName(utility::string_t owner, u
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -18496,10 +21769,28 @@ pplx::task<void> AiApi::patchAiTemplatesByOwnerByName(utility::string_t owner, u
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_templates_200_response> localVarResult(new Post_ai_templates_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiTemplatesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiTrainingContribution() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::patchAiTrainingContribution() const
 {
 
 
@@ -18512,6 +21803,7 @@ pplx::task<void> AiApi::patchAiTrainingContribution() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -18600,10 +21892,28 @@ pplx::task<void> AiApi::patchAiTrainingContribution() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiTrainingContribution: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiTreeFilesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_tree_files_200_response>> AiApi::patchAiTreeFilesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -18618,6 +21928,7 @@ pplx::task<void> AiApi::patchAiTreeFilesByOwnerByName(utility::string_t owner, u
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -18706,10 +22017,28 @@ pplx::task<void> AiApi::patchAiTreeFilesByOwnerByName(utility::string_t owner, u
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_tree_files_200_response> localVarResult(new Post_ai_tree_files_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiTreeFilesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiVectorsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_vectors_200_response>> AiApi::patchAiVectorsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -18724,6 +22053,7 @@ pplx::task<void> AiApi::patchAiVectorsByOwnerByName(utility::string_t owner, uti
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -18812,10 +22142,28 @@ pplx::task<void> AiApi::patchAiVectorsByOwnerByName(utility::string_t owner, uti
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_vectors_200_response> localVarResult(new Post_ai_vectors_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiVectorsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiVideosByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_videos_200_response>> AiApi::patchAiVideosByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -18830,6 +22178,7 @@ pplx::task<void> AiApi::patchAiVideosByOwnerByName(utility::string_t owner, util
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -18918,10 +22267,28 @@ pplx::task<void> AiApi::patchAiVideosByOwnerByName(utility::string_t owner, util
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_videos_200_response> localVarResult(new Post_ai_videos_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiVideosByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::patchAiWorkflowsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_workflows_200_response>> AiApi::patchAiWorkflowsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -18936,6 +22303,7 @@ pplx::task<void> AiApi::patchAiWorkflowsByOwnerByName(utility::string_t owner, u
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -19024,10 +22392,28 @@ pplx::task<void> AiApi::patchAiWorkflowsByOwnerByName(utility::string_t owner, u
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_workflows_200_response> localVarResult(new Post_ai_workflows_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling patchAiWorkflowsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiArticles() const
+pplx::task<std::shared_ptr<Post_ai_articles_200_response>> AiApi::postAiArticles() const
 {
 
 
@@ -19040,6 +22426,7 @@ pplx::task<void> AiApi::postAiArticles() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -19128,10 +22515,28 @@ pplx::task<void> AiApi::postAiArticles() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_articles_200_response> localVarResult(new Post_ai_articles_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiArticles: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiAssets() const
+pplx::task<std::shared_ptr<Post_ai_assets_200_response>> AiApi::postAiAssets() const
 {
 
 
@@ -19144,6 +22549,7 @@ pplx::task<void> AiApi::postAiAssets() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -19232,10 +22638,28 @@ pplx::task<void> AiApi::postAiAssets() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_assets_200_response> localVarResult(new Post_ai_assets_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiAssets: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiAssetsByOwnerByNameScan(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Envelope>> AiApi::postAiAssetsByOwnerByNameScan(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -19250,6 +22674,7 @@ pplx::task<void> AiApi::postAiAssetsByOwnerByNameScan(utility::string_t owner, u
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -19338,10 +22763,28 @@ pplx::task<void> AiApi::postAiAssetsByOwnerByNameScan(utility::string_t owner, u
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiAssetsByOwnerByNameScan: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiAssetsScan() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::postAiAssetsScan() const
 {
 
 
@@ -19354,6 +22797,7 @@ pplx::task<void> AiApi::postAiAssetsScan() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -19442,10 +22886,28 @@ pplx::task<void> AiApi::postAiAssetsScan() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiAssetsScan: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiChats() const
+pplx::task<std::shared_ptr<Post_ai_chats_200_response>> AiApi::postAiChats() const
 {
 
 
@@ -19458,6 +22920,7 @@ pplx::task<void> AiApi::postAiChats() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -19546,10 +23009,28 @@ pplx::task<void> AiApi::postAiChats() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_chats_200_response> localVarResult(new Post_ai_chats_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiChats: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiConnections() const
+pplx::task<std::shared_ptr<Post_ai_connections_200_response>> AiApi::postAiConnections() const
 {
 
 
@@ -19562,6 +23043,7 @@ pplx::task<void> AiApi::postAiConnections() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -19650,10 +23132,28 @@ pplx::task<void> AiApi::postAiConnections() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_connections_200_response> localVarResult(new Post_ai_connections_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiConnections: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiConnectionsByProvider(utility::string_t provider) const
+pplx::task<std::shared_ptr<Post_ai_connections_200_response>> AiApi::postAiConnectionsByProvider(utility::string_t provider) const
 {
 
 
@@ -19667,6 +23167,7 @@ pplx::task<void> AiApi::postAiConnectionsByProvider(utility::string_t provider) 
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -19755,10 +23256,28 @@ pplx::task<void> AiApi::postAiConnectionsByProvider(utility::string_t provider) 
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_connections_200_response> localVarResult(new Post_ai_connections_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiConnectionsByProvider: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiDeployments() const
+pplx::task<std::shared_ptr<Post_ai_deployments_200_response>> AiApi::postAiDeployments() const
 {
 
 
@@ -19771,6 +23290,7 @@ pplx::task<void> AiApi::postAiDeployments() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -19859,10 +23379,28 @@ pplx::task<void> AiApi::postAiDeployments() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_deployments_200_response> localVarResult(new Post_ai_deployments_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiDeployments: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiDeploymentsByOwnerByNameDeploy(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Envelope>> AiApi::postAiDeploymentsByOwnerByNameDeploy(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -19877,6 +23415,7 @@ pplx::task<void> AiApi::postAiDeploymentsByOwnerByNameDeploy(utility::string_t o
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -19965,10 +23504,28 @@ pplx::task<void> AiApi::postAiDeploymentsByOwnerByNameDeploy(utility::string_t o
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiDeploymentsByOwnerByNameDeploy: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiDeploymentsByOwnerByNameUndeploy(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Envelope>> AiApi::postAiDeploymentsByOwnerByNameUndeploy(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -19983,6 +23540,7 @@ pplx::task<void> AiApi::postAiDeploymentsByOwnerByNameUndeploy(utility::string_t
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -20071,10 +23629,28 @@ pplx::task<void> AiApi::postAiDeploymentsByOwnerByNameUndeploy(utility::string_t
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiDeploymentsByOwnerByNameUndeploy: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiFeedback() const
+pplx::task<std::shared_ptr<Post_ai_feedback_200_response>> AiApi::postAiFeedback() const
 {
 
 
@@ -20087,6 +23663,7 @@ pplx::task<void> AiApi::postAiFeedback() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -20175,10 +23752,28 @@ pplx::task<void> AiApi::postAiFeedback() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_feedback_200_response> localVarResult(new Post_ai_feedback_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiFeedback: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiFiles() const
+pplx::task<std::shared_ptr<Post_ai_files_200_response>> AiApi::postAiFiles() const
 {
 
 
@@ -20191,6 +23786,7 @@ pplx::task<void> AiApi::postAiFiles() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -20279,10 +23875,28 @@ pplx::task<void> AiApi::postAiFiles() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_files_200_response> localVarResult(new Post_ai_files_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiFiles: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiFilesActivate() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::postAiFilesActivate() const
 {
 
 
@@ -20295,6 +23909,7 @@ pplx::task<void> AiApi::postAiFilesActivate() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -20383,10 +23998,28 @@ pplx::task<void> AiApi::postAiFilesActivate() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiFilesActivate: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiFilesByOwnerByNameVectors(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Envelope>> AiApi::postAiFilesByOwnerByNameVectors(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -20401,6 +24034,7 @@ pplx::task<void> AiApi::postAiFilesByOwnerByNameVectors(utility::string_t owner,
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -20489,10 +24123,28 @@ pplx::task<void> AiApi::postAiFilesByOwnerByNameVectors(utility::string_t owner,
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiFilesByOwnerByNameVectors: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiFilesUpload() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::postAiFilesUpload() const
 {
 
 
@@ -20505,6 +24157,7 @@ pplx::task<void> AiApi::postAiFilesUpload() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -20593,10 +24246,28 @@ pplx::task<void> AiApi::postAiFilesUpload() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiFilesUpload: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiFinetuneCancel() const
+pplx::task<std::shared_ptr<Post_ai_finetune_cancel_200_response>> AiApi::postAiFinetuneCancel() const
 {
 
 
@@ -20609,6 +24280,7 @@ pplx::task<void> AiApi::postAiFinetuneCancel() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -20697,10 +24369,28 @@ pplx::task<void> AiApi::postAiFinetuneCancel() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_finetune_cancel_200_response> localVarResult(new Post_ai_finetune_cancel_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiFinetuneCancel: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiFinetuneDeploy() const
+pplx::task<std::shared_ptr<Post_ai_finetune_deploy_200_response>> AiApi::postAiFinetuneDeploy() const
 {
 
 
@@ -20713,6 +24403,7 @@ pplx::task<void> AiApi::postAiFinetuneDeploy() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -20801,10 +24492,28 @@ pplx::task<void> AiApi::postAiFinetuneDeploy() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_finetune_deploy_200_response> localVarResult(new Post_ai_finetune_deploy_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiFinetuneDeploy: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiFinetuneJobs() const
+pplx::task<std::shared_ptr<Post_ai_finetune_cancel_200_response>> AiApi::postAiFinetuneJobs() const
 {
 
 
@@ -20817,6 +24526,7 @@ pplx::task<void> AiApi::postAiFinetuneJobs() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -20905,10 +24615,28 @@ pplx::task<void> AiApi::postAiFinetuneJobs() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_finetune_cancel_200_response> localVarResult(new Post_ai_finetune_cancel_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiFinetuneJobs: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiForms() const
+pplx::task<std::shared_ptr<Post_ai_forms_200_response>> AiApi::postAiForms() const
 {
 
 
@@ -20921,6 +24649,7 @@ pplx::task<void> AiApi::postAiForms() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -21009,10 +24738,28 @@ pplx::task<void> AiApi::postAiForms() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_forms_200_response> localVarResult(new Post_ai_forms_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiForms: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiGraphs() const
+pplx::task<std::shared_ptr<Post_ai_graphs_200_response>> AiApi::postAiGraphs() const
 {
 
 
@@ -21025,6 +24772,7 @@ pplx::task<void> AiApi::postAiGraphs() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -21113,10 +24861,28 @@ pplx::task<void> AiApi::postAiGraphs() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_graphs_200_response> localVarResult(new Post_ai_graphs_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiGraphs: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiMemoryDelete() const
+pplx::task<std::shared_ptr<Post_ai_memory_delete_200_response>> AiApi::postAiMemoryDelete() const
 {
 
 
@@ -21129,6 +24895,7 @@ pplx::task<void> AiApi::postAiMemoryDelete() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -21217,10 +24984,28 @@ pplx::task<void> AiApi::postAiMemoryDelete() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_memory_delete_200_response> localVarResult(new Post_ai_memory_delete_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiMemoryDelete: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiMemoryRemember() const
+pplx::task<std::shared_ptr<Post_ai_memory_remember_200_response>> AiApi::postAiMemoryRemember() const
 {
 
 
@@ -21233,6 +25018,7 @@ pplx::task<void> AiApi::postAiMemoryRemember() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -21321,10 +25107,28 @@ pplx::task<void> AiApi::postAiMemoryRemember() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_memory_remember_200_response> localVarResult(new Post_ai_memory_remember_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiMemoryRemember: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiMemoryUpdate() const
+pplx::task<std::shared_ptr<Post_ai_memory_delete_200_response>> AiApi::postAiMemoryUpdate() const
 {
 
 
@@ -21337,6 +25141,7 @@ pplx::task<void> AiApi::postAiMemoryUpdate() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -21425,10 +25230,28 @@ pplx::task<void> AiApi::postAiMemoryUpdate() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_memory_delete_200_response> localVarResult(new Post_ai_memory_delete_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiMemoryUpdate: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiMessages() const
+pplx::task<std::shared_ptr<Post_ai_messages_200_response>> AiApi::postAiMessages() const
 {
 
 
@@ -21441,6 +25264,7 @@ pplx::task<void> AiApi::postAiMessages() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -21529,10 +25353,28 @@ pplx::task<void> AiApi::postAiMessages() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_messages_200_response> localVarResult(new Post_ai_messages_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiMessages: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiNodes() const
+pplx::task<std::shared_ptr<Post_ai_nodes_200_response>> AiApi::postAiNodes() const
 {
 
 
@@ -21545,6 +25387,7 @@ pplx::task<void> AiApi::postAiNodes() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -21633,10 +25476,28 @@ pplx::task<void> AiApi::postAiNodes() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_nodes_200_response> localVarResult(new Post_ai_nodes_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiNodes: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiNodesByOwnerByNameTunnel(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Envelope>> AiApi::postAiNodesByOwnerByNameTunnel(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -21651,6 +25512,7 @@ pplx::task<void> AiApi::postAiNodesByOwnerByNameTunnel(utility::string_t owner, 
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -21739,10 +25601,28 @@ pplx::task<void> AiApi::postAiNodesByOwnerByNameTunnel(utility::string_t owner, 
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiNodesByOwnerByNameTunnel: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiOrgSettings() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::postAiOrgSettings() const
 {
 
 
@@ -21755,6 +25635,7 @@ pplx::task<void> AiApi::postAiOrgSettings() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -21843,10 +25724,28 @@ pplx::task<void> AiApi::postAiOrgSettings() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiOrgSettings: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiOrgSettingsList() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::postAiOrgSettingsList() const
 {
 
 
@@ -21859,6 +25758,7 @@ pplx::task<void> AiApi::postAiOrgSettingsList() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -21947,10 +25847,28 @@ pplx::task<void> AiApi::postAiOrgSettingsList() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiOrgSettingsList: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiProviders() const
+pplx::task<std::shared_ptr<Post_ai_providers_200_response>> AiApi::postAiProviders() const
 {
 
 
@@ -21963,6 +25881,7 @@ pplx::task<void> AiApi::postAiProviders() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -22051,10 +25970,28 @@ pplx::task<void> AiApi::postAiProviders() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_providers_200_response> localVarResult(new Post_ai_providers_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiProviders: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiProvidersMcpTools() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::postAiProvidersMcpTools() const
 {
 
 
@@ -22067,6 +26004,7 @@ pplx::task<void> AiApi::postAiProvidersMcpTools() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -22155,10 +26093,28 @@ pplx::task<void> AiApi::postAiProvidersMcpTools() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiProvidersMcpTools: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiRagDelete() const
+pplx::task<std::shared_ptr<Get_ai_finetune_presets_200_response>> AiApi::postAiRagDelete() const
 {
 
 
@@ -22171,6 +26127,7 @@ pplx::task<void> AiApi::postAiRagDelete() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -22259,10 +26216,28 @@ pplx::task<void> AiApi::postAiRagDelete() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Get_ai_finetune_presets_200_response> localVarResult(new Get_ai_finetune_presets_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiRagDelete: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiRagEmbed() const
+pplx::task<std::shared_ptr<Post_ai_rag_embed_200_response>> AiApi::postAiRagEmbed() const
 {
 
 
@@ -22275,6 +26250,7 @@ pplx::task<void> AiApi::postAiRagEmbed() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -22363,10 +26339,28 @@ pplx::task<void> AiApi::postAiRagEmbed() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_rag_embed_200_response> localVarResult(new Post_ai_rag_embed_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiRagEmbed: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiRagIngest() const
+pplx::task<std::shared_ptr<Post_ai_rag_ingest_200_response>> AiApi::postAiRagIngest() const
 {
 
 
@@ -22379,6 +26373,7 @@ pplx::task<void> AiApi::postAiRagIngest() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -22467,10 +26462,28 @@ pplx::task<void> AiApi::postAiRagIngest() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_rag_ingest_200_response> localVarResult(new Post_ai_rag_ingest_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiRagIngest: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiRagQuery() const
+pplx::task<std::vector<std::shared_ptr<DocSearchResult>>> AiApi::postAiRagQuery() const
 {
 
 
@@ -22483,6 +26496,7 @@ pplx::task<void> AiApi::postAiRagQuery() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -22571,10 +26585,32 @@ pplx::task<void> AiApi::postAiRagQuery() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::vector<std::shared_ptr<DocSearchResult>> localVarResult;
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+            for( auto& localVarItem : localVarJson.as_array() )
+            {
+                std::vector<std::shared_ptr<DocSearchResult>>::value_type localVarItemObj;
+                ModelBase::fromJson(localVarItem, localVarItemObj);
+                localVarResult.push_back(localVarItemObj);
+            }
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiRagQuery: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiRagQueryMultiple() const
+pplx::task<std::vector<std::shared_ptr<DocSearchResult>>> AiApi::postAiRagQueryMultiple() const
 {
 
 
@@ -22587,6 +26623,7 @@ pplx::task<void> AiApi::postAiRagQueryMultiple() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -22675,10 +26712,32 @@ pplx::task<void> AiApi::postAiRagQueryMultiple() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::vector<std::shared_ptr<DocSearchResult>> localVarResult;
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+            for( auto& localVarItem : localVarJson.as_array() )
+            {
+                std::vector<std::shared_ptr<DocSearchResult>>::value_type localVarItemObj;
+                ModelBase::fromJson(localVarItem, localVarItemObj);
+                localVarResult.push_back(localVarItemObj);
+            }
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiRagQueryMultiple: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiRecords() const
+pplx::task<std::shared_ptr<Post_ai_records_200_response>> AiApi::postAiRecords() const
 {
 
 
@@ -22691,6 +26750,7 @@ pplx::task<void> AiApi::postAiRecords() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -22779,10 +26839,28 @@ pplx::task<void> AiApi::postAiRecords() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_records_200_response> localVarResult(new Post_ai_records_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiRecords: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiRecordsBatch() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::postAiRecordsBatch() const
 {
 
 
@@ -22795,6 +26873,7 @@ pplx::task<void> AiApi::postAiRecordsBatch() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -22883,10 +26962,28 @@ pplx::task<void> AiApi::postAiRecordsBatch() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiRecordsBatch: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiRecordsCommit() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::postAiRecordsCommit() const
 {
 
 
@@ -22899,6 +26996,7 @@ pplx::task<void> AiApi::postAiRecordsCommit() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -22987,10 +27085,28 @@ pplx::task<void> AiApi::postAiRecordsCommit() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiRecordsCommit: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiRecordsCommitSecond() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::postAiRecordsCommitSecond() const
 {
 
 
@@ -23003,6 +27119,7 @@ pplx::task<void> AiApi::postAiRecordsCommitSecond() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -23091,10 +27208,28 @@ pplx::task<void> AiApi::postAiRecordsCommitSecond() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiRecordsCommitSecond: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiRemoteConnections() const
+pplx::task<std::shared_ptr<Post_ai_remote_connections_200_response>> AiApi::postAiRemoteConnections() const
 {
 
 
@@ -23107,6 +27242,7 @@ pplx::task<void> AiApi::postAiRemoteConnections() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -23195,10 +27331,28 @@ pplx::task<void> AiApi::postAiRemoteConnections() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_remote_connections_200_response> localVarResult(new Post_ai_remote_connections_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiRemoteConnections: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiRemoteConnectionsByOwnerByNameStart(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Envelope>> AiApi::postAiRemoteConnectionsByOwnerByNameStart(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -23213,6 +27367,7 @@ pplx::task<void> AiApi::postAiRemoteConnectionsByOwnerByNameStart(utility::strin
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -23301,10 +27456,28 @@ pplx::task<void> AiApi::postAiRemoteConnectionsByOwnerByNameStart(utility::strin
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiRemoteConnectionsByOwnerByNameStart: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiRemoteConnectionsByOwnerByNameStop(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Envelope>> AiApi::postAiRemoteConnectionsByOwnerByNameStop(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -23319,6 +27492,7 @@ pplx::task<void> AiApi::postAiRemoteConnectionsByOwnerByNameStop(utility::string
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -23407,10 +27581,28 @@ pplx::task<void> AiApi::postAiRemoteConnectionsByOwnerByNameStop(utility::string
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiRemoteConnectionsByOwnerByNameStop: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiRouterArtifactMeta() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::postAiRouterArtifactMeta() const
 {
 
 
@@ -23423,6 +27615,7 @@ pplx::task<void> AiApi::postAiRouterArtifactMeta() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -23511,10 +27704,28 @@ pplx::task<void> AiApi::postAiRouterArtifactMeta() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiRouterArtifactMeta: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiRouterDefaults() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::postAiRouterDefaults() const
 {
 
 
@@ -23527,6 +27738,7 @@ pplx::task<void> AiApi::postAiRouterDefaults() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -23615,10 +27827,28 @@ pplx::task<void> AiApi::postAiRouterDefaults() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiRouterDefaults: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiRouterLedger() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::postAiRouterLedger() const
 {
 
 
@@ -23631,6 +27861,7 @@ pplx::task<void> AiApi::postAiRouterLedger() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -23719,10 +27950,28 @@ pplx::task<void> AiApi::postAiRouterLedger() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiRouterLedger: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiRouterPolicy() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::postAiRouterPolicy() const
 {
 
 
@@ -23735,6 +27984,7 @@ pplx::task<void> AiApi::postAiRouterPolicy() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -23823,10 +28073,28 @@ pplx::task<void> AiApi::postAiRouterPolicy() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiRouterPolicy: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiRouterRewards() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::postAiRouterRewards() const
 {
 
 
@@ -23839,6 +28107,7 @@ pplx::task<void> AiApi::postAiRouterRewards() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -23927,10 +28196,28 @@ pplx::task<void> AiApi::postAiRouterRewards() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiRouterRewards: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiRoutes() const
+pplx::task<std::shared_ptr<Post_ai_routes_200_response>> AiApi::postAiRoutes() const
 {
 
 
@@ -23943,6 +28230,7 @@ pplx::task<void> AiApi::postAiRoutes() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -24031,10 +28319,28 @@ pplx::task<void> AiApi::postAiRoutes() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_routes_200_response> localVarResult(new Post_ai_routes_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiRoutes: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiScales() const
+pplx::task<std::shared_ptr<Post_ai_scales_200_response>> AiApi::postAiScales() const
 {
 
 
@@ -24047,6 +28353,7 @@ pplx::task<void> AiApi::postAiScales() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -24135,10 +28442,28 @@ pplx::task<void> AiApi::postAiScales() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_scales_200_response> localVarResult(new Post_ai_scales_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiScales: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiScans() const
+pplx::task<std::shared_ptr<Post_ai_scans_200_response>> AiApi::postAiScans() const
 {
 
 
@@ -24151,6 +28476,7 @@ pplx::task<void> AiApi::postAiScans() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -24239,10 +28565,28 @@ pplx::task<void> AiApi::postAiScans() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_scans_200_response> localVarResult(new Post_ai_scans_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiScans: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiSignin() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::postAiSignin() const
 {
 
 
@@ -24255,6 +28599,7 @@ pplx::task<void> AiApi::postAiSignin() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -24343,10 +28688,28 @@ pplx::task<void> AiApi::postAiSignin() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiSignin: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiSigninSessions() const
+pplx::task<std::shared_ptr<Post_ai_signin_sessions_200_response>> AiApi::postAiSigninSessions() const
 {
 
 
@@ -24359,6 +28722,7 @@ pplx::task<void> AiApi::postAiSigninSessions() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -24447,10 +28811,28 @@ pplx::task<void> AiApi::postAiSigninSessions() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_signin_sessions_200_response> localVarResult(new Post_ai_signin_sessions_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiSigninSessions: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiSignout() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::postAiSignout() const
 {
 
 
@@ -24463,6 +28845,7 @@ pplx::task<void> AiApi::postAiSignout() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -24551,10 +28934,28 @@ pplx::task<void> AiApi::postAiSignout() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiSignout: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiStores() const
+pplx::task<std::shared_ptr<Post_ai_stores_200_response>> AiApi::postAiStores() const
 {
 
 
@@ -24567,6 +28968,7 @@ pplx::task<void> AiApi::postAiStores() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -24655,10 +29057,28 @@ pplx::task<void> AiApi::postAiStores() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_stores_200_response> localVarResult(new Post_ai_stores_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiStores: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiStoresByOwnerByNameVectors(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Envelope>> AiApi::postAiStoresByOwnerByNameVectors(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -24673,6 +29093,7 @@ pplx::task<void> AiApi::postAiStoresByOwnerByNameVectors(utility::string_t owner
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -24761,10 +29182,28 @@ pplx::task<void> AiApi::postAiStoresByOwnerByNameVectors(utility::string_t owner
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiStoresByOwnerByNameVectors: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiTasks() const
+pplx::task<std::shared_ptr<Post_ai_tasks_200_response>> AiApi::postAiTasks() const
 {
 
 
@@ -24777,6 +29216,7 @@ pplx::task<void> AiApi::postAiTasks() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -24865,10 +29305,28 @@ pplx::task<void> AiApi::postAiTasks() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_tasks_200_response> localVarResult(new Post_ai_tasks_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiTasks: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiTasksByOwnerByNameAnalyze(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Envelope>> AiApi::postAiTasksByOwnerByNameAnalyze(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -24883,6 +29341,7 @@ pplx::task<void> AiApi::postAiTasksByOwnerByNameAnalyze(utility::string_t owner,
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -24971,10 +29430,28 @@ pplx::task<void> AiApi::postAiTasksByOwnerByNameAnalyze(utility::string_t owner,
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiTasksByOwnerByNameAnalyze: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiTasksByOwnerByNameDocument(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Envelope>> AiApi::postAiTasksByOwnerByNameDocument(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -24989,6 +29466,7 @@ pplx::task<void> AiApi::postAiTasksByOwnerByNameDocument(utility::string_t owner
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -25077,10 +29555,28 @@ pplx::task<void> AiApi::postAiTasksByOwnerByNameDocument(utility::string_t owner
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiTasksByOwnerByNameDocument: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiTemplates() const
+pplx::task<std::shared_ptr<Post_ai_templates_200_response>> AiApi::postAiTemplates() const
 {
 
 
@@ -25093,6 +29589,7 @@ pplx::task<void> AiApi::postAiTemplates() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -25181,10 +29678,28 @@ pplx::task<void> AiApi::postAiTemplates() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_templates_200_response> localVarResult(new Post_ai_templates_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiTemplates: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiTreeFiles() const
+pplx::task<std::shared_ptr<Post_ai_tree_files_200_response>> AiApi::postAiTreeFiles() const
 {
 
 
@@ -25197,6 +29712,7 @@ pplx::task<void> AiApi::postAiTreeFiles() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -25285,10 +29801,28 @@ pplx::task<void> AiApi::postAiTreeFiles() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_tree_files_200_response> localVarResult(new Post_ai_tree_files_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiTreeFiles: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiVectors() const
+pplx::task<std::shared_ptr<Post_ai_vectors_200_response>> AiApi::postAiVectors() const
 {
 
 
@@ -25301,6 +29835,7 @@ pplx::task<void> AiApi::postAiVectors() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -25389,10 +29924,28 @@ pplx::task<void> AiApi::postAiVectors() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_vectors_200_response> localVarResult(new Post_ai_vectors_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiVectors: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiVideos() const
+pplx::task<std::shared_ptr<Post_ai_videos_200_response>> AiApi::postAiVideos() const
 {
 
 
@@ -25405,6 +29958,7 @@ pplx::task<void> AiApi::postAiVideos() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -25493,10 +30047,28 @@ pplx::task<void> AiApi::postAiVideos() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_videos_200_response> localVarResult(new Post_ai_videos_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiVideos: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiVideosUpload() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::postAiVideosUpload() const
 {
 
 
@@ -25509,6 +30081,7 @@ pplx::task<void> AiApi::postAiVideosUpload() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -25597,10 +30170,28 @@ pplx::task<void> AiApi::postAiVideosUpload() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiVideosUpload: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postAiWorkflows() const
+pplx::task<std::shared_ptr<Post_ai_workflows_200_response>> AiApi::postAiWorkflows() const
 {
 
 
@@ -25613,6 +30204,7 @@ pplx::task<void> AiApi::postAiWorkflows() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -25701,7 +30293,25 @@ pplx::task<void> AiApi::postAiWorkflows() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_workflows_200_response> localVarResult(new Post_ai_workflows_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAiWorkflows: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
 pplx::task<void> AiApi::postAudioFoley() const
@@ -26016,7 +30626,7 @@ pplx::task<void> AiApi::postAudioSpeech() const
         return void();
     });
 }
-pplx::task<void> AiApi::postAudioTranscriptions() const
+pplx::task<std::shared_ptr<Openai_AudioResponse>> AiApi::postAudioTranscriptions() const
 {
 
 
@@ -26029,6 +30639,7 @@ pplx::task<void> AiApi::postAudioTranscriptions() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -26117,7 +30728,25 @@ pplx::task<void> AiApi::postAudioTranscriptions() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Openai_AudioResponse> localVarResult(new Openai_AudioResponse());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postAudioTranscriptions: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
 pplx::task<void> AiApi::postAudioVoice() const
@@ -26224,7 +30853,7 @@ pplx::task<void> AiApi::postAudioVoice() const
         return void();
     });
 }
-pplx::task<void> AiApi::postChat() const
+pplx::task<std::shared_ptr<Openai_ChatCompletionResponse>> AiApi::postChat() const
 {
 
 
@@ -26237,6 +30866,7 @@ pplx::task<void> AiApi::postChat() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -26325,10 +30955,28 @@ pplx::task<void> AiApi::postChat() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Openai_ChatCompletionResponse> localVarResult(new Openai_ChatCompletionResponse());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postChat: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postChatCompletions() const
+pplx::task<std::shared_ptr<Openai_ChatCompletionResponse>> AiApi::postChatCompletions() const
 {
 
 
@@ -26341,6 +30989,7 @@ pplx::task<void> AiApi::postChatCompletions() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -26429,10 +31078,28 @@ pplx::task<void> AiApi::postChatCompletions() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Openai_ChatCompletionResponse> localVarResult(new Openai_ChatCompletionResponse());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postChatCompletions: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postChatPublic() const
+pplx::task<std::shared_ptr<Openai_ChatCompletionResponse>> AiApi::postChatPublic() const
 {
 
 
@@ -26445,6 +31112,7 @@ pplx::task<void> AiApi::postChatPublic() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -26533,10 +31201,28 @@ pplx::task<void> AiApi::postChatPublic() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Openai_ChatCompletionResponse> localVarResult(new Openai_ChatCompletionResponse());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postChatPublic: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postCompletions() const
+pplx::task<std::shared_ptr<Openai_ChatCompletionResponse>> AiApi::postCompletions() const
 {
 
 
@@ -26549,6 +31235,7 @@ pplx::task<void> AiApi::postCompletions() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -26637,10 +31324,28 @@ pplx::task<void> AiApi::postCompletions() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Openai_ChatCompletionResponse> localVarResult(new Openai_ChatCompletionResponse());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postCompletions: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postEmbeddings() const
+pplx::task<std::shared_ptr<Openai_EmbeddingResponse>> AiApi::postEmbeddings() const
 {
 
 
@@ -26653,6 +31358,7 @@ pplx::task<void> AiApi::postEmbeddings() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -26741,10 +31447,28 @@ pplx::task<void> AiApi::postEmbeddings() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Openai_EmbeddingResponse> localVarResult(new Openai_EmbeddingResponse());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postEmbeddings: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postImagesGenerations() const
+pplx::task<std::shared_ptr<Openai_ImageResponse>> AiApi::postImagesGenerations() const
 {
 
 
@@ -26757,6 +31481,7 @@ pplx::task<void> AiApi::postImagesGenerations() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -26845,10 +31570,28 @@ pplx::task<void> AiApi::postImagesGenerations() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Openai_ImageResponse> localVarResult(new Openai_ImageResponse());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postImagesGenerations: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postMessages() const
+pplx::task<std::shared_ptr<Ai_AnthropicResponse>> AiApi::postMessages() const
 {
 
 
@@ -26861,6 +31604,7 @@ pplx::task<void> AiApi::postMessages() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -26949,10 +31693,28 @@ pplx::task<void> AiApi::postMessages() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_AnthropicResponse> localVarResult(new Ai_AnthropicResponse());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postMessages: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postMessagesCountTokens() const
+pplx::task<std::shared_ptr<Ai_TokenCount>> AiApi::postMessagesCountTokens() const
 {
 
 
@@ -26965,6 +31727,7 @@ pplx::task<void> AiApi::postMessagesCountTokens() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -27053,10 +31816,28 @@ pplx::task<void> AiApi::postMessagesCountTokens() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_TokenCount> localVarResult(new Ai_TokenCount());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postMessagesCountTokens: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postModelsByModelAccess(utility::string_t model) const
+pplx::task<std::shared_ptr<Post_models_by_model_access_200_response>> AiApi::postModelsByModelAccess(utility::string_t model) const
 {
 
 
@@ -27070,6 +31851,7 @@ pplx::task<void> AiApi::postModelsByModelAccess(utility::string_t model) const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -27158,10 +31940,28 @@ pplx::task<void> AiApi::postModelsByModelAccess(utility::string_t model) const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_models_by_model_access_200_response> localVarResult(new Post_models_by_model_access_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postModelsByModelAccess: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postRerank() const
+pplx::task<std::shared_ptr<Ai_Ranking>> AiApi::postRerank() const
 {
 
 
@@ -27174,6 +31974,7 @@ pplx::task<void> AiApi::postRerank() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -27262,10 +32063,28 @@ pplx::task<void> AiApi::postRerank() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Ranking> localVarResult(new Ai_Ranking());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postRerank: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postResponses() const
+pplx::task<std::shared_ptr<Ai_ResponsesResource>> AiApi::postResponses() const
 {
 
 
@@ -27278,6 +32097,7 @@ pplx::task<void> AiApi::postResponses() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -27366,10 +32186,28 @@ pplx::task<void> AiApi::postResponses() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_ResponsesResource> localVarResult(new Ai_ResponsesResource());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postResponses: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::postVideosGenerations() const
+pplx::task<std::shared_ptr<Ai_VideoStatus>> AiApi::postVideosGenerations() const
 {
 
 
@@ -27382,6 +32220,7 @@ pplx::task<void> AiApi::postVideosGenerations() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -27470,10 +32309,28 @@ pplx::task<void> AiApi::postVideosGenerations() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_VideoStatus> localVarResult(new Ai_VideoStatus());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postVideosGenerations: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiArticlesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_articles_200_response>> AiApi::putAiArticlesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -27488,6 +32345,7 @@ pplx::task<void> AiApi::putAiArticlesByOwnerByName(utility::string_t owner, util
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -27576,10 +32434,28 @@ pplx::task<void> AiApi::putAiArticlesByOwnerByName(utility::string_t owner, util
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_articles_200_response> localVarResult(new Post_ai_articles_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiArticlesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiAssetsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_assets_200_response>> AiApi::putAiAssetsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -27594,6 +32470,7 @@ pplx::task<void> AiApi::putAiAssetsByOwnerByName(utility::string_t owner, utilit
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -27682,10 +32559,28 @@ pplx::task<void> AiApi::putAiAssetsByOwnerByName(utility::string_t owner, utilit
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_assets_200_response> localVarResult(new Post_ai_assets_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiAssetsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiChatsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_chats_200_response>> AiApi::putAiChatsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -27700,6 +32595,7 @@ pplx::task<void> AiApi::putAiChatsByOwnerByName(utility::string_t owner, utility
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -27788,10 +32684,28 @@ pplx::task<void> AiApi::putAiChatsByOwnerByName(utility::string_t owner, utility
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_chats_200_response> localVarResult(new Post_ai_chats_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiChatsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiDeploymentsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_deployments_200_response>> AiApi::putAiDeploymentsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -27806,6 +32720,7 @@ pplx::task<void> AiApi::putAiDeploymentsByOwnerByName(utility::string_t owner, u
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -27894,10 +32809,28 @@ pplx::task<void> AiApi::putAiDeploymentsByOwnerByName(utility::string_t owner, u
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_deployments_200_response> localVarResult(new Post_ai_deployments_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiDeploymentsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiFilesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_files_200_response>> AiApi::putAiFilesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -27912,6 +32845,7 @@ pplx::task<void> AiApi::putAiFilesByOwnerByName(utility::string_t owner, utility
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -28000,10 +32934,28 @@ pplx::task<void> AiApi::putAiFilesByOwnerByName(utility::string_t owner, utility
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_files_200_response> localVarResult(new Post_ai_files_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiFilesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiFormsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_forms_200_response>> AiApi::putAiFormsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -28018,6 +32970,7 @@ pplx::task<void> AiApi::putAiFormsByOwnerByName(utility::string_t owner, utility
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -28106,10 +33059,28 @@ pplx::task<void> AiApi::putAiFormsByOwnerByName(utility::string_t owner, utility
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_forms_200_response> localVarResult(new Post_ai_forms_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiFormsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiGraphsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_graphs_200_response>> AiApi::putAiGraphsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -28124,6 +33095,7 @@ pplx::task<void> AiApi::putAiGraphsByOwnerByName(utility::string_t owner, utilit
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -28212,10 +33184,28 @@ pplx::task<void> AiApi::putAiGraphsByOwnerByName(utility::string_t owner, utilit
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_graphs_200_response> localVarResult(new Post_ai_graphs_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiGraphsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiMessagesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_messages_200_response>> AiApi::putAiMessagesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -28230,6 +33220,7 @@ pplx::task<void> AiApi::putAiMessagesByOwnerByName(utility::string_t owner, util
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -28318,10 +33309,28 @@ pplx::task<void> AiApi::putAiMessagesByOwnerByName(utility::string_t owner, util
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_messages_200_response> localVarResult(new Post_ai_messages_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiMessagesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiNodesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_nodes_200_response>> AiApi::putAiNodesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -28336,6 +33345,7 @@ pplx::task<void> AiApi::putAiNodesByOwnerByName(utility::string_t owner, utility
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -28424,10 +33434,28 @@ pplx::task<void> AiApi::putAiNodesByOwnerByName(utility::string_t owner, utility
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_nodes_200_response> localVarResult(new Post_ai_nodes_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiNodesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiOrgSettings() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::putAiOrgSettings() const
 {
 
 
@@ -28440,6 +33468,7 @@ pplx::task<void> AiApi::putAiOrgSettings() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -28528,10 +33557,28 @@ pplx::task<void> AiApi::putAiOrgSettings() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiOrgSettings: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiOrgSettingsList() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::putAiOrgSettingsList() const
 {
 
 
@@ -28544,6 +33591,7 @@ pplx::task<void> AiApi::putAiOrgSettingsList() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -28632,10 +33680,28 @@ pplx::task<void> AiApi::putAiOrgSettingsList() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiOrgSettingsList: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiPreferences() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::putAiPreferences() const
 {
 
 
@@ -28648,6 +33714,7 @@ pplx::task<void> AiApi::putAiPreferences() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -28736,10 +33803,28 @@ pplx::task<void> AiApi::putAiPreferences() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiPreferences: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiProvidersByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_providers_200_response>> AiApi::putAiProvidersByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -28754,6 +33839,7 @@ pplx::task<void> AiApi::putAiProvidersByOwnerByName(utility::string_t owner, uti
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -28842,10 +33928,28 @@ pplx::task<void> AiApi::putAiProvidersByOwnerByName(utility::string_t owner, uti
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_providers_200_response> localVarResult(new Post_ai_providers_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiProvidersByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiRecordsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_records_200_response>> AiApi::putAiRecordsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -28860,6 +33964,7 @@ pplx::task<void> AiApi::putAiRecordsByOwnerByName(utility::string_t owner, utili
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -28948,10 +34053,28 @@ pplx::task<void> AiApi::putAiRecordsByOwnerByName(utility::string_t owner, utili
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_records_200_response> localVarResult(new Post_ai_records_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiRecordsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiRemoteConnectionsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_remote_connections_200_response>> AiApi::putAiRemoteConnectionsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -28966,6 +34089,7 @@ pplx::task<void> AiApi::putAiRemoteConnectionsByOwnerByName(utility::string_t ow
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -29054,10 +34178,28 @@ pplx::task<void> AiApi::putAiRemoteConnectionsByOwnerByName(utility::string_t ow
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_remote_connections_200_response> localVarResult(new Post_ai_remote_connections_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiRemoteConnectionsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiRouterArtifactMeta() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::putAiRouterArtifactMeta() const
 {
 
 
@@ -29070,6 +34212,7 @@ pplx::task<void> AiApi::putAiRouterArtifactMeta() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -29158,10 +34301,28 @@ pplx::task<void> AiApi::putAiRouterArtifactMeta() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiRouterArtifactMeta: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiRouterDefaults() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::putAiRouterDefaults() const
 {
 
 
@@ -29174,6 +34335,7 @@ pplx::task<void> AiApi::putAiRouterDefaults() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -29262,10 +34424,28 @@ pplx::task<void> AiApi::putAiRouterDefaults() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiRouterDefaults: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiRouterLedger() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::putAiRouterLedger() const
 {
 
 
@@ -29278,6 +34458,7 @@ pplx::task<void> AiApi::putAiRouterLedger() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -29366,10 +34547,28 @@ pplx::task<void> AiApi::putAiRouterLedger() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiRouterLedger: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiRouterPolicy() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::putAiRouterPolicy() const
 {
 
 
@@ -29382,6 +34581,7 @@ pplx::task<void> AiApi::putAiRouterPolicy() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -29470,10 +34670,28 @@ pplx::task<void> AiApi::putAiRouterPolicy() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiRouterPolicy: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiRouterRewards() const
+pplx::task<std::shared_ptr<Ai_Response>> AiApi::putAiRouterRewards() const
 {
 
 
@@ -29486,6 +34704,7 @@ pplx::task<void> AiApi::putAiRouterRewards() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -29574,10 +34793,28 @@ pplx::task<void> AiApi::putAiRouterRewards() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Ai_Response> localVarResult(new Ai_Response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiRouterRewards: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiRoutesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_routes_200_response>> AiApi::putAiRoutesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -29592,6 +34829,7 @@ pplx::task<void> AiApi::putAiRoutesByOwnerByName(utility::string_t owner, utilit
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -29680,10 +34918,28 @@ pplx::task<void> AiApi::putAiRoutesByOwnerByName(utility::string_t owner, utilit
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_routes_200_response> localVarResult(new Post_ai_routes_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiRoutesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiScalesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_scales_200_response>> AiApi::putAiScalesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -29698,6 +34954,7 @@ pplx::task<void> AiApi::putAiScalesByOwnerByName(utility::string_t owner, utilit
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -29786,10 +35043,28 @@ pplx::task<void> AiApi::putAiScalesByOwnerByName(utility::string_t owner, utilit
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_scales_200_response> localVarResult(new Post_ai_scales_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiScalesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiScansByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_scans_200_response>> AiApi::putAiScansByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -29804,6 +35079,7 @@ pplx::task<void> AiApi::putAiScansByOwnerByName(utility::string_t owner, utility
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -29892,10 +35168,28 @@ pplx::task<void> AiApi::putAiScansByOwnerByName(utility::string_t owner, utility
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_scans_200_response> localVarResult(new Post_ai_scans_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiScansByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiSigninSessionsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_signin_sessions_200_response>> AiApi::putAiSigninSessionsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -29910,6 +35204,7 @@ pplx::task<void> AiApi::putAiSigninSessionsByOwnerByName(utility::string_t owner
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -29998,10 +35293,28 @@ pplx::task<void> AiApi::putAiSigninSessionsByOwnerByName(utility::string_t owner
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_signin_sessions_200_response> localVarResult(new Post_ai_signin_sessions_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiSigninSessionsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiStoresByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_stores_200_response>> AiApi::putAiStoresByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -30016,6 +35329,7 @@ pplx::task<void> AiApi::putAiStoresByOwnerByName(utility::string_t owner, utilit
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -30104,10 +35418,28 @@ pplx::task<void> AiApi::putAiStoresByOwnerByName(utility::string_t owner, utilit
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_stores_200_response> localVarResult(new Post_ai_stores_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiStoresByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiTasksByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_tasks_200_response>> AiApi::putAiTasksByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -30122,6 +35454,7 @@ pplx::task<void> AiApi::putAiTasksByOwnerByName(utility::string_t owner, utility
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -30210,10 +35543,28 @@ pplx::task<void> AiApi::putAiTasksByOwnerByName(utility::string_t owner, utility
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_tasks_200_response> localVarResult(new Post_ai_tasks_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiTasksByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiTemplatesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_templates_200_response>> AiApi::putAiTemplatesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -30228,6 +35579,7 @@ pplx::task<void> AiApi::putAiTemplatesByOwnerByName(utility::string_t owner, uti
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -30316,10 +35668,28 @@ pplx::task<void> AiApi::putAiTemplatesByOwnerByName(utility::string_t owner, uti
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_templates_200_response> localVarResult(new Post_ai_templates_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiTemplatesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiTrainingContribution() const
+pplx::task<std::shared_ptr<Envelope>> AiApi::putAiTrainingContribution() const
 {
 
 
@@ -30332,6 +35702,7 @@ pplx::task<void> AiApi::putAiTrainingContribution() const
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -30420,10 +35791,28 @@ pplx::task<void> AiApi::putAiTrainingContribution() const
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Envelope> localVarResult(new Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiTrainingContribution: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiTreeFilesByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_tree_files_200_response>> AiApi::putAiTreeFilesByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -30438,6 +35827,7 @@ pplx::task<void> AiApi::putAiTreeFilesByOwnerByName(utility::string_t owner, uti
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -30526,10 +35916,28 @@ pplx::task<void> AiApi::putAiTreeFilesByOwnerByName(utility::string_t owner, uti
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_tree_files_200_response> localVarResult(new Post_ai_tree_files_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiTreeFilesByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiVectorsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_vectors_200_response>> AiApi::putAiVectorsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -30544,6 +35952,7 @@ pplx::task<void> AiApi::putAiVectorsByOwnerByName(utility::string_t owner, utili
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -30632,10 +36041,28 @@ pplx::task<void> AiApi::putAiVectorsByOwnerByName(utility::string_t owner, utili
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_vectors_200_response> localVarResult(new Post_ai_vectors_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiVectorsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiVideosByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_videos_200_response>> AiApi::putAiVideosByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -30650,6 +36077,7 @@ pplx::task<void> AiApi::putAiVideosByOwnerByName(utility::string_t owner, utilit
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -30738,10 +36166,28 @@ pplx::task<void> AiApi::putAiVideosByOwnerByName(utility::string_t owner, utilit
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_videos_200_response> localVarResult(new Post_ai_videos_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiVideosByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
-pplx::task<void> AiApi::putAiWorkflowsByOwnerByName(utility::string_t owner, utility::string_t name) const
+pplx::task<std::shared_ptr<Post_ai_workflows_200_response>> AiApi::putAiWorkflowsByOwnerByName(utility::string_t owner, utility::string_t name) const
 {
 
 
@@ -30756,6 +36202,7 @@ pplx::task<void> AiApi::putAiWorkflowsByOwnerByName(utility::string_t owner, uti
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -30844,7 +36291,25 @@ pplx::task<void> AiApi::putAiWorkflowsByOwnerByName(utility::string_t owner, uti
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        return void();
+        std::shared_ptr<Post_ai_workflows_200_response> localVarResult(new Post_ai_workflows_200_response());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling putAiWorkflowsByOwnerByName: unsupported response type"));
+        }
+
+        return localVarResult;
     });
 }
 

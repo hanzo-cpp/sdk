@@ -22,13 +22,13 @@
 
 #include "hanzo/ModelBase.h"
 
-#include "hanzo/model/ModuleInfo.h"
+#include "hanzo/model/Module.h"
 #include <vector>
 
 namespace hanzo {
 namespace model {
 
-class ModuleInfo;
+class Module;
 
 
 class  ModuleList
@@ -55,16 +55,16 @@ public:
 
 
     /// <summary>
-    /// Data is every module compiled into this binary, with the DocTypes it installs.
+    /// Data is every module compiled into this binary, with the DocTypes it installs and whether the caller&#39;s org has turned it on.
     /// </summary>
-    std::vector<std::shared_ptr<ModuleInfo>> getData() const;
+    std::vector<std::shared_ptr<Module>> getData() const;
     bool dataIsSet() const;
     void unsetData();
-    void setData(const std::vector<std::shared_ptr<ModuleInfo>>& value);
+    void setData(const std::vector<std::shared_ptr<Module>>& value);
 
 
 protected:
-    std::vector<std::shared_ptr<ModuleInfo>> m_Data;
+    std::vector<std::shared_ptr<Module>> m_Data;
     bool m_DataIsSet;
 
 };
