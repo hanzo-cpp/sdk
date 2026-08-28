@@ -50,7 +50,7 @@ bool ModuleList::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("data")));
         if(!fieldValue.is_null())
         {
-            std::vector<std::shared_ptr<ModuleInfo>> refVal_setData;
+            std::vector<std::shared_ptr<Module>> refVal_setData;
             ok &= ModelBase::fromJson(fieldValue, refVal_setData);
             setData(refVal_setData);
             
@@ -83,7 +83,7 @@ bool ModuleList::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("data"))))
     {
-        std::vector<std::shared_ptr<ModuleInfo>> refVal_setData;
+        std::vector<std::shared_ptr<Module>> refVal_setData;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("data"))), refVal_setData );
         setData(refVal_setData);
     }
@@ -91,13 +91,13 @@ bool ModuleList::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 }
 
 
-std::vector<std::shared_ptr<ModuleInfo>> ModuleList::getData() const
+std::vector<std::shared_ptr<Module>> ModuleList::getData() const
 {
     return m_Data;
 }
 
 
-void ModuleList::setData(const std::vector<std::shared_ptr<ModuleInfo>>& value)
+void ModuleList::setData(const std::vector<std::shared_ptr<Module>>& value)
 {
     m_Data = value;
     m_DataIsSet = true;
