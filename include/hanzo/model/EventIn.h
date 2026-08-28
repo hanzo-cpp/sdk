@@ -70,7 +70,7 @@ public:
     void setId(const utility::string_t& value);
 
     /// <summary>
-    /// Kind is what this turn IS: message, tool-call, spawn, log, status or control. Anything else is refused — the vocabulary is closed so a reader can branch on it.
+    /// Kind is what this turn IS: message, tool-call, spawn, log, status, control or progress. Anything else is refused — the vocabulary is closed so a reader can branch on it.
     /// </summary>
     utility::string_t getKind() const;
     bool kindIsSet() const;
