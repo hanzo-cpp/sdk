@@ -111,11 +111,6 @@ public:
     void unsetEffect();
     void setEffect(const utility::string_t& value);
 
-    std::vector<utility::string_t> getGroups() const;
-    bool groupsIsSet() const;
-    void unsetGroups();
-    void setGroups(const std::vector<utility::string_t>& value);
-
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
@@ -175,6 +170,11 @@ public:
     void unsetSubmitter();
     void setSubmitter(const utility::string_t& value);
 
+    std::vector<utility::string_t> getTeams() const;
+    bool teamsIsSet() const;
+    void unsetTeams();
+    void setTeams(const std::vector<utility::string_t>& value);
+
     utility::datetime getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
@@ -223,9 +223,6 @@ protected:
     utility::string_t m_Effect;
     bool m_EffectIsSet;
 
-    std::vector<utility::string_t> m_Groups;
-    bool m_GroupsIsSet;
-
     utility::string_t m_Id;
     bool m_IdIsSet;
 
@@ -255,6 +252,9 @@ protected:
 
     utility::string_t m_Submitter;
     bool m_SubmitterIsSet;
+
+    std::vector<utility::string_t> m_Teams;
+    bool m_TeamsIsSet;
 
     utility::datetime m_UpdatedAt;
     bool m_UpdatedAtIsSet;

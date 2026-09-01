@@ -73,11 +73,6 @@ public:
     void unsetDomains();
     void setDomains(const std::vector<utility::string_t>& value);
 
-    std::vector<utility::string_t> getGroups() const;
-    bool groupsIsSet() const;
-    void unsetGroups();
-    void setGroups(const std::vector<utility::string_t>& value);
-
     bool isIsEnabled() const;
     bool isEnabledIsSet() const;
     void unsetIsEnabled();
@@ -98,6 +93,11 @@ public:
     void unsetRoles();
     void setRoles(const std::vector<utility::string_t>& value);
 
+    std::vector<utility::string_t> getTeams() const;
+    bool teamsIsSet() const;
+    void unsetTeams();
+    void setTeams(const std::vector<utility::string_t>& value);
+
     std::vector<utility::string_t> getUsers() const;
     bool usersIsSet() const;
     void unsetUsers();
@@ -117,9 +117,6 @@ protected:
     std::vector<utility::string_t> m_Domains;
     bool m_DomainsIsSet;
 
-    std::vector<utility::string_t> m_Groups;
-    bool m_GroupsIsSet;
-
     bool m_IsEnabled;
     bool m_IsEnabledIsSet;
 
@@ -131,6 +128,9 @@ protected:
 
     std::vector<utility::string_t> m_Roles;
     bool m_RolesIsSet;
+
+    std::vector<utility::string_t> m_Teams;
+    bool m_TeamsIsSet;
 
     std::vector<utility::string_t> m_Users;
     bool m_UsersIsSet;

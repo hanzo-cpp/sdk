@@ -54,6 +54,14 @@ public:
 
 
     /// <summary>
+    /// Avatar and Emoji re-draw the agent. Sending either replaces the pair, so setting an image clears a glyph and \&quot;\&quot; for both goes back to the initial — there is no state where a row holds two answers.
+    /// </summary>
+    utility::string_t getAvatar() const;
+    bool avatarIsSet() const;
+    void unsetAvatar();
+    void setAvatar(const utility::string_t& value);
+
+    /// <summary>
     /// ComputeRef re-binds (or, with \&quot;\&quot;, unbinds) the visor machine. Opaque here.
     /// </summary>
     utility::string_t getComputeRef() const;
@@ -68,6 +76,14 @@ public:
     bool descriptionIsSet() const;
     void unsetDescription();
     void setDescription(const utility::string_t& value);
+
+    /// <summary>
+    /// Emoji re-draws the agent as a glyph. Sending either of the pair replaces BOTH, so setting a glyph clears an image and \&quot;\&quot; for both goes back to the initial — there is no state where a row holds two answers.
+    /// </summary>
+    utility::string_t getEmoji() const;
+    bool emojiIsSet() const;
+    void unsetEmoji();
+    void setEmoji(const utility::string_t& value);
 
     /// <summary>
     /// ExecutionMode switches between one-shot and long-running. The RESULTING mode+schedule are validated together, so switching to long-running without a stored or supplied cron is refused rather than accepted into an agent the scheduler would skip forever. A switch INTO long-running counts against the per-org cap and can be a 409.
@@ -127,11 +143,17 @@ public:
 
 
 protected:
+    utility::string_t m_Avatar;
+    bool m_AvatarIsSet;
+
     utility::string_t m_ComputeRef;
     bool m_ComputeRefIsSet;
 
     utility::string_t m_Description;
     bool m_DescriptionIsSet;
+
+    utility::string_t m_Emoji;
+    bool m_EmojiIsSet;
 
     utility::string_t m_ExecutionMode;
     bool m_ExecutionModeIsSet;

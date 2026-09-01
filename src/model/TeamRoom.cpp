@@ -32,10 +32,10 @@ TeamRoom::TeamRoom()
     m_NameIsSet = false;
     m_r_private = false;
     m_r_privateIsSet = false;
+    m_Space = utility::conversions::to_string_t("");
+    m_SpaceIsSet = false;
     m_Topic = utility::conversions::to_string_t("");
     m_TopicIsSet = false;
-    m_Workspace = utility::conversions::to_string_t("");
-    m_WorkspaceIsSet = false;
 }
 
 TeamRoom::~TeamRoom()
@@ -90,15 +90,15 @@ web::json::value TeamRoom::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("private"))] = ModelBase::toJson(m_r_private);
     }
+    if(m_SpaceIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("space"))] = ModelBase::toJson(m_Space);
+    }
     if(m_TopicIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("topic"))] = ModelBase::toJson(m_Topic);
-    }
-    if(m_WorkspaceIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("workspace"))] = ModelBase::toJson(m_Workspace);
     }
 
     return val;
@@ -195,6 +195,17 @@ bool TeamRoom::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("space"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("space")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setSpace;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSpace);
+            setSpace(refVal_setSpace);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("topic"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("topic")));
@@ -203,17 +214,6 @@ bool TeamRoom::fromJson(const web::json::value& val)
             utility::string_t refVal_setTopic;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTopic);
             setTopic(refVal_setTopic);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("workspace"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("workspace")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setWorkspace;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setWorkspace);
-            setWorkspace(refVal_setWorkspace);
             
         }
     }
@@ -259,13 +259,13 @@ void TeamRoom::toMultipart(std::shared_ptr<MultipartFormData> multipart, const u
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("private")), m_r_private));
     }
+    if(m_SpaceIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("space")), m_Space));
+    }
     if(m_TopicIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("topic")), m_Topic));
-    }
-    if(m_WorkspaceIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("workspace")), m_Workspace));
     }
 }
 
@@ -326,17 +326,17 @@ bool TeamRoom::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("private"))), refVal_setRPrivate );
         setRPrivate(refVal_setRPrivate);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("space"))))
+    {
+        utility::string_t refVal_setSpace;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("space"))), refVal_setSpace );
+        setSpace(refVal_setSpace);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("topic"))))
     {
         utility::string_t refVal_setTopic;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("topic"))), refVal_setTopic );
         setTopic(refVal_setTopic);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("workspace"))))
-    {
-        utility::string_t refVal_setWorkspace;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("workspace"))), refVal_setWorkspace );
-        setWorkspace(refVal_setWorkspace);
     }
     return ok;
 }
@@ -510,6 +510,27 @@ void TeamRoom::unsetr_private()
 {
     m_r_privateIsSet = false;
 }
+utility::string_t TeamRoom::getSpace() const
+{
+    return m_Space;
+}
+
+
+void TeamRoom::setSpace(const utility::string_t& value)
+{
+    m_Space = value;
+    m_SpaceIsSet = true;
+}
+
+bool TeamRoom::spaceIsSet() const
+{
+    return m_SpaceIsSet;
+}
+
+void TeamRoom::unsetSpace()
+{
+    m_SpaceIsSet = false;
+}
 utility::string_t TeamRoom::getTopic() const
 {
     return m_Topic;
@@ -530,27 +551,6 @@ bool TeamRoom::topicIsSet() const
 void TeamRoom::unsetTopic()
 {
     m_TopicIsSet = false;
-}
-utility::string_t TeamRoom::getWorkspace() const
-{
-    return m_Workspace;
-}
-
-
-void TeamRoom::setWorkspace(const utility::string_t& value)
-{
-    m_Workspace = value;
-    m_WorkspaceIsSet = true;
-}
-
-bool TeamRoom::workspaceIsSet() const
-{
-    return m_WorkspaceIsSet;
-}
-
-void TeamRoom::unsetWorkspace()
-{
-    m_WorkspaceIsSet = false;
 }
 
 }

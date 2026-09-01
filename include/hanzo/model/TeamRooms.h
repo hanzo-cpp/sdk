@@ -55,7 +55,7 @@ public:
 
 
     /// <summary>
-    /// Rooms is every room of every workspace the caller&#39;s org owns, each with the work facet it carries.
+    /// Rooms is every room of every space the caller&#39;s org owns, each with the work facet it carries.
     /// </summary>
     std::vector<std::shared_ptr<TeamRoom>> getRooms() const;
     bool roomsIsSet() const;

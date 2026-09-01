@@ -55,7 +55,7 @@ public:
 
 
     /// <summary>
-    /// Bots is every agent of the caller&#39;s org, projected as a workspace member.
+    /// Bots is every agent of the caller&#39;s org, projected as a space member.
     /// </summary>
     std::vector<std::shared_ptr<BotMember>> getBots() const;
     bool botsIsSet() const;

@@ -18,12 +18,16 @@ namespace model {
 
 AgentView::AgentView()
 {
+    m_Avatar = utility::conversions::to_string_t("");
+    m_AvatarIsSet = false;
     m_ComputeRef = utility::conversions::to_string_t("");
     m_ComputeRefIsSet = false;
     m_CreatedAt = utility::conversions::to_string_t("");
     m_CreatedAtIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
+    m_Emoji = utility::conversions::to_string_t("");
+    m_EmojiIsSet = false;
     m_ExecutionMode = utility::conversions::to_string_t("");
     m_ExecutionModeIsSet = false;
     m_Id = utility::conversions::to_string_t("");
@@ -57,6 +61,11 @@ void AgentView::validate()
 web::json::value AgentView::toJson() const
 {
     web::json::value val = web::json::value::object();
+    if(m_AvatarIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("avatar"))] = ModelBase::toJson(m_Avatar);
+    }
     if(m_ComputeRefIsSet)
     {
         
@@ -71,6 +80,11 @@ web::json::value AgentView::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("description"))] = ModelBase::toJson(m_Description);
+    }
+    if(m_EmojiIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("emoji"))] = ModelBase::toJson(m_Emoji);
     }
     if(m_ExecutionModeIsSet)
     {
@@ -129,6 +143,17 @@ web::json::value AgentView::toJson() const
 bool AgentView::fromJson(const web::json::value& val)
 {
     bool ok = true;
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("avatar"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("avatar")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setAvatar;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setAvatar);
+            setAvatar(refVal_setAvatar);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("computeRef"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("computeRef")));
@@ -159,6 +184,17 @@ bool AgentView::fromJson(const web::json::value& val)
             utility::string_t refVal_setDescription;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDescription);
             setDescription(refVal_setDescription);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("emoji"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("emoji")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setEmoji;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setEmoji);
+            setEmoji(refVal_setEmoji);
             
         }
     }
@@ -282,6 +318,10 @@ void AgentView::toMultipart(std::shared_ptr<MultipartFormData> multipart, const 
     {
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
+    if(m_AvatarIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("avatar")), m_Avatar));
+    }
     if(m_ComputeRefIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("computeRef")), m_ComputeRef));
@@ -293,6 +333,10 @@ void AgentView::toMultipart(std::shared_ptr<MultipartFormData> multipart, const 
     if(m_DescriptionIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("description")), m_Description));
+    }
+    if(m_EmojiIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("emoji")), m_Emoji));
     }
     if(m_ExecutionModeIsSet)
     {
@@ -345,6 +389,12 @@ bool AgentView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
 
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("avatar"))))
+    {
+        utility::string_t refVal_setAvatar;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("avatar"))), refVal_setAvatar );
+        setAvatar(refVal_setAvatar);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("computeRef"))))
     {
         utility::string_t refVal_setComputeRef;
@@ -362,6 +412,12 @@ bool AgentView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
         utility::string_t refVal_setDescription;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("description"))), refVal_setDescription );
         setDescription(refVal_setDescription);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("emoji"))))
+    {
+        utility::string_t refVal_setEmoji;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("emoji"))), refVal_setEmoji );
+        setEmoji(refVal_setEmoji);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("executionMode"))))
     {
@@ -427,6 +483,27 @@ bool AgentView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 }
 
 
+utility::string_t AgentView::getAvatar() const
+{
+    return m_Avatar;
+}
+
+
+void AgentView::setAvatar(const utility::string_t& value)
+{
+    m_Avatar = value;
+    m_AvatarIsSet = true;
+}
+
+bool AgentView::avatarIsSet() const
+{
+    return m_AvatarIsSet;
+}
+
+void AgentView::unsetAvatar()
+{
+    m_AvatarIsSet = false;
+}
 utility::string_t AgentView::getComputeRef() const
 {
     return m_ComputeRef;
@@ -489,6 +566,27 @@ bool AgentView::descriptionIsSet() const
 void AgentView::unsetDescription()
 {
     m_DescriptionIsSet = false;
+}
+utility::string_t AgentView::getEmoji() const
+{
+    return m_Emoji;
+}
+
+
+void AgentView::setEmoji(const utility::string_t& value)
+{
+    m_Emoji = value;
+    m_EmojiIsSet = true;
+}
+
+bool AgentView::emojiIsSet() const
+{
+    return m_EmojiIsSet;
+}
+
+void AgentView::unsetEmoji()
+{
+    m_EmojiIsSet = false;
 }
 utility::string_t AgentView::getExecutionMode() const
 {

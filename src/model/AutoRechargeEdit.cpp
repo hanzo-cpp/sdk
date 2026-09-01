@@ -11,33 +11,33 @@
 
 
 
-#include "hanzo/model/PaymentIn.h"
+#include "hanzo/model/AutoRechargeEdit.h"
 
 namespace hanzo {
 namespace model {
 
-PaymentIn::PaymentIn()
+AutoRechargeEdit::AutoRechargeEdit()
 {
     m_AmountCents = 0;
     m_AmountCentsIsSet = false;
     m_Currency = utility::conversions::to_string_t("");
     m_CurrencyIsSet = false;
-    m_IdempotencyKey = utility::conversions::to_string_t("");
-    m_IdempotencyKeyIsSet = false;
-    m_SourceId = utility::conversions::to_string_t("");
-    m_SourceIdIsSet = false;
+    m_Enabled = false;
+    m_EnabledIsSet = false;
+    m_ThresholdCents = 0;
+    m_ThresholdCentsIsSet = false;
 }
 
-PaymentIn::~PaymentIn()
+AutoRechargeEdit::~AutoRechargeEdit()
 {
 }
 
-void PaymentIn::validate()
+void AutoRechargeEdit::validate()
 {
     // TODO: implement validation
 }
 
-web::json::value PaymentIn::toJson() const
+web::json::value AutoRechargeEdit::toJson() const
 {
     web::json::value val = web::json::value::object();
     if(m_AmountCentsIsSet)
@@ -50,21 +50,21 @@ web::json::value PaymentIn::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("currency"))] = ModelBase::toJson(m_Currency);
     }
-    if(m_IdempotencyKeyIsSet)
+    if(m_EnabledIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("idempotencyKey"))] = ModelBase::toJson(m_IdempotencyKey);
+        val[utility::conversions::to_string_t(_XPLATSTR("enabled"))] = ModelBase::toJson(m_Enabled);
     }
-    if(m_SourceIdIsSet)
+    if(m_ThresholdCentsIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("sourceId"))] = ModelBase::toJson(m_SourceId);
+        val[utility::conversions::to_string_t(_XPLATSTR("thresholdCents"))] = ModelBase::toJson(m_ThresholdCents);
     }
 
     return val;
 }
 
-bool PaymentIn::fromJson(const web::json::value& val)
+bool AutoRechargeEdit::fromJson(const web::json::value& val)
 {
     bool ok = true;
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("amountCents"))))
@@ -89,32 +89,32 @@ bool PaymentIn::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("idempotencyKey"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("enabled"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("idempotencyKey")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("enabled")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setIdempotencyKey;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setIdempotencyKey);
-            setIdempotencyKey(refVal_setIdempotencyKey);
+            bool refVal_setEnabled;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setEnabled);
+            setEnabled(refVal_setEnabled);
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("sourceId"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("thresholdCents"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("sourceId")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("thresholdCents")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setSourceId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setSourceId);
-            setSourceId(refVal_setSourceId);
+            int32_t refVal_setThresholdCents;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setThresholdCents);
+            setThresholdCents(refVal_setThresholdCents);
             
         }
     }
     return ok;
 }
 
-void PaymentIn::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
+void AutoRechargeEdit::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
 {
     utility::string_t namePrefix = prefix;
     if(namePrefix.size() > 0 && namePrefix.substr(namePrefix.size() - 1) != utility::conversions::to_string_t(_XPLATSTR(".")))
@@ -129,17 +129,17 @@ void PaymentIn::toMultipart(std::shared_ptr<MultipartFormData> multipart, const 
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("currency")), m_Currency));
     }
-    if(m_IdempotencyKeyIsSet)
+    if(m_EnabledIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("idempotencyKey")), m_IdempotencyKey));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("enabled")), m_Enabled));
     }
-    if(m_SourceIdIsSet)
+    if(m_ThresholdCentsIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("sourceId")), m_SourceId));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("thresholdCents")), m_ThresholdCents));
     }
 }
 
-bool PaymentIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
+bool AutoRechargeEdit::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
 {
     bool ok = true;
     utility::string_t namePrefix = prefix;
@@ -160,105 +160,105 @@ bool PaymentIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("currency"))), refVal_setCurrency );
         setCurrency(refVal_setCurrency);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("idempotencyKey"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("enabled"))))
     {
-        utility::string_t refVal_setIdempotencyKey;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("idempotencyKey"))), refVal_setIdempotencyKey );
-        setIdempotencyKey(refVal_setIdempotencyKey);
+        bool refVal_setEnabled;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("enabled"))), refVal_setEnabled );
+        setEnabled(refVal_setEnabled);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("sourceId"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("thresholdCents"))))
     {
-        utility::string_t refVal_setSourceId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("sourceId"))), refVal_setSourceId );
-        setSourceId(refVal_setSourceId);
+        int32_t refVal_setThresholdCents;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("thresholdCents"))), refVal_setThresholdCents );
+        setThresholdCents(refVal_setThresholdCents);
     }
     return ok;
 }
 
 
-int32_t PaymentIn::getAmountCents() const
+int32_t AutoRechargeEdit::getAmountCents() const
 {
     return m_AmountCents;
 }
 
 
-void PaymentIn::setAmountCents(int32_t value)
+void AutoRechargeEdit::setAmountCents(int32_t value)
 {
     m_AmountCents = value;
     m_AmountCentsIsSet = true;
 }
 
-bool PaymentIn::amountCentsIsSet() const
+bool AutoRechargeEdit::amountCentsIsSet() const
 {
     return m_AmountCentsIsSet;
 }
 
-void PaymentIn::unsetAmountCents()
+void AutoRechargeEdit::unsetAmountCents()
 {
     m_AmountCentsIsSet = false;
 }
-utility::string_t PaymentIn::getCurrency() const
+utility::string_t AutoRechargeEdit::getCurrency() const
 {
     return m_Currency;
 }
 
 
-void PaymentIn::setCurrency(const utility::string_t& value)
+void AutoRechargeEdit::setCurrency(const utility::string_t& value)
 {
     m_Currency = value;
     m_CurrencyIsSet = true;
 }
 
-bool PaymentIn::currencyIsSet() const
+bool AutoRechargeEdit::currencyIsSet() const
 {
     return m_CurrencyIsSet;
 }
 
-void PaymentIn::unsetCurrency()
+void AutoRechargeEdit::unsetCurrency()
 {
     m_CurrencyIsSet = false;
 }
-utility::string_t PaymentIn::getIdempotencyKey() const
+bool AutoRechargeEdit::isEnabled() const
 {
-    return m_IdempotencyKey;
+    return m_Enabled;
 }
 
 
-void PaymentIn::setIdempotencyKey(const utility::string_t& value)
+void AutoRechargeEdit::setEnabled(bool value)
 {
-    m_IdempotencyKey = value;
-    m_IdempotencyKeyIsSet = true;
+    m_Enabled = value;
+    m_EnabledIsSet = true;
 }
 
-bool PaymentIn::idempotencyKeyIsSet() const
+bool AutoRechargeEdit::enabledIsSet() const
 {
-    return m_IdempotencyKeyIsSet;
+    return m_EnabledIsSet;
 }
 
-void PaymentIn::unsetIdempotencyKey()
+void AutoRechargeEdit::unsetEnabled()
 {
-    m_IdempotencyKeyIsSet = false;
+    m_EnabledIsSet = false;
 }
-utility::string_t PaymentIn::getSourceId() const
+int32_t AutoRechargeEdit::getThresholdCents() const
 {
-    return m_SourceId;
-}
-
-
-void PaymentIn::setSourceId(const utility::string_t& value)
-{
-    m_SourceId = value;
-    m_SourceIdIsSet = true;
+    return m_ThresholdCents;
 }
 
-bool PaymentIn::sourceIdIsSet() const
+
+void AutoRechargeEdit::setThresholdCents(int32_t value)
 {
-    return m_SourceIdIsSet;
+    m_ThresholdCents = value;
+    m_ThresholdCentsIsSet = true;
 }
 
-void PaymentIn::unsetSourceId()
+bool AutoRechargeEdit::thresholdCentsIsSet() const
 {
-    m_SourceIdIsSet = false;
+    return m_ThresholdCentsIsSet;
+}
+
+void AutoRechargeEdit::unsetThresholdCents()
+{
+    m_ThresholdCentsIsSet = false;
 }
 
 }

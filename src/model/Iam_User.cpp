@@ -151,7 +151,6 @@ Iam_User::Iam_User()
     m_GitlabIsSet = false;
     m_Google = utility::conversions::to_string_t("");
     m_GoogleIsSet = false;
-    m_GroupsIsSet = false;
     m_Hash = utility::conversions::to_string_t("");
     m_HashIsSet = false;
     m_Heroku = utility::conversions::to_string_t("");
@@ -284,7 +283,6 @@ Iam_User::Iam_User()
     m_PaypalIsSet = false;
     m_PermanentAvatar = utility::conversions::to_string_t("");
     m_PermanentAvatarIsSet = false;
-    m_PermissionsIsSet = false;
     m_Phone = utility::conversions::to_string_t("");
     m_PhoneIsSet = false;
     m_PreHash = utility::conversions::to_string_t("");
@@ -305,7 +303,6 @@ Iam_User::Iam_User()
     m_RegisterSourceIsSet = false;
     m_RegisterType = utility::conversions::to_string_t("");
     m_RegisterTypeIsSet = false;
-    m_RolesIsSet = false;
     m_Salesforce = utility::conversions::to_string_t("");
     m_SalesforceIsSet = false;
     m_Score = 0;
@@ -736,11 +733,6 @@ web::json::value Iam_User::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("google"))] = ModelBase::toJson(m_Google);
     }
-    if(m_GroupsIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("groups"))] = ModelBase::toJson(m_Groups);
-    }
     if(m_HashIsSet)
     {
         
@@ -1081,11 +1073,6 @@ web::json::value Iam_User::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("permanentAvatar"))] = ModelBase::toJson(m_PermanentAvatar);
     }
-    if(m_PermissionsIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("permissions"))] = ModelBase::toJson(m_Permissions);
-    }
     if(m_PhoneIsSet)
     {
         
@@ -1140,11 +1127,6 @@ web::json::value Iam_User::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("registerType"))] = ModelBase::toJson(m_RegisterType);
-    }
-    if(m_RolesIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("roles"))] = ModelBase::toJson(m_Roles);
     }
     if(m_SalesforceIsSet)
     {
@@ -2092,17 +2074,6 @@ bool Iam_User::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("groups"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("groups")));
-        if(!fieldValue.is_null())
-        {
-            std::vector<utility::string_t> refVal_setGroups;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setGroups);
-            setGroups(refVal_setGroups);
-            
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("hash"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("hash")));
@@ -2851,17 +2822,6 @@ bool Iam_User::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("permissions"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("permissions")));
-        if(!fieldValue.is_null())
-        {
-            std::vector<std::shared_ptr<Iam_Permission>> refVal_setPermissions;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setPermissions);
-            setPermissions(refVal_setPermissions);
-            
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("phone"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("phone")));
@@ -2980,17 +2940,6 @@ bool Iam_User::fromJson(const web::json::value& val)
             utility::string_t refVal_setRegisterType;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRegisterType);
             setRegisterType(refVal_setRegisterType);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("roles"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("roles")));
-        if(!fieldValue.is_null())
-        {
-            std::vector<std::shared_ptr<Iam_Role>> refVal_setRoles;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setRoles);
-            setRoles(refVal_setRoles);
             
         }
     }
@@ -3676,10 +3625,6 @@ void Iam_User::toMultipart(std::shared_ptr<MultipartFormData> multipart, const u
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("google")), m_Google));
     }
-    if(m_GroupsIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("groups")), m_Groups));
-    }
     if(m_HashIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("hash")), m_Hash));
@@ -3952,10 +3897,6 @@ void Iam_User::toMultipart(std::shared_ptr<MultipartFormData> multipart, const u
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("permanentAvatar")), m_PermanentAvatar));
     }
-    if(m_PermissionsIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("permissions")), m_Permissions));
-    }
     if(m_PhoneIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("phone")), m_Phone));
@@ -3999,10 +3940,6 @@ void Iam_User::toMultipart(std::shared_ptr<MultipartFormData> multipart, const u
     if(m_RegisterTypeIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("registerType")), m_RegisterType));
-    }
-    if(m_RolesIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("roles")), m_Roles));
     }
     if(m_SalesforceIsSet)
     {
@@ -4573,12 +4510,6 @@ bool Iam_User::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("google"))), refVal_setGoogle );
         setGoogle(refVal_setGoogle);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("groups"))))
-    {
-        std::vector<utility::string_t> refVal_setGroups;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("groups"))), refVal_setGroups );
-        setGroups(refVal_setGroups);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("hash"))))
     {
         utility::string_t refVal_setHash;
@@ -4987,12 +4918,6 @@ bool Iam_User::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("permanentAvatar"))), refVal_setPermanentAvatar );
         setPermanentAvatar(refVal_setPermanentAvatar);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("permissions"))))
-    {
-        std::vector<std::shared_ptr<Iam_Permission>> refVal_setPermissions;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("permissions"))), refVal_setPermissions );
-        setPermissions(refVal_setPermissions);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("phone"))))
     {
         utility::string_t refVal_setPhone;
@@ -5058,12 +4983,6 @@ bool Iam_User::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
         utility::string_t refVal_setRegisterType;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("registerType"))), refVal_setRegisterType );
         setRegisterType(refVal_setRegisterType);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("roles"))))
-    {
-        std::vector<std::shared_ptr<Iam_Role>> refVal_setRoles;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("roles"))), refVal_setRoles );
-        setRoles(refVal_setRoles);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("salesforce"))))
     {
@@ -6734,27 +6653,6 @@ void Iam_User::unsetGoogle()
 {
     m_GoogleIsSet = false;
 }
-std::vector<utility::string_t> Iam_User::getGroups() const
-{
-    return m_Groups;
-}
-
-
-void Iam_User::setGroups(const std::vector<utility::string_t>& value)
-{
-    m_Groups = value;
-    m_GroupsIsSet = true;
-}
-
-bool Iam_User::groupsIsSet() const
-{
-    return m_GroupsIsSet;
-}
-
-void Iam_User::unsetGroups()
-{
-    m_GroupsIsSet = false;
-}
 utility::string_t Iam_User::getHash() const
 {
     return m_Hash;
@@ -8183,27 +8081,6 @@ void Iam_User::unsetPermanentAvatar()
 {
     m_PermanentAvatarIsSet = false;
 }
-std::vector<std::shared_ptr<Iam_Permission>> Iam_User::getPermissions() const
-{
-    return m_Permissions;
-}
-
-
-void Iam_User::setPermissions(const std::vector<std::shared_ptr<Iam_Permission>>& value)
-{
-    m_Permissions = value;
-    m_PermissionsIsSet = true;
-}
-
-bool Iam_User::permissionsIsSet() const
-{
-    return m_PermissionsIsSet;
-}
-
-void Iam_User::unsetPermissions()
-{
-    m_PermissionsIsSet = false;
-}
 utility::string_t Iam_User::getPhone() const
 {
     return m_Phone;
@@ -8434,27 +8311,6 @@ bool Iam_User::registerTypeIsSet() const
 void Iam_User::unsetRegisterType()
 {
     m_RegisterTypeIsSet = false;
-}
-std::vector<std::shared_ptr<Iam_Role>> Iam_User::getRoles() const
-{
-    return m_Roles;
-}
-
-
-void Iam_User::setRoles(const std::vector<std::shared_ptr<Iam_Role>>& value)
-{
-    m_Roles = value;
-    m_RolesIsSet = true;
-}
-
-bool Iam_User::rolesIsSet() const
-{
-    return m_RolesIsSet;
-}
-
-void Iam_User::unsetRoles()
-{
-    m_RolesIsSet = false;
 }
 utility::string_t Iam_User::getSalesforce() const
 {

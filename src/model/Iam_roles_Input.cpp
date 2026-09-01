@@ -25,7 +25,6 @@ Iam_roles_Input::Iam_roles_Input()
     m_DisplayName = utility::conversions::to_string_t("");
     m_DisplayNameIsSet = false;
     m_DomainsIsSet = false;
-    m_GroupsIsSet = false;
     m_IsEnabled = false;
     m_IsEnabledIsSet = false;
     m_Name = utility::conversions::to_string_t("");
@@ -33,6 +32,7 @@ Iam_roles_Input::Iam_roles_Input()
     m_Owner = utility::conversions::to_string_t("");
     m_OwnerIsSet = false;
     m_RolesIsSet = false;
+    m_TeamsIsSet = false;
     m_UsersIsSet = false;
 }
 
@@ -68,11 +68,6 @@ web::json::value Iam_roles_Input::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("domains"))] = ModelBase::toJson(m_Domains);
     }
-    if(m_GroupsIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("groups"))] = ModelBase::toJson(m_Groups);
-    }
     if(m_IsEnabledIsSet)
     {
         
@@ -92,6 +87,11 @@ web::json::value Iam_roles_Input::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("roles"))] = ModelBase::toJson(m_Roles);
+    }
+    if(m_TeamsIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("teams"))] = ModelBase::toJson(m_Teams);
     }
     if(m_UsersIsSet)
     {
@@ -149,17 +149,6 @@ bool Iam_roles_Input::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("groups"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("groups")));
-        if(!fieldValue.is_null())
-        {
-            std::vector<utility::string_t> refVal_setGroups;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setGroups);
-            setGroups(refVal_setGroups);
-            
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("isEnabled"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("isEnabled")));
@@ -204,6 +193,17 @@ bool Iam_roles_Input::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("teams"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("teams")));
+        if(!fieldValue.is_null())
+        {
+            std::vector<utility::string_t> refVal_setTeams;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTeams);
+            setTeams(refVal_setTeams);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("users"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("users")));
@@ -241,10 +241,6 @@ void Iam_roles_Input::toMultipart(std::shared_ptr<MultipartFormData> multipart, 
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("domains")), m_Domains));
     }
-    if(m_GroupsIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("groups")), m_Groups));
-    }
     if(m_IsEnabledIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("isEnabled")), m_IsEnabled));
@@ -260,6 +256,10 @@ void Iam_roles_Input::toMultipart(std::shared_ptr<MultipartFormData> multipart, 
     if(m_RolesIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("roles")), m_Roles));
+    }
+    if(m_TeamsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("teams")), m_Teams));
     }
     if(m_UsersIsSet)
     {
@@ -300,12 +300,6 @@ bool Iam_roles_Input::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("domains"))), refVal_setDomains );
         setDomains(refVal_setDomains);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("groups"))))
-    {
-        std::vector<utility::string_t> refVal_setGroups;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("groups"))), refVal_setGroups );
-        setGroups(refVal_setGroups);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("isEnabled"))))
     {
         bool refVal_setIsEnabled;
@@ -329,6 +323,12 @@ bool Iam_roles_Input::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
         std::vector<utility::string_t> refVal_setRoles;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("roles"))), refVal_setRoles );
         setRoles(refVal_setRoles);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("teams"))))
+    {
+        std::vector<utility::string_t> refVal_setTeams;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("teams"))), refVal_setTeams );
+        setTeams(refVal_setTeams);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("users"))))
     {
@@ -424,27 +424,6 @@ void Iam_roles_Input::unsetDomains()
 {
     m_DomainsIsSet = false;
 }
-std::vector<utility::string_t> Iam_roles_Input::getGroups() const
-{
-    return m_Groups;
-}
-
-
-void Iam_roles_Input::setGroups(const std::vector<utility::string_t>& value)
-{
-    m_Groups = value;
-    m_GroupsIsSet = true;
-}
-
-bool Iam_roles_Input::groupsIsSet() const
-{
-    return m_GroupsIsSet;
-}
-
-void Iam_roles_Input::unsetGroups()
-{
-    m_GroupsIsSet = false;
-}
 bool Iam_roles_Input::isIsEnabled() const
 {
     return m_IsEnabled;
@@ -528,6 +507,27 @@ bool Iam_roles_Input::rolesIsSet() const
 void Iam_roles_Input::unsetRoles()
 {
     m_RolesIsSet = false;
+}
+std::vector<utility::string_t> Iam_roles_Input::getTeams() const
+{
+    return m_Teams;
+}
+
+
+void Iam_roles_Input::setTeams(const std::vector<utility::string_t>& value)
+{
+    m_Teams = value;
+    m_TeamsIsSet = true;
+}
+
+bool Iam_roles_Input::teamsIsSet() const
+{
+    return m_TeamsIsSet;
+}
+
+void Iam_roles_Input::unsetTeams()
+{
+    m_TeamsIsSet = false;
 }
 std::vector<utility::string_t> Iam_roles_Input::getUsers() const
 {

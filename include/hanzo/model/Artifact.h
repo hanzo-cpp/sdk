@@ -10,13 +10,13 @@
  */
 
 /*
- * RoleAssignment.h
+ * Artifact.h
  *
  * 
  */
 
-#ifndef HANZO_MODEL_RoleAssignment_H_
-#define HANZO_MODEL_RoleAssignment_H_
+#ifndef HANZO_MODEL_Artifact_H_
+#define HANZO_MODEL_Artifact_H_
 
 #include <boost/optional.hpp>
 
@@ -29,12 +29,12 @@ namespace model {
 
 
 
-class  RoleAssignment
+class  Artifact
     : public ModelBase
 {
 public:
-    RoleAssignment();
-    virtual ~RoleAssignment();
+    Artifact();
+    virtual ~Artifact();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -49,32 +49,26 @@ public:
 
 
     /////////////////////////////////////////////
-    /// RoleAssignment members
+    /// Artifact members
 
 
-    /// <summary>
-    /// Role is the granted role&#39;s name.
-    /// </summary>
-    utility::string_t getRole() const;
-    bool roleIsSet() const;
-    void unsetRole();
-    void setRole(const utility::string_t& value);
+    utility::string_t getDigest() const;
+    bool digestIsSet() const;
+    void unsetDigest();
+    void setDigest(const utility::string_t& value);
 
-    /// <summary>
-    /// User is the member the role is granted to.
-    /// </summary>
-    utility::string_t getUser() const;
-    bool userIsSet() const;
-    void unsetUser();
-    void setUser(const utility::string_t& value);
+    utility::string_t getTag() const;
+    bool tagIsSet() const;
+    void unsetTag();
+    void setTag(const utility::string_t& value);
 
 
 protected:
-    utility::string_t m_Role;
-    bool m_RoleIsSet;
+    utility::string_t m_Digest;
+    bool m_DigestIsSet;
 
-    utility::string_t m_User;
-    bool m_UserIsSet;
+    utility::string_t m_Tag;
+    bool m_TagIsSet;
 
 };
 
@@ -82,4 +76,4 @@ protected:
 }
 }
 
-#endif /* HANZO_MODEL_RoleAssignment_H_ */
+#endif /* HANZO_MODEL_Artifact_H_ */

@@ -54,6 +54,14 @@ public:
 
 
     /// <summary>
+    /// Avatar and Emoji are how the agent APPEARS. An image wins when both are given — it is the thing somebody made — and both empty leaves the agent drawn as its initial. Validated by iam/pkg/schema, the same rule a person&#39;s avatar passes, so the 96 KiB bound and the accepted URL forms are stated once for every subject that has a face.
+    /// </summary>
+    utility::string_t getAvatar() const;
+    bool avatarIsSet() const;
+    void unsetAvatar();
+    void setAvatar(const utility::string_t& value);
+
+    /// <summary>
     /// ComputeRef optionally binds this bot to a visor machine. Opaque here, bounded at 256 characters, and not resolved — this package stores the reference and the binding&#39;s lifecycle belongs elsewhere.
     /// </summary>
     utility::string_t getComputeRef() const;
@@ -68,6 +76,14 @@ public:
     bool descriptionIsSet() const;
     void unsetDescription();
     void setDescription(const utility::string_t& value);
+
+    /// <summary>
+    /// Emoji is the single glyph shown when there is no image. An image WINS when both are given — it is the thing somebody made — and both empty leaves the agent drawn as its initial.
+    /// </summary>
+    utility::string_t getEmoji() const;
+    bool emojiIsSet() const;
+    void unsetEmoji();
+    void setEmoji(const utility::string_t& value);
 
     /// <summary>
     /// ExecutionMode is one-shot or long-running. Empty takes one-shot, which runs only when something POSTs to it. long-running additionally requires Schedule, and counts against a per-org cap that answers 409 when it is full.
@@ -127,11 +143,17 @@ public:
 
 
 protected:
+    utility::string_t m_Avatar;
+    bool m_AvatarIsSet;
+
     utility::string_t m_ComputeRef;
     bool m_ComputeRefIsSet;
 
     utility::string_t m_Description;
     bool m_DescriptionIsSet;
+
+    utility::string_t m_Emoji;
+    bool m_EmojiIsSet;
 
     utility::string_t m_ExecutionMode;
     bool m_ExecutionModeIsSet;

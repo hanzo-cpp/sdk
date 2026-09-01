@@ -23,18 +23,16 @@
 #include "hanzo/ModelBase.h"
 
 #include "hanzo/AnyType.h"
-#include "hanzo/model/Iam_Permission.h"
 #include "hanzo/model/Iam_Address.h"
-#include "hanzo/model/Iam_CartItem.h"
-#include <vector>
 #include "hanzo/model/Iam_MfaItem.h"
 #include "hanzo/model/Iam_ManagedAccount.h"
 #include "hanzo/model/Iam_FaceId.h"
 #include "hanzo/model/Iam_MfaProps.h"
-#include "hanzo/model/Iam_Role.h"
 #include "hanzo/model/Iam_MfaAccount.h"
 #include <cpprest/details/basic_types.h>
 #include <map>
+#include "hanzo/model/Iam_CartItem.h"
+#include <vector>
 #include "hanzo/model/Iam_ConsentRecord.h"
 
 namespace hanzo {
@@ -48,8 +46,6 @@ class Iam_ManagedAccount;
 class Iam_MfaAccount;
 class Iam_MfaItem;
 class Iam_MfaProps;
-class Iam_Permission;
-class Iam_Role;
 
 
 class  Iam_User
@@ -76,7 +72,7 @@ public:
 
 
     /// <summary>
-    /// API credentials. AccessSecret / AccessSecretHash / the OAuth tokens are bearer material. AccessSecretHash MUST persist (orm stores via JSON; a json:\&quot;-\&quot; field is never saved), so it carries a real json tag and the handler&#39;s redact() strips it (and AccessSecret + the token fields) before responding.
+    /// API credentials. AccessSecret / AccessSecretHash / the OAuth tokens are bearer material, so Mask blanks them and the handler&#39;s redact() strips them before responding. They carry real json tags because a field orm never saves is a field that silently vanishes.  A presented secret is resolved through Key.AccessSecretDigest and nowhere else, so no credential is ISSUED into these columns: they hold what older rows left behind, and every writer that touches them clears them.
     /// </summary>
     utility::string_t getAccessKey() const;
     bool accessKeyIsSet() const;
@@ -435,11 +431,6 @@ public:
     void unsetGoogle();
     void setGoogle(const utility::string_t& value);
 
-    std::vector<utility::string_t> getGroups() const;
-    bool groupsIsSet() const;
-    void unsetGroups();
-    void setGroups(const std::vector<utility::string_t>& value);
-
     utility::string_t getHash() const;
     bool hashIsSet() const;
     void unsetHash();
@@ -795,11 +786,6 @@ public:
     void unsetPermanentAvatar();
     void setPermanentAvatar(const utility::string_t& value);
 
-    std::vector<std::shared_ptr<Iam_Permission>> getPermissions() const;
-    bool permissionsIsSet() const;
-    void unsetPermissions();
-    void setPermissions(const std::vector<std::shared_ptr<Iam_Permission>>& value);
-
     utility::string_t getPhone() const;
     bool phoneIsSet() const;
     void unsetPhone();
@@ -854,14 +840,6 @@ public:
     bool registerTypeIsSet() const;
     void unsetRegisterType();
     void setRegisterType(const utility::string_t& value);
-
-    /// <summary>
-    /// Authorization attachments. Roles and Permissions are computed on read from the authz store and carried here for API parity with v1.
-    /// </summary>
-    std::vector<std::shared_ptr<Iam_Role>> getRoles() const;
-    bool rolesIsSet() const;
-    void unsetRoles();
-    void setRoles(const std::vector<std::shared_ptr<Iam_Role>>& value);
 
     utility::string_t getSalesforce() const;
     bool salesforceIsSet() const;
@@ -1255,9 +1233,6 @@ protected:
     utility::string_t m_Google;
     bool m_GoogleIsSet;
 
-    std::vector<utility::string_t> m_Groups;
-    bool m_GroupsIsSet;
-
     utility::string_t m_Hash;
     bool m_HashIsSet;
 
@@ -1462,9 +1437,6 @@ protected:
     utility::string_t m_PermanentAvatar;
     bool m_PermanentAvatarIsSet;
 
-    std::vector<std::shared_ptr<Iam_Permission>> m_Permissions;
-    bool m_PermissionsIsSet;
-
     utility::string_t m_Phone;
     bool m_PhoneIsSet;
 
@@ -1497,9 +1469,6 @@ protected:
 
     utility::string_t m_RegisterType;
     bool m_RegisterTypeIsSet;
-
-    std::vector<std::shared_ptr<Iam_Role>> m_Roles;
-    bool m_RolesIsSet;
 
     utility::string_t m_Salesforce;
     bool m_SalesforceIsSet;

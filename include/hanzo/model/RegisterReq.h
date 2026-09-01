@@ -133,7 +133,7 @@ public:
     void setRepo(const utility::string_t& value);
 
     /// <summary>
-    /// Room is the collaborative room this run was started in (HIP-0523), so a workspace view can list the sessions of one room. It is PROVENANCE and is set only here: there is deliberately no way to move a session to another room, so it is absent from the patch input and from UpdateSession&#39;s SET list.
+    /// Room is the collaborative room this run was started in (HIP-0523), so a space view can list the sessions of one room. It is PROVENANCE and is set only here: there is deliberately no way to move a session to another room, so it is absent from the patch input and from UpdateSession&#39;s SET list.
     /// </summary>
     utility::string_t getRoom() const;
     bool roomIsSet() const;

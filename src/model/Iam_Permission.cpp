@@ -38,7 +38,6 @@ Iam_Permission::Iam_Permission()
     m_DomainsIsSet = false;
     m_Effect = utility::conversions::to_string_t("");
     m_EffectIsSet = false;
-    m_GroupsIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
     m_IsEnabled = false;
@@ -57,6 +56,7 @@ Iam_Permission::Iam_Permission()
     m_StateIsSet = false;
     m_Submitter = utility::conversions::to_string_t("");
     m_SubmitterIsSet = false;
+    m_TeamsIsSet = false;
     m_UpdatedAt = utility::datetime();
     m_UpdatedAtIsSet = false;
     m_UsersIsSet = false;
@@ -129,11 +129,6 @@ web::json::value Iam_Permission::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("effect"))] = ModelBase::toJson(m_Effect);
     }
-    if(m_GroupsIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("groups"))] = ModelBase::toJson(m_Groups);
-    }
     if(m_IdIsSet)
     {
         
@@ -183,6 +178,11 @@ web::json::value Iam_Permission::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("submitter"))] = ModelBase::toJson(m_Submitter);
+    }
+    if(m_TeamsIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("teams"))] = ModelBase::toJson(m_Teams);
     }
     if(m_UpdatedAtIsSet)
     {
@@ -322,17 +322,6 @@ bool Iam_Permission::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("groups"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("groups")));
-        if(!fieldValue.is_null())
-        {
-            std::vector<utility::string_t> refVal_setGroups;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setGroups);
-            setGroups(refVal_setGroups);
-            
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("id"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("id")));
@@ -443,6 +432,17 @@ bool Iam_Permission::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("teams"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("teams")));
+        if(!fieldValue.is_null())
+        {
+            std::vector<utility::string_t> refVal_setTeams;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTeams);
+            setTeams(refVal_setTeams);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updatedAt")));
@@ -519,10 +519,6 @@ void Iam_Permission::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("effect")), m_Effect));
     }
-    if(m_GroupsIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("groups")), m_Groups));
-    }
     if(m_IdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("id")), m_Id));
@@ -562,6 +558,10 @@ void Iam_Permission::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     if(m_SubmitterIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("submitter")), m_Submitter));
+    }
+    if(m_TeamsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("teams")), m_Teams));
     }
     if(m_UpdatedAtIsSet)
     {
@@ -648,12 +648,6 @@ bool Iam_Permission::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("effect"))), refVal_setEffect );
         setEffect(refVal_setEffect);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("groups"))))
-    {
-        std::vector<utility::string_t> refVal_setGroups;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("groups"))), refVal_setGroups );
-        setGroups(refVal_setGroups);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("id"))))
     {
         utility::string_t refVal_setId;
@@ -713,6 +707,12 @@ bool Iam_Permission::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         utility::string_t refVal_setSubmitter;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("submitter"))), refVal_setSubmitter );
         setSubmitter(refVal_setSubmitter);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("teams"))))
+    {
+        std::vector<utility::string_t> refVal_setTeams;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("teams"))), refVal_setTeams );
+        setTeams(refVal_setTeams);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
@@ -961,27 +961,6 @@ void Iam_Permission::unsetEffect()
 {
     m_EffectIsSet = false;
 }
-std::vector<utility::string_t> Iam_Permission::getGroups() const
-{
-    return m_Groups;
-}
-
-
-void Iam_Permission::setGroups(const std::vector<utility::string_t>& value)
-{
-    m_Groups = value;
-    m_GroupsIsSet = true;
-}
-
-bool Iam_Permission::groupsIsSet() const
-{
-    return m_GroupsIsSet;
-}
-
-void Iam_Permission::unsetGroups()
-{
-    m_GroupsIsSet = false;
-}
 utility::string_t Iam_Permission::getId() const
 {
     return m_Id;
@@ -1191,6 +1170,27 @@ bool Iam_Permission::submitterIsSet() const
 void Iam_Permission::unsetSubmitter()
 {
     m_SubmitterIsSet = false;
+}
+std::vector<utility::string_t> Iam_Permission::getTeams() const
+{
+    return m_Teams;
+}
+
+
+void Iam_Permission::setTeams(const std::vector<utility::string_t>& value)
+{
+    m_Teams = value;
+    m_TeamsIsSet = true;
+}
+
+bool Iam_Permission::teamsIsSet() const
+{
+    return m_TeamsIsSet;
+}
+
+void Iam_Permission::unsetTeams()
+{
+    m_TeamsIsSet = false;
 }
 utility::datetime Iam_Permission::getUpdatedAt() const
 {

@@ -211,7 +211,7 @@ public:
     /// <param name="parent">Parent scopes the page to the direct children of one session. Ignored when root is set; with neither, only ROOT sessions come back. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="status">Status filters to running, paused, done or error. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="project">Project filters to the sessions tagged with one product slug. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="room">Room filters to the sessions started in one collaborative room — the query a workspace view runs to show what has been run in it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="room">Room filters to the sessions started in one collaborative room — the query a space view runs to show what has been run in it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="limit">Limit caps the page. Absent, zero or over 500 reads as 100. (optional, default to 0)</param>
     pplx::task<std::shared_ptr<SessionList>> getAgentsSessions(
         boost::optional<utility::string_t> root,
@@ -352,6 +352,14 @@ public:
     /// Answers one turn of a conversation with four things: the model&#39;s &#x60;reply&#x60;, the &#x60;actions&#x60; the server executed on the caller&#39;s behalf, the &#x60;ops&#x60; the client must apply itself, and the &#x60;conversationId&#x60; the turn was recorded under.  The split between actions and ops is the rule most easily got wrong. A tool call is executed HERE only when the chosen preset is server-executing AND the tool resolves in the caller&#39;s own scope; every other call is handed back as an op for the client to apply to its own graph or UI. A tool that fails still comes back as an action, carrying its error rather than failing the round.  &#x60;preset&#x60; selects the system prompt and the tool set (&#x60;capability&#x60; is a legacy alias for it); an unknown one is refused. &#x60;conversationId&#x60; continues an existing thread, and its absence starts one. A validated principal with a non-empty org is required — the org is the sole authority for both persistence and tool scope, and is NEVER read from the body.  A completion refused for the caller&#39;s own reason — 402 insufficient balance, 429, 403 — is relayed with its own status and body verbatim, so the real billing message reaches the client instead of an opaque gateway error. Only a genuine upstream fault becomes a 502.
     /// </remarks>
     pplx::task<void> postAgentsChat(
+    ) const;
+    /// <summary>
+    /// Record turns in a conversation
+    /// </summary>
+    /// <remarks>
+    /// Writes turns to the caller&#39;s thread store without running a completion, and answers the &#x60;conversationId&#x60; they were written under. An absent &#x60;conversationId&#x60; opens a new thread; supplying one appends to it.  This is for a client that streams its own turn through /v1/chat/completions and still wants the conversation in its history — the round records what IT answers, and is otherwise the only writer. It takes the same store, the same per-org isolation and the same notion of a thread: what is recorded here reads back through the two GETs beside it and the round can continue it by id. A validated principal with a non-empty org is required; 403 without one.
+    /// </remarks>
+    pplx::task<void> postAgentsChatConversations(
     ) const;
     /// <summary>
     /// Start one autonomous coding run against a repo in the caller&#39;s org

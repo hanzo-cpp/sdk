@@ -10,33 +10,33 @@
  */
 
 /*
- * RoleList.h
+ * Tip.h
  *
  * 
  */
 
-#ifndef HANZO_MODEL_RoleList_H_
-#define HANZO_MODEL_RoleList_H_
+#ifndef HANZO_MODEL_Tip_H_
+#define HANZO_MODEL_Tip_H_
 
 #include <boost/optional.hpp>
 
 #include "hanzo/ModelBase.h"
 
-#include <vector>
-#include "hanzo/model/RoleAssignment.h"
+#include <cpprest/details/basic_types.h>
+#include "hanzo/model/Check.h"
 
 namespace hanzo {
 namespace model {
 
-class RoleAssignment;
+class Check;
 
 
-class  RoleList
+class  Tip
     : public ModelBase
 {
 public:
-    RoleList();
-    virtual ~RoleList();
+    Tip();
+    virtual ~Tip();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -51,21 +51,42 @@ public:
 
 
     /////////////////////////////////////////////
-    /// RoleList members
+    /// Tip members
 
 
-    /// <summary>
-    /// Data is every (user, role) assignment in the caller&#39;s org.
-    /// </summary>
-    std::vector<std::shared_ptr<RoleAssignment>> getData() const;
-    bool dataIsSet() const;
-    void unsetData();
-    void setData(const std::vector<std::shared_ptr<RoleAssignment>>& value);
+    utility::datetime getAt() const;
+    bool atIsSet() const;
+    void unsetAt();
+    void setAt(const utility::datetime& value);
+
+    std::shared_ptr<Check> getBuild() const;
+    bool buildIsSet() const;
+    void unsetBuild();
+    void setBuild(const std::shared_ptr<Check>& value);
+
+    utility::string_t getSha() const;
+    bool shaIsSet() const;
+    void unsetSha();
+    void setSha(const utility::string_t& value);
+
+    utility::string_t getTitle() const;
+    bool titleIsSet() const;
+    void unsetTitle();
+    void setTitle(const utility::string_t& value);
 
 
 protected:
-    std::vector<std::shared_ptr<RoleAssignment>> m_Data;
-    bool m_DataIsSet;
+    utility::datetime m_At;
+    bool m_AtIsSet;
+
+    std::shared_ptr<Check> m_Build;
+    bool m_BuildIsSet;
+
+    utility::string_t m_Sha;
+    bool m_ShaIsSet;
+
+    utility::string_t m_Title;
+    bool m_TitleIsSet;
 
 };
 
@@ -73,4 +94,4 @@ protected:
 }
 }
 
-#endif /* HANZO_MODEL_RoleList_H_ */
+#endif /* HANZO_MODEL_Tip_H_ */

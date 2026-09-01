@@ -77,7 +77,7 @@ public:
     void setDesign(const utility::string_t& value);
 
     /// <summary>
-    /// Campaign | SocialPost | Asset
+    /// marketing.Campaign | marketing.SocialPost | marketing.Asset
     /// </summary>
     utility::string_t getDoctype() const;
     bool doctypeIsSet() const;
