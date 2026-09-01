@@ -56,7 +56,7 @@ public:
 
 
     /// <summary>
-    /// ActiveSessions maps a workspace uuid to its connected sessions. It carries only the token&#39;s OWN workspace, and is empty for a token that names none.
+    /// ActiveSessions maps a space uuid to its connected sessions. It carries only the token&#39;s OWN space, and is empty for a token that names none.
     /// </summary>
     std::map<utility::string_t, std::vector<std::shared_ptr<StatsUser>>> getActiveSessions() const;
     bool activeSessionsIsSet() const;

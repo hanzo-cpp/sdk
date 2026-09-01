@@ -54,7 +54,7 @@ public:
 
 
     /// <summary>
-    /// DocTypes restricts retrieval to a subset of the indexed knowledge doctypes (kb-page, kb-memory, kb-source). An empty or foreign list reads all of them.
+    /// DocTypes restricts retrieval to a subset of the indexed knowledge doctypes (kb.page, kb.memory, kb.source). An empty or foreign list reads all of them.
     /// </summary>
     std::vector<utility::string_t> getDoctypes() const;
     bool doctypesIsSet() const;

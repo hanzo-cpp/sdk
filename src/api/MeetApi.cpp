@@ -260,7 +260,7 @@ pplx::task<void> MeetApi::getMeetSession() const
         return void();
     });
 }
-pplx::task<std::shared_ptr<Venue>> MeetApi::meetCall(utility::string_t workspace, utility::string_t room) const
+pplx::task<std::shared_ptr<Venue>> MeetApi::meetCall(utility::string_t space, utility::string_t room) const
 {
 
 
@@ -302,7 +302,7 @@ pplx::task<std::shared_ptr<Venue>> MeetApi::meetCall(utility::string_t workspace
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
     {
-        localVarQueryParams[utility::conversions::to_string_t("workspace")] = ApiClient::parameterToString(workspace);
+        localVarQueryParams[utility::conversions::to_string_t("space")] = ApiClient::parameterToString(space);
     }
     {
         localVarQueryParams[utility::conversions::to_string_t("room")] = ApiClient::parameterToString(room);

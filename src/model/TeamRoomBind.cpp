@@ -23,8 +23,8 @@ TeamRoomBind::TeamRoomBind()
     m_IdIsSet = false;
     m_Life = utility::conversions::to_string_t("");
     m_LifeIsSet = false;
-    m_Workspace = utility::conversions::to_string_t("");
-    m_WorkspaceIsSet = false;
+    m_Space = utility::conversions::to_string_t("");
+    m_SpaceIsSet = false;
 }
 
 TeamRoomBind::~TeamRoomBind()
@@ -54,10 +54,10 @@ web::json::value TeamRoomBind::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("life"))] = ModelBase::toJson(m_Life);
     }
-    if(m_WorkspaceIsSet)
+    if(m_SpaceIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("workspace"))] = ModelBase::toJson(m_Workspace);
+        val[utility::conversions::to_string_t(_XPLATSTR("space"))] = ModelBase::toJson(m_Space);
     }
 
     return val;
@@ -99,14 +99,14 @@ bool TeamRoomBind::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("workspace"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("space"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("workspace")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("space")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setWorkspace;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setWorkspace);
-            setWorkspace(refVal_setWorkspace);
+            utility::string_t refVal_setSpace;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSpace);
+            setSpace(refVal_setSpace);
             
         }
     }
@@ -132,9 +132,9 @@ void TeamRoomBind::toMultipart(std::shared_ptr<MultipartFormData> multipart, con
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("life")), m_Life));
     }
-    if(m_WorkspaceIsSet)
+    if(m_SpaceIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("workspace")), m_Workspace));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("space")), m_Space));
     }
 }
 
@@ -165,11 +165,11 @@ bool TeamRoomBind::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("life"))), refVal_setLife );
         setLife(refVal_setLife);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("workspace"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("space"))))
     {
-        utility::string_t refVal_setWorkspace;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("workspace"))), refVal_setWorkspace );
-        setWorkspace(refVal_setWorkspace);
+        utility::string_t refVal_setSpace;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("space"))), refVal_setSpace );
+        setSpace(refVal_setSpace);
     }
     return ok;
 }
@@ -238,26 +238,26 @@ void TeamRoomBind::unsetLife()
 {
     m_LifeIsSet = false;
 }
-utility::string_t TeamRoomBind::getWorkspace() const
+utility::string_t TeamRoomBind::getSpace() const
 {
-    return m_Workspace;
+    return m_Space;
 }
 
 
-void TeamRoomBind::setWorkspace(const utility::string_t& value)
+void TeamRoomBind::setSpace(const utility::string_t& value)
 {
-    m_Workspace = value;
-    m_WorkspaceIsSet = true;
+    m_Space = value;
+    m_SpaceIsSet = true;
 }
 
-bool TeamRoomBind::workspaceIsSet() const
+bool TeamRoomBind::spaceIsSet() const
 {
-    return m_WorkspaceIsSet;
+    return m_SpaceIsSet;
 }
 
-void TeamRoomBind::unsetWorkspace()
+void TeamRoomBind::unsetSpace()
 {
-    m_WorkspaceIsSet = false;
+    m_SpaceIsSet = false;
 }
 
 }

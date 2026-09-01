@@ -29,7 +29,6 @@ Iam_Role::Iam_Role()
     m_DisplayName = utility::conversions::to_string_t("");
     m_DisplayNameIsSet = false;
     m_DomainsIsSet = false;
-    m_GroupsIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
     m_IsEnabled = false;
@@ -39,6 +38,7 @@ Iam_Role::Iam_Role()
     m_Owner = utility::conversions::to_string_t("");
     m_OwnerIsSet = false;
     m_RolesIsSet = false;
+    m_TeamsIsSet = false;
     m_UpdatedAt = utility::datetime();
     m_UpdatedAtIsSet = false;
     m_UsersIsSet = false;
@@ -86,11 +86,6 @@ web::json::value Iam_Role::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("domains"))] = ModelBase::toJson(m_Domains);
     }
-    if(m_GroupsIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("groups"))] = ModelBase::toJson(m_Groups);
-    }
     if(m_IdIsSet)
     {
         
@@ -115,6 +110,11 @@ web::json::value Iam_Role::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("roles"))] = ModelBase::toJson(m_Roles);
+    }
+    if(m_TeamsIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("teams"))] = ModelBase::toJson(m_Teams);
     }
     if(m_UpdatedAtIsSet)
     {
@@ -199,17 +199,6 @@ bool Iam_Role::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("groups"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("groups")));
-        if(!fieldValue.is_null())
-        {
-            std::vector<utility::string_t> refVal_setGroups;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setGroups);
-            setGroups(refVal_setGroups);
-            
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("id"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("id")));
@@ -262,6 +251,17 @@ bool Iam_Role::fromJson(const web::json::value& val)
             std::vector<utility::string_t> refVal_setRoles;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRoles);
             setRoles(refVal_setRoles);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("teams"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("teams")));
+        if(!fieldValue.is_null())
+        {
+            std::vector<utility::string_t> refVal_setTeams;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTeams);
+            setTeams(refVal_setTeams);
             
         }
     }
@@ -321,10 +321,6 @@ void Iam_Role::toMultipart(std::shared_ptr<MultipartFormData> multipart, const u
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("domains")), m_Domains));
     }
-    if(m_GroupsIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("groups")), m_Groups));
-    }
     if(m_IdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("id")), m_Id));
@@ -344,6 +340,10 @@ void Iam_Role::toMultipart(std::shared_ptr<MultipartFormData> multipart, const u
     if(m_RolesIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("roles")), m_Roles));
+    }
+    if(m_TeamsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("teams")), m_Teams));
     }
     if(m_UpdatedAtIsSet)
     {
@@ -400,12 +400,6 @@ bool Iam_Role::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("domains"))), refVal_setDomains );
         setDomains(refVal_setDomains);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("groups"))))
-    {
-        std::vector<utility::string_t> refVal_setGroups;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("groups"))), refVal_setGroups );
-        setGroups(refVal_setGroups);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("id"))))
     {
         utility::string_t refVal_setId;
@@ -435,6 +429,12 @@ bool Iam_Role::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
         std::vector<utility::string_t> refVal_setRoles;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("roles"))), refVal_setRoles );
         setRoles(refVal_setRoles);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("teams"))))
+    {
+        std::vector<utility::string_t> refVal_setTeams;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("teams"))), refVal_setTeams );
+        setTeams(refVal_setTeams);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
@@ -578,27 +578,6 @@ void Iam_Role::unsetDomains()
 {
     m_DomainsIsSet = false;
 }
-std::vector<utility::string_t> Iam_Role::getGroups() const
-{
-    return m_Groups;
-}
-
-
-void Iam_Role::setGroups(const std::vector<utility::string_t>& value)
-{
-    m_Groups = value;
-    m_GroupsIsSet = true;
-}
-
-bool Iam_Role::groupsIsSet() const
-{
-    return m_GroupsIsSet;
-}
-
-void Iam_Role::unsetGroups()
-{
-    m_GroupsIsSet = false;
-}
 utility::string_t Iam_Role::getId() const
 {
     return m_Id;
@@ -703,6 +682,27 @@ bool Iam_Role::rolesIsSet() const
 void Iam_Role::unsetRoles()
 {
     m_RolesIsSet = false;
+}
+std::vector<utility::string_t> Iam_Role::getTeams() const
+{
+    return m_Teams;
+}
+
+
+void Iam_Role::setTeams(const std::vector<utility::string_t>& value)
+{
+    m_Teams = value;
+    m_TeamsIsSet = true;
+}
+
+bool Iam_Role::teamsIsSet() const
+{
+    return m_TeamsIsSet;
+}
+
+void Iam_Role::unsetTeams()
+{
+    m_TeamsIsSet = false;
 }
 utility::datetime Iam_Role::getUpdatedAt() const
 {

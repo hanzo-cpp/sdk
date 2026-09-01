@@ -85,7 +85,7 @@ public:
     void setTitle(const utility::string_t& value);
 
     /// <summary>
-    /// kb-page | kb-memory | kb-source | kb-connector | unresolved
+    /// kb.page | kb.memory | kb.source | kb.connector | unresolved
     /// </summary>
     utility::string_t getType() const;
     bool typeIsSet() const;

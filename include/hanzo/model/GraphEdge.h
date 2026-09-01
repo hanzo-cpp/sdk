@@ -53,7 +53,7 @@ public:
 
 
     /// <summary>
-    /// From is the id of the node the edge starts at: the child page for a parent edge, the page holding the wikilink for a link edge, the kb-source for a provenance edge. Always one of Nodes.
+    /// From is the id of the node the edge starts at: the child page for a parent edge, the page holding the wikilink for a link edge, the kb.source for a provenance edge. Always one of Nodes.
     /// </summary>
     utility::string_t getFrom() const;
     bool fromIsSet() const;
@@ -69,7 +69,7 @@ public:
     void setKind(const utility::string_t& value);
 
     /// <summary>
-    /// To is the id of the node the edge points at: the parent page, the linked page, the kb-connector. Always one of Nodes — a wikilink matching no page points at a synthetic \&quot;unresolved:&lt;lowercased title&gt;\&quot; node rather than dangling.
+    /// To is the id of the node the edge points at: the parent page, the linked page, the kb.connector. Always one of Nodes — a wikilink matching no page points at a synthetic \&quot;unresolved:&lt;lowercased title&gt;\&quot; node rather than dangling.
     /// </summary>
     utility::string_t getTo() const;
     bool toIsSet() const;

@@ -54,6 +54,14 @@ public:
 
 
     /// <summary>
+    /// Avatar is an image the agent is drawn as — a link to one, or the bytes inline as a data URL, up to 96 KiB. Emoji is the one glyph a caller picked when they had no image. At most one is ever set; neither means the agent is drawn as its initial, the same way a person with no photo is. Both are iam/pkg/schema&#39;s Mark, so a face means the same thing on an agent as it does on a person or an org. Avatar is the agent&#39;s picture: an image URL, or the image itself inline as a data URL up to 96 KiB. Empty when the agent has no image.
+    /// </summary>
+    utility::string_t getAvatar() const;
+    bool avatarIsSet() const;
+    void unsetAvatar();
+    void setAvatar(const utility::string_t& value);
+
+    /// <summary>
     /// ComputeRef is the visor machine this bot is bound to, opaque here: this package stores and echoes it, and the binding&#39;s lifecycle belongs elsewhere. Empty means unbound, which is what every one-shot agent is.
     /// </summary>
     utility::string_t getComputeRef() const;
@@ -76,6 +84,14 @@ public:
     bool descriptionIsSet() const;
     void unsetDescription();
     void setDescription(const utility::string_t& value);
+
+    /// <summary>
+    /// Emoji is the single glyph a caller picked when they had no image. At most one of avatar and emoji is ever set; neither means the agent is drawn as its initial, the same way a person with no photo is.
+    /// </summary>
+    utility::string_t getEmoji() const;
+    bool emojiIsSet() const;
+    void unsetEmoji();
+    void setEmoji(const utility::string_t& value);
 
     /// <summary>
     /// ExecutionMode is one-shot or long-running, and it decides who may start this agent. one-shot runs only when something POSTs to it; long-running is additionally invoked by the scheduler on Schedule, once a minute against the cron. An org&#39;s long-running agents are capped, so a switch INTO it can be refused with 409.
@@ -159,6 +175,9 @@ public:
 
 
 protected:
+    utility::string_t m_Avatar;
+    bool m_AvatarIsSet;
+
     utility::string_t m_ComputeRef;
     bool m_ComputeRefIsSet;
 
@@ -167,6 +186,9 @@ protected:
 
     utility::string_t m_Description;
     bool m_DescriptionIsSet;
+
+    utility::string_t m_Emoji;
+    bool m_EmojiIsSet;
 
     utility::string_t m_ExecutionMode;
     bool m_ExecutionModeIsSet;

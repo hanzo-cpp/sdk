@@ -156,13 +156,13 @@ pplx::task<std::shared_ptr<CookieAck>> TeamApi::deleteTeamAccountCookie() const
         return localVarResult;
     });
 }
-pplx::task<void> TeamApi::deleteTeamFilesByWorkspaceByFilename(utility::string_t workspace, utility::string_t filename, boost::optional<utility::string_t> file) const
+pplx::task<void> TeamApi::deleteTeamFilesBySpaceByFilename(utility::string_t space, utility::string_t filename, boost::optional<utility::string_t> file) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/team/files/{workspace}/{filename}");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("workspace") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(workspace)));
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/team/files/{space}/{filename}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("space") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(space)));
     boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("filename") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(filename)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
@@ -191,7 +191,7 @@ pplx::task<void> TeamApi::deleteTeamFilesByWorkspaceByFilename(utility::string_t
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("TeamApi->deleteTeamFilesByWorkspaceByFilename does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("TeamApi->deleteTeamFilesBySpaceByFilename does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -222,7 +222,7 @@ pplx::task<void> TeamApi::deleteTeamFilesByWorkspaceByFilename(utility::string_t
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("TeamApi->deleteTeamFilesByWorkspaceByFilename does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("TeamApi->deleteTeamFilesBySpaceByFilename does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -243,7 +243,7 @@ pplx::task<void> TeamApi::deleteTeamFilesByWorkspaceByFilename(utility::string_t
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling deleteTeamFilesByWorkspaceByFilename: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling deleteTeamFilesBySpaceByFilename: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -254,7 +254,7 @@ pplx::task<void> TeamApi::deleteTeamFilesByWorkspaceByFilename(utility::string_t
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling deleteTeamFilesByWorkspaceByFilename: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling deleteTeamFilesBySpaceByFilename: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -1062,13 +1062,13 @@ pplx::task<void> TeamApi::getTeamCollaborator() const
         return void();
     });
 }
-pplx::task<std::shared_ptr<HttpContent>> TeamApi::getTeamFilesByWorkspaceByFilename(utility::string_t workspace, utility::string_t filename) const
+pplx::task<std::shared_ptr<HttpContent>> TeamApi::getTeamFilesBySpaceByFilename(utility::string_t space, utility::string_t filename) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/team/files/{workspace}/{filename}");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("workspace") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(workspace)));
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/team/files/{space}/{filename}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("space") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(space)));
     boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("filename") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(filename)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
@@ -1126,7 +1126,7 @@ pplx::task<std::shared_ptr<HttpContent>> TeamApi::getTeamFilesByWorkspaceByFilen
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("TeamApi->getTeamFilesByWorkspaceByFilename does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("TeamApi->getTeamFilesBySpaceByFilename does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -1147,7 +1147,7 @@ pplx::task<std::shared_ptr<HttpContent>> TeamApi::getTeamFilesByWorkspaceByFilen
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling getTeamFilesByWorkspaceByFilename: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling getTeamFilesBySpaceByFilename: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -1158,7 +1158,7 @@ pplx::task<std::shared_ptr<HttpContent>> TeamApi::getTeamFilesByWorkspaceByFilen
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getTeamFilesByWorkspaceByFilename: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling getTeamFilesBySpaceByFilename: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -1291,6 +1291,134 @@ pplx::task<std::shared_ptr<TeamRooms>> TeamApi::getTeamRooms() const
         {
             throw ApiException(500
                 , utility::conversions::to_string_t("error calling getTeamRooms: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::shared_ptr<TeamMessages>> TeamApi::getTeamRoomsByIdMessages(utility::string_t id, boost::optional<utility::string_t> space) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/team/rooms/{id}/messages");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("TeamApi->getTeamRoomsByIdMessages does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+    if (space)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("space")] = ApiClient::parameterToString(*space);
+    }
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("TeamApi->getTeamRoomsByIdMessages does not consume any supported media type"));
+    }
+
+    // authentication (bearer) required
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling getTeamRoomsByIdMessages: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling getTeamRoomsByIdMessages: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::shared_ptr<TeamMessages> localVarResult(new TeamMessages());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getTeamRoomsByIdMessages: unsupported response type"));
         }
 
         return localVarResult;
@@ -1902,13 +2030,13 @@ pplx::task<std::shared_ptr<CollabResult>> TeamApi::postTeamCollaboratorRpcByDocu
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<HttpContent>> TeamApi::postTeamFilesByWorkspace(utility::string_t workspace, boost::optional<std::shared_ptr<HttpContent>> body) const
+pplx::task<std::shared_ptr<HttpContent>> TeamApi::postTeamFilesBySpace(utility::string_t space, boost::optional<std::shared_ptr<HttpContent>> body) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/team/files/{workspace}");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("workspace") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(workspace)));
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/team/files/{space}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("space") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(space)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -1977,7 +2105,7 @@ pplx::task<std::shared_ptr<HttpContent>> TeamApi::postTeamFilesByWorkspace(utili
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("TeamApi->postTeamFilesByWorkspace does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("TeamApi->postTeamFilesBySpace does not consume any supported media type"));
     }
 
     // authentication (bearer) required
@@ -1998,7 +2126,7 @@ pplx::task<std::shared_ptr<HttpContent>> TeamApi::postTeamFilesByWorkspace(utili
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling postTeamFilesByWorkspace: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling postTeamFilesBySpace: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -2009,7 +2137,7 @@ pplx::task<std::shared_ptr<HttpContent>> TeamApi::postTeamFilesByWorkspace(utili
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling postTeamFilesByWorkspace: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling postTeamFilesBySpace: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -2021,6 +2149,299 @@ pplx::task<std::shared_ptr<HttpContent>> TeamApi::postTeamFilesByWorkspace(utili
         std::shared_ptr<HttpContent> localVarResult = std::make_shared<HttpContent>();
         std::shared_ptr<std::stringstream> stream = std::make_shared<std::stringstream>(std::string(localVarResponse.begin(), localVarResponse.end()));
         localVarResult->setData(stream);
+        return localVarResult;
+    });
+}
+pplx::task<std::shared_ptr<TeamRoom>> TeamApi::postTeamRooms(std::shared_ptr<TeamRoomNew> teamRoomNew) const
+{
+
+    // verify the required parameter 'teamRoomNew' is set
+    if (teamRoomNew == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'teamRoomNew' when calling TeamApi->postTeamRooms"));
+    }
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/team/rooms");
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("TeamApi->postTeamRooms does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        localVarJson = ModelBase::toJson(teamRoomNew);
+        
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(teamRoomNew.get())
+        {
+            teamRoomNew->toMultipart(localVarMultipart, utility::conversions::to_string_t("teamRoomNew"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("TeamApi->postTeamRooms does not consume any supported media type"));
+    }
+
+    // authentication (bearer) required
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("POST"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling postTeamRooms: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling postTeamRooms: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::shared_ptr<TeamRoom> localVarResult(new TeamRoom());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postTeamRooms: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::shared_ptr<TeamMessage>> TeamApi::postTeamRoomsByIdMessages(utility::string_t id, std::shared_ptr<TeamMessageWrite> teamMessageWrite) const
+{
+
+    // verify the required parameter 'teamMessageWrite' is set
+    if (teamMessageWrite == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'teamMessageWrite' when calling TeamApi->postTeamRoomsByIdMessages"));
+    }
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/team/rooms/{id}/messages");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("TeamApi->postTeamRoomsByIdMessages does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        localVarJson = ModelBase::toJson(teamMessageWrite);
+        
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(teamMessageWrite.get())
+        {
+            teamMessageWrite->toMultipart(localVarMultipart, utility::conversions::to_string_t("teamMessageWrite"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("TeamApi->postTeamRoomsByIdMessages does not consume any supported media type"));
+    }
+
+    // authentication (bearer) required
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("POST"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling postTeamRoomsByIdMessages: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling postTeamRoomsByIdMessages: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::shared_ptr<TeamMessage> localVarResult(new TeamMessage());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling postTeamRoomsByIdMessages: unsupported response type"));
+        }
+
         return localVarResult;
     });
 }

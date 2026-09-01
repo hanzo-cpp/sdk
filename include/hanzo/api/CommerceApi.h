@@ -26,9 +26,6 @@
 #include "hanzo/model/CartItemSet.h"
 #include "hanzo/model/CartOpen.h"
 #include "hanzo/model/Liveness.h"
-#include "hanzo/model/PaymentIn.h"
-#include "hanzo/model/PaymentOut.h"
-#include "hanzo/model/PaymentRecord.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -750,16 +747,6 @@ public:
     /// <param name="webhookid"></param>
     pplx::task<void> getCommerceWebhookByWebhookid(
         utility::string_t webhookid
-    ) const;
-    /// <summary>
-    /// Read one settled payment by its id
-    /// </summary>
-    /// <remarks>
-    /// Reads one settled payment out of the caller&#39;s org ledger.  The org scopes the read by construction — the ledger is namespaced to it — so an id belonging to another tenant is simply not found rather than found and then filtered. A ledger row that is not a payment is likewise not found, so this cannot be used to walk the org&#39;s usage debits.  A named handler, not a closure, so zipdoc can lift this prose into the registry.
-    /// </remarks>
-    /// <param name="id">ID is the ledger transaction id a payment returned.</param>
-    pplx::task<std::shared_ptr<PaymentRecord>> getPayment(
-        utility::string_t id
     ) const;
     /// <summary>
     /// Open a cart for a shopper to fill
@@ -1772,16 +1759,6 @@ public:
     pplx::task<std::shared_ptr<Cart>> setCartItem(
         utility::string_t id,
         std::shared_ptr<CartItemSet> cartItemSet
-    ) const;
-    /// <summary>
-    /// Take a card payment and credit the org&#39;s balance
-    /// </summary>
-    /// <remarks>
-    /// Takes a payment: charges a single-use card token and credits the caller&#39;s org balance, exactly once.  This is the operation behind \&quot;collect money from a customer\&quot;. It runs the SAME core the console&#39;s card top-up runs (commerce billing.TakePayment), so the server-side amount bounds, the idempotency guard and the ledger credit are shared rather than reimplemented — a second charge path would eventually double-charge somebody.  The ORG is the caller&#39;s, taken from the validated principal and never from the input, so a payment can only ever credit the account of whoever made the call.  A payment is RISK-SCREENED before the card is charged, so this can be refused without any money moving: 403 means the screen did not authorise it, and 503 means the screen could not reach a decision — that one is worth retrying, and no charge was attempted either way.  Send an idempotencyKey. An agent retries by construction, and the key is what turns a retry into a replay of the first receipt instead of a second charge.  The answer states whether it settled in SANDBOX or live mode (&#x60;test&#x60;), and carries the processor&#39;s own reference (&#x60;processorRef&#x60;) so the charge can be reconciled against the processor rather than taken on trust.  A named builder, not a closure, so zipdoc can lift this prose into the registry.  It BUILDS the handler rather than being it, because the screen has to sit inside the value every projection of this op dispatches to — see exposePayments. &#x60;charge&#x60; is the money move, &#x60;take&#x60; is the screened entry point onto it, and the only registrable one is the second.
-    /// </remarks>
-    /// <param name="paymentIn"></param>
-    pplx::task<std::shared_ptr<PaymentOut>> takePayment(
-        std::shared_ptr<PaymentIn> paymentIn
     ) const;
 
 protected:

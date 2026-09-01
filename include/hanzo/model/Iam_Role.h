@@ -83,11 +83,6 @@ public:
     void unsetDomains();
     void setDomains(const std::vector<utility::string_t>& value);
 
-    std::vector<utility::string_t> getGroups() const;
-    bool groupsIsSet() const;
-    void unsetGroups();
-    void setGroups(const std::vector<utility::string_t>& value);
-
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetId();
@@ -112,6 +107,11 @@ public:
     bool rolesIsSet() const;
     void unsetRoles();
     void setRoles(const std::vector<utility::string_t>& value);
+
+    std::vector<utility::string_t> getTeams() const;
+    bool teamsIsSet() const;
+    void unsetTeams();
+    void setTeams(const std::vector<utility::string_t>& value);
 
     utility::datetime getUpdatedAt() const;
     bool updatedAtIsSet() const;
@@ -143,9 +143,6 @@ protected:
     std::vector<utility::string_t> m_Domains;
     bool m_DomainsIsSet;
 
-    std::vector<utility::string_t> m_Groups;
-    bool m_GroupsIsSet;
-
     utility::string_t m_Id;
     bool m_IdIsSet;
 
@@ -160,6 +157,9 @@ protected:
 
     std::vector<utility::string_t> m_Roles;
     bool m_RolesIsSet;
+
+    std::vector<utility::string_t> m_Teams;
+    bool m_TeamsIsSet;
 
     utility::datetime m_UpdatedAt;
     bool m_UpdatedAtIsSet;
