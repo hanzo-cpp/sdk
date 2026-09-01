@@ -50,6 +50,8 @@
 #include "hanzo/model/Iam_Role.h"
 #include "hanzo/model/Iam_Session.h"
 #include "hanzo/model/Iam_SetAvatarInput.h"
+#include "hanzo/model/Iam_SetProfileInput.h"
+#include "hanzo/model/Iam_Team.h"
 #include "hanzo/model/Iam_Token.h"
 #include "hanzo/model/Iam_UpdateInput.h"
 #include "hanzo/model/Iam_UpdateOrganizationInput.h"
@@ -83,6 +85,9 @@
 #include "hanzo/model/Iam_roles_DeleteOutput.h"
 #include "hanzo/model/Iam_roles_Input.h"
 #include "hanzo/model/Iam_roles_ListOutput.h"
+#include "hanzo/model/Iam_teams_DeleteOutput.h"
+#include "hanzo/model/Iam_teams_Input.h"
+#include "hanzo/model/Iam_teams_ListOutput.h"
 #include "hanzo/model/Iam_tokenMutation.h"
 #include "hanzo/model/Iam_tokenResult.h"
 #include "hanzo/model/Iam_users_DeleteOutput.h"
@@ -151,10 +156,10 @@ public:
         std::shared_ptr<Iam_CreateOrganizationInput> iamCreateOrganizationInput
     ) const;
     /// <summary>
-    /// Records a sign-in.
+    /// Records a sign-in and answers with the cookie id it minted.
     /// </summary>
     /// <remarks>
-    /// Records a sign-in. Signing in again from another browser adds to the session rather than replacing it, so one person can be signed in from a laptop and a phone at once.  Ask for an exclusive sign-in and the opposite holds: the new sign-in is the only one left and every other browser is signed out. That is the setting to use when one person may hold only one live session at a time.
+    /// Records a sign-in and answers with the cookie id it minted. Signing in again from another browser adds to the session rather than replacing it, so one person can be signed in from a laptop and a phone at once.  Ask for an exclusive sign-in and the opposite holds: the new sign-in is the only one left and every other browser is signed out. That is the setting to use when one person may hold only one live session at a time.
     /// </remarks>
     /// <param name="iamCreateSessionIn"></param>
     pplx::task<std::shared_ptr<Iam_Session>> createSession(
@@ -284,6 +289,16 @@ public:
     /// </remarks>
     /// <param name="name"></param>
     pplx::task<void> deleteIamServiceAccountsByName(
+        utility::string_t name
+    ) const;
+    /// <summary>
+    /// Removes a team.
+    /// </summary>
+    /// <remarks>
+    /// Removes a team. Everyone in it loses the access it carried; their accounts, and any other team they are in, are untouched.
+    /// </remarks>
+    /// <param name="name"></param>
+    pplx::task<std::shared_ptr<Iam_teams_DeleteOutput>> deleteIamTeamsByName(
         utility::string_t name
     ) const;
     /// <summary>
@@ -511,10 +526,10 @@ public:
         utility::string_t name
     ) const;
     /// <summary>
-    /// Returns your organization&#39;s API keys, newest first — what each is called, what it may reach, and its publishable half.
+    /// Returns an organization&#39;s API keys, newest first — what each is called, what it may reach, and its publishable half.
     /// </summary>
     /// <remarks>
-    /// Returns your organization&#39;s API keys, newest first — what each is called, what it may reach, and its publishable half. Secret halves are never listed.
+    /// Returns an organization&#39;s API keys, newest first — what each is called, what it may reach, and its publishable half. Secret halves are never listed.  Which organization comes from your credentials, not from the request: you read your own and no one else&#39;s. The capability that admits a confidential client to this collection does not itself name a tenant, so the tenant is decided here.
     /// </remarks>
     /// <param name="owner"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<Iam_ListResponse>> getIamKeys(
@@ -560,7 +575,7 @@ public:
     /// Answers either question about who belongs where: which organizations one person can act in, or who can act in one organization.
     /// </summary>
     /// <remarks>
-    /// Answers either question about who belongs where: which organizations one person can act in, or who can act in one organization.  Both are org-scoped: a non-SuperAdmin may ask about ITS OWN org&#39;s roster, or about a user whose home org is its own, and nothing else. The bound comes from the verified credential via authz.Scope, so a request parameter can never widen it — a membership row names who may act and spend in an org, so a cross-tenant read is a customer roster leak.
+    /// Answers either question about who belongs where: which organizations one person can act in, or who can act in one organization.  Both are org-scoped: a non-SuperAdmin may ask about ITS OWN org&#39;s roster, or about a user whose home org is its own, and nothing else. The bound comes from the verified credential via principal.Scope, so a request parameter can never widen it — a membership row names who may act and spend in an org, so a cross-tenant read is a customer roster leak.
     /// </remarks>
     /// <param name="user">User is \&quot;&lt;homeOrg&gt;/&lt;username&gt;\&quot; — which organizations that identity may act in. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="org">Org is an organization — who may act in it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
@@ -761,17 +776,35 @@ public:
         boost::optional<int32_t> pageSize
     ) const;
     /// <summary>
-    /// Returns a page of the people in your organization, with the total so you can page through the rest.
+    /// Returns your organization&#39;s teams, newest first — each a named set of people that roles and permissions are granted to.
     /// </summary>
     /// <remarks>
-    /// Returns a page of the people in your organization, with the total so you can page through the rest. Passwords, API secrets and MFA material are stripped from every entry.
+    /// Returns your organization&#39;s teams, newest first — each a named set of people that roles and permissions are granted to.  You see your own organization&#39;s teams and no one else&#39;s; which organization that is comes from your credentials, not from the request.
     /// </remarks>
-    /// <param name="owner"></param>
+    pplx::task<std::shared_ptr<Iam_teams_ListOutput>> getIamTeams(
+    ) const;
+    /// <summary>
+    /// Returns one team: who is in it.
+    /// </summary>
+    /// <remarks>
+    /// Returns one team: who is in it.
+    /// </remarks>
+    /// <param name="name"></param>
+    pplx::task<std::shared_ptr<Iam_Team>> getIamTeamsByName(
+        utility::string_t name
+    ) const;
+    /// <summary>
+    /// Returns a page of the people in an organization, with the total so you can page through the rest.
+    /// </summary>
+    /// <remarks>
+    /// Returns a page of the people in an organization, with the total so you can page through the rest. Passwords, API secrets and MFA material are stripped from every entry.  Which organization comes from your credentials, not from the request: you read your own and no one else&#39;s, and a credential whose scope spans tenants reads the tenant it names — or, naming none, every one of them.
+    /// </remarks>
+    /// <param name="owner"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="email">Email narrows the page to the accounts carrying one address. Looking a person up by their address is a QUERY over the collection, not an item read: an address is not the natural key, two rows in one org can carry one, and a caller that gets a page SEES both — where a single-item read would have to choose, and choosing is how somebody joins a team under a colleague&#39;s identity. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="limit"> (optional, default to 0)</param>
     /// <param name="offset"> (optional, default to 0)</param>
     pplx::task<std::shared_ptr<Iam_users_ListOutput>> getIamUsers(
-        utility::string_t owner,
+        boost::optional<utility::string_t> owner,
         boost::optional<utility::string_t> email,
         boost::optional<int32_t> limit,
         boost::optional<int32_t> offset
@@ -957,16 +990,16 @@ public:
         boost::optional<utility::string_t> owner
     ) const;
     /// <summary>
-    /// Returns who is currently signed in to your organization, newest first, and can be narrowed to one person or one application.
+    /// Returns who is currently signed in to an organization, newest first, and can be narrowed to one person or one application.
     /// </summary>
     /// <remarks>
-    /// Returns who is currently signed in to your organization, newest first, and can be narrowed to one person or one application. It is what you read before signing someone out.
+    /// Returns who is currently signed in to an organization, newest first, and can be narrowed to one person or one application. It is what you read before signing someone out.  Which organization comes from your credentials, not from the request: you read your own and no one else&#39;s. A session row names a live account and the applications it is signed in to, so the tenant is decided here rather than taken from the query.
     /// </remarks>
-    /// <param name="owner"></param>
+    /// <param name="owner"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="name"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="application"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<Iam_ListSessionsOut>> listSessions(
-        utility::string_t owner,
+        boost::optional<utility::string_t> owner,
         boost::optional<utility::string_t> name,
         boost::optional<utility::string_t> application
     ) const;
@@ -1315,6 +1348,16 @@ public:
     pplx::task<void> postIamSignup(
     ) const;
     /// <summary>
+    /// Makes a team — a named set of people that roles and permissions grant to.
+    /// </summary>
+    /// <remarks>
+    /// Makes a team — a named set of people that roles and permissions grant to. Granting to a team rather than to each person keeps access correct as people come and go: add someone and they inherit what the team can do. A name already used in your organization is refused.
+    /// </remarks>
+    /// <param name="iamTeamsInput"></param>
+    pplx::task<std::shared_ptr<Iam_Team>> postIamTeams(
+        std::shared_ptr<Iam_teams_Input> iamTeamsInput
+    ) const;
+    /// <summary>
     /// Mints an access token for the &#x60;?id&#x3D;&lt;owner&gt;/&lt;name&gt;&#x60; target user (optional &#x60;?aud&#x3D;&#x60; resource, RFC 8707), issued by the authenticated + allow-listed confidential client.
     /// </summary>
     /// <remarks>
@@ -1555,6 +1598,18 @@ public:
         utility::string_t name
     ) const;
     /// <summary>
+    /// Changes who is in a team.
+    /// </summary>
+    /// <remarks>
+    /// Changes who is in a team. Access changes for everyone in it as soon as the write lands. The name and the created stamp do not change.
+    /// </remarks>
+    /// <param name="name">Name addresses the team on update and names it on create; every other field is content and binds from the BODY, never the URL.</param>
+    /// <param name="iamTeamsInput"></param>
+    pplx::task<std::shared_ptr<Iam_Team>> putIamTeamsByName(
+        utility::string_t name,
+        std::shared_ptr<Iam_teams_Input> iamTeamsInput
+    ) const;
+    /// <summary>
     /// Changes a person&#39;s profile, their roles, or the credentials they sign in with.
     /// </summary>
     /// <remarks>
@@ -1593,6 +1648,16 @@ public:
         std::shared_ptr<Iam_SetAvatarInput> iamSetAvatarInput
     ) const;
     /// <summary>
+    /// Changes how an organization reads: its display name, its website and its favicon.
+    /// </summary>
+    /// <remarks>
+    /// Changes how an organization reads: its display name, its website and its favicon.  IT EXISTS FOR THE REASON SetAvatar DOES, and the reason is worth stating because the obvious alternative is a trap. Update REPLACES the whole record, so a caller that wants to change one field has to send every other field back — and a record read back first arrives MASKED, so the read half of that read-modify-write hands you \&quot;***\&quot; for the master password and the salt, and the write half stores it. Renaming an organization through Update therefore costs it its credential settings; sending only the new name costs it everything else. Neither is a rename.  So this writes the fields it names and touches nothing else. A nil pointer is not sent and not changed; an empty string is sent and clears the field.
+    /// </remarks>
+    /// <param name="iamSetProfileInput"></param>
+    pplx::task<std::shared_ptr<Iam_Organization>> setOrganizationProfile(
+        std::shared_ptr<Iam_SetProfileInput> iamSetProfileInput
+    ) const;
+    /// <summary>
     /// Changes an organization&#39;s display, its defaults and the sign-in rules everyone in it inherits.
     /// </summary>
     /// <remarks>
@@ -1621,10 +1686,10 @@ public:
         std::shared_ptr<Iam_Provider> iamProvider
     ) const;
     /// <summary>
-    /// Replaces the set of browsers a session covers — signing out the ones you leave off while the session itself stays live.
+    /// Names the browsers a session keeps — signing out the ones you leave off while the session itself stays live.
     /// </summary>
     /// <remarks>
-    /// Replaces the set of browsers a session covers — signing out the ones you leave off while the session itself stays live. A session that does not exist is reported as missing rather than created.
+    /// Names the browsers a session keeps — signing out the ones you leave off while the session itself stays live. A session that does not exist is reported as missing rather than created.
     /// </remarks>
     /// <param name="owner"></param>
     /// <param name="name"></param>

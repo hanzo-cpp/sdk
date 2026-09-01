@@ -896,14 +896,6 @@ public:
         utility::string_t name
     ) const;
     /// <summary>
-    /// List messages across tenants
-    /// </summary>
-    /// <remarks>
-    /// Cross-tenant listing. Admin-only; a tenant caller is refused.
-    /// </remarks>
-    pplx::task<std::shared_ptr<Get_ai_messages_200_response>> getAiMessagesGlobal(
-    ) const;
-    /// <summary>
     /// List nodes
     /// </summary>
     /// <remarks>

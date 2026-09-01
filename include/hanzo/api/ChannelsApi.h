@@ -25,6 +25,8 @@
 #include "hanzo/model/AllowlistPutIn.h"
 #include "hanzo/model/AllowlistView.h"
 #include "hanzo/model/ApprovePairingIn.h"
+#include "hanzo/model/ChannelAgents.h"
+#include "hanzo/model/ChannelAgentsPut.h"
 #include "hanzo/model/ChatChannels.h"
 #include "hanzo/model/InboxPage.h"
 #include "hanzo/model/PairingApproved.h"
@@ -56,12 +58,22 @@ public:
     pplx::task<std::shared_ptr<ChatChannels>> getChannels(
     ) const;
     /// <summary>
+    /// Returns which agent answers the caller org&#39;s channel: the default and every room bound to another agent.
+    /// </summary>
+    /// <remarks>
+    /// Returns which agent answers the caller org&#39;s channel: the default and every room bound to another agent.
+    /// </remarks>
+    /// <param name="channel">Channel is the transport: discord, github, linear, slack, teams, telegram or whatsapp. Required; an unknown value is a 404. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<ChannelAgents>> getChannelsAgent(
+        boost::optional<utility::string_t> channel
+    ) const;
+    /// <summary>
     /// Returns the caller org&#39;s access policy for one channel: whether DMs are pairing-gated, allowlisted or open, whether group rooms are open, allowlisted or disabled, the config-managed DM and group allow entries, the senders approved through PAIRING (read-only here), and the org&#39;s named access groups.
     /// </summary>
     /// <remarks>
     /// Returns the caller org&#39;s access policy for one channel: whether DMs are pairing-gated, allowlisted or open, whether group rooms are open, allowlisted or disabled, the config-managed DM and group allow entries, the senders approved through PAIRING (read-only here), and the org&#39;s named access groups. An unknown channel is a 404.
     /// </remarks>
-    /// <param name="channel">Channel is the transport to read: discord, slack, teams, telegram or whatsapp. Required; an unknown value is a 404. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="channel">Channel is the transport to read: discord, github, linear, slack, teams, telegram or whatsapp. Required; an unknown value is a 404. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<AllowlistView>> getChannelsAllowlist(
         boost::optional<utility::string_t> channel
     ) const;
@@ -89,7 +101,7 @@ public:
     /// Send a message from your org&#39;s bot to one chat room
     /// </summary>
     /// <remarks>
-    /// Delivers text, attachments and actions to one room on a connected chat transport — discord, slack, teams, telegram or whatsapp — and answers that transport&#39;s own receipt, the &#x60;messageId&#x60; it assigned and the Unix second it landed. An unknown channel is a 404.  The body is the envelope&#39;s NARROW outbound projection: &#x60;room&#x60;, &#x60;text&#x60;, &#x60;attachments&#x60;, &#x60;actions&#x60;, &#x60;replyTo&#x60; and &#x60;idempotency&#x60;, and nothing else. Identity is not a field — the channel is the path segment and the sender is the caller&#39;s validated org — so a body carrying &#x60;sender&#x60;, &#x60;account&#x60; or &#x60;channel&#x60; is refused with 400 rather than having it silently dropped. &#x60;room.id&#x60; is required, and so is something to say: text, or at least one attachment.  Requires a validated principal; 403 without one. The room must already belong to the caller&#39;s org — each transport verifies the binding itself, so a room this org has not bound is 403 and a room whose route the bot has never learned is 409, meaning someone has to message the bot there first. A route learned only so a pairing reply could be delivered lasts exactly as long as that pairing request does, so a room whose sender was never approved goes back to 409 within the hour. A transport that fails answers 502 carrying status and shape only, never a token.  Sending is at-most-once only if you ask for it: pass an &#x60;idempotency&#x60; string and a replay answers 200 with the PRIOR receipt instead of sending twice, while a send that fails releases the key so the caller can re-attempt. Bodies over 1 MiB are refused. Every transport currently renders text only, so attachments and actions are flattened deterministically to one line each after the text rather than dropped.
+    /// Delivers text, attachments and actions to one room on a connected chat transport — discord, github, linear, slack, teams, telegram or whatsapp — and answers that transport&#39;s own receipt, the &#x60;messageId&#x60; it assigned and the Unix second it landed. An unknown channel is a 404.  The body is the envelope&#39;s NARROW outbound projection: &#x60;room&#x60;, &#x60;text&#x60;, &#x60;attachments&#x60;, &#x60;actions&#x60;, &#x60;replyTo&#x60; and &#x60;idempotency&#x60;, and nothing else. Identity is not a field — the channel is the path segment and the sender is the caller&#39;s validated org — so a body carrying &#x60;sender&#x60;, &#x60;account&#x60; or &#x60;channel&#x60; is refused with 400 rather than having it silently dropped. &#x60;room.id&#x60; is required, and so is something to say: text, or at least one attachment.  Requires a validated principal; 403 without one. The room must already belong to the caller&#39;s org — each transport verifies the binding itself, so a room this org has not bound is 403 and a room whose route the bot has never learned is 409, meaning someone has to message the bot there first. A route learned only so a pairing reply could be delivered lasts exactly as long as that pairing request does, so a room whose sender was never approved goes back to 409 within the hour. A transport that fails answers 502 carrying status and shape only, never a token.  Sending is at-most-once only if you ask for it: pass an &#x60;idempotency&#x60; string and a replay answers 200 with the PRIOR receipt instead of sending twice, while a send that fails releases the key so the caller can re-attempt. Bodies over 1 MiB are refused. Every transport currently renders text only, so attachments and actions are flattened deterministically to one line each after the text rather than dropped.
     /// </remarks>
     /// <param name="channel"></param>
     pplx::task<void> postChannelsByChannelSend(
@@ -104,6 +116,16 @@ public:
     /// <param name="approvePairingIn"></param>
     pplx::task<std::shared_ptr<PairingApproved>> postChannelsPairingApprove(
         std::shared_ptr<ApprovePairingIn> approvePairingIn
+    ) const;
+    /// <summary>
+    /// Binds agents to the caller org&#39;s channel and answers the bindings as GET would.
+    /// </summary>
+    /// <remarks>
+    /// Binds agents to the caller org&#39;s channel and answers the bindings as GET would. It requires ORG ADMIN. The agent is named by its ref — the name an org gave it at POST /v1/agents, or a built-in such as dev, des or vi.
+    /// </remarks>
+    /// <param name="channelAgentsPut"></param>
+    pplx::task<std::shared_ptr<ChannelAgents>> putChannelsAgent(
+        std::shared_ptr<ChannelAgentsPut> channelAgentsPut
     ) const;
     /// <summary>
     /// Edits the caller org&#39;s access policy for one channel and answers the policy as GET would, so both verbs return ONE shape.

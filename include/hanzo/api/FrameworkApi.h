@@ -29,8 +29,6 @@
 #include "hanzo/model/ModuleList.h"
 #include "hanzo/model/ModuleState.h"
 #include "hanzo/Object.h"
-#include "hanzo/model/RoleAssignment.h"
-#include "hanzo/model/RoleList.h"
 #include "hanzo/model/SummaryView.h"
 #include <map>
 #include <cpprest/details/basic_types.h>
@@ -57,7 +55,7 @@ public:
     /// <remarks>
     /// Removes one document, after its on_trash hooks agree. A SUBMITTED document cannot be deleted — cancel it first. Answers 204.
     /// </remarks>
-    /// <param name="doctype">DocType is the document&#39;s DocType, from the path.</param>
+    /// <param name="doctype">DocType is the document&#39;s DocType, by ADDRESS — \&quot;module.name\&quot;, from the path.</param>
     /// <param name="name">Name is the document&#39;s name — its key within the DocType — from the path. A name containing a space arrives percent-encoded and is decoded before it is matched against the stored one.</param>
     pplx::task<void> deleteFrameworkByDoctypeByName(
         utility::string_t doctype,
@@ -69,21 +67,9 @@ public:
     /// <remarks>
     /// Removes a DocType and every document stored under it. The definition and its data go together — a document with no schema can be neither validated nor read back — so there is no undo. Manager-only. Answers 204.
     /// </remarks>
-    /// <param name="name">Name is the DocType&#39;s name, from the path. A name containing a space (\&quot;Sales Invoice\&quot;) arrives percent-encoded and is decoded before it is matched against the stored one.</param>
+    /// <param name="name">Name is the DocType&#39;s ADDRESS — \&quot;module.name\&quot;, e.g. \&quot;kb.page\&quot;. A name containing a space (\&quot;erp.Sales Invoice\&quot;) arrives percent-encoded and is decoded before it is matched against the stored one.</param>
     pplx::task<void> deleteFrameworkDoctypesByName(
         utility::string_t name
-    ) const;
-    /// <summary>
-    /// Removes one (user, role) grant in the caller&#39;s org.
-    /// </summary>
-    /// <remarks>
-    /// Removes one (user, role) grant in the caller&#39;s org. Manager-only. Answers 204; a grant that does not exist is not found.
-    /// </remarks>
-    /// <param name="user">User is the assignee whose grant is being revoked, from the path.</param>
-    /// <param name="role">Role is the role to revoke, from the path. A role name containing a space (\&quot;System Manager\&quot;) arrives percent-encoded and is decoded before it is matched against the stored assignment.</param>
-    pplx::task<void> deleteFrameworkRolesByUserByRole(
-        utility::string_t user,
-        utility::string_t role
     ) const;
     /// <summary>
     /// Returns the caller org&#39;s documents of one DocType, filtered, ordered and projected by the query.
@@ -91,7 +77,7 @@ public:
     /// <remarks>
     /// Returns the caller org&#39;s documents of one DocType, filtered, ordered and projected by the query. The DocType is resolved FIRST — through the same permission gate the list itself uses — because the query is validated against its schema: a filter, sort or field name the DocType does not declare is refused rather than reaching the store.
     /// </remarks>
-    /// <param name="doctype">DocType is the DocType to list, from the path.</param>
+    /// <param name="doctype">DocType is the DocType to list, by ADDRESS — \&quot;module.name\&quot;, from the path.</param>
     /// <param name="filters">Filters is a JSON object of equality matches, e.g. {\&quot;priority\&quot;:\&quot;High\&quot;}. Every key must be a field the DocType declares (or the managed name / docstatus); an undeclared one is refused rather than silently ignored. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="fields">Fields projects the response to a subset — a JSON array [\&quot;a\&quot;,\&quot;b\&quot;] or a comma list \&quot;a,b\&quot;. The envelope keys are always returned. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="orderBy">OrderBy is \&quot;&lt;field&gt; [asc|desc]\&quot;. Empty means most-recently-updated first. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
@@ -109,7 +95,7 @@ public:
     /// <remarks>
     /// Returns one document by name, with Password fields redacted.
     /// </remarks>
-    /// <param name="doctype">DocType is the document&#39;s DocType, from the path.</param>
+    /// <param name="doctype">DocType is the document&#39;s DocType, by ADDRESS — \&quot;module.name\&quot;, from the path.</param>
     /// <param name="name">Name is the document&#39;s name — its key within the DocType — from the path. A name containing a space arrives percent-encoded and is decoded before it is matched against the stored one.</param>
     pplx::task<std::map<utility::string_t, std::shared_ptr<Object>>> getFrameworkByDoctypeByName(
         utility::string_t doctype,
@@ -129,7 +115,7 @@ public:
     /// <remarks>
     /// Returns one DocType definition — its fields, naming rule, permissions and lifecycle flags. Scoped to the caller&#39;s org, so another tenant&#39;s DocType of the same name is simply not found.
     /// </remarks>
-    /// <param name="name">Name is the DocType&#39;s name, from the path. A name containing a space (\&quot;Sales Invoice\&quot;) arrives percent-encoded and is decoded before it is matched against the stored one.</param>
+    /// <param name="name">Name is the DocType&#39;s ADDRESS — \&quot;module.name\&quot;, e.g. \&quot;kb.page\&quot;. A name containing a space (\&quot;erp.Sales Invoice\&quot;) arrives percent-encoded and is decoded before it is matched against the stored one.</param>
     pplx::task<std::shared_ptr<DocType>> getFrameworkDoctypesByName(
         utility::string_t name
     ) const;
@@ -150,14 +136,6 @@ public:
     /// <param name="module">Module is the lane&#39;s registered name (\&quot;cms\&quot;, \&quot;erp\&quot;), from the path.</param>
     pplx::task<std::shared_ptr<ModuleState>> getFrameworkModulesByModule(
         utility::string_t module
-    ) const;
-    /// <summary>
-    /// Returns every (user, role) assignment in the caller&#39;s org.
-    /// </summary>
-    /// <remarks>
-    /// Returns every (user, role) assignment in the caller&#39;s org. Roles are what DocType permissions are written against, so this is the grant table the permission calculus resolves a member&#39;s rights from.
-    /// </remarks>
-    pplx::task<std::shared_ptr<RoleList>> getFrameworkRoles(
     ) const;
     /// <summary>
     /// Reports how much of the DocType surface the caller&#39;s org uses: how many DocTypes it has defined, and how many documents exist across them.
@@ -183,7 +161,7 @@ public:
     /// <remarks>
     /// Moves a submitted document to cancelled (docstatus 1 → 2) after its on_cancel hooks agree. Cancelling is terminal — a cancelled document cannot be re-submitted — but it CAN then be deleted.
     /// </remarks>
-    /// <param name="doctype">DocType is the document&#39;s DocType, from the path.</param>
+    /// <param name="doctype">DocType is the document&#39;s DocType, by ADDRESS — \&quot;module.name\&quot;, from the path.</param>
     /// <param name="name">Name is the document&#39;s name — its key within the DocType — from the path. A name containing a space arrives percent-encoded and is decoded before it is matched against the stored one.</param>
     pplx::task<std::map<utility::string_t, std::shared_ptr<Object>>> postFrameworkByDoctypeByNameCancel(
         utility::string_t doctype,
@@ -195,7 +173,7 @@ public:
     /// <remarks>
     /// Moves a draft to submitted (docstatus 0 → 1) after its on_submit hooks agree. A submitted document is IMMUTABLE: further writes and deletes are refused until it is cancelled. Only a submittable DocType has this lifecycle; any other docstatus is an illegal transition.
     /// </remarks>
-    /// <param name="doctype">DocType is the document&#39;s DocType, from the path.</param>
+    /// <param name="doctype">DocType is the document&#39;s DocType, by ADDRESS — \&quot;module.name\&quot;, from the path.</param>
     /// <param name="name">Name is the document&#39;s name — its key within the DocType — from the path. A name containing a space arrives percent-encoded and is decoded before it is matched against the stored one.</param>
     pplx::task<std::map<utility::string_t, std::shared_ptr<Object>>> postFrameworkByDoctypeByNameSubmit(
         utility::string_t doctype,
@@ -220,16 +198,6 @@ public:
     /// <param name="module">Module is the lane&#39;s registered name (\&quot;cms\&quot;, \&quot;erp\&quot;), from the path.</param>
     pplx::task<std::shared_ptr<Install>> postFrameworkModulesByModuleInstall(
         utility::string_t module
-    ) const;
-    /// <summary>
-    /// Grants one user one role in the caller&#39;s org — how a member gains rights on a DocType, since permissions name roles and never users.
-    /// </summary>
-    /// <remarks>
-    /// Grants one user one role in the caller&#39;s org — how a member gains rights on a DocType, since permissions name roles and never users. Manager-only. Answers 201.
-    /// </remarks>
-    /// <param name="roleAssignment"></param>
-    pplx::task<std::shared_ptr<RoleAssignment>> postFrameworkRoles(
-        std::shared_ptr<RoleAssignment> roleAssignment
     ) const;
     /// <summary>
     /// Replace a draft document&#39;s field data wholesale.

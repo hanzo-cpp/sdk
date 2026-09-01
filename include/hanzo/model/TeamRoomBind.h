@@ -78,12 +78,12 @@ public:
     void setLife(const utility::string_t& value);
 
     /// <summary>
-    /// Workspace names the workspace holding the room. It is required, because a room id is unique only within one and searching every workspace for a matching id would make the write&#39;s target depend on iteration order.
+    /// Space names the space holding the room. It is required, because a room id is unique only within one and searching every space for a matching id would make the write&#39;s target depend on iteration order.
     /// </summary>
-    utility::string_t getWorkspace() const;
-    bool workspaceIsSet() const;
-    void unsetWorkspace();
-    void setWorkspace(const utility::string_t& value);
+    utility::string_t getSpace() const;
+    bool spaceIsSet() const;
+    void unsetSpace();
+    void setSpace(const utility::string_t& value);
 
 
 protected:
@@ -96,8 +96,8 @@ protected:
     utility::string_t m_Life;
     bool m_LifeIsSet;
 
-    utility::string_t m_Workspace;
-    bool m_WorkspaceIsSet;
+    utility::string_t m_Space;
+    bool m_SpaceIsSet;
 
 };
 

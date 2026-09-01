@@ -53,7 +53,7 @@ public:
 
 
     /// <summary>
-    /// Active is whether the agent projects as a LIVE workspace member, derived from its registry status: empty, \&quot;active\&quot; and \&quot;ready\&quot; are live, anything else (archived/retired) is not. An inactive bot drops out of the Team list while its past authorship survives.
+    /// Active is whether the agent projects as a LIVE space member, derived from its registry status: empty, \&quot;active\&quot; and \&quot;ready\&quot; are live, anything else (archived/retired) is not. An inactive bot drops out of the Team list while its past authorship survives.
     /// </summary>
     bool isActive() const;
     bool activeIsSet() const;

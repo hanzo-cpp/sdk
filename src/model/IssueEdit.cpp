@@ -18,6 +18,8 @@ namespace model {
 
 IssueEdit::IssueEdit()
 {
+    m_Assignee = utility::conversions::to_string_t("");
+    m_AssigneeIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
     m_Key = utility::conversions::to_string_t("");
@@ -44,6 +46,11 @@ void IssueEdit::validate()
 web::json::value IssueEdit::toJson() const
 {
     web::json::value val = web::json::value::object();
+    if(m_AssigneeIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("assignee"))] = ModelBase::toJson(m_Assignee);
+    }
     if(m_DescriptionIsSet)
     {
         
@@ -81,6 +88,17 @@ web::json::value IssueEdit::toJson() const
 bool IssueEdit::fromJson(const web::json::value& val)
 {
     bool ok = true;
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("assignee"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("assignee")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setAssignee;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setAssignee);
+            setAssignee(refVal_setAssignee);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("description"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("description")));
@@ -157,6 +175,10 @@ void IssueEdit::toMultipart(std::shared_ptr<MultipartFormData> multipart, const 
     {
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
+    if(m_AssigneeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("assignee")), m_Assignee));
+    }
     if(m_DescriptionIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("description")), m_Description));
@@ -192,6 +214,12 @@ bool IssueEdit::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
 
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("assignee"))))
+    {
+        utility::string_t refVal_setAssignee;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("assignee"))), refVal_setAssignee );
+        setAssignee(refVal_setAssignee);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("description"))))
     {
         utility::string_t refVal_setDescription;
@@ -232,6 +260,27 @@ bool IssueEdit::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 }
 
 
+utility::string_t IssueEdit::getAssignee() const
+{
+    return m_Assignee;
+}
+
+
+void IssueEdit::setAssignee(const utility::string_t& value)
+{
+    m_Assignee = value;
+    m_AssigneeIsSet = true;
+}
+
+bool IssueEdit::assigneeIsSet() const
+{
+    return m_AssigneeIsSet;
+}
+
+void IssueEdit::unsetAssignee()
+{
+    m_AssigneeIsSet = false;
+}
 utility::string_t IssueEdit::getDescription() const
 {
     return m_Description;

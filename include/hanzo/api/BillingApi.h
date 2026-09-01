@@ -27,6 +27,8 @@
 #include "hanzo/model/AlertPatch.h"
 #include "hanzo/model/AlertSpec.h"
 #include "hanzo/AnyType.h"
+#include "hanzo/model/AutoRecharge.h"
+#include "hanzo/model/AutoRechargeEdit.h"
 #include "hanzo/model/BillingAccount.h"
 #include "hanzo/model/CapVerdict.h"
 #include "hanzo/model/Charged.h"
@@ -53,6 +55,7 @@
 #include "hanzo/model/Subscriptions.h"
 #include "hanzo/model/Tier.h"
 #include "hanzo/model/TopupIn.h"
+#include "hanzo/model/Transaction.h"
 #include "hanzo/model/Transactions.h"
 #include "hanzo/model/WireInstructions.h"
 #include <vector>
@@ -279,6 +282,14 @@ public:
     pplx::task<void> getBillingPortalMethods(
     ) const;
     /// <summary>
+    /// Reads the caller&#39;s auto-reload rule: top the balance up by &#x60;amountCents&#x60; whenever it falls below &#x60;thresholdCents&#x60;, charging the card on file off-session.
+    /// </summary>
+    /// <remarks>
+    /// Reads the caller&#39;s auto-reload rule: top the balance up by &#x60;amountCents&#x60; whenever it falls below &#x60;thresholdCents&#x60;, charging the card on file off-session. It is the same setting every prepaid AI account calls auto-reload.  An org that has never set one reads as disabled with zeroes rather than as an error — \&quot;no rule\&quot; answers the question — and &#x60;stored&#x60; is how a caller tells never-configured from deliberately-off.  A named handler, not a closure, so zipdoc can lift this prose into the registry.
+    /// </remarks>
+    pplx::task<std::shared_ptr<AutoRecharge>> getBillingRecharge(
+    ) const;
+    /// <summary>
     /// Answers the PUBLIC half of this org&#39;s processor configuration — the ids a browser needs to tokenize a card, and the environment it must tokenize against.
     /// </summary>
     /// <remarks>
@@ -315,6 +326,16 @@ public:
         boost::optional<utility::string_t> currency,
         boost::optional<utility::string_t> limit,
         boost::optional<utility::string_t> offset
+    ) const;
+    /// <summary>
+    /// Reads one ledger entry by its id.
+    /// </summary>
+    /// <remarks>
+    /// Reads one ledger entry by its id.  It is the MEMBER of the collection beside it rather than a second way to ask — the same rows GET /v1/billing/transactions lists, addressed one at a time. A top-up receipt is read here, because a receipt IS a ledger entry: the id this takes is the &#x60;transactionId&#x60; a top-up hands back.  The read is narrower than the list: commerce&#39;s core loads the row and refuses anything that is not a deposit, so a row that exists but is not a top-up answers 404. That asymmetry is stated rather than closed, because widening a money read to make two shapes match is not a change worth making for symmetry.  The books are the caller&#39;s own and cannot be named, so a guessed id misses rather than reaching another tenant&#39;s ledger.  A named handler, not a closure, so zipdoc can lift this prose into the registry.
+    /// </remarks>
+    /// <param name="id"></param>
+    pplx::task<std::shared_ptr<Transaction>> getBillingTransactionsById(
+        utility::string_t id
     ) const;
     /// <summary>
     /// Every billed call the caller&#39;s org made, attributed to a product
@@ -465,6 +486,16 @@ public:
     pplx::task<std::shared_ptr<Charged>> postBillingTopupToken(
         std::shared_ptr<TopupIn> topupIn,
         boost::optional<utility::string_t> xIdempotencyKey
+    ) const;
+    /// <summary>
+    /// Sets the caller&#39;s auto-reload rule, and answers with the rule as stored.
+    /// </summary>
+    /// <remarks>
+    /// Sets the caller&#39;s auto-reload rule, and answers with the rule as stored.  ENABLING REQUIRES A CARD ON FILE (400), because the sweep charges off-session: a rule naming no chargeable method is a promise the schedule cannot keep. A non-positive amount and a negative threshold are refused the same way, each naming the field that was wrong.  The rule is the caller&#39;s OWN. The org comes from the validated principal and the body names none, so there is no field a write could be steered through onto another tenant&#39;s schedule.  A named handler, not a closure, so zipdoc can lift this prose into the registry.
+    /// </remarks>
+    /// <param name="autoRechargeEdit"></param>
+    pplx::task<std::shared_ptr<AutoRecharge>> putBillingRecharge(
+        std::shared_ptr<AutoRechargeEdit> autoRechargeEdit
     ) const;
     /// <summary>
     /// Raise a draft invoice against a customer

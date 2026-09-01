@@ -53,6 +53,14 @@ public:
 
 
     /// <summary>
+    /// Assignee hands the work to somebody — a person or an agent, by the name they are known by on the forge. \&quot;\&quot; TAKES IT OFF whoever holds it, which is why this is a pointer: absent leaves the holder alone.  It is the other half of &#x60;claim&#x60;, which that handler already named: a claim takes work for the CALLER and refuses to name anyone else, because giving work away is a different act with different authority. This is that act, and until it existed a board could only be worked by whoever clicked first — an agent could never be given anything.
+    /// </summary>
+    utility::string_t getAssignee() const;
+    bool assigneeIsSet() const;
+    void unsetAssignee();
+    void setAssignee(const utility::string_t& value);
+
+    /// <summary>
     /// Description rewrites the body.
     /// </summary>
     utility::string_t getDescription() const;
@@ -102,6 +110,9 @@ public:
 
 
 protected:
+    utility::string_t m_Assignee;
+    bool m_AssigneeIsSet;
+
     utility::string_t m_Description;
     bool m_DescriptionIsSet;
 

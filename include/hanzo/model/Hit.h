@@ -53,7 +53,7 @@ public:
 
 
     /// <summary>
-    /// DocType is which kind of knowledge matched: kb-page (a wiki page), kb-memory (a unit of agent memory) or kb-source (a document a connector ingested). Those three are the whole indexed set, and searchIn.DocTypes filters on them.
+    /// DocType is which kind of knowledge matched, by address: kb.page (a wiki page), kb.memory (a unit of agent memory) or kb.source (a document a connector ingested). Those three are the whole indexed set, and searchIn.DocTypes filters on them.
     /// </summary>
     utility::string_t getDoctype() const;
     bool doctypeIsSet() const;

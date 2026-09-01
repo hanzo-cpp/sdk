@@ -78,7 +78,7 @@ public:
     void setDirect(bool value);
 
     /// <summary>
-    /// ID is the room document&#39;s own id, and the value the bind op addresses. It is unique within a workspace, not across the org.
+    /// ID is the room document&#39;s own id, and the value the bind op addresses. It is unique within a space, not across the org.
     /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
@@ -94,7 +94,7 @@ public:
     void setLife(const utility::string_t& value);
 
     /// <summary>
-    /// Members are the account uuids in the room, agents included: an agent projects as a workspace member under a uuid derived from its id, so a caller comparing this against GET /v1/team/bots learns which rooms an agent is in.
+    /// Members are the account uuids in the room, agents included: an agent projects as a space member under a uuid derived from its id, so a caller comparing this against GET /v1/team/bots learns which rooms an agent is in.
     /// </summary>
     std::vector<utility::string_t> getMembers() const;
     bool membersIsSet() const;
@@ -118,20 +118,20 @@ public:
     void setRPrivate(bool value);
 
     /// <summary>
+    /// Space is the space uuid holding this room. It is part of the room&#39;s address: two spaces of one org may each hold a room with the same name, and only the pair identifies one.
+    /// </summary>
+    utility::string_t getSpace() const;
+    bool spaceIsSet() const;
+    void unsetSpace();
+    void setSpace(const utility::string_t& value);
+
+    /// <summary>
     /// Topic is the room&#39;s own one-line subject, as the Team client sets it.
     /// </summary>
     utility::string_t getTopic() const;
     bool topicIsSet() const;
     void unsetTopic();
     void setTopic(const utility::string_t& value);
-
-    /// <summary>
-    /// Workspace is the workspace uuid holding this room. It is part of the room&#39;s address: two workspaces of one org may each hold a room with the same name, and only the pair identifies one.
-    /// </summary>
-    utility::string_t getWorkspace() const;
-    bool workspaceIsSet() const;
-    void unsetWorkspace();
-    void setWorkspace(const utility::string_t& value);
 
 
 protected:
@@ -159,11 +159,11 @@ protected:
     bool m_r_private;
     bool m_r_privateIsSet;
 
+    utility::string_t m_Space;
+    bool m_SpaceIsSet;
+
     utility::string_t m_Topic;
     bool m_TopicIsSet;
-
-    utility::string_t m_Workspace;
-    bool m_WorkspaceIsSet;
 
 };
 

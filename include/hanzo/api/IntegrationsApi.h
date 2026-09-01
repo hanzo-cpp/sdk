@@ -54,6 +54,12 @@
 #include "hanzo/model/GithubSearchOut.h"
 #include "hanzo/model/GithubSearchReq.h"
 #include "hanzo/model/GitlabProjectsOut.h"
+#include "hanzo/model/LinearBackfillIn.h"
+#include "hanzo/model/LinearBackfillResult.h"
+#include "hanzo/model/LinearClaimIn.h"
+#include "hanzo/model/LinearClaimOut.h"
+#include "hanzo/model/LinearCommentIn.h"
+#include "hanzo/model/LinearCommentOut.h"
 #include "hanzo/model/ListOut.h"
 #include "hanzo/model/ProviderView.h"
 #include "hanzo/model/RefreshOut.h"
@@ -462,6 +468,44 @@ public:
     /// The address the GitHub App delivers events to. A push is handed to the repository sync engine, and an issue or issue-comment event is mirrored into the native todo — idempotently, so the same issue re-syncs to one row however many times it is edited, closed or reopened. A repository event that puts a repo INTO the granted set (created, transferred, unarchived) raises one todo offering to import it; accepting means POSTing that repo to /v1/integrations/github/import. It never imports on its own.  It answers a benign 200 for everything it does not act on — the ping, other event types, an unknown installation — deliberately, so GitHub does not enter a retry storm over events that were never going to do anything. Only a bad signature and a genuine sync failure are non-200, and an oversized payload is refused outright.  Two sync rules are worth stating because neither is guessable. EVERY ref syncs, tags as well as branches, because releases are cut by tag and filtering them would stop publishing with nothing reporting a failure. And a delete is NEVER propagated: the native side is canonical, so an inbound delete never removes a native ref.  The payload is verified by HMAC against the webhook secret before it is parsed.  The caller here is the PLATFORM, not a Hanzo tenant, so there is no bearer and no principal. The signature check IS the authentication, and it fails closed. The tenant is never read from the payload either: it is resolved from the verified platform identifier through the connection map, so an event from a workspace nobody connected does nothing. Refusals are written with their own status rather than being flattened to a 500, so a rejected signature reads as 401 and a malformed body as 400.
     /// </remarks>
     pplx::task<void> postIntegrationsGithubWebhook(
+    ) const;
+    /// <summary>
+    /// Binds the caller&#39;s Linear organization to the org and seals the webhook secret.
+    /// </summary>
+    /// <remarks>
+    /// Binds the caller&#39;s Linear organization to the org and seals the webhook secret. The organization is READ from the caller&#39;s own key, never taken from the body: a person can only bind an organization they are a member of. An organization another org already holds is refused.
+    /// </remarks>
+    /// <param name="linearClaimIn"></param>
+    pplx::task<std::shared_ptr<LinearClaimOut>> postIntegrationsLinearClaim(
+        std::shared_ptr<LinearClaimIn> linearClaimIn
+    ) const;
+    /// <summary>
+    /// Posts a comment on a Linear issue with the caller&#39;s own key, so it carries their name.
+    /// </summary>
+    /// <remarks>
+    /// Posts a comment on a Linear issue with the caller&#39;s own key, so it carries their name. This is the op an agent is offered when it should answer in Linear rather than in chat.
+    /// </remarks>
+    /// <param name="linearCommentIn"></param>
+    pplx::task<std::shared_ptr<LinearCommentOut>> postIntegrationsLinearComments(
+        std::shared_ptr<LinearCommentIn> linearCommentIn
+    ) const;
+    /// <summary>
+    /// Seeds the native todo with the EXISTING Linear issues the caller&#39;s key can see (default state&#x3D;open); the webhook keeps them live thereafter.
+    /// </summary>
+    /// <remarks>
+    /// Seeds the native todo with the EXISTING Linear issues the caller&#39;s key can see (default state&#x3D;open); the webhook keeps them live thereafter. Synchronous and bounded, idempotent by ExtRef.
+    /// </remarks>
+    /// <param name="linearBackfillIn"></param>
+    pplx::task<std::shared_ptr<LinearBackfillResult>> postIntegrationsLinearIssuesBackfill(
+        std::shared_ptr<LinearBackfillIn> linearBackfillIn
+    ) const;
+    /// <summary>
+    /// Linear webhook
+    /// </summary>
+    /// <remarks>
+    /// The address Linear delivers Issue and Comment events to. An issue event is mirrored into the native todo — idempotently by identifier, so ENG-123 is one row however many times it is edited, moved or closed — and every issue and comment event is handed to the automations engine as a verified trigger, which is how an org runs an agent when an issue is assigned to it or a comment mentions it. A remove is never propagated: the native side is canonical.  It answers a benign 200 for what it does not act on — an unknown organization, other event types — so Linear does not retry-storm. A bad signature and a delivery older than a minute are 401; only a sink failure is 502.  The delivery names its Linear organization; that organization&#39;s own webhook secret — sealed at /v1/integrations/linear/claim — verifies the HMAC over the raw body, so the tenant is the organization the signature proves, never a header.  The caller here is the PLATFORM, not a Hanzo tenant, so there is no bearer and no principal. The signature check IS the authentication, and it fails closed. The tenant is never read from the payload either: it is resolved from the verified platform identifier through the connection map, so an event from a workspace nobody connected does nothing. Refusals are written with their own status rather than being flattened to a 500, so a rejected signature reads as 401 and a malformed body as 400.
+    /// </remarks>
+    pplx::task<void> postIntegrationsLinearWebhook(
     ) const;
     /// <summary>
     /// Receive OpenRouter Broadcast traces as usage rows
