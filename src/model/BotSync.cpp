@@ -18,7 +18,7 @@ namespace model {
 
 BotSync::BotSync()
 {
-    m_Projected = 0;
+    m_Projected = 0L;
     m_ProjectedIsSet = false;
     m_Synced = false;
     m_SyncedIsSet = false;
@@ -58,7 +58,7 @@ bool BotSync::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("projected")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setProjected;
+            int64_t refVal_setProjected;
             ok &= ModelBase::fromJson(fieldValue, refVal_setProjected);
             setProjected(refVal_setProjected);
             
@@ -106,7 +106,7 @@ bool BotSync::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("projected"))))
     {
-        int32_t refVal_setProjected;
+        int64_t refVal_setProjected;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("projected"))), refVal_setProjected );
         setProjected(refVal_setProjected);
     }
@@ -120,13 +120,13 @@ bool BotSync::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
 }
 
 
-int32_t BotSync::getProjected() const
+int64_t BotSync::getProjected() const
 {
     return m_Projected;
 }
 
 
-void BotSync::setProjected(int32_t value)
+void BotSync::setProjected(int64_t value)
 {
     m_Projected = value;
     m_ProjectedIsSet = true;

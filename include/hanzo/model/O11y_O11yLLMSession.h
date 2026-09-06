@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// CompletionTokens is the conversation&#39;s total output tokens.
     /// </summary>
-    int32_t getCompletionTokens() const;
+    int64_t getCompletionTokens() const;
     bool completionTokensIsSet() const;
     void unsetCompletionTokens();
-    void setCompletionTokens(int32_t value);
+    void setCompletionTokens(int64_t value);
 
     /// <summary>
     /// ID is the session id.
@@ -71,18 +71,18 @@ public:
     /// <summary>
     /// Observations is how many observations the conversation holds.
     /// </summary>
-    int32_t getObservations() const;
+    int64_t getObservations() const;
     bool observationsIsSet() const;
     void unsetObservations();
-    void setObservations(int32_t value);
+    void setObservations(int64_t value);
 
     /// <summary>
     /// PromptTokens is the conversation&#39;s total input tokens.
     /// </summary>
-    int32_t getPromptTokens() const;
+    int64_t getPromptTokens() const;
     bool promptTokensIsSet() const;
     void unsetPromptTokens();
-    void setPromptTokens(int32_t value);
+    void setPromptTokens(int64_t value);
 
     /// <summary>
     /// TotalCost is the conversation&#39;s total cost.
@@ -95,18 +95,18 @@ public:
     /// <summary>
     /// TotalTokens is the conversation&#39;s total tokens.
     /// </summary>
-    int32_t getTotalTokens() const;
+    int64_t getTotalTokens() const;
     bool totalTokensIsSet() const;
     void unsetTotalTokens();
-    void setTotalTokens(int32_t value);
+    void setTotalTokens(int64_t value);
 
     /// <summary>
     /// Traces is how many traces the conversation holds.
     /// </summary>
-    int32_t getTraces() const;
+    int64_t getTraces() const;
     bool tracesIsSet() const;
     void unsetTraces();
-    void setTraces(int32_t value);
+    void setTraces(int64_t value);
 
     /// <summary>
     /// UserID is the end user the conversation is attributed to.
@@ -118,25 +118,25 @@ public:
 
 
 protected:
-    int32_t m_CompletionTokens;
+    int64_t m_CompletionTokens;
     bool m_CompletionTokensIsSet;
 
     utility::string_t m_Id;
     bool m_IdIsSet;
 
-    int32_t m_Observations;
+    int64_t m_Observations;
     bool m_ObservationsIsSet;
 
-    int32_t m_PromptTokens;
+    int64_t m_PromptTokens;
     bool m_PromptTokensIsSet;
 
     double m_TotalCost;
     bool m_TotalCostIsSet;
 
-    int32_t m_TotalTokens;
+    int64_t m_TotalTokens;
     bool m_TotalTokensIsSet;
 
-    int32_t m_Traces;
+    int64_t m_Traces;
     bool m_TracesIsSet;
 
     utility::string_t m_UserId;

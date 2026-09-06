@@ -18,7 +18,7 @@ namespace model {
 
 ProvisionedSummary::ProvisionedSummary()
 {
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_Host = utility::conversions::to_string_t("");
     m_HostIsSet = false;
@@ -28,7 +28,7 @@ ProvisionedSummary::ProvisionedSummary()
     m_KindIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_Port = 0;
+    m_Port = 0L;
     m_PortIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
@@ -93,7 +93,7 @@ bool ProvisionedSummary::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -148,7 +148,7 @@ bool ProvisionedSummary::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("port")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPort;
+            int64_t refVal_setPort;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPort);
             setPort(refVal_setPort);
             
@@ -216,7 +216,7 @@ bool ProvisionedSummary::fromMultiPart(std::shared_ptr<MultipartFormData> multip
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -246,7 +246,7 @@ bool ProvisionedSummary::fromMultiPart(std::shared_ptr<MultipartFormData> multip
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("port"))))
     {
-        int32_t refVal_setPort;
+        int64_t refVal_setPort;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("port"))), refVal_setPort );
         setPort(refVal_setPort);
     }
@@ -260,13 +260,13 @@ bool ProvisionedSummary::fromMultiPart(std::shared_ptr<MultipartFormData> multip
 }
 
 
-int32_t ProvisionedSummary::getCreatedAt() const
+int64_t ProvisionedSummary::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void ProvisionedSummary::setCreatedAt(int32_t value)
+void ProvisionedSummary::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -365,13 +365,13 @@ void ProvisionedSummary::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t ProvisionedSummary::getPort() const
+int64_t ProvisionedSummary::getPort() const
 {
     return m_Port;
 }
 
 
-void ProvisionedSummary::setPort(int32_t value)
+void ProvisionedSummary::setPort(int64_t value)
 {
     m_Port = value;
     m_PortIsSet = true;

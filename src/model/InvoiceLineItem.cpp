@@ -18,7 +18,7 @@ namespace model {
 
 InvoiceLineItem::InvoiceLineItem()
 {
-    m_Amount = 0;
+    m_Amount = 0L;
     m_AmountIsSet = false;
     m_Currency = utility::conversions::to_string_t("");
     m_CurrencyIsSet = false;
@@ -36,11 +36,11 @@ InvoiceLineItem::InvoiceLineItem()
     m_PlanIdIsSet = false;
     m_PlanName = utility::conversions::to_string_t("");
     m_PlanNameIsSet = false;
-    m_Quantity = 0;
+    m_Quantity = 0L;
     m_QuantityIsSet = false;
     m_Type = utility::conversions::to_string_t("");
     m_TypeIsSet = false;
-    m_UnitPrice = 0;
+    m_UnitPrice = 0L;
     m_UnitPriceIsSet = false;
 }
 
@@ -128,7 +128,7 @@ bool InvoiceLineItem::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("amount")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAmount;
+            int64_t refVal_setAmount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAmount);
             setAmount(refVal_setAmount);
             
@@ -227,7 +227,7 @@ bool InvoiceLineItem::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("quantity")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setQuantity;
+            int64_t refVal_setQuantity;
             ok &= ModelBase::fromJson(fieldValue, refVal_setQuantity);
             setQuantity(refVal_setQuantity);
             
@@ -249,7 +249,7 @@ bool InvoiceLineItem::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("unitPrice")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUnitPrice;
+            int64_t refVal_setUnitPrice;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUnitPrice);
             setUnitPrice(refVal_setUnitPrice);
             
@@ -326,7 +326,7 @@ bool InvoiceLineItem::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("amount"))))
     {
-        int32_t refVal_setAmount;
+        int64_t refVal_setAmount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("amount"))), refVal_setAmount );
         setAmount(refVal_setAmount);
     }
@@ -380,7 +380,7 @@ bool InvoiceLineItem::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("quantity"))))
     {
-        int32_t refVal_setQuantity;
+        int64_t refVal_setQuantity;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("quantity"))), refVal_setQuantity );
         setQuantity(refVal_setQuantity);
     }
@@ -392,7 +392,7 @@ bool InvoiceLineItem::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("unitPrice"))))
     {
-        int32_t refVal_setUnitPrice;
+        int64_t refVal_setUnitPrice;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("unitPrice"))), refVal_setUnitPrice );
         setUnitPrice(refVal_setUnitPrice);
     }
@@ -400,13 +400,13 @@ bool InvoiceLineItem::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 }
 
 
-int32_t InvoiceLineItem::getAmount() const
+int64_t InvoiceLineItem::getAmount() const
 {
     return m_Amount;
 }
 
 
-void InvoiceLineItem::setAmount(int32_t value)
+void InvoiceLineItem::setAmount(int64_t value)
 {
     m_Amount = value;
     m_AmountIsSet = true;
@@ -589,13 +589,13 @@ void InvoiceLineItem::unsetPlanName()
 {
     m_PlanNameIsSet = false;
 }
-int32_t InvoiceLineItem::getQuantity() const
+int64_t InvoiceLineItem::getQuantity() const
 {
     return m_Quantity;
 }
 
 
-void InvoiceLineItem::setQuantity(int32_t value)
+void InvoiceLineItem::setQuantity(int64_t value)
 {
     m_Quantity = value;
     m_QuantityIsSet = true;
@@ -631,13 +631,13 @@ void InvoiceLineItem::unsetType()
 {
     m_TypeIsSet = false;
 }
-int32_t InvoiceLineItem::getUnitPrice() const
+int64_t InvoiceLineItem::getUnitPrice() const
 {
     return m_UnitPrice;
 }
 
 
-void InvoiceLineItem::setUnitPrice(int32_t value)
+void InvoiceLineItem::setUnitPrice(int64_t value)
 {
     m_UnitPrice = value;
     m_UnitPriceIsSet = true;

@@ -20,7 +20,7 @@ TeamMessage::TeamMessage()
 {
     m_Author = utility::conversions::to_string_t("");
     m_AuthorIsSet = false;
-    m_CreatedOn = 0;
+    m_CreatedOn = 0L;
     m_CreatedOnIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
@@ -90,7 +90,7 @@ bool TeamMessage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdOn")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedOn;
+            int64_t refVal_setCreatedOn;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedOn);
             setCreatedOn(refVal_setCreatedOn);
             
@@ -178,7 +178,7 @@ bool TeamMessage::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdOn"))))
     {
-        int32_t refVal_setCreatedOn;
+        int64_t refVal_setCreatedOn;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdOn"))), refVal_setCreatedOn );
         setCreatedOn(refVal_setCreatedOn);
     }
@@ -225,13 +225,13 @@ void TeamMessage::unsetAuthor()
 {
     m_AuthorIsSet = false;
 }
-int32_t TeamMessage::getCreatedOn() const
+int64_t TeamMessage::getCreatedOn() const
 {
     return m_CreatedOn;
 }
 
 
-void TeamMessage::setCreatedOn(int32_t value)
+void TeamMessage::setCreatedOn(int64_t value)
 {
     m_CreatedOn = value;
     m_CreatedOnIsSet = true;

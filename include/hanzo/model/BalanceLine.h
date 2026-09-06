@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// Amount is the balance as of the statement date, in whole cents, in its NATURAL sign: positive when the account behaved normally, on all three sides. Assets are debit-normal and shown as stored; liabilities and equity are credit-normal and flipped once here for display. A negative asset is a real overdraft, not a sign convention.
     /// </summary>
-    int32_t getAmount() const;
+    int64_t getAmount() const;
     bool amountIsSet() const;
     void unsetAmount();
-    void setAmount(int32_t value);
+    void setAmount(int64_t value);
 
     /// <summary>
     /// Name is the account&#39;s human name, or the derived line&#39;s own name.
@@ -89,7 +89,7 @@ protected:
     utility::string_t m_Account;
     bool m_AccountIsSet;
 
-    int32_t m_Amount;
+    int64_t m_Amount;
     bool m_AmountIsSet;
 
     utility::string_t m_Name;

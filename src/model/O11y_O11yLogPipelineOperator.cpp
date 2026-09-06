@@ -46,7 +46,7 @@ O11y_O11yLogPipelineOperator::O11y_O11yLogPipelineOperator()
     m_NameIsSet = false;
     m_On_error = utility::conversions::to_string_t("");
     m_On_errorIsSet = false;
-    m_OrderId = 0;
+    m_OrderId = 0L;
     m_OrderIdIsSet = false;
     m_Output = utility::conversions::to_string_t("");
     m_OutputIsSet = false;
@@ -413,7 +413,7 @@ bool O11y_O11yLogPipelineOperator::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("orderId")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOrderId;
+            int64_t refVal_setOrderId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOrderId);
             setOrderId(refVal_setOrderId);
             
@@ -806,7 +806,7 @@ bool O11y_O11yLogPipelineOperator::fromMultiPart(std::shared_ptr<MultipartFormDa
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("orderId"))))
     {
-        int32_t refVal_setOrderId;
+        int64_t refVal_setOrderId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("orderId"))), refVal_setOrderId );
         setOrderId(refVal_setOrderId);
     }
@@ -1213,13 +1213,13 @@ void O11y_O11yLogPipelineOperator::unsetOn_error()
 {
     m_On_errorIsSet = false;
 }
-int32_t O11y_O11yLogPipelineOperator::getOrderId() const
+int64_t O11y_O11yLogPipelineOperator::getOrderId() const
 {
     return m_OrderId;
 }
 
 
-void O11y_O11yLogPipelineOperator::setOrderId(int32_t value)
+void O11y_O11yLogPipelineOperator::setOrderId(int64_t value)
 {
     m_OrderId = value;
     m_OrderIdIsSet = true;

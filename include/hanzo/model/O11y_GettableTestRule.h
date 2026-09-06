@@ -52,10 +52,10 @@ public:
     /// O11y_GettableTestRule members
 
 
-    int32_t getAlertCount() const;
+    int64_t getAlertCount() const;
     bool alertCountIsSet() const;
     void unsetAlertCount();
-    void setAlertCount(int32_t value);
+    void setAlertCount(int64_t value);
 
     utility::string_t getMessage() const;
     bool messageIsSet() const;
@@ -64,7 +64,7 @@ public:
 
 
 protected:
-    int32_t m_AlertCount;
+    int64_t m_AlertCount;
     bool m_AlertCountIsSet;
 
     utility::string_t m_Message;

@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// AmountCents is the voucher&#39;s total, in whole cents — its total debit, which equals its total credit because every voucher balances. It is the size of the entry and carries no direction; the category says which way it went.
     /// </summary>
-    int32_t getAmountCents() const;
+    int64_t getAmountCents() const;
     bool amountCentsIsSet() const;
     void unsetAmountCents();
-    void setAmountCents(int32_t value);
+    void setAmountCents(int64_t value);
 
     /// <summary>
     /// Category is the chart-of-accounts NUMBER of the income or expense account this voucher touched — where it lands on the P&amp;L, not a free-text label.
@@ -111,14 +111,14 @@ public:
     /// <summary>
     /// VoucherID identifies the underlying double-entry voucher, so a caller can open the full set of legs behind this single register line.
     /// </summary>
-    int32_t getVoucherId() const;
+    int64_t getVoucherId() const;
     bool voucherIdIsSet() const;
     void unsetVoucherId();
-    void setVoucherId(int32_t value);
+    void setVoucherId(int64_t value);
 
 
 protected:
-    int32_t m_AmountCents;
+    int64_t m_AmountCents;
     bool m_AmountCentsIsSet;
 
     utility::string_t m_Category;
@@ -139,7 +139,7 @@ protected:
     utility::string_t m_Vendor;
     bool m_VendorIsSet;
 
-    int32_t m_VoucherId;
+    int64_t m_VoucherId;
     bool m_VoucherIdIsSet;
 
 };

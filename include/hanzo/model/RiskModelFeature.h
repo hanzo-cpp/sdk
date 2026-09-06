@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// Blind is how often this dimension took that neutral value for THIS organisation.
     /// </summary>
-    int32_t getBlind() const;
+    int64_t getBlind() const;
     bool blindIsSet() const;
     void unsetBlind();
-    void setBlind(int32_t value);
+    void setBlind(int64_t value);
 
     /// <summary>
     /// Citation is where those words come from, so the claim is checkable rather than asserted.
@@ -126,7 +126,7 @@ public:
 
 
 protected:
-    int32_t m_Blind;
+    int64_t m_Blind;
     bool m_BlindIsSet;
 
     utility::string_t m_Citation;

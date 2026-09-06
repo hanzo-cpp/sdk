@@ -52,10 +52,10 @@ public:
     /// Licensing_RevocationEntry members
 
 
-    int32_t getAt() const;
+    int64_t getAt() const;
     bool atIsSet() const;
     void unsetAt();
-    void setAt(int32_t value);
+    void setAt(int64_t value);
 
     utility::string_t getBy() const;
     bool byIsSet() const;
@@ -79,7 +79,7 @@ public:
 
 
 protected:
-    int32_t m_At;
+    int64_t m_At;
     bool m_AtIsSet;
 
     utility::string_t m_By;

@@ -112,10 +112,10 @@ public:
     /// <summary>
     /// Order is where it sits within its category, ascending.
     /// </summary>
-    int32_t getOrder() const;
+    int64_t getOrder() const;
     bool orderIsSet() const;
     void unsetOrder();
-    void setOrder(int32_t value);
+    void setOrder(int64_t value);
 
     /// <summary>
     /// Published is whether it is shown. Omitted means published — a taxon someone took the trouble to write is meant to be seen, and hiding one is the deliberate act.
@@ -164,7 +164,7 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_Order;
+    int64_t m_Order;
     bool m_OrderIsSet;
 
     bool m_Published;

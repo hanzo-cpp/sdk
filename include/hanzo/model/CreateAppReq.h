@@ -126,10 +126,10 @@ public:
     /// <summary>
     /// Port is the container port the app listens on.
     /// </summary>
-    int32_t getPort() const;
+    int64_t getPort() const;
     bool portIsSet() const;
     void unsetPort();
-    void setPort(int32_t value);
+    void setPort(int64_t value);
 
     /// <summary>
     /// Project is the project to create the application under, from the path.
@@ -142,10 +142,10 @@ public:
     /// <summary>
     /// Replicas is how many copies to run; clamped to the deployment&#39;s limit rather than refused.
     /// </summary>
-    int32_t getReplicas() const;
+    int64_t getReplicas() const;
     bool replicasIsSet() const;
     void unsetReplicas();
-    void setReplicas(int32_t value);
+    void setReplicas(int64_t value);
 
     /// <summary>
     /// Repo is the git source to build from, for source &#x60;git&#x60;.
@@ -174,10 +174,10 @@ public:
     /// <summary>
     /// StorageGB is the persistent volume size in GiB; absent means stateless. Clamped to the deployment&#39;s limit rather than refused.
     /// </summary>
-    int32_t getStorageGb() const;
+    int64_t getStorageGb() const;
     bool storageGbIsSet() const;
     void unsetStorageGb();
-    void setStorageGb(int32_t value);
+    void setStorageGb(int64_t value);
 
 
 protected:
@@ -205,13 +205,13 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_Port;
+    int64_t m_Port;
     bool m_PortIsSet;
 
     utility::string_t m_Project;
     bool m_ProjectIsSet;
 
-    int32_t m_Replicas;
+    int64_t m_Replicas;
     bool m_ReplicasIsSet;
 
     std::shared_ptr<GitOrigin> m_Repo;
@@ -223,7 +223,7 @@ protected:
     utility::string_t m_Source;
     bool m_SourceIsSet;
 
-    int32_t m_StorageGb;
+    int64_t m_StorageGb;
     bool m_StorageGbIsSet;
 
 };

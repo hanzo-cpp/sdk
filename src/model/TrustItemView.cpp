@@ -22,7 +22,7 @@ TrustItemView::TrustItemView()
     m_AttesterIsSet = false;
     m_Body = utility::conversions::to_string_t("");
     m_BodyIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_Document = utility::conversions::to_string_t("");
     m_DocumentIsSet = false;
@@ -40,7 +40,7 @@ TrustItemView::TrustItemView()
     m_SummaryIsSet = false;
     m_Tier = utility::conversions::to_string_t("");
     m_TierIsSet = false;
-    m_UpdatedAt = 0;
+    m_UpdatedAt = 0L;
     m_UpdatedAtIsSet = false;
 }
 
@@ -150,7 +150,7 @@ bool TrustItemView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -249,7 +249,7 @@ bool TrustItemView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updatedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdatedAt;
+            int64_t refVal_setUpdatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdatedAt);
             setUpdatedAt(refVal_setUpdatedAt);
             
@@ -338,7 +338,7 @@ bool TrustItemView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -392,7 +392,7 @@ bool TrustItemView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
-        int32_t refVal_setUpdatedAt;
+        int64_t refVal_setUpdatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))), refVal_setUpdatedAt );
         setUpdatedAt(refVal_setUpdatedAt);
     }
@@ -442,13 +442,13 @@ void TrustItemView::unsetBody()
 {
     m_BodyIsSet = false;
 }
-int32_t TrustItemView::getCreatedAt() const
+int64_t TrustItemView::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void TrustItemView::setCreatedAt(int32_t value)
+void TrustItemView::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -631,13 +631,13 @@ void TrustItemView::unsetTier()
 {
     m_TierIsSet = false;
 }
-int32_t TrustItemView::getUpdatedAt() const
+int64_t TrustItemView::getUpdatedAt() const
 {
     return m_UpdatedAt;
 }
 
 
-void TrustItemView::setUpdatedAt(int32_t value)
+void TrustItemView::setUpdatedAt(int64_t value)
 {
     m_UpdatedAt = value;
     m_UpdatedAtIsSet = true;

@@ -59,17 +59,17 @@ public:
     void unsetAuditLogs();
     void setAuditLogs(const std::vector<std::shared_ptr<Iam_AuditLog>>& value);
 
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
 
 protected:
     std::vector<std::shared_ptr<Iam_AuditLog>> m_AuditLogs;
     bool m_AuditLogsIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
 };

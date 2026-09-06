@@ -81,11 +81,11 @@ public:
     /// Returns one endpoint&#39;s per-attempt delivery log, newest first — the record of what was sent, what the subscriber answered, and how long it took. One event that retried three times appears as three rows sharing a delivery id. It is org-scoped exactly like every other route here: the endpoint lookup only ever finds THIS org&#39;s endpoint, so another org&#39;s id is a 404 and never a window onto its logs.
     /// </remarks>
     /// <param name="id"></param>
-    /// <param name="limit">Limit caps how many attempts come back: default 50, maximum 200. A value that is not a positive integer reads as the default. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many attempts come back: default 50, maximum 200. A value that is not a positive integer reads as the default. (optional, default to 0L)</param>
     /// <param name="status">Status narrows the log to one outcome: \&quot;ok\&quot;, \&quot;retrying\&quot; or \&quot;failed\&quot;. Empty returns every attempt. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<DeliveryList>> getWebhookByIdDeliveries(
         utility::string_t id,
-        boost::optional<int32_t> limit,
+        boost::optional<int64_t> limit,
         boost::optional<utility::string_t> status
     ) const;
     /// <summary>

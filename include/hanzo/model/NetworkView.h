@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// Nodes is how many edge-routers the org has on the fabric.
     /// </summary>
-    int32_t getNodes() const;
+    int64_t getNodes() const;
     bool nodesIsSet() const;
     void unsetNodes();
-    void setNodes(int32_t value);
+    void setNodes(int64_t value);
 
     /// <summary>
     /// Status is \&quot;connected\&quot; once at least one of the org&#39;s edge-routers is online, else \&quot;provisioning\&quot; (routers exist but none has dialed home).
@@ -92,7 +92,7 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_Nodes;
+    int64_t m_Nodes;
     bool m_NodesIsSet;
 
     utility::string_t m_Status;

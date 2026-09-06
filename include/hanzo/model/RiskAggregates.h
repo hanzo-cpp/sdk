@@ -54,18 +54,18 @@ public:
     /// <summary>
     /// Bound is the most they can hold. It is a per-organisation bound: at it, this organisation degrades and no other one notices.
     /// </summary>
-    int32_t getBound() const;
+    int64_t getBound() const;
     bool boundIsSet() const;
     void unsetBound();
-    void setBound(int32_t value);
+    void setBound(int64_t value);
 
     /// <summary>
     /// Forgotten is how many of its own subjects have been dropped to stay inside that bound. Each one reads as inactive until it is active again.
     /// </summary>
-    int32_t getForgotten() const;
+    int64_t getForgotten() const;
     bool forgottenIsSet() const;
     void unsetForgotten();
-    void setForgotten(int32_t value);
+    void setForgotten(int64_t value);
 
     /// <summary>
     /// Saturated is whether the bound is binding right now. The two counts are its evidence; this is the state to act on.
@@ -78,23 +78,23 @@ public:
     /// <summary>
     /// Subjects is how many of this organisation&#39;s subjects the aggregates hold.
     /// </summary>
-    int32_t getSubjects() const;
+    int64_t getSubjects() const;
     bool subjectsIsSet() const;
     void unsetSubjects();
-    void setSubjects(int32_t value);
+    void setSubjects(int64_t value);
 
 
 protected:
-    int32_t m_Bound;
+    int64_t m_Bound;
     bool m_BoundIsSet;
 
-    int32_t m_Forgotten;
+    int64_t m_Forgotten;
     bool m_ForgottenIsSet;
 
     bool m_Saturated;
     bool m_SaturatedIsSet;
 
-    int32_t m_Subjects;
+    int64_t m_Subjects;
     bool m_SubjectsIsSet;
 
 };

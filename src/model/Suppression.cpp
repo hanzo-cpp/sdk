@@ -22,7 +22,7 @@ Suppression::Suppression()
     m_AddressIsSet = false;
     m_Channel = utility::conversions::to_string_t("");
     m_ChannelIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_Reason = utility::conversions::to_string_t("");
     m_ReasonIsSet = false;
@@ -94,7 +94,7 @@ bool Suppression::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -162,7 +162,7 @@ bool Suppression::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -218,13 +218,13 @@ void Suppression::unsetChannel()
 {
     m_ChannelIsSet = false;
 }
-int32_t Suppression::getCreatedAt() const
+int64_t Suppression::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void Suppression::setCreatedAt(int32_t value)
+void Suppression::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;

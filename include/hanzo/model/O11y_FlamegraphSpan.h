@@ -77,10 +77,10 @@ public:
     void unsetHasError();
     void setHasError(bool value);
 
-    int32_t getLevel() const;
+    int64_t getLevel() const;
     bool levelIsSet() const;
     void unsetLevel();
-    void setLevel(int32_t value);
+    void setLevel(int64_t value);
 
     utility::string_t getName() const;
     bool nameIsSet() const;
@@ -121,7 +121,7 @@ protected:
     bool m_HasError;
     bool m_HasErrorIsSet;
 
-    int32_t m_Level;
+    int64_t m_Level;
     bool m_LevelIsSet;
 
     utility::string_t m_Name;

@@ -18,23 +18,23 @@ namespace model {
 
 SelfRank::SelfRank()
 {
-    m_CostCents = 0;
+    m_CostCents = 0L;
     m_CostCentsIsSet = false;
     m_Handle = utility::conversions::to_string_t("");
     m_HandleIsSet = false;
     m_Listed = false;
     m_ListedIsSet = false;
-    m_Metric = 0;
+    m_Metric = 0L;
     m_MetricIsSet = false;
-    m_OfTotal = 0;
+    m_OfTotal = 0L;
     m_OfTotalIsSet = false;
-    m_Rank = 0;
+    m_Rank = 0L;
     m_RankIsSet = false;
     m_Ranked = false;
     m_RankedIsSet = false;
-    m_Requests = 0;
+    m_Requests = 0L;
     m_RequestsIsSet = false;
-    m_Tokens = 0;
+    m_Tokens = 0L;
     m_TokensIsSet = false;
 }
 
@@ -107,7 +107,7 @@ bool SelfRank::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("costCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCostCents;
+            int64_t refVal_setCostCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCostCents);
             setCostCents(refVal_setCostCents);
             
@@ -140,7 +140,7 @@ bool SelfRank::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("metric")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMetric;
+            int64_t refVal_setMetric;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMetric);
             setMetric(refVal_setMetric);
             
@@ -151,7 +151,7 @@ bool SelfRank::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("ofTotal")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOfTotal;
+            int64_t refVal_setOfTotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOfTotal);
             setOfTotal(refVal_setOfTotal);
             
@@ -162,7 +162,7 @@ bool SelfRank::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("rank")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRank;
+            int64_t refVal_setRank;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRank);
             setRank(refVal_setRank);
             
@@ -184,7 +184,7 @@ bool SelfRank::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("requests")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRequests;
+            int64_t refVal_setRequests;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRequests);
             setRequests(refVal_setRequests);
             
@@ -195,7 +195,7 @@ bool SelfRank::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTokens;
+            int64_t refVal_setTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTokens);
             setTokens(refVal_setTokens);
             
@@ -260,7 +260,7 @@ bool SelfRank::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))))
     {
-        int32_t refVal_setCostCents;
+        int64_t refVal_setCostCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))), refVal_setCostCents );
         setCostCents(refVal_setCostCents);
     }
@@ -278,19 +278,19 @@ bool SelfRank::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("metric"))))
     {
-        int32_t refVal_setMetric;
+        int64_t refVal_setMetric;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("metric"))), refVal_setMetric );
         setMetric(refVal_setMetric);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("ofTotal"))))
     {
-        int32_t refVal_setOfTotal;
+        int64_t refVal_setOfTotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ofTotal"))), refVal_setOfTotal );
         setOfTotal(refVal_setOfTotal);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("rank"))))
     {
-        int32_t refVal_setRank;
+        int64_t refVal_setRank;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("rank"))), refVal_setRank );
         setRank(refVal_setRank);
     }
@@ -302,13 +302,13 @@ bool SelfRank::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("requests"))))
     {
-        int32_t refVal_setRequests;
+        int64_t refVal_setRequests;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("requests"))), refVal_setRequests );
         setRequests(refVal_setRequests);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tokens"))))
     {
-        int32_t refVal_setTokens;
+        int64_t refVal_setTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("tokens"))), refVal_setTokens );
         setTokens(refVal_setTokens);
     }
@@ -316,13 +316,13 @@ bool SelfRank::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 }
 
 
-int32_t SelfRank::getCostCents() const
+int64_t SelfRank::getCostCents() const
 {
     return m_CostCents;
 }
 
 
-void SelfRank::setCostCents(int32_t value)
+void SelfRank::setCostCents(int64_t value)
 {
     m_CostCents = value;
     m_CostCentsIsSet = true;
@@ -379,13 +379,13 @@ void SelfRank::unsetListed()
 {
     m_ListedIsSet = false;
 }
-int32_t SelfRank::getMetric() const
+int64_t SelfRank::getMetric() const
 {
     return m_Metric;
 }
 
 
-void SelfRank::setMetric(int32_t value)
+void SelfRank::setMetric(int64_t value)
 {
     m_Metric = value;
     m_MetricIsSet = true;
@@ -400,13 +400,13 @@ void SelfRank::unsetMetric()
 {
     m_MetricIsSet = false;
 }
-int32_t SelfRank::getOfTotal() const
+int64_t SelfRank::getOfTotal() const
 {
     return m_OfTotal;
 }
 
 
-void SelfRank::setOfTotal(int32_t value)
+void SelfRank::setOfTotal(int64_t value)
 {
     m_OfTotal = value;
     m_OfTotalIsSet = true;
@@ -421,13 +421,13 @@ void SelfRank::unsetOfTotal()
 {
     m_OfTotalIsSet = false;
 }
-int32_t SelfRank::getRank() const
+int64_t SelfRank::getRank() const
 {
     return m_Rank;
 }
 
 
-void SelfRank::setRank(int32_t value)
+void SelfRank::setRank(int64_t value)
 {
     m_Rank = value;
     m_RankIsSet = true;
@@ -463,13 +463,13 @@ void SelfRank::unsetRanked()
 {
     m_RankedIsSet = false;
 }
-int32_t SelfRank::getRequests() const
+int64_t SelfRank::getRequests() const
 {
     return m_Requests;
 }
 
 
-void SelfRank::setRequests(int32_t value)
+void SelfRank::setRequests(int64_t value)
 {
     m_Requests = value;
     m_RequestsIsSet = true;
@@ -484,13 +484,13 @@ void SelfRank::unsetRequests()
 {
     m_RequestsIsSet = false;
 }
-int32_t SelfRank::getTokens() const
+int64_t SelfRank::getTokens() const
 {
     return m_Tokens;
 }
 
 
-void SelfRank::setTokens(int32_t value)
+void SelfRank::setTokens(int64_t value)
 {
     m_Tokens = value;
     m_TokensIsSet = true;

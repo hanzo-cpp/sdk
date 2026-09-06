@@ -63,18 +63,18 @@ public:
     /// <summary>
     /// of those, how many fired the metric event
     /// </summary>
-    int32_t getConverted() const;
+    int64_t getConverted() const;
     bool convertedIsSet() const;
     void unsetConverted();
-    void setConverted(int32_t value);
+    void setConverted(int64_t value);
 
     /// <summary>
     /// subjects the arm enrolled — the denominator
     /// </summary>
-    int32_t getExposed() const;
+    int64_t getExposed() const;
     bool exposedIsSet() const;
     void unsetExposed();
-    void setExposed(int32_t value);
+    void setExposed(int64_t value);
 
     /// <summary>
     /// relative to control: (rate-ctrl)/ctrl
@@ -129,10 +129,10 @@ protected:
     bool m_Control;
     bool m_ControlIsSet;
 
-    int32_t m_Converted;
+    int64_t m_Converted;
     bool m_ConvertedIsSet;
 
-    int32_t m_Exposed;
+    int64_t m_Exposed;
     bool m_ExposedIsSet;
 
     double m_Lift;

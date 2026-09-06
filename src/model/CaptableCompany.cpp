@@ -18,7 +18,7 @@ namespace model {
 
 CaptableCompany::CaptableCompany()
 {
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
@@ -32,7 +32,7 @@ CaptableCompany::CaptableCompany()
     m_NameIsSet = false;
     m_PublicId = utility::conversions::to_string_t("");
     m_PublicIdIsSet = false;
-    m_UpdatedAt = 0;
+    m_UpdatedAt = 0L;
     m_UpdatedAtIsSet = false;
 }
 
@@ -100,7 +100,7 @@ bool CaptableCompany::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -177,7 +177,7 @@ bool CaptableCompany::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updatedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdatedAt;
+            int64_t refVal_setUpdatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdatedAt);
             setUpdatedAt(refVal_setUpdatedAt);
             
@@ -238,7 +238,7 @@ bool CaptableCompany::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -280,7 +280,7 @@ bool CaptableCompany::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
-        int32_t refVal_setUpdatedAt;
+        int64_t refVal_setUpdatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))), refVal_setUpdatedAt );
         setUpdatedAt(refVal_setUpdatedAt);
     }
@@ -288,13 +288,13 @@ bool CaptableCompany::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 }
 
 
-int32_t CaptableCompany::getCreatedAt() const
+int64_t CaptableCompany::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void CaptableCompany::setCreatedAt(int32_t value)
+void CaptableCompany::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -435,13 +435,13 @@ void CaptableCompany::unsetPublicId()
 {
     m_PublicIdIsSet = false;
 }
-int32_t CaptableCompany::getUpdatedAt() const
+int64_t CaptableCompany::getUpdatedAt() const
 {
     return m_UpdatedAt;
 }
 
 
-void CaptableCompany::setUpdatedAt(int32_t value)
+void CaptableCompany::setUpdatedAt(int64_t value)
 {
     m_UpdatedAt = value;
     m_UpdatedAtIsSet = true;

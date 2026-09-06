@@ -59,17 +59,17 @@ public:
     void unsetInvitations();
     void setInvitations(const std::vector<std::shared_ptr<Iam_Invitation>>& value);
 
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
 
 protected:
     std::vector<std::shared_ptr<Iam_Invitation>> m_Invitations;
     bool m_InvitationsIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
 };

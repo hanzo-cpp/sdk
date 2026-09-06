@@ -20,7 +20,7 @@ CreditGrant::CreditGrant()
 {
     m_Active = false;
     m_ActiveIsSet = false;
-    m_AmountCents = 0;
+    m_AmountCents = 0L;
     m_AmountCentsIsSet = false;
     m_CreatedAt = utility::conversions::to_string_t("");
     m_CreatedAtIsSet = false;
@@ -34,9 +34,9 @@ CreditGrant::CreditGrant()
     m_IdIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_Priority = 0;
+    m_Priority = 0L;
     m_PriorityIsSet = false;
-    m_RemainingCents = 0;
+    m_RemainingCents = 0L;
     m_RemainingCentsIsSet = false;
     m_Tags = utility::conversions::to_string_t("");
     m_TagsIsSet = false;
@@ -146,7 +146,7 @@ bool CreditGrant::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("amountCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAmountCents;
+            int64_t refVal_setAmountCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAmountCents);
             setAmountCents(refVal_setAmountCents);
             
@@ -223,7 +223,7 @@ bool CreditGrant::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("priority")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPriority;
+            int64_t refVal_setPriority;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPriority);
             setPriority(refVal_setPriority);
             
@@ -234,7 +234,7 @@ bool CreditGrant::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("remainingCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRemainingCents;
+            int64_t refVal_setRemainingCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRemainingCents);
             setRemainingCents(refVal_setRemainingCents);
             
@@ -354,7 +354,7 @@ bool CreditGrant::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("amountCents"))))
     {
-        int32_t refVal_setAmountCents;
+        int64_t refVal_setAmountCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("amountCents"))), refVal_setAmountCents );
         setAmountCents(refVal_setAmountCents);
     }
@@ -396,13 +396,13 @@ bool CreditGrant::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("priority"))))
     {
-        int32_t refVal_setPriority;
+        int64_t refVal_setPriority;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("priority"))), refVal_setPriority );
         setPriority(refVal_setPriority);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("remainingCents"))))
     {
-        int32_t refVal_setRemainingCents;
+        int64_t refVal_setRemainingCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("remainingCents"))), refVal_setRemainingCents );
         setRemainingCents(refVal_setRemainingCents);
     }
@@ -449,13 +449,13 @@ void CreditGrant::unsetActive()
 {
     m_ActiveIsSet = false;
 }
-int32_t CreditGrant::getAmountCents() const
+int64_t CreditGrant::getAmountCents() const
 {
     return m_AmountCents;
 }
 
 
-void CreditGrant::setAmountCents(int32_t value)
+void CreditGrant::setAmountCents(int64_t value)
 {
     m_AmountCents = value;
     m_AmountCentsIsSet = true;
@@ -596,13 +596,13 @@ void CreditGrant::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t CreditGrant::getPriority() const
+int64_t CreditGrant::getPriority() const
 {
     return m_Priority;
 }
 
 
-void CreditGrant::setPriority(int32_t value)
+void CreditGrant::setPriority(int64_t value)
 {
     m_Priority = value;
     m_PriorityIsSet = true;
@@ -617,13 +617,13 @@ void CreditGrant::unsetPriority()
 {
     m_PriorityIsSet = false;
 }
-int32_t CreditGrant::getRemainingCents() const
+int64_t CreditGrant::getRemainingCents() const
 {
     return m_RemainingCents;
 }
 
 
-void CreditGrant::setRemainingCents(int32_t value)
+void CreditGrant::setRemainingCents(int64_t value)
 {
     m_RemainingCents = value;
     m_RemainingCentsIsSet = true;

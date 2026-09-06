@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// Bytes is the store&#39;s size on disk, present only once it exists. It is what this Base occupies, not a quota.
     /// </summary>
-    int32_t getBytes() const;
+    int64_t getBytes() const;
     bool bytesIsSet() const;
     void unsetBytes();
-    void setBytes(int32_t value);
+    void setBytes(int64_t value);
 
     /// <summary>
     /// Exists reports whether this Base&#39;s store has been provisioned. False is an org nobody has stored anything for yet, which is a state to name rather than an error: the store is created the first time anything writes.
@@ -78,7 +78,7 @@ public:
 
 
 protected:
-    int32_t m_Bytes;
+    int64_t m_Bytes;
     bool m_BytesIsSet;
 
     bool m_Exists;

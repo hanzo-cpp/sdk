@@ -55,18 +55,18 @@ public:
     /// <summary>
     /// AlreadyEnrolled is how many this sequence had already taken and were left alone.
     /// </summary>
-    int32_t getAlreadyEnrolled() const;
+    int64_t getAlreadyEnrolled() const;
     bool alreadyEnrolledIsSet() const;
     void unsetAlreadyEnrolled();
-    void setAlreadyEnrolled(int32_t value);
+    void setAlreadyEnrolled(int64_t value);
 
     /// <summary>
     /// Enrolled is how many started a walk on this call.
     /// </summary>
-    int32_t getEnrolled() const;
+    int64_t getEnrolled() const;
     bool enrolledIsSet() const;
     void unsetEnrolled();
-    void setEnrolled(int32_t value);
+    void setEnrolled(int64_t value);
 
     /// <summary>
     /// EnrollmentID names the walk, and is present ONLY for a single-address enroll — a fan-out has many, and reporting one of them would be a lie.
@@ -79,23 +79,23 @@ public:
     /// <summary>
     /// Resolved is how many addresses the request named — 1 for an address, the audience&#39;s deliverable count for an audience.
     /// </summary>
-    int32_t getResolved() const;
+    int64_t getResolved() const;
     bool resolvedIsSet() const;
     void unsetResolved();
-    void setResolved(int32_t value);
+    void setResolved(int64_t value);
 
 
 protected:
-    int32_t m_AlreadyEnrolled;
+    int64_t m_AlreadyEnrolled;
     bool m_AlreadyEnrolledIsSet;
 
-    int32_t m_Enrolled;
+    int64_t m_Enrolled;
     bool m_EnrolledIsSet;
 
     utility::string_t m_EnrollmentId;
     bool m_EnrollmentIdIsSet;
 
-    int32_t m_Resolved;
+    int64_t m_Resolved;
     bool m_ResolvedIsSet;
 
 };

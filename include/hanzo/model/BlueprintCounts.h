@@ -54,58 +54,58 @@ public:
     /// <summary>
     /// Principles is how many spine archetypes the playbook carries (64 in the shipped corpus).
     /// </summary>
-    int32_t getPrinciples() const;
+    int64_t getPrinciples() const;
     bool principlesIsSet() const;
     void unsetPrinciples();
-    void setPrinciples(int32_t value);
+    void setPrinciples(int64_t value);
 
     /// <summary>
     /// Sections is how many phases the journey has.
     /// </summary>
-    int32_t getSections() const;
+    int64_t getSections() const;
     bool sectionsIsSet() const;
     void unsetSections();
-    void setSections(int32_t value);
+    void setSections(int64_t value);
 
     /// <summary>
     /// Steps is how many checklist items the playbook holds, DISABLED ONES INCLUDED — this counts the authored document, not the journey an org runs, so it is normally larger than the &#x60;total&#x60; on a progress view.
     /// </summary>
-    int32_t getSteps() const;
+    int64_t getSteps() const;
     bool stepsIsSet() const;
     void unsetSteps();
-    void setSteps(int32_t value);
+    void setSteps(int64_t value);
 
     /// <summary>
     /// Strategies is how many tactics the corpus holds, again counting disabled ones.
     /// </summary>
-    int32_t getStrategies() const;
+    int64_t getStrategies() const;
     bool strategiesIsSet() const;
     void unsetStrategies();
-    void setStrategies(int32_t value);
+    void setStrategies(int64_t value);
 
     /// <summary>
     /// Templates is how many reusable prompts the playbook carries.
     /// </summary>
-    int32_t getTemplates() const;
+    int64_t getTemplates() const;
     bool templatesIsSet() const;
     void unsetTemplates();
-    void setTemplates(int32_t value);
+    void setTemplates(int64_t value);
 
 
 protected:
-    int32_t m_Principles;
+    int64_t m_Principles;
     bool m_PrinciplesIsSet;
 
-    int32_t m_Sections;
+    int64_t m_Sections;
     bool m_SectionsIsSet;
 
-    int32_t m_Steps;
+    int64_t m_Steps;
     bool m_StepsIsSet;
 
-    int32_t m_Strategies;
+    int64_t m_Strategies;
     bool m_StrategiesIsSet;
 
-    int32_t m_Templates;
+    int64_t m_Templates;
     bool m_TemplatesIsSet;
 
 };

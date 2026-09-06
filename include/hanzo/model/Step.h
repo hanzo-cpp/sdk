@@ -63,18 +63,18 @@ public:
     /// <summary>
     /// CreatedAt is unix seconds, server-assigned.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// DelaySeconds is how long after the previous step this one sends (after enrollment, for step 0).
     /// </summary>
-    int32_t getDelaySeconds() const;
+    int64_t getDelaySeconds() const;
     bool delaySecondsIsSet() const;
     void unsetDelaySeconds();
-    void setDelaySeconds(int32_t value);
+    void setDelaySeconds(int64_t value);
 
     /// <summary>
     /// ID is the server-assigned step id (\&quot;step_\&quot; + 128 random bits).
@@ -87,10 +87,10 @@ public:
     /// <summary>
     /// Idx is the step&#39;s 0-based position, assigned by appending: a new step always lands after the last one.
     /// </summary>
-    int32_t getIdx() const;
+    int64_t getIdx() const;
     bool idxIsSet() const;
     void unsetIdx();
-    void setIdx(int32_t value);
+    void setIdx(int64_t value);
 
     /// <summary>
     /// SequenceID is the sequence this step belongs to.
@@ -113,16 +113,16 @@ protected:
     utility::string_t m_Body;
     bool m_BodyIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
-    int32_t m_DelaySeconds;
+    int64_t m_DelaySeconds;
     bool m_DelaySecondsIsSet;
 
     utility::string_t m_Id;
     bool m_IdIsSet;
 
-    int32_t m_Idx;
+    int64_t m_Idx;
     bool m_IdxIsSet;
 
     utility::string_t m_SequenceId;

@@ -20,9 +20,9 @@ AdCampaign::AdCampaign()
 {
     m_Account = utility::conversions::to_string_t("");
     m_AccountIsSet = false;
-    m_Budget = 0;
+    m_Budget = 0L;
     m_BudgetIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_ExternalId = utility::conversions::to_string_t("");
     m_ExternalIdIsSet = false;
@@ -34,11 +34,11 @@ AdCampaign::AdCampaign()
     m_ObjectiveIsSet = false;
     m_Platform = utility::conversions::to_string_t("");
     m_PlatformIsSet = false;
-    m_Spend = 0;
+    m_Spend = 0L;
     m_SpendIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
-    m_UpdatedAt = 0;
+    m_UpdatedAt = 0L;
     m_UpdatedAtIsSet = false;
 }
 
@@ -132,7 +132,7 @@ bool AdCampaign::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("budget")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBudget;
+            int64_t refVal_setBudget;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBudget);
             setBudget(refVal_setBudget);
             
@@ -143,7 +143,7 @@ bool AdCampaign::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -209,7 +209,7 @@ bool AdCampaign::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("spend")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSpend;
+            int64_t refVal_setSpend;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSpend);
             setSpend(refVal_setSpend);
             
@@ -231,7 +231,7 @@ bool AdCampaign::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updatedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdatedAt;
+            int64_t refVal_setUpdatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdatedAt);
             setUpdatedAt(refVal_setUpdatedAt);
             
@@ -310,13 +310,13 @@ bool AdCampaign::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("budget"))))
     {
-        int32_t refVal_setBudget;
+        int64_t refVal_setBudget;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("budget"))), refVal_setBudget );
         setBudget(refVal_setBudget);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -352,7 +352,7 @@ bool AdCampaign::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("spend"))))
     {
-        int32_t refVal_setSpend;
+        int64_t refVal_setSpend;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("spend"))), refVal_setSpend );
         setSpend(refVal_setSpend);
     }
@@ -364,7 +364,7 @@ bool AdCampaign::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
-        int32_t refVal_setUpdatedAt;
+        int64_t refVal_setUpdatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))), refVal_setUpdatedAt );
         setUpdatedAt(refVal_setUpdatedAt);
     }
@@ -393,13 +393,13 @@ void AdCampaign::unsetAccount()
 {
     m_AccountIsSet = false;
 }
-int32_t AdCampaign::getBudget() const
+int64_t AdCampaign::getBudget() const
 {
     return m_Budget;
 }
 
 
-void AdCampaign::setBudget(int32_t value)
+void AdCampaign::setBudget(int64_t value)
 {
     m_Budget = value;
     m_BudgetIsSet = true;
@@ -414,13 +414,13 @@ void AdCampaign::unsetBudget()
 {
     m_BudgetIsSet = false;
 }
-int32_t AdCampaign::getCreatedAt() const
+int64_t AdCampaign::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void AdCampaign::setCreatedAt(int32_t value)
+void AdCampaign::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -540,13 +540,13 @@ void AdCampaign::unsetPlatform()
 {
     m_PlatformIsSet = false;
 }
-int32_t AdCampaign::getSpend() const
+int64_t AdCampaign::getSpend() const
 {
     return m_Spend;
 }
 
 
-void AdCampaign::setSpend(int32_t value)
+void AdCampaign::setSpend(int64_t value)
 {
     m_Spend = value;
     m_SpendIsSet = true;
@@ -582,13 +582,13 @@ void AdCampaign::unsetStatus()
 {
     m_StatusIsSet = false;
 }
-int32_t AdCampaign::getUpdatedAt() const
+int64_t AdCampaign::getUpdatedAt() const
 {
     return m_UpdatedAt;
 }
 
 
-void AdCampaign::setUpdatedAt(int32_t value)
+void AdCampaign::setUpdatedAt(int64_t value)
 {
     m_UpdatedAt = value;
     m_UpdatedAtIsSet = true;

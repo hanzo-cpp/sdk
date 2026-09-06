@@ -156,7 +156,7 @@ pplx::task<std::shared_ptr<FormationView>> CompanyApi::getCompany() const
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<RegisterPage>> CompanyApi::getCompanyRegister(boost::optional<utility::string_t> stage, boost::optional<utility::string_t> structure, boost::optional<int32_t> limit, boost::optional<int32_t> offset) const
+pplx::task<std::shared_ptr<RegisterPage>> CompanyApi::getCompanyRegister(boost::optional<utility::string_t> stage, boost::optional<utility::string_t> structure, boost::optional<int64_t> limit, boost::optional<int64_t> offset) const
 {
 
 
@@ -418,7 +418,7 @@ pplx::task<std::shared_ptr<RegisterCounts>> CompanyApi::getCompanyRegisterSummar
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ReviewQueue>> CompanyApi::getCompanyReview(boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<ReviewQueue>> CompanyApi::getCompanyReview(boost::optional<int64_t> limit) const
 {
 
 

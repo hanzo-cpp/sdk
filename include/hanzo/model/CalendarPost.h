@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// CreatedAt is unix seconds when the post was added, server-assigned and never rewritten.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// Error is the exact reason the last publish attempt failed — the honest record behind a \&quot;failed\&quot; status, never a faked success.
@@ -95,18 +95,18 @@ public:
     /// <summary>
     /// PublishedAt is when the publish succeeded; 0 until it does.
     /// </summary>
-    int32_t getPublishedAt() const;
+    int64_t getPublishedAt() const;
     bool publishedAtIsSet() const;
     void unsetPublishedAt();
-    void setPublishedAt(int32_t value);
+    void setPublishedAt(int64_t value);
 
     /// <summary>
     /// ScheduledAt is the unix publish time; 0 leaves the post a draft, and any value makes it \&quot;scheduled\&quot; for the durable sweep to pick up.
     /// </summary>
-    int32_t getScheduledAt() const;
+    int64_t getScheduledAt() const;
     bool scheduledAtIsSet() const;
     void unsetScheduledAt();
-    void setScheduledAt(int32_t value);
+    void setScheduledAt(int64_t value);
 
     /// <summary>
     /// Status is draft, scheduled, published, failed or canceled. Server-owned.
@@ -127,10 +127,10 @@ public:
     /// <summary>
     /// UpdatedAt is unix seconds of the last write, server-assigned. The durable sweep writes too — claiming a due post, publishing it and recording a failure each bump it — so this moves without anyone editing the post.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
 
 protected:
@@ -140,7 +140,7 @@ protected:
     utility::string_t m_Channel;
     bool m_ChannelIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_Error;
@@ -149,10 +149,10 @@ protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
 
-    int32_t m_PublishedAt;
+    int64_t m_PublishedAt;
     bool m_PublishedAtIsSet;
 
-    int32_t m_ScheduledAt;
+    int64_t m_ScheduledAt;
     bool m_ScheduledAtIsSet;
 
     utility::string_t m_Status;
@@ -161,7 +161,7 @@ protected:
     utility::string_t m_Title;
     bool m_TitleIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
 };

@@ -63,26 +63,26 @@ public:
     /// <summary>
     /// Bytes is their total size in bytes.
     /// </summary>
-    int32_t getBytes() const;
+    int64_t getBytes() const;
     bool bytesIsSet() const;
     void unsetBytes();
-    void setBytes(int32_t value);
+    void setBytes(int64_t value);
 
     /// <summary>
     /// CreatedAt is when the release was cut, as Unix seconds — not when it was last activated.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// Objects is how many files the release holds.
     /// </summary>
-    int32_t getObjects() const;
+    int64_t getObjects() const;
     bool objectsIsSet() const;
     void unsetObjects();
-    void setObjects(int32_t value);
+    void setObjects(int64_t value);
 
     /// <summary>
     /// ReleaseID is derived from a DIGEST of the release&#39;s own manifest, so identical content is the same release and a release can never be confused with another one. Activating an older id IS the rollback.
@@ -121,13 +121,13 @@ protected:
     bool m_Active;
     bool m_ActiveIsSet;
 
-    int32_t m_Bytes;
+    int64_t m_Bytes;
     bool m_BytesIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
-    int32_t m_Objects;
+    int64_t m_Objects;
     bool m_ObjectsIsSet;
 
     utility::string_t m_ReleaseId;

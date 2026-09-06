@@ -293,7 +293,7 @@ pplx::task<std::vector<std::shared_ptr<IssueView>>> TodoApi::getTodoBoard(boost:
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<IssueHits>> TodoApi::getTodoIssues(boost::optional<utility::string_t> q, boost::optional<utility::string_t> project, boost::optional<utility::string_t> status, boost::optional<utility::string_t> kind, boost::optional<utility::string_t> repo, boost::optional<utility::string_t> room, boost::optional<utility::string_t> source, boost::optional<utility::string_t> assignee, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<IssueHits>> TodoApi::getTodoIssues(boost::optional<utility::string_t> q, boost::optional<utility::string_t> project, boost::optional<utility::string_t> status, boost::optional<utility::string_t> kind, boost::optional<utility::string_t> repo, boost::optional<utility::string_t> room, boost::optional<utility::string_t> source, boost::optional<utility::string_t> assignee, boost::optional<int64_t> limit) const
 {
 
 
@@ -855,7 +855,7 @@ pplx::task<std::vector<std::shared_ptr<IssueView>>> TodoApi::getTodoProjectsByKe
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<IssueView>> TodoApi::getTodoProjectsByKeyIssuesByNum(utility::string_t key, int32_t num) const
+pplx::task<std::shared_ptr<IssueView>> TodoApi::getTodoProjectsByKeyIssuesByNum(utility::string_t key, int64_t num) const
 {
 
 
@@ -1209,7 +1209,7 @@ pplx::task<void> TodoApi::patchTodoProjectsByKey(utility::string_t key) const
         return void();
     });
 }
-pplx::task<std::shared_ptr<IssueView>> TodoApi::patchTodoProjectsByKeyIssuesByNum(utility::string_t key, int32_t num, std::shared_ptr<IssueEdit> issueEdit) const
+pplx::task<std::shared_ptr<IssueView>> TodoApi::patchTodoProjectsByKeyIssuesByNum(utility::string_t key, int64_t num, std::shared_ptr<IssueEdit> issueEdit) const
 {
 
     // verify the required parameter 'issueEdit' is set
@@ -1608,7 +1608,7 @@ pplx::task<std::shared_ptr<IssueView>> TodoApi::postTodoProjectsByKeyIssues(util
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<IssueHit>> TodoApi::postTodoProjectsByKeyIssuesByNumClaim(utility::string_t key, int32_t num) const
+pplx::task<std::shared_ptr<IssueHit>> TodoApi::postTodoProjectsByKeyIssuesByNumClaim(utility::string_t key, int64_t num) const
 {
 
 

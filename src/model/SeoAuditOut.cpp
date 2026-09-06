@@ -25,13 +25,13 @@ SeoAuditOut::SeoAuditOut()
     m_DescriptionIsSet = false;
     m_Score = 0.0;
     m_ScoreIsSet = false;
-    m_Status = 0;
+    m_Status = 0L;
     m_StatusIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
     m_Url = utility::conversions::to_string_t("");
     m_UrlIsSet = false;
-    m_Words = 0;
+    m_Words = 0L;
     m_WordsIsSet = false;
 }
 
@@ -143,7 +143,7 @@ bool SeoAuditOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("status")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStatus;
+            int64_t refVal_setStatus;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStatus);
             setStatus(refVal_setStatus);
             
@@ -176,7 +176,7 @@ bool SeoAuditOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("words")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setWords;
+            int64_t refVal_setWords;
             ok &= ModelBase::fromJson(fieldValue, refVal_setWords);
             setWords(refVal_setWords);
             
@@ -261,7 +261,7 @@ bool SeoAuditOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("status"))))
     {
-        int32_t refVal_setStatus;
+        int64_t refVal_setStatus;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("status"))), refVal_setStatus );
         setStatus(refVal_setStatus);
     }
@@ -279,7 +279,7 @@ bool SeoAuditOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("words"))))
     {
-        int32_t refVal_setWords;
+        int64_t refVal_setWords;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("words"))), refVal_setWords );
         setWords(refVal_setWords);
     }
@@ -371,13 +371,13 @@ void SeoAuditOut::unsetScore()
 {
     m_ScoreIsSet = false;
 }
-int32_t SeoAuditOut::getStatus() const
+int64_t SeoAuditOut::getStatus() const
 {
     return m_Status;
 }
 
 
-void SeoAuditOut::setStatus(int32_t value)
+void SeoAuditOut::setStatus(int64_t value)
 {
     m_Status = value;
     m_StatusIsSet = true;
@@ -434,13 +434,13 @@ void SeoAuditOut::unsetUrl()
 {
     m_UrlIsSet = false;
 }
-int32_t SeoAuditOut::getWords() const
+int64_t SeoAuditOut::getWords() const
 {
     return m_Words;
 }
 
 
-void SeoAuditOut::setWords(int32_t value)
+void SeoAuditOut::setWords(int64_t value)
 {
     m_Words = value;
     m_WordsIsSet = true;

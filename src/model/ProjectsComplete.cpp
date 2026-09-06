@@ -18,11 +18,11 @@ namespace model {
 
 ProjectsComplete::ProjectsComplete()
 {
-    m_Bytes = 0;
+    m_Bytes = 0L;
     m_BytesIsSet = false;
     m_Commit = utility::conversions::to_string_t("");
     m_CommitIsSet = false;
-    m_Files = 0;
+    m_Files = 0L;
     m_FilesIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
@@ -106,7 +106,7 @@ bool ProjectsComplete::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("bytes")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBytes;
+            int64_t refVal_setBytes;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBytes);
             setBytes(refVal_setBytes);
             
@@ -128,7 +128,7 @@ bool ProjectsComplete::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("files")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFiles;
+            int64_t refVal_setFiles;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFiles);
             setFiles(refVal_setFiles);
             
@@ -259,7 +259,7 @@ bool ProjectsComplete::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("bytes"))))
     {
-        int32_t refVal_setBytes;
+        int64_t refVal_setBytes;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("bytes"))), refVal_setBytes );
         setBytes(refVal_setBytes);
     }
@@ -271,7 +271,7 @@ bool ProjectsComplete::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("files"))))
     {
-        int32_t refVal_setFiles;
+        int64_t refVal_setFiles;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("files"))), refVal_setFiles );
         setFiles(refVal_setFiles);
     }
@@ -315,13 +315,13 @@ bool ProjectsComplete::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
 }
 
 
-int32_t ProjectsComplete::getBytes() const
+int64_t ProjectsComplete::getBytes() const
 {
     return m_Bytes;
 }
 
 
-void ProjectsComplete::setBytes(int32_t value)
+void ProjectsComplete::setBytes(int64_t value)
 {
     m_Bytes = value;
     m_BytesIsSet = true;
@@ -357,13 +357,13 @@ void ProjectsComplete::unsetCommit()
 {
     m_CommitIsSet = false;
 }
-int32_t ProjectsComplete::getFiles() const
+int64_t ProjectsComplete::getFiles() const
 {
     return m_Files;
 }
 
 
-void ProjectsComplete::setFiles(int32_t value)
+void ProjectsComplete::setFiles(int64_t value)
 {
     m_Files = value;
     m_FilesIsSet = true;

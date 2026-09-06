@@ -18,15 +18,15 @@ namespace model {
 
 Allowance::Allowance()
 {
-    m_Limit = 0;
+    m_Limit = 0L;
     m_LimitIsSet = false;
     m_Plan = utility::conversions::to_string_t("");
     m_PlanIsSet = false;
-    m_Resets = 0;
+    m_Resets = 0L;
     m_ResetsIsSet = false;
     m_Spent = false;
     m_SpentIsSet = false;
-    m_Used = 0;
+    m_Used = 0L;
     m_UsedIsSet = false;
     m_Window = utility::conversions::to_string_t("");
     m_WindowIsSet = false;
@@ -86,7 +86,7 @@ bool Allowance::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("limit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLimit;
+            int64_t refVal_setLimit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLimit);
             setLimit(refVal_setLimit);
             
@@ -108,7 +108,7 @@ bool Allowance::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("resets")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setResets;
+            int64_t refVal_setResets;
             ok &= ModelBase::fromJson(fieldValue, refVal_setResets);
             setResets(refVal_setResets);
             
@@ -130,7 +130,7 @@ bool Allowance::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("used")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUsed;
+            int64_t refVal_setUsed;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUsed);
             setUsed(refVal_setUsed);
             
@@ -194,7 +194,7 @@ bool Allowance::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("limit"))))
     {
-        int32_t refVal_setLimit;
+        int64_t refVal_setLimit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("limit"))), refVal_setLimit );
         setLimit(refVal_setLimit);
     }
@@ -206,7 +206,7 @@ bool Allowance::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("resets"))))
     {
-        int32_t refVal_setResets;
+        int64_t refVal_setResets;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("resets"))), refVal_setResets );
         setResets(refVal_setResets);
     }
@@ -218,7 +218,7 @@ bool Allowance::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("used"))))
     {
-        int32_t refVal_setUsed;
+        int64_t refVal_setUsed;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("used"))), refVal_setUsed );
         setUsed(refVal_setUsed);
     }
@@ -232,13 +232,13 @@ bool Allowance::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 }
 
 
-int32_t Allowance::getLimit() const
+int64_t Allowance::getLimit() const
 {
     return m_Limit;
 }
 
 
-void Allowance::setLimit(int32_t value)
+void Allowance::setLimit(int64_t value)
 {
     m_Limit = value;
     m_LimitIsSet = true;
@@ -274,13 +274,13 @@ void Allowance::unsetPlan()
 {
     m_PlanIsSet = false;
 }
-int32_t Allowance::getResets() const
+int64_t Allowance::getResets() const
 {
     return m_Resets;
 }
 
 
-void Allowance::setResets(int32_t value)
+void Allowance::setResets(int64_t value)
 {
     m_Resets = value;
     m_ResetsIsSet = true;
@@ -316,13 +316,13 @@ void Allowance::unsetSpent()
 {
     m_SpentIsSet = false;
 }
-int32_t Allowance::getUsed() const
+int64_t Allowance::getUsed() const
 {
     return m_Used;
 }
 
 
-void Allowance::setUsed(int32_t value)
+void Allowance::setUsed(int64_t value)
 {
     m_Used = value;
     m_UsedIsSet = true;

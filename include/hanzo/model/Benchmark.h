@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// how many items it holds, when the set is fixed
     /// </summary>
-    int32_t getItems() const;
+    int64_t getItems() const;
     bool itemsIsSet() const;
     void unsetItems();
-    void setItems(int32_t value);
+    void setItems(int64_t value);
 
     /// <summary>
     /// whether the standardized harness runs it today
@@ -108,7 +108,7 @@ protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
 
-    int32_t m_Items;
+    int64_t m_Items;
     bool m_ItemsIsSet;
 
     bool m_Native;

@@ -33,7 +33,7 @@ LeaderboardApi::~LeaderboardApi()
 {
 }
 
-pplx::task<std::shared_ptr<LeaderboardView>> LeaderboardApi::getLeaderboard(boost::optional<utility::string_t> scope, boost::optional<utility::string_t> metric, boost::optional<utility::string_t> period, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<LeaderboardView>> LeaderboardApi::getLeaderboard(boost::optional<utility::string_t> scope, boost::optional<utility::string_t> metric, boost::optional<utility::string_t> period, boost::optional<int64_t> limit) const
 {
 
 

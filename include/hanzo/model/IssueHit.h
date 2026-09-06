@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// Number is the issue&#39;s number on that board, from 1 and monotonic there. Unique per board, never across the org — so it addresses an issue only together with Project.
     /// </summary>
-    int32_t getNumber() const;
+    int64_t getNumber() const;
     bool numberIsSet() const;
     void unsetnumber();
-    void setNumber(int32_t value);
+    void setNumber(int64_t value);
 
     /// <summary>
     /// Priority is urgent, high, medium, low or none. Never empty — an unset priority is the value \&quot;none\&quot;.
@@ -148,7 +148,7 @@ protected:
     utility::string_t m_Kind;
     bool m_KindIsSet;
 
-    int32_t m_number;
+    int64_t m_number;
     bool m_numberIsSet;
 
     utility::string_t m_Priority;

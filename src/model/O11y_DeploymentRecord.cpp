@@ -18,7 +18,7 @@ namespace model {
 
 O11y_DeploymentRecord::O11y_DeploymentRecord()
 {
-    m_AvailablePods = 0;
+    m_AvailablePods = 0L;
     m_AvailablePodsIsSet = false;
     m_DeploymentCPU = 0.0;
     m_DeploymentCPUIsSet = false;
@@ -34,7 +34,7 @@ O11y_DeploymentRecord::O11y_DeploymentRecord()
     m_DeploymentMemoryRequestIsSet = false;
     m_DeploymentName = utility::conversions::to_string_t("");
     m_DeploymentNameIsSet = false;
-    m_DesiredPods = 0;
+    m_DesiredPods = 0L;
     m_DesiredPodsIsSet = false;
     m_MetaIsSet = false;
     m_PodCountsByPhaseIsSet = false;
@@ -119,7 +119,7 @@ bool O11y_DeploymentRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("availablePods")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAvailablePods;
+            int64_t refVal_setAvailablePods;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAvailablePods);
             setAvailablePods(refVal_setAvailablePods);
             
@@ -207,7 +207,7 @@ bool O11y_DeploymentRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("desiredPods")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDesiredPods;
+            int64_t refVal_setDesiredPods;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDesiredPods);
             setDesiredPods(refVal_setDesiredPods);
             
@@ -302,7 +302,7 @@ bool O11y_DeploymentRecord::fromMultiPart(std::shared_ptr<MultipartFormData> mul
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("availablePods"))))
     {
-        int32_t refVal_setAvailablePods;
+        int64_t refVal_setAvailablePods;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("availablePods"))), refVal_setAvailablePods );
         setAvailablePods(refVal_setAvailablePods);
     }
@@ -350,7 +350,7 @@ bool O11y_DeploymentRecord::fromMultiPart(std::shared_ptr<MultipartFormData> mul
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("desiredPods"))))
     {
-        int32_t refVal_setDesiredPods;
+        int64_t refVal_setDesiredPods;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("desiredPods"))), refVal_setDesiredPods );
         setDesiredPods(refVal_setDesiredPods);
     }
@@ -370,13 +370,13 @@ bool O11y_DeploymentRecord::fromMultiPart(std::shared_ptr<MultipartFormData> mul
 }
 
 
-int32_t O11y_DeploymentRecord::getAvailablePods() const
+int64_t O11y_DeploymentRecord::getAvailablePods() const
 {
     return m_AvailablePods;
 }
 
 
-void O11y_DeploymentRecord::setAvailablePods(int32_t value)
+void O11y_DeploymentRecord::setAvailablePods(int64_t value)
 {
     m_AvailablePods = value;
     m_AvailablePodsIsSet = true;
@@ -538,13 +538,13 @@ void O11y_DeploymentRecord::unsetDeploymentName()
 {
     m_DeploymentNameIsSet = false;
 }
-int32_t O11y_DeploymentRecord::getDesiredPods() const
+int64_t O11y_DeploymentRecord::getDesiredPods() const
 {
     return m_DesiredPods;
 }
 
 
-void O11y_DeploymentRecord::setDesiredPods(int32_t value)
+void O11y_DeploymentRecord::setDesiredPods(int64_t value)
 {
     m_DesiredPods = value;
     m_DesiredPodsIsSet = true;

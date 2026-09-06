@@ -19,12 +19,12 @@ namespace model {
 Rollup::Rollup()
 {
     m_BalanceIsSet = false;
-    m_ConsumedCents = 0;
+    m_ConsumedCents = 0L;
     m_ConsumedCentsIsSet = false;
     m_Currency = utility::conversions::to_string_t("");
     m_CurrencyIsSet = false;
     m_IncludedIsSet = false;
-    m_OverageCents = 0;
+    m_OverageCents = 0L;
     m_OverageCentsIsSet = false;
     m_Period = utility::conversions::to_string_t("");
     m_PeriodIsSet = false;
@@ -115,7 +115,7 @@ bool Rollup::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("consumedCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setConsumedCents;
+            int64_t refVal_setConsumedCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setConsumedCents);
             setConsumedCents(refVal_setConsumedCents);
             
@@ -148,7 +148,7 @@ bool Rollup::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("overageCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOverageCents;
+            int64_t refVal_setOverageCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOverageCents);
             setOverageCents(refVal_setOverageCents);
             
@@ -263,7 +263,7 @@ bool Rollup::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("consumedCents"))))
     {
-        int32_t refVal_setConsumedCents;
+        int64_t refVal_setConsumedCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("consumedCents"))), refVal_setConsumedCents );
         setConsumedCents(refVal_setConsumedCents);
     }
@@ -281,7 +281,7 @@ bool Rollup::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("overageCents"))))
     {
-        int32_t refVal_setOverageCents;
+        int64_t refVal_setOverageCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("overageCents"))), refVal_setOverageCents );
         setOverageCents(refVal_setOverageCents);
     }
@@ -334,13 +334,13 @@ void Rollup::unsetBalance()
 {
     m_BalanceIsSet = false;
 }
-int32_t Rollup::getConsumedCents() const
+int64_t Rollup::getConsumedCents() const
 {
     return m_ConsumedCents;
 }
 
 
-void Rollup::setConsumedCents(int32_t value)
+void Rollup::setConsumedCents(int64_t value)
 {
     m_ConsumedCents = value;
     m_ConsumedCentsIsSet = true;
@@ -397,13 +397,13 @@ void Rollup::unsetIncluded()
 {
     m_IncludedIsSet = false;
 }
-int32_t Rollup::getOverageCents() const
+int64_t Rollup::getOverageCents() const
 {
     return m_OverageCents;
 }
 
 
-void Rollup::setOverageCents(int32_t value)
+void Rollup::setOverageCents(int64_t value)
 {
     m_OverageCents = value;
     m_OverageCentsIsSet = true;

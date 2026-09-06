@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// AccruedCents is that affiliate&#39;s lifetime commission accrued, in cents, and what the board is ordered by. An aggregate: no per-customer figure is exposed.
     /// </summary>
-    int32_t getAccruedCents() const;
+    int64_t getAccruedCents() const;
     bool accruedCentsIsSet() const;
     void unsetAccruedCents();
-    void setAccruedCents(int32_t value);
+    void setAccruedCents(int64_t value);
 
     /// <summary>
     /// Handle is the affiliate&#39;s self-chosen display name — the only identity the board ever carries. The org behind it is never disclosed.
@@ -79,22 +79,22 @@ public:
     /// <summary>
     /// Rank is the position in the GLOBAL approved set ordered by lifetime accrued commission, 1-based. Affiliates that set no handle still occupy their rank and are simply not listed, so the visible ranks have gaps and the board is not a complete roster. On the caller&#39;s own row the rank is computed over the whole set, so it is exact well outside the top page.
     /// </summary>
-    int32_t getRank() const;
+    int64_t getRank() const;
     bool rankIsSet() const;
     void unsetRank();
-    void setRank(int32_t value);
+    void setRank(int64_t value);
 
     /// <summary>
     /// ReferredCount is how many orgs that affiliate directly referred — a count only, never which orgs.
     /// </summary>
-    int32_t getReferredCount() const;
+    int64_t getReferredCount() const;
     bool referredCountIsSet() const;
     void unsetReferredCount();
-    void setReferredCount(int32_t value);
+    void setReferredCount(int64_t value);
 
 
 protected:
-    int32_t m_AccruedCents;
+    int64_t m_AccruedCents;
     bool m_AccruedCentsIsSet;
 
     utility::string_t m_Handle;
@@ -103,10 +103,10 @@ protected:
     bool m_IsYou;
     bool m_IsYouIsSet;
 
-    int32_t m_Rank;
+    int64_t m_Rank;
     bool m_RankIsSet;
 
-    int32_t m_ReferredCount;
+    int64_t m_ReferredCount;
     bool m_ReferredCountIsSet;
 
 };

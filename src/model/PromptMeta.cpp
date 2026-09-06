@@ -138,7 +138,7 @@ bool PromptMeta::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("versions")));
         if(!fieldValue.is_null())
         {
-            std::vector<int32_t> refVal_setVersions;
+            std::vector<int64_t> refVal_setVersions;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVersions);
             setVersions(refVal_setVersions);
             
@@ -221,7 +221,7 @@ bool PromptMeta::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("versions"))))
     {
-        std::vector<int32_t> refVal_setVersions;
+        std::vector<int64_t> refVal_setVersions;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("versions"))), refVal_setVersions );
         setVersions(refVal_setVersions);
     }
@@ -334,13 +334,13 @@ void PromptMeta::unsetType()
 {
     m_TypeIsSet = false;
 }
-std::vector<int32_t> PromptMeta::getVersions() const
+std::vector<int64_t> PromptMeta::getVersions() const
 {
     return m_Versions;
 }
 
 
-void PromptMeta::setVersions(std::vector<int32_t> value)
+void PromptMeta::setVersions(std::vector<int64_t> value)
 {
     m_Versions = value;
     m_VersionsIsSet = true;

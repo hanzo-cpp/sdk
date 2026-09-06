@@ -76,10 +76,10 @@ public:
     /// <summary>
     /// Events is how much of this organisation&#39;s history was replayed.
     /// </summary>
-    int32_t getEvents() const;
+    int64_t getEvents() const;
     bool eventsIsSet() const;
     void unsetEvents();
-    void setEvents(int32_t value);
+    void setEvents(int64_t value);
 
     /// <summary>
     /// Fitted is the winning shape FITTED over your own history and published as one of your organisation&#39;s own model values. Name its address on PUT /v1/risk/state/model and the winning shape becomes the model you are running.  It is why this op answers something you can act on. A trial keeps counts and not the model that produced them, so a report without this named a shape nobody could install — and the adoption path refused a shape change besides. Fitting the winner once is a sixty-fifth pass over the same history; keeping all sixty-four fitted models resident instead would cost a measured 21 MiB per run for sixty-three shapes nobody adopts.  Two things about it are worth knowing before you adopt it. Its realised rate can differ from the winner&#39;s above, because the ranking measures every candidate under one fixed reference geometry so the comparison is a comparison, while this is fitted under YOUR geometry — the one an outsider cannot predict. And it has learned the window this search replayed and nothing older, so adopting it trades history for fit.
@@ -145,7 +145,7 @@ protected:
     utility::string_t m_Ended;
     bool m_EndedIsSet;
 
-    int32_t m_Events;
+    int64_t m_Events;
     bool m_EventsIsSet;
 
     std::shared_ptr<RiskModelValue> m_Fitted;

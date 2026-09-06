@@ -20,7 +20,7 @@ BalanceLine::BalanceLine()
 {
     m_Account = utility::conversions::to_string_t("");
     m_AccountIsSet = false;
-    m_Amount = 0;
+    m_Amount = 0L;
     m_AmountIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
@@ -83,7 +83,7 @@ bool BalanceLine::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("amount")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAmount;
+            int64_t refVal_setAmount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAmount);
             setAmount(refVal_setAmount);
             
@@ -156,7 +156,7 @@ bool BalanceLine::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("amount"))))
     {
-        int32_t refVal_setAmount;
+        int64_t refVal_setAmount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("amount"))), refVal_setAmount );
         setAmount(refVal_setAmount);
     }
@@ -197,13 +197,13 @@ void BalanceLine::unsetAccount()
 {
     m_AccountIsSet = false;
 }
-int32_t BalanceLine::getAmount() const
+int64_t BalanceLine::getAmount() const
 {
     return m_Amount;
 }
 
 
-void BalanceLine::setAmount(int32_t value)
+void BalanceLine::setAmount(int64_t value)
 {
     m_Amount = value;
     m_AmountIsSet = true;

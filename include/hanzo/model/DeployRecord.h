@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// CreatedAt is when the edge was first recorded, in unix seconds. Absent when nothing was recorded.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// DeployID is the attribution edge&#39;s handle. Absent when nothing was recorded.
@@ -105,7 +105,7 @@ protected:
     bool m_Created;
     bool m_CreatedIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_DeployId;

@@ -33,7 +33,7 @@ EventApi::~EventApi()
 {
 }
 
-pplx::task<std::shared_ptr<ErrorList>> EventApi::getEventErrors(boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<ErrorList>> EventApi::getEventErrors(boost::optional<int64_t> limit) const
 {
 
 
@@ -283,7 +283,7 @@ pplx::task<std::shared_ptr<HealthReport>> EventApi::getEventHealth() const
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EventList>> EventApi::getEventInsightsEvents(boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<EventList>> EventApi::getEventInsightsEvents(boost::optional<int64_t> limit) const
 {
 
 
@@ -912,7 +912,7 @@ pplx::task<std::shared_ptr<Timeseries>> EventApi::getEventTimeseries(boost::opti
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Top>> EventApi::getEventTop(boost::optional<utility::string_t> range, boost::optional<utility::string_t> start, boost::optional<utility::string_t> end, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<Top>> EventApi::getEventTop(boost::optional<utility::string_t> range, boost::optional<utility::string_t> start, boost::optional<utility::string_t> end, boost::optional<int64_t> limit) const
 {
 
 

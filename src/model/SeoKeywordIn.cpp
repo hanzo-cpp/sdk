@@ -21,7 +21,7 @@ SeoKeywordIn::SeoKeywordIn()
     m_KeywordsIsSet = false;
     m_Language = utility::conversions::to_string_t("");
     m_LanguageIsSet = false;
-    m_Location = 0;
+    m_Location = 0L;
     m_LocationIsSet = false;
 }
 
@@ -86,7 +86,7 @@ bool SeoKeywordIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("location")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLocation;
+            int64_t refVal_setLocation;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLocation);
             setLocation(refVal_setLocation);
             
@@ -139,7 +139,7 @@ bool SeoKeywordIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("location"))))
     {
-        int32_t refVal_setLocation;
+        int64_t refVal_setLocation;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("location"))), refVal_setLocation );
         setLocation(refVal_setLocation);
     }
@@ -189,13 +189,13 @@ void SeoKeywordIn::unsetLanguage()
 {
     m_LanguageIsSet = false;
 }
-int32_t SeoKeywordIn::getLocation() const
+int64_t SeoKeywordIn::getLocation() const
 {
     return m_Location;
 }
 
 
-void SeoKeywordIn::setLocation(int32_t value)
+void SeoKeywordIn::setLocation(int64_t value)
 {
     m_Location = value;
     m_LocationIsSet = true;

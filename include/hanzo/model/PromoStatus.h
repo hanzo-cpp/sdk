@@ -64,28 +64,28 @@ public:
     /// <summary>
     /// Redeemed is how many orgs have taken it, Remaining how many are left under the fleet-wide cap.
     /// </summary>
-    int32_t getRedeemed() const;
+    int64_t getRedeemed() const;
     bool redeemedIsSet() const;
     void unsetRedeemed();
-    void setRedeemed(int32_t value);
+    void setRedeemed(int64_t value);
 
     /// <summary>
     /// Remaining is MaxRedemptions minus Redeemed, floored at 0. At 0 the next redeem is declined, and a quote reports ineligible rather than pricing an offer that cannot be taken.
     /// </summary>
-    int32_t getRemaining() const;
+    int64_t getRemaining() const;
     bool remainingIsSet() const;
     void unsetRemaining();
-    void setRemaining(int32_t value);
+    void setRemaining(int64_t value);
 
 
 protected:
     std::shared_ptr<Promo> m_Promo;
     bool m_PromoIsSet;
 
-    int32_t m_Redeemed;
+    int64_t m_Redeemed;
     bool m_RedeemedIsSet;
 
-    int32_t m_Remaining;
+    int64_t m_Remaining;
     bool m_RemainingIsSet;
 
 };

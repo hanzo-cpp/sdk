@@ -53,7 +53,7 @@ public:
 
 
     /// <summary>
-    /// Active is whether the agent projects as a LIVE space member, derived from its registry status: empty, \&quot;active\&quot; and \&quot;ready\&quot; are live, anything else (archived/retired) is not. An inactive bot drops out of the Team list while its past authorship survives.
+    /// Active is whether the agent projects as a LIVE space member, derived from its registry status: empty, \&quot;active\&quot; and \&quot;ready\&quot; are live, anything else (archived/retired) is not. An inactive bot drops out of the roster while its past authorship survives.
     /// </summary>
     bool isActive() const;
     bool activeIsSet() const;
@@ -61,7 +61,7 @@ public:
     void setActive(bool value);
 
     /// <summary>
-    /// the agent id
+    /// ID is the agent id.
     /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
@@ -69,7 +69,7 @@ public:
     void setId(const utility::string_t& value);
 
     /// <summary>
-    /// display name
+    /// Name is the display name.
     /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
@@ -77,7 +77,7 @@ public:
     void setName(const utility::string_t& value);
 
     /// <summary>
-    /// the projected Person _id
+    /// PersonRef is the projected Person _id.
     /// </summary>
     utility::string_t getPersonRef() const;
     bool personRefIsSet() const;
@@ -85,7 +85,7 @@ public:
     void setPersonRef(const utility::string_t& value);
 
     /// <summary>
-    /// derived member account uuid (personUuid)
+    /// UserID is the derived member account uuid (personUuid).
     /// </summary>
     utility::string_t getUserId() const;
     bool userIdIsSet() const;

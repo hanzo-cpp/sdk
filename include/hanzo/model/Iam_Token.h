@@ -82,10 +82,10 @@ public:
     void unsetCodeChallengeMethod();
     void setCodeChallengeMethod(const utility::string_t& value);
 
-    int32_t getCodeExpireIn() const;
+    int64_t getCodeExpireIn() const;
     bool codeExpireInIsSet() const;
     void unsetCodeExpireIn();
-    void setCodeExpireIn(int32_t value);
+    void setCodeExpireIn(int64_t value);
 
     bool isCodeIsUsed() const;
     bool codeIsUsedIsSet() const;
@@ -107,10 +107,10 @@ public:
     void unsetDeleted();
     void setDeleted(bool value);
 
-    int32_t getExpiresIn() const;
+    int64_t getExpiresIn() const;
     bool expiresInIsSet() const;
     void unsetExpiresIn();
-    void setExpiresIn(int32_t value);
+    void setExpiresIn(int64_t value);
 
     utility::string_t getId() const;
     bool idIsSet() const;
@@ -161,10 +161,10 @@ public:
     void unsetRefreshConsumed();
     void setRefreshConsumed(bool value);
 
-    int32_t getRefreshExpireIn() const;
+    int64_t getRefreshExpireIn() const;
     bool refreshExpireInIsSet() const;
     void unsetRefreshExpireIn();
-    void setRefreshExpireIn(int32_t value);
+    void setRefreshExpireIn(int64_t value);
 
     /// <summary>
     /// Refresh-token rotation state (v2). Each refresh belongs to a family (the grant); rotation mints a new row in the same family and marks the prior one consumed. Presenting a consumed refresh is reuse — the whole family is revoked (RFC 9700 §4.14.2). RefreshExpireIn is the refresh token&#39;s own absolute expiry (unix), independent of the access token&#39;s shorter life.
@@ -237,7 +237,7 @@ protected:
     utility::string_t m_CodeChallengeMethod;
     bool m_CodeChallengeMethodIsSet;
 
-    int32_t m_CodeExpireIn;
+    int64_t m_CodeExpireIn;
     bool m_CodeExpireInIsSet;
 
     bool m_CodeIsUsed;
@@ -252,7 +252,7 @@ protected:
     bool m_Deleted;
     bool m_DeletedIsSet;
 
-    int32_t m_ExpiresIn;
+    int64_t m_ExpiresIn;
     bool m_ExpiresInIsSet;
 
     utility::string_t m_Id;
@@ -279,7 +279,7 @@ protected:
     bool m_RefreshConsumed;
     bool m_RefreshConsumedIsSet;
 
-    int32_t m_RefreshExpireIn;
+    int64_t m_RefreshExpireIn;
     bool m_RefreshExpireInIsSet;
 
     utility::string_t m_RefreshFamily;

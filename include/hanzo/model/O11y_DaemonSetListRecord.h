@@ -53,10 +53,10 @@ public:
     /// O11y_DaemonSetListRecord members
 
 
-    int32_t getAvailableNodes() const;
+    int64_t getAvailableNodes() const;
     bool availableNodesIsSet() const;
     void unsetAvailableNodes();
-    void setAvailableNodes(int32_t value);
+    void setAvailableNodes(int64_t value);
 
     double getCpuLimit() const;
     bool cpuLimitIsSet() const;
@@ -78,10 +78,10 @@ public:
     void unsetDaemonSetName();
     void setDaemonSetName(const utility::string_t& value);
 
-    int32_t getDesiredNodes() const;
+    int64_t getDesiredNodes() const;
     bool desiredNodesIsSet() const;
     void unsetDesiredNodes();
-    void setDesiredNodes(int32_t value);
+    void setDesiredNodes(int64_t value);
 
     double getMemoryLimit() const;
     bool memoryLimitIsSet() const;
@@ -103,14 +103,14 @@ public:
     void unsetMeta();
     void setMeta(const std::map<utility::string_t, utility::string_t>& value);
 
-    int32_t getRestarts() const;
+    int64_t getRestarts() const;
     bool restartsIsSet() const;
     void unsetRestarts();
-    void setRestarts(int32_t value);
+    void setRestarts(int64_t value);
 
 
 protected:
-    int32_t m_AvailableNodes;
+    int64_t m_AvailableNodes;
     bool m_AvailableNodesIsSet;
 
     double m_CpuLimit;
@@ -125,7 +125,7 @@ protected:
     utility::string_t m_DaemonSetName;
     bool m_DaemonSetNameIsSet;
 
-    int32_t m_DesiredNodes;
+    int64_t m_DesiredNodes;
     bool m_DesiredNodesIsSet;
 
     double m_MemoryLimit;
@@ -140,7 +140,7 @@ protected:
     std::map<utility::string_t, utility::string_t> m_Meta;
     bool m_MetaIsSet;
 
-    int32_t m_Restarts;
+    int64_t m_Restarts;
     bool m_RestartsIsSet;
 
 };

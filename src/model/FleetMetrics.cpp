@@ -24,9 +24,9 @@ FleetMetrics::FleetMetrics()
     m_GpuUtilIsSet = false;
     m_Load1 = 0.0;
     m_Load1IsSet = false;
-    m_MemFree = 0;
+    m_MemFree = 0L;
     m_MemFreeIsSet = false;
-    m_MemUsed = 0;
+    m_MemUsed = 0L;
     m_MemUsedIsSet = false;
 }
 
@@ -112,7 +112,7 @@ bool FleetMetrics::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("memFree")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMemFree;
+            int64_t refVal_setMemFree;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMemFree);
             setMemFree(refVal_setMemFree);
             
@@ -123,7 +123,7 @@ bool FleetMetrics::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("memUsed")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMemUsed;
+            int64_t refVal_setMemUsed;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMemUsed);
             setMemUsed(refVal_setMemUsed);
             
@@ -190,13 +190,13 @@ bool FleetMetrics::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("memFree"))))
     {
-        int32_t refVal_setMemFree;
+        int64_t refVal_setMemFree;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("memFree"))), refVal_setMemFree );
         setMemFree(refVal_setMemFree);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("memUsed"))))
     {
-        int32_t refVal_setMemUsed;
+        int64_t refVal_setMemUsed;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("memUsed"))), refVal_setMemUsed );
         setMemUsed(refVal_setMemUsed);
     }
@@ -267,13 +267,13 @@ void FleetMetrics::unsetLoad1()
 {
     m_Load1IsSet = false;
 }
-int32_t FleetMetrics::getMemFree() const
+int64_t FleetMetrics::getMemFree() const
 {
     return m_MemFree;
 }
 
 
-void FleetMetrics::setMemFree(int32_t value)
+void FleetMetrics::setMemFree(int64_t value)
 {
     m_MemFree = value;
     m_MemFreeIsSet = true;
@@ -288,13 +288,13 @@ void FleetMetrics::unsetMemFree()
 {
     m_MemFreeIsSet = false;
 }
-int32_t FleetMetrics::getMemUsed() const
+int64_t FleetMetrics::getMemUsed() const
 {
     return m_MemUsed;
 }
 
 
-void FleetMetrics::setMemUsed(int32_t value)
+void FleetMetrics::setMemUsed(int64_t value)
 {
     m_MemUsed = value;
     m_MemUsedIsSet = true;

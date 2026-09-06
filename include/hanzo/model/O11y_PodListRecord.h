@@ -100,10 +100,10 @@ public:
     void unsetPodUID();
     void setPodUID(const utility::string_t& value);
 
-    int32_t getRestartCount() const;
+    int64_t getRestartCount() const;
     bool restartCountIsSet() const;
     void unsetRestartCount();
-    void setRestartCount(int32_t value);
+    void setRestartCount(int64_t value);
 
 
 protected:
@@ -134,7 +134,7 @@ protected:
     utility::string_t m_PodUID;
     bool m_PodUIDIsSet;
 
-    int32_t m_RestartCount;
+    int64_t m_RestartCount;
     bool m_RestartCountIsSet;
 
 };

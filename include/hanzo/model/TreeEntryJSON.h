@@ -79,10 +79,10 @@ public:
     /// <summary>
     /// Size is the file&#39;s byte length; 0 for a directory.
     /// </summary>
-    int32_t getSize() const;
+    int64_t getSize() const;
     bool sizeIsSet() const;
     void unsetSize();
-    void setSize(int32_t value);
+    void setSize(int64_t value);
 
     /// <summary>
     /// Type is \&quot;tree\&quot; for a directory, \&quot;blob\&quot; for a file.
@@ -103,7 +103,7 @@ protected:
     utility::string_t m_Path;
     bool m_PathIsSet;
 
-    int32_t m_Size;
+    int64_t m_Size;
     bool m_SizeIsSet;
 
     utility::string_t m_Type;

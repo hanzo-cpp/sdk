@@ -18,13 +18,13 @@ namespace model {
 
 AffiliateSelf::AffiliateSelf()
 {
-    m_AccruedCents = 0;
+    m_AccruedCents = 0L;
     m_AccruedCentsIsSet = false;
     m_Code = utility::conversions::to_string_t("");
     m_CodeIsSet = false;
-    m_DefaultRateBps = 0;
+    m_DefaultRateBps = 0L;
     m_DefaultRateBpsIsSet = false;
-    m_DownlineTotal = 0;
+    m_DownlineTotal = 0L;
     m_DownlineTotalIsSet = false;
     m_Handle = utility::conversions::to_string_t("");
     m_HandleIsSet = false;
@@ -35,14 +35,14 @@ AffiliateSelf::AffiliateSelf()
     m_LevelsIsSet = false;
     m_Link = utility::conversions::to_string_t("");
     m_LinkIsSet = false;
-    m_MarginBps = 0;
+    m_MarginBps = 0L;
     m_MarginBpsIsSet = false;
-    m_PaidCents = 0;
+    m_PaidCents = 0L;
     m_PaidCentsIsSet = false;
     m_PayoutsIsSet = false;
-    m_PendingCents = 0;
+    m_PendingCents = 0L;
     m_PendingCentsIsSet = false;
-    m_RateBps = 0;
+    m_RateBps = 0L;
     m_RateBpsIsSet = false;
     m_ScheduleIsSet = false;
     m_Status = utility::conversions::to_string_t("");
@@ -153,7 +153,7 @@ bool AffiliateSelf::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("accruedCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAccruedCents;
+            int64_t refVal_setAccruedCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAccruedCents);
             setAccruedCents(refVal_setAccruedCents);
             
@@ -175,7 +175,7 @@ bool AffiliateSelf::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("defaultRateBps")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDefaultRateBps;
+            int64_t refVal_setDefaultRateBps;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDefaultRateBps);
             setDefaultRateBps(refVal_setDefaultRateBps);
             
@@ -186,7 +186,7 @@ bool AffiliateSelf::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("downlineTotal")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDownlineTotal;
+            int64_t refVal_setDownlineTotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDownlineTotal);
             setDownlineTotal(refVal_setDownlineTotal);
             
@@ -252,7 +252,7 @@ bool AffiliateSelf::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("marginBps")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMarginBps;
+            int64_t refVal_setMarginBps;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMarginBps);
             setMarginBps(refVal_setMarginBps);
             
@@ -263,7 +263,7 @@ bool AffiliateSelf::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("paidCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPaidCents;
+            int64_t refVal_setPaidCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPaidCents);
             setPaidCents(refVal_setPaidCents);
             
@@ -285,7 +285,7 @@ bool AffiliateSelf::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("pendingCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPendingCents;
+            int64_t refVal_setPendingCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPendingCents);
             setPendingCents(refVal_setPendingCents);
             
@@ -296,7 +296,7 @@ bool AffiliateSelf::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("rateBps")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRateBps;
+            int64_t refVal_setRateBps;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRateBps);
             setRateBps(refVal_setRateBps);
             
@@ -411,7 +411,7 @@ bool AffiliateSelf::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("accruedCents"))))
     {
-        int32_t refVal_setAccruedCents;
+        int64_t refVal_setAccruedCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("accruedCents"))), refVal_setAccruedCents );
         setAccruedCents(refVal_setAccruedCents);
     }
@@ -423,13 +423,13 @@ bool AffiliateSelf::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("defaultRateBps"))))
     {
-        int32_t refVal_setDefaultRateBps;
+        int64_t refVal_setDefaultRateBps;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("defaultRateBps"))), refVal_setDefaultRateBps );
         setDefaultRateBps(refVal_setDefaultRateBps);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("downlineTotal"))))
     {
-        int32_t refVal_setDownlineTotal;
+        int64_t refVal_setDownlineTotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("downlineTotal"))), refVal_setDownlineTotal );
         setDownlineTotal(refVal_setDownlineTotal);
     }
@@ -465,13 +465,13 @@ bool AffiliateSelf::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("marginBps"))))
     {
-        int32_t refVal_setMarginBps;
+        int64_t refVal_setMarginBps;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("marginBps"))), refVal_setMarginBps );
         setMarginBps(refVal_setMarginBps);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("paidCents"))))
     {
-        int32_t refVal_setPaidCents;
+        int64_t refVal_setPaidCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("paidCents"))), refVal_setPaidCents );
         setPaidCents(refVal_setPaidCents);
     }
@@ -483,13 +483,13 @@ bool AffiliateSelf::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("pendingCents"))))
     {
-        int32_t refVal_setPendingCents;
+        int64_t refVal_setPendingCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("pendingCents"))), refVal_setPendingCents );
         setPendingCents(refVal_setPendingCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("rateBps"))))
     {
-        int32_t refVal_setRateBps;
+        int64_t refVal_setRateBps;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("rateBps"))), refVal_setRateBps );
         setRateBps(refVal_setRateBps);
     }
@@ -509,13 +509,13 @@ bool AffiliateSelf::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 }
 
 
-int32_t AffiliateSelf::getAccruedCents() const
+int64_t AffiliateSelf::getAccruedCents() const
 {
     return m_AccruedCents;
 }
 
 
-void AffiliateSelf::setAccruedCents(int32_t value)
+void AffiliateSelf::setAccruedCents(int64_t value)
 {
     m_AccruedCents = value;
     m_AccruedCentsIsSet = true;
@@ -551,13 +551,13 @@ void AffiliateSelf::unsetCode()
 {
     m_CodeIsSet = false;
 }
-int32_t AffiliateSelf::getDefaultRateBps() const
+int64_t AffiliateSelf::getDefaultRateBps() const
 {
     return m_DefaultRateBps;
 }
 
 
-void AffiliateSelf::setDefaultRateBps(int32_t value)
+void AffiliateSelf::setDefaultRateBps(int64_t value)
 {
     m_DefaultRateBps = value;
     m_DefaultRateBpsIsSet = true;
@@ -572,13 +572,13 @@ void AffiliateSelf::unsetDefaultRateBps()
 {
     m_DefaultRateBpsIsSet = false;
 }
-int32_t AffiliateSelf::getDownlineTotal() const
+int64_t AffiliateSelf::getDownlineTotal() const
 {
     return m_DownlineTotal;
 }
 
 
-void AffiliateSelf::setDownlineTotal(int32_t value)
+void AffiliateSelf::setDownlineTotal(int64_t value)
 {
     m_DownlineTotal = value;
     m_DownlineTotalIsSet = true;
@@ -698,13 +698,13 @@ void AffiliateSelf::unsetLink()
 {
     m_LinkIsSet = false;
 }
-int32_t AffiliateSelf::getMarginBps() const
+int64_t AffiliateSelf::getMarginBps() const
 {
     return m_MarginBps;
 }
 
 
-void AffiliateSelf::setMarginBps(int32_t value)
+void AffiliateSelf::setMarginBps(int64_t value)
 {
     m_MarginBps = value;
     m_MarginBpsIsSet = true;
@@ -719,13 +719,13 @@ void AffiliateSelf::unsetMarginBps()
 {
     m_MarginBpsIsSet = false;
 }
-int32_t AffiliateSelf::getPaidCents() const
+int64_t AffiliateSelf::getPaidCents() const
 {
     return m_PaidCents;
 }
 
 
-void AffiliateSelf::setPaidCents(int32_t value)
+void AffiliateSelf::setPaidCents(int64_t value)
 {
     m_PaidCents = value;
     m_PaidCentsIsSet = true;
@@ -761,13 +761,13 @@ void AffiliateSelf::unsetPayouts()
 {
     m_PayoutsIsSet = false;
 }
-int32_t AffiliateSelf::getPendingCents() const
+int64_t AffiliateSelf::getPendingCents() const
 {
     return m_PendingCents;
 }
 
 
-void AffiliateSelf::setPendingCents(int32_t value)
+void AffiliateSelf::setPendingCents(int64_t value)
 {
     m_PendingCents = value;
     m_PendingCentsIsSet = true;
@@ -782,13 +782,13 @@ void AffiliateSelf::unsetPendingCents()
 {
     m_PendingCentsIsSet = false;
 }
-int32_t AffiliateSelf::getRateBps() const
+int64_t AffiliateSelf::getRateBps() const
 {
     return m_RateBps;
 }
 
 
-void AffiliateSelf::setRateBps(int32_t value)
+void AffiliateSelf::setRateBps(int64_t value)
 {
     m_RateBps = value;
     m_RateBpsIsSet = true;

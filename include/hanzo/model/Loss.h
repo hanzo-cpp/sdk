@@ -54,25 +54,25 @@ public:
     /// <summary>
     /// Exhausted counts facts the bus abandoned after maxDeliver failed inserts.
     /// </summary>
-    int32_t getExhausted() const;
+    int64_t getExhausted() const;
     bool exhaustedIsSet() const;
     void unsetExhausted();
-    void setExhausted(int32_t value);
+    void setExhausted(int64_t value);
 
     /// <summary>
     /// Undecodable counts messages acked without landing because they did not parse.
     /// </summary>
-    int32_t getUndecodable() const;
+    int64_t getUndecodable() const;
     bool undecodableIsSet() const;
     void unsetUndecodable();
-    void setUndecodable(int32_t value);
+    void setUndecodable(int64_t value);
 
 
 protected:
-    int32_t m_Exhausted;
+    int64_t m_Exhausted;
     bool m_ExhaustedIsSet;
 
-    int32_t m_Undecodable;
+    int64_t m_Undecodable;
     bool m_UndecodableIsSet;
 
 };

@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// Results is how many hits this engine contributed, before the merge deduplicated them against the others.
     /// </summary>
-    int32_t getResults() const;
+    int64_t getResults() const;
     bool resultsIsSet() const;
     void unsetResults();
-    void setResults(int32_t value);
+    void setResults(int64_t value);
 
 
 protected:
@@ -84,7 +84,7 @@ protected:
     utility::string_t m_Outcome;
     bool m_OutcomeIsSet;
 
-    int32_t m_Results;
+    int64_t m_Results;
     bool m_ResultsIsSet;
 
 };

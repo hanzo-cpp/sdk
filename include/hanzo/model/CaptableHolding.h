@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// FullyDiluted is shares plus options.
     /// </summary>
-    int32_t getFullyDiluted() const;
+    int64_t getFullyDiluted() const;
     bool fullyDilutedIsSet() const;
     void unsetFullyDiluted();
-    void setFullyDiluted(int32_t value);
+    void setFullyDiluted(int64_t value);
 
     /// <summary>
     /// Name is the stakeholder&#39;s name.
@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// Options is the shares under this stakeholder&#39;s non-terminal option grants.
     /// </summary>
-    int32_t getOptions() const;
+    int64_t getOptions() const;
     bool optionsIsSet() const;
     void unsetOptions();
-    void setOptions(int32_t value);
+    void setOptions(int64_t value);
 
     /// <summary>
     /// OwnershipPct is fullyDiluted as a percentage of the company&#39;s fullyDilutedShares, rounded to two decimals; 0 when nothing is issued.
@@ -87,10 +87,10 @@ public:
     /// <summary>
     /// Shares is the shares this stakeholder holds by certificate.
     /// </summary>
-    int32_t getShares() const;
+    int64_t getShares() const;
     bool sharesIsSet() const;
     void unsetShares();
-    void setShares(int32_t value);
+    void setShares(int64_t value);
 
     /// <summary>
     /// StakeholderID addresses the stakeholder these totals are for.
@@ -102,19 +102,19 @@ public:
 
 
 protected:
-    int32_t m_FullyDiluted;
+    int64_t m_FullyDiluted;
     bool m_FullyDilutedIsSet;
 
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_Options;
+    int64_t m_Options;
     bool m_OptionsIsSet;
 
     double m_OwnershipPct;
     bool m_OwnershipPctIsSet;
 
-    int32_t m_Shares;
+    int64_t m_Shares;
     bool m_SharesIsSet;
 
     utility::string_t m_StakeholderId;

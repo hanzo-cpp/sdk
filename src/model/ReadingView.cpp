@@ -20,33 +20,33 @@ ReadingView::ReadingView()
 {
     m_Account = utility::conversions::to_string_t("");
     m_AccountIsSet = false;
-    m_CachedInputTokens = 0;
+    m_CachedInputTokens = 0L;
     m_CachedInputTokensIsSet = false;
     m_Confidence = utility::conversions::to_string_t("");
     m_ConfidenceIsSet = false;
-    m_CostCents = 0;
+    m_CostCents = 0L;
     m_CostCentsIsSet = false;
-    m_CostLimitCents = 0;
+    m_CostLimitCents = 0L;
     m_CostLimitCentsIsSet = false;
     m_Currency = utility::conversions::to_string_t("");
     m_CurrencyIsSet = false;
-    m_InputTokens = 0;
+    m_InputTokens = 0L;
     m_InputTokensIsSet = false;
     m_Lane = utility::conversions::to_string_t("");
     m_LaneIsSet = false;
     m_Machine = utility::conversions::to_string_t("");
     m_MachineIsSet = false;
-    m_OutputTokens = 0;
+    m_OutputTokens = 0L;
     m_OutputTokensIsSet = false;
     m_Plan = utility::conversions::to_string_t("");
     m_PlanIsSet = false;
-    m_Requests = 0;
+    m_Requests = 0L;
     m_RequestsIsSet = false;
     m_ResetsAt = utility::conversions::to_string_t("");
     m_ResetsAtIsSet = false;
     m_Synthetic = false;
     m_SyntheticIsSet = false;
-    m_TotalTokens = 0;
+    m_TotalTokens = 0L;
     m_TotalTokensIsSet = false;
     m_UsedPct = 0.0;
     m_UsedPctIsSet = false;
@@ -188,7 +188,7 @@ bool ReadingView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cachedInputTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCachedInputTokens;
+            int64_t refVal_setCachedInputTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCachedInputTokens);
             setCachedInputTokens(refVal_setCachedInputTokens);
             
@@ -210,7 +210,7 @@ bool ReadingView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("costCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCostCents;
+            int64_t refVal_setCostCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCostCents);
             setCostCents(refVal_setCostCents);
             
@@ -221,7 +221,7 @@ bool ReadingView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("costLimitCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCostLimitCents;
+            int64_t refVal_setCostLimitCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCostLimitCents);
             setCostLimitCents(refVal_setCostLimitCents);
             
@@ -243,7 +243,7 @@ bool ReadingView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("inputTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setInputTokens;
+            int64_t refVal_setInputTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setInputTokens);
             setInputTokens(refVal_setInputTokens);
             
@@ -276,7 +276,7 @@ bool ReadingView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("outputTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOutputTokens;
+            int64_t refVal_setOutputTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOutputTokens);
             setOutputTokens(refVal_setOutputTokens);
             
@@ -298,7 +298,7 @@ bool ReadingView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("requests")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRequests;
+            int64_t refVal_setRequests;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRequests);
             setRequests(refVal_setRequests);
             
@@ -331,7 +331,7 @@ bool ReadingView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("totalTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotalTokens;
+            int64_t refVal_setTotalTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalTokens);
             setTotalTokens(refVal_setTotalTokens);
             
@@ -486,7 +486,7 @@ bool ReadingView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cachedInputTokens"))))
     {
-        int32_t refVal_setCachedInputTokens;
+        int64_t refVal_setCachedInputTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cachedInputTokens"))), refVal_setCachedInputTokens );
         setCachedInputTokens(refVal_setCachedInputTokens);
     }
@@ -498,13 +498,13 @@ bool ReadingView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))))
     {
-        int32_t refVal_setCostCents;
+        int64_t refVal_setCostCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))), refVal_setCostCents );
         setCostCents(refVal_setCostCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("costLimitCents"))))
     {
-        int32_t refVal_setCostLimitCents;
+        int64_t refVal_setCostLimitCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("costLimitCents"))), refVal_setCostLimitCents );
         setCostLimitCents(refVal_setCostLimitCents);
     }
@@ -516,7 +516,7 @@ bool ReadingView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("inputTokens"))))
     {
-        int32_t refVal_setInputTokens;
+        int64_t refVal_setInputTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("inputTokens"))), refVal_setInputTokens );
         setInputTokens(refVal_setInputTokens);
     }
@@ -534,7 +534,7 @@ bool ReadingView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("outputTokens"))))
     {
-        int32_t refVal_setOutputTokens;
+        int64_t refVal_setOutputTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("outputTokens"))), refVal_setOutputTokens );
         setOutputTokens(refVal_setOutputTokens);
     }
@@ -546,7 +546,7 @@ bool ReadingView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("requests"))))
     {
-        int32_t refVal_setRequests;
+        int64_t refVal_setRequests;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("requests"))), refVal_setRequests );
         setRequests(refVal_setRequests);
     }
@@ -564,7 +564,7 @@ bool ReadingView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("totalTokens"))))
     {
-        int32_t refVal_setTotalTokens;
+        int64_t refVal_setTotalTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("totalTokens"))), refVal_setTotalTokens );
         setTotalTokens(refVal_setTotalTokens);
     }
@@ -617,13 +617,13 @@ void ReadingView::unsetAccount()
 {
     m_AccountIsSet = false;
 }
-int32_t ReadingView::getCachedInputTokens() const
+int64_t ReadingView::getCachedInputTokens() const
 {
     return m_CachedInputTokens;
 }
 
 
-void ReadingView::setCachedInputTokens(int32_t value)
+void ReadingView::setCachedInputTokens(int64_t value)
 {
     m_CachedInputTokens = value;
     m_CachedInputTokensIsSet = true;
@@ -659,13 +659,13 @@ void ReadingView::unsetConfidence()
 {
     m_ConfidenceIsSet = false;
 }
-int32_t ReadingView::getCostCents() const
+int64_t ReadingView::getCostCents() const
 {
     return m_CostCents;
 }
 
 
-void ReadingView::setCostCents(int32_t value)
+void ReadingView::setCostCents(int64_t value)
 {
     m_CostCents = value;
     m_CostCentsIsSet = true;
@@ -680,13 +680,13 @@ void ReadingView::unsetCostCents()
 {
     m_CostCentsIsSet = false;
 }
-int32_t ReadingView::getCostLimitCents() const
+int64_t ReadingView::getCostLimitCents() const
 {
     return m_CostLimitCents;
 }
 
 
-void ReadingView::setCostLimitCents(int32_t value)
+void ReadingView::setCostLimitCents(int64_t value)
 {
     m_CostLimitCents = value;
     m_CostLimitCentsIsSet = true;
@@ -722,13 +722,13 @@ void ReadingView::unsetCurrency()
 {
     m_CurrencyIsSet = false;
 }
-int32_t ReadingView::getInputTokens() const
+int64_t ReadingView::getInputTokens() const
 {
     return m_InputTokens;
 }
 
 
-void ReadingView::setInputTokens(int32_t value)
+void ReadingView::setInputTokens(int64_t value)
 {
     m_InputTokens = value;
     m_InputTokensIsSet = true;
@@ -785,13 +785,13 @@ void ReadingView::unsetMachine()
 {
     m_MachineIsSet = false;
 }
-int32_t ReadingView::getOutputTokens() const
+int64_t ReadingView::getOutputTokens() const
 {
     return m_OutputTokens;
 }
 
 
-void ReadingView::setOutputTokens(int32_t value)
+void ReadingView::setOutputTokens(int64_t value)
 {
     m_OutputTokens = value;
     m_OutputTokensIsSet = true;
@@ -827,13 +827,13 @@ void ReadingView::unsetPlan()
 {
     m_PlanIsSet = false;
 }
-int32_t ReadingView::getRequests() const
+int64_t ReadingView::getRequests() const
 {
     return m_Requests;
 }
 
 
-void ReadingView::setRequests(int32_t value)
+void ReadingView::setRequests(int64_t value)
 {
     m_Requests = value;
     m_RequestsIsSet = true;
@@ -890,13 +890,13 @@ void ReadingView::unsetSynthetic()
 {
     m_SyntheticIsSet = false;
 }
-int32_t ReadingView::getTotalTokens() const
+int64_t ReadingView::getTotalTokens() const
 {
     return m_TotalTokens;
 }
 
 
-void ReadingView::setTotalTokens(int32_t value)
+void ReadingView::setTotalTokens(int64_t value)
 {
     m_TotalTokens = value;
     m_TotalTokensIsSet = true;

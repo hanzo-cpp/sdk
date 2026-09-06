@@ -59,10 +59,10 @@ public:
     /// <summary>
     /// Blind is how many requests in the window carried no identity to attribute them to — no validated credential and no client address. Non-zero on a public plane means the client address is not reaching this process (a TCP load balancer with no PROXY protocol in front of it, typically), so this scope&#39;s callers cannot be told apart and nothing can be held against them.
     /// </summary>
-    int32_t getBlind() const;
+    int64_t getBlind() const;
     bool blindIsSet() const;
     void unsetBlind();
-    void setBlind(int32_t value);
+    void setBlind(int64_t value);
 
     /// <summary>
     /// Callers is the scope&#39;s busiest callers this window. A credentialed caller appears as a FINGERPRINT — a per-process one-way digest: enough to recognise the same caller across requests, never enough to reconstruct the credential.
@@ -75,26 +75,26 @@ public:
     /// <summary>
     /// Ceiling is the most callers this scope may hold at once.
     /// </summary>
-    int32_t getCeiling() const;
+    int64_t getCeiling() const;
     bool ceilingIsSet() const;
     void unsetCeiling();
-    void setCeiling(int32_t value);
+    void setCeiling(int64_t value);
 
     /// <summary>
     /// Denied is how many of them the gate refused.
     /// </summary>
-    int32_t getDenied() const;
+    int64_t getDenied() const;
     bool deniedIsSet() const;
     void unsetDenied();
-    void setDenied(int32_t value);
+    void setDenied(int64_t value);
 
     /// <summary>
     /// Lanes is the request count per lane — agent, human, bot, unknown. This is the split that separates a customer&#39;s automation from a scraper.
     /// </summary>
-    std::map<utility::string_t, int32_t> getLanes() const;
+    std::map<utility::string_t, int64_t> getLanes() const;
     bool lanesIsSet() const;
     void unsetLanes();
-    void setLanes(std::map<utility::string_t, int32_t> value);
+    void setLanes(std::map<utility::string_t, int64_t> value);
 
     /// <summary>
     /// Mode is the abuse gate&#39;s posture for this scope: \&quot;shadow\&quot; records the scorer&#39;s action without enforcing it, \&quot;live\&quot; enforces it.
@@ -115,26 +115,26 @@ public:
     /// <summary>
     /// Refused is how many callers this scope&#39;s ceilings turned away in the window.
     /// </summary>
-    int32_t getRefused() const;
+    int64_t getRefused() const;
     bool refusedIsSet() const;
     void unsetRefused();
-    void setRefused(int32_t value);
+    void setRefused(int64_t value);
 
     /// <summary>
     /// Requests is how many requests this scope made in the window.
     /// </summary>
-    int32_t getRequests() const;
+    int64_t getRequests() const;
     bool requestsIsSet() const;
     void unsetRequests();
-    void setRequests(int32_t value);
+    void setRequests(int64_t value);
 
     /// <summary>
     /// Screens is how many of them were put to the scorer — the billable unit of the risk product. Counted from the first request, whatever the SKU costs.
     /// </summary>
-    int32_t getScreens() const;
+    int64_t getScreens() const;
     bool screensIsSet() const;
     void unsetScreens();
-    void setScreens(int32_t value);
+    void setScreens(int64_t value);
 
     /// <summary>
     /// Strain is what this scope&#39;s ceilings are doing: \&quot;clear\&quot; below them, \&quot;full\&quot; at them, \&quot;refuse\&quot; once a caller has been turned away inside this window — which means that caller is UNMEASURED and the numbers here are a sample rather than a census. It is reported rather than logged because the alternative — a bound that degrades a scope silently — is the failure this design exists to rule out. No other scope can move it.
@@ -147,42 +147,42 @@ public:
     /// <summary>
     /// Tracked is how many callers this scope holds state for right now, and Ceiling is the most it may hold. Tracked &#x3D;&#x3D; Ceiling is the fact a bound that binds cannot hide.
     /// </summary>
-    int32_t getTracked() const;
+    int64_t getTracked() const;
     bool trackedIsSet() const;
     void unsetTracked();
-    void setTracked(int32_t value);
+    void setTracked(int64_t value);
 
     /// <summary>
     /// Unscored is how many of those screens got NO answer — the scorer was absent, stuck, slow, erroring or silent. An unanswered screen allows ordinary traffic, so this is the number that separates \&quot;a quiet day\&quot; from \&quot;the judge stopped answering and nothing said so\&quot;.
     /// </summary>
-    int32_t getUnscored() const;
+    int64_t getUnscored() const;
     bool unscoredIsSet() const;
     void unsetUnscored();
-    void setUnscored(int32_t value);
+    void setUnscored(int64_t value);
 
     /// <summary>
     /// WindowSec is the span the counts cover, in seconds.
     /// </summary>
-    int32_t getWindowSec() const;
+    int64_t getWindowSec() const;
     bool windowSecIsSet() const;
     void unsetWindow_sec();
-    void setWindowSec(int32_t value);
+    void setWindowSec(int64_t value);
 
 
 protected:
-    int32_t m_Blind;
+    int64_t m_Blind;
     bool m_BlindIsSet;
 
     std::vector<std::shared_ptr<TrafficCaller>> m_Callers;
     bool m_CallersIsSet;
 
-    int32_t m_Ceiling;
+    int64_t m_Ceiling;
     bool m_CeilingIsSet;
 
-    int32_t m_Denied;
+    int64_t m_Denied;
     bool m_DeniedIsSet;
 
-    std::map<utility::string_t, int32_t> m_Lanes;
+    std::map<utility::string_t, int64_t> m_Lanes;
     bool m_LanesIsSet;
 
     utility::string_t m_Mode;
@@ -191,25 +191,25 @@ protected:
     utility::string_t m_Org;
     bool m_OrgIsSet;
 
-    int32_t m_Refused;
+    int64_t m_Refused;
     bool m_RefusedIsSet;
 
-    int32_t m_Requests;
+    int64_t m_Requests;
     bool m_RequestsIsSet;
 
-    int32_t m_Screens;
+    int64_t m_Screens;
     bool m_ScreensIsSet;
 
     utility::string_t m_Strain;
     bool m_StrainIsSet;
 
-    int32_t m_Tracked;
+    int64_t m_Tracked;
     bool m_TrackedIsSet;
 
-    int32_t m_Unscored;
+    int64_t m_Unscored;
     bool m_UnscoredIsSet;
 
-    int32_t m_Window_sec;
+    int64_t m_Window_sec;
     bool m_Window_secIsSet;
 
 };

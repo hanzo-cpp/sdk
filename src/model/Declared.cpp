@@ -35,7 +35,7 @@ Declared::Declared()
     m_PathIsSet = false;
     m_Project = utility::conversions::to_string_t("");
     m_ProjectIsSet = false;
-    m_Replicas = 0;
+    m_Replicas = 0L;
     m_ReplicasIsSet = false;
     m_Repository = utility::conversions::to_string_t("");
     m_RepositoryIsSet = false;
@@ -242,7 +242,7 @@ bool Declared::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("replicas")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setReplicas;
+            int64_t refVal_setReplicas;
             ok &= ModelBase::fromJson(fieldValue, refVal_setReplicas);
             setReplicas(refVal_setReplicas);
             
@@ -405,7 +405,7 @@ bool Declared::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("replicas"))))
     {
-        int32_t refVal_setReplicas;
+        int64_t refVal_setReplicas;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("replicas"))), refVal_setReplicas );
         setReplicas(refVal_setReplicas);
     }
@@ -635,13 +635,13 @@ void Declared::unsetProject()
 {
     m_ProjectIsSet = false;
 }
-int32_t Declared::getReplicas() const
+int64_t Declared::getReplicas() const
 {
     return m_Replicas;
 }
 
 
-void Declared::setReplicas(int32_t value)
+void Declared::setReplicas(int64_t value)
 {
     m_Replicas = value;
     m_ReplicasIsSet = true;

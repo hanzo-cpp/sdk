@@ -58,10 +58,10 @@ public:
     /// <summary>
     /// ColdStorageTTLDays is how old data must be before it moves, in days.
     /// </summary>
-    int32_t getColdStorageTtlDays() const;
+    int64_t getColdStorageTtlDays() const;
     bool coldStorageTtlDaysIsSet() const;
     void unsetCold_storage_ttl_days();
-    void setColdStorageTtlDays(int32_t value);
+    void setColdStorageTtlDays(int64_t value);
 
     /// <summary>
     /// ColdStorageVolume names the volume aged data moves to.
@@ -74,26 +74,26 @@ public:
     /// <summary>
     /// DefaultTTLDays is the retention for data no rule matches, in days.
     /// </summary>
-    int32_t getDefaultTtlDays() const;
+    int64_t getDefaultTtlDays() const;
     bool defaultTtlDaysIsSet() const;
     void unsetDefault_ttl_days();
-    void setDefaultTtlDays(int32_t value);
+    void setDefaultTtlDays(int64_t value);
 
     /// <summary>
     /// ExpectedLogsMoveTTLHours is the pending logs cold-storage move TTL, in hours.
     /// </summary>
-    int32_t getExpectedLogsMoveTtlDurationHrs() const;
+    int64_t getExpectedLogsMoveTtlDurationHrs() const;
     bool expectedLogsMoveTtlDurationHrsIsSet() const;
     void unsetExpected_logs_move_ttl_duration_hrs();
-    void setExpectedLogsMoveTtlDurationHrs(int32_t value);
+    void setExpectedLogsMoveTtlDurationHrs(int64_t value);
 
     /// <summary>
     /// ExpectedLogsTTLHours is the pending logs TTL, in hours.
     /// </summary>
-    int32_t getExpectedLogsTtlDurationHrs() const;
+    int64_t getExpectedLogsTtlDurationHrs() const;
     bool expectedLogsTtlDurationHrsIsSet() const;
     void unsetExpected_logs_ttl_duration_hrs();
-    void setExpectedLogsTtlDurationHrs(int32_t value);
+    void setExpectedLogsTtlDurationHrs(int64_t value);
 
     /// <summary>
     /// Status is the last TTL operation&#39;s state.
@@ -121,19 +121,19 @@ public:
 
 
 protected:
-    int32_t m_Cold_storage_ttl_days;
+    int64_t m_Cold_storage_ttl_days;
     bool m_Cold_storage_ttl_daysIsSet;
 
     utility::string_t m_Cold_storage_volume;
     bool m_Cold_storage_volumeIsSet;
 
-    int32_t m_Default_ttl_days;
+    int64_t m_Default_ttl_days;
     bool m_Default_ttl_daysIsSet;
 
-    int32_t m_Expected_logs_move_ttl_duration_hrs;
+    int64_t m_Expected_logs_move_ttl_duration_hrs;
     bool m_Expected_logs_move_ttl_duration_hrsIsSet;
 
-    int32_t m_Expected_logs_ttl_duration_hrs;
+    int64_t m_Expected_logs_ttl_duration_hrs;
     bool m_Expected_logs_ttl_duration_hrsIsSet;
 
     utility::string_t m_Status;

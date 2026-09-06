@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// Consumers is the number of consumers attached to this stream.
     /// </summary>
-    int32_t getConsumerCount() const;
+    int64_t getConsumerCount() const;
     bool consumerCountIsSet() const;
     void unsetConsumer_count();
-    void setConsumerCount(int32_t value);
+    void setConsumerCount(int64_t value);
 
     /// <summary>
     /// FirstSeq is the sequence of the first stored message.
@@ -111,10 +111,10 @@ public:
     /// <summary>
     /// Deleted is the number of deleted messages (sequence gaps).
     /// </summary>
-    int32_t getNumDeleted() const;
+    int64_t getNumDeleted() const;
     bool numDeletedIsSet() const;
     void unsetNum_deleted();
-    void setNumDeleted(int32_t value);
+    void setNumDeleted(int64_t value);
 
     /// <summary>
     /// Subjects is the number of distinct subjects stored.
@@ -129,7 +129,7 @@ protected:
     int32_t m_Bytes;
     bool m_BytesIsSet;
 
-    int32_t m_Consumer_count;
+    int64_t m_Consumer_count;
     bool m_Consumer_countIsSet;
 
     int32_t m_First_seq;
@@ -147,7 +147,7 @@ protected:
     int32_t m_Messages;
     bool m_MessagesIsSet;
 
-    int32_t m_Num_deleted;
+    int64_t m_Num_deleted;
     bool m_Num_deletedIsSet;
 
     int32_t m_Num_subjects;

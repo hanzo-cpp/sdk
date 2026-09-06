@@ -22,7 +22,7 @@ Check::Check()
     m_AtIsSet = false;
     m_Job = utility::conversions::to_string_t("");
     m_JobIsSet = false;
-    m_number = 0;
+    m_number = 0L;
     m_numberIsSet = false;
     m_State = utility::conversions::to_string_t("");
     m_StateIsSet = false;
@@ -115,7 +115,7 @@ bool Check::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("number")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNumber;
+            int64_t refVal_setNumber;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNumber);
             setNumber(refVal_setNumber);
             
@@ -228,7 +228,7 @@ bool Check::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("number"))))
     {
-        int32_t refVal_setNumber;
+        int64_t refVal_setNumber;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("number"))), refVal_setNumber );
         setNumber(refVal_setNumber);
     }
@@ -302,13 +302,13 @@ void Check::unsetJob()
 {
     m_JobIsSet = false;
 }
-int32_t Check::getNumber() const
+int64_t Check::getNumber() const
 {
     return m_number;
 }
 
 
-void Check::setNumber(int32_t value)
+void Check::setNumber(int64_t value)
 {
     m_number = value;
     m_numberIsSet = true;

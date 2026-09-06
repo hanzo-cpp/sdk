@@ -96,10 +96,10 @@ public:
     /// <summary>
     /// Versions lists every version NUMBER this prompt has, newest first, capped at the last 100. The highest is the current one. (On a metrics row the same key is a count, not a list.)
     /// </summary>
-    std::vector<int32_t> getVersions() const;
+    std::vector<int64_t> getVersions() const;
     bool versionsIsSet() const;
     void unsetVersions();
-    void setVersions(std::vector<int32_t> value);
+    void setVersions(std::vector<int64_t> value);
 
 
 protected:
@@ -118,7 +118,7 @@ protected:
     utility::string_t m_Type;
     bool m_TypeIsSet;
 
-    std::vector<int32_t> m_Versions;
+    std::vector<int64_t> m_Versions;
     bool m_VersionsIsSet;
 
 };

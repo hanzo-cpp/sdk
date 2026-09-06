@@ -21,7 +21,7 @@ O11y_O11yAggregation::O11y_O11yAggregation()
     m_Alias = utility::conversions::to_string_t("");
     m_AliasIsSet = false;
     m_AnomalyScoresIsSet = false;
-    m_Index = 0;
+    m_Index = 0L;
     m_IndexIsSet = false;
     m_LowerBoundSeriesIsSet = false;
     m_MetaIsSet = false;
@@ -116,7 +116,7 @@ bool O11y_O11yAggregation::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("index")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setIndex;
+            int64_t refVal_setIndex;
             ok &= ModelBase::fromJson(fieldValue, refVal_setIndex);
             setIndex(refVal_setIndex);
             
@@ -244,7 +244,7 @@ bool O11y_O11yAggregation::fromMultiPart(std::shared_ptr<MultipartFormData> mult
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("index"))))
     {
-        int32_t refVal_setIndex;
+        int64_t refVal_setIndex;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("index"))), refVal_setIndex );
         setIndex(refVal_setIndex);
     }
@@ -324,13 +324,13 @@ void O11y_O11yAggregation::unsetAnomalyScores()
 {
     m_AnomalyScoresIsSet = false;
 }
-int32_t O11y_O11yAggregation::getIndex() const
+int64_t O11y_O11yAggregation::getIndex() const
 {
     return m_Index;
 }
 
 
-void O11y_O11yAggregation::setIndex(int32_t value)
+void O11y_O11yAggregation::setIndex(int64_t value)
 {
     m_Index = value;
     m_IndexIsSet = true;

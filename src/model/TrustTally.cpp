@@ -18,17 +18,17 @@ namespace model {
 
 TrustTally::TrustTally()
 {
-    m_Absent = 0;
+    m_Absent = 0L;
     m_AbsentIsSet = false;
-    m_Automated = 0;
+    m_Automated = 0L;
     m_AutomatedIsSet = false;
-    m_Partial = 0;
+    m_Partial = 0L;
     m_PartialIsSet = false;
     m_Statement = utility::conversions::to_string_t("");
     m_StatementIsSet = false;
-    m_Total = 0;
+    m_Total = 0L;
     m_TotalIsSet = false;
-    m_Unverified = 0;
+    m_Unverified = 0L;
     m_UnverifiedIsSet = false;
 }
 
@@ -86,7 +86,7 @@ bool TrustTally::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("absent")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAbsent;
+            int64_t refVal_setAbsent;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAbsent);
             setAbsent(refVal_setAbsent);
             
@@ -97,7 +97,7 @@ bool TrustTally::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("automated")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAutomated;
+            int64_t refVal_setAutomated;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAutomated);
             setAutomated(refVal_setAutomated);
             
@@ -108,7 +108,7 @@ bool TrustTally::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("partial")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPartial;
+            int64_t refVal_setPartial;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPartial);
             setPartial(refVal_setPartial);
             
@@ -130,7 +130,7 @@ bool TrustTally::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("total")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotal;
+            int64_t refVal_setTotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotal);
             setTotal(refVal_setTotal);
             
@@ -141,7 +141,7 @@ bool TrustTally::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("unverified")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUnverified;
+            int64_t refVal_setUnverified;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUnverified);
             setUnverified(refVal_setUnverified);
             
@@ -194,19 +194,19 @@ bool TrustTally::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("absent"))))
     {
-        int32_t refVal_setAbsent;
+        int64_t refVal_setAbsent;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("absent"))), refVal_setAbsent );
         setAbsent(refVal_setAbsent);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("automated"))))
     {
-        int32_t refVal_setAutomated;
+        int64_t refVal_setAutomated;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("automated"))), refVal_setAutomated );
         setAutomated(refVal_setAutomated);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("partial"))))
     {
-        int32_t refVal_setPartial;
+        int64_t refVal_setPartial;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("partial"))), refVal_setPartial );
         setPartial(refVal_setPartial);
     }
@@ -218,13 +218,13 @@ bool TrustTally::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("total"))))
     {
-        int32_t refVal_setTotal;
+        int64_t refVal_setTotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("total"))), refVal_setTotal );
         setTotal(refVal_setTotal);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("unverified"))))
     {
-        int32_t refVal_setUnverified;
+        int64_t refVal_setUnverified;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("unverified"))), refVal_setUnverified );
         setUnverified(refVal_setUnverified);
     }
@@ -232,13 +232,13 @@ bool TrustTally::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 }
 
 
-int32_t TrustTally::getAbsent() const
+int64_t TrustTally::getAbsent() const
 {
     return m_Absent;
 }
 
 
-void TrustTally::setAbsent(int32_t value)
+void TrustTally::setAbsent(int64_t value)
 {
     m_Absent = value;
     m_AbsentIsSet = true;
@@ -253,13 +253,13 @@ void TrustTally::unsetAbsent()
 {
     m_AbsentIsSet = false;
 }
-int32_t TrustTally::getAutomated() const
+int64_t TrustTally::getAutomated() const
 {
     return m_Automated;
 }
 
 
-void TrustTally::setAutomated(int32_t value)
+void TrustTally::setAutomated(int64_t value)
 {
     m_Automated = value;
     m_AutomatedIsSet = true;
@@ -274,13 +274,13 @@ void TrustTally::unsetAutomated()
 {
     m_AutomatedIsSet = false;
 }
-int32_t TrustTally::getPartial() const
+int64_t TrustTally::getPartial() const
 {
     return m_Partial;
 }
 
 
-void TrustTally::setPartial(int32_t value)
+void TrustTally::setPartial(int64_t value)
 {
     m_Partial = value;
     m_PartialIsSet = true;
@@ -316,13 +316,13 @@ void TrustTally::unsetStatement()
 {
     m_StatementIsSet = false;
 }
-int32_t TrustTally::getTotal() const
+int64_t TrustTally::getTotal() const
 {
     return m_Total;
 }
 
 
-void TrustTally::setTotal(int32_t value)
+void TrustTally::setTotal(int64_t value)
 {
     m_Total = value;
     m_TotalIsSet = true;
@@ -337,13 +337,13 @@ void TrustTally::unsetTotal()
 {
     m_TotalIsSet = false;
 }
-int32_t TrustTally::getUnverified() const
+int64_t TrustTally::getUnverified() const
 {
     return m_Unverified;
 }
 
 
-void TrustTally::setUnverified(int32_t value)
+void TrustTally::setUnverified(int64_t value)
 {
     m_Unverified = value;
     m_UnverifiedIsSet = true;

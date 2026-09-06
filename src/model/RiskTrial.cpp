@@ -18,18 +18,18 @@ namespace model {
 
 RiskTrial::RiskTrial()
 {
-    m_Alerted = 0;
+    m_Alerted = 0L;
     m_AlertedIsSet = false;
     m_CurveIsSet = false;
     m_Fit = 0.0;
     m_FitIsSet = false;
-    m_Learned = 0;
+    m_Learned = 0L;
     m_LearnedIsSet = false;
     m_Realised = 0.0;
     m_RealisedIsSet = false;
     m_Saturated = false;
     m_SaturatedIsSet = false;
-    m_Scored = 0;
+    m_Scored = 0L;
     m_ScoredIsSet = false;
     m_Stated = 0.0;
     m_StatedIsSet = false;
@@ -112,7 +112,7 @@ bool RiskTrial::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("alerted")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAlerted;
+            int64_t refVal_setAlerted;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAlerted);
             setAlerted(refVal_setAlerted);
             
@@ -145,7 +145,7 @@ bool RiskTrial::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("learned")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLearned;
+            int64_t refVal_setLearned;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLearned);
             setLearned(refVal_setLearned);
             
@@ -178,7 +178,7 @@ bool RiskTrial::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("scored")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setScored;
+            int64_t refVal_setScored;
             ok &= ModelBase::fromJson(fieldValue, refVal_setScored);
             setScored(refVal_setScored);
             
@@ -280,7 +280,7 @@ bool RiskTrial::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("alerted"))))
     {
-        int32_t refVal_setAlerted;
+        int64_t refVal_setAlerted;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("alerted"))), refVal_setAlerted );
         setAlerted(refVal_setAlerted);
     }
@@ -298,7 +298,7 @@ bool RiskTrial::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("learned"))))
     {
-        int32_t refVal_setLearned;
+        int64_t refVal_setLearned;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("learned"))), refVal_setLearned );
         setLearned(refVal_setLearned);
     }
@@ -316,7 +316,7 @@ bool RiskTrial::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("scored"))))
     {
-        int32_t refVal_setScored;
+        int64_t refVal_setScored;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("scored"))), refVal_setScored );
         setScored(refVal_setScored);
     }
@@ -342,13 +342,13 @@ bool RiskTrial::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 }
 
 
-int32_t RiskTrial::getAlerted() const
+int64_t RiskTrial::getAlerted() const
 {
     return m_Alerted;
 }
 
 
-void RiskTrial::setAlerted(int32_t value)
+void RiskTrial::setAlerted(int64_t value)
 {
     m_Alerted = value;
     m_AlertedIsSet = true;
@@ -405,13 +405,13 @@ void RiskTrial::unsetFit()
 {
     m_FitIsSet = false;
 }
-int32_t RiskTrial::getLearned() const
+int64_t RiskTrial::getLearned() const
 {
     return m_Learned;
 }
 
 
-void RiskTrial::setLearned(int32_t value)
+void RiskTrial::setLearned(int64_t value)
 {
     m_Learned = value;
     m_LearnedIsSet = true;
@@ -468,13 +468,13 @@ void RiskTrial::unsetSaturated()
 {
     m_SaturatedIsSet = false;
 }
-int32_t RiskTrial::getScored() const
+int64_t RiskTrial::getScored() const
 {
     return m_Scored;
 }
 
 
-void RiskTrial::setScored(int32_t value)
+void RiskTrial::setScored(int64_t value)
 {
     m_Scored = value;
     m_ScoredIsSet = true;

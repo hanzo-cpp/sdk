@@ -25,13 +25,13 @@ Consumer::Consumer()
     m_DeliveredIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_Num_ack_pending = 0;
+    m_Num_ack_pending = 0L;
     m_Num_ack_pendingIsSet = false;
     m_Num_pending = 0;
     m_Num_pendingIsSet = false;
-    m_Num_redelivered = 0;
+    m_Num_redelivered = 0L;
     m_Num_redeliveredIsSet = false;
-    m_Num_waiting = 0;
+    m_Num_waiting = 0L;
     m_Num_waitingIsSet = false;
     m_Stream_name = utility::conversions::to_string_t("");
     m_Stream_nameIsSet = false;
@@ -166,7 +166,7 @@ bool Consumer::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("num_ack_pending")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNumAckPending;
+            int64_t refVal_setNumAckPending;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNumAckPending);
             setNumAckPending(refVal_setNumAckPending);
             
@@ -188,7 +188,7 @@ bool Consumer::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("num_redelivered")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNumRedelivered;
+            int64_t refVal_setNumRedelivered;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNumRedelivered);
             setNumRedelivered(refVal_setNumRedelivered);
             
@@ -199,7 +199,7 @@ bool Consumer::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("num_waiting")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNumWaiting;
+            int64_t refVal_setNumWaiting;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNumWaiting);
             setNumWaiting(refVal_setNumWaiting);
             
@@ -309,7 +309,7 @@ bool Consumer::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("num_ack_pending"))))
     {
-        int32_t refVal_setNumAckPending;
+        int64_t refVal_setNumAckPending;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("num_ack_pending"))), refVal_setNumAckPending );
         setNumAckPending(refVal_setNumAckPending);
     }
@@ -321,13 +321,13 @@ bool Consumer::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("num_redelivered"))))
     {
-        int32_t refVal_setNumRedelivered;
+        int64_t refVal_setNumRedelivered;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("num_redelivered"))), refVal_setNumRedelivered );
         setNumRedelivered(refVal_setNumRedelivered);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("num_waiting"))))
     {
-        int32_t refVal_setNumWaiting;
+        int64_t refVal_setNumWaiting;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("num_waiting"))), refVal_setNumWaiting );
         setNumWaiting(refVal_setNumWaiting);
     }
@@ -446,13 +446,13 @@ void Consumer::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t Consumer::getNumAckPending() const
+int64_t Consumer::getNumAckPending() const
 {
     return m_Num_ack_pending;
 }
 
 
-void Consumer::setNumAckPending(int32_t value)
+void Consumer::setNumAckPending(int64_t value)
 {
     m_Num_ack_pending = value;
     m_Num_ack_pendingIsSet = true;
@@ -488,13 +488,13 @@ void Consumer::unsetNum_pending()
 {
     m_Num_pendingIsSet = false;
 }
-int32_t Consumer::getNumRedelivered() const
+int64_t Consumer::getNumRedelivered() const
 {
     return m_Num_redelivered;
 }
 
 
-void Consumer::setNumRedelivered(int32_t value)
+void Consumer::setNumRedelivered(int64_t value)
 {
     m_Num_redelivered = value;
     m_Num_redeliveredIsSet = true;
@@ -509,13 +509,13 @@ void Consumer::unsetNum_redelivered()
 {
     m_Num_redeliveredIsSet = false;
 }
-int32_t Consumer::getNumWaiting() const
+int64_t Consumer::getNumWaiting() const
 {
     return m_Num_waiting;
 }
 
 
-void Consumer::setNumWaiting(int32_t value)
+void Consumer::setNumWaiting(int64_t value)
 {
     m_Num_waiting = value;
     m_Num_waitingIsSet = true;

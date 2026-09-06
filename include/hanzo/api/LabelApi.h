@@ -89,11 +89,11 @@ public:
     /// </remarks>
     /// <param name="from">From and To bound the EVENT window, half-open, RFC 3339.  Unstated, the window is the 90 days ENDING where maturity begins — &#x60;to&#x60; is the horizon ago, not now. A default window running to now under a default horizon could not contain one matured event, so every count below it would be zero however much ground truth the tenant held. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="to"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="horizon">Horizon is the maturity horizon in days the coverage is measured under. Unstated takes 120. It also moves the default window, which ends where maturity begins. (optional, default to 0)</param>
+    /// <param name="horizon">Horizon is the maturity horizon in days the coverage is measured under. Unstated takes 120. It also moves the default window, which ends where maturity begins. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<RiskLabelCoverage>> riskLabelCoverage(
         boost::optional<utility::string_t> from,
         boost::optional<utility::string_t> to,
-        boost::optional<int32_t> horizon
+        boost::optional<int64_t> horizon
     ) const;
     /// <summary>
     /// The closed vocabularies and the precedence rule that resolves a conflict
@@ -114,14 +114,14 @@ public:
     /// <param name="source">Source narrows to one asserter — the read that answers \&quot;what has commerce told us\&quot;, separately from \&quot;what has an analyst told us\&quot;. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="from">From and To bound the EVENT time, half-open, RFC 3339. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="to"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps the page. Out of range takes the plane&#39;s own bound. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the page. Out of range takes the plane&#39;s own bound. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<RiskLabelsOut>> riskLabels(
         boost::optional<utility::string_t> kind,
         boost::optional<utility::string_t> subject,
         boost::optional<utility::string_t> source,
         boost::optional<utility::string_t> from,
         boost::optional<utility::string_t> to,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Resolve the label in force for named events, as of each event&#39;s own horizon

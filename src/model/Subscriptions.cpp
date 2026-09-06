@@ -18,7 +18,7 @@ namespace model {
 
 Subscriptions::Subscriptions()
 {
-    m_Count = 0;
+    m_Count = 0L;
     m_CountIsSet = false;
     m_SubscriptionsIsSet = false;
 }
@@ -57,7 +57,7 @@ bool Subscriptions::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("count")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCount;
+            int64_t refVal_setCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCount);
             setCount(refVal_setCount);
             
@@ -105,7 +105,7 @@ bool Subscriptions::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("count"))))
     {
-        int32_t refVal_setCount;
+        int64_t refVal_setCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("count"))), refVal_setCount );
         setCount(refVal_setCount);
     }
@@ -119,13 +119,13 @@ bool Subscriptions::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 }
 
 
-int32_t Subscriptions::getCount() const
+int64_t Subscriptions::getCount() const
 {
     return m_Count;
 }
 
 
-void Subscriptions::setCount(int32_t value)
+void Subscriptions::setCount(int64_t value)
 {
     m_Count = value;
     m_CountIsSet = true;

@@ -18,19 +18,19 @@ namespace model {
 
 ModelStat::ModelStat()
 {
-    m_CompletionTokens = 0;
+    m_CompletionTokens = 0L;
     m_CompletionTokensIsSet = false;
-    m_CostCents = 0;
+    m_CostCents = 0L;
     m_CostCentsIsSet = false;
     m_CostPct = 0.0;
     m_CostPctIsSet = false;
     m_ErrorRate = 0.0;
     m_ErrorRateIsSet = false;
-    m_Errors = 0;
+    m_Errors = 0L;
     m_ErrorsIsSet = false;
     m_Model = utility::conversions::to_string_t("");
     m_ModelIsSet = false;
-    m_ModelCount = 0;
+    m_ModelCount = 0L;
     m_ModelCountIsSet = false;
     m_P50Ms = 0.0;
     m_P50MsIsSet = false;
@@ -38,13 +38,13 @@ ModelStat::ModelStat()
     m_P95MsIsSet = false;
     m_P99Ms = 0.0;
     m_P99MsIsSet = false;
-    m_PromptTokens = 0;
+    m_PromptTokens = 0L;
     m_PromptTokensIsSet = false;
     m_Provider = utility::conversions::to_string_t("");
     m_ProviderIsSet = false;
-    m_Requests = 0;
+    m_Requests = 0L;
     m_RequestsIsSet = false;
-    m_TotalTokens = 0;
+    m_TotalTokens = 0L;
     m_TotalTokensIsSet = false;
 }
 
@@ -142,7 +142,7 @@ bool ModelStat::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("completionTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCompletionTokens;
+            int64_t refVal_setCompletionTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCompletionTokens);
             setCompletionTokens(refVal_setCompletionTokens);
             
@@ -153,7 +153,7 @@ bool ModelStat::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("costCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCostCents;
+            int64_t refVal_setCostCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCostCents);
             setCostCents(refVal_setCostCents);
             
@@ -186,7 +186,7 @@ bool ModelStat::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("errors")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setErrors;
+            int64_t refVal_setErrors;
             ok &= ModelBase::fromJson(fieldValue, refVal_setErrors);
             setErrors(refVal_setErrors);
             
@@ -208,7 +208,7 @@ bool ModelStat::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("modelCount")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setModelCount;
+            int64_t refVal_setModelCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setModelCount);
             setModelCount(refVal_setModelCount);
             
@@ -252,7 +252,7 @@ bool ModelStat::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("promptTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPromptTokens;
+            int64_t refVal_setPromptTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPromptTokens);
             setPromptTokens(refVal_setPromptTokens);
             
@@ -274,7 +274,7 @@ bool ModelStat::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("requests")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRequests;
+            int64_t refVal_setRequests;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRequests);
             setRequests(refVal_setRequests);
             
@@ -285,7 +285,7 @@ bool ModelStat::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("totalTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotalTokens;
+            int64_t refVal_setTotalTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalTokens);
             setTotalTokens(refVal_setTotalTokens);
             
@@ -370,13 +370,13 @@ bool ModelStat::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("completionTokens"))))
     {
-        int32_t refVal_setCompletionTokens;
+        int64_t refVal_setCompletionTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("completionTokens"))), refVal_setCompletionTokens );
         setCompletionTokens(refVal_setCompletionTokens);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))))
     {
-        int32_t refVal_setCostCents;
+        int64_t refVal_setCostCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))), refVal_setCostCents );
         setCostCents(refVal_setCostCents);
     }
@@ -394,7 +394,7 @@ bool ModelStat::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("errors"))))
     {
-        int32_t refVal_setErrors;
+        int64_t refVal_setErrors;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("errors"))), refVal_setErrors );
         setErrors(refVal_setErrors);
     }
@@ -406,7 +406,7 @@ bool ModelStat::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("modelCount"))))
     {
-        int32_t refVal_setModelCount;
+        int64_t refVal_setModelCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("modelCount"))), refVal_setModelCount );
         setModelCount(refVal_setModelCount);
     }
@@ -430,7 +430,7 @@ bool ModelStat::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("promptTokens"))))
     {
-        int32_t refVal_setPromptTokens;
+        int64_t refVal_setPromptTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("promptTokens"))), refVal_setPromptTokens );
         setPromptTokens(refVal_setPromptTokens);
     }
@@ -442,13 +442,13 @@ bool ModelStat::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("requests"))))
     {
-        int32_t refVal_setRequests;
+        int64_t refVal_setRequests;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("requests"))), refVal_setRequests );
         setRequests(refVal_setRequests);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("totalTokens"))))
     {
-        int32_t refVal_setTotalTokens;
+        int64_t refVal_setTotalTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("totalTokens"))), refVal_setTotalTokens );
         setTotalTokens(refVal_setTotalTokens);
     }
@@ -456,13 +456,13 @@ bool ModelStat::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 }
 
 
-int32_t ModelStat::getCompletionTokens() const
+int64_t ModelStat::getCompletionTokens() const
 {
     return m_CompletionTokens;
 }
 
 
-void ModelStat::setCompletionTokens(int32_t value)
+void ModelStat::setCompletionTokens(int64_t value)
 {
     m_CompletionTokens = value;
     m_CompletionTokensIsSet = true;
@@ -477,13 +477,13 @@ void ModelStat::unsetCompletionTokens()
 {
     m_CompletionTokensIsSet = false;
 }
-int32_t ModelStat::getCostCents() const
+int64_t ModelStat::getCostCents() const
 {
     return m_CostCents;
 }
 
 
-void ModelStat::setCostCents(int32_t value)
+void ModelStat::setCostCents(int64_t value)
 {
     m_CostCents = value;
     m_CostCentsIsSet = true;
@@ -540,13 +540,13 @@ void ModelStat::unsetErrorRate()
 {
     m_ErrorRateIsSet = false;
 }
-int32_t ModelStat::getErrors() const
+int64_t ModelStat::getErrors() const
 {
     return m_Errors;
 }
 
 
-void ModelStat::setErrors(int32_t value)
+void ModelStat::setErrors(int64_t value)
 {
     m_Errors = value;
     m_ErrorsIsSet = true;
@@ -582,13 +582,13 @@ void ModelStat::unsetModel()
 {
     m_ModelIsSet = false;
 }
-int32_t ModelStat::getModelCount() const
+int64_t ModelStat::getModelCount() const
 {
     return m_ModelCount;
 }
 
 
-void ModelStat::setModelCount(int32_t value)
+void ModelStat::setModelCount(int64_t value)
 {
     m_ModelCount = value;
     m_ModelCountIsSet = true;
@@ -666,13 +666,13 @@ void ModelStat::unsetP99Ms()
 {
     m_P99MsIsSet = false;
 }
-int32_t ModelStat::getPromptTokens() const
+int64_t ModelStat::getPromptTokens() const
 {
     return m_PromptTokens;
 }
 
 
-void ModelStat::setPromptTokens(int32_t value)
+void ModelStat::setPromptTokens(int64_t value)
 {
     m_PromptTokens = value;
     m_PromptTokensIsSet = true;
@@ -708,13 +708,13 @@ void ModelStat::unsetProvider()
 {
     m_ProviderIsSet = false;
 }
-int32_t ModelStat::getRequests() const
+int64_t ModelStat::getRequests() const
 {
     return m_Requests;
 }
 
 
-void ModelStat::setRequests(int32_t value)
+void ModelStat::setRequests(int64_t value)
 {
     m_Requests = value;
     m_RequestsIsSet = true;
@@ -729,13 +729,13 @@ void ModelStat::unsetRequests()
 {
     m_RequestsIsSet = false;
 }
-int32_t ModelStat::getTotalTokens() const
+int64_t ModelStat::getTotalTokens() const
 {
     return m_TotalTokens;
 }
 
 
-void ModelStat::setTotalTokens(int32_t value)
+void ModelStat::setTotalTokens(int64_t value)
 {
     m_TotalTokens = value;
     m_TotalTokensIsSet = true;

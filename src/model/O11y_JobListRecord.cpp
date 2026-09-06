@@ -18,7 +18,7 @@ namespace model {
 
 O11y_JobListRecord::O11y_JobListRecord()
 {
-    m_ActivePods = 0;
+    m_ActivePods = 0L;
     m_ActivePodsIsSet = false;
     m_CpuLimit = 0.0;
     m_CpuLimitIsSet = false;
@@ -26,9 +26,9 @@ O11y_JobListRecord::O11y_JobListRecord()
     m_CpuRequestIsSet = false;
     m_CpuUsage = 0.0;
     m_CpuUsageIsSet = false;
-    m_DesiredSuccessfulPods = 0;
+    m_DesiredSuccessfulPods = 0L;
     m_DesiredSuccessfulPodsIsSet = false;
-    m_FailedPods = 0;
+    m_FailedPods = 0L;
     m_FailedPodsIsSet = false;
     m_JobName = utility::conversions::to_string_t("");
     m_JobNameIsSet = false;
@@ -39,9 +39,9 @@ O11y_JobListRecord::O11y_JobListRecord()
     m_MemoryUsage = 0.0;
     m_MemoryUsageIsSet = false;
     m_MetaIsSet = false;
-    m_Restarts = 0;
+    m_Restarts = 0L;
     m_RestartsIsSet = false;
-    m_SuccessfulPods = 0;
+    m_SuccessfulPods = 0L;
     m_SuccessfulPodsIsSet = false;
 }
 
@@ -134,7 +134,7 @@ bool O11y_JobListRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("activePods")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setActivePods;
+            int64_t refVal_setActivePods;
             ok &= ModelBase::fromJson(fieldValue, refVal_setActivePods);
             setActivePods(refVal_setActivePods);
             
@@ -178,7 +178,7 @@ bool O11y_JobListRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("desiredSuccessfulPods")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDesiredSuccessfulPods;
+            int64_t refVal_setDesiredSuccessfulPods;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDesiredSuccessfulPods);
             setDesiredSuccessfulPods(refVal_setDesiredSuccessfulPods);
             
@@ -189,7 +189,7 @@ bool O11y_JobListRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("failedPods")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFailedPods;
+            int64_t refVal_setFailedPods;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFailedPods);
             setFailedPods(refVal_setFailedPods);
             
@@ -255,7 +255,7 @@ bool O11y_JobListRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("restarts")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRestarts;
+            int64_t refVal_setRestarts;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRestarts);
             setRestarts(refVal_setRestarts);
             
@@ -266,7 +266,7 @@ bool O11y_JobListRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("successfulPods")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSuccessfulPods;
+            int64_t refVal_setSuccessfulPods;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSuccessfulPods);
             setSuccessfulPods(refVal_setSuccessfulPods);
             
@@ -347,7 +347,7 @@ bool O11y_JobListRecord::fromMultiPart(std::shared_ptr<MultipartFormData> multip
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("activePods"))))
     {
-        int32_t refVal_setActivePods;
+        int64_t refVal_setActivePods;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("activePods"))), refVal_setActivePods );
         setActivePods(refVal_setActivePods);
     }
@@ -371,13 +371,13 @@ bool O11y_JobListRecord::fromMultiPart(std::shared_ptr<MultipartFormData> multip
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("desiredSuccessfulPods"))))
     {
-        int32_t refVal_setDesiredSuccessfulPods;
+        int64_t refVal_setDesiredSuccessfulPods;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("desiredSuccessfulPods"))), refVal_setDesiredSuccessfulPods );
         setDesiredSuccessfulPods(refVal_setDesiredSuccessfulPods);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("failedPods"))))
     {
-        int32_t refVal_setFailedPods;
+        int64_t refVal_setFailedPods;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("failedPods"))), refVal_setFailedPods );
         setFailedPods(refVal_setFailedPods);
     }
@@ -413,13 +413,13 @@ bool O11y_JobListRecord::fromMultiPart(std::shared_ptr<MultipartFormData> multip
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("restarts"))))
     {
-        int32_t refVal_setRestarts;
+        int64_t refVal_setRestarts;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("restarts"))), refVal_setRestarts );
         setRestarts(refVal_setRestarts);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("successfulPods"))))
     {
-        int32_t refVal_setSuccessfulPods;
+        int64_t refVal_setSuccessfulPods;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("successfulPods"))), refVal_setSuccessfulPods );
         setSuccessfulPods(refVal_setSuccessfulPods);
     }
@@ -427,13 +427,13 @@ bool O11y_JobListRecord::fromMultiPart(std::shared_ptr<MultipartFormData> multip
 }
 
 
-int32_t O11y_JobListRecord::getActivePods() const
+int64_t O11y_JobListRecord::getActivePods() const
 {
     return m_ActivePods;
 }
 
 
-void O11y_JobListRecord::setActivePods(int32_t value)
+void O11y_JobListRecord::setActivePods(int64_t value)
 {
     m_ActivePods = value;
     m_ActivePodsIsSet = true;
@@ -511,13 +511,13 @@ void O11y_JobListRecord::unsetCpuUsage()
 {
     m_CpuUsageIsSet = false;
 }
-int32_t O11y_JobListRecord::getDesiredSuccessfulPods() const
+int64_t O11y_JobListRecord::getDesiredSuccessfulPods() const
 {
     return m_DesiredSuccessfulPods;
 }
 
 
-void O11y_JobListRecord::setDesiredSuccessfulPods(int32_t value)
+void O11y_JobListRecord::setDesiredSuccessfulPods(int64_t value)
 {
     m_DesiredSuccessfulPods = value;
     m_DesiredSuccessfulPodsIsSet = true;
@@ -532,13 +532,13 @@ void O11y_JobListRecord::unsetDesiredSuccessfulPods()
 {
     m_DesiredSuccessfulPodsIsSet = false;
 }
-int32_t O11y_JobListRecord::getFailedPods() const
+int64_t O11y_JobListRecord::getFailedPods() const
 {
     return m_FailedPods;
 }
 
 
-void O11y_JobListRecord::setFailedPods(int32_t value)
+void O11y_JobListRecord::setFailedPods(int64_t value)
 {
     m_FailedPods = value;
     m_FailedPodsIsSet = true;
@@ -658,13 +658,13 @@ void O11y_JobListRecord::unsetMeta()
 {
     m_MetaIsSet = false;
 }
-int32_t O11y_JobListRecord::getRestarts() const
+int64_t O11y_JobListRecord::getRestarts() const
 {
     return m_Restarts;
 }
 
 
-void O11y_JobListRecord::setRestarts(int32_t value)
+void O11y_JobListRecord::setRestarts(int64_t value)
 {
     m_Restarts = value;
     m_RestartsIsSet = true;
@@ -679,13 +679,13 @@ void O11y_JobListRecord::unsetRestarts()
 {
     m_RestartsIsSet = false;
 }
-int32_t O11y_JobListRecord::getSuccessfulPods() const
+int64_t O11y_JobListRecord::getSuccessfulPods() const
 {
     return m_SuccessfulPods;
 }
 
 
-void O11y_JobListRecord::setSuccessfulPods(int32_t value)
+void O11y_JobListRecord::setSuccessfulPods(int64_t value)
 {
     m_SuccessfulPods = value;
     m_SuccessfulPodsIsSet = true;

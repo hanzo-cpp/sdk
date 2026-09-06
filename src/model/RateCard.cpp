@@ -20,9 +20,9 @@ RateCard::RateCard()
 {
     m_Basis = utility::conversions::to_string_t("");
     m_BasisIsSet = false;
-    m_MicroUsdPerGbHour = 0;
+    m_MicroUsdPerGbHour = 0L;
     m_MicroUsdPerGbHourIsSet = false;
-    m_MicroUsdPerVcpuHour = 0;
+    m_MicroUsdPerVcpuHour = 0L;
     m_MicroUsdPerVcpuHourIsSet = false;
 }
 
@@ -76,7 +76,7 @@ bool RateCard::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("microUsdPerGbHour")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMicroUsdPerGbHour;
+            int64_t refVal_setMicroUsdPerGbHour;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMicroUsdPerGbHour);
             setMicroUsdPerGbHour(refVal_setMicroUsdPerGbHour);
             
@@ -87,7 +87,7 @@ bool RateCard::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("microUsdPerVcpuHour")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMicroUsdPerVcpuHour;
+            int64_t refVal_setMicroUsdPerVcpuHour;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMicroUsdPerVcpuHour);
             setMicroUsdPerVcpuHour(refVal_setMicroUsdPerVcpuHour);
             
@@ -134,13 +134,13 @@ bool RateCard::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("microUsdPerGbHour"))))
     {
-        int32_t refVal_setMicroUsdPerGbHour;
+        int64_t refVal_setMicroUsdPerGbHour;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("microUsdPerGbHour"))), refVal_setMicroUsdPerGbHour );
         setMicroUsdPerGbHour(refVal_setMicroUsdPerGbHour);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("microUsdPerVcpuHour"))))
     {
-        int32_t refVal_setMicroUsdPerVcpuHour;
+        int64_t refVal_setMicroUsdPerVcpuHour;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("microUsdPerVcpuHour"))), refVal_setMicroUsdPerVcpuHour );
         setMicroUsdPerVcpuHour(refVal_setMicroUsdPerVcpuHour);
     }
@@ -169,13 +169,13 @@ void RateCard::unsetBasis()
 {
     m_BasisIsSet = false;
 }
-int32_t RateCard::getMicroUsdPerGbHour() const
+int64_t RateCard::getMicroUsdPerGbHour() const
 {
     return m_MicroUsdPerGbHour;
 }
 
 
-void RateCard::setMicroUsdPerGbHour(int32_t value)
+void RateCard::setMicroUsdPerGbHour(int64_t value)
 {
     m_MicroUsdPerGbHour = value;
     m_MicroUsdPerGbHourIsSet = true;
@@ -190,13 +190,13 @@ void RateCard::unsetMicroUsdPerGbHour()
 {
     m_MicroUsdPerGbHourIsSet = false;
 }
-int32_t RateCard::getMicroUsdPerVcpuHour() const
+int64_t RateCard::getMicroUsdPerVcpuHour() const
 {
     return m_MicroUsdPerVcpuHour;
 }
 
 
-void RateCard::setMicroUsdPerVcpuHour(int32_t value)
+void RateCard::setMicroUsdPerVcpuHour(int64_t value)
 {
     m_MicroUsdPerVcpuHour = value;
     m_MicroUsdPerVcpuHourIsSet = true;

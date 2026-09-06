@@ -95,10 +95,10 @@ public:
     /// <summary>
     /// Version names this regime in this organisation&#39;s history.
     /// </summary>
-    int32_t getVersion() const;
+    int64_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();
-    void setVersion(int32_t value);
+    void setVersion(int64_t value);
 
 
 protected:
@@ -117,7 +117,7 @@ protected:
     double m_Sample;
     bool m_SampleIsSet;
 
-    int32_t m_Version;
+    int64_t m_Version;
     bool m_VersionIsSet;
 
 };

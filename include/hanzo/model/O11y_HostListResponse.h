@@ -85,10 +85,10 @@ public:
     void unsetSentAnyHostMetricsData();
     void setSentAnyHostMetricsData(bool value);
 
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
     utility::string_t getType() const;
     bool typeIsSet() const;
@@ -115,7 +115,7 @@ protected:
     bool m_SentAnyHostMetricsData;
     bool m_SentAnyHostMetricsDataIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
     utility::string_t m_Type;

@@ -54,14 +54,14 @@ public:
     /// <summary>
     /// Delay is how long to wait before retrying, in nanoseconds.
     /// </summary>
-    int32_t getDelay() const;
+    int64_t getDelay() const;
     bool delayIsSet() const;
     void unsetDelay();
-    void setDelay(int32_t value);
+    void setDelay(int64_t value);
 
 
 protected:
-    int32_t m_Delay;
+    int64_t m_Delay;
     bool m_DelayIsSet;
 
 };

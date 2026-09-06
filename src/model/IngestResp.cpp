@@ -18,7 +18,7 @@ namespace model {
 
 IngestResp::IngestResp()
 {
-    m_Accepted = 0;
+    m_Accepted = 0L;
     m_AcceptedIsSet = false;
     m_LinksIsSet = false;
     m_Stored = false;
@@ -64,7 +64,7 @@ bool IngestResp::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("accepted")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAccepted;
+            int64_t refVal_setAccepted;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAccepted);
             setAccepted(refVal_setAccepted);
             
@@ -127,7 +127,7 @@ bool IngestResp::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("accepted"))))
     {
-        int32_t refVal_setAccepted;
+        int64_t refVal_setAccepted;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("accepted"))), refVal_setAccepted );
         setAccepted(refVal_setAccepted);
     }
@@ -147,13 +147,13 @@ bool IngestResp::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 }
 
 
-int32_t IngestResp::getAccepted() const
+int64_t IngestResp::getAccepted() const
 {
     return m_Accepted;
 }
 
 
-void IngestResp::setAccepted(int32_t value)
+void IngestResp::setAccepted(int64_t value)
 {
     m_Accepted = value;
     m_AcceptedIsSet = true;

@@ -72,10 +72,10 @@ public:
     void unsetPrice();
     void setPrice(double value);
 
-    int32_t getQuantity() const;
+    int64_t getQuantity() const;
     bool quantityIsSet() const;
     void unsetQuantity();
-    void setQuantity(int32_t value);
+    void setQuantity(int64_t value);
 
 
 protected:
@@ -91,7 +91,7 @@ protected:
     double m_Price;
     bool m_PriceIsSet;
 
-    int32_t m_Quantity;
+    int64_t m_Quantity;
     bool m_QuantityIsSet;
 
 };

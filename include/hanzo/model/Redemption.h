@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// DiscountCents is the month-one discount this redemption CLAIMS, in USD cents. It is a recorded figure, NOT a balance: nothing was credited and no wallet moved. An admin granting against this claim is what would make it money, and that decision happens on the admin surface, not here.
     /// </summary>
-    int32_t getDiscountCents() const;
+    int64_t getDiscountCents() const;
     bool discountCentsIsSet() const;
     void unsetDiscountCents();
-    void setDiscountCents(int32_t value);
+    void setDiscountCents(int64_t value);
 
     /// <summary>
     /// Plan is the tier redeemed against: pro, max or team. It is DERIVED from the org&#39;s live ACTIVE/TRIALING subscription, never read from the request, so it is what the org actually holds rather than what it claimed.
@@ -79,34 +79,34 @@ public:
     /// <summary>
     /// RedeemedAt is unix seconds.
     /// </summary>
-    int32_t getRedeemedAt() const;
+    int64_t getRedeemedAt() const;
     bool redeemedAtIsSet() const;
     void unsetRedeemedAt();
-    void setRedeemedAt(int32_t value);
+    void setRedeemedAt(int64_t value);
 
     /// <summary>
     /// Seats is the seat count the claim was priced at, and it is ALWAYS 1. No server-side authority on this surface answers \&quot;how many seats\&quot;, and the caller&#39;s own number is exactly the input that once inflated these claims, so a redemption records the single-seat floor and an admin resolves the real count against subscription data at grant time.
     /// </summary>
-    int32_t getSeats() const;
+    int64_t getSeats() const;
     bool seatsIsSet() const;
     void unsetSeats();
-    void setSeats(int32_t value);
+    void setSeats(int64_t value);
 
 
 protected:
     utility::string_t m_Code;
     bool m_CodeIsSet;
 
-    int32_t m_DiscountCents;
+    int64_t m_DiscountCents;
     bool m_DiscountCentsIsSet;
 
     utility::string_t m_Plan;
     bool m_PlanIsSet;
 
-    int32_t m_RedeemedAt;
+    int64_t m_RedeemedAt;
     bool m_RedeemedAtIsSet;
 
-    int32_t m_Seats;
+    int64_t m_Seats;
     bool m_SeatsIsSet;
 
 };

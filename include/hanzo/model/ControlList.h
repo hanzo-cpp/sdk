@@ -57,18 +57,18 @@ public:
     /// <summary>
     /// Absent is how many the organization does not have. Each still names the clause it would satisfy, and none of them moves a coverage number.
     /// </summary>
-    int32_t getAbsent() const;
+    int64_t getAbsent() const;
     bool absentIsSet() const;
     void unsetAbsent();
-    void setAbsent(int32_t value);
+    void setAbsent(int64_t value);
 
     /// <summary>
     /// Automated is how many run with nobody in the loop.
     /// </summary>
-    int32_t getAutomated() const;
+    int64_t getAutomated() const;
     bool automatedIsSet() const;
     void unsetAutomated();
-    void setAutomated(int32_t value);
+    void setAutomated(int64_t value);
 
     /// <summary>
     /// Controls is every control, opaque because the organization owns its shape.
@@ -81,10 +81,10 @@ public:
     /// <summary>
     /// Partial is how many run but do not cover their whole claim.
     /// </summary>
-    int32_t getPartial() const;
+    int64_t getPartial() const;
     bool partialIsSet() const;
     void unsetPartial();
-    void setPartial(int32_t value);
+    void setPartial(int64_t value);
 
     /// <summary>
     /// Statement is the counts as one sentence, safe to quote.
@@ -97,18 +97,18 @@ public:
     /// <summary>
     /// Total is how many controls this organization publishes.
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
     /// <summary>
     /// Unverified is how many rest on somebody having read the source rather than on a test or an audit row.
     /// </summary>
-    int32_t getUnverified() const;
+    int64_t getUnverified() const;
     bool unverifiedIsSet() const;
     void unsetUnverified();
-    void setUnverified(int32_t value);
+    void setUnverified(int64_t value);
 
     /// <summary>
     /// Version is the embedded inventory&#39;s version.
@@ -120,25 +120,25 @@ public:
 
 
 protected:
-    int32_t m_Absent;
+    int64_t m_Absent;
     bool m_AbsentIsSet;
 
-    int32_t m_Automated;
+    int64_t m_Automated;
     bool m_AutomatedIsSet;
 
     std::vector<std::shared_ptr<AnyType>> m_Controls;
     bool m_ControlsIsSet;
 
-    int32_t m_Partial;
+    int64_t m_Partial;
     bool m_PartialIsSet;
 
     utility::string_t m_Statement;
     bool m_StatementIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
-    int32_t m_Unverified;
+    int64_t m_Unverified;
     bool m_UnverifiedIsSet;
 
     utility::string_t m_Version;

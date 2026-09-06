@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// Amount is the line total in whole cents (250000 is $2,500.00).
     /// </summary>
-    int32_t getAmount() const;
+    int64_t getAmount() const;
     bool amountIsSet() const;
     void unsetAmount();
-    void setAmount(int32_t value);
+    void setAmount(int64_t value);
 
     /// <summary>
     /// Description is the human-readable line, e.g. \&quot;Advisory retainer — August\&quot;.
@@ -71,31 +71,31 @@ public:
     /// <summary>
     /// Quantity is the number of units, when the line is metered. Optional.
     /// </summary>
-    int32_t getQuantity() const;
+    int64_t getQuantity() const;
     bool quantityIsSet() const;
     void unsetQuantity();
-    void setQuantity(int32_t value);
+    void setQuantity(int64_t value);
 
     /// <summary>
     /// UnitPrice is the per-unit price in cents, when the line is metered. Optional.
     /// </summary>
-    int32_t getUnitPrice() const;
+    int64_t getUnitPrice() const;
     bool unitPriceIsSet() const;
     void unsetUnitPrice();
-    void setUnitPrice(int32_t value);
+    void setUnitPrice(int64_t value);
 
 
 protected:
-    int32_t m_Amount;
+    int64_t m_Amount;
     bool m_AmountIsSet;
 
     utility::string_t m_Description;
     bool m_DescriptionIsSet;
 
-    int32_t m_Quantity;
+    int64_t m_Quantity;
     bool m_QuantityIsSet;
 
-    int32_t m_UnitPrice;
+    int64_t m_UnitPrice;
     bool m_UnitPriceIsSet;
 
 };

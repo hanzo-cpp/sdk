@@ -20,11 +20,11 @@ AccView::AccView()
 {
     m_Basis = utility::conversions::to_string_t("");
     m_BasisIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_EvidenceDocId = utility::conversions::to_string_t("");
     m_EvidenceDocIdIsSet = false;
-    m_ExpiresAt = 0;
+    m_ExpiresAt = 0L;
     m_ExpiresAtIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
@@ -38,7 +38,7 @@ AccView::AccView()
     m_StatusIsSet = false;
     m_SubjectId = utility::conversions::to_string_t("");
     m_SubjectIdIsSet = false;
-    m_UpdatedAt = 0;
+    m_UpdatedAt = 0L;
     m_UpdatedAtIsSet = false;
 }
 
@@ -132,7 +132,7 @@ bool AccView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -154,7 +154,7 @@ bool AccView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("expiresAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExpiresAt;
+            int64_t refVal_setExpiresAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExpiresAt);
             setExpiresAt(refVal_setExpiresAt);
             
@@ -231,7 +231,7 @@ bool AccView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updatedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdatedAt;
+            int64_t refVal_setUpdatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdatedAt);
             setUpdatedAt(refVal_setUpdatedAt);
             
@@ -310,7 +310,7 @@ bool AccView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -322,7 +322,7 @@ bool AccView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("expiresAt"))))
     {
-        int32_t refVal_setExpiresAt;
+        int64_t refVal_setExpiresAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("expiresAt"))), refVal_setExpiresAt );
         setExpiresAt(refVal_setExpiresAt);
     }
@@ -364,7 +364,7 @@ bool AccView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
-        int32_t refVal_setUpdatedAt;
+        int64_t refVal_setUpdatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))), refVal_setUpdatedAt );
         setUpdatedAt(refVal_setUpdatedAt);
     }
@@ -393,13 +393,13 @@ void AccView::unsetBasis()
 {
     m_BasisIsSet = false;
 }
-int32_t AccView::getCreatedAt() const
+int64_t AccView::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void AccView::setCreatedAt(int32_t value)
+void AccView::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -435,13 +435,13 @@ void AccView::unsetEvidenceDocId()
 {
     m_EvidenceDocIdIsSet = false;
 }
-int32_t AccView::getExpiresAt() const
+int64_t AccView::getExpiresAt() const
 {
     return m_ExpiresAt;
 }
 
 
-void AccView::setExpiresAt(int32_t value)
+void AccView::setExpiresAt(int64_t value)
 {
     m_ExpiresAt = value;
     m_ExpiresAtIsSet = true;
@@ -582,13 +582,13 @@ void AccView::unsetSubjectId()
 {
     m_SubjectIdIsSet = false;
 }
-int32_t AccView::getUpdatedAt() const
+int64_t AccView::getUpdatedAt() const
 {
     return m_UpdatedAt;
 }
 
 
-void AccView::setUpdatedAt(int32_t value)
+void AccView::setUpdatedAt(int64_t value)
 {
     m_UpdatedAt = value;
     m_UpdatedAtIsSet = true;

@@ -132,10 +132,10 @@ public:
     /// <summary>
     /// OrderID is the pipeline&#39;s 1-based position in the set.
     /// </summary>
-    int32_t getOrderId() const;
+    int64_t getOrderId() const;
     bool orderIdIsSet() const;
     void unsetOrderId();
-    void setOrderId(int32_t value);
+    void setOrderId(int64_t value);
 
     /// <summary>
     /// UpdatedAt is when the pipeline last changed.
@@ -182,7 +182,7 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_OrderId;
+    int64_t m_OrderId;
     bool m_OrderIdIsSet;
 
     utility::datetime m_UpdatedAt;

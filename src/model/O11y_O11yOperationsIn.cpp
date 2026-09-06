@@ -20,7 +20,7 @@ O11y_O11yOperationsIn::O11y_O11yOperationsIn()
 {
     m_End = utility::conversions::to_string_t("");
     m_EndIsSet = false;
-    m_Limit = 0;
+    m_Limit = 0L;
     m_LimitIsSet = false;
     m_Service = utility::conversions::to_string_t("");
     m_ServiceIsSet = false;
@@ -89,7 +89,7 @@ bool O11y_O11yOperationsIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("limit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLimit;
+            int64_t refVal_setLimit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLimit);
             setLimit(refVal_setLimit);
             
@@ -177,7 +177,7 @@ bool O11y_O11yOperationsIn::fromMultiPart(std::shared_ptr<MultipartFormData> mul
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("limit"))))
     {
-        int32_t refVal_setLimit;
+        int64_t refVal_setLimit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("limit"))), refVal_setLimit );
         setLimit(refVal_setLimit);
     }
@@ -224,13 +224,13 @@ void O11y_O11yOperationsIn::unsetEnd()
 {
     m_EndIsSet = false;
 }
-int32_t O11y_O11yOperationsIn::getLimit() const
+int64_t O11y_O11yOperationsIn::getLimit() const
 {
     return m_Limit;
 }
 
 
-void O11y_O11yOperationsIn::setLimit(int32_t value)
+void O11y_O11yOperationsIn::setLimit(int64_t value)
 {
     m_Limit = value;
     m_LimitIsSet = true;

@@ -55,18 +55,18 @@ public:
     /// <summary>
     /// Candidates is how many model shapes will be tried.
     /// </summary>
-    int32_t getCandidates() const;
+    int64_t getCandidates() const;
     bool candidatesIsSet() const;
     void unsetCandidates();
-    void setCandidates(int32_t value);
+    void setCandidates(int64_t value);
 
     /// <summary>
     /// Events is how much of the organisation&#39;s own history the run will replay.
     /// </summary>
-    int32_t getEvents() const;
+    int64_t getEvents() const;
     bool eventsIsSet() const;
     void unsetEvents();
-    void setEvents(int32_t value);
+    void setEvents(int64_t value);
 
     /// <summary>
     /// ID addresses the run. Read the result back with it.
@@ -78,10 +78,10 @@ public:
 
 
 protected:
-    int32_t m_Candidates;
+    int64_t m_Candidates;
     bool m_CandidatesIsSet;
 
-    int32_t m_Events;
+    int64_t m_Events;
     bool m_EventsIsSet;
 
     utility::string_t m_Id;

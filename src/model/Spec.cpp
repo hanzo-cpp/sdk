@@ -20,10 +20,10 @@ Spec::Spec()
 {
     m_Arch = utility::conversions::to_string_t("");
     m_ArchIsSet = false;
-    m_Cpus = 0;
+    m_Cpus = 0L;
     m_CpusIsSet = false;
     m_GpusIsSet = false;
-    m_Memory = 0;
+    m_Memory = 0L;
     m_MemoryIsSet = false;
     m_Os = utility::conversions::to_string_t("");
     m_OsIsSet = false;
@@ -89,7 +89,7 @@ bool Spec::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cpus")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCpus;
+            int64_t refVal_setCpus;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCpus);
             setCpus(refVal_setCpus);
             
@@ -111,7 +111,7 @@ bool Spec::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("memory")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMemory;
+            int64_t refVal_setMemory;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMemory);
             setMemory(refVal_setMemory);
             
@@ -177,7 +177,7 @@ bool Spec::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cpus"))))
     {
-        int32_t refVal_setCpus;
+        int64_t refVal_setCpus;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cpus"))), refVal_setCpus );
         setCpus(refVal_setCpus);
     }
@@ -189,7 +189,7 @@ bool Spec::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("memory"))))
     {
-        int32_t refVal_setMemory;
+        int64_t refVal_setMemory;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("memory"))), refVal_setMemory );
         setMemory(refVal_setMemory);
     }
@@ -224,13 +224,13 @@ void Spec::unsetArch()
 {
     m_ArchIsSet = false;
 }
-int32_t Spec::getCpus() const
+int64_t Spec::getCpus() const
 {
     return m_Cpus;
 }
 
 
-void Spec::setCpus(int32_t value)
+void Spec::setCpus(int64_t value)
 {
     m_Cpus = value;
     m_CpusIsSet = true;
@@ -266,13 +266,13 @@ void Spec::unsetGpus()
 {
     m_GpusIsSet = false;
 }
-int32_t Spec::getMemory() const
+int64_t Spec::getMemory() const
 {
     return m_Memory;
 }
 
 
-void Spec::setMemory(int32_t value)
+void Spec::setMemory(int64_t value)
 {
     m_Memory = value;
     m_MemoryIsSet = true;

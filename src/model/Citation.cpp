@@ -18,11 +18,11 @@ namespace model {
 
 Citation::Citation()
 {
-    m_EndLine = 0;
+    m_EndLine = 0L;
     m_EndLineIsSet = false;
     m_file = utility::conversions::to_string_t("");
     m_fileIsSet = false;
-    m_Line = 0;
+    m_Line = 0L;
     m_LineIsSet = false;
     m_Repo = utility::conversions::to_string_t("");
     m_RepoIsSet = false;
@@ -79,7 +79,7 @@ bool Citation::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("endLine")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setEndLine;
+            int64_t refVal_setEndLine;
             ok &= ModelBase::fromJson(fieldValue, refVal_setEndLine);
             setEndLine(refVal_setEndLine);
             
@@ -101,7 +101,7 @@ bool Citation::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("line")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLine;
+            int64_t refVal_setLine;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLine);
             setLine(refVal_setLine);
             
@@ -172,7 +172,7 @@ bool Citation::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("endLine"))))
     {
-        int32_t refVal_setEndLine;
+        int64_t refVal_setEndLine;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("endLine"))), refVal_setEndLine );
         setEndLine(refVal_setEndLine);
     }
@@ -184,7 +184,7 @@ bool Citation::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("line"))))
     {
-        int32_t refVal_setLine;
+        int64_t refVal_setLine;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("line"))), refVal_setLine );
         setLine(refVal_setLine);
     }
@@ -204,13 +204,13 @@ bool Citation::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 }
 
 
-int32_t Citation::getEndLine() const
+int64_t Citation::getEndLine() const
 {
     return m_EndLine;
 }
 
 
-void Citation::setEndLine(int32_t value)
+void Citation::setEndLine(int64_t value)
 {
     m_EndLine = value;
     m_EndLineIsSet = true;
@@ -246,13 +246,13 @@ void Citation::unsetfile()
 {
     m_fileIsSet = false;
 }
-int32_t Citation::getLine() const
+int64_t Citation::getLine() const
 {
     return m_Line;
 }
 
 
-void Citation::setLine(int32_t value)
+void Citation::setLine(int64_t value)
 {
     m_Line = value;
     m_LineIsSet = true;

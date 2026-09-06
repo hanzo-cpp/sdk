@@ -22,11 +22,11 @@ AgentRunView::AgentRunView()
     m_ActorIsSet = false;
     m_Agent = utility::conversions::to_string_t("");
     m_AgentIsSet = false;
-    m_CompletionTokens = 0;
+    m_CompletionTokens = 0L;
     m_CompletionTokensIsSet = false;
     m_CreatedAt = utility::conversions::to_string_t("");
     m_CreatedAtIsSet = false;
-    m_DurationMs = 0;
+    m_DurationMs = 0L;
     m_DurationMsIsSet = false;
     m_Error = utility::conversions::to_string_t("");
     m_ErrorIsSet = false;
@@ -38,11 +38,11 @@ AgentRunView::AgentRunView()
     m_ModelIsSet = false;
     m_Output = utility::conversions::to_string_t("");
     m_OutputIsSet = false;
-    m_PromptTokens = 0;
+    m_PromptTokens = 0L;
     m_PromptTokensIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
-    m_ToolCalls = 0;
+    m_ToolCalls = 0L;
     m_ToolCallsIsSet = false;
     m_TraceId = utility::conversions::to_string_t("");
     m_TraceIdIsSet = false;
@@ -164,7 +164,7 @@ bool AgentRunView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("completionTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCompletionTokens;
+            int64_t refVal_setCompletionTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCompletionTokens);
             setCompletionTokens(refVal_setCompletionTokens);
             
@@ -186,7 +186,7 @@ bool AgentRunView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("durationMs")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDurationMs;
+            int64_t refVal_setDurationMs;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDurationMs);
             setDurationMs(refVal_setDurationMs);
             
@@ -252,7 +252,7 @@ bool AgentRunView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("promptTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPromptTokens;
+            int64_t refVal_setPromptTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPromptTokens);
             setPromptTokens(refVal_setPromptTokens);
             
@@ -274,7 +274,7 @@ bool AgentRunView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("toolCalls")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setToolCalls;
+            int64_t refVal_setToolCalls;
             ok &= ModelBase::fromJson(fieldValue, refVal_setToolCalls);
             setToolCalls(refVal_setToolCalls);
             
@@ -382,7 +382,7 @@ bool AgentRunView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("completionTokens"))))
     {
-        int32_t refVal_setCompletionTokens;
+        int64_t refVal_setCompletionTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("completionTokens"))), refVal_setCompletionTokens );
         setCompletionTokens(refVal_setCompletionTokens);
     }
@@ -394,7 +394,7 @@ bool AgentRunView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("durationMs"))))
     {
-        int32_t refVal_setDurationMs;
+        int64_t refVal_setDurationMs;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("durationMs"))), refVal_setDurationMs );
         setDurationMs(refVal_setDurationMs);
     }
@@ -430,7 +430,7 @@ bool AgentRunView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("promptTokens"))))
     {
-        int32_t refVal_setPromptTokens;
+        int64_t refVal_setPromptTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("promptTokens"))), refVal_setPromptTokens );
         setPromptTokens(refVal_setPromptTokens);
     }
@@ -442,7 +442,7 @@ bool AgentRunView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("toolCalls"))))
     {
-        int32_t refVal_setToolCalls;
+        int64_t refVal_setToolCalls;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("toolCalls"))), refVal_setToolCalls );
         setToolCalls(refVal_setToolCalls);
     }
@@ -498,13 +498,13 @@ void AgentRunView::unsetAgent()
 {
     m_AgentIsSet = false;
 }
-int32_t AgentRunView::getCompletionTokens() const
+int64_t AgentRunView::getCompletionTokens() const
 {
     return m_CompletionTokens;
 }
 
 
-void AgentRunView::setCompletionTokens(int32_t value)
+void AgentRunView::setCompletionTokens(int64_t value)
 {
     m_CompletionTokens = value;
     m_CompletionTokensIsSet = true;
@@ -540,13 +540,13 @@ void AgentRunView::unsetCreatedAt()
 {
     m_CreatedAtIsSet = false;
 }
-int32_t AgentRunView::getDurationMs() const
+int64_t AgentRunView::getDurationMs() const
 {
     return m_DurationMs;
 }
 
 
-void AgentRunView::setDurationMs(int32_t value)
+void AgentRunView::setDurationMs(int64_t value)
 {
     m_DurationMs = value;
     m_DurationMsIsSet = true;
@@ -666,13 +666,13 @@ void AgentRunView::unsetOutput()
 {
     m_OutputIsSet = false;
 }
-int32_t AgentRunView::getPromptTokens() const
+int64_t AgentRunView::getPromptTokens() const
 {
     return m_PromptTokens;
 }
 
 
-void AgentRunView::setPromptTokens(int32_t value)
+void AgentRunView::setPromptTokens(int64_t value)
 {
     m_PromptTokens = value;
     m_PromptTokensIsSet = true;
@@ -708,13 +708,13 @@ void AgentRunView::unsetStatus()
 {
     m_StatusIsSet = false;
 }
-int32_t AgentRunView::getToolCalls() const
+int64_t AgentRunView::getToolCalls() const
 {
     return m_ToolCalls;
 }
 
 
-void AgentRunView::setToolCalls(int32_t value)
+void AgentRunView::setToolCalls(int64_t value)
 {
     m_ToolCalls = value;
     m_ToolCallsIsSet = true;

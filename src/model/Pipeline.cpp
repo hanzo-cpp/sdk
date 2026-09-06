@@ -18,7 +18,7 @@ namespace model {
 
 Pipeline::Pipeline()
 {
-    m_Behind = 0;
+    m_Behind = 0L;
     m_BehindIsSet = false;
     m_BuiltIsSet = false;
     m_DeclaredIsSet = false;
@@ -34,14 +34,14 @@ Pipeline::Pipeline()
     m_OrgIsSet = false;
     m_PinnedAt = utility::datetime();
     m_PinnedAtIsSet = false;
-    m_Ready = 0;
+    m_Ready = 0L;
     m_ReadyIsSet = false;
     m_Repo = utility::conversions::to_string_t("");
     m_RepoIsSet = false;
     m_RunningIsSet = false;
     m_Since = utility::datetime();
     m_SinceIsSet = false;
-    m_Want = 0;
+    m_Want = 0L;
     m_WantIsSet = false;
 }
 
@@ -144,7 +144,7 @@ bool Pipeline::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("behind")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBehind;
+            int64_t refVal_setBehind;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBehind);
             setBehind(refVal_setBehind);
             
@@ -254,7 +254,7 @@ bool Pipeline::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("ready")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setReady;
+            int64_t refVal_setReady;
             ok &= ModelBase::fromJson(fieldValue, refVal_setReady);
             setReady(refVal_setReady);
             
@@ -298,7 +298,7 @@ bool Pipeline::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("want")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setWant;
+            int64_t refVal_setWant;
             ok &= ModelBase::fromJson(fieldValue, refVal_setWant);
             setWant(refVal_setWant);
             
@@ -387,7 +387,7 @@ bool Pipeline::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("behind"))))
     {
-        int32_t refVal_setBehind;
+        int64_t refVal_setBehind;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("behind"))), refVal_setBehind );
         setBehind(refVal_setBehind);
     }
@@ -447,7 +447,7 @@ bool Pipeline::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("ready"))))
     {
-        int32_t refVal_setReady;
+        int64_t refVal_setReady;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ready"))), refVal_setReady );
         setReady(refVal_setReady);
     }
@@ -471,7 +471,7 @@ bool Pipeline::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("want"))))
     {
-        int32_t refVal_setWant;
+        int64_t refVal_setWant;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("want"))), refVal_setWant );
         setWant(refVal_setWant);
     }
@@ -479,13 +479,13 @@ bool Pipeline::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 }
 
 
-int32_t Pipeline::getBehind() const
+int64_t Pipeline::getBehind() const
 {
     return m_Behind;
 }
 
 
-void Pipeline::setBehind(int32_t value)
+void Pipeline::setBehind(int64_t value)
 {
     m_Behind = value;
     m_BehindIsSet = true;
@@ -689,13 +689,13 @@ void Pipeline::unsetPinnedAt()
 {
     m_PinnedAtIsSet = false;
 }
-int32_t Pipeline::getReady() const
+int64_t Pipeline::getReady() const
 {
     return m_Ready;
 }
 
 
-void Pipeline::setReady(int32_t value)
+void Pipeline::setReady(int64_t value)
 {
     m_Ready = value;
     m_ReadyIsSet = true;
@@ -773,13 +773,13 @@ void Pipeline::unsetSince()
 {
     m_SinceIsSet = false;
 }
-int32_t Pipeline::getWant() const
+int64_t Pipeline::getWant() const
 {
     return m_Want;
 }
 
 
-void Pipeline::setWant(int32_t value)
+void Pipeline::setWant(int64_t value)
 {
     m_Want = value;
     m_WantIsSet = true;

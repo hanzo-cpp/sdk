@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// CreatedAt is when the resource was provisioned, in unix seconds.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// Host is the address that actually routes to this resource — a dedicated instance&#39;s own in-cluster Service, or the public gateway for a shared one. Never the internal admin address of a shared backend.
@@ -95,10 +95,10 @@ public:
     /// <summary>
     /// Port is the port a client connects to on Host.
     /// </summary>
-    int32_t getPort() const;
+    int64_t getPort() const;
     bool portIsSet() const;
     void unsetPort();
-    void setPort(int32_t value);
+    void setPort(int64_t value);
 
     /// <summary>
     /// Status is \&quot;ready\&quot;, or \&quot;provisioning\&quot; while a dedicated instance is still being materialized by the operator.
@@ -110,7 +110,7 @@ public:
 
 
 protected:
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_Host;
@@ -125,7 +125,7 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_Port;
+    int64_t m_Port;
     bool m_PortIsSet;
 
     utility::string_t m_Status;

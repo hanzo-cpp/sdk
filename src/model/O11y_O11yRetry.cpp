@@ -18,7 +18,7 @@ namespace model {
 
 O11y_O11yRetry::O11y_O11yRetry()
 {
-    m_Delay = 0;
+    m_Delay = 0L;
     m_DelayIsSet = false;
 }
 
@@ -51,7 +51,7 @@ bool O11y_O11yRetry::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("delay")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDelay;
+            int64_t refVal_setDelay;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDelay);
             setDelay(refVal_setDelay);
             
@@ -84,7 +84,7 @@ bool O11y_O11yRetry::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("delay"))))
     {
-        int32_t refVal_setDelay;
+        int64_t refVal_setDelay;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("delay"))), refVal_setDelay );
         setDelay(refVal_setDelay);
     }
@@ -92,13 +92,13 @@ bool O11y_O11yRetry::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 }
 
 
-int32_t O11y_O11yRetry::getDelay() const
+int64_t O11y_O11yRetry::getDelay() const
 {
     return m_Delay;
 }
 
 
-void O11y_O11yRetry::setDelay(int32_t value)
+void O11y_O11yRetry::setDelay(int64_t value)
 {
     m_Delay = value;
     m_DelayIsSet = true;

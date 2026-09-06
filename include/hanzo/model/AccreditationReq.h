@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// ExpiresAt is the unix second a confirmation ages out; 0 means none.
     /// </summary>
-    int32_t getExpiresAt() const;
+    int64_t getExpiresAt() const;
     bool expiresAtIsSet() const;
     void unsetExpiresAt();
-    void setExpiresAt(int32_t value);
+    void setExpiresAt(int64_t value);
 
     /// <summary>
     /// Method is how the state was established: self_attested, third_party_letter, or provider_verified.
@@ -116,7 +116,7 @@ protected:
     utility::string_t m_EvidenceDocId;
     bool m_EvidenceDocIdIsSet;
 
-    int32_t m_ExpiresAt;
+    int64_t m_ExpiresAt;
     bool m_ExpiresAtIsSet;
 
     utility::string_t m_Method;

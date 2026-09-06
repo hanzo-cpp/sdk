@@ -114,10 +114,10 @@ public:
     /// <summary>
     /// Version is the current version number, starting at 1 and incremented by one on every create against an existing name.
     /// </summary>
-    int32_t getVersion() const;
+    int64_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();
-    void setVersion(int32_t value);
+    void setVersion(int64_t value);
 
     /// <summary>
     /// Versions is the history METADATA, newest first, capped at the last 100 — no bodies, so a long history cannot inflate this response. It always includes the current version as its first entry.
@@ -150,7 +150,7 @@ protected:
     utility::string_t m_Type;
     bool m_TypeIsSet;
 
-    int32_t m_Version;
+    int64_t m_Version;
     bool m_VersionIsSet;
 
     std::vector<std::shared_ptr<VersionView>> m_VersionHistory;

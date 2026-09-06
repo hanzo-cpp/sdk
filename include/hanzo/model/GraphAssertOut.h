@@ -56,10 +56,10 @@ public:
     /// <summary>
     /// Duplicate is how many members this plane already held. A redelivery collides on its content address and is counted here, not refused: it is the success a retrying caller depends on.
     /// </summary>
-    int32_t getDuplicate() const;
+    int64_t getDuplicate() const;
     bool duplicateIsSet() const;
     void unsetDuplicate();
-    void setDuplicate(int32_t value);
+    void setDuplicate(int64_t value);
 
     /// <summary>
     /// Reasons names why each refused member was refused, in the order sent.
@@ -72,31 +72,31 @@ public:
     /// <summary>
     /// Recorded is how many members became new rows.
     /// </summary>
-    int32_t getRecorded() const;
+    int64_t getRecorded() const;
     bool recordedIsSet() const;
     void unsetRecorded();
-    void setRecorded(int32_t value);
+    void setRecorded(int64_t value);
 
     /// <summary>
     /// Refused is how many members were turned away on arrival, before the store was touched — a missing entity, a timestamp that is not RFC 3339, a confidence outside [0,1]. The rest of the batch was still recorded.
     /// </summary>
-    int32_t getRefused() const;
+    int64_t getRefused() const;
     bool refusedIsSet() const;
     void unsetRefused();
-    void setRefused(int32_t value);
+    void setRefused(int64_t value);
 
 
 protected:
-    int32_t m_Duplicate;
+    int64_t m_Duplicate;
     bool m_DuplicateIsSet;
 
     std::vector<utility::string_t> m_Reasons;
     bool m_ReasonsIsSet;
 
-    int32_t m_Recorded;
+    int64_t m_Recorded;
     bool m_RecordedIsSet;
 
-    int32_t m_Refused;
+    int64_t m_Refused;
     bool m_RefusedIsSet;
 
 };

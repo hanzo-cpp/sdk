@@ -90,18 +90,18 @@ public:
     /// <summary>
     /// TotalCredit is the sum of every row&#39;s closing credit column, in cents.
     /// </summary>
-    int32_t getTotalCredit() const;
+    int64_t getTotalCredit() const;
     bool totalCreditIsSet() const;
     void unsetTotalCredit();
-    void setTotalCredit(int32_t value);
+    void setTotalCredit(int64_t value);
 
     /// <summary>
     /// TotalDebit is the sum of every row&#39;s CLOSING debit column, in cents.
     /// </summary>
-    int32_t getTotalDebit() const;
+    int64_t getTotalDebit() const;
     bool totalDebitIsSet() const;
     void unsetTotalDebit();
-    void setTotalDebit(int32_t value);
+    void setTotalDebit(int64_t value);
 
 
 protected:
@@ -117,10 +117,10 @@ protected:
     utility::string_t m_To;
     bool m_ToIsSet;
 
-    int32_t m_TotalCredit;
+    int64_t m_TotalCredit;
     bool m_TotalCreditIsSet;
 
-    int32_t m_TotalDebit;
+    int64_t m_TotalDebit;
     bool m_TotalDebitIsSet;
 
 };

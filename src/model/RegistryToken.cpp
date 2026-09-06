@@ -18,7 +18,7 @@ namespace model {
 
 RegistryToken::RegistryToken()
 {
-    m_Expires = 0;
+    m_Expires = 0L;
     m_ExpiresIsSet = false;
     m_Ref = utility::conversions::to_string_t("");
     m_RefIsSet = false;
@@ -65,7 +65,7 @@ bool RegistryToken::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("expires")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExpires;
+            int64_t refVal_setExpires;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExpires);
             setExpires(refVal_setExpires);
             
@@ -128,7 +128,7 @@ bool RegistryToken::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("expires"))))
     {
-        int32_t refVal_setExpires;
+        int64_t refVal_setExpires;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("expires"))), refVal_setExpires );
         setExpires(refVal_setExpires);
     }
@@ -148,13 +148,13 @@ bool RegistryToken::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 }
 
 
-int32_t RegistryToken::getExpires() const
+int64_t RegistryToken::getExpires() const
 {
     return m_Expires;
 }
 
 
-void RegistryToken::setExpires(int32_t value)
+void RegistryToken::setExpires(int64_t value)
 {
     m_Expires = value;
     m_ExpiresIsSet = true;

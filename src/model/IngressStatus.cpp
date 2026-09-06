@@ -28,13 +28,13 @@ IngressStatus::IngressStatus()
     m_HttpAddrIsSet = false;
     m_HttpsAddr = utility::conversions::to_string_t("");
     m_HttpsAddrIsSet = false;
-    m_LiveHosts = 0;
+    m_LiveHosts = 0L;
     m_LiveHostsIsSet = false;
     m_Proxy = utility::conversions::to_string_t("");
     m_ProxyIsSet = false;
     m_Role = utility::conversions::to_string_t("");
     m_RoleIsSet = false;
-    m_TlsHosts = 0;
+    m_TlsHosts = 0L;
     m_TlsHostsIsSet = false;
 }
 
@@ -162,7 +162,7 @@ bool IngressStatus::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("liveHosts")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLiveHosts;
+            int64_t refVal_setLiveHosts;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLiveHosts);
             setLiveHosts(refVal_setLiveHosts);
             
@@ -195,7 +195,7 @@ bool IngressStatus::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tlsHosts")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTlsHosts;
+            int64_t refVal_setTlsHosts;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTlsHosts);
             setTlsHosts(refVal_setTlsHosts);
             
@@ -290,7 +290,7 @@ bool IngressStatus::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("liveHosts"))))
     {
-        int32_t refVal_setLiveHosts;
+        int64_t refVal_setLiveHosts;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("liveHosts"))), refVal_setLiveHosts );
         setLiveHosts(refVal_setLiveHosts);
     }
@@ -308,7 +308,7 @@ bool IngressStatus::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tlsHosts"))))
     {
-        int32_t refVal_setTlsHosts;
+        int64_t refVal_setTlsHosts;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("tlsHosts"))), refVal_setTlsHosts );
         setTlsHosts(refVal_setTlsHosts);
     }
@@ -421,13 +421,13 @@ void IngressStatus::unsetHttpsAddr()
 {
     m_HttpsAddrIsSet = false;
 }
-int32_t IngressStatus::getLiveHosts() const
+int64_t IngressStatus::getLiveHosts() const
 {
     return m_LiveHosts;
 }
 
 
-void IngressStatus::setLiveHosts(int32_t value)
+void IngressStatus::setLiveHosts(int64_t value)
 {
     m_LiveHosts = value;
     m_LiveHostsIsSet = true;
@@ -484,13 +484,13 @@ void IngressStatus::unsetRole()
 {
     m_RoleIsSet = false;
 }
-int32_t IngressStatus::getTlsHosts() const
+int64_t IngressStatus::getTlsHosts() const
 {
     return m_TlsHosts;
 }
 
 
-void IngressStatus::setTlsHosts(int32_t value)
+void IngressStatus::setTlsHosts(int64_t value)
 {
     m_TlsHosts = value;
     m_TlsHostsIsSet = true;

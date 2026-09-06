@@ -18,15 +18,15 @@ namespace model {
 
 O11y_O11yRetentionOut::O11y_O11yRetentionOut()
 {
-    m_Cold_storage_ttl_days = 0;
+    m_Cold_storage_ttl_days = 0L;
     m_Cold_storage_ttl_daysIsSet = false;
     m_Cold_storage_volume = utility::conversions::to_string_t("");
     m_Cold_storage_volumeIsSet = false;
-    m_Default_ttl_days = 0;
+    m_Default_ttl_days = 0L;
     m_Default_ttl_daysIsSet = false;
-    m_Expected_logs_move_ttl_duration_hrs = 0;
+    m_Expected_logs_move_ttl_duration_hrs = 0L;
     m_Expected_logs_move_ttl_duration_hrsIsSet = false;
-    m_Expected_logs_ttl_duration_hrs = 0;
+    m_Expected_logs_ttl_duration_hrs = 0L;
     m_Expected_logs_ttl_duration_hrsIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
@@ -99,7 +99,7 @@ bool O11y_O11yRetentionOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cold_storage_ttl_days")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setColdStorageTtlDays;
+            int64_t refVal_setColdStorageTtlDays;
             ok &= ModelBase::fromJson(fieldValue, refVal_setColdStorageTtlDays);
             setColdStorageTtlDays(refVal_setColdStorageTtlDays);
             
@@ -121,7 +121,7 @@ bool O11y_O11yRetentionOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("default_ttl_days")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDefaultTtlDays;
+            int64_t refVal_setDefaultTtlDays;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDefaultTtlDays);
             setDefaultTtlDays(refVal_setDefaultTtlDays);
             
@@ -132,7 +132,7 @@ bool O11y_O11yRetentionOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("expected_logs_move_ttl_duration_hrs")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExpectedLogsMoveTtlDurationHrs;
+            int64_t refVal_setExpectedLogsMoveTtlDurationHrs;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExpectedLogsMoveTtlDurationHrs);
             setExpectedLogsMoveTtlDurationHrs(refVal_setExpectedLogsMoveTtlDurationHrs);
             
@@ -143,7 +143,7 @@ bool O11y_O11yRetentionOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("expected_logs_ttl_duration_hrs")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExpectedLogsTtlDurationHrs;
+            int64_t refVal_setExpectedLogsTtlDurationHrs;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExpectedLogsTtlDurationHrs);
             setExpectedLogsTtlDurationHrs(refVal_setExpectedLogsTtlDurationHrs);
             
@@ -237,7 +237,7 @@ bool O11y_O11yRetentionOut::fromMultiPart(std::shared_ptr<MultipartFormData> mul
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cold_storage_ttl_days"))))
     {
-        int32_t refVal_setColdStorageTtlDays;
+        int64_t refVal_setColdStorageTtlDays;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cold_storage_ttl_days"))), refVal_setColdStorageTtlDays );
         setColdStorageTtlDays(refVal_setColdStorageTtlDays);
     }
@@ -249,19 +249,19 @@ bool O11y_O11yRetentionOut::fromMultiPart(std::shared_ptr<MultipartFormData> mul
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("default_ttl_days"))))
     {
-        int32_t refVal_setDefaultTtlDays;
+        int64_t refVal_setDefaultTtlDays;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("default_ttl_days"))), refVal_setDefaultTtlDays );
         setDefaultTtlDays(refVal_setDefaultTtlDays);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("expected_logs_move_ttl_duration_hrs"))))
     {
-        int32_t refVal_setExpectedLogsMoveTtlDurationHrs;
+        int64_t refVal_setExpectedLogsMoveTtlDurationHrs;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("expected_logs_move_ttl_duration_hrs"))), refVal_setExpectedLogsMoveTtlDurationHrs );
         setExpectedLogsMoveTtlDurationHrs(refVal_setExpectedLogsMoveTtlDurationHrs);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("expected_logs_ttl_duration_hrs"))))
     {
-        int32_t refVal_setExpectedLogsTtlDurationHrs;
+        int64_t refVal_setExpectedLogsTtlDurationHrs;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("expected_logs_ttl_duration_hrs"))), refVal_setExpectedLogsTtlDurationHrs );
         setExpectedLogsTtlDurationHrs(refVal_setExpectedLogsTtlDurationHrs);
     }
@@ -287,13 +287,13 @@ bool O11y_O11yRetentionOut::fromMultiPart(std::shared_ptr<MultipartFormData> mul
 }
 
 
-int32_t O11y_O11yRetentionOut::getColdStorageTtlDays() const
+int64_t O11y_O11yRetentionOut::getColdStorageTtlDays() const
 {
     return m_Cold_storage_ttl_days;
 }
 
 
-void O11y_O11yRetentionOut::setColdStorageTtlDays(int32_t value)
+void O11y_O11yRetentionOut::setColdStorageTtlDays(int64_t value)
 {
     m_Cold_storage_ttl_days = value;
     m_Cold_storage_ttl_daysIsSet = true;
@@ -329,13 +329,13 @@ void O11y_O11yRetentionOut::unsetCold_storage_volume()
 {
     m_Cold_storage_volumeIsSet = false;
 }
-int32_t O11y_O11yRetentionOut::getDefaultTtlDays() const
+int64_t O11y_O11yRetentionOut::getDefaultTtlDays() const
 {
     return m_Default_ttl_days;
 }
 
 
-void O11y_O11yRetentionOut::setDefaultTtlDays(int32_t value)
+void O11y_O11yRetentionOut::setDefaultTtlDays(int64_t value)
 {
     m_Default_ttl_days = value;
     m_Default_ttl_daysIsSet = true;
@@ -350,13 +350,13 @@ void O11y_O11yRetentionOut::unsetDefault_ttl_days()
 {
     m_Default_ttl_daysIsSet = false;
 }
-int32_t O11y_O11yRetentionOut::getExpectedLogsMoveTtlDurationHrs() const
+int64_t O11y_O11yRetentionOut::getExpectedLogsMoveTtlDurationHrs() const
 {
     return m_Expected_logs_move_ttl_duration_hrs;
 }
 
 
-void O11y_O11yRetentionOut::setExpectedLogsMoveTtlDurationHrs(int32_t value)
+void O11y_O11yRetentionOut::setExpectedLogsMoveTtlDurationHrs(int64_t value)
 {
     m_Expected_logs_move_ttl_duration_hrs = value;
     m_Expected_logs_move_ttl_duration_hrsIsSet = true;
@@ -371,13 +371,13 @@ void O11y_O11yRetentionOut::unsetExpected_logs_move_ttl_duration_hrs()
 {
     m_Expected_logs_move_ttl_duration_hrsIsSet = false;
 }
-int32_t O11y_O11yRetentionOut::getExpectedLogsTtlDurationHrs() const
+int64_t O11y_O11yRetentionOut::getExpectedLogsTtlDurationHrs() const
 {
     return m_Expected_logs_ttl_duration_hrs;
 }
 
 
-void O11y_O11yRetentionOut::setExpectedLogsTtlDurationHrs(int32_t value)
+void O11y_O11yRetentionOut::setExpectedLogsTtlDurationHrs(int64_t value)
 {
     m_Expected_logs_ttl_duration_hrs = value;
     m_Expected_logs_ttl_duration_hrsIsSet = true;

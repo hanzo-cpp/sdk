@@ -26,7 +26,7 @@ LastEventView::LastEventView()
     m_KindIsSet = false;
     m_Preview = utility::conversions::to_string_t("");
     m_PreviewIsSet = false;
-    m_Seq = 0;
+    m_Seq = 0L;
     m_SeqIsSet = false;
 }
 
@@ -123,7 +123,7 @@ bool LastEventView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("seq")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSeq;
+            int64_t refVal_setSeq;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSeq);
             setSeq(refVal_setSeq);
             
@@ -196,7 +196,7 @@ bool LastEventView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("seq"))))
     {
-        int32_t refVal_setSeq;
+        int64_t refVal_setSeq;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("seq"))), refVal_setSeq );
         setSeq(refVal_setSeq);
     }
@@ -288,13 +288,13 @@ void LastEventView::unsetPreview()
 {
     m_PreviewIsSet = false;
 }
-int32_t LastEventView::getSeq() const
+int64_t LastEventView::getSeq() const
 {
     return m_Seq;
 }
 
 
-void LastEventView::setSeq(int32_t value)
+void LastEventView::setSeq(int64_t value)
 {
     m_Seq = value;
     m_SeqIsSet = true;

@@ -27,7 +27,7 @@ UsageAnalyticsView::UsageAnalyticsView()
     m_ProvidersIsSet = false;
     m_Range = utility::conversions::to_string_t("");
     m_RangeIsSet = false;
-    m_RetentionDays = 0;
+    m_RetentionDays = 0L;
     m_RetentionDaysIsSet = false;
     m_ScopeIsSet = false;
     m_Start = utility::conversions::to_string_t("");
@@ -153,7 +153,7 @@ bool UsageAnalyticsView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("retentionDays")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRetentionDays;
+            int64_t refVal_setRetentionDays;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRetentionDays);
             setRetentionDays(refVal_setRetentionDays);
             
@@ -266,7 +266,7 @@ bool UsageAnalyticsView::fromMultiPart(std::shared_ptr<MultipartFormData> multip
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("retentionDays"))))
     {
-        int32_t refVal_setRetentionDays;
+        int64_t refVal_setRetentionDays;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("retentionDays"))), refVal_setRetentionDays );
         setRetentionDays(refVal_setRetentionDays);
     }
@@ -391,13 +391,13 @@ void UsageAnalyticsView::unsetRange()
 {
     m_RangeIsSet = false;
 }
-int32_t UsageAnalyticsView::getRetentionDays() const
+int64_t UsageAnalyticsView::getRetentionDays() const
 {
     return m_RetentionDays;
 }
 
 
-void UsageAnalyticsView::setRetentionDays(int32_t value)
+void UsageAnalyticsView::setRetentionDays(int64_t value)
 {
     m_RetentionDays = value;
     m_RetentionDaysIsSet = true;

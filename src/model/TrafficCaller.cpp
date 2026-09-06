@@ -22,15 +22,15 @@ TrafficCaller::TrafficCaller()
     m_ActionIsSet = false;
     m_Cred = utility::conversions::to_string_t("");
     m_CredIsSet = false;
-    m_Failures = 0;
+    m_Failures = 0L;
     m_FailuresIsSet = false;
-    m_Held_until = 0;
+    m_Held_until = 0L;
     m_Held_untilIsSet = false;
-    m_Paths = 0;
+    m_Paths = 0L;
     m_PathsIsSet = false;
     m_Reason = utility::conversions::to_string_t("");
     m_ReasonIsSet = false;
-    m_Requests = 0;
+    m_Requests = 0L;
     m_RequestsIsSet = false;
 }
 
@@ -115,7 +115,7 @@ bool TrafficCaller::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("failures")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFailures;
+            int64_t refVal_setFailures;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFailures);
             setFailures(refVal_setFailures);
             
@@ -126,7 +126,7 @@ bool TrafficCaller::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("held_until")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setHeldUntil;
+            int64_t refVal_setHeldUntil;
             ok &= ModelBase::fromJson(fieldValue, refVal_setHeldUntil);
             setHeldUntil(refVal_setHeldUntil);
             
@@ -137,7 +137,7 @@ bool TrafficCaller::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("paths")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPaths;
+            int64_t refVal_setPaths;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPaths);
             setPaths(refVal_setPaths);
             
@@ -159,7 +159,7 @@ bool TrafficCaller::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("requests")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRequests;
+            int64_t refVal_setRequests;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRequests);
             setRequests(refVal_setRequests);
             
@@ -228,19 +228,19 @@ bool TrafficCaller::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("failures"))))
     {
-        int32_t refVal_setFailures;
+        int64_t refVal_setFailures;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("failures"))), refVal_setFailures );
         setFailures(refVal_setFailures);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("held_until"))))
     {
-        int32_t refVal_setHeldUntil;
+        int64_t refVal_setHeldUntil;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("held_until"))), refVal_setHeldUntil );
         setHeldUntil(refVal_setHeldUntil);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("paths"))))
     {
-        int32_t refVal_setPaths;
+        int64_t refVal_setPaths;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("paths"))), refVal_setPaths );
         setPaths(refVal_setPaths);
     }
@@ -252,7 +252,7 @@ bool TrafficCaller::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("requests"))))
     {
-        int32_t refVal_setRequests;
+        int64_t refVal_setRequests;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("requests"))), refVal_setRequests );
         setRequests(refVal_setRequests);
     }
@@ -302,13 +302,13 @@ void TrafficCaller::unsetCred()
 {
     m_CredIsSet = false;
 }
-int32_t TrafficCaller::getFailures() const
+int64_t TrafficCaller::getFailures() const
 {
     return m_Failures;
 }
 
 
-void TrafficCaller::setFailures(int32_t value)
+void TrafficCaller::setFailures(int64_t value)
 {
     m_Failures = value;
     m_FailuresIsSet = true;
@@ -323,13 +323,13 @@ void TrafficCaller::unsetFailures()
 {
     m_FailuresIsSet = false;
 }
-int32_t TrafficCaller::getHeldUntil() const
+int64_t TrafficCaller::getHeldUntil() const
 {
     return m_Held_until;
 }
 
 
-void TrafficCaller::setHeldUntil(int32_t value)
+void TrafficCaller::setHeldUntil(int64_t value)
 {
     m_Held_until = value;
     m_Held_untilIsSet = true;
@@ -344,13 +344,13 @@ void TrafficCaller::unsetHeld_until()
 {
     m_Held_untilIsSet = false;
 }
-int32_t TrafficCaller::getPaths() const
+int64_t TrafficCaller::getPaths() const
 {
     return m_Paths;
 }
 
 
-void TrafficCaller::setPaths(int32_t value)
+void TrafficCaller::setPaths(int64_t value)
 {
     m_Paths = value;
     m_PathsIsSet = true;
@@ -386,13 +386,13 @@ void TrafficCaller::unsetReason()
 {
     m_ReasonIsSet = false;
 }
-int32_t TrafficCaller::getRequests() const
+int64_t TrafficCaller::getRequests() const
 {
     return m_Requests;
 }
 
 
-void TrafficCaller::setRequests(int32_t value)
+void TrafficCaller::setRequests(int64_t value)
 {
     m_Requests = value;
     m_RequestsIsSet = true;

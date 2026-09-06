@@ -20,23 +20,23 @@ Pairing::Pairing()
 {
     m_a = utility::conversions::to_string_t("");
     m_aIsSet = false;
-    m_A_correct = 0;
+    m_A_correct = 0L;
     m_A_correctIsSet = false;
     m_b = utility::conversions::to_string_t("");
     m_bIsSet = false;
-    m_B_correct = 0;
+    m_B_correct = 0L;
     m_B_correctIsSet = false;
     m_Benchmark = utility::conversions::to_string_t("");
     m_BenchmarkIsSet = false;
     m_Mcnemar_p = 0.0;
     m_Mcnemar_pIsSet = false;
-    m_N_common = 0;
+    m_N_common = 0L;
     m_N_commonIsSet = false;
-    m_Net_a_minus_b = 0;
+    m_Net_a_minus_b = 0L;
     m_Net_a_minus_bIsSet = false;
-    m_Rescue_a_over_b = 0;
+    m_Rescue_a_over_b = 0L;
     m_Rescue_a_over_bIsSet = false;
-    m_Rescue_b_over_a = 0;
+    m_Rescue_b_over_a = 0L;
     m_Rescue_b_over_aIsSet = false;
 }
 
@@ -125,7 +125,7 @@ bool Pairing::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("a_correct")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setACorrect;
+            int64_t refVal_setACorrect;
             ok &= ModelBase::fromJson(fieldValue, refVal_setACorrect);
             setACorrect(refVal_setACorrect);
             
@@ -147,7 +147,7 @@ bool Pairing::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("b_correct")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBCorrect;
+            int64_t refVal_setBCorrect;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBCorrect);
             setBCorrect(refVal_setBCorrect);
             
@@ -180,7 +180,7 @@ bool Pairing::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("n_common")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNCommon;
+            int64_t refVal_setNCommon;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNCommon);
             setNCommon(refVal_setNCommon);
             
@@ -191,7 +191,7 @@ bool Pairing::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("net_a_minus_b")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNetAMinusB;
+            int64_t refVal_setNetAMinusB;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNetAMinusB);
             setNetAMinusB(refVal_setNetAMinusB);
             
@@ -202,7 +202,7 @@ bool Pairing::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("rescue_a_over_b")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRescueAOverB;
+            int64_t refVal_setRescueAOverB;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRescueAOverB);
             setRescueAOverB(refVal_setRescueAOverB);
             
@@ -213,7 +213,7 @@ bool Pairing::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("rescue_b_over_a")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRescueBOverA;
+            int64_t refVal_setRescueBOverA;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRescueBOverA);
             setRescueBOverA(refVal_setRescueBOverA);
             
@@ -288,7 +288,7 @@ bool Pairing::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("a_correct"))))
     {
-        int32_t refVal_setACorrect;
+        int64_t refVal_setACorrect;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("a_correct"))), refVal_setACorrect );
         setACorrect(refVal_setACorrect);
     }
@@ -300,7 +300,7 @@ bool Pairing::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("b_correct"))))
     {
-        int32_t refVal_setBCorrect;
+        int64_t refVal_setBCorrect;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("b_correct"))), refVal_setBCorrect );
         setBCorrect(refVal_setBCorrect);
     }
@@ -318,25 +318,25 @@ bool Pairing::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("n_common"))))
     {
-        int32_t refVal_setNCommon;
+        int64_t refVal_setNCommon;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("n_common"))), refVal_setNCommon );
         setNCommon(refVal_setNCommon);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("net_a_minus_b"))))
     {
-        int32_t refVal_setNetAMinusB;
+        int64_t refVal_setNetAMinusB;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("net_a_minus_b"))), refVal_setNetAMinusB );
         setNetAMinusB(refVal_setNetAMinusB);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("rescue_a_over_b"))))
     {
-        int32_t refVal_setRescueAOverB;
+        int64_t refVal_setRescueAOverB;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("rescue_a_over_b"))), refVal_setRescueAOverB );
         setRescueAOverB(refVal_setRescueAOverB);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("rescue_b_over_a"))))
     {
-        int32_t refVal_setRescueBOverA;
+        int64_t refVal_setRescueBOverA;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("rescue_b_over_a"))), refVal_setRescueBOverA );
         setRescueBOverA(refVal_setRescueBOverA);
     }
@@ -365,13 +365,13 @@ void Pairing::unseta()
 {
     m_aIsSet = false;
 }
-int32_t Pairing::getACorrect() const
+int64_t Pairing::getACorrect() const
 {
     return m_A_correct;
 }
 
 
-void Pairing::setACorrect(int32_t value)
+void Pairing::setACorrect(int64_t value)
 {
     m_A_correct = value;
     m_A_correctIsSet = true;
@@ -407,13 +407,13 @@ void Pairing::unsetb()
 {
     m_bIsSet = false;
 }
-int32_t Pairing::getBCorrect() const
+int64_t Pairing::getBCorrect() const
 {
     return m_B_correct;
 }
 
 
-void Pairing::setBCorrect(int32_t value)
+void Pairing::setBCorrect(int64_t value)
 {
     m_B_correct = value;
     m_B_correctIsSet = true;
@@ -470,13 +470,13 @@ void Pairing::unsetMcnemar_p()
 {
     m_Mcnemar_pIsSet = false;
 }
-int32_t Pairing::getNCommon() const
+int64_t Pairing::getNCommon() const
 {
     return m_N_common;
 }
 
 
-void Pairing::setNCommon(int32_t value)
+void Pairing::setNCommon(int64_t value)
 {
     m_N_common = value;
     m_N_commonIsSet = true;
@@ -491,13 +491,13 @@ void Pairing::unsetN_common()
 {
     m_N_commonIsSet = false;
 }
-int32_t Pairing::getNetAMinusB() const
+int64_t Pairing::getNetAMinusB() const
 {
     return m_Net_a_minus_b;
 }
 
 
-void Pairing::setNetAMinusB(int32_t value)
+void Pairing::setNetAMinusB(int64_t value)
 {
     m_Net_a_minus_b = value;
     m_Net_a_minus_bIsSet = true;
@@ -512,13 +512,13 @@ void Pairing::unsetNet_a_minus_b()
 {
     m_Net_a_minus_bIsSet = false;
 }
-int32_t Pairing::getRescueAOverB() const
+int64_t Pairing::getRescueAOverB() const
 {
     return m_Rescue_a_over_b;
 }
 
 
-void Pairing::setRescueAOverB(int32_t value)
+void Pairing::setRescueAOverB(int64_t value)
 {
     m_Rescue_a_over_b = value;
     m_Rescue_a_over_bIsSet = true;
@@ -533,13 +533,13 @@ void Pairing::unsetRescue_a_over_b()
 {
     m_Rescue_a_over_bIsSet = false;
 }
-int32_t Pairing::getRescueBOverA() const
+int64_t Pairing::getRescueBOverA() const
 {
     return m_Rescue_b_over_a;
 }
 
 
-void Pairing::setRescueBOverA(int32_t value)
+void Pairing::setRescueBOverA(int64_t value)
 {
     m_Rescue_b_over_a = value;
     m_Rescue_b_over_aIsSet = true;

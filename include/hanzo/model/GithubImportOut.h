@@ -56,10 +56,10 @@ public:
     /// <summary>
     /// Queued is how many repositories were handed to the background importer.
     /// </summary>
-    int32_t getQueued() const;
+    int64_t getQueued() const;
     bool queuedIsSet() const;
     void unsetQueued();
-    void setQueued(int32_t value);
+    void setQueued(int64_t value);
 
     /// <summary>
     /// Repos names those repositories, in the installation&#39;s listing order.
@@ -71,7 +71,7 @@ public:
 
 
 protected:
-    int32_t m_Queued;
+    int64_t m_Queued;
     bool m_QueuedIsSet;
 
     std::vector<utility::string_t> m_Repos;

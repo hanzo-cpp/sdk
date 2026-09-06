@@ -27,7 +27,7 @@ Number::Number()
     m_E164IsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
-    m_Monthly = 0;
+    m_Monthly = 0L;
     m_MonthlyIsSet = false;
     m_Org = utility::conversions::to_string_t("");
     m_OrgIsSet = false;
@@ -154,7 +154,7 @@ bool Number::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("monthly")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMonthly;
+            int64_t refVal_setMonthly;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMonthly);
             setMonthly(refVal_setMonthly);
             
@@ -267,7 +267,7 @@ bool Number::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("monthly"))))
     {
-        int32_t refVal_setMonthly;
+        int64_t refVal_setMonthly;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("monthly"))), refVal_setMonthly );
         setMonthly(refVal_setMonthly);
     }
@@ -392,13 +392,13 @@ void Number::unsetId()
 {
     m_IdIsSet = false;
 }
-int32_t Number::getMonthly() const
+int64_t Number::getMonthly() const
 {
     return m_Monthly;
 }
 
 
-void Number::setMonthly(int32_t value)
+void Number::setMonthly(int64_t value)
 {
     m_Monthly = value;
     m_MonthlyIsSet = true;

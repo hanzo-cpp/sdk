@@ -78,10 +78,10 @@ public:
     /// <summary>
     /// Timeout is the maximum time allowed to invoke the webhook. Setting this to 0 does not impose a timeout.
     /// </summary>
-    int32_t getTimeout() const;
+    int64_t getTimeout() const;
     bool timeoutIsSet() const;
     void unsetTimeout();
-    void setTimeout(int32_t value);
+    void setTimeout(int64_t value);
 
     std::shared_ptr<AnyType> getUrl() const;
     bool urlIsSet() const;
@@ -104,7 +104,7 @@ protected:
     int32_t m_Max_alerts;
     bool m_Max_alertsIsSet;
 
-    int32_t m_Timeout;
+    int64_t m_Timeout;
     bool m_TimeoutIsSet;
 
     boost::optional<std::shared_ptr<AnyType>> m_Url;

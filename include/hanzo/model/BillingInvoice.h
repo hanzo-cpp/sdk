@@ -55,30 +55,30 @@ public:
     /// BillingInvoice members
 
 
-    int32_t getAmountDue() const;
+    int64_t getAmountDue() const;
     bool amountDueIsSet() const;
     void unsetAmountDue();
-    void setAmountDue(int32_t value);
+    void setAmountDue(int64_t value);
 
-    int32_t getAmountPaid() const;
+    int64_t getAmountPaid() const;
     bool amountPaidIsSet() const;
     void unsetAmountPaid();
-    void setAmountPaid(int32_t value);
+    void setAmountPaid(int64_t value);
 
-    int32_t getAttemptCount() const;
+    int64_t getAttemptCount() const;
     bool attemptCountIsSet() const;
     void unsetAttemptCount();
-    void setAttemptCount(int32_t value);
+    void setAttemptCount(int64_t value);
 
     utility::string_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
     void setCreatedAt(const utility::string_t& value);
 
-    int32_t getCreditApplied() const;
+    int64_t getCreditApplied() const;
     bool creditAppliedIsSet() const;
     void unsetCreditApplied();
-    void setCreditApplied(int32_t value);
+    void setCreditApplied(int64_t value);
 
     utility::string_t getCurrency() const;
     bool currencyIsSet() const;
@@ -90,10 +90,10 @@ public:
     void unsetCustomerEmail();
     void setCustomerEmail(const utility::string_t& value);
 
-    int32_t getDiscount() const;
+    int64_t getDiscount() const;
     bool discountIsSet() const;
     void unsetDiscount();
-    void setDiscount(int32_t value);
+    void setDiscount(int64_t value);
 
     utility::string_t getDueDate() const;
     bool dueDateIsSet() const;
@@ -113,10 +113,10 @@ public:
     void unsetLineItems();
     void setLineItems(const std::vector<std::shared_ptr<InvoiceLineItem>>& value);
 
-    int32_t getNumber() const;
+    int64_t getNumber() const;
     bool numberIsSet() const;
     void unsetnumber();
-    void setNumber(int32_t value);
+    void setNumber(int64_t value);
 
     utility::string_t getNumberStr() const;
     bool numberStrIsSet() const;
@@ -158,15 +158,15 @@ public:
     void unsetSubscriptionId();
     void setSubscriptionId(const utility::string_t& value);
 
-    int32_t getSubtotal() const;
+    int64_t getSubtotal() const;
     bool subtotalIsSet() const;
     void unsetSubtotal();
-    void setSubtotal(int32_t value);
+    void setSubtotal(int64_t value);
 
-    int32_t getTax() const;
+    int64_t getTax() const;
     bool taxIsSet() const;
     void unsetTax();
-    void setTax(int32_t value);
+    void setTax(int64_t value);
 
     utility::string_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
@@ -185,19 +185,19 @@ public:
 
 
 protected:
-    int32_t m_AmountDue;
+    int64_t m_AmountDue;
     bool m_AmountDueIsSet;
 
-    int32_t m_AmountPaid;
+    int64_t m_AmountPaid;
     bool m_AmountPaidIsSet;
 
-    int32_t m_AttemptCount;
+    int64_t m_AttemptCount;
     bool m_AttemptCountIsSet;
 
     utility::string_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
-    int32_t m_CreditApplied;
+    int64_t m_CreditApplied;
     bool m_CreditAppliedIsSet;
 
     utility::string_t m_Currency;
@@ -206,7 +206,7 @@ protected:
     utility::string_t m_CustomerEmail;
     bool m_CustomerEmailIsSet;
 
-    int32_t m_Discount;
+    int64_t m_Discount;
     bool m_DiscountIsSet;
 
     utility::string_t m_DueDate;
@@ -218,7 +218,7 @@ protected:
     std::vector<std::shared_ptr<InvoiceLineItem>> m_LineItems;
     bool m_LineItemsIsSet;
 
-    int32_t m_number;
+    int64_t m_number;
     bool m_numberIsSet;
 
     utility::string_t m_NumberStr;
@@ -245,10 +245,10 @@ protected:
     utility::string_t m_SubscriptionId;
     bool m_SubscriptionIdIsSet;
 
-    int32_t m_Subtotal;
+    int64_t m_Subtotal;
     bool m_SubtotalIsSet;
 
-    int32_t m_Tax;
+    int64_t m_Tax;
     bool m_TaxIsSet;
 
     utility::string_t m_UpdatedAt;

@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// AmountCents is what this line costs.
     /// </summary>
-    int32_t getAmountCents() const;
+    int64_t getAmountCents() const;
     bool amountCentsIsSet() const;
     void unsetAmountCents();
-    void setAmountCents(int32_t value);
+    void setAmountCents(int64_t value);
 
     /// <summary>
     /// AsOf is when a pass-through amount was last checked against its source.
@@ -118,7 +118,7 @@ public:
 
 
 protected:
-    int32_t m_AmountCents;
+    int64_t m_AmountCents;
     bool m_AmountCentsIsSet;
 
     utility::string_t m_AsOf;

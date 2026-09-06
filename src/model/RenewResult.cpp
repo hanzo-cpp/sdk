@@ -18,7 +18,7 @@ namespace model {
 
 RenewResult::RenewResult()
 {
-    m_PaidCents = 0;
+    m_PaidCents = 0L;
     m_PaidCentsIsSet = false;
     m_RecordIsSet = false;
 }
@@ -57,7 +57,7 @@ bool RenewResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("paidCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPaidCents;
+            int64_t refVal_setPaidCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPaidCents);
             setPaidCents(refVal_setPaidCents);
             
@@ -105,7 +105,7 @@ bool RenewResult::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("paidCents"))))
     {
-        int32_t refVal_setPaidCents;
+        int64_t refVal_setPaidCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("paidCents"))), refVal_setPaidCents );
         setPaidCents(refVal_setPaidCents);
     }
@@ -119,13 +119,13 @@ bool RenewResult::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 }
 
 
-int32_t RenewResult::getPaidCents() const
+int64_t RenewResult::getPaidCents() const
 {
     return m_PaidCents;
 }
 
 
-void RenewResult::setPaidCents(int32_t value)
+void RenewResult::setPaidCents(int64_t value)
 {
     m_PaidCents = value;
     m_PaidCentsIsSet = true;

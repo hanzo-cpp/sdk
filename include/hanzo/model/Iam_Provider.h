@@ -228,10 +228,10 @@ public:
     void unsetPathPrefix();
     void setPathPrefix(const utility::string_t& value);
 
-    int32_t getPort() const;
+    int64_t getPort() const;
     bool portIsSet() const;
     void unsetPort();
-    void setPort(int32_t value);
+    void setPort(int64_t value);
 
     utility::string_t getProviderUrl() const;
     bool providerUrlIsSet() const;
@@ -400,7 +400,7 @@ protected:
     utility::string_t m_PathPrefix;
     bool m_PathPrefixIsSet;
 
-    int32_t m_Port;
+    int64_t m_Port;
     bool m_PortIsSet;
 
     utility::string_t m_ProviderUrl;

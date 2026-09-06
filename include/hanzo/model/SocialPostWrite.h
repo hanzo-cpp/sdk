@@ -80,10 +80,10 @@ public:
     /// <summary>
     /// ScheduleAt is when to publish, as a unix timestamp in SECONDS. 0 means unscheduled. Moving it into the past here does NOT publish the post — that is the scheduler&#39;s to notice, or the publish operation&#39;s.
     /// </summary>
-    int32_t getScheduleAt() const;
+    int64_t getScheduleAt() const;
     bool scheduleAtIsSet() const;
     void unsetScheduleAt();
-    void setScheduleAt(int32_t value);
+    void setScheduleAt(int64_t value);
 
     /// <summary>
     /// Status is the post&#39;s lifecycle state: draft, scheduled, published or failed. Omitting it RESETS the post to draft.
@@ -104,7 +104,7 @@ protected:
     std::vector<utility::string_t> m_Media;
     bool m_MediaIsSet;
 
-    int32_t m_ScheduleAt;
+    int64_t m_ScheduleAt;
     bool m_ScheduleAtIsSet;
 
     utility::string_t m_Status;

@@ -118,15 +118,15 @@ public:
     void unsetClientSecret();
     void setClientSecret(const utility::string_t& value);
 
-    int32_t getCodeResendTimeout() const;
+    int64_t getCodeResendTimeout() const;
     bool codeResendTimeoutIsSet() const;
     void unsetCodeResendTimeout();
-    void setCodeResendTimeout(int32_t value);
+    void setCodeResendTimeout(int64_t value);
 
-    int32_t getCookieExpireInHours() const;
+    int64_t getCookieExpireInHours() const;
     bool cookieExpireInHoursIsSet() const;
     void unsetCookieExpireInHours();
-    void setCookieExpireInHours(int32_t value);
+    void setCookieExpireInHours(int64_t value);
 
     utility::datetime getCreatedAt() const;
     bool createdAtIsSet() const;
@@ -248,15 +248,15 @@ public:
     void unsetExpireInHours();
     void setExpireInHours(double value);
 
-    int32_t getFailedSigninFrozenTime() const;
+    int64_t getFailedSigninFrozenTime() const;
     bool failedSigninFrozenTimeIsSet() const;
     void unsetFailedSigninFrozenTime();
-    void setFailedSigninFrozenTime(int32_t value);
+    void setFailedSigninFrozenTime(int64_t value);
 
-    int32_t getFailedSigninLimit() const;
+    int64_t getFailedSigninLimit() const;
     bool failedSigninLimitIsSet() const;
     void unsetFailedSigninLimit();
-    void setFailedSigninLimit(int32_t value);
+    void setFailedSigninLimit(int64_t value);
 
     utility::string_t getFavicon() const;
     bool faviconIsSet() const;
@@ -298,10 +298,10 @@ public:
     void unsetFormCssMobile();
     void setFormCssMobile(const utility::string_t& value);
 
-    int32_t getFormOffset() const;
+    int64_t getFormOffset() const;
     bool formOffsetIsSet() const;
     void unsetFormOffset();
-    void setFormOffset(int32_t value);
+    void setFormOffset(int64_t value);
 
     utility::string_t getFormSideHtml() const;
     bool formSideHtmlIsSet() const;
@@ -353,10 +353,10 @@ public:
     void unsetName();
     void setName(const utility::string_t& value);
 
-    int32_t getOrder() const;
+    int64_t getOrder() const;
     bool orderIsSet() const;
     void unsetOrder();
-    void setOrder(int32_t value);
+    void setOrder(int64_t value);
 
     utility::string_t getOrgChoiceMode() const;
     bool orgChoiceModeIsSet() const;
@@ -554,10 +554,10 @@ protected:
     utility::string_t m_ClientSecret;
     bool m_ClientSecretIsSet;
 
-    int32_t m_CodeResendTimeout;
+    int64_t m_CodeResendTimeout;
     bool m_CodeResendTimeoutIsSet;
 
-    int32_t m_CookieExpireInHours;
+    int64_t m_CookieExpireInHours;
     bool m_CookieExpireInHoursIsSet;
 
     utility::datetime m_CreatedAt;
@@ -632,10 +632,10 @@ protected:
     double m_ExpireInHours;
     bool m_ExpireInHoursIsSet;
 
-    int32_t m_FailedSigninFrozenTime;
+    int64_t m_FailedSigninFrozenTime;
     bool m_FailedSigninFrozenTimeIsSet;
 
-    int32_t m_FailedSigninLimit;
+    int64_t m_FailedSigninLimit;
     bool m_FailedSigninLimitIsSet;
 
     utility::string_t m_Favicon;
@@ -662,7 +662,7 @@ protected:
     utility::string_t m_FormCssMobile;
     bool m_FormCssMobileIsSet;
 
-    int32_t m_FormOffset;
+    int64_t m_FormOffset;
     bool m_FormOffsetIsSet;
 
     utility::string_t m_FormSideHtml;
@@ -695,7 +695,7 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_Order;
+    int64_t m_Order;
     bool m_OrderIsSet;
 
     utility::string_t m_OrgChoiceMode;

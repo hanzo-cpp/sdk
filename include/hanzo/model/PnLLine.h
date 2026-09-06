@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// Amount is the account&#39;s movement over the period in whole cents, in its NATURAL sign: positive when the account behaved normally, for income and expense alike. Income is credit-normal so its stored net is flipped once here for display; the ledger underneath is never sign-flipped. A negative amount therefore means the account ran backwards — a refunded sale, a reversed cost.
     /// </summary>
-    int32_t getAmount() const;
+    int64_t getAmount() const;
     bool amountIsSet() const;
     void unsetAmount();
-    void setAmount(int32_t value);
+    void setAmount(int64_t value);
 
     /// <summary>
     /// Name is that account&#39;s human name from the fixed chart.
@@ -89,7 +89,7 @@ protected:
     utility::string_t m_Account;
     bool m_AccountIsSet;
 
-    int32_t m_Amount;
+    int64_t m_Amount;
     bool m_AmountIsSet;
 
     utility::string_t m_Name;

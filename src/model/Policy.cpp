@@ -19,21 +19,21 @@ namespace model {
 Policy::Policy()
 {
     m_Cache_pathsIsSet = false;
-    m_Cache_ttl_sec = 0;
+    m_Cache_ttl_sec = 0L;
     m_Cache_ttl_secIsSet = false;
     m_Cors_originsIsSet = false;
     m_MethodsIsSet = false;
     m_Mode = utility::conversions::to_string_t("");
     m_ModeIsSet = false;
-    m_Org_rpm = 0;
+    m_Org_rpm = 0L;
     m_Org_rpmIsSet = false;
-    m_Per_ip_rpm = 0;
+    m_Per_ip_rpm = 0L;
     m_Per_ip_rpmIsSet = false;
-    m_Updated_at = 0;
+    m_Updated_at = 0L;
     m_Updated_atIsSet = false;
     m_Updated_by = utility::conversions::to_string_t("");
     m_Updated_byIsSet = false;
-    m_Window_sec = 0;
+    m_Window_sec = 0L;
     m_Window_secIsSet = false;
 }
 
@@ -111,7 +111,7 @@ bool Policy::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cache_paths")));
         if(!fieldValue.is_null())
         {
-            std::map<utility::string_t, int32_t> refVal_setCachePaths;
+            std::map<utility::string_t, int64_t> refVal_setCachePaths;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCachePaths);
             setCachePaths(refVal_setCachePaths);
             
@@ -122,7 +122,7 @@ bool Policy::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cache_ttl_sec")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCacheTtlSec;
+            int64_t refVal_setCacheTtlSec;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCacheTtlSec);
             setCacheTtlSec(refVal_setCacheTtlSec);
             
@@ -166,7 +166,7 @@ bool Policy::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("org_rpm")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOrgRpm;
+            int64_t refVal_setOrgRpm;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOrgRpm);
             setOrgRpm(refVal_setOrgRpm);
             
@@ -177,7 +177,7 @@ bool Policy::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("per_ip_rpm")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPerIpRpm;
+            int64_t refVal_setPerIpRpm;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPerIpRpm);
             setPerIpRpm(refVal_setPerIpRpm);
             
@@ -188,7 +188,7 @@ bool Policy::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updated_at")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdatedAt;
+            int64_t refVal_setUpdatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdatedAt);
             setUpdatedAt(refVal_setUpdatedAt);
             
@@ -210,7 +210,7 @@ bool Policy::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("window_sec")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setWindowSec;
+            int64_t refVal_setWindowSec;
             ok &= ModelBase::fromJson(fieldValue, refVal_setWindowSec);
             setWindowSec(refVal_setWindowSec);
             
@@ -279,13 +279,13 @@ bool Policy::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cache_paths"))))
     {
-        std::map<utility::string_t, int32_t> refVal_setCachePaths;
+        std::map<utility::string_t, int64_t> refVal_setCachePaths;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cache_paths"))), refVal_setCachePaths );
         setCachePaths(refVal_setCachePaths);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cache_ttl_sec"))))
     {
-        int32_t refVal_setCacheTtlSec;
+        int64_t refVal_setCacheTtlSec;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cache_ttl_sec"))), refVal_setCacheTtlSec );
         setCacheTtlSec(refVal_setCacheTtlSec);
     }
@@ -309,19 +309,19 @@ bool Policy::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("org_rpm"))))
     {
-        int32_t refVal_setOrgRpm;
+        int64_t refVal_setOrgRpm;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("org_rpm"))), refVal_setOrgRpm );
         setOrgRpm(refVal_setOrgRpm);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("per_ip_rpm"))))
     {
-        int32_t refVal_setPerIpRpm;
+        int64_t refVal_setPerIpRpm;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("per_ip_rpm"))), refVal_setPerIpRpm );
         setPerIpRpm(refVal_setPerIpRpm);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updated_at"))))
     {
-        int32_t refVal_setUpdatedAt;
+        int64_t refVal_setUpdatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updated_at"))), refVal_setUpdatedAt );
         setUpdatedAt(refVal_setUpdatedAt);
     }
@@ -333,7 +333,7 @@ bool Policy::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("window_sec"))))
     {
-        int32_t refVal_setWindowSec;
+        int64_t refVal_setWindowSec;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("window_sec"))), refVal_setWindowSec );
         setWindowSec(refVal_setWindowSec);
     }
@@ -341,13 +341,13 @@ bool Policy::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
 }
 
 
-std::map<utility::string_t, int32_t> Policy::getCachePaths() const
+std::map<utility::string_t, int64_t> Policy::getCachePaths() const
 {
     return m_Cache_paths;
 }
 
 
-void Policy::setCachePaths(std::map<utility::string_t, int32_t> value)
+void Policy::setCachePaths(std::map<utility::string_t, int64_t> value)
 {
     m_Cache_paths = value;
     m_Cache_pathsIsSet = true;
@@ -362,13 +362,13 @@ void Policy::unsetCache_paths()
 {
     m_Cache_pathsIsSet = false;
 }
-int32_t Policy::getCacheTtlSec() const
+int64_t Policy::getCacheTtlSec() const
 {
     return m_Cache_ttl_sec;
 }
 
 
-void Policy::setCacheTtlSec(int32_t value)
+void Policy::setCacheTtlSec(int64_t value)
 {
     m_Cache_ttl_sec = value;
     m_Cache_ttl_secIsSet = true;
@@ -446,13 +446,13 @@ void Policy::unsetMode()
 {
     m_ModeIsSet = false;
 }
-int32_t Policy::getOrgRpm() const
+int64_t Policy::getOrgRpm() const
 {
     return m_Org_rpm;
 }
 
 
-void Policy::setOrgRpm(int32_t value)
+void Policy::setOrgRpm(int64_t value)
 {
     m_Org_rpm = value;
     m_Org_rpmIsSet = true;
@@ -467,13 +467,13 @@ void Policy::unsetOrg_rpm()
 {
     m_Org_rpmIsSet = false;
 }
-int32_t Policy::getPerIpRpm() const
+int64_t Policy::getPerIpRpm() const
 {
     return m_Per_ip_rpm;
 }
 
 
-void Policy::setPerIpRpm(int32_t value)
+void Policy::setPerIpRpm(int64_t value)
 {
     m_Per_ip_rpm = value;
     m_Per_ip_rpmIsSet = true;
@@ -488,13 +488,13 @@ void Policy::unsetPer_ip_rpm()
 {
     m_Per_ip_rpmIsSet = false;
 }
-int32_t Policy::getUpdatedAt() const
+int64_t Policy::getUpdatedAt() const
 {
     return m_Updated_at;
 }
 
 
-void Policy::setUpdatedAt(int32_t value)
+void Policy::setUpdatedAt(int64_t value)
 {
     m_Updated_at = value;
     m_Updated_atIsSet = true;
@@ -530,13 +530,13 @@ void Policy::unsetUpdated_by()
 {
     m_Updated_byIsSet = false;
 }
-int32_t Policy::getWindowSec() const
+int64_t Policy::getWindowSec() const
 {
     return m_Window_sec;
 }
 
 
-void Policy::setWindowSec(int32_t value)
+void Policy::setWindowSec(int64_t value)
 {
     m_Window_sec = value;
     m_Window_secIsSet = true;

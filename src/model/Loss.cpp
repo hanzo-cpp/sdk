@@ -18,9 +18,9 @@ namespace model {
 
 Loss::Loss()
 {
-    m_Exhausted = 0;
+    m_Exhausted = 0L;
     m_ExhaustedIsSet = false;
-    m_Undecodable = 0;
+    m_Undecodable = 0L;
     m_UndecodableIsSet = false;
 }
 
@@ -58,7 +58,7 @@ bool Loss::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("exhausted")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExhausted;
+            int64_t refVal_setExhausted;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExhausted);
             setExhausted(refVal_setExhausted);
             
@@ -69,7 +69,7 @@ bool Loss::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("undecodable")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUndecodable;
+            int64_t refVal_setUndecodable;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUndecodable);
             setUndecodable(refVal_setUndecodable);
             
@@ -106,13 +106,13 @@ bool Loss::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("exhausted"))))
     {
-        int32_t refVal_setExhausted;
+        int64_t refVal_setExhausted;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("exhausted"))), refVal_setExhausted );
         setExhausted(refVal_setExhausted);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("undecodable"))))
     {
-        int32_t refVal_setUndecodable;
+        int64_t refVal_setUndecodable;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("undecodable"))), refVal_setUndecodable );
         setUndecodable(refVal_setUndecodable);
     }
@@ -120,13 +120,13 @@ bool Loss::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
 }
 
 
-int32_t Loss::getExhausted() const
+int64_t Loss::getExhausted() const
 {
     return m_Exhausted;
 }
 
 
-void Loss::setExhausted(int32_t value)
+void Loss::setExhausted(int64_t value)
 {
     m_Exhausted = value;
     m_ExhaustedIsSet = true;
@@ -141,13 +141,13 @@ void Loss::unsetExhausted()
 {
     m_ExhaustedIsSet = false;
 }
-int32_t Loss::getUndecodable() const
+int64_t Loss::getUndecodable() const
 {
     return m_Undecodable;
 }
 
 
-void Loss::setUndecodable(int32_t value)
+void Loss::setUndecodable(int64_t value)
 {
     m_Undecodable = value;
     m_UndecodableIsSet = true;

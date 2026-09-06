@@ -7559,7 +7559,7 @@ pplx::task<void> IamApi::getIamScimV2UsersByOwnerByName(utility::string_t owner,
         return void();
     });
 }
-pplx::task<std::shared_ptr<Iam_Answer>> IamApi::getIamServiceAccounts(boost::optional<utility::string_t> organization, boost::optional<int32_t> p, boost::optional<int32_t> pageSize) const
+pplx::task<std::shared_ptr<Iam_Answer>> IamApi::getIamServiceAccounts(boost::optional<utility::string_t> organization, boost::optional<int64_t> p, boost::optional<int64_t> pageSize) const
 {
 
 
@@ -7941,7 +7941,7 @@ pplx::task<std::shared_ptr<Iam_Team>> IamApi::getIamTeamsByName(utility::string_
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Iam_users_ListOutput>> IamApi::getIamUsers(boost::optional<utility::string_t> owner, boost::optional<utility::string_t> email, boost::optional<int32_t> limit, boost::optional<int32_t> offset) const
+pplx::task<std::shared_ptr<Iam_users_ListOutput>> IamApi::getIamUsers(boost::optional<utility::string_t> owner, boost::optional<utility::string_t> email, boost::optional<int64_t> limit, boost::optional<int64_t> offset) const
 {
 
 
@@ -9815,7 +9815,7 @@ pplx::task<std::shared_ptr<Iam_webauthnCredentialResult>> IamApi::getWebauthnCre
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Iam_ListOrganizationsOutput>> IamApi::listOrganizations(boost::optional<utility::string_t> xForwardedFor, boost::optional<utility::string_t> q, boost::optional<int32_t> limit, boost::optional<utility::string_t> cursor) const
+pplx::task<std::shared_ptr<Iam_ListOrganizationsOutput>> IamApi::listOrganizations(boost::optional<utility::string_t> xForwardedFor, boost::optional<utility::string_t> q, boost::optional<int64_t> limit, boost::optional<utility::string_t> cursor) const
 {
 
 

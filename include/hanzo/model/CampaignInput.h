@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// Budget is the campaign budget in MINOR units (cents). Negative values clamp to 0.
     /// </summary>
-    int32_t getBudget() const;
+    int64_t getBudget() const;
     bool budgetIsSet() const;
     void unsetBudget();
-    void setBudget(int32_t value);
+    void setBudget(int64_t value);
 
     /// <summary>
     /// Name is the campaign&#39;s display label. Required; trimmed and bounded to 1024 bytes.
@@ -95,10 +95,10 @@ public:
     /// <summary>
     /// Spend is the amount spent so far in MINOR units (cents). Negative values clamp to 0.
     /// </summary>
-    int32_t getSpend() const;
+    int64_t getSpend() const;
     bool spendIsSet() const;
     void unsetSpend();
-    void setSpend(int32_t value);
+    void setSpend(int64_t value);
 
     /// <summary>
     /// Status is the lifecycle state: draft, active, paused or completed. Empty defaults to draft.
@@ -113,7 +113,7 @@ protected:
     utility::string_t m_Account;
     bool m_AccountIsSet;
 
-    int32_t m_Budget;
+    int64_t m_Budget;
     bool m_BudgetIsSet;
 
     utility::string_t m_Name;
@@ -125,7 +125,7 @@ protected:
     utility::string_t m_Platform;
     bool m_PlatformIsSet;
 
-    int32_t m_Spend;
+    int64_t m_Spend;
     bool m_SpendIsSet;
 
     utility::string_t m_Status;

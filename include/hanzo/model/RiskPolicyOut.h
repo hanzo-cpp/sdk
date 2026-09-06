@@ -58,18 +58,18 @@ public:
     /// <summary>
     /// Changes is how many DISTINCT regimes may be adopted per Window. A restatement identical to the regime in force mints no version and is not counted against it.
     /// </summary>
-    int32_t getChanges() const;
+    int64_t getChanges() const;
     bool changesIsSet() const;
     void unsetChanges();
-    void setChanges(int32_t value);
+    void setChanges(int64_t value);
 
     /// <summary>
     /// Disposed is how many versions retention has taken. It is NOT a silence: a history bounded on disk must say what it no longer holds, because a decision citing a disposed version can no longer be reconstructed from this record.
     /// </summary>
-    int32_t getDisposed() const;
+    int64_t getDisposed() const;
     bool disposedIsSet() const;
     void unsetDisposed();
-    void setDisposed(int32_t value);
+    void setDisposed(int64_t value);
 
     /// <summary>
     /// History is the retained versions, newest first.
@@ -82,18 +82,18 @@ public:
     /// <summary>
     /// Retained is how many versions this organisation&#39;s history holds at most, derived from the byte budget its rows are a multiple of.
     /// </summary>
-    int32_t getRetained() const;
+    int64_t getRetained() const;
     bool retainedIsSet() const;
     void unsetRetained();
-    void setRetained(int32_t value);
+    void setRetained(int64_t value);
 
     /// <summary>
     /// Version is the version in force — the one every score currently cites. Zero means no regime has ever been stated and the default posture, shadow, is in force.
     /// </summary>
-    int32_t getVersion() const;
+    int64_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();
-    void setVersion(int32_t value);
+    void setVersion(int64_t value);
 
     /// <summary>
     /// Window is the period Changes is measured over.
@@ -105,19 +105,19 @@ public:
 
 
 protected:
-    int32_t m_Changes;
+    int64_t m_Changes;
     bool m_ChangesIsSet;
 
-    int32_t m_Disposed;
+    int64_t m_Disposed;
     bool m_DisposedIsSet;
 
     std::vector<std::shared_ptr<RiskPolicyVersion>> m_History;
     bool m_HistoryIsSet;
 
-    int32_t m_Retained;
+    int64_t m_Retained;
     bool m_RetainedIsSet;
 
-    int32_t m_Version;
+    int64_t m_Version;
     bool m_VersionIsSet;
 
     utility::string_t m_Window;

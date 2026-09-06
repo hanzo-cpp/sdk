@@ -18,7 +18,7 @@ namespace model {
 
 GpuJob::GpuJob()
 {
-    m_Attempt = 0;
+    m_Attempt = 0L;
     m_AttemptIsSet = false;
     m_CloseTime = utility::conversions::to_string_t("");
     m_CloseTimeIsSet = false;
@@ -135,7 +135,7 @@ bool GpuJob::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("attempt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAttempt;
+            int64_t refVal_setAttempt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAttempt);
             setAttempt(refVal_setAttempt);
             
@@ -348,7 +348,7 @@ bool GpuJob::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("attempt"))))
     {
-        int32_t refVal_setAttempt;
+        int64_t refVal_setAttempt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("attempt"))), refVal_setAttempt );
         setAttempt(refVal_setAttempt);
     }
@@ -428,13 +428,13 @@ bool GpuJob::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
 }
 
 
-int32_t GpuJob::getAttempt() const
+int64_t GpuJob::getAttempt() const
 {
     return m_Attempt;
 }
 
 
-void GpuJob::setAttempt(int32_t value)
+void GpuJob::setAttempt(int64_t value)
 {
     m_Attempt = value;
     m_AttemptIsSet = true;

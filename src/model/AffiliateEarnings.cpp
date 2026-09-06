@@ -18,17 +18,17 @@ namespace model {
 
 AffiliateEarnings::AffiliateEarnings()
 {
-    m_AccruedCents = 0;
+    m_AccruedCents = 0L;
     m_AccruedCentsIsSet = false;
     m_ByPeriodIsSet = false;
     m_ByReferredOrgIsSet = false;
     m_IsAffiliate = false;
     m_IsAffiliateIsSet = false;
-    m_MarginBps = 0;
+    m_MarginBps = 0L;
     m_MarginBpsIsSet = false;
-    m_PaidCents = 0;
+    m_PaidCents = 0L;
     m_PaidCentsIsSet = false;
-    m_PendingCents = 0;
+    m_PendingCents = 0L;
     m_PendingCentsIsSet = false;
 }
 
@@ -91,7 +91,7 @@ bool AffiliateEarnings::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("accruedCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAccruedCents;
+            int64_t refVal_setAccruedCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAccruedCents);
             setAccruedCents(refVal_setAccruedCents);
             
@@ -135,7 +135,7 @@ bool AffiliateEarnings::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("marginBps")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMarginBps;
+            int64_t refVal_setMarginBps;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMarginBps);
             setMarginBps(refVal_setMarginBps);
             
@@ -146,7 +146,7 @@ bool AffiliateEarnings::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("paidCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPaidCents;
+            int64_t refVal_setPaidCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPaidCents);
             setPaidCents(refVal_setPaidCents);
             
@@ -157,7 +157,7 @@ bool AffiliateEarnings::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("pendingCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPendingCents;
+            int64_t refVal_setPendingCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPendingCents);
             setPendingCents(refVal_setPendingCents);
             
@@ -214,7 +214,7 @@ bool AffiliateEarnings::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("accruedCents"))))
     {
-        int32_t refVal_setAccruedCents;
+        int64_t refVal_setAccruedCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("accruedCents"))), refVal_setAccruedCents );
         setAccruedCents(refVal_setAccruedCents);
     }
@@ -238,19 +238,19 @@ bool AffiliateEarnings::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("marginBps"))))
     {
-        int32_t refVal_setMarginBps;
+        int64_t refVal_setMarginBps;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("marginBps"))), refVal_setMarginBps );
         setMarginBps(refVal_setMarginBps);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("paidCents"))))
     {
-        int32_t refVal_setPaidCents;
+        int64_t refVal_setPaidCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("paidCents"))), refVal_setPaidCents );
         setPaidCents(refVal_setPaidCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("pendingCents"))))
     {
-        int32_t refVal_setPendingCents;
+        int64_t refVal_setPendingCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("pendingCents"))), refVal_setPendingCents );
         setPendingCents(refVal_setPendingCents);
     }
@@ -258,13 +258,13 @@ bool AffiliateEarnings::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
 }
 
 
-int32_t AffiliateEarnings::getAccruedCents() const
+int64_t AffiliateEarnings::getAccruedCents() const
 {
     return m_AccruedCents;
 }
 
 
-void AffiliateEarnings::setAccruedCents(int32_t value)
+void AffiliateEarnings::setAccruedCents(int64_t value)
 {
     m_AccruedCents = value;
     m_AccruedCentsIsSet = true;
@@ -342,13 +342,13 @@ void AffiliateEarnings::unsetIsAffiliate()
 {
     m_IsAffiliateIsSet = false;
 }
-int32_t AffiliateEarnings::getMarginBps() const
+int64_t AffiliateEarnings::getMarginBps() const
 {
     return m_MarginBps;
 }
 
 
-void AffiliateEarnings::setMarginBps(int32_t value)
+void AffiliateEarnings::setMarginBps(int64_t value)
 {
     m_MarginBps = value;
     m_MarginBpsIsSet = true;
@@ -363,13 +363,13 @@ void AffiliateEarnings::unsetMarginBps()
 {
     m_MarginBpsIsSet = false;
 }
-int32_t AffiliateEarnings::getPaidCents() const
+int64_t AffiliateEarnings::getPaidCents() const
 {
     return m_PaidCents;
 }
 
 
-void AffiliateEarnings::setPaidCents(int32_t value)
+void AffiliateEarnings::setPaidCents(int64_t value)
 {
     m_PaidCents = value;
     m_PaidCentsIsSet = true;
@@ -384,13 +384,13 @@ void AffiliateEarnings::unsetPaidCents()
 {
     m_PaidCentsIsSet = false;
 }
-int32_t AffiliateEarnings::getPendingCents() const
+int64_t AffiliateEarnings::getPendingCents() const
 {
     return m_PendingCents;
 }
 
 
-void AffiliateEarnings::setPendingCents(int32_t value)
+void AffiliateEarnings::setPendingCents(int64_t value)
 {
     m_PendingCents = value;
     m_PendingCentsIsSet = true;

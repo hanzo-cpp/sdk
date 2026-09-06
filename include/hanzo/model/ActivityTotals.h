@@ -54,69 +54,69 @@ public:
     /// <summary>
     /// ActiveDays counts the days with any usage at all — the streak/consistency number. Compare it against len(days) for the share of days the subject showed up.
     /// </summary>
-    int32_t getActiveDays() const;
+    int64_t getActiveDays() const;
     bool activeDaysIsSet() const;
     void unsetActiveDays();
-    void setActiveDays(int32_t value);
+    void setActiveDays(int64_t value);
 
     /// <summary>
     /// CostCents is the window&#39;s spend in whole US cents, the sum of Days[].CostCents.
     /// </summary>
-    int32_t getCostCents() const;
+    int64_t getCostCents() const;
     bool costCentsIsSet() const;
     void unsetCostCents();
-    void setCostCents(int32_t value);
+    void setCostCents(int64_t value);
 
     /// <summary>
     /// MaxRequests is the same ceiling for a request-based heatmap — the busiest single day&#39;s request count, 0 for an idle window.
     /// </summary>
-    int32_t getMaxRequests() const;
+    int64_t getMaxRequests() const;
     bool maxRequestsIsSet() const;
     void unsetMaxRequests();
-    void setMaxRequests(int32_t value);
+    void setMaxRequests(int64_t value);
 
     /// <summary>
     /// MaxTokens is the busiest single day&#39;s token count: the ceiling to normalize a token heatmap against, so the darkest cell is that day. 0 for an idle window, which a client must not divide by.
     /// </summary>
-    int32_t getMaxTokens() const;
+    int64_t getMaxTokens() const;
     bool maxTokensIsSet() const;
     void unsetMaxTokens();
-    void setMaxTokens(int32_t value);
+    void setMaxTokens(int64_t value);
 
     /// <summary>
     /// Requests is the sum of Days[].Requests over the whole window.
     /// </summary>
-    int32_t getRequests() const;
+    int64_t getRequests() const;
     bool requestsIsSet() const;
     void unsetRequests();
-    void setRequests(int32_t value);
+    void setRequests(int64_t value);
 
     /// <summary>
     /// Tokens is the sum of Days[].Tokens over the whole window.
     /// </summary>
-    int32_t getTokens() const;
+    int64_t getTokens() const;
     bool tokensIsSet() const;
     void unsetTokens();
-    void setTokens(int32_t value);
+    void setTokens(int64_t value);
 
 
 protected:
-    int32_t m_ActiveDays;
+    int64_t m_ActiveDays;
     bool m_ActiveDaysIsSet;
 
-    int32_t m_CostCents;
+    int64_t m_CostCents;
     bool m_CostCentsIsSet;
 
-    int32_t m_MaxRequests;
+    int64_t m_MaxRequests;
     bool m_MaxRequestsIsSet;
 
-    int32_t m_MaxTokens;
+    int64_t m_MaxTokens;
     bool m_MaxTokensIsSet;
 
-    int32_t m_Requests;
+    int64_t m_Requests;
     bool m_RequestsIsSet;
 
-    int32_t m_Tokens;
+    int64_t m_Tokens;
     bool m_TokensIsSet;
 
 };

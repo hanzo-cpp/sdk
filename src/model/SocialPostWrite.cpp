@@ -23,7 +23,7 @@ SocialPostWrite::SocialPostWrite()
     m_Content = utility::conversions::to_string_t("");
     m_ContentIsSet = false;
     m_MediaIsSet = false;
-    m_ScheduleAt = 0;
+    m_ScheduleAt = 0L;
     m_ScheduleAtIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
@@ -111,7 +111,7 @@ bool SocialPostWrite::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("scheduleAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setScheduleAt;
+            int64_t refVal_setScheduleAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setScheduleAt);
             setScheduleAt(refVal_setScheduleAt);
             
@@ -189,7 +189,7 @@ bool SocialPostWrite::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("scheduleAt"))))
     {
-        int32_t refVal_setScheduleAt;
+        int64_t refVal_setScheduleAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("scheduleAt"))), refVal_setScheduleAt );
         setScheduleAt(refVal_setScheduleAt);
     }
@@ -266,13 +266,13 @@ void SocialPostWrite::unsetMedia()
 {
     m_MediaIsSet = false;
 }
-int32_t SocialPostWrite::getScheduleAt() const
+int64_t SocialPostWrite::getScheduleAt() const
 {
     return m_ScheduleAt;
 }
 
 
-void SocialPostWrite::setScheduleAt(int32_t value)
+void SocialPostWrite::setScheduleAt(int64_t value)
 {
     m_ScheduleAt = value;
     m_ScheduleAtIsSet = true;

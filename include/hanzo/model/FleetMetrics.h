@@ -79,18 +79,18 @@ public:
     /// <summary>
     /// MemFree is host memory still available, in BYTES. It is what the source reported, not fleetSpec.Memory minus MemUsed.
     /// </summary>
-    int32_t getMemFree() const;
+    int64_t getMemFree() const;
     bool memFreeIsSet() const;
     void unsetMemFree();
-    void setMemFree(int32_t value);
+    void setMemFree(int64_t value);
 
     /// <summary>
     /// MemUsed is host memory in use, in BYTES.
     /// </summary>
-    int32_t getMemUsed() const;
+    int64_t getMemUsed() const;
     bool memUsedIsSet() const;
     void unsetMemUsed();
-    void setMemUsed(int32_t value);
+    void setMemUsed(int64_t value);
 
 
 protected:
@@ -103,10 +103,10 @@ protected:
     double m_Load1;
     bool m_Load1IsSet;
 
-    int32_t m_MemFree;
+    int64_t m_MemFree;
     bool m_MemFreeIsSet;
 
-    int32_t m_MemUsed;
+    int64_t m_MemUsed;
     bool m_MemUsedIsSet;
 
 };

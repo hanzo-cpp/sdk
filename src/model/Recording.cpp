@@ -28,7 +28,7 @@ Recording::Recording()
     m_objectIsSet = false;
     m_Room = utility::conversions::to_string_t("");
     m_RoomIsSet = false;
-    m_Started = 0;
+    m_Started = 0L;
     m_StartedIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
@@ -148,7 +148,7 @@ bool Recording::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("started")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStarted;
+            int64_t refVal_setStarted;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStarted);
             setStarted(refVal_setStarted);
             
@@ -246,7 +246,7 @@ bool Recording::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("started"))))
     {
-        int32_t refVal_setStarted;
+        int64_t refVal_setStarted;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("started"))), refVal_setStarted );
         setStarted(refVal_setStarted);
     }
@@ -365,13 +365,13 @@ void Recording::unsetRoom()
 {
     m_RoomIsSet = false;
 }
-int32_t Recording::getStarted() const
+int64_t Recording::getStarted() const
 {
     return m_Started;
 }
 
 
-void Recording::setStarted(int32_t value)
+void Recording::setStarted(int64_t value)
 {
     m_Started = value;
     m_StartedIsSet = true;

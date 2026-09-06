@@ -54,36 +54,36 @@ public:
     /// <summary>
     /// Qualified is how many referees have made metered spend.
     /// </summary>
-    int32_t getQualified() const;
+    int64_t getQualified() const;
     bool qualifiedIsSet() const;
     void unsetQualified();
-    void setQualified(int32_t value);
+    void setQualified(int64_t value);
 
     /// <summary>
     /// Signup is how many referees have signed up but not yet spent.
     /// </summary>
-    int32_t getSignup() const;
+    int64_t getSignup() const;
     bool signupIsSet() const;
     void unsetSignup();
-    void setSignup(int32_t value);
+    void setSignup(int64_t value);
 
     /// <summary>
     /// Total is every referral this org has made.
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
 
 protected:
-    int32_t m_Qualified;
+    int64_t m_Qualified;
     bool m_QualifiedIsSet;
 
-    int32_t m_Signup;
+    int64_t m_Signup;
     bool m_SignupIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
 };

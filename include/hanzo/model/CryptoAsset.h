@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// AmountCents is what the payer intends to send, for the record. Optional — the credit is what actually arrives, never what was announced.
     /// </summary>
-    int32_t getAmountCents() const;
+    int64_t getAmountCents() const;
     bool amountCentsIsSet() const;
     void unsetAmountCents();
-    void setAmountCents(int32_t value);
+    void setAmountCents(int64_t value);
 
     /// <summary>
     /// Chain is the network to receive on. Empty takes the rail&#39;s default.
@@ -78,7 +78,7 @@ public:
 
 
 protected:
-    int32_t m_AmountCents;
+    int64_t m_AmountCents;
     bool m_AmountCentsIsSet;
 
     utility::string_t m_Chain;

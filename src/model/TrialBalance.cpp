@@ -25,9 +25,9 @@ TrialBalance::TrialBalance()
     m_RowsIsSet = false;
     m_To = utility::conversions::to_string_t("");
     m_ToIsSet = false;
-    m_TotalCredit = 0;
+    m_TotalCredit = 0L;
     m_TotalCreditIsSet = false;
-    m_TotalDebit = 0;
+    m_TotalDebit = 0L;
     m_TotalDebitIsSet = false;
 }
 
@@ -129,7 +129,7 @@ bool TrialBalance::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("totalCredit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotalCredit;
+            int64_t refVal_setTotalCredit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalCredit);
             setTotalCredit(refVal_setTotalCredit);
             
@@ -140,7 +140,7 @@ bool TrialBalance::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("totalDebit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotalDebit;
+            int64_t refVal_setTotalDebit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalDebit);
             setTotalDebit(refVal_setTotalDebit);
             
@@ -217,13 +217,13 @@ bool TrialBalance::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("totalCredit"))))
     {
-        int32_t refVal_setTotalCredit;
+        int64_t refVal_setTotalCredit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("totalCredit"))), refVal_setTotalCredit );
         setTotalCredit(refVal_setTotalCredit);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("totalDebit"))))
     {
-        int32_t refVal_setTotalDebit;
+        int64_t refVal_setTotalDebit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("totalDebit"))), refVal_setTotalDebit );
         setTotalDebit(refVal_setTotalDebit);
     }
@@ -315,13 +315,13 @@ void TrialBalance::unsetTo()
 {
     m_ToIsSet = false;
 }
-int32_t TrialBalance::getTotalCredit() const
+int64_t TrialBalance::getTotalCredit() const
 {
     return m_TotalCredit;
 }
 
 
-void TrialBalance::setTotalCredit(int32_t value)
+void TrialBalance::setTotalCredit(int64_t value)
 {
     m_TotalCredit = value;
     m_TotalCreditIsSet = true;
@@ -336,13 +336,13 @@ void TrialBalance::unsetTotalCredit()
 {
     m_TotalCreditIsSet = false;
 }
-int32_t TrialBalance::getTotalDebit() const
+int64_t TrialBalance::getTotalDebit() const
 {
     return m_TotalDebit;
 }
 
 
-void TrialBalance::setTotalDebit(int32_t value)
+void TrialBalance::setTotalDebit(int64_t value)
 {
     m_TotalDebit = value;
     m_TotalDebitIsSet = true;

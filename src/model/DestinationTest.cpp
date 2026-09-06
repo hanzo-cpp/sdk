@@ -24,7 +24,7 @@ DestinationTest::DestinationTest()
     m_MessageIsSet = false;
     m_Ok = false;
     m_OkIsSet = false;
-    m_Sent = 0;
+    m_Sent = 0L;
     m_SentIsSet = false;
 }
 
@@ -105,7 +105,7 @@ bool DestinationTest::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("sent")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSent;
+            int64_t refVal_setSent;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSent);
             setSent(refVal_setSent);
             
@@ -168,7 +168,7 @@ bool DestinationTest::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("sent"))))
     {
-        int32_t refVal_setSent;
+        int64_t refVal_setSent;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("sent"))), refVal_setSent );
         setSent(refVal_setSent);
     }
@@ -239,13 +239,13 @@ void DestinationTest::unsetOk()
 {
     m_OkIsSet = false;
 }
-int32_t DestinationTest::getSent() const
+int64_t DestinationTest::getSent() const
 {
     return m_Sent;
 }
 
 
-void DestinationTest::setSent(int32_t value)
+void DestinationTest::setSent(int64_t value)
 {
     m_Sent = value;
     m_SentIsSet = true;

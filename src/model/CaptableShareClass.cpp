@@ -26,9 +26,9 @@ CaptableShareClass::CaptableShareClass()
     m_ConversionRightsIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
-    m_Idx = 0;
+    m_Idx = 0L;
     m_IdxIsSet = false;
-    m_InitialSharesAuthorized = 0;
+    m_InitialSharesAuthorized = 0L;
     m_InitialSharesAuthorizedIsSet = false;
     m_LiquidationPreferenceMultiple = 0.0;
     m_LiquidationPreferenceMultipleIsSet = false;
@@ -42,9 +42,9 @@ CaptableShareClass::CaptableShareClass()
     m_PrefixIsSet = false;
     m_PricePerShare = 0.0;
     m_PricePerShareIsSet = false;
-    m_Seniority = 0;
+    m_Seniority = 0L;
     m_SeniorityIsSet = false;
-    m_VotesPerShare = 0;
+    m_VotesPerShare = 0L;
     m_VotesPerShareIsSet = false;
 }
 
@@ -186,7 +186,7 @@ bool CaptableShareClass::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("idx")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setIdx;
+            int64_t refVal_setIdx;
             ok &= ModelBase::fromJson(fieldValue, refVal_setIdx);
             setIdx(refVal_setIdx);
             
@@ -197,7 +197,7 @@ bool CaptableShareClass::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("initialSharesAuthorized")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setInitialSharesAuthorized;
+            int64_t refVal_setInitialSharesAuthorized;
             ok &= ModelBase::fromJson(fieldValue, refVal_setInitialSharesAuthorized);
             setInitialSharesAuthorized(refVal_setInitialSharesAuthorized);
             
@@ -274,7 +274,7 @@ bool CaptableShareClass::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("seniority")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSeniority;
+            int64_t refVal_setSeniority;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSeniority);
             setSeniority(refVal_setSeniority);
             
@@ -285,7 +285,7 @@ bool CaptableShareClass::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("votesPerShare")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVotesPerShare;
+            int64_t refVal_setVotesPerShare;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVotesPerShare);
             setVotesPerShare(refVal_setVotesPerShare);
             
@@ -394,13 +394,13 @@ bool CaptableShareClass::fromMultiPart(std::shared_ptr<MultipartFormData> multip
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("idx"))))
     {
-        int32_t refVal_setIdx;
+        int64_t refVal_setIdx;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("idx"))), refVal_setIdx );
         setIdx(refVal_setIdx);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("initialSharesAuthorized"))))
     {
-        int32_t refVal_setInitialSharesAuthorized;
+        int64_t refVal_setInitialSharesAuthorized;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("initialSharesAuthorized"))), refVal_setInitialSharesAuthorized );
         setInitialSharesAuthorized(refVal_setInitialSharesAuthorized);
     }
@@ -442,13 +442,13 @@ bool CaptableShareClass::fromMultiPart(std::shared_ptr<MultipartFormData> multip
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("seniority"))))
     {
-        int32_t refVal_setSeniority;
+        int64_t refVal_setSeniority;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("seniority"))), refVal_setSeniority );
         setSeniority(refVal_setSeniority);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("votesPerShare"))))
     {
-        int32_t refVal_setVotesPerShare;
+        int64_t refVal_setVotesPerShare;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("votesPerShare"))), refVal_setVotesPerShare );
         setVotesPerShare(refVal_setVotesPerShare);
     }
@@ -540,13 +540,13 @@ void CaptableShareClass::unsetId()
 {
     m_IdIsSet = false;
 }
-int32_t CaptableShareClass::getIdx() const
+int64_t CaptableShareClass::getIdx() const
 {
     return m_Idx;
 }
 
 
-void CaptableShareClass::setIdx(int32_t value)
+void CaptableShareClass::setIdx(int64_t value)
 {
     m_Idx = value;
     m_IdxIsSet = true;
@@ -561,13 +561,13 @@ void CaptableShareClass::unsetIdx()
 {
     m_IdxIsSet = false;
 }
-int32_t CaptableShareClass::getInitialSharesAuthorized() const
+int64_t CaptableShareClass::getInitialSharesAuthorized() const
 {
     return m_InitialSharesAuthorized;
 }
 
 
-void CaptableShareClass::setInitialSharesAuthorized(int32_t value)
+void CaptableShareClass::setInitialSharesAuthorized(int64_t value)
 {
     m_InitialSharesAuthorized = value;
     m_InitialSharesAuthorizedIsSet = true;
@@ -708,13 +708,13 @@ void CaptableShareClass::unsetPricePerShare()
 {
     m_PricePerShareIsSet = false;
 }
-int32_t CaptableShareClass::getSeniority() const
+int64_t CaptableShareClass::getSeniority() const
 {
     return m_Seniority;
 }
 
 
-void CaptableShareClass::setSeniority(int32_t value)
+void CaptableShareClass::setSeniority(int64_t value)
 {
     m_Seniority = value;
     m_SeniorityIsSet = true;
@@ -729,13 +729,13 @@ void CaptableShareClass::unsetSeniority()
 {
     m_SeniorityIsSet = false;
 }
-int32_t CaptableShareClass::getVotesPerShare() const
+int64_t CaptableShareClass::getVotesPerShare() const
 {
     return m_VotesPerShare;
 }
 
 
-void CaptableShareClass::setVotesPerShare(int32_t value)
+void CaptableShareClass::setVotesPerShare(int64_t value)
 {
     m_VotesPerShare = value;
     m_VotesPerShareIsSet = true;

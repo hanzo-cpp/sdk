@@ -128,10 +128,10 @@ public:
     /// <summary>
     /// Runs is how many executions the org has recorded against this agent, counted at read time. The list and update reads count the WHOLE history; the detail read reports the size of the RecentRuns page it carries, which stops at 20 — so a detail row saying 20 means \&quot;at least 20\&quot;, not \&quot;exactly 20\&quot;.
     /// </summary>
-    int32_t getRuns() const;
+    int64_t getRuns() const;
     bool runsIsSet() const;
     void unsetRuns();
-    void setRuns(int32_t value);
+    void setRuns(int64_t value);
 
     /// <summary>
     /// Schedule is the 5-field cron the scheduler fires a long-running agent on, evaluated once a minute. Required for long-running and DROPPED for one-shot — a one-shot agent&#39;s schedule is not stored, so absence here is the mode&#39;s answer rather than a value nobody set.
@@ -202,7 +202,7 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_Runs;
+    int64_t m_Runs;
     bool m_RunsIsSet;
 
     utility::string_t m_Schedule;

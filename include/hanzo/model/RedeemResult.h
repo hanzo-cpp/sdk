@@ -64,18 +64,18 @@ public:
     /// <summary>
     /// ChargeCents is what month one costs after the discount, DiscountCents the discount that produced it. Both are quoted figures against the org&#39;s derived plan — NOTHING WAS CREDITED and no wallet moved.
     /// </summary>
-    int32_t getChargeCents() const;
+    int64_t getChargeCents() const;
     bool chargeCentsIsSet() const;
     void unsetChargeCents();
-    void setChargeCents(int32_t value);
+    void setChargeCents(int64_t value);
 
     /// <summary>
     /// DiscountCents is the discount claimed for month one, in USD cents, at the single-seat floor. It is the same figure recorded on the Redemption, and it is evidence an admin may later grant against — not a balance.
     /// </summary>
-    int32_t getDiscountCents() const;
+    int64_t getDiscountCents() const;
     bool discountCentsIsSet() const;
     void unsetDiscountCents();
-    void setDiscountCents(int32_t value);
+    void setDiscountCents(int64_t value);
 
     /// <summary>
     /// Redemption is the row that was recorded — the org&#39;s claim on this promo, with the server-derived plan and seat count. On a replay it is the ORIGINAL row, so its redeemedAt is when the org first took the promo, not now.
@@ -90,10 +90,10 @@ protected:
     bool m_AlreadyRedeemed;
     bool m_AlreadyRedeemedIsSet;
 
-    int32_t m_ChargeCents;
+    int64_t m_ChargeCents;
     bool m_ChargeCentsIsSet;
 
-    int32_t m_DiscountCents;
+    int64_t m_DiscountCents;
     bool m_DiscountCentsIsSet;
 
     std::shared_ptr<Redemption> m_Redemption;

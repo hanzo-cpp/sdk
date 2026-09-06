@@ -18,7 +18,7 @@ namespace model {
 
 GithubSearchReq::GithubSearchReq()
 {
-    m_Limit = 0;
+    m_Limit = 0L;
     m_LimitIsSet = false;
     m_q = utility::conversions::to_string_t("");
     m_qIsSet = false;
@@ -58,7 +58,7 @@ bool GithubSearchReq::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("limit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLimit;
+            int64_t refVal_setLimit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLimit);
             setLimit(refVal_setLimit);
             
@@ -106,7 +106,7 @@ bool GithubSearchReq::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("limit"))))
     {
-        int32_t refVal_setLimit;
+        int64_t refVal_setLimit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("limit"))), refVal_setLimit );
         setLimit(refVal_setLimit);
     }
@@ -120,13 +120,13 @@ bool GithubSearchReq::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 }
 
 
-int32_t GithubSearchReq::getLimit() const
+int64_t GithubSearchReq::getLimit() const
 {
     return m_Limit;
 }
 
 
-void GithubSearchReq::setLimit(int32_t value)
+void GithubSearchReq::setLimit(int64_t value)
 {
     m_Limit = value;
     m_LimitIsSet = true;

@@ -18,9 +18,9 @@ namespace model {
 
 ChainStatus::ChainStatus()
 {
-    m_ChainId = 0;
+    m_ChainId = 0L;
     m_ChainIdIsSet = false;
-    m_Height = 0;
+    m_Height = 0L;
     m_HeightIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
@@ -79,7 +79,7 @@ bool ChainStatus::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("chainId")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setChainId;
+            int64_t refVal_setChainId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setChainId);
             setChainId(refVal_setChainId);
             
@@ -90,7 +90,7 @@ bool ChainStatus::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("height")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setHeight;
+            int64_t refVal_setHeight;
             ok &= ModelBase::fromJson(fieldValue, refVal_setHeight);
             setHeight(refVal_setHeight);
             
@@ -172,13 +172,13 @@ bool ChainStatus::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("chainId"))))
     {
-        int32_t refVal_setChainId;
+        int64_t refVal_setChainId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("chainId"))), refVal_setChainId );
         setChainId(refVal_setChainId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("height"))))
     {
-        int32_t refVal_setHeight;
+        int64_t refVal_setHeight;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("height"))), refVal_setHeight );
         setHeight(refVal_setHeight);
     }
@@ -204,13 +204,13 @@ bool ChainStatus::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 }
 
 
-int32_t ChainStatus::getChainId() const
+int64_t ChainStatus::getChainId() const
 {
     return m_ChainId;
 }
 
 
-void ChainStatus::setChainId(int32_t value)
+void ChainStatus::setChainId(int64_t value)
 {
     m_ChainId = value;
     m_ChainIdIsSet = true;
@@ -225,13 +225,13 @@ void ChainStatus::unsetChainId()
 {
     m_ChainIdIsSet = false;
 }
-int32_t ChainStatus::getHeight() const
+int64_t ChainStatus::getHeight() const
 {
     return m_Height;
 }
 
 
-void ChainStatus::setHeight(int32_t value)
+void ChainStatus::setHeight(int64_t value)
 {
     m_Height = value;
     m_HeightIsSet = true;

@@ -116,10 +116,10 @@ public:
     void unsetRecentRuns();
     void setRecentRuns(const std::vector<std::shared_ptr<AgentRunView>>& value);
 
-    int32_t getRuns() const;
+    int64_t getRuns() const;
     bool runsIsSet() const;
     void unsetRuns();
-    void setRuns(int32_t value);
+    void setRuns(int64_t value);
 
     utility::string_t getSchedule() const;
     bool scheduleIsSet() const;
@@ -181,7 +181,7 @@ protected:
     std::vector<std::shared_ptr<AgentRunView>> m_RecentRuns;
     bool m_RecentRunsIsSet;
 
-    int32_t m_Runs;
+    int64_t m_Runs;
     bool m_RunsIsSet;
 
     utility::string_t m_Schedule;

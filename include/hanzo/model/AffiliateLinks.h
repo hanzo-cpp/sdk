@@ -74,10 +74,10 @@ public:
     /// <summary>
     /// MaxLinks is how many share links one affiliate may hold.
     /// </summary>
-    int32_t getMaxLinks() const;
+    int64_t getMaxLinks() const;
     bool maxLinksIsSet() const;
     void unsetMaxLinks();
-    void setMaxLinks(int32_t value);
+    void setMaxLinks(int64_t value);
 
     /// <summary>
     /// Status is the caller&#39;s affiliate status: \&quot;applied\&quot;, \&quot;approved\&quot; or \&quot;suspended\&quot;; absent for a non-affiliate. Minting a link requires \&quot;approved\&quot;, because a link that cannot accrue quietly loses the referral.
@@ -95,7 +95,7 @@ protected:
     std::vector<std::shared_ptr<CodeView>> m_Links;
     bool m_LinksIsSet;
 
-    int32_t m_MaxLinks;
+    int64_t m_MaxLinks;
     bool m_MaxLinksIsSet;
 
     utility::string_t m_Status;

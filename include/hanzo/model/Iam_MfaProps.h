@@ -67,10 +67,10 @@ public:
     void unsetIsPreferred();
     void setIsPreferred(bool value);
 
-    int32_t getMfaRememberInHours() const;
+    int64_t getMfaRememberInHours() const;
     bool mfaRememberInHoursIsSet() const;
     void unsetMfaRememberInHours();
-    void setMfaRememberInHours(int32_t value);
+    void setMfaRememberInHours(int64_t value);
 
     utility::string_t getMfaType() const;
     bool mfaTypeIsSet() const;
@@ -93,7 +93,7 @@ protected:
     bool m_IsPreferred;
     bool m_IsPreferredIsSet;
 
-    int32_t m_MfaRememberInHours;
+    int64_t m_MfaRememberInHours;
     bool m_MfaRememberInHoursIsSet;
 
     utility::string_t m_MfaType;

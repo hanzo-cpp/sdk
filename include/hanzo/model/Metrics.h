@@ -54,10 +54,10 @@ public:
     /// <summary>
     /// unix seconds, server-stamped
     /// </summary>
-    int32_t getAt() const;
+    int64_t getAt() const;
     bool atIsSet() const;
     void unsetAt();
-    void setAt(int32_t value);
+    void setAt(int64_t value);
 
     /// <summary>
     /// 0..1 aggregate utilization
@@ -76,14 +76,6 @@ public:
     void setLoad1(double value);
 
     /// <summary>
-    /// Load5 is the same figure averaged over five minutes.
-    /// </summary>
-    double getLoad5() const;
-    bool load5IsSet() const;
-    void unsetLoad5();
-    void setLoad5(double value);
-
-    /// <summary>
     /// Load15 is the same figure over fifteen. The three together are what separate a machine that is busy right now from one that has been busy all along — which is the question a dispatcher is really asking.
     /// </summary>
     double getLoad15() const;
@@ -92,24 +84,32 @@ public:
     void setLoad15(double value);
 
     /// <summary>
-    /// bytes
+    /// Load5 is the same figure averaged over five minutes.
     /// </summary>
-    int32_t getMemFree() const;
-    bool memFreeIsSet() const;
-    void unsetMemFree();
-    void setMemFree(int32_t value);
+    double getLoad5() const;
+    bool load5IsSet() const;
+    void unsetLoad5();
+    void setLoad5(double value);
 
     /// <summary>
     /// bytes
     /// </summary>
-    int32_t getMemUsed() const;
+    int64_t getMemFree() const;
+    bool memFreeIsSet() const;
+    void unsetMemFree();
+    void setMemFree(int64_t value);
+
+    /// <summary>
+    /// bytes
+    /// </summary>
+    int64_t getMemUsed() const;
     bool memUsedIsSet() const;
     void unsetMemUsed();
-    void setMemUsed(int32_t value);
+    void setMemUsed(int64_t value);
 
 
 protected:
-    int32_t m_At;
+    int64_t m_At;
     bool m_AtIsSet;
 
     double m_GpuUtil;
@@ -118,16 +118,16 @@ protected:
     double m_Load1;
     bool m_Load1IsSet;
 
-    double m_Load5;
-    bool m_Load5IsSet;
-
     double m_Load15;
     bool m_Load15IsSet;
 
-    int32_t m_MemFree;
+    double m_Load5;
+    bool m_Load5IsSet;
+
+    int64_t m_MemFree;
     bool m_MemFreeIsSet;
 
-    int32_t m_MemUsed;
+    int64_t m_MemUsed;
     bool m_MemUsedIsSet;
 
 };

@@ -12,7 +12,7 @@
 /*
  * CreateClusterReq_nodePool.h
  *
- * NodePool is the ONE pool the cluster is born with — a cluster with no nodes runs nothing, so it is not optional. More pools are added afterwards through POST /v1/visor/clusters/:clusterId/pools.
+ * NodePool is the ONE pool the cluster is born with — a cluster with no nodes runs nothing, so it is not optional. More pools are added afterwards through POST /v1/compute/clusters/:clusterId/pools.
  */
 
 #ifndef HANZO_MODEL_CreateClusterReq_nodePool_H_
@@ -30,7 +30,7 @@ namespace model {
 
 
 /// <summary>
-/// NodePool is the ONE pool the cluster is born with — a cluster with no nodes runs nothing, so it is not optional. More pools are added afterwards through POST /v1/visor/clusters/:clusterId/pools.
+/// NodePool is the ONE pool the cluster is born with — a cluster with no nodes runs nothing, so it is not optional. More pools are added afterwards through POST /v1/compute/clusters/:clusterId/pools.
 /// </summary>
 class  CreateClusterReq_nodePool
     : public ModelBase
@@ -55,10 +55,10 @@ public:
     /// CreateClusterReq_nodePool members
 
 
-    int32_t getCount() const;
+    int64_t getCount() const;
     bool countIsSet() const;
     void unsetCount();
-    void setCount(int32_t value);
+    void setCount(int64_t value);
 
     utility::string_t getName() const;
     bool nameIsSet() const;
@@ -72,7 +72,7 @@ public:
 
 
 protected:
-    int32_t m_Count;
+    int64_t m_Count;
     bool m_CountIsSet;
 
     utility::string_t m_Name;

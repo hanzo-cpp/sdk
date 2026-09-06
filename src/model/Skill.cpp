@@ -20,7 +20,7 @@ Skill::Skill()
 {
     m_Content = utility::conversions::to_string_t("");
     m_ContentIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
@@ -30,6 +30,8 @@ Skill::Skill()
     m_NameIsSet = false;
     m_Org = utility::conversions::to_string_t("");
     m_OrgIsSet = false;
+    m_Source = utility::conversions::to_string_t("");
+    m_SourceIsSet = false;
 }
 
 Skill::~Skill()
@@ -74,6 +76,11 @@ web::json::value Skill::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("org"))] = ModelBase::toJson(m_Org);
     }
+    if(m_SourceIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("source"))] = ModelBase::toJson(m_Source);
+    }
 
     return val;
 }
@@ -97,7 +104,7 @@ bool Skill::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -147,6 +154,17 @@ bool Skill::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("source"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("source")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setSource;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSource);
+            setSource(refVal_setSource);
+            
+        }
+    }
     return ok;
 }
 
@@ -181,6 +199,10 @@ void Skill::toMultipart(std::shared_ptr<MultipartFormData> multipart, const util
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("org")), m_Org));
     }
+    if(m_SourceIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("source")), m_Source));
+    }
 }
 
 bool Skill::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
@@ -200,7 +222,7 @@ bool Skill::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -228,6 +250,12 @@ bool Skill::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("org"))), refVal_setOrg );
         setOrg(refVal_setOrg);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("source"))))
+    {
+        utility::string_t refVal_setSource;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("source"))), refVal_setSource );
+        setSource(refVal_setSource);
+    }
     return ok;
 }
 
@@ -253,13 +281,13 @@ void Skill::unsetContent()
 {
     m_ContentIsSet = false;
 }
-int32_t Skill::getCreatedAt() const
+int64_t Skill::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void Skill::setCreatedAt(int32_t value)
+void Skill::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -357,6 +385,27 @@ bool Skill::orgIsSet() const
 void Skill::unsetOrg()
 {
     m_OrgIsSet = false;
+}
+utility::string_t Skill::getSource() const
+{
+    return m_Source;
+}
+
+
+void Skill::setSource(const utility::string_t& value)
+{
+    m_Source = value;
+    m_SourceIsSet = true;
+}
+
+bool Skill::sourceIsSet() const
+{
+    return m_SourceIsSet;
+}
+
+void Skill::unsetSource()
+{
+    m_SourceIsSet = false;
 }
 
 }

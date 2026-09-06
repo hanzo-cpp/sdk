@@ -20,11 +20,11 @@ IssueView::IssueView()
 {
     m_Assignee = utility::conversions::to_string_t("");
     m_AssigneeIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
-    m_DueAt = 0;
+    m_DueAt = 0L;
     m_DueAtIsSet = false;
     m_ExtRef = utility::conversions::to_string_t("");
     m_ExtRefIsSet = false;
@@ -35,7 +35,7 @@ IssueView::IssueView()
     m_Kind = utility::conversions::to_string_t("");
     m_KindIsSet = false;
     m_LabelsIsSet = false;
-    m_number = 0;
+    m_number = 0L;
     m_numberIsSet = false;
     m_Priority = utility::conversions::to_string_t("");
     m_PriorityIsSet = false;
@@ -45,13 +45,13 @@ IssueView::IssueView()
     m_RepoIsSet = false;
     m_Source = utility::conversions::to_string_t("");
     m_SourceIsSet = false;
-    m_StartAt = 0;
+    m_StartAt = 0L;
     m_StartAtIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
-    m_UpdatedAt = 0;
+    m_UpdatedAt = 0L;
     m_UpdatedAtIsSet = false;
 }
 
@@ -180,7 +180,7 @@ bool IssueView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -202,7 +202,7 @@ bool IssueView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("dueAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDueAt;
+            int64_t refVal_setDueAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDueAt);
             setDueAt(refVal_setDueAt);
             
@@ -268,7 +268,7 @@ bool IssueView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("number")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNumber;
+            int64_t refVal_setNumber;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNumber);
             setNumber(refVal_setNumber);
             
@@ -323,7 +323,7 @@ bool IssueView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("startAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStartAt;
+            int64_t refVal_setStartAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStartAt);
             setStartAt(refVal_setStartAt);
             
@@ -356,7 +356,7 @@ bool IssueView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updatedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdatedAt;
+            int64_t refVal_setUpdatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdatedAt);
             setUpdatedAt(refVal_setUpdatedAt);
             
@@ -463,7 +463,7 @@ bool IssueView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -475,7 +475,7 @@ bool IssueView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("dueAt"))))
     {
-        int32_t refVal_setDueAt;
+        int64_t refVal_setDueAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("dueAt"))), refVal_setDueAt );
         setDueAt(refVal_setDueAt);
     }
@@ -511,7 +511,7 @@ bool IssueView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("number"))))
     {
-        int32_t refVal_setNumber;
+        int64_t refVal_setNumber;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("number"))), refVal_setNumber );
         setNumber(refVal_setNumber);
     }
@@ -541,7 +541,7 @@ bool IssueView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("startAt"))))
     {
-        int32_t refVal_setStartAt;
+        int64_t refVal_setStartAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("startAt"))), refVal_setStartAt );
         setStartAt(refVal_setStartAt);
     }
@@ -559,7 +559,7 @@ bool IssueView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
-        int32_t refVal_setUpdatedAt;
+        int64_t refVal_setUpdatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))), refVal_setUpdatedAt );
         setUpdatedAt(refVal_setUpdatedAt);
     }
@@ -588,13 +588,13 @@ void IssueView::unsetAssignee()
 {
     m_AssigneeIsSet = false;
 }
-int32_t IssueView::getCreatedAt() const
+int64_t IssueView::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void IssueView::setCreatedAt(int32_t value)
+void IssueView::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -630,13 +630,13 @@ void IssueView::unsetDescription()
 {
     m_DescriptionIsSet = false;
 }
-int32_t IssueView::getDueAt() const
+int64_t IssueView::getDueAt() const
 {
     return m_DueAt;
 }
 
 
-void IssueView::setDueAt(int32_t value)
+void IssueView::setDueAt(int64_t value)
 {
     m_DueAt = value;
     m_DueAtIsSet = true;
@@ -756,13 +756,13 @@ void IssueView::unsetLabels()
 {
     m_LabelsIsSet = false;
 }
-int32_t IssueView::getNumber() const
+int64_t IssueView::getNumber() const
 {
     return m_number;
 }
 
 
-void IssueView::setNumber(int32_t value)
+void IssueView::setNumber(int64_t value)
 {
     m_number = value;
     m_numberIsSet = true;
@@ -861,13 +861,13 @@ void IssueView::unsetSource()
 {
     m_SourceIsSet = false;
 }
-int32_t IssueView::getStartAt() const
+int64_t IssueView::getStartAt() const
 {
     return m_StartAt;
 }
 
 
-void IssueView::setStartAt(int32_t value)
+void IssueView::setStartAt(int64_t value)
 {
     m_StartAt = value;
     m_StartAtIsSet = true;
@@ -924,13 +924,13 @@ void IssueView::unsetTitle()
 {
     m_TitleIsSet = false;
 }
-int32_t IssueView::getUpdatedAt() const
+int64_t IssueView::getUpdatedAt() const
 {
     return m_UpdatedAt;
 }
 
 
-void IssueView::setUpdatedAt(int32_t value)
+void IssueView::setUpdatedAt(int64_t value)
 {
     m_UpdatedAt = value;
     m_UpdatedAtIsSet = true;

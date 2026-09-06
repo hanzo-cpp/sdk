@@ -51,30 +51,30 @@ public:
     /// RollupBalance members
 
 
-    int32_t getAvailableCents() const;
+    int64_t getAvailableCents() const;
     bool availableCentsIsSet() const;
     void unsetAvailableCents();
-    void setAvailableCents(int32_t value);
+    void setAvailableCents(int64_t value);
 
-    int32_t getBalanceCents() const;
+    int64_t getBalanceCents() const;
     bool balanceCentsIsSet() const;
     void unsetBalanceCents();
-    void setBalanceCents(int32_t value);
+    void setBalanceCents(int64_t value);
 
-    int32_t getHoldsCents() const;
+    int64_t getHoldsCents() const;
     bool holdsCentsIsSet() const;
     void unsetHoldsCents();
-    void setHoldsCents(int32_t value);
+    void setHoldsCents(int64_t value);
 
 
 protected:
-    int32_t m_AvailableCents;
+    int64_t m_AvailableCents;
     bool m_AvailableCentsIsSet;
 
-    int32_t m_BalanceCents;
+    int64_t m_BalanceCents;
     bool m_BalanceCentsIsSet;
 
-    int32_t m_HoldsCents;
+    int64_t m_HoldsCents;
     bool m_HoldsCentsIsSet;
 
 };

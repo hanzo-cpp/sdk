@@ -36,7 +36,7 @@ GitOpsApp::GitOpsApp()
     m_ReconciledAtIsSet = false;
     m_RepoURL = utility::conversions::to_string_t("");
     m_RepoURLIsSet = false;
-    m_Resources = 0;
+    m_Resources = 0L;
     m_ResourcesIsSet = false;
     m_Revision = utility::conversions::to_string_t("");
     m_RevisionIsSet = false;
@@ -257,7 +257,7 @@ bool GitOpsApp::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("resources")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setResources;
+            int64_t refVal_setResources;
             ok &= ModelBase::fromJson(fieldValue, refVal_setResources);
             setResources(refVal_setResources);
             
@@ -450,7 +450,7 @@ bool GitOpsApp::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("resources"))))
     {
-        int32_t refVal_setResources;
+        int64_t refVal_setResources;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("resources"))), refVal_setResources );
         setResources(refVal_setResources);
     }
@@ -692,13 +692,13 @@ void GitOpsApp::unsetRepoURL()
 {
     m_RepoURLIsSet = false;
 }
-int32_t GitOpsApp::getResources() const
+int64_t GitOpsApp::getResources() const
 {
     return m_Resources;
 }
 
 
-void GitOpsApp::setResources(int32_t value)
+void GitOpsApp::setResources(int64_t value)
 {
     m_Resources = value;
     m_ResourcesIsSet = true;

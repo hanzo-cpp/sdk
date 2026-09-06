@@ -73,10 +73,10 @@ public:
     void unsetQueriesUsedInFormula();
     void setQueriesUsedInFormula(const std::vector<utility::string_t>& value);
 
-    int32_t getShiftBy() const;
+    int64_t getShiftBy() const;
     bool shiftByIsSet() const;
     void unsetShiftBy();
-    void setShiftBy(int32_t value);
+    void setShiftBy(int64_t value);
 
     std::shared_ptr<O11y_AttributeKey> getAggregateAttribute() const;
     bool aggregateAttributeIsSet() const;
@@ -173,10 +173,10 @@ public:
     void unsetSpaceAggregation();
     void setSpaceAggregation(const utility::string_t& value);
 
-    int32_t getStepInterval() const;
+    int64_t getStepInterval() const;
     bool stepIntervalIsSet() const;
     void unsetStepInterval();
-    void setStepInterval(int32_t value);
+    void setStepInterval(int64_t value);
 
     utility::string_t getTemporality() const;
     bool temporalityIsSet() const;
@@ -196,7 +196,7 @@ protected:
     std::vector<utility::string_t> m_QueriesUsedInFormula;
     bool m_QueriesUsedInFormulaIsSet;
 
-    int32_t m_ShiftBy;
+    int64_t m_ShiftBy;
     bool m_ShiftByIsSet;
 
     std::shared_ptr<O11y_AttributeKey> m_AggregateAttribute;
@@ -256,7 +256,7 @@ protected:
     utility::string_t m_SpaceAggregation;
     bool m_SpaceAggregationIsSet;
 
-    int32_t m_StepInterval;
+    int64_t m_StepInterval;
     bool m_StepIntervalIsSet;
 
     utility::string_t m_Temporality;

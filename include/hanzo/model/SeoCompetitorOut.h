@@ -74,10 +74,10 @@ public:
     /// <summary>
     /// Total is how many domains the upstream holds for these phrases.
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
 
 protected:
@@ -87,7 +87,7 @@ protected:
     utility::string_t m_Cost;
     bool m_CostIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
 };

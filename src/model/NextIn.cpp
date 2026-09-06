@@ -18,7 +18,7 @@ namespace model {
 
 NextIn::NextIn()
 {
-    m_Batch = 0;
+    m_Batch = 0L;
     m_BatchIsSet = false;
     m_Expires = utility::conversions::to_string_t("");
     m_ExpiresIsSet = false;
@@ -79,7 +79,7 @@ bool NextIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("batch")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBatch;
+            int64_t refVal_setBatch;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBatch);
             setBatch(refVal_setBatch);
             
@@ -172,7 +172,7 @@ bool NextIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("batch"))))
     {
-        int32_t refVal_setBatch;
+        int64_t refVal_setBatch;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("batch"))), refVal_setBatch );
         setBatch(refVal_setBatch);
     }
@@ -204,13 +204,13 @@ bool NextIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
 }
 
 
-int32_t NextIn::getBatch() const
+int64_t NextIn::getBatch() const
 {
     return m_Batch;
 }
 
 
-void NextIn::setBatch(int32_t value)
+void NextIn::setBatch(int64_t value)
 {
     m_Batch = value;
     m_BatchIsSet = true;

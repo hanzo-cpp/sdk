@@ -87,10 +87,10 @@ public:
     /// <summary>
     /// UpdatedAt is the unix second the article was last written, in the help center&#39;s own store.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
 
 protected:
@@ -106,7 +106,7 @@ protected:
     utility::string_t m_Title;
     bool m_TitleIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
 };

@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// ExpiresIn is how long the ticket is good for, in seconds.
     /// </summary>
-    int32_t getExpiresIn() const;
+    int64_t getExpiresIn() const;
     bool expiresInIsSet() const;
     void unsetExpiresIn();
-    void setExpiresIn(int32_t value);
+    void setExpiresIn(int64_t value);
 
     /// <summary>
     /// Ticket is the grant itself. It is single-purpose and short-lived, and it travels in a query string because a WebSocket handshake carries no Authorization header a browser can set.
@@ -78,7 +78,7 @@ public:
 
 
 protected:
-    int32_t m_ExpiresIn;
+    int64_t m_ExpiresIn;
     bool m_ExpiresInIsSet;
 
     utility::string_t m_Ticket;

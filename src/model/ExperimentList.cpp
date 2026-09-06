@@ -19,7 +19,7 @@ namespace model {
 ExperimentList::ExperimentList()
 {
     m_DataIsSet = false;
-    m_Total = 0;
+    m_Total = 0L;
     m_TotalIsSet = false;
 }
 
@@ -68,7 +68,7 @@ bool ExperimentList::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("total")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotal;
+            int64_t refVal_setTotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotal);
             setTotal(refVal_setTotal);
             
@@ -111,7 +111,7 @@ bool ExperimentList::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("total"))))
     {
-        int32_t refVal_setTotal;
+        int64_t refVal_setTotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("total"))), refVal_setTotal );
         setTotal(refVal_setTotal);
     }
@@ -140,13 +140,13 @@ void ExperimentList::unsetData()
 {
     m_DataIsSet = false;
 }
-int32_t ExperimentList::getTotal() const
+int64_t ExperimentList::getTotal() const
 {
     return m_Total;
 }
 
 
-void ExperimentList::setTotal(int32_t value)
+void ExperimentList::setTotal(int64_t value)
 {
     m_Total = value;
     m_TotalIsSet = true;

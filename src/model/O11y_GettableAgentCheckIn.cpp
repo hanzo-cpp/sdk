@@ -20,18 +20,18 @@ O11y_GettableAgentCheckIn::O11y_GettableAgentCheckIn()
 {
     m_Account_id = utility::conversions::to_string_t("");
     m_Account_idIsSet = false;
-    m_Cloud_account_id = utility::conversions::to_string_t("");
-    m_Cloud_account_idIsSet = false;
     m_CloudIntegrationId = utility::conversions::to_string_t("");
     m_CloudIntegrationIdIsSet = false;
-    m_integration_config_legacyIsSet = false;
+    m_Cloud_account_id = utility::conversions::to_string_t("");
+    m_Cloud_account_idIsSet = false;
     m_IntegrationConfigIsSet = false;
+    m_integration_config_legacyIsSet = false;
     m_ProviderAccountId = utility::conversions::to_string_t("");
     m_ProviderAccountIdIsSet = false;
-    m_removed_at_legacy = utility::datetime();
-    m_removed_at_legacyIsSet = false;
     m_RemovedAt = utility::datetime();
     m_RemovedAtIsSet = false;
+    m_removed_at_legacy = utility::datetime();
+    m_removed_at_legacyIsSet = false;
 }
 
 O11y_GettableAgentCheckIn::~O11y_GettableAgentCheckIn()
@@ -51,40 +51,40 @@ web::json::value O11y_GettableAgentCheckIn::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("account_id"))] = ModelBase::toJson(m_Account_id);
     }
-    if(m_Cloud_account_idIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("cloud_account_id"))] = ModelBase::toJson(m_Cloud_account_id);
-    }
     if(m_CloudIntegrationIdIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("cloudIntegrationId"))] = ModelBase::toJson(m_CloudIntegrationId);
     }
-    if(m_integration_config_legacyIsSet)
+    if(m_Cloud_account_idIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("integration_config"))] = ModelBase::toJson(m_integration_config_legacy);
+        val[utility::conversions::to_string_t(_XPLATSTR("cloud_account_id"))] = ModelBase::toJson(m_Cloud_account_id);
     }
     if(m_IntegrationConfigIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("integrationConfig"))] = ModelBase::toJson(m_IntegrationConfig);
     }
+    if(m_integration_config_legacyIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("integration_config"))] = ModelBase::toJson(m_integration_config_legacy);
+    }
     if(m_ProviderAccountIdIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("providerAccountId"))] = ModelBase::toJson(m_ProviderAccountId);
     }
-    if(m_removed_at_legacyIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("removed_at"))] = ModelBase::toJson(m_removed_at_legacy);
-    }
     if(m_RemovedAtIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("removedAt"))] = ModelBase::toJson(m_RemovedAt);
+    }
+    if(m_removed_at_legacyIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("removed_at"))] = ModelBase::toJson(m_removed_at_legacy);
     }
 
     return val;
@@ -104,17 +104,6 @@ bool O11y_GettableAgentCheckIn::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("cloud_account_id"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cloud_account_id")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setCloudAccountId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setCloudAccountId);
-            setCloudAccountId(refVal_setCloudAccountId);
-            
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("cloudIntegrationId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cloudIntegrationId")));
@@ -126,14 +115,14 @@ bool O11y_GettableAgentCheckIn::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("integration_config"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("cloud_account_id"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("integration_config")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cloud_account_id")));
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<O11y_IntegrationConfig> refVal_setIntegrationConfigLegacy;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setIntegrationConfigLegacy);
-            setIntegrationConfigLegacy(refVal_setIntegrationConfigLegacy);
+            utility::string_t refVal_setCloudAccountId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setCloudAccountId);
+            setCloudAccountId(refVal_setCloudAccountId);
             
         }
     }
@@ -148,6 +137,17 @@ bool O11y_GettableAgentCheckIn::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("integration_config"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("integration_config")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<O11y_IntegrationConfig> refVal_setIntegrationConfigLegacy;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setIntegrationConfigLegacy);
+            setIntegrationConfigLegacy(refVal_setIntegrationConfigLegacy);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("providerAccountId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("providerAccountId")));
@@ -159,17 +159,6 @@ bool O11y_GettableAgentCheckIn::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("removed_at"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("removed_at")));
-        if(!fieldValue.is_null())
-        {
-            utility::datetime refVal_setRemovedAtLegacy;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setRemovedAtLegacy);
-            setRemovedAtLegacy(refVal_setRemovedAtLegacy);
-            
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("removedAt"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("removedAt")));
@@ -178,6 +167,17 @@ bool O11y_GettableAgentCheckIn::fromJson(const web::json::value& val)
             utility::datetime refVal_setRemovedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRemovedAt);
             setRemovedAt(refVal_setRemovedAt);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("removed_at"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("removed_at")));
+        if(!fieldValue.is_null())
+        {
+            utility::datetime refVal_setRemovedAtLegacy;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setRemovedAtLegacy);
+            setRemovedAtLegacy(refVal_setRemovedAtLegacy);
             
         }
     }
@@ -195,33 +195,33 @@ void O11y_GettableAgentCheckIn::toMultipart(std::shared_ptr<MultipartFormData> m
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("account_id")), m_Account_id));
     }
-    if(m_Cloud_account_idIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("cloud_account_id")), m_Cloud_account_id));
-    }
     if(m_CloudIntegrationIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("cloudIntegrationId")), m_CloudIntegrationId));
     }
-    if(m_integration_config_legacyIsSet)
+    if(m_Cloud_account_idIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("integration_config")), m_integration_config_legacy));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("cloud_account_id")), m_Cloud_account_id));
     }
     if(m_IntegrationConfigIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("integrationConfig")), m_IntegrationConfig));
     }
+    if(m_integration_config_legacyIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("integration_config")), m_integration_config_legacy));
+    }
     if(m_ProviderAccountIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("providerAccountId")), m_ProviderAccountId));
     }
-    if(m_removed_at_legacyIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("removed_at")), m_removed_at_legacy));
-    }
     if(m_RemovedAtIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("removedAt")), m_RemovedAt));
+    }
+    if(m_removed_at_legacyIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("removed_at")), m_removed_at_legacy));
     }
 }
 
@@ -240,23 +240,17 @@ bool O11y_GettableAgentCheckIn::fromMultiPart(std::shared_ptr<MultipartFormData>
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("account_id"))), refVal_setAccountId );
         setAccountId(refVal_setAccountId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cloud_account_id"))))
-    {
-        utility::string_t refVal_setCloudAccountId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cloud_account_id"))), refVal_setCloudAccountId );
-        setCloudAccountId(refVal_setCloudAccountId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cloudIntegrationId"))))
     {
         utility::string_t refVal_setCloudIntegrationId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cloudIntegrationId"))), refVal_setCloudIntegrationId );
         setCloudIntegrationId(refVal_setCloudIntegrationId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("integration_config"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cloud_account_id"))))
     {
-        std::shared_ptr<O11y_IntegrationConfig> refVal_setIntegrationConfigLegacy;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("integration_config"))), refVal_setIntegrationConfigLegacy );
-        setIntegrationConfigLegacy(refVal_setIntegrationConfigLegacy);
+        utility::string_t refVal_setCloudAccountId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cloud_account_id"))), refVal_setCloudAccountId );
+        setCloudAccountId(refVal_setCloudAccountId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("integrationConfig"))))
     {
@@ -264,23 +258,29 @@ bool O11y_GettableAgentCheckIn::fromMultiPart(std::shared_ptr<MultipartFormData>
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("integrationConfig"))), refVal_setIntegrationConfig );
         setIntegrationConfig(refVal_setIntegrationConfig);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("integration_config"))))
+    {
+        std::shared_ptr<O11y_IntegrationConfig> refVal_setIntegrationConfigLegacy;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("integration_config"))), refVal_setIntegrationConfigLegacy );
+        setIntegrationConfigLegacy(refVal_setIntegrationConfigLegacy);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("providerAccountId"))))
     {
         utility::string_t refVal_setProviderAccountId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("providerAccountId"))), refVal_setProviderAccountId );
         setProviderAccountId(refVal_setProviderAccountId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("removed_at"))))
-    {
-        utility::datetime refVal_setRemovedAtLegacy;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("removed_at"))), refVal_setRemovedAtLegacy );
-        setRemovedAtLegacy(refVal_setRemovedAtLegacy);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("removedAt"))))
     {
         utility::datetime refVal_setRemovedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("removedAt"))), refVal_setRemovedAt );
         setRemovedAt(refVal_setRemovedAt);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("removed_at"))))
+    {
+        utility::datetime refVal_setRemovedAtLegacy;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("removed_at"))), refVal_setRemovedAtLegacy );
+        setRemovedAtLegacy(refVal_setRemovedAtLegacy);
     }
     return ok;
 }
@@ -307,27 +307,6 @@ void O11y_GettableAgentCheckIn::unsetAccount_id()
 {
     m_Account_idIsSet = false;
 }
-utility::string_t O11y_GettableAgentCheckIn::getCloudAccountId() const
-{
-    return m_Cloud_account_id;
-}
-
-
-void O11y_GettableAgentCheckIn::setCloudAccountId(const utility::string_t& value)
-{
-    m_Cloud_account_id = value;
-    m_Cloud_account_idIsSet = true;
-}
-
-bool O11y_GettableAgentCheckIn::cloudAccountIdIsSet() const
-{
-    return m_Cloud_account_idIsSet;
-}
-
-void O11y_GettableAgentCheckIn::unsetCloud_account_id()
-{
-    m_Cloud_account_idIsSet = false;
-}
 utility::string_t O11y_GettableAgentCheckIn::getCloudIntegrationId() const
 {
     return m_CloudIntegrationId;
@@ -349,26 +328,26 @@ void O11y_GettableAgentCheckIn::unsetCloudIntegrationId()
 {
     m_CloudIntegrationIdIsSet = false;
 }
-std::shared_ptr<O11y_IntegrationConfig> O11y_GettableAgentCheckIn::getIntegrationConfigLegacy() const
+utility::string_t O11y_GettableAgentCheckIn::getCloudAccountId() const
 {
-    return m_integration_config_legacy;
+    return m_Cloud_account_id;
 }
 
 
-void O11y_GettableAgentCheckIn::setIntegrationConfigLegacy(const std::shared_ptr<O11y_IntegrationConfig>& value)
+void O11y_GettableAgentCheckIn::setCloudAccountId(const utility::string_t& value)
 {
-    m_integration_config_legacy = value;
-    m_integration_config_legacyIsSet = true;
+    m_Cloud_account_id = value;
+    m_Cloud_account_idIsSet = true;
 }
 
-bool O11y_GettableAgentCheckIn::integrationConfigLegacyIsSet() const
+bool O11y_GettableAgentCheckIn::cloudAccountIdIsSet() const
 {
-    return m_integration_config_legacyIsSet;
+    return m_Cloud_account_idIsSet;
 }
 
-void O11y_GettableAgentCheckIn::unsetintegration_config_legacy()
+void O11y_GettableAgentCheckIn::unsetCloud_account_id()
 {
-    m_integration_config_legacyIsSet = false;
+    m_Cloud_account_idIsSet = false;
 }
 std::shared_ptr<O11y_ProviderIntegrationConfig> O11y_GettableAgentCheckIn::getIntegrationConfig() const
 {
@@ -391,6 +370,27 @@ void O11y_GettableAgentCheckIn::unsetIntegrationConfig()
 {
     m_IntegrationConfigIsSet = false;
 }
+std::shared_ptr<O11y_IntegrationConfig> O11y_GettableAgentCheckIn::getIntegrationConfigLegacy() const
+{
+    return m_integration_config_legacy;
+}
+
+
+void O11y_GettableAgentCheckIn::setIntegrationConfigLegacy(const std::shared_ptr<O11y_IntegrationConfig>& value)
+{
+    m_integration_config_legacy = value;
+    m_integration_config_legacyIsSet = true;
+}
+
+bool O11y_GettableAgentCheckIn::integrationConfigLegacyIsSet() const
+{
+    return m_integration_config_legacyIsSet;
+}
+
+void O11y_GettableAgentCheckIn::unsetintegration_config_legacy()
+{
+    m_integration_config_legacyIsSet = false;
+}
 utility::string_t O11y_GettableAgentCheckIn::getProviderAccountId() const
 {
     return m_ProviderAccountId;
@@ -412,27 +412,6 @@ void O11y_GettableAgentCheckIn::unsetProviderAccountId()
 {
     m_ProviderAccountIdIsSet = false;
 }
-utility::datetime O11y_GettableAgentCheckIn::getRemovedAtLegacy() const
-{
-    return m_removed_at_legacy;
-}
-
-
-void O11y_GettableAgentCheckIn::setRemovedAtLegacy(const utility::datetime& value)
-{
-    m_removed_at_legacy = value;
-    m_removed_at_legacyIsSet = true;
-}
-
-bool O11y_GettableAgentCheckIn::removedAtLegacyIsSet() const
-{
-    return m_removed_at_legacyIsSet;
-}
-
-void O11y_GettableAgentCheckIn::unsetremoved_at_legacy()
-{
-    m_removed_at_legacyIsSet = false;
-}
 utility::datetime O11y_GettableAgentCheckIn::getRemovedAt() const
 {
     return m_RemovedAt;
@@ -453,6 +432,27 @@ bool O11y_GettableAgentCheckIn::removedAtIsSet() const
 void O11y_GettableAgentCheckIn::unsetRemovedAt()
 {
     m_RemovedAtIsSet = false;
+}
+utility::datetime O11y_GettableAgentCheckIn::getRemovedAtLegacy() const
+{
+    return m_removed_at_legacy;
+}
+
+
+void O11y_GettableAgentCheckIn::setRemovedAtLegacy(const utility::datetime& value)
+{
+    m_removed_at_legacy = value;
+    m_removed_at_legacyIsSet = true;
+}
+
+bool O11y_GettableAgentCheckIn::removedAtLegacyIsSet() const
+{
+    return m_removed_at_legacyIsSet;
+}
+
+void O11y_GettableAgentCheckIn::unsetremoved_at_legacy()
+{
+    m_removed_at_legacyIsSet = false;
 }
 
 }

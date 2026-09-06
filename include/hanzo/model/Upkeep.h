@@ -98,10 +98,10 @@ public:
     /// <summary>
     /// YearlyCents is what the entity owes every year, all obligations summed.
     /// </summary>
-    int32_t getYearlyCents() const;
+    int64_t getYearlyCents() const;
     bool yearlyCentsIsSet() const;
     void unsetYearlyCents();
-    void setYearlyCents(int32_t value);
+    void setYearlyCents(int64_t value);
 
 
 protected:
@@ -120,7 +120,7 @@ protected:
     utility::string_t m_Structure;
     bool m_StructureIsSet;
 
-    int32_t m_YearlyCents;
+    int64_t m_YearlyCents;
     bool m_YearlyCentsIsSet;
 
 };

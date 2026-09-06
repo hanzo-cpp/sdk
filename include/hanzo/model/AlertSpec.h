@@ -67,30 +67,30 @@ public:
     void unsetProject();
     void setProject(const utility::string_t& value);
 
-    int32_t getRateLimitRpm() const;
+    int64_t getRateLimitRpm() const;
     bool rateLimitRpmIsSet() const;
     void unsetRateLimitRpm();
-    void setRateLimitRpm(int32_t value);
+    void setRateLimitRpm(int64_t value);
 
     utility::string_t getService() const;
     bool serviceIsSet() const;
     void unsetService();
     void setService(const utility::string_t& value);
 
-    int32_t getSoftPct() const;
+    int64_t getSoftPct() const;
     bool softPctIsSet() const;
     void unsetSoftPct();
-    void setSoftPct(int32_t value);
+    void setSoftPct(int64_t value);
 
     utility::string_t getSubject() const;
     bool subjectIsSet() const;
     void unsetSubject();
     void setSubject(const utility::string_t& value);
 
-    int32_t getThreshold() const;
+    int64_t getThreshold() const;
     bool thresholdIsSet() const;
     void unsetThreshold();
-    void setThreshold(int32_t value);
+    void setThreshold(int64_t value);
 
     utility::string_t getTitle() const;
     bool titleIsSet() const;
@@ -108,19 +108,19 @@ protected:
     utility::string_t m_Project;
     bool m_ProjectIsSet;
 
-    int32_t m_RateLimitRpm;
+    int64_t m_RateLimitRpm;
     bool m_RateLimitRpmIsSet;
 
     utility::string_t m_Service;
     bool m_ServiceIsSet;
 
-    int32_t m_SoftPct;
+    int64_t m_SoftPct;
     bool m_SoftPctIsSet;
 
     utility::string_t m_Subject;
     bool m_SubjectIsSet;
 
-    int32_t m_Threshold;
+    int64_t m_Threshold;
     bool m_ThresholdIsSet;
 
     utility::string_t m_Title;

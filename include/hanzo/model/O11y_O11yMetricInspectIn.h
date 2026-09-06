@@ -57,10 +57,10 @@ public:
     /// <summary>
     /// End is the end of the window as a Unix timestamp in milliseconds, at most thirty minutes after start. Required.
     /// </summary>
-    int32_t getEnd() const;
+    int64_t getEnd() const;
     bool endIsSet() const;
     void unsetEnd();
-    void setEnd(int32_t value);
+    void setEnd(int64_t value);
 
     /// <summary>
     /// Filter narrows the series returned.
@@ -81,14 +81,14 @@ public:
     /// <summary>
     /// Start is the start of the window as a Unix timestamp in milliseconds. Required.
     /// </summary>
-    int32_t getStart() const;
+    int64_t getStart() const;
     bool startIsSet() const;
     void unsetStart();
-    void setStart(int32_t value);
+    void setStart(int64_t value);
 
 
 protected:
-    int32_t m_End;
+    int64_t m_End;
     bool m_EndIsSet;
 
     std::shared_ptr<O11y_O11yMetricFilter> m_Filter;
@@ -97,7 +97,7 @@ protected:
     utility::string_t m_MetricName;
     bool m_MetricNameIsSet;
 
-    int32_t m_Start;
+    int64_t m_Start;
     bool m_StartIsSet;
 
 };

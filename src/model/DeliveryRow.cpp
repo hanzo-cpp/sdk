@@ -18,19 +18,19 @@ namespace model {
 
 DeliveryRow::DeliveryRow()
 {
-    m_Attempt = 0;
+    m_Attempt = 0L;
     m_AttemptIsSet = false;
     m_Created = utility::conversions::to_string_t("");
     m_CreatedIsSet = false;
     m_Delivery = utility::conversions::to_string_t("");
     m_DeliveryIsSet = false;
-    m_DurationMs = 0;
+    m_DurationMs = 0L;
     m_DurationMsIsSet = false;
     m_Endpoint = utility::conversions::to_string_t("");
     m_EndpointIsSet = false;
     m_Error = utility::conversions::to_string_t("");
     m_ErrorIsSet = false;
-    m_HttpStatus = 0;
+    m_HttpStatus = 0L;
     m_HttpStatusIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
@@ -107,7 +107,7 @@ bool DeliveryRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("attempt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAttempt;
+            int64_t refVal_setAttempt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAttempt);
             setAttempt(refVal_setAttempt);
             
@@ -140,7 +140,7 @@ bool DeliveryRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("durationMs")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDurationMs;
+            int64_t refVal_setDurationMs;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDurationMs);
             setDurationMs(refVal_setDurationMs);
             
@@ -173,7 +173,7 @@ bool DeliveryRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("httpStatus")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setHttpStatus;
+            int64_t refVal_setHttpStatus;
             ok &= ModelBase::fromJson(fieldValue, refVal_setHttpStatus);
             setHttpStatus(refVal_setHttpStatus);
             
@@ -260,7 +260,7 @@ bool DeliveryRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("attempt"))))
     {
-        int32_t refVal_setAttempt;
+        int64_t refVal_setAttempt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("attempt"))), refVal_setAttempt );
         setAttempt(refVal_setAttempt);
     }
@@ -278,7 +278,7 @@ bool DeliveryRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("durationMs"))))
     {
-        int32_t refVal_setDurationMs;
+        int64_t refVal_setDurationMs;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("durationMs"))), refVal_setDurationMs );
         setDurationMs(refVal_setDurationMs);
     }
@@ -296,7 +296,7 @@ bool DeliveryRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("httpStatus"))))
     {
-        int32_t refVal_setHttpStatus;
+        int64_t refVal_setHttpStatus;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("httpStatus"))), refVal_setHttpStatus );
         setHttpStatus(refVal_setHttpStatus);
     }
@@ -316,13 +316,13 @@ bool DeliveryRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 }
 
 
-int32_t DeliveryRow::getAttempt() const
+int64_t DeliveryRow::getAttempt() const
 {
     return m_Attempt;
 }
 
 
-void DeliveryRow::setAttempt(int32_t value)
+void DeliveryRow::setAttempt(int64_t value)
 {
     m_Attempt = value;
     m_AttemptIsSet = true;
@@ -379,13 +379,13 @@ void DeliveryRow::unsetDelivery()
 {
     m_DeliveryIsSet = false;
 }
-int32_t DeliveryRow::getDurationMs() const
+int64_t DeliveryRow::getDurationMs() const
 {
     return m_DurationMs;
 }
 
 
-void DeliveryRow::setDurationMs(int32_t value)
+void DeliveryRow::setDurationMs(int64_t value)
 {
     m_DurationMs = value;
     m_DurationMsIsSet = true;
@@ -442,13 +442,13 @@ void DeliveryRow::unsetError()
 {
     m_ErrorIsSet = false;
 }
-int32_t DeliveryRow::getHttpStatus() const
+int64_t DeliveryRow::getHttpStatus() const
 {
     return m_HttpStatus;
 }
 
 
-void DeliveryRow::setHttpStatus(int32_t value)
+void DeliveryRow::setHttpStatus(int64_t value)
 {
     m_HttpStatus = value;
     m_HttpStatusIsSet = true;

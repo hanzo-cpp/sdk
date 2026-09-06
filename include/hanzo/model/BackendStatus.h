@@ -63,13 +63,13 @@ public:
     /// <summary>
     /// Hits is how many results this leg returned, counted BEFORE fusion, so it is not the number that survived into Fusion.Hits — fusion merges what both legs found and the caller&#39;s limit and offset then page it. 0 for a leg that did not run.
     /// </summary>
-    int32_t getHits() const;
+    int64_t getHits() const;
     bool hitsIsSet() const;
     void unsetHits();
-    void setHits(int32_t value);
+    void setHits(int64_t value);
 
     /// <summary>
-    /// Name is which leg this reports: \&quot;index\&quot;, the lexical store, \&quot;vector\&quot;, the semantic one, or \&quot;code\&quot;, the org&#39;s own repositories. Match.Backend uses the same three names.
+    /// Name is which leg this reports: \&quot;index\&quot;, the lexical store, \&quot;vector\&quot;, the semantic one, \&quot;code\&quot;, the org&#39;s own repositories, or \&quot;rerank\&quot;, the relevance pass over the fused window. Match.Backend uses the same names.
     /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
@@ -87,17 +87,17 @@ public:
     /// <summary>
     /// TookMS is how long this leg took, in milliseconds, timed around its own call and excluding fusion. 0 for a leg that was skipped or is disabled, since nothing was called.
     /// </summary>
-    int32_t getTookMs() const;
+    int64_t getTookMs() const;
     bool tookMsIsSet() const;
     void unsetTook_ms();
-    void setTookMs(int32_t value);
+    void setTookMs(int64_t value);
 
 
 protected:
     utility::string_t m_Error;
     bool m_ErrorIsSet;
 
-    int32_t m_Hits;
+    int64_t m_Hits;
     bool m_HitsIsSet;
 
     utility::string_t m_Name;
@@ -106,7 +106,7 @@ protected:
     utility::string_t m_Status;
     bool m_StatusIsSet;
 
-    int32_t m_Took_ms;
+    int64_t m_Took_ms;
     bool m_Took_msIsSet;
 
 };

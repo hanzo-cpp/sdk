@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// N is how many items the run covered. Two runs are only comparable at the same n, which is why it travels with every point rather than being assumed.
     /// </summary>
-    int32_t getN() const;
+    int64_t getN() const;
     bool NIsSet() const;
     void unsetn();
-    void setN(int32_t value);
+    void setN(int64_t value);
 
     /// <summary>
     /// Run is the measurement id these attempts were recorded under.
@@ -100,7 +100,7 @@ protected:
     double m_Delta;
     bool m_DeltaIsSet;
 
-    int32_t m_n;
+    int64_t m_n;
     bool m_nIsSet;
 
     utility::string_t m_Run;

@@ -18,12 +18,12 @@ namespace model {
 
 O11y_GettableFlamegraphTrace::O11y_GettableFlamegraphTrace()
 {
-    m_EndTimestampMillis = 0;
+    m_EndTimestampMillis = 0L;
     m_EndTimestampMillisIsSet = false;
     m_HasMore = false;
     m_HasMoreIsSet = false;
     m_SpansIsSet = false;
-    m_StartTimestampMillis = 0;
+    m_StartTimestampMillis = 0L;
     m_StartTimestampMillisIsSet = false;
 }
 
@@ -71,7 +71,7 @@ bool O11y_GettableFlamegraphTrace::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("endTimestampMillis")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setEndTimestampMillis;
+            int64_t refVal_setEndTimestampMillis;
             ok &= ModelBase::fromJson(fieldValue, refVal_setEndTimestampMillis);
             setEndTimestampMillis(refVal_setEndTimestampMillis);
             
@@ -104,7 +104,7 @@ bool O11y_GettableFlamegraphTrace::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("startTimestampMillis")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStartTimestampMillis;
+            int64_t refVal_setStartTimestampMillis;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStartTimestampMillis);
             setStartTimestampMillis(refVal_setStartTimestampMillis);
             
@@ -149,7 +149,7 @@ bool O11y_GettableFlamegraphTrace::fromMultiPart(std::shared_ptr<MultipartFormDa
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("endTimestampMillis"))))
     {
-        int32_t refVal_setEndTimestampMillis;
+        int64_t refVal_setEndTimestampMillis;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("endTimestampMillis"))), refVal_setEndTimestampMillis );
         setEndTimestampMillis(refVal_setEndTimestampMillis);
     }
@@ -167,7 +167,7 @@ bool O11y_GettableFlamegraphTrace::fromMultiPart(std::shared_ptr<MultipartFormDa
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("startTimestampMillis"))))
     {
-        int32_t refVal_setStartTimestampMillis;
+        int64_t refVal_setStartTimestampMillis;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("startTimestampMillis"))), refVal_setStartTimestampMillis );
         setStartTimestampMillis(refVal_setStartTimestampMillis);
     }
@@ -175,13 +175,13 @@ bool O11y_GettableFlamegraphTrace::fromMultiPart(std::shared_ptr<MultipartFormDa
 }
 
 
-int32_t O11y_GettableFlamegraphTrace::getEndTimestampMillis() const
+int64_t O11y_GettableFlamegraphTrace::getEndTimestampMillis() const
 {
     return m_EndTimestampMillis;
 }
 
 
-void O11y_GettableFlamegraphTrace::setEndTimestampMillis(int32_t value)
+void O11y_GettableFlamegraphTrace::setEndTimestampMillis(int64_t value)
 {
     m_EndTimestampMillis = value;
     m_EndTimestampMillisIsSet = true;
@@ -238,13 +238,13 @@ void O11y_GettableFlamegraphTrace::unsetSpans()
 {
     m_SpansIsSet = false;
 }
-int32_t O11y_GettableFlamegraphTrace::getStartTimestampMillis() const
+int64_t O11y_GettableFlamegraphTrace::getStartTimestampMillis() const
 {
     return m_StartTimestampMillis;
 }
 
 
-void O11y_GettableFlamegraphTrace::setStartTimestampMillis(int32_t value)
+void O11y_GettableFlamegraphTrace::setStartTimestampMillis(int64_t value)
 {
     m_StartTimestampMillis = value;
     m_StartTimestampMillisIsSet = true;

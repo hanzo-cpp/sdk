@@ -28,9 +28,9 @@ Execution::Execution()
     m_EndedAtIsSet = false;
     m_Event = utility::conversions::to_string_t("");
     m_EventIsSet = false;
-    m_Id = 0;
+    m_Id = 0L;
     m_IdIsSet = false;
-    m_number = 0;
+    m_number = 0L;
     m_numberIsSet = false;
     m_Org = utility::conversions::to_string_t("");
     m_OrgIsSet = false;
@@ -204,7 +204,7 @@ bool Execution::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("id")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setId;
+            int64_t refVal_setId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setId);
             setId(refVal_setId);
             
@@ -215,7 +215,7 @@ bool Execution::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("number")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNumber;
+            int64_t refVal_setNumber;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNumber);
             setNumber(refVal_setNumber);
             
@@ -422,13 +422,13 @@ bool Execution::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("id"))))
     {
-        int32_t refVal_setId;
+        int64_t refVal_setId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("id"))), refVal_setId );
         setId(refVal_setId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("number"))))
     {
-        int32_t refVal_setNumber;
+        int64_t refVal_setNumber;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("number"))), refVal_setNumber );
         setNumber(refVal_setNumber);
     }
@@ -589,13 +589,13 @@ void Execution::unsetEvent()
 {
     m_EventIsSet = false;
 }
-int32_t Execution::getId() const
+int64_t Execution::getId() const
 {
     return m_Id;
 }
 
 
-void Execution::setId(int32_t value)
+void Execution::setId(int64_t value)
 {
     m_Id = value;
     m_IdIsSet = true;
@@ -610,13 +610,13 @@ void Execution::unsetId()
 {
     m_IdIsSet = false;
 }
-int32_t Execution::getNumber() const
+int64_t Execution::getNumber() const
 {
     return m_number;
 }
 
 
-void Execution::setNumber(int32_t value)
+void Execution::setNumber(int64_t value)
 {
     m_number = value;
     m_numberIsSet = true;

@@ -58,20 +58,20 @@ public:
     void unsetAllowedModels();
     void setAllowedModels(const std::vector<utility::string_t>& value);
 
-    int32_t getDailyCreditsCents() const;
+    int64_t getDailyCreditsCents() const;
     bool dailyCreditsCentsIsSet() const;
     void unsetDailyCreditsCents();
-    void setDailyCreditsCents(int32_t value);
+    void setDailyCreditsCents(int64_t value);
 
     utility::string_t getDisplayName() const;
     bool displayNameIsSet() const;
     void unsetDisplayName();
     void setDisplayName(const utility::string_t& value);
 
-    int32_t getMaxAgents() const;
+    int64_t getMaxAgents() const;
     bool maxAgentsIsSet() const;
     void unsetMaxAgents();
-    void setMaxAgents(int32_t value);
+    void setMaxAgents(int64_t value);
 
     utility::string_t getName() const;
     bool nameIsSet() const;
@@ -91,13 +91,13 @@ protected:
     std::vector<utility::string_t> m_AllowedModels;
     bool m_AllowedModelsIsSet;
 
-    int32_t m_DailyCreditsCents;
+    int64_t m_DailyCreditsCents;
     bool m_DailyCreditsCentsIsSet;
 
     utility::string_t m_DisplayName;
     bool m_DisplayNameIsSet;
 
-    int32_t m_MaxAgents;
+    int64_t m_MaxAgents;
     bool m_MaxAgentsIsSet;
 
     utility::string_t m_Name;

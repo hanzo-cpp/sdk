@@ -64,10 +64,10 @@ public:
     /// <summary>
     /// Limit bounds the hits returned. Default 10, maximum 50.
     /// </summary>
-    int32_t getLimit() const;
+    int64_t getLimit() const;
     bool limitIsSet() const;
     void unsetLimit();
-    void setLimit(int32_t value);
+    void setLimit(int64_t value);
 
     /// <summary>
     /// Project narrows retrieval to one project scope.
@@ -90,7 +90,7 @@ protected:
     std::vector<utility::string_t> m_Doctypes;
     bool m_DoctypesIsSet;
 
-    int32_t m_Limit;
+    int64_t m_Limit;
     bool m_LimitIsSet;
 
     utility::string_t m_Project;

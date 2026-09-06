@@ -33,7 +33,7 @@ SecurityApi::~SecurityApi()
 {
 }
 
-pplx::task<std::shared_ptr<FindingList>> SecurityApi::getSecurityFindings(boost::optional<utility::string_t> scanId, boost::optional<utility::string_t> minSeverity, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<FindingList>> SecurityApi::getSecurityFindings(boost::optional<utility::string_t> scanId, boost::optional<utility::string_t> minSeverity, boost::optional<int64_t> limit) const
 {
 
 
@@ -538,7 +538,7 @@ pplx::task<std::shared_ptr<RuleList>> SecurityApi::getSecurityRules() const
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ScanList>> SecurityApi::getSecurityScans(boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<ScanList>> SecurityApi::getSecurityScans(boost::optional<int64_t> limit) const
 {
 
 

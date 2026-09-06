@@ -22,7 +22,7 @@ CommerceOverview::CommerceOverview()
     m_AovIsSet = false;
     m_Available = false;
     m_AvailableIsSet = false;
-    m_Orders = 0;
+    m_Orders = 0L;
     m_OrdersIsSet = false;
     m_Reason = utility::conversions::to_string_t("");
     m_ReasonIsSet = false;
@@ -108,7 +108,7 @@ bool CommerceOverview::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("orders")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOrders;
+            int64_t refVal_setOrders;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOrders);
             setOrders(refVal_setOrders);
             
@@ -206,7 +206,7 @@ bool CommerceOverview::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("orders"))))
     {
-        int32_t refVal_setOrders;
+        int64_t refVal_setOrders;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("orders"))), refVal_setOrders );
         setOrders(refVal_setOrders);
     }
@@ -274,13 +274,13 @@ void CommerceOverview::unsetAvailable()
 {
     m_AvailableIsSet = false;
 }
-int32_t CommerceOverview::getOrders() const
+int64_t CommerceOverview::getOrders() const
 {
     return m_Orders;
 }
 
 
-void CommerceOverview::setOrders(int32_t value)
+void CommerceOverview::setOrders(int64_t value)
 {
     m_Orders = value;
     m_OrdersIsSet = true;

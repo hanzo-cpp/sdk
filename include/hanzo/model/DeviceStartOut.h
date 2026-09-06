@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// Interval is the seconds to wait between polls.
     /// </summary>
-    int32_t getInterval() const;
+    int64_t getInterval() const;
     bool intervalIsSet() const;
     void unsetInterval();
-    void setInterval(int32_t value);
+    void setInterval(int64_t value);
 
     /// <summary>
     /// UserCode is the short code the user types at VerifyURL.
@@ -100,7 +100,7 @@ protected:
     utility::string_t m_Flow;
     bool m_FlowIsSet;
 
-    int32_t m_Interval;
+    int64_t m_Interval;
     bool m_IntervalIsSet;
 
     utility::string_t m_UserCode;

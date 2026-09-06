@@ -22,7 +22,7 @@ ClearReferenceOut::ClearReferenceOut()
     m_ClearedIsSet = false;
     m_Key = utility::conversions::to_string_t("");
     m_KeyIsSet = false;
-    m_Overrides = 0;
+    m_Overrides = 0L;
     m_OverridesIsSet = false;
     m_set = utility::conversions::to_string_t("");
     m_setIsSet = false;
@@ -94,7 +94,7 @@ bool ClearReferenceOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("overrides")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOverrides;
+            int64_t refVal_setOverrides;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOverrides);
             setOverrides(refVal_setOverrides);
             
@@ -162,7 +162,7 @@ bool ClearReferenceOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("overrides"))))
     {
-        int32_t refVal_setOverrides;
+        int64_t refVal_setOverrides;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("overrides"))), refVal_setOverrides );
         setOverrides(refVal_setOverrides);
     }
@@ -218,13 +218,13 @@ void ClearReferenceOut::unsetKey()
 {
     m_KeyIsSet = false;
 }
-int32_t ClearReferenceOut::getOverrides() const
+int64_t ClearReferenceOut::getOverrides() const
 {
     return m_Overrides;
 }
 
 
-void ClearReferenceOut::setOverrides(int32_t value)
+void ClearReferenceOut::setOverrides(int64_t value)
 {
     m_Overrides = value;
     m_OverridesIsSet = true;

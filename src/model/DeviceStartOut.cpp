@@ -22,7 +22,7 @@ DeviceStartOut::DeviceStartOut()
     m_ExpiresAtIsSet = false;
     m_Flow = utility::conversions::to_string_t("");
     m_FlowIsSet = false;
-    m_Interval = 0;
+    m_Interval = 0L;
     m_IntervalIsSet = false;
     m_UserCode = utility::conversions::to_string_t("");
     m_UserCodeIsSet = false;
@@ -101,7 +101,7 @@ bool DeviceStartOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("interval")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setInterval;
+            int64_t refVal_setInterval;
             ok &= ModelBase::fromJson(fieldValue, refVal_setInterval);
             setInterval(refVal_setInterval);
             
@@ -184,7 +184,7 @@ bool DeviceStartOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("interval"))))
     {
-        int32_t refVal_setInterval;
+        int64_t refVal_setInterval;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("interval"))), refVal_setInterval );
         setInterval(refVal_setInterval);
     }
@@ -246,13 +246,13 @@ void DeviceStartOut::unsetFlow()
 {
     m_FlowIsSet = false;
 }
-int32_t DeviceStartOut::getInterval() const
+int64_t DeviceStartOut::getInterval() const
 {
     return m_Interval;
 }
 
 
-void DeviceStartOut::setInterval(int32_t value)
+void DeviceStartOut::setInterval(int64_t value)
 {
     m_Interval = value;
     m_IntervalIsSet = true;

@@ -18,17 +18,17 @@ namespace model {
 
 GithubBackfillResult::GithubBackfillResult()
 {
-    m_Created = 0;
+    m_Created = 0L;
     m_CreatedIsSet = false;
-    m_Failed = 0;
+    m_Failed = 0L;
     m_FailedIsSet = false;
-    m_Issues = 0;
+    m_Issues = 0L;
     m_IssuesIsSet = false;
-    m_Repos = 0;
+    m_Repos = 0L;
     m_ReposIsSet = false;
     m_Truncated = false;
     m_TruncatedIsSet = false;
-    m_Updated = 0;
+    m_Updated = 0L;
     m_UpdatedIsSet = false;
 }
 
@@ -86,7 +86,7 @@ bool GithubBackfillResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("created")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreated;
+            int64_t refVal_setCreated;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreated);
             setCreated(refVal_setCreated);
             
@@ -97,7 +97,7 @@ bool GithubBackfillResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("failed")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFailed;
+            int64_t refVal_setFailed;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFailed);
             setFailed(refVal_setFailed);
             
@@ -108,7 +108,7 @@ bool GithubBackfillResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("issues")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setIssues;
+            int64_t refVal_setIssues;
             ok &= ModelBase::fromJson(fieldValue, refVal_setIssues);
             setIssues(refVal_setIssues);
             
@@ -119,7 +119,7 @@ bool GithubBackfillResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("repos")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRepos;
+            int64_t refVal_setRepos;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRepos);
             setRepos(refVal_setRepos);
             
@@ -141,7 +141,7 @@ bool GithubBackfillResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updated")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdated;
+            int64_t refVal_setUpdated;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdated);
             setUpdated(refVal_setUpdated);
             
@@ -194,25 +194,25 @@ bool GithubBackfillResult::fromMultiPart(std::shared_ptr<MultipartFormData> mult
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("created"))))
     {
-        int32_t refVal_setCreated;
+        int64_t refVal_setCreated;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("created"))), refVal_setCreated );
         setCreated(refVal_setCreated);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("failed"))))
     {
-        int32_t refVal_setFailed;
+        int64_t refVal_setFailed;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("failed"))), refVal_setFailed );
         setFailed(refVal_setFailed);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("issues"))))
     {
-        int32_t refVal_setIssues;
+        int64_t refVal_setIssues;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("issues"))), refVal_setIssues );
         setIssues(refVal_setIssues);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("repos"))))
     {
-        int32_t refVal_setRepos;
+        int64_t refVal_setRepos;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("repos"))), refVal_setRepos );
         setRepos(refVal_setRepos);
     }
@@ -224,7 +224,7 @@ bool GithubBackfillResult::fromMultiPart(std::shared_ptr<MultipartFormData> mult
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updated"))))
     {
-        int32_t refVal_setUpdated;
+        int64_t refVal_setUpdated;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updated"))), refVal_setUpdated );
         setUpdated(refVal_setUpdated);
     }
@@ -232,13 +232,13 @@ bool GithubBackfillResult::fromMultiPart(std::shared_ptr<MultipartFormData> mult
 }
 
 
-int32_t GithubBackfillResult::getCreated() const
+int64_t GithubBackfillResult::getCreated() const
 {
     return m_Created;
 }
 
 
-void GithubBackfillResult::setCreated(int32_t value)
+void GithubBackfillResult::setCreated(int64_t value)
 {
     m_Created = value;
     m_CreatedIsSet = true;
@@ -253,13 +253,13 @@ void GithubBackfillResult::unsetCreated()
 {
     m_CreatedIsSet = false;
 }
-int32_t GithubBackfillResult::getFailed() const
+int64_t GithubBackfillResult::getFailed() const
 {
     return m_Failed;
 }
 
 
-void GithubBackfillResult::setFailed(int32_t value)
+void GithubBackfillResult::setFailed(int64_t value)
 {
     m_Failed = value;
     m_FailedIsSet = true;
@@ -274,13 +274,13 @@ void GithubBackfillResult::unsetFailed()
 {
     m_FailedIsSet = false;
 }
-int32_t GithubBackfillResult::getIssues() const
+int64_t GithubBackfillResult::getIssues() const
 {
     return m_Issues;
 }
 
 
-void GithubBackfillResult::setIssues(int32_t value)
+void GithubBackfillResult::setIssues(int64_t value)
 {
     m_Issues = value;
     m_IssuesIsSet = true;
@@ -295,13 +295,13 @@ void GithubBackfillResult::unsetIssues()
 {
     m_IssuesIsSet = false;
 }
-int32_t GithubBackfillResult::getRepos() const
+int64_t GithubBackfillResult::getRepos() const
 {
     return m_Repos;
 }
 
 
-void GithubBackfillResult::setRepos(int32_t value)
+void GithubBackfillResult::setRepos(int64_t value)
 {
     m_Repos = value;
     m_ReposIsSet = true;
@@ -337,13 +337,13 @@ void GithubBackfillResult::unsetTruncated()
 {
     m_TruncatedIsSet = false;
 }
-int32_t GithubBackfillResult::getUpdated() const
+int64_t GithubBackfillResult::getUpdated() const
 {
     return m_Updated;
 }
 
 
-void GithubBackfillResult::setUpdated(int32_t value)
+void GithubBackfillResult::setUpdated(int64_t value)
 {
     m_Updated = value;
     m_UpdatedIsSet = true;

@@ -58,42 +58,42 @@ public:
     /// <summary>
     /// ARR is annualized recurring revenue in cents (MRR × 12).
     /// </summary>
-    int32_t getArr() const;
+    int64_t getArr() const;
     bool arrIsSet() const;
     void unsetArr();
-    void setArr(int32_t value);
+    void setArr(int64_t value);
 
     /// <summary>
     /// Burn is total expense in cents over the period.
     /// </summary>
-    int32_t getBurn() const;
+    int64_t getBurn() const;
     bool burnIsSet() const;
     void unsetBurn();
-    void setBurn(int32_t value);
+    void setBurn(int64_t value);
 
     /// <summary>
     /// Cash is the bank + processor-clearing balance in cents as of To.
     /// </summary>
-    int32_t getCash() const;
+    int64_t getCash() const;
     bool cashIsSet() const;
     void unsetCash();
-    void setCash(int32_t value);
+    void setCash(int64_t value);
 
     /// <summary>
     /// COGS is cost of goods sold in cents over the period.
     /// </summary>
-    int32_t getCogs() const;
+    int64_t getCogs() const;
     bool cogsIsSet() const;
     void unsetCogs();
-    void setCogs(int32_t value);
+    void setCogs(int64_t value);
 
     /// <summary>
     /// DeferredRevenue is the customer-wallet liability in cents as of To.
     /// </summary>
-    int32_t getDeferredRevenue() const;
+    int64_t getDeferredRevenue() const;
     bool deferredRevenueIsSet() const;
     void unsetDeferredRevenue();
-    void setDeferredRevenue(int32_t value);
+    void setDeferredRevenue(int64_t value);
 
     /// <summary>
     /// Figures is the same snapshot rendered through books&#39; one money formatter.
@@ -114,50 +114,50 @@ public:
     /// <summary>
     /// GrossMarginBps is GrossProfit / Revenue in basis points (7000 &#x3D; 70%).
     /// </summary>
-    int32_t getGrossMarginBps() const;
+    int64_t getGrossMarginBps() const;
     bool grossMarginBpsIsSet() const;
     void unsetGrossMarginBps();
-    void setGrossMarginBps(int32_t value);
+    void setGrossMarginBps(int64_t value);
 
     /// <summary>
     /// GrossProfit is Revenue − COGS, in cents.
     /// </summary>
-    int32_t getGrossProfit() const;
+    int64_t getGrossProfit() const;
     bool grossProfitIsSet() const;
     void unsetGrossProfit();
-    void setGrossProfit(int32_t value);
+    void setGrossProfit(int64_t value);
 
     /// <summary>
     /// MonthlyBurn is net cash burned per month in cents; 0 when not losing cash.
     /// </summary>
-    int32_t getMonthlyBurn() const;
+    int64_t getMonthlyBurn() const;
     bool monthlyBurnIsSet() const;
     void unsetMonthlyBurn();
-    void setMonthlyBurn(int32_t value);
+    void setMonthlyBurn(int64_t value);
 
     /// <summary>
     /// Months is the window length in whole months used to normalize MRR and burn.
     /// </summary>
-    int32_t getMonths() const;
+    int64_t getMonths() const;
     bool monthsIsSet() const;
     void unsetMonths();
-    void setMonths(int32_t value);
+    void setMonths(int64_t value);
 
     /// <summary>
     /// MRR is monthly recurring revenue in cents.
     /// </summary>
-    int32_t getMrr() const;
+    int64_t getMrr() const;
     bool mrrIsSet() const;
     void unsetMrr();
-    void setMrr(int32_t value);
+    void setMrr(int64_t value);
 
     /// <summary>
     /// NetIncome is Revenue − Burn, in cents.
     /// </summary>
-    int32_t getNetIncome() const;
+    int64_t getNetIncome() const;
     bool netIncomeIsSet() const;
     void unsetNetIncome();
-    void setNetIncome(int32_t value);
+    void setNetIncome(int64_t value);
 
     /// <summary>
     /// Period is the human window label, e.g. \&quot;2026-07\&quot; or \&quot;all-time\&quot;.
@@ -170,18 +170,18 @@ public:
     /// <summary>
     /// Revenue is recognized revenue in cents over the period.
     /// </summary>
-    int32_t getRevenue() const;
+    int64_t getRevenue() const;
     bool revenueIsSet() const;
     void unsetRevenue();
-    void setRevenue(int32_t value);
+    void setRevenue(int64_t value);
 
     /// <summary>
     /// RunwayMonths is Cash / MonthlyBurn; -1 means infinite (the org is not burning).
     /// </summary>
-    int32_t getRunwayMonths() const;
+    int64_t getRunwayMonths() const;
     bool runwayMonthsIsSet() const;
     void unsetRunwayMonths();
-    void setRunwayMonths(int32_t value);
+    void setRunwayMonths(int64_t value);
 
     /// <summary>
     /// To is the RFC3339 end of the reporting window, inclusive; absent for up to now.
@@ -193,19 +193,19 @@ public:
 
 
 protected:
-    int32_t m_Arr;
+    int64_t m_Arr;
     bool m_ArrIsSet;
 
-    int32_t m_Burn;
+    int64_t m_Burn;
     bool m_BurnIsSet;
 
-    int32_t m_Cash;
+    int64_t m_Cash;
     bool m_CashIsSet;
 
-    int32_t m_Cogs;
+    int64_t m_Cogs;
     bool m_CogsIsSet;
 
-    int32_t m_DeferredRevenue;
+    int64_t m_DeferredRevenue;
     bool m_DeferredRevenueIsSet;
 
     std::vector<std::shared_ptr<Figure>> m_Figures;
@@ -214,31 +214,31 @@ protected:
     utility::string_t m_From;
     bool m_FromIsSet;
 
-    int32_t m_GrossMarginBps;
+    int64_t m_GrossMarginBps;
     bool m_GrossMarginBpsIsSet;
 
-    int32_t m_GrossProfit;
+    int64_t m_GrossProfit;
     bool m_GrossProfitIsSet;
 
-    int32_t m_MonthlyBurn;
+    int64_t m_MonthlyBurn;
     bool m_MonthlyBurnIsSet;
 
-    int32_t m_Months;
+    int64_t m_Months;
     bool m_MonthsIsSet;
 
-    int32_t m_Mrr;
+    int64_t m_Mrr;
     bool m_MrrIsSet;
 
-    int32_t m_NetIncome;
+    int64_t m_NetIncome;
     bool m_NetIncomeIsSet;
 
     utility::string_t m_Period;
     bool m_PeriodIsSet;
 
-    int32_t m_Revenue;
+    int64_t m_Revenue;
     bool m_RevenueIsSet;
 
-    int32_t m_RunwayMonths;
+    int64_t m_RunwayMonths;
     bool m_RunwayMonthsIsSet;
 
     utility::string_t m_To;

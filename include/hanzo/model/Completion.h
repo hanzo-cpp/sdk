@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// Kind is the LSP CompletionItemKind number (2 method, 3 function, 5 field, 6 variable, …), passed through as the protocol spells it.
     /// </summary>
-    int32_t getKind() const;
+    int64_t getKind() const;
     bool kindIsSet() const;
     void unsetKind();
-    void setKind(int32_t value);
+    void setKind(int64_t value);
 
     /// <summary>
     /// Label is the text a client would insert, and what an editor lists.
@@ -81,7 +81,7 @@ protected:
     utility::string_t m_Detail;
     bool m_DetailIsSet;
 
-    int32_t m_Kind;
+    int64_t m_Kind;
     bool m_KindIsSet;
 
     utility::string_t m_Label;

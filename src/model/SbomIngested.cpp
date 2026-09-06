@@ -18,7 +18,7 @@ namespace model {
 
 SbomIngested::SbomIngested()
 {
-    m_ComponentCount = 0;
+    m_ComponentCount = 0L;
     m_ComponentCountIsSet = false;
     m_ImageDigest = utility::conversions::to_string_t("");
     m_ImageDigestIsSet = false;
@@ -58,7 +58,7 @@ bool SbomIngested::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("componentCount")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setComponentCount;
+            int64_t refVal_setComponentCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setComponentCount);
             setComponentCount(refVal_setComponentCount);
             
@@ -106,7 +106,7 @@ bool SbomIngested::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("componentCount"))))
     {
-        int32_t refVal_setComponentCount;
+        int64_t refVal_setComponentCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("componentCount"))), refVal_setComponentCount );
         setComponentCount(refVal_setComponentCount);
     }
@@ -120,13 +120,13 @@ bool SbomIngested::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
 }
 
 
-int32_t SbomIngested::getComponentCount() const
+int64_t SbomIngested::getComponentCount() const
 {
     return m_ComponentCount;
 }
 
 
-void SbomIngested::setComponentCount(int32_t value)
+void SbomIngested::setComponentCount(int64_t value)
 {
     m_ComponentCount = value;
     m_ComponentCountIsSet = true;

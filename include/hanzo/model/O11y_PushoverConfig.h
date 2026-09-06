@@ -67,10 +67,10 @@ public:
     void unsetDevice();
     void setDevice(const utility::string_t& value);
 
-    int32_t getExpire() const;
+    int64_t getExpire() const;
     bool expireIsSet() const;
     void unsetExpire();
-    void setExpire(int32_t value);
+    void setExpire(int64_t value);
 
     bool isHtml() const;
     bool htmlIsSet() const;
@@ -97,10 +97,10 @@ public:
     void unsetPriority();
     void setPriority(const utility::string_t& value);
 
-    int32_t getRetry() const;
+    int64_t getRetry() const;
     bool retryIsSet() const;
     void unsetRetry();
-    void setRetry(int32_t value);
+    void setRetry(int64_t value);
 
     utility::string_t getSound() const;
     bool soundIsSet() const;
@@ -122,10 +122,10 @@ public:
     void unsetToken_file();
     void setTokenFile(const utility::string_t& value);
 
-    int32_t getTtl() const;
+    int64_t getTtl() const;
     bool ttlIsSet() const;
     void unsetTtl();
-    void setTtl(int32_t value);
+    void setTtl(int64_t value);
 
     utility::string_t getUrl() const;
     bool urlIsSet() const;
@@ -155,7 +155,7 @@ protected:
     utility::string_t m_Device;
     bool m_DeviceIsSet;
 
-    int32_t m_Expire;
+    int64_t m_Expire;
     bool m_ExpireIsSet;
 
     bool m_Html;
@@ -173,7 +173,7 @@ protected:
     utility::string_t m_Priority;
     bool m_PriorityIsSet;
 
-    int32_t m_Retry;
+    int64_t m_Retry;
     bool m_RetryIsSet;
 
     utility::string_t m_Sound;
@@ -187,7 +187,7 @@ protected:
     utility::string_t m_Token_file;
     bool m_Token_fileIsSet;
 
-    int32_t m_Ttl;
+    int64_t m_Ttl;
     bool m_TtlIsSet;
 
     utility::string_t m_Url;

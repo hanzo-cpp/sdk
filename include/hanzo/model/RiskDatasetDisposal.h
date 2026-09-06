@@ -63,28 +63,28 @@ public:
     /// <summary>
     /// Rows is how many rows they held between them, as the REGISTER recorded them when each was materialised — not a count of what the drop deleted, which is gone by the time this answers.
     /// </summary>
-    int32_t getRows() const;
+    int64_t getRows() const;
     bool rowsIsSet() const;
     void unsetRows();
-    void setRows(int32_t value);
+    void setRows(int64_t value);
 
     /// <summary>
     /// Versions is how many versions went.
     /// </summary>
-    int32_t getVersions() const;
+    int64_t getVersions() const;
     bool versionsIsSet() const;
     void unsetVersions();
-    void setVersions(int32_t value);
+    void setVersions(int64_t value);
 
 
 protected:
     utility::string_t m_Dataset;
     bool m_DatasetIsSet;
 
-    int32_t m_Rows;
+    int64_t m_Rows;
     bool m_RowsIsSet;
 
-    int32_t m_Versions;
+    int64_t m_Versions;
     bool m_VersionsIsSet;
 
 };

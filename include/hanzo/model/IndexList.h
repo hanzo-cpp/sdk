@@ -57,18 +57,18 @@ public:
     /// <summary>
     /// Limit is how many rows this page could hold.
     /// </summary>
-    int32_t getLimit() const;
+    int64_t getLimit() const;
     bool limitIsSet() const;
     void unsetLimit();
-    void setLimit(int32_t value);
+    void setLimit(int64_t value);
 
     /// <summary>
     /// Offset is where this page starts.
     /// </summary>
-    int32_t getOffset() const;
+    int64_t getOffset() const;
     bool offsetIsSet() const;
     void unsetOffset();
-    void setOffset(int32_t value);
+    void setOffset(int64_t value);
 
     /// <summary>
     /// Results are the index definitions themselves.
@@ -81,23 +81,23 @@ public:
     /// <summary>
     /// Total is how many indexes the org holds altogether.
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
 
 protected:
-    int32_t m_Limit;
+    int64_t m_Limit;
     bool m_LimitIsSet;
 
-    int32_t m_Offset;
+    int64_t m_Offset;
     bool m_OffsetIsSet;
 
     std::vector<std::shared_ptr<IndexView>> m_Results;
     bool m_ResultsIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
 };

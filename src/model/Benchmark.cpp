@@ -22,7 +22,7 @@ Benchmark::Benchmark()
     m_AxisIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
-    m_Items = 0;
+    m_Items = 0L;
     m_ItemsIsSet = false;
     m_Native = false;
     m_NativeIsSet = false;
@@ -108,7 +108,7 @@ bool Benchmark::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("items")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setItems;
+            int64_t refVal_setItems;
             ok &= ModelBase::fromJson(fieldValue, refVal_setItems);
             setItems(refVal_setItems);
             
@@ -206,7 +206,7 @@ bool Benchmark::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("items"))))
     {
-        int32_t refVal_setItems;
+        int64_t refVal_setItems;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("items"))), refVal_setItems );
         setItems(refVal_setItems);
     }
@@ -274,13 +274,13 @@ void Benchmark::unsetId()
 {
     m_IdIsSet = false;
 }
-int32_t Benchmark::getItems() const
+int64_t Benchmark::getItems() const
 {
     return m_Items;
 }
 
 
-void Benchmark::setItems(int32_t value)
+void Benchmark::setItems(int64_t value)
 {
     m_Items = value;
     m_ItemsIsSet = true;

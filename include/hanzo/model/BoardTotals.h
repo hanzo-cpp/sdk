@@ -54,50 +54,50 @@ public:
     /// <summary>
     /// tokens the models answered with
     /// </summary>
-    int32_t getCompletionTokens() const;
+    int64_t getCompletionTokens() const;
     bool completionTokensIsSet() const;
     void unsetCompletionTokens();
-    void setCompletionTokens(int32_t value);
+    void setCompletionTokens(int64_t value);
 
     /// <summary>
     /// what the window cost, in cents
     /// </summary>
-    int32_t getCostCents() const;
+    int64_t getCostCents() const;
     bool costCentsIsSet() const;
     void unsetCostCents();
-    void setCostCents(int32_t value);
+    void setCostCents(int64_t value);
 
     /// <summary>
     /// calls that did not succeed
     /// </summary>
-    int32_t getErrors() const;
+    int64_t getErrors() const;
     bool errorsIsSet() const;
     void unsetErrors();
-    void setErrors(int32_t value);
+    void setErrors(int64_t value);
 
     /// <summary>
     /// how many model calls the window holds
     /// </summary>
-    int32_t getGenerations() const;
+    int64_t getGenerations() const;
     bool generationsIsSet() const;
     void unsetGenerations();
-    void setGenerations(int32_t value);
+    void setGenerations(int64_t value);
 
     /// <summary>
     /// how many distinct models were called
     /// </summary>
-    int32_t getModels() const;
+    int64_t getModels() const;
     bool modelsIsSet() const;
     void unsetModels();
-    void setModels(int32_t value);
+    void setModels(int64_t value);
 
     /// <summary>
     /// tokens sent to the models
     /// </summary>
-    int32_t getPromptTokens() const;
+    int64_t getPromptTokens() const;
     bool promptTokensIsSet() const;
     void unsetPromptTokens();
-    void setPromptTokens(int32_t value);
+    void setPromptTokens(int64_t value);
 
     /// <summary>
     /// share of calls that succeeded, 0..1
@@ -110,46 +110,46 @@ public:
     /// <summary>
     /// prompt plus completion
     /// </summary>
-    int32_t getTotalTokens() const;
+    int64_t getTotalTokens() const;
     bool totalTokensIsSet() const;
     void unsetTotalTokens();
-    void setTotalTokens(int32_t value);
+    void setTotalTokens(int64_t value);
 
     /// <summary>
     /// how many distinct users called them
     /// </summary>
-    int32_t getUsers() const;
+    int64_t getUsers() const;
     bool usersIsSet() const;
     void unsetUsers();
-    void setUsers(int32_t value);
+    void setUsers(int64_t value);
 
 
 protected:
-    int32_t m_CompletionTokens;
+    int64_t m_CompletionTokens;
     bool m_CompletionTokensIsSet;
 
-    int32_t m_CostCents;
+    int64_t m_CostCents;
     bool m_CostCentsIsSet;
 
-    int32_t m_Errors;
+    int64_t m_Errors;
     bool m_ErrorsIsSet;
 
-    int32_t m_Generations;
+    int64_t m_Generations;
     bool m_GenerationsIsSet;
 
-    int32_t m_Models;
+    int64_t m_Models;
     bool m_ModelsIsSet;
 
-    int32_t m_PromptTokens;
+    int64_t m_PromptTokens;
     bool m_PromptTokensIsSet;
 
     double m_SuccessRate;
     bool m_SuccessRateIsSet;
 
-    int32_t m_TotalTokens;
+    int64_t m_TotalTokens;
     bool m_TotalTokensIsSet;
 
-    int32_t m_Users;
+    int64_t m_Users;
     bool m_UsersIsSet;
 
 };

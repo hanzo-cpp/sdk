@@ -24,7 +24,7 @@ O11y_FlamegraphSpan::O11y_FlamegraphSpan()
     m_EventIsSet = false;
     m_HasError = false;
     m_HasErrorIsSet = false;
-    m_Level = 0;
+    m_Level = 0L;
     m_LevelIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
@@ -155,7 +155,7 @@ bool O11y_FlamegraphSpan::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("level")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLevel;
+            int64_t refVal_setLevel;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLevel);
             setLevel(refVal_setLevel);
             
@@ -303,7 +303,7 @@ bool O11y_FlamegraphSpan::fromMultiPart(std::shared_ptr<MultipartFormData> multi
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("level"))))
     {
-        int32_t refVal_setLevel;
+        int64_t refVal_setLevel;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("level"))), refVal_setLevel );
         setLevel(refVal_setLevel);
     }
@@ -425,13 +425,13 @@ void O11y_FlamegraphSpan::unsetHasError()
 {
     m_HasErrorIsSet = false;
 }
-int32_t O11y_FlamegraphSpan::getLevel() const
+int64_t O11y_FlamegraphSpan::getLevel() const
 {
     return m_Level;
 }
 
 
-void O11y_FlamegraphSpan::setLevel(int32_t value)
+void O11y_FlamegraphSpan::setLevel(int64_t value)
 {
     m_Level = value;
     m_LevelIsSet = true;

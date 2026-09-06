@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// Priority breaks ties: when several patterns match, the highest wins.
     /// </summary>
-    int32_t getPriority() const;
+    int64_t getPriority() const;
     bool priorityIsSet() const;
     void unsetPriority();
-    void setPriority(int32_t value);
+    void setPriority(int64_t value);
 
 
 protected:
@@ -84,7 +84,7 @@ protected:
     utility::string_t m_Pattern;
     bool m_PatternIsSet;
 
-    int32_t m_Priority;
+    int64_t m_Priority;
     bool m_PriorityIsSet;
 
 };

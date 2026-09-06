@@ -64,10 +64,10 @@ public:
     void unsetBalance();
     void setBalance(const std::shared_ptr<RollupBalance>& value);
 
-    int32_t getConsumedCents() const;
+    int64_t getConsumedCents() const;
     bool consumedCentsIsSet() const;
     void unsetConsumedCents();
-    void setConsumedCents(int32_t value);
+    void setConsumedCents(int64_t value);
 
     utility::string_t getCurrency() const;
     bool currencyIsSet() const;
@@ -79,10 +79,10 @@ public:
     void unsetIncluded();
     void setIncluded(const std::shared_ptr<RollupAllotment>& value);
 
-    int32_t getOverageCents() const;
+    int64_t getOverageCents() const;
     bool overageCentsIsSet() const;
     void unsetOverageCents();
-    void setOverageCents(int32_t value);
+    void setOverageCents(int64_t value);
 
     utility::string_t getPeriod() const;
     bool periodIsSet() const;
@@ -109,7 +109,7 @@ protected:
     std::shared_ptr<RollupBalance> m_Balance;
     bool m_BalanceIsSet;
 
-    int32_t m_ConsumedCents;
+    int64_t m_ConsumedCents;
     bool m_ConsumedCentsIsSet;
 
     utility::string_t m_Currency;
@@ -118,7 +118,7 @@ protected:
     std::shared_ptr<RollupAllotment> m_Included;
     bool m_IncludedIsSet;
 
-    int32_t m_OverageCents;
+    int64_t m_OverageCents;
     bool m_OverageCentsIsSet;
 
     utility::string_t m_Period;

@@ -21,7 +21,7 @@ O11y_BuilderQuery::O11y_BuilderQuery()
     m_IsAnomaly = false;
     m_IsAnomalyIsSet = false;
     m_QueriesUsedInFormulaIsSet = false;
-    m_ShiftBy = 0;
+    m_ShiftBy = 0L;
     m_ShiftByIsSet = false;
     m_AggregateAttributeIsSet = false;
     m_AggregateOperator = utility::conversions::to_string_t("");
@@ -54,7 +54,7 @@ O11y_BuilderQuery::O11y_BuilderQuery()
     m_SeriesAggregationIsSet = false;
     m_SpaceAggregation = utility::conversions::to_string_t("");
     m_SpaceAggregationIsSet = false;
-    m_StepInterval = 0;
+    m_StepInterval = 0L;
     m_StepIntervalIsSet = false;
     m_Temporality = utility::conversions::to_string_t("");
     m_TemporalityIsSet = false;
@@ -233,7 +233,7 @@ bool O11y_BuilderQuery::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("ShiftBy")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setShiftBy;
+            int64_t refVal_setShiftBy;
             ok &= ModelBase::fromJson(fieldValue, refVal_setShiftBy);
             setShiftBy(refVal_setShiftBy);
             
@@ -453,7 +453,7 @@ bool O11y_BuilderQuery::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("stepInterval")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStepInterval;
+            int64_t refVal_setStepInterval;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStepInterval);
             setStepInterval(refVal_setStepInterval);
             
@@ -616,7 +616,7 @@ bool O11y_BuilderQuery::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("ShiftBy"))))
     {
-        int32_t refVal_setShiftBy;
+        int64_t refVal_setShiftBy;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ShiftBy"))), refVal_setShiftBy );
         setShiftBy(refVal_setShiftBy);
     }
@@ -736,7 +736,7 @@ bool O11y_BuilderQuery::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("stepInterval"))))
     {
-        int32_t refVal_setStepInterval;
+        int64_t refVal_setStepInterval;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("stepInterval"))), refVal_setStepInterval );
         setStepInterval(refVal_setStepInterval);
     }
@@ -798,13 +798,13 @@ void O11y_BuilderQuery::unsetQueriesUsedInFormula()
 {
     m_QueriesUsedInFormulaIsSet = false;
 }
-int32_t O11y_BuilderQuery::getShiftBy() const
+int64_t O11y_BuilderQuery::getShiftBy() const
 {
     return m_ShiftBy;
 }
 
 
-void O11y_BuilderQuery::setShiftBy(int32_t value)
+void O11y_BuilderQuery::setShiftBy(int64_t value)
 {
     m_ShiftBy = value;
     m_ShiftByIsSet = true;
@@ -1218,13 +1218,13 @@ void O11y_BuilderQuery::unsetSpaceAggregation()
 {
     m_SpaceAggregationIsSet = false;
 }
-int32_t O11y_BuilderQuery::getStepInterval() const
+int64_t O11y_BuilderQuery::getStepInterval() const
 {
     return m_StepInterval;
 }
 
 
-void O11y_BuilderQuery::setStepInterval(int32_t value)
+void O11y_BuilderQuery::setStepInterval(int64_t value)
 {
     m_StepInterval = value;
     m_StepIntervalIsSet = true;

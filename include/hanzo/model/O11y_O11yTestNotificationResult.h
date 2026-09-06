@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// AlertCount is how many series would alert for the tested rule.
     /// </summary>
-    int32_t getAlertCount() const;
+    int64_t getAlertCount() const;
     bool alertCountIsSet() const;
     void unsetAlertCount();
-    void setAlertCount(int32_t value);
+    void setAlertCount(int64_t value);
 
     /// <summary>
     /// Message is a human-readable status, e.g. \&quot;notification sent\&quot;.
@@ -70,7 +70,7 @@ public:
 
 
 protected:
-    int32_t m_AlertCount;
+    int64_t m_AlertCount;
     bool m_AlertCountIsSet;
 
     utility::string_t m_Message;

@@ -19,12 +19,12 @@ namespace model {
 Iam_listResponse::Iam_listResponse()
 {
     m_ResourcesIsSet = false;
-    m_ItemsPerPage = 0;
+    m_ItemsPerPage = 0L;
     m_ItemsPerPageIsSet = false;
     m_SchemasIsSet = false;
-    m_StartIndex = 0;
+    m_StartIndex = 0L;
     m_StartIndexIsSet = false;
-    m_TotalResults = 0;
+    m_TotalResults = 0L;
     m_TotalResultsIsSet = false;
 }
 
@@ -88,7 +88,7 @@ bool Iam_listResponse::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("itemsPerPage")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setItemsPerPage;
+            int64_t refVal_setItemsPerPage;
             ok &= ModelBase::fromJson(fieldValue, refVal_setItemsPerPage);
             setItemsPerPage(refVal_setItemsPerPage);
             
@@ -110,7 +110,7 @@ bool Iam_listResponse::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("startIndex")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStartIndex;
+            int64_t refVal_setStartIndex;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStartIndex);
             setStartIndex(refVal_setStartIndex);
             
@@ -121,7 +121,7 @@ bool Iam_listResponse::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("totalResults")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotalResults;
+            int64_t refVal_setTotalResults;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalResults);
             setTotalResults(refVal_setTotalResults);
             
@@ -176,7 +176,7 @@ bool Iam_listResponse::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("itemsPerPage"))))
     {
-        int32_t refVal_setItemsPerPage;
+        int64_t refVal_setItemsPerPage;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("itemsPerPage"))), refVal_setItemsPerPage );
         setItemsPerPage(refVal_setItemsPerPage);
     }
@@ -188,13 +188,13 @@ bool Iam_listResponse::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("startIndex"))))
     {
-        int32_t refVal_setStartIndex;
+        int64_t refVal_setStartIndex;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("startIndex"))), refVal_setStartIndex );
         setStartIndex(refVal_setStartIndex);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("totalResults"))))
     {
-        int32_t refVal_setTotalResults;
+        int64_t refVal_setTotalResults;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("totalResults"))), refVal_setTotalResults );
         setTotalResults(refVal_setTotalResults);
     }
@@ -223,13 +223,13 @@ void Iam_listResponse::unsetResources()
 {
     m_ResourcesIsSet = false;
 }
-int32_t Iam_listResponse::getItemsPerPage() const
+int64_t Iam_listResponse::getItemsPerPage() const
 {
     return m_ItemsPerPage;
 }
 
 
-void Iam_listResponse::setItemsPerPage(int32_t value)
+void Iam_listResponse::setItemsPerPage(int64_t value)
 {
     m_ItemsPerPage = value;
     m_ItemsPerPageIsSet = true;
@@ -265,13 +265,13 @@ void Iam_listResponse::unsetSchemas()
 {
     m_SchemasIsSet = false;
 }
-int32_t Iam_listResponse::getStartIndex() const
+int64_t Iam_listResponse::getStartIndex() const
 {
     return m_StartIndex;
 }
 
 
-void Iam_listResponse::setStartIndex(int32_t value)
+void Iam_listResponse::setStartIndex(int64_t value)
 {
     m_StartIndex = value;
     m_StartIndexIsSet = true;
@@ -286,13 +286,13 @@ void Iam_listResponse::unsetStartIndex()
 {
     m_StartIndexIsSet = false;
 }
-int32_t Iam_listResponse::getTotalResults() const
+int64_t Iam_listResponse::getTotalResults() const
 {
     return m_TotalResults;
 }
 
 
-void Iam_listResponse::setTotalResults(int32_t value)
+void Iam_listResponse::setTotalResults(int64_t value)
 {
     m_TotalResults = value;
     m_TotalResultsIsSet = true;

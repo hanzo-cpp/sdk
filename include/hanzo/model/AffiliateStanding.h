@@ -58,10 +58,10 @@ public:
     /// <summary>
     /// AccruedCents is lifetime commission accrued, in cents.
     /// </summary>
-    int32_t getAccruedCents() const;
+    int64_t getAccruedCents() const;
     bool accruedCentsIsSet() const;
     void unsetAccruedCents();
-    void setAccruedCents(int32_t value);
+    void setAccruedCents(int64_t value);
 
     /// <summary>
     /// Code is the minted referral code; empty until staff approve.
@@ -74,10 +74,10 @@ public:
     /// <summary>
     /// DefaultRateBps is the direct rate a new affiliate would get, answered only to a caller that has not applied.
     /// </summary>
-    int32_t getDefaultRateBps() const;
+    int64_t getDefaultRateBps() const;
     bool defaultRateBpsIsSet() const;
     void unsetDefaultRateBps();
-    void setDefaultRateBps(int32_t value);
+    void setDefaultRateBps(int64_t value);
 
     /// <summary>
     /// Handle is the opt-in public leaderboard name; empty means opted out.
@@ -114,18 +114,18 @@ public:
     /// <summary>
     /// MarginBps is the platform gross-margin fraction commission is a rate OF.
     /// </summary>
-    int32_t getMarginBps() const;
+    int64_t getMarginBps() const;
     bool marginBpsIsSet() const;
     void unsetMarginBps();
-    void setMarginBps(int32_t value);
+    void setMarginBps(int64_t value);
 
     /// <summary>
     /// PaidCents is lifetime commission already paid out, in cents.
     /// </summary>
-    int32_t getPaidCents() const;
+    int64_t getPaidCents() const;
     bool paidCentsIsSet() const;
     void unsetPaidCents();
-    void setPaidCents(int32_t value);
+    void setPaidCents(int64_t value);
 
     /// <summary>
     /// Payouts is the payout history, newest rows bounded.
@@ -138,26 +138,26 @@ public:
     /// <summary>
     /// PendingCents is accrued minus paid — what the platform still owes.
     /// </summary>
-    int32_t getPendingCents() const;
+    int64_t getPendingCents() const;
     bool pendingCentsIsSet() const;
     void unsetPendingCents();
-    void setPendingCents(int32_t value);
+    void setPendingCents(int64_t value);
 
     /// <summary>
     /// RateBps is the affiliate&#39;s own direct commission rate, in basis points.
     /// </summary>
-    int32_t getRateBps() const;
+    int64_t getRateBps() const;
     bool rateBpsIsSet() const;
     void unsetRateBps();
-    void setRateBps(int32_t value);
+    void setRateBps(int64_t value);
 
     /// <summary>
     /// ReferredCount is how many orgs this affiliate has referred.
     /// </summary>
-    int32_t getReferredCount() const;
+    int64_t getReferredCount() const;
     bool referredCountIsSet() const;
     void unsetReferredCount();
-    void setReferredCount(int32_t value);
+    void setReferredCount(int64_t value);
 
     /// <summary>
     /// RequestedCode is the vanity code asked for at apply time — a request, not an allocation. Approval mints &#x60;code&#x60;, which may be a different slug if this one was already taken.
@@ -177,13 +177,13 @@ public:
 
 
 protected:
-    int32_t m_AccruedCents;
+    int64_t m_AccruedCents;
     bool m_AccruedCentsIsSet;
 
     utility::string_t m_Code;
     bool m_CodeIsSet;
 
-    int32_t m_DefaultRateBps;
+    int64_t m_DefaultRateBps;
     bool m_DefaultRateBpsIsSet;
 
     utility::string_t m_Handle;
@@ -198,22 +198,22 @@ protected:
     utility::string_t m_Link;
     bool m_LinkIsSet;
 
-    int32_t m_MarginBps;
+    int64_t m_MarginBps;
     bool m_MarginBpsIsSet;
 
-    int32_t m_PaidCents;
+    int64_t m_PaidCents;
     bool m_PaidCentsIsSet;
 
     std::vector<std::shared_ptr<Remittance>> m_Payouts;
     bool m_PayoutsIsSet;
 
-    int32_t m_PendingCents;
+    int64_t m_PendingCents;
     bool m_PendingCentsIsSet;
 
-    int32_t m_RateBps;
+    int64_t m_RateBps;
     bool m_RateBpsIsSet;
 
-    int32_t m_ReferredCount;
+    int64_t m_ReferredCount;
     bool m_ReferredCountIsSet;
 
     utility::string_t m_RequestedCode;

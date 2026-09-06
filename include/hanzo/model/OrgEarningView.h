@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// CommissionCents is what the caller earned from that org across ALL periods, in cents. Deliberately the caller&#39;s own share and nothing else: that org&#39;s spend and the margin on it are not restated here.
     /// </summary>
-    int32_t getCommissionCents() const;
+    int64_t getCommissionCents() const;
     bool commissionCentsIsSet() const;
     void unsetCommissionCents();
-    void setCommissionCents(int32_t value);
+    void setCommissionCents(int64_t value);
 
     /// <summary>
     /// ReferredOrg is the org slug this contribution came from — one the caller referred, directly or up to three levels down.
@@ -70,7 +70,7 @@ public:
 
 
 protected:
-    int32_t m_CommissionCents;
+    int64_t m_CommissionCents;
     bool m_CommissionCentsIsSet;
 
     utility::string_t m_ReferredOrg;

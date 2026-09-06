@@ -55,20 +55,20 @@ public:
     /// O11y_JobRecord members
 
 
-    int32_t getActivePods() const;
+    int64_t getActivePods() const;
     bool activePodsIsSet() const;
     void unsetActivePods();
-    void setActivePods(int32_t value);
+    void setActivePods(int64_t value);
 
-    int32_t getDesiredSuccessfulPods() const;
+    int64_t getDesiredSuccessfulPods() const;
     bool desiredSuccessfulPodsIsSet() const;
     void unsetDesiredSuccessfulPods();
-    void setDesiredSuccessfulPods(int32_t value);
+    void setDesiredSuccessfulPods(int64_t value);
 
-    int32_t getFailedPods() const;
+    int64_t getFailedPods() const;
     bool failedPodsIsSet() const;
     void unsetFailedPods();
-    void setFailedPods(int32_t value);
+    void setFailedPods(int64_t value);
 
     double getJobCPU() const;
     bool jobCPUIsSet() const;
@@ -115,20 +115,20 @@ public:
     void unsetPodCountsByPhase();
     void setPodCountsByPhase(const std::shared_ptr<O11y_PodCountsByPhase>& value);
 
-    int32_t getSuccessfulPods() const;
+    int64_t getSuccessfulPods() const;
     bool successfulPodsIsSet() const;
     void unsetSuccessfulPods();
-    void setSuccessfulPods(int32_t value);
+    void setSuccessfulPods(int64_t value);
 
 
 protected:
-    int32_t m_ActivePods;
+    int64_t m_ActivePods;
     bool m_ActivePodsIsSet;
 
-    int32_t m_DesiredSuccessfulPods;
+    int64_t m_DesiredSuccessfulPods;
     bool m_DesiredSuccessfulPodsIsSet;
 
-    int32_t m_FailedPods;
+    int64_t m_FailedPods;
     bool m_FailedPodsIsSet;
 
     double m_JobCPU;
@@ -158,7 +158,7 @@ protected:
     std::shared_ptr<O11y_PodCountsByPhase> m_PodCountsByPhase;
     bool m_PodCountsByPhaseIsSet;
 
-    int32_t m_SuccessfulPods;
+    int64_t m_SuccessfulPods;
     bool m_SuccessfulPodsIsSet;
 
 };

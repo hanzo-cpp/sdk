@@ -60,10 +60,10 @@ public:
     void unsetCompositeQuery();
     void setCompositeQuery(const std::shared_ptr<O11y_CompositeQuery>& value);
 
-    int32_t getEnd() const;
+    int64_t getEnd() const;
     bool endIsSet() const;
     void unsetEnd();
-    void setEnd(int32_t value);
+    void setEnd(int64_t value);
 
     bool isFormatForWeb() const;
     bool formatForWebIsSet() const;
@@ -75,18 +75,18 @@ public:
     void unsetNoCache();
     void setNoCache(bool value);
 
-    int32_t getStart() const;
+    int64_t getStart() const;
     bool startIsSet() const;
     void unsetStart();
-    void setStart(int32_t value);
+    void setStart(int64_t value);
 
     /// <summary>
     /// step is in seconds; used for prometheus queries
     /// </summary>
-    int32_t getStep() const;
+    int64_t getStep() const;
     bool stepIsSet() const;
     void unsetStep();
-    void setStep(int32_t value);
+    void setStep(int64_t value);
 
     std::map<utility::string_t, std::shared_ptr<Object>> getVariables() const;
     bool variablesIsSet() const;
@@ -98,7 +98,7 @@ protected:
     std::shared_ptr<O11y_CompositeQuery> m_CompositeQuery;
     bool m_CompositeQueryIsSet;
 
-    int32_t m_End;
+    int64_t m_End;
     bool m_EndIsSet;
 
     bool m_FormatForWeb;
@@ -107,10 +107,10 @@ protected:
     bool m_NoCache;
     bool m_NoCacheIsSet;
 
-    int32_t m_Start;
+    int64_t m_Start;
     bool m_StartIsSet;
 
-    int32_t m_Step;
+    int64_t m_Step;
     bool m_StepIsSet;
 
     std::map<utility::string_t, std::shared_ptr<Object>> m_Variables;

@@ -64,10 +64,10 @@ public:
     /// <summary>
     /// MaxSources caps how many pages are read. Empty means the mode&#39;s own budget.
     /// </summary>
-    int32_t getMaxSources() const;
+    int64_t getMaxSources() const;
     bool maxSourcesIsSet() const;
     void unsetMax_sources();
-    void setMaxSources(int32_t value);
+    void setMaxSources(int64_t value);
 
     /// <summary>
     /// Mode is how much work to do: &#x60;search&#x60; (fast, one pass), &#x60;news&#x60; (recency biased), &#x60;research&#x60; (a plan and several rounds) or &#x60;deep&#x60; (the widest survey). Empty means research.
@@ -98,7 +98,7 @@ protected:
     utility::string_t m_Language;
     bool m_LanguageIsSet;
 
-    int32_t m_Max_sources;
+    int64_t m_Max_sources;
     bool m_Max_sourcesIsSet;
 
     utility::string_t m_Mode;

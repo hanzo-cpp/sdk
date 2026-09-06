@@ -52,15 +52,15 @@ public:
     /// Recharged members
 
 
-    int32_t getAmountCents() const;
+    int64_t getAmountCents() const;
     bool amountCentsIsSet() const;
     void unsetAmountCents();
-    void setAmountCents(int32_t value);
+    void setAmountCents(int64_t value);
 
-    int32_t getBalanceCents() const;
+    int64_t getBalanceCents() const;
     bool balanceCentsIsSet() const;
     void unsetBalanceCents();
-    void setBalanceCents(int32_t value);
+    void setBalanceCents(int64_t value);
 
     bool isCharged() const;
     bool chargedIsSet() const;
@@ -89,10 +89,10 @@ public:
 
 
 protected:
-    int32_t m_AmountCents;
+    int64_t m_AmountCents;
     bool m_AmountCentsIsSet;
 
-    int32_t m_BalanceCents;
+    int64_t m_BalanceCents;
     bool m_BalanceCentsIsSet;
 
     bool m_Charged;

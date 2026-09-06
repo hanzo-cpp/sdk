@@ -55,10 +55,10 @@ public:
     /// O11y_DaemonSetRecord members
 
 
-    int32_t getCurrentNodes() const;
+    int64_t getCurrentNodes() const;
     bool currentNodesIsSet() const;
     void unsetCurrentNodes();
-    void setCurrentNodes(int32_t value);
+    void setCurrentNodes(int64_t value);
 
     double getDaemonSetCPU() const;
     bool daemonSetCPUIsSet() const;
@@ -95,10 +95,10 @@ public:
     void unsetDaemonSetName();
     void setDaemonSetName(const utility::string_t& value);
 
-    int32_t getDesiredNodes() const;
+    int64_t getDesiredNodes() const;
     bool desiredNodesIsSet() const;
     void unsetDesiredNodes();
-    void setDesiredNodes(int32_t value);
+    void setDesiredNodes(int64_t value);
 
     std::map<utility::string_t, utility::string_t> getMeta() const;
     bool metaIsSet() const;
@@ -112,7 +112,7 @@ public:
 
 
 protected:
-    int32_t m_CurrentNodes;
+    int64_t m_CurrentNodes;
     bool m_CurrentNodesIsSet;
 
     double m_DaemonSetCPU;
@@ -136,7 +136,7 @@ protected:
     utility::string_t m_DaemonSetName;
     bool m_DaemonSetNameIsSet;
 
-    int32_t m_DesiredNodes;
+    int64_t m_DesiredNodes;
     bool m_DesiredNodesIsSet;
 
     std::map<utility::string_t, utility::string_t> m_Meta;

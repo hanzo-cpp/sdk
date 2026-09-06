@@ -82,15 +82,15 @@ public:
     void unsetFilter_subject();
     void setFilterSubject(const utility::string_t& value);
 
-    int32_t getMaxAckPending() const;
+    int64_t getMaxAckPending() const;
     bool maxAckPendingIsSet() const;
     void unsetMax_ack_pending();
-    void setMaxAckPending(int32_t value);
+    void setMaxAckPending(int64_t value);
 
-    int32_t getMaxDeliver() const;
+    int64_t getMaxDeliver() const;
     bool maxDeliverIsSet() const;
     void unsetMax_deliver();
-    void setMaxDeliver(int32_t value);
+    void setMaxDeliver(int64_t value);
 
     int32_t getOptStartSeq() const;
     bool optStartSeqIsSet() const;
@@ -135,10 +135,10 @@ protected:
     utility::string_t m_Filter_subject;
     bool m_Filter_subjectIsSet;
 
-    int32_t m_Max_ack_pending;
+    int64_t m_Max_ack_pending;
     bool m_Max_ack_pendingIsSet;
 
-    int32_t m_Max_deliver;
+    int64_t m_Max_deliver;
     bool m_Max_deliverIsSet;
 
     int32_t m_Opt_start_seq;

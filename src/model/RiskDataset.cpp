@@ -27,20 +27,20 @@ RiskDataset::RiskDataset()
     m_DigestIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_Oversize = 0;
+    m_Oversize = 0L;
     m_OversizeIsSet = false;
     m_Refusal = utility::conversions::to_string_t("");
     m_RefusalIsSet = false;
     m_Running = false;
     m_RunningIsSet = false;
-    m_Share = 0;
+    m_Share = 0L;
     m_ShareIsSet = false;
     m_SpecIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
     m_Truncated = false;
     m_TruncatedIsSet = false;
-    m_Version = 0;
+    m_Version = 0L;
     m_VersionIsSet = false;
 }
 
@@ -188,7 +188,7 @@ bool RiskDataset::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("oversize")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOversize;
+            int64_t refVal_setOversize;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOversize);
             setOversize(refVal_setOversize);
             
@@ -221,7 +221,7 @@ bool RiskDataset::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("share")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setShare;
+            int64_t refVal_setShare;
             ok &= ModelBase::fromJson(fieldValue, refVal_setShare);
             setShare(refVal_setShare);
             
@@ -265,7 +265,7 @@ bool RiskDataset::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("version")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVersion;
+            int64_t refVal_setVersion;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVersion);
             setVersion(refVal_setVersion);
             
@@ -376,7 +376,7 @@ bool RiskDataset::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("oversize"))))
     {
-        int32_t refVal_setOversize;
+        int64_t refVal_setOversize;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("oversize"))), refVal_setOversize );
         setOversize(refVal_setOversize);
     }
@@ -394,7 +394,7 @@ bool RiskDataset::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("share"))))
     {
-        int32_t refVal_setShare;
+        int64_t refVal_setShare;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("share"))), refVal_setShare );
         setShare(refVal_setShare);
     }
@@ -418,7 +418,7 @@ bool RiskDataset::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("version"))))
     {
-        int32_t refVal_setVersion;
+        int64_t refVal_setVersion;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("version"))), refVal_setVersion );
         setVersion(refVal_setVersion);
     }
@@ -531,13 +531,13 @@ void RiskDataset::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t RiskDataset::getOversize() const
+int64_t RiskDataset::getOversize() const
 {
     return m_Oversize;
 }
 
 
-void RiskDataset::setOversize(int32_t value)
+void RiskDataset::setOversize(int64_t value)
 {
     m_Oversize = value;
     m_OversizeIsSet = true;
@@ -594,13 +594,13 @@ void RiskDataset::unsetRunning()
 {
     m_RunningIsSet = false;
 }
-int32_t RiskDataset::getShare() const
+int64_t RiskDataset::getShare() const
 {
     return m_Share;
 }
 
 
-void RiskDataset::setShare(int32_t value)
+void RiskDataset::setShare(int64_t value)
 {
     m_Share = value;
     m_ShareIsSet = true;
@@ -678,13 +678,13 @@ void RiskDataset::unsetTruncated()
 {
     m_TruncatedIsSet = false;
 }
-int32_t RiskDataset::getVersion() const
+int64_t RiskDataset::getVersion() const
 {
     return m_Version;
 }
 
 
-void RiskDataset::setVersion(int32_t value)
+void RiskDataset::setVersion(int64_t value)
 {
     m_Version = value;
     m_VersionIsSet = true;

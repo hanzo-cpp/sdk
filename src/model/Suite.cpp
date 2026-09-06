@@ -18,7 +18,7 @@ namespace model {
 
 Suite::Suite()
 {
-    m_Attempts = 0;
+    m_Attempts = 0L;
     m_AttemptsIsSet = false;
     m_BenchmarksIsSet = false;
     m_Endpoint = utility::conversions::to_string_t("");
@@ -71,7 +71,7 @@ bool Suite::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("attempts")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAttempts;
+            int64_t refVal_setAttempts;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAttempts);
             setAttempts(refVal_setAttempts);
             
@@ -149,7 +149,7 @@ bool Suite::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("attempts"))))
     {
-        int32_t refVal_setAttempts;
+        int64_t refVal_setAttempts;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("attempts"))), refVal_setAttempts );
         setAttempts(refVal_setAttempts);
     }
@@ -175,13 +175,13 @@ bool Suite::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
 }
 
 
-int32_t Suite::getAttempts() const
+int64_t Suite::getAttempts() const
 {
     return m_Attempts;
 }
 
 
-void Suite::setAttempts(int32_t value)
+void Suite::setAttempts(int64_t value)
 {
     m_Attempts = value;
     m_AttemptsIsSet = true;

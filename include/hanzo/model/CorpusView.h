@@ -58,10 +58,10 @@ public:
     /// <summary>
     /// Count is how many tactics survived every filter.
     /// </summary>
-    int32_t getCount() const;
+    int64_t getCount() const;
     bool countIsSet() const;
     void unsetCount();
-    void setCount(int32_t value);
+    void setCount(int64_t value);
 
     /// <summary>
     /// Stage is the growth stage the tag join ran at — the org&#39;s observed stage, or the one ?stage&#x3D; previewed.
@@ -81,7 +81,7 @@ public:
 
 
 protected:
-    int32_t m_Count;
+    int64_t m_Count;
     bool m_CountIsSet;
 
     utility::string_t m_Stage;

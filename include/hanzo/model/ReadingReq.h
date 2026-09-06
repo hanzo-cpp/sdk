@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// CachedInputTokens is the window&#39;s cached-prompt-token count.
     /// </summary>
-    int32_t getCachedInputTokens() const;
+    int64_t getCachedInputTokens() const;
     bool cachedInputTokensIsSet() const;
     void unsetCachedInputTokens();
-    void setCachedInputTokens(int32_t value);
+    void setCachedInputTokens(int64_t value);
 
     /// <summary>
     /// Confidence says how real the counters are, as the meter graded itself.
@@ -79,18 +79,18 @@ public:
     /// <summary>
     /// CostCents is the window&#39;s spend in cents, as the provider&#39;s meter states it.
     /// </summary>
-    int32_t getCostCents() const;
+    int64_t getCostCents() const;
     bool costCentsIsSet() const;
     void unsetCostCents();
-    void setCostCents(int32_t value);
+    void setCostCents(int64_t value);
 
     /// <summary>
     /// CostLimitCents is the window&#39;s spend cap in cents, when the meter knows one.
     /// </summary>
-    int32_t getCostLimitCents() const;
+    int64_t getCostLimitCents() const;
     bool costLimitCentsIsSet() const;
     void unsetCostLimitCents();
-    void setCostLimitCents(int32_t value);
+    void setCostLimitCents(int64_t value);
 
     /// <summary>
     /// Currency is the ISO currency the cost fields are stated in.
@@ -103,10 +103,10 @@ public:
     /// <summary>
     /// InputTokens is the window&#39;s prompt-token count.
     /// </summary>
-    int32_t getInputTokens() const;
+    int64_t getInputTokens() const;
     bool inputTokensIsSet() const;
     void unsetInputTokens();
-    void setInputTokens(int32_t value);
+    void setInputTokens(int64_t value);
 
     /// <summary>
     /// Kind is subscription or apikey; anything else is refused.
@@ -135,10 +135,10 @@ public:
     /// <summary>
     /// OutputTokens is the window&#39;s completion-token count.
     /// </summary>
-    int32_t getOutputTokens() const;
+    int64_t getOutputTokens() const;
     bool outputTokensIsSet() const;
     void unsetOutputTokens();
-    void setOutputTokens(int32_t value);
+    void setOutputTokens(int64_t value);
 
     /// <summary>
     /// Plan is the provider plan label the account is on.
@@ -159,10 +159,10 @@ public:
     /// <summary>
     /// Requests is the window&#39;s request count.
     /// </summary>
-    int32_t getRequests() const;
+    int64_t getRequests() const;
     bool requestsIsSet() const;
     void unsetRequests();
-    void setRequests(int32_t value);
+    void setRequests(int64_t value);
 
     /// <summary>
     /// ResetsAt is when the window resets, RFC 3339, bounded.
@@ -183,10 +183,10 @@ public:
     /// <summary>
     /// TotalTokens is the window&#39;s total token count.
     /// </summary>
-    int32_t getTotalTokens() const;
+    int64_t getTotalTokens() const;
     bool totalTokensIsSet() const;
     void unsetTotalTokens();
-    void setTotalTokens(int32_t value);
+    void setTotalTokens(int64_t value);
 
     /// <summary>
     /// UsedPct is how much of the window&#39;s allowance is consumed, clamped 0..100.
@@ -225,22 +225,22 @@ protected:
     utility::string_t m_Account;
     bool m_AccountIsSet;
 
-    int32_t m_CachedInputTokens;
+    int64_t m_CachedInputTokens;
     bool m_CachedInputTokensIsSet;
 
     utility::string_t m_Confidence;
     bool m_ConfidenceIsSet;
 
-    int32_t m_CostCents;
+    int64_t m_CostCents;
     bool m_CostCentsIsSet;
 
-    int32_t m_CostLimitCents;
+    int64_t m_CostLimitCents;
     bool m_CostLimitCentsIsSet;
 
     utility::string_t m_Currency;
     bool m_CurrencyIsSet;
 
-    int32_t m_InputTokens;
+    int64_t m_InputTokens;
     bool m_InputTokensIsSet;
 
     utility::string_t m_Kind;
@@ -252,7 +252,7 @@ protected:
     utility::string_t m_Machine;
     bool m_MachineIsSet;
 
-    int32_t m_OutputTokens;
+    int64_t m_OutputTokens;
     bool m_OutputTokensIsSet;
 
     utility::string_t m_Plan;
@@ -261,7 +261,7 @@ protected:
     utility::string_t m_Provider;
     bool m_ProviderIsSet;
 
-    int32_t m_Requests;
+    int64_t m_Requests;
     bool m_RequestsIsSet;
 
     utility::string_t m_ResetsAt;
@@ -270,7 +270,7 @@ protected:
     bool m_Synthetic;
     bool m_SyntheticIsSet;
 
-    int32_t m_TotalTokens;
+    int64_t m_TotalTokens;
     bool m_TotalTokensIsSet;
 
     double m_UsedPct;

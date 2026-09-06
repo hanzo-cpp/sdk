@@ -18,7 +18,7 @@ namespace model {
 
 GPU::GPU()
 {
-    m_Memory = 0;
+    m_Memory = 0L;
     m_MemoryIsSet = false;
     m_Model = utility::conversions::to_string_t("");
     m_ModelIsSet = false;
@@ -65,7 +65,7 @@ bool GPU::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("memory")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMemory;
+            int64_t refVal_setMemory;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMemory);
             setMemory(refVal_setMemory);
             
@@ -128,7 +128,7 @@ bool GPU::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const util
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("memory"))))
     {
-        int32_t refVal_setMemory;
+        int64_t refVal_setMemory;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("memory"))), refVal_setMemory );
         setMemory(refVal_setMemory);
     }
@@ -148,13 +148,13 @@ bool GPU::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const util
 }
 
 
-int32_t GPU::getMemory() const
+int64_t GPU::getMemory() const
 {
     return m_Memory;
 }
 
 
-void GPU::setMemory(int32_t value)
+void GPU::setMemory(int64_t value)
 {
     m_Memory = value;
     m_MemoryIsSet = true;

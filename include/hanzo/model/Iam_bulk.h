@@ -51,15 +51,15 @@ public:
     /// Iam_bulk members
 
 
-    int32_t getMaxOperations() const;
+    int64_t getMaxOperations() const;
     bool maxOperationsIsSet() const;
     void unsetMaxOperations();
-    void setMaxOperations(int32_t value);
+    void setMaxOperations(int64_t value);
 
-    int32_t getMaxPayloadSize() const;
+    int64_t getMaxPayloadSize() const;
     bool maxPayloadSizeIsSet() const;
     void unsetMaxPayloadSize();
-    void setMaxPayloadSize(int32_t value);
+    void setMaxPayloadSize(int64_t value);
 
     bool isSupported() const;
     bool supportedIsSet() const;
@@ -68,10 +68,10 @@ public:
 
 
 protected:
-    int32_t m_MaxOperations;
+    int64_t m_MaxOperations;
     bool m_MaxOperationsIsSet;
 
-    int32_t m_MaxPayloadSize;
+    int64_t m_MaxPayloadSize;
     bool m_MaxPayloadSizeIsSet;
 
     bool m_Supported;

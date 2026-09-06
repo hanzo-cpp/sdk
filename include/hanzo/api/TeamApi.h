@@ -22,14 +22,13 @@
 
 #include "hanzo/ApiClient.h"
 
-#include "hanzo/model/BotRoster.h"
-#include "hanzo/model/BotSync.h"
 #include "hanzo/model/CollabRequest.h"
 #include "hanzo/model/CollabResult.h"
 #include "hanzo/model/CookieAck.h"
 #include "hanzo/HttpContent.h"
 #include "hanzo/model/PlanInfo.h"
 #include "hanzo/model/ProviderInfo.h"
+#include "hanzo/model/PublicRooms.h"
 #include "hanzo/model/StatsOut.h"
 #include "hanzo/model/TeamMessage.h"
 #include "hanzo/model/TeamMessageWrite.h"
@@ -124,14 +123,6 @@ public:
     pplx::task<std::shared_ptr<HttpContent>> getTeamBillingUi(
     ) const;
     /// <summary>
-    /// Returns the caller org&#39;s bot members — the org&#39;s agents projected as the space Employees they become, each with the member account uuid and Person reference the roster addresses it by.
-    /// </summary>
-    /// <remarks>
-    /// Returns the caller org&#39;s bot members — the org&#39;s agents projected as the space Employees they become, each with the member account uuid and Person reference the roster addresses it by. An agents subsystem that is not mounted answers an empty list, never an error.
-    /// </remarks>
-    pplx::task<std::shared_ptr<BotRoster>> getTeamBots(
-    ) const;
-    /// <summary>
     /// Open the live collaborative-editing socket
     /// </summary>
     /// <remarks>
@@ -150,6 +141,20 @@ public:
     pplx::task<std::shared_ptr<HttpContent>> getTeamFilesBySpaceByFilename(
         utility::string_t space,
         utility::string_t filename
+    ) const;
+    /// <summary>
+    /// Lists the rooms orgs have published, across every org.
+    /// </summary>
+    /// <remarks>
+    /// Lists the rooms orgs have published, across every org.  It is NOT part of GET /rooms, and the separation is the point: that address answers the CALLER&#39;S rooms, so folding these in would put strangers&#39; channels in somebody&#39;s own sidebar.  It reads the directory and never a tenant&#39;s store. Every field it can answer with is one an org published by making a room public, so there is nothing here to scope by org — a directory only its own org can read is not a directory. An authenticated principal is still required, because an anonymous crawler is not who this is for.
+    /// </remarks>
+    /// <param name="q">Q matches a room&#39;s name or its topic. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="org">Org narrows to one org&#39;s published rooms. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="limit">Limit caps the page, 50 when unstated and 200 at most. An unparseable value reads as unstated rather than as zero — zero pages is not an answer anybody asked for. (optional, default to 0L)</param>
+    pplx::task<std::shared_ptr<PublicRooms>> getTeamPublic(
+        boost::optional<utility::string_t> q,
+        boost::optional<utility::string_t> org,
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns every room of the caller&#39;s org, across the spaces it owns, with the work facet each carries.
@@ -198,14 +203,6 @@ public:
     /// The account control plane the Team client speaks: one POST carries a &#x60;method&#x60; verb and its &#x60;params&#x60;, and answers {\&quot;result\&quot;: …}. The verbs are the session&#39;s own reads and the space switch — getLoginInfoByToken, getUserWorkspaces, selectWorkspace, getWorkspaceInfo, getMemberships, getPerson, getSocialIds, getRegionInfo, isReadOnlyGuest — plus sendInvite, which adds a member to a space and is refused for a caller who is not its owner or admin.  A REFUSAL IS HTTP 200 carrying {\&quot;error\&quot;: {severity, code, params}} — the platform Status the client translates — not a 4xx. An unreadable body, an unauthorized session and an unknown verb all arrive that way, so a caller that reads only the status code reads every failure here as a success.  NO CREDENTIAL IS EVER HANDLED HERE. login, signUp, the OTP verbs, password change and reset, join and the guest-token exchange each answer Unauthorized with \&quot;sign in at hanzo.id\&quot; — a stated policy, not an unknown method, so the refusal is a fact a test can pin. Sessions come from the OAuth pair under /account/auth.  Auth is the team session token: Authorization: Bearer, else the HttpOnly account-token cookie. The tenant is that token&#39;s SIGNED org claim, never a header, and selectWorkspace resolves only among the orgs the token proves membership of. It also demands an explicit workspaceUrl — it never falls back to a first space, and a slug that resolves in two of the caller&#39;s orgs answers Ambiguous rather than picking one.
     /// </remarks>
     pplx::task<void> postTeamAccount(
-    ) const;
-    /// <summary>
-    /// SyncBots re-projects the caller org&#39;s agents as space members into EVERY space of the org, and removes the ones whose agent is gone.
-    /// </summary>
-    /// <remarks>
-    /// SyncBots re-projects the caller org&#39;s agents as space members into EVERY space of the org, and removes the ones whose agent is gone. It is idempotent, and admin only: mutating a space&#39;s roster requires the gateway-minted admin flag, which a client can never forge. It answers how many roster entries the reconcile touched.
-    /// </remarks>
-    pplx::task<std::shared_ptr<BotSync>> postTeamBotsSync(
     ) const;
     /// <summary>
     /// CollabRPC is the collaborative-markup snapshot plane the Team front&#39;s editor speaks: createContent stores a document field&#39;s markup at a fresh, immutable blob ref and returns it, updateContent stores a new snapshot and answers nothing, and getContent reads back the exact snapshot a ref names.

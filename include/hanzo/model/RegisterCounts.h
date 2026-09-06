@@ -55,25 +55,25 @@ public:
     /// <summary>
     /// ByStage counts formations per stage, keyed by the stage name.
     /// </summary>
-    std::map<utility::string_t, int32_t> getByStage() const;
+    std::map<utility::string_t, int64_t> getByStage() const;
     bool byStageIsSet() const;
     void unsetByStage();
-    void setByStage(std::map<utility::string_t, int32_t> value);
+    void setByStage(std::map<utility::string_t, int64_t> value);
 
     /// <summary>
     /// Total is every formation in the register.
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
 
 protected:
-    std::map<utility::string_t, int32_t> m_ByStage;
+    std::map<utility::string_t, int64_t> m_ByStage;
     bool m_ByStageIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
 };

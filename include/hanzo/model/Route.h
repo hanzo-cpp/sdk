@@ -88,10 +88,10 @@ public:
     /// <summary>
     /// Priority orders routes that share a host: higher wins, and equal priorities fall back to the longer PathPrefix.
     /// </summary>
-    int32_t getPriority() const;
+    int64_t getPriority() const;
     bool priorityIsSet() const;
     void unsetPriority();
-    void setPriority(int32_t value);
+    void setPriority(int64_t value);
 
     /// <summary>
     /// Service is the id of the backend pool this route dispatches to. A route naming a service that does not exist is skipped at compile, not served.
@@ -123,7 +123,7 @@ protected:
     utility::string_t m_PathPrefix;
     bool m_PathPrefixIsSet;
 
-    int32_t m_Priority;
+    int64_t m_Priority;
     bool m_PriorityIsSet;
 
     utility::string_t m_Service;

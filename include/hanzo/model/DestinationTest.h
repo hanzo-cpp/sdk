@@ -79,10 +79,10 @@ public:
     /// <summary>
     /// Sent is how many events the platform accepted, present only on success.
     /// </summary>
-    int32_t getSent() const;
+    int64_t getSent() const;
     bool sentIsSet() const;
     void unsetSent();
-    void setSent(int32_t value);
+    void setSent(int64_t value);
 
 
 protected:
@@ -95,7 +95,7 @@ protected:
     bool m_Ok;
     bool m_OkIsSet;
 
-    int32_t m_Sent;
+    int64_t m_Sent;
     bool m_SentIsSet;
 
 };

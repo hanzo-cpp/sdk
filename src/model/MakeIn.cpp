@@ -30,9 +30,9 @@ MakeIn::MakeIn()
     m_Durable_nameIsSet = false;
     m_Filter_subject = utility::conversions::to_string_t("");
     m_Filter_subjectIsSet = false;
-    m_Max_ack_pending = 0;
+    m_Max_ack_pending = 0L;
     m_Max_ack_pendingIsSet = false;
-    m_Max_deliver = 0;
+    m_Max_deliver = 0L;
     m_Max_deliverIsSet = false;
     m_Opt_start_seq = 0;
     m_Opt_start_seqIsSet = false;
@@ -194,7 +194,7 @@ bool MakeIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("max_ack_pending")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMaxAckPending;
+            int64_t refVal_setMaxAckPending;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMaxAckPending);
             setMaxAckPending(refVal_setMaxAckPending);
             
@@ -205,7 +205,7 @@ bool MakeIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("max_deliver")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMaxDeliver;
+            int64_t refVal_setMaxDeliver;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMaxDeliver);
             setMaxDeliver(refVal_setMaxDeliver);
             
@@ -362,13 +362,13 @@ bool MakeIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("max_ack_pending"))))
     {
-        int32_t refVal_setMaxAckPending;
+        int64_t refVal_setMaxAckPending;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("max_ack_pending"))), refVal_setMaxAckPending );
         setMaxAckPending(refVal_setMaxAckPending);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("max_deliver"))))
     {
-        int32_t refVal_setMaxDeliver;
+        int64_t refVal_setMaxDeliver;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("max_deliver"))), refVal_setMaxDeliver );
         setMaxDeliver(refVal_setMaxDeliver);
     }
@@ -526,13 +526,13 @@ void MakeIn::unsetFilter_subject()
 {
     m_Filter_subjectIsSet = false;
 }
-int32_t MakeIn::getMaxAckPending() const
+int64_t MakeIn::getMaxAckPending() const
 {
     return m_Max_ack_pending;
 }
 
 
-void MakeIn::setMaxAckPending(int32_t value)
+void MakeIn::setMaxAckPending(int64_t value)
 {
     m_Max_ack_pending = value;
     m_Max_ack_pendingIsSet = true;
@@ -547,13 +547,13 @@ void MakeIn::unsetMax_ack_pending()
 {
     m_Max_ack_pendingIsSet = false;
 }
-int32_t MakeIn::getMaxDeliver() const
+int64_t MakeIn::getMaxDeliver() const
 {
     return m_Max_deliver;
 }
 
 
-void MakeIn::setMaxDeliver(int32_t value)
+void MakeIn::setMaxDeliver(int64_t value)
 {
     m_Max_deliver = value;
     m_Max_deliverIsSet = true;

@@ -24,9 +24,9 @@ RiskLineage::RiskLineage()
     m_DigestIsSet = false;
     m_From = utility::conversions::to_string_t("");
     m_FromIsSet = false;
-    m_Holds = 0;
+    m_Holds = 0L;
     m_HoldsIsSet = false;
-    m_Oversize = 0;
+    m_Oversize = 0L;
     m_OversizeIsSet = false;
     m_Refusal = utility::conversions::to_string_t("");
     m_RefusalIsSet = false;
@@ -34,17 +34,17 @@ RiskLineage::RiskLineage()
     m_ReproducibleIsSet = false;
     m_Retention = utility::conversions::to_string_t("");
     m_RetentionIsSet = false;
-    m_Rows = 0;
+    m_Rows = 0L;
     m_RowsIsSet = false;
-    m_Share = 0;
+    m_Share = 0L;
     m_ShareIsSet = false;
     m_Source = utility::conversions::to_string_t("");
     m_SourceIsSet = false;
-    m_Subjects = 0;
+    m_Subjects = 0L;
     m_SubjectsIsSet = false;
     m_To = utility::conversions::to_string_t("");
     m_ToIsSet = false;
-    m_Version = 0;
+    m_Version = 0L;
     m_VersionIsSet = false;
 }
 
@@ -175,7 +175,7 @@ bool RiskLineage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("holds")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setHolds;
+            int64_t refVal_setHolds;
             ok &= ModelBase::fromJson(fieldValue, refVal_setHolds);
             setHolds(refVal_setHolds);
             
@@ -186,7 +186,7 @@ bool RiskLineage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("oversize")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOversize;
+            int64_t refVal_setOversize;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOversize);
             setOversize(refVal_setOversize);
             
@@ -230,7 +230,7 @@ bool RiskLineage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("rows")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRows;
+            int64_t refVal_setRows;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRows);
             setRows(refVal_setRows);
             
@@ -241,7 +241,7 @@ bool RiskLineage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("share")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setShare;
+            int64_t refVal_setShare;
             ok &= ModelBase::fromJson(fieldValue, refVal_setShare);
             setShare(refVal_setShare);
             
@@ -263,7 +263,7 @@ bool RiskLineage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("subjects")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSubjects;
+            int64_t refVal_setSubjects;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSubjects);
             setSubjects(refVal_setSubjects);
             
@@ -285,7 +285,7 @@ bool RiskLineage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("version")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVersion;
+            int64_t refVal_setVersion;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVersion);
             setVersion(refVal_setVersion);
             
@@ -388,13 +388,13 @@ bool RiskLineage::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("holds"))))
     {
-        int32_t refVal_setHolds;
+        int64_t refVal_setHolds;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("holds"))), refVal_setHolds );
         setHolds(refVal_setHolds);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("oversize"))))
     {
-        int32_t refVal_setOversize;
+        int64_t refVal_setOversize;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("oversize"))), refVal_setOversize );
         setOversize(refVal_setOversize);
     }
@@ -418,13 +418,13 @@ bool RiskLineage::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("rows"))))
     {
-        int32_t refVal_setRows;
+        int64_t refVal_setRows;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("rows"))), refVal_setRows );
         setRows(refVal_setRows);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("share"))))
     {
-        int32_t refVal_setShare;
+        int64_t refVal_setShare;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("share"))), refVal_setShare );
         setShare(refVal_setShare);
     }
@@ -436,7 +436,7 @@ bool RiskLineage::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("subjects"))))
     {
-        int32_t refVal_setSubjects;
+        int64_t refVal_setSubjects;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("subjects"))), refVal_setSubjects );
         setSubjects(refVal_setSubjects);
     }
@@ -448,7 +448,7 @@ bool RiskLineage::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("version"))))
     {
-        int32_t refVal_setVersion;
+        int64_t refVal_setVersion;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("version"))), refVal_setVersion );
         setVersion(refVal_setVersion);
     }
@@ -519,13 +519,13 @@ void RiskLineage::unsetFrom()
 {
     m_FromIsSet = false;
 }
-int32_t RiskLineage::getHolds() const
+int64_t RiskLineage::getHolds() const
 {
     return m_Holds;
 }
 
 
-void RiskLineage::setHolds(int32_t value)
+void RiskLineage::setHolds(int64_t value)
 {
     m_Holds = value;
     m_HoldsIsSet = true;
@@ -540,13 +540,13 @@ void RiskLineage::unsetHolds()
 {
     m_HoldsIsSet = false;
 }
-int32_t RiskLineage::getOversize() const
+int64_t RiskLineage::getOversize() const
 {
     return m_Oversize;
 }
 
 
-void RiskLineage::setOversize(int32_t value)
+void RiskLineage::setOversize(int64_t value)
 {
     m_Oversize = value;
     m_OversizeIsSet = true;
@@ -624,13 +624,13 @@ void RiskLineage::unsetRetention()
 {
     m_RetentionIsSet = false;
 }
-int32_t RiskLineage::getRows() const
+int64_t RiskLineage::getRows() const
 {
     return m_Rows;
 }
 
 
-void RiskLineage::setRows(int32_t value)
+void RiskLineage::setRows(int64_t value)
 {
     m_Rows = value;
     m_RowsIsSet = true;
@@ -645,13 +645,13 @@ void RiskLineage::unsetRows()
 {
     m_RowsIsSet = false;
 }
-int32_t RiskLineage::getShare() const
+int64_t RiskLineage::getShare() const
 {
     return m_Share;
 }
 
 
-void RiskLineage::setShare(int32_t value)
+void RiskLineage::setShare(int64_t value)
 {
     m_Share = value;
     m_ShareIsSet = true;
@@ -687,13 +687,13 @@ void RiskLineage::unsetSource()
 {
     m_SourceIsSet = false;
 }
-int32_t RiskLineage::getSubjects() const
+int64_t RiskLineage::getSubjects() const
 {
     return m_Subjects;
 }
 
 
-void RiskLineage::setSubjects(int32_t value)
+void RiskLineage::setSubjects(int64_t value)
 {
     m_Subjects = value;
     m_SubjectsIsSet = true;
@@ -729,13 +729,13 @@ void RiskLineage::unsetTo()
 {
     m_ToIsSet = false;
 }
-int32_t RiskLineage::getVersion() const
+int64_t RiskLineage::getVersion() const
 {
     return m_Version;
 }
 
 
-void RiskLineage::setVersion(int32_t value)
+void RiskLineage::setVersion(int64_t value)
 {
     m_Version = value;
     m_VersionIsSet = true;

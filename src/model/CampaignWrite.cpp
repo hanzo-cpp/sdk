@@ -20,13 +20,13 @@ CampaignWrite::CampaignWrite()
 {
     m_Audience = utility::conversions::to_string_t("");
     m_AudienceIsSet = false;
-    m_Budget = 0;
+    m_Budget = 0L;
     m_BudgetIsSet = false;
     m_ChannelsIsSet = false;
     m_ContentIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_ScheduleAt = 0;
+    m_ScheduleAt = 0L;
     m_ScheduleAtIsSet = false;
 }
 
@@ -95,7 +95,7 @@ bool CampaignWrite::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("budget")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBudget;
+            int64_t refVal_setBudget;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBudget);
             setBudget(refVal_setBudget);
             
@@ -139,7 +139,7 @@ bool CampaignWrite::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("scheduleAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setScheduleAt;
+            int64_t refVal_setScheduleAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setScheduleAt);
             setScheduleAt(refVal_setScheduleAt);
             
@@ -198,7 +198,7 @@ bool CampaignWrite::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("budget"))))
     {
-        int32_t refVal_setBudget;
+        int64_t refVal_setBudget;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("budget"))), refVal_setBudget );
         setBudget(refVal_setBudget);
     }
@@ -222,7 +222,7 @@ bool CampaignWrite::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("scheduleAt"))))
     {
-        int32_t refVal_setScheduleAt;
+        int64_t refVal_setScheduleAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("scheduleAt"))), refVal_setScheduleAt );
         setScheduleAt(refVal_setScheduleAt);
     }
@@ -251,13 +251,13 @@ void CampaignWrite::unsetAudience()
 {
     m_AudienceIsSet = false;
 }
-int32_t CampaignWrite::getBudget() const
+int64_t CampaignWrite::getBudget() const
 {
     return m_Budget;
 }
 
 
-void CampaignWrite::setBudget(int32_t value)
+void CampaignWrite::setBudget(int64_t value)
 {
     m_Budget = value;
     m_BudgetIsSet = true;
@@ -335,13 +335,13 @@ void CampaignWrite::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t CampaignWrite::getScheduleAt() const
+int64_t CampaignWrite::getScheduleAt() const
 {
     return m_ScheduleAt;
 }
 
 
-void CampaignWrite::setScheduleAt(int32_t value)
+void CampaignWrite::setScheduleAt(int64_t value)
 {
     m_ScheduleAt = value;
     m_ScheduleAtIsSet = true;

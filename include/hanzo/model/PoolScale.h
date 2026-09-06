@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// Count is the node count to scale TO — an absolute target, not a delta, and never negative.
     /// </summary>
-    int32_t getCount() const;
+    int64_t getCount() const;
     bool countIsSet() const;
     void unsetCount();
-    void setCount(int32_t value);
+    void setCount(int64_t value);
 
     /// <summary>
     /// PoolID is the pool to resize, from the URL path — the &#x60;poolId&#x60; a cluster read reports for it. Required.
@@ -89,7 +89,7 @@ protected:
     utility::string_t m_ClusterId;
     bool m_ClusterIdIsSet;
 
-    int32_t m_Count;
+    int64_t m_Count;
     bool m_CountIsSet;
 
     utility::string_t m_PoolId;

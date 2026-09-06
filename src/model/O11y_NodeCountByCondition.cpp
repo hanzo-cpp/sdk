@@ -18,11 +18,11 @@ namespace model {
 
 O11y_NodeCountByCondition::O11y_NodeCountByCondition()
 {
-    m_NotReady = 0;
+    m_NotReady = 0L;
     m_NotReadyIsSet = false;
-    m_Ready = 0;
+    m_Ready = 0L;
     m_ReadyIsSet = false;
-    m_Unknown = 0;
+    m_Unknown = 0L;
     m_UnknownIsSet = false;
 }
 
@@ -65,7 +65,7 @@ bool O11y_NodeCountByCondition::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("notReady")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNotReady;
+            int64_t refVal_setNotReady;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNotReady);
             setNotReady(refVal_setNotReady);
             
@@ -76,7 +76,7 @@ bool O11y_NodeCountByCondition::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("ready")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setReady;
+            int64_t refVal_setReady;
             ok &= ModelBase::fromJson(fieldValue, refVal_setReady);
             setReady(refVal_setReady);
             
@@ -87,7 +87,7 @@ bool O11y_NodeCountByCondition::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("unknown")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUnknown;
+            int64_t refVal_setUnknown;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUnknown);
             setUnknown(refVal_setUnknown);
             
@@ -128,19 +128,19 @@ bool O11y_NodeCountByCondition::fromMultiPart(std::shared_ptr<MultipartFormData>
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("notReady"))))
     {
-        int32_t refVal_setNotReady;
+        int64_t refVal_setNotReady;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("notReady"))), refVal_setNotReady );
         setNotReady(refVal_setNotReady);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("ready"))))
     {
-        int32_t refVal_setReady;
+        int64_t refVal_setReady;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ready"))), refVal_setReady );
         setReady(refVal_setReady);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("unknown"))))
     {
-        int32_t refVal_setUnknown;
+        int64_t refVal_setUnknown;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("unknown"))), refVal_setUnknown );
         setUnknown(refVal_setUnknown);
     }
@@ -148,13 +148,13 @@ bool O11y_NodeCountByCondition::fromMultiPart(std::shared_ptr<MultipartFormData>
 }
 
 
-int32_t O11y_NodeCountByCondition::getNotReady() const
+int64_t O11y_NodeCountByCondition::getNotReady() const
 {
     return m_NotReady;
 }
 
 
-void O11y_NodeCountByCondition::setNotReady(int32_t value)
+void O11y_NodeCountByCondition::setNotReady(int64_t value)
 {
     m_NotReady = value;
     m_NotReadyIsSet = true;
@@ -169,13 +169,13 @@ void O11y_NodeCountByCondition::unsetNotReady()
 {
     m_NotReadyIsSet = false;
 }
-int32_t O11y_NodeCountByCondition::getReady() const
+int64_t O11y_NodeCountByCondition::getReady() const
 {
     return m_Ready;
 }
 
 
-void O11y_NodeCountByCondition::setReady(int32_t value)
+void O11y_NodeCountByCondition::setReady(int64_t value)
 {
     m_Ready = value;
     m_ReadyIsSet = true;
@@ -190,13 +190,13 @@ void O11y_NodeCountByCondition::unsetReady()
 {
     m_ReadyIsSet = false;
 }
-int32_t O11y_NodeCountByCondition::getUnknown() const
+int64_t O11y_NodeCountByCondition::getUnknown() const
 {
     return m_Unknown;
 }
 
 
-void O11y_NodeCountByCondition::setUnknown(int32_t value)
+void O11y_NodeCountByCondition::setUnknown(int64_t value)
 {
     m_Unknown = value;
     m_UnknownIsSet = true;

@@ -82,10 +82,10 @@ public:
     /// <summary>
     /// Severity is the LSP&#39;s: 1 error, 2 warning, 3 information, 4 hint. A file with only 3s and 4s still compiles.
     /// </summary>
-    int32_t getSeverity() const;
+    int64_t getSeverity() const;
     bool severityIsSet() const;
     void unsetSeverity();
-    void setSeverity(int32_t value);
+    void setSeverity(int64_t value);
 
     /// <summary>
     /// Source is which checker reported it (\&quot;compiler\&quot;, \&quot;go vet\&quot;, a linter&#39;s name), which is what separates a build error from a style opinion.
@@ -106,7 +106,7 @@ protected:
     std::shared_ptr<Range> m_Range;
     bool m_RangeIsSet;
 
-    int32_t m_Severity;
+    int64_t m_Severity;
     bool m_SeverityIsSet;
 
     utility::string_t m_Source;

@@ -54,10 +54,10 @@ public:
     /// O11y_HostRecord members
 
 
-    int32_t getActiveHostCount() const;
+    int64_t getActiveHostCount() const;
     bool activeHostCountIsSet() const;
     void unsetActiveHostCount();
-    void setActiveHostCount(int32_t value);
+    void setActiveHostCount(int64_t value);
 
     double getCpu() const;
     bool cpuIsSet() const;
@@ -74,10 +74,10 @@ public:
     void unsetHostName();
     void setHostName(const utility::string_t& value);
 
-    int32_t getInactiveHostCount() const;
+    int64_t getInactiveHostCount() const;
     bool inactiveHostCountIsSet() const;
     void unsetInactiveHostCount();
-    void setInactiveHostCount(int32_t value);
+    void setInactiveHostCount(int64_t value);
 
     double getLoad15() const;
     bool load15IsSet() const;
@@ -106,7 +106,7 @@ public:
 
 
 protected:
-    int32_t m_ActiveHostCount;
+    int64_t m_ActiveHostCount;
     bool m_ActiveHostCountIsSet;
 
     double m_Cpu;
@@ -118,7 +118,7 @@ protected:
     utility::string_t m_HostName;
     bool m_HostNameIsSet;
 
-    int32_t m_InactiveHostCount;
+    int64_t m_InactiveHostCount;
     bool m_InactiveHostCountIsSet;
 
     double m_Load15;

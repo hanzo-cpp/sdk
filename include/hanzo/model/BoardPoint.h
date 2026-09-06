@@ -55,26 +55,26 @@ public:
     /// <summary>
     /// what this bucket cost, in cents
     /// </summary>
-    int32_t getCostCents() const;
+    int64_t getCostCents() const;
     bool costCentsIsSet() const;
     void unsetCostCents();
-    void setCostCents(int32_t value);
+    void setCostCents(int64_t value);
 
     /// <summary>
     /// calls in this bucket that did not succeed
     /// </summary>
-    int32_t getErrors() const;
+    int64_t getErrors() const;
     bool errorsIsSet() const;
     void unsetErrors();
-    void setErrors(int32_t value);
+    void setErrors(int64_t value);
 
     /// <summary>
     /// model calls in this bucket
     /// </summary>
-    int32_t getGenerations() const;
+    int64_t getGenerations() const;
     bool generationsIsSet() const;
     void unsetGenerations();
-    void setGenerations(int32_t value);
+    void setGenerations(int64_t value);
 
     /// <summary>
     /// RFC3339 (UTC) bucket start
@@ -87,26 +87,26 @@ public:
     /// <summary>
     /// tokens in this bucket
     /// </summary>
-    int32_t getTotalTokens() const;
+    int64_t getTotalTokens() const;
     bool totalTokensIsSet() const;
     void unsetTotalTokens();
-    void setTotalTokens(int32_t value);
+    void setTotalTokens(int64_t value);
 
 
 protected:
-    int32_t m_CostCents;
+    int64_t m_CostCents;
     bool m_CostCentsIsSet;
 
-    int32_t m_Errors;
+    int64_t m_Errors;
     bool m_ErrorsIsSet;
 
-    int32_t m_Generations;
+    int64_t m_Generations;
     bool m_GenerationsIsSet;
 
     utility::string_t m_t;
     bool m_tIsSet;
 
-    int32_t m_TotalTokens;
+    int64_t m_TotalTokens;
     bool m_TotalTokensIsSet;
 
 };

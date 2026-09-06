@@ -18,13 +18,13 @@ namespace model {
 
 McpCatalogSync::McpCatalogSync()
 {
-    m_Added = 0;
+    m_Added = 0L;
     m_AddedIsSet = false;
     m_Registry = utility::conversions::to_string_t("");
     m_RegistryIsSet = false;
-    m_Total = 0;
+    m_Total = 0L;
     m_TotalIsSet = false;
-    m_Updated = 0;
+    m_Updated = 0L;
     m_UpdatedIsSet = false;
 }
 
@@ -72,7 +72,7 @@ bool McpCatalogSync::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("added")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAdded;
+            int64_t refVal_setAdded;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAdded);
             setAdded(refVal_setAdded);
             
@@ -94,7 +94,7 @@ bool McpCatalogSync::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("total")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotal;
+            int64_t refVal_setTotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotal);
             setTotal(refVal_setTotal);
             
@@ -105,7 +105,7 @@ bool McpCatalogSync::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updated")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdated;
+            int64_t refVal_setUpdated;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdated);
             setUpdated(refVal_setUpdated);
             
@@ -150,7 +150,7 @@ bool McpCatalogSync::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("added"))))
     {
-        int32_t refVal_setAdded;
+        int64_t refVal_setAdded;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("added"))), refVal_setAdded );
         setAdded(refVal_setAdded);
     }
@@ -162,13 +162,13 @@ bool McpCatalogSync::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("total"))))
     {
-        int32_t refVal_setTotal;
+        int64_t refVal_setTotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("total"))), refVal_setTotal );
         setTotal(refVal_setTotal);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updated"))))
     {
-        int32_t refVal_setUpdated;
+        int64_t refVal_setUpdated;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updated"))), refVal_setUpdated );
         setUpdated(refVal_setUpdated);
     }
@@ -176,13 +176,13 @@ bool McpCatalogSync::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 }
 
 
-int32_t McpCatalogSync::getAdded() const
+int64_t McpCatalogSync::getAdded() const
 {
     return m_Added;
 }
 
 
-void McpCatalogSync::setAdded(int32_t value)
+void McpCatalogSync::setAdded(int64_t value)
 {
     m_Added = value;
     m_AddedIsSet = true;
@@ -218,13 +218,13 @@ void McpCatalogSync::unsetRegistry()
 {
     m_RegistryIsSet = false;
 }
-int32_t McpCatalogSync::getTotal() const
+int64_t McpCatalogSync::getTotal() const
 {
     return m_Total;
 }
 
 
-void McpCatalogSync::setTotal(int32_t value)
+void McpCatalogSync::setTotal(int64_t value)
 {
     m_Total = value;
     m_TotalIsSet = true;
@@ -239,13 +239,13 @@ void McpCatalogSync::unsetTotal()
 {
     m_TotalIsSet = false;
 }
-int32_t McpCatalogSync::getUpdated() const
+int64_t McpCatalogSync::getUpdated() const
 {
     return m_Updated;
 }
 
 
-void McpCatalogSync::setUpdated(int32_t value)
+void McpCatalogSync::setUpdated(int64_t value)
 {
     m_Updated = value;
     m_UpdatedIsSet = true;

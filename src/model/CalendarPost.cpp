@@ -22,21 +22,21 @@ CalendarPost::CalendarPost()
     m_BodyIsSet = false;
     m_Channel = utility::conversions::to_string_t("");
     m_ChannelIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_Error = utility::conversions::to_string_t("");
     m_ErrorIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
-    m_PublishedAt = 0;
+    m_PublishedAt = 0L;
     m_PublishedAtIsSet = false;
-    m_ScheduledAt = 0;
+    m_ScheduledAt = 0L;
     m_ScheduledAtIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
-    m_UpdatedAt = 0;
+    m_UpdatedAt = 0L;
     m_UpdatedAtIsSet = false;
 }
 
@@ -136,7 +136,7 @@ bool CalendarPost::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -169,7 +169,7 @@ bool CalendarPost::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("publishedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPublishedAt;
+            int64_t refVal_setPublishedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPublishedAt);
             setPublishedAt(refVal_setPublishedAt);
             
@@ -180,7 +180,7 @@ bool CalendarPost::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("scheduledAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setScheduledAt;
+            int64_t refVal_setScheduledAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setScheduledAt);
             setScheduledAt(refVal_setScheduledAt);
             
@@ -213,7 +213,7 @@ bool CalendarPost::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updatedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdatedAt;
+            int64_t refVal_setUpdatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdatedAt);
             setUpdatedAt(refVal_setUpdatedAt);
             
@@ -294,7 +294,7 @@ bool CalendarPost::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -312,13 +312,13 @@ bool CalendarPost::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("publishedAt"))))
     {
-        int32_t refVal_setPublishedAt;
+        int64_t refVal_setPublishedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("publishedAt"))), refVal_setPublishedAt );
         setPublishedAt(refVal_setPublishedAt);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("scheduledAt"))))
     {
-        int32_t refVal_setScheduledAt;
+        int64_t refVal_setScheduledAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("scheduledAt"))), refVal_setScheduledAt );
         setScheduledAt(refVal_setScheduledAt);
     }
@@ -336,7 +336,7 @@ bool CalendarPost::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
-        int32_t refVal_setUpdatedAt;
+        int64_t refVal_setUpdatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))), refVal_setUpdatedAt );
         setUpdatedAt(refVal_setUpdatedAt);
     }
@@ -386,13 +386,13 @@ void CalendarPost::unsetChannel()
 {
     m_ChannelIsSet = false;
 }
-int32_t CalendarPost::getCreatedAt() const
+int64_t CalendarPost::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void CalendarPost::setCreatedAt(int32_t value)
+void CalendarPost::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -449,13 +449,13 @@ void CalendarPost::unsetId()
 {
     m_IdIsSet = false;
 }
-int32_t CalendarPost::getPublishedAt() const
+int64_t CalendarPost::getPublishedAt() const
 {
     return m_PublishedAt;
 }
 
 
-void CalendarPost::setPublishedAt(int32_t value)
+void CalendarPost::setPublishedAt(int64_t value)
 {
     m_PublishedAt = value;
     m_PublishedAtIsSet = true;
@@ -470,13 +470,13 @@ void CalendarPost::unsetPublishedAt()
 {
     m_PublishedAtIsSet = false;
 }
-int32_t CalendarPost::getScheduledAt() const
+int64_t CalendarPost::getScheduledAt() const
 {
     return m_ScheduledAt;
 }
 
 
-void CalendarPost::setScheduledAt(int32_t value)
+void CalendarPost::setScheduledAt(int64_t value)
 {
     m_ScheduledAt = value;
     m_ScheduledAtIsSet = true;
@@ -533,13 +533,13 @@ void CalendarPost::unsetTitle()
 {
     m_TitleIsSet = false;
 }
-int32_t CalendarPost::getUpdatedAt() const
+int64_t CalendarPost::getUpdatedAt() const
 {
     return m_UpdatedAt;
 }
 
 
-void CalendarPost::setUpdatedAt(int32_t value)
+void CalendarPost::setUpdatedAt(int64_t value)
 {
     m_UpdatedAt = value;
     m_UpdatedAtIsSet = true;

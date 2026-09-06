@@ -56,10 +56,10 @@ public:
     /// <summary>
     /// wholesale cost
     /// </summary>
-    int32_t getCostCents() const;
+    int64_t getCostCents() const;
     bool costCentsIsSet() const;
     void unsetCostCents();
-    void setCostCents(int32_t value);
+    void setCostCents(int64_t value);
 
     /// <summary>
     /// the name owned
@@ -88,10 +88,10 @@ public:
     /// <summary>
     /// registrar order id
     /// </summary>
-    int32_t getOrder() const;
+    int64_t getOrder() const;
     bool orderIsSet() const;
     void unsetOrder();
-    void setOrder(int32_t value);
+    void setOrder(int64_t value);
 
     /// <summary>
     /// the org that owns the domain
@@ -104,22 +104,22 @@ public:
     /// <summary>
     /// what the customer paid (sell)
     /// </summary>
-    int32_t getPriceCents() const;
+    int64_t getPriceCents() const;
     bool priceCentsIsSet() const;
     void unsetPriceCents();
-    void setPriceCents(int32_t value);
+    void setPriceCents(int64_t value);
 
     /// <summary>
     /// unix seconds
     /// </summary>
-    int32_t getRegisteredAt() const;
+    int64_t getRegisteredAt() const;
     bool registeredAtIsSet() const;
     void unsetRegisteredAt();
-    void setRegisteredAt(int32_t value);
+    void setRegisteredAt(int64_t value);
 
 
 protected:
-    int32_t m_CostCents;
+    int64_t m_CostCents;
     bool m_CostCentsIsSet;
 
     utility::string_t m_Domain;
@@ -131,16 +131,16 @@ protected:
     std::vector<utility::string_t> m_Nameservers;
     bool m_NameserversIsSet;
 
-    int32_t m_Order;
+    int64_t m_Order;
     bool m_OrderIsSet;
 
     utility::string_t m_Org;
     bool m_OrgIsSet;
 
-    int32_t m_PriceCents;
+    int64_t m_PriceCents;
     bool m_PriceCentsIsSet;
 
-    int32_t m_RegisteredAt;
+    int64_t m_RegisteredAt;
     bool m_RegisteredAtIsSet;
 
 };

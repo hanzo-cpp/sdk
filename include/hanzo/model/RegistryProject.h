@@ -55,18 +55,18 @@ public:
     /// <summary>
     /// Images is how many of the org&#39;s repositories the OCI catalog holds.
     /// </summary>
-    int32_t getImages() const;
+    int64_t getImages() const;
     bool imagesIsSet() const;
     void unsetImages();
-    void setImages(int32_t value);
+    void setImages(int64_t value);
 
     /// <summary>
     /// Packages is how many of the org&#39;s packages the npm registry reports.
     /// </summary>
-    int32_t getPackages() const;
+    int64_t getPackages() const;
     bool packagesIsSet() const;
     void unsetPackages();
-    void setPackages(int32_t value);
+    void setPackages(int64_t value);
 
     /// <summary>
     /// Project is the namespace: the org&#39;s slug, which prefixes its image names and scopes its npm packages.
@@ -78,10 +78,10 @@ public:
 
 
 protected:
-    int32_t m_Images;
+    int64_t m_Images;
     bool m_ImagesIsSet;
 
-    int32_t m_Packages;
+    int64_t m_Packages;
     bool m_PackagesIsSet;
 
     utility::string_t m_Project;

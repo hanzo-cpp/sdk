@@ -138,7 +138,7 @@ pplx::task<void> AdApi::deleteAdCampaignsById(utility::string_t id) const
         return void();
     });
 }
-pplx::task<std::shared_ptr<CampaignList>> AdApi::getAdCampaigns(boost::optional<utility::string_t> status, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<CampaignList>> AdApi::getAdCampaigns(boost::optional<utility::string_t> status, boost::optional<int64_t> limit) const
 {
 
 

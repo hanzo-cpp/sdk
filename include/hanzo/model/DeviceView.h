@@ -66,10 +66,10 @@ public:
     /// <summary>
     /// ActiveSessions is how many agent sessions the caller currently has running on this machine; 0 where the agent plane is not mounted.
     /// </summary>
-    int32_t getActiveSessions() const;
+    int64_t getActiveSessions() const;
     bool activeSessionsIsSet() const;
     void unsetActiveSessions();
-    void setActiveSessions(int32_t value);
+    void setActiveSessions(int64_t value);
 
     /// <summary>
     /// Host is the machine&#39;s hostname label, from its most-recently-seen account.
@@ -108,7 +108,7 @@ protected:
     std::vector<std::shared_ptr<LinkView>> m_Accounts;
     bool m_AccountsIsSet;
 
-    int32_t m_ActiveSessions;
+    int64_t m_ActiveSessions;
     bool m_ActiveSessionsIsSet;
 
     utility::string_t m_Host;

@@ -24,7 +24,7 @@ Application::Application()
     m_CreatedIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
-    m_RateBps = 0;
+    m_RateBps = 0L;
     m_RateBpsIsSet = false;
     m_RequestedCode = utility::conversions::to_string_t("");
     m_RequestedCodeIsSet = false;
@@ -119,7 +119,7 @@ bool Application::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("rateBps")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRateBps;
+            int64_t refVal_setRateBps;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRateBps);
             setRateBps(refVal_setRateBps);
             
@@ -212,7 +212,7 @@ bool Application::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("rateBps"))))
     {
-        int32_t refVal_setRateBps;
+        int64_t refVal_setRateBps;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("rateBps"))), refVal_setRateBps );
         setRateBps(refVal_setRateBps);
     }
@@ -295,13 +295,13 @@ void Application::unsetId()
 {
     m_IdIsSet = false;
 }
-int32_t Application::getRateBps() const
+int64_t Application::getRateBps() const
 {
     return m_RateBps;
 }
 
 
-void Application::setRateBps(int32_t value)
+void Application::setRateBps(int64_t value)
 {
     m_RateBps = value;
     m_RateBpsIsSet = true;

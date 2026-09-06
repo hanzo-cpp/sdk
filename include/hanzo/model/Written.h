@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// Updated is when it was written, unix milliseconds.
     /// </summary>
-    int32_t getUpdated() const;
+    int64_t getUpdated() const;
     bool updatedIsSet() const;
     void unsetUpdated();
-    void setUpdated(int32_t value);
+    void setUpdated(int64_t value);
 
 
 protected:
@@ -84,7 +84,7 @@ protected:
     utility::string_t m_Kind;
     bool m_KindIsSet;
 
-    int32_t m_Updated;
+    int64_t m_Updated;
     bool m_UpdatedIsSet;
 
 };

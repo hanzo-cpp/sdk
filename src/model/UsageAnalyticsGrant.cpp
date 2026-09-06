@@ -22,7 +22,7 @@ UsageAnalyticsGrant::UsageAnalyticsGrant()
     m_DatastoreIsSet = false;
     m_r_export = false;
     m_r_exportIsSet = false;
-    m_RetentionDays = 0;
+    m_RetentionDays = 0L;
     m_RetentionDaysIsSet = false;
 }
 
@@ -87,7 +87,7 @@ bool UsageAnalyticsGrant::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("retentionDays")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRetentionDays;
+            int64_t refVal_setRetentionDays;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRetentionDays);
             setRetentionDays(refVal_setRetentionDays);
             
@@ -140,7 +140,7 @@ bool UsageAnalyticsGrant::fromMultiPart(std::shared_ptr<MultipartFormData> multi
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("retentionDays"))))
     {
-        int32_t refVal_setRetentionDays;
+        int64_t refVal_setRetentionDays;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("retentionDays"))), refVal_setRetentionDays );
         setRetentionDays(refVal_setRetentionDays);
     }
@@ -190,13 +190,13 @@ void UsageAnalyticsGrant::unsetr_export()
 {
     m_r_exportIsSet = false;
 }
-int32_t UsageAnalyticsGrant::getRetentionDays() const
+int64_t UsageAnalyticsGrant::getRetentionDays() const
 {
     return m_RetentionDays;
 }
 
 
-void UsageAnalyticsGrant::setRetentionDays(int32_t value)
+void UsageAnalyticsGrant::setRetentionDays(int64_t value)
 {
     m_RetentionDays = value;
     m_RetentionDaysIsSet = true;

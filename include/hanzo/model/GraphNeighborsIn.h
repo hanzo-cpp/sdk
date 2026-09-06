@@ -64,10 +64,10 @@ public:
     /// <summary>
     /// Depth is how many hops. Absent is one.
     /// </summary>
-    int32_t getDepth() const;
+    int64_t getDepth() const;
     bool depthIsSet() const;
     void unsetDepth();
-    void setDepth(int32_t value);
+    void setDepth(int64_t value);
 
     /// <summary>
     /// Direction is out, in or both. Out follows an edge from its entity to its value — what the node points at; in follows it the other way — what points at the node; both is the union of the two, not a third rule. Absent is out.
@@ -98,7 +98,7 @@ protected:
     utility::string_t m_As_of;
     bool m_As_ofIsSet;
 
-    int32_t m_Depth;
+    int64_t m_Depth;
     bool m_DepthIsSet;
 
     utility::string_t m_Direction;

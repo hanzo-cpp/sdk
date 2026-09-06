@@ -22,13 +22,13 @@ CaptableEquityPlan::CaptableEquityPlan()
     m_BoardApprovalDateIsSet = false;
     m_Comments = utility::conversions::to_string_t("");
     m_CommentsIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_DefaultCancellatonBehavior = utility::conversions::to_string_t("");
     m_DefaultCancellatonBehaviorIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
-    m_InitialSharesReserved = 0;
+    m_InitialSharesReserved = 0L;
     m_InitialSharesReservedIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
@@ -129,7 +129,7 @@ bool CaptableEquityPlan::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -162,7 +162,7 @@ bool CaptableEquityPlan::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("initialSharesReserved")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setInitialSharesReserved;
+            int64_t refVal_setInitialSharesReserved;
             ok &= ModelBase::fromJson(fieldValue, refVal_setInitialSharesReserved);
             setInitialSharesReserved(refVal_setInitialSharesReserved);
             
@@ -272,7 +272,7 @@ bool CaptableEquityPlan::fromMultiPart(std::shared_ptr<MultipartFormData> multip
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -290,7 +290,7 @@ bool CaptableEquityPlan::fromMultiPart(std::shared_ptr<MultipartFormData> multip
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("initialSharesReserved"))))
     {
-        int32_t refVal_setInitialSharesReserved;
+        int64_t refVal_setInitialSharesReserved;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("initialSharesReserved"))), refVal_setInitialSharesReserved );
         setInitialSharesReserved(refVal_setInitialSharesReserved);
     }
@@ -358,13 +358,13 @@ void CaptableEquityPlan::unsetComments()
 {
     m_CommentsIsSet = false;
 }
-int32_t CaptableEquityPlan::getCreatedAt() const
+int64_t CaptableEquityPlan::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void CaptableEquityPlan::setCreatedAt(int32_t value)
+void CaptableEquityPlan::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -421,13 +421,13 @@ void CaptableEquityPlan::unsetId()
 {
     m_IdIsSet = false;
 }
-int32_t CaptableEquityPlan::getInitialSharesReserved() const
+int64_t CaptableEquityPlan::getInitialSharesReserved() const
 {
     return m_InitialSharesReserved;
 }
 
 
-void CaptableEquityPlan::setInitialSharesReserved(int32_t value)
+void CaptableEquityPlan::setInitialSharesReserved(int64_t value)
 {
     m_InitialSharesReserved = value;
     m_InitialSharesReservedIsSet = true;

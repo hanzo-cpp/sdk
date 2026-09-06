@@ -111,10 +111,10 @@ public:
     /// <summary>
     /// Stars is GitHub&#39;s stargazers_count as the SEARCH INDEX held it when the query ran — a snapshot, not a live count off the repository.
     /// </summary>
-    int32_t getStars() const;
+    int64_t getStars() const;
     bool starsIsSet() const;
     void unsetStars();
-    void setStars(int32_t value);
+    void setStars(int64_t value);
 
 
 protected:
@@ -139,7 +139,7 @@ protected:
     bool m_r_private;
     bool m_r_privateIsSet;
 
-    int32_t m_Stars;
+    int64_t m_Stars;
     bool m_StarsIsSet;
 
 };

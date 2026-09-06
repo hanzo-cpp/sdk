@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// ModifiedAt is when the file was last written, in unix seconds, and 0 for a folder.
     /// </summary>
-    int32_t getModifiedAt() const;
+    int64_t getModifiedAt() const;
     bool modifiedAtIsSet() const;
     void unsetModifiedAt();
-    void setModifiedAt(int32_t value);
+    void setModifiedAt(int64_t value);
 
     /// <summary>
     /// Name is the entry&#39;s name RELATIVE to the folder that was listed.
@@ -87,10 +87,10 @@ public:
     /// <summary>
     /// Size is the file&#39;s size in bytes, and 0 for a folder.
     /// </summary>
-    int32_t getSize() const;
+    int64_t getSize() const;
     bool sizeIsSet() const;
     void unsetSize();
-    void setSize(int32_t value);
+    void setSize(int64_t value);
 
 
 protected:
@@ -100,13 +100,13 @@ protected:
     bool m_IsFolder;
     bool m_IsFolderIsSet;
 
-    int32_t m_ModifiedAt;
+    int64_t m_ModifiedAt;
     bool m_ModifiedAtIsSet;
 
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_Size;
+    int64_t m_Size;
     bool m_SizeIsSet;
 
 };

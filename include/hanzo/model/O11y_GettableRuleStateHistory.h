@@ -96,10 +96,10 @@ public:
     void unsetStateChanged();
     void setStateChanged(bool value);
 
-    int32_t getUnixMilli() const;
+    int64_t getUnixMilli() const;
     bool unixMilliIsSet() const;
     void unsetUnixMilli();
-    void setUnixMilli(int32_t value);
+    void setUnixMilli(int64_t value);
 
     double getValue() const;
     bool valueIsSet() const;
@@ -130,7 +130,7 @@ protected:
     bool m_StateChanged;
     bool m_StateChangedIsSet;
 
-    int32_t m_UnixMilli;
+    int64_t m_UnixMilli;
     bool m_UnixMilliIsSet;
 
     double m_Value;

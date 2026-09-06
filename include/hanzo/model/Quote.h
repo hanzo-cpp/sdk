@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// ChargeCents is what month one costs after the discount, in USD cents, totalled over the seats quoted. On team that is a multiple of the seat count, so it is not ListCents minus DiscountCents.
     /// </summary>
-    int32_t getChargeCents() const;
+    int64_t getChargeCents() const;
     bool chargeCentsIsSet() const;
     void unsetChargeCents();
-    void setChargeCents(int32_t value);
+    void setChargeCents(int64_t value);
 
     /// <summary>
     /// Code is the promo that was priced, as stored.
@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// DiscountCents is what the promo takes off month one, in USD cents. The promo rate reaches at most TeamSeatCap seats; seats past the cap bill at full list and add nothing here. It is arithmetic only — quoting credits nothing, counts nothing and reserves nothing.
     /// </summary>
-    int32_t getDiscountCents() const;
+    int64_t getDiscountCents() const;
     bool discountCentsIsSet() const;
     void unsetDiscountCents();
-    void setDiscountCents(int32_t value);
+    void setDiscountCents(int64_t value);
 
     /// <summary>
     /// Eligible says whether a redeem would be accepted right now; Reason says why not when it would not.
@@ -87,10 +87,10 @@ public:
     /// <summary>
     /// ListCents is the undiscounted month price in USD cents: PER SEAT on team, the whole month on pro and max, 0 for a plan with no list price.
     /// </summary>
-    int32_t getListCents() const;
+    int64_t getListCents() const;
     bool listCentsIsSet() const;
     void unsetListCents();
-    void setListCents(int32_t value);
+    void setListCents(int64_t value);
 
     /// <summary>
     /// Plan is the tier priced, lower-cased and trimmed: pro, max or team. Unlike a redemption&#39;s plan this one comes from the REQUEST — quoting has no side effects, so it will happily price a plan the caller does not hold.
@@ -111,34 +111,34 @@ public:
     /// <summary>
     /// Remaining is how many redemptions are left under the fleet-wide cap.
     /// </summary>
-    int32_t getRemaining() const;
+    int64_t getRemaining() const;
     bool remainingIsSet() const;
     void unsetRemaining();
-    void setRemaining(int32_t value);
+    void setRemaining(int64_t value);
 
     /// <summary>
     /// Seats is the seat count priced; a request of 0 or less was read as 1. It only bites on team, the one per-seat plan — pro and max are single-seat and ignore it.
     /// </summary>
-    int32_t getSeats() const;
+    int64_t getSeats() const;
     bool seatsIsSet() const;
     void unsetSeats();
-    void setSeats(int32_t value);
+    void setSeats(int64_t value);
 
 
 protected:
-    int32_t m_ChargeCents;
+    int64_t m_ChargeCents;
     bool m_ChargeCentsIsSet;
 
     utility::string_t m_Code;
     bool m_CodeIsSet;
 
-    int32_t m_DiscountCents;
+    int64_t m_DiscountCents;
     bool m_DiscountCentsIsSet;
 
     bool m_Eligible;
     bool m_EligibleIsSet;
 
-    int32_t m_ListCents;
+    int64_t m_ListCents;
     bool m_ListCentsIsSet;
 
     utility::string_t m_Plan;
@@ -147,10 +147,10 @@ protected:
     utility::string_t m_Reason;
     bool m_ReasonIsSet;
 
-    int32_t m_Remaining;
+    int64_t m_Remaining;
     bool m_RemainingIsSet;
 
-    int32_t m_Seats;
+    int64_t m_Seats;
     bool m_SeatsIsSet;
 
 };

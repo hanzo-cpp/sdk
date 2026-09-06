@@ -24,7 +24,7 @@ O11y_IncidentioConfig::O11y_IncidentioConfig()
     m_Http_configIsSet = false;
     m_Max_alerts = 0;
     m_Max_alertsIsSet = false;
-    m_Timeout = 0;
+    m_Timeout = 0L;
     m_TimeoutIsSet = false;
     m_Url_file = utility::conversions::to_string_t("");
     m_Url_fileIsSet = false;
@@ -149,7 +149,7 @@ bool O11y_IncidentioConfig::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("timeout")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTimeout;
+            int64_t refVal_setTimeout;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTimeout);
             setTimeout(refVal_setTimeout);
             
@@ -262,7 +262,7 @@ bool O11y_IncidentioConfig::fromMultiPart(std::shared_ptr<MultipartFormData> mul
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("timeout"))))
     {
-        int32_t refVal_setTimeout;
+        int64_t refVal_setTimeout;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("timeout"))), refVal_setTimeout );
         setTimeout(refVal_setTimeout);
     }
@@ -386,13 +386,13 @@ void O11y_IncidentioConfig::unsetMax_alerts()
 {
     m_Max_alertsIsSet = false;
 }
-int32_t O11y_IncidentioConfig::getTimeout() const
+int64_t O11y_IncidentioConfig::getTimeout() const
 {
     return m_Timeout;
 }
 
 
-void O11y_IncidentioConfig::setTimeout(int32_t value)
+void O11y_IncidentioConfig::setTimeout(int64_t value)
 {
     m_Timeout = value;
     m_TimeoutIsSet = true;

@@ -22,13 +22,13 @@ PnL::PnL()
     m_From = utility::conversions::to_string_t("");
     m_FromIsSet = false;
     m_IncomeIsSet = false;
-    m_NetIncome = 0;
+    m_NetIncome = 0L;
     m_NetIncomeIsSet = false;
     m_To = utility::conversions::to_string_t("");
     m_ToIsSet = false;
-    m_TotalExpense = 0;
+    m_TotalExpense = 0L;
     m_TotalExpenseIsSet = false;
-    m_TotalIncome = 0;
+    m_TotalIncome = 0L;
     m_TotalIncomeIsSet = false;
 }
 
@@ -124,7 +124,7 @@ bool PnL::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("netIncome")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNetIncome;
+            int64_t refVal_setNetIncome;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNetIncome);
             setNetIncome(refVal_setNetIncome);
             
@@ -146,7 +146,7 @@ bool PnL::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("totalExpense")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotalExpense;
+            int64_t refVal_setTotalExpense;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalExpense);
             setTotalExpense(refVal_setTotalExpense);
             
@@ -157,7 +157,7 @@ bool PnL::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("totalIncome")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotalIncome;
+            int64_t refVal_setTotalIncome;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalIncome);
             setTotalIncome(refVal_setTotalIncome);
             
@@ -232,7 +232,7 @@ bool PnL::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const util
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("netIncome"))))
     {
-        int32_t refVal_setNetIncome;
+        int64_t refVal_setNetIncome;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("netIncome"))), refVal_setNetIncome );
         setNetIncome(refVal_setNetIncome);
     }
@@ -244,13 +244,13 @@ bool PnL::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const util
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("totalExpense"))))
     {
-        int32_t refVal_setTotalExpense;
+        int64_t refVal_setTotalExpense;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("totalExpense"))), refVal_setTotalExpense );
         setTotalExpense(refVal_setTotalExpense);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("totalIncome"))))
     {
-        int32_t refVal_setTotalIncome;
+        int64_t refVal_setTotalIncome;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("totalIncome"))), refVal_setTotalIncome );
         setTotalIncome(refVal_setTotalIncome);
     }
@@ -321,13 +321,13 @@ void PnL::unsetIncome()
 {
     m_IncomeIsSet = false;
 }
-int32_t PnL::getNetIncome() const
+int64_t PnL::getNetIncome() const
 {
     return m_NetIncome;
 }
 
 
-void PnL::setNetIncome(int32_t value)
+void PnL::setNetIncome(int64_t value)
 {
     m_NetIncome = value;
     m_NetIncomeIsSet = true;
@@ -363,13 +363,13 @@ void PnL::unsetTo()
 {
     m_ToIsSet = false;
 }
-int32_t PnL::getTotalExpense() const
+int64_t PnL::getTotalExpense() const
 {
     return m_TotalExpense;
 }
 
 
-void PnL::setTotalExpense(int32_t value)
+void PnL::setTotalExpense(int64_t value)
 {
     m_TotalExpense = value;
     m_TotalExpenseIsSet = true;
@@ -384,13 +384,13 @@ void PnL::unsetTotalExpense()
 {
     m_TotalExpenseIsSet = false;
 }
-int32_t PnL::getTotalIncome() const
+int64_t PnL::getTotalIncome() const
 {
     return m_TotalIncome;
 }
 
 
-void PnL::setTotalIncome(int32_t value)
+void PnL::setTotalIncome(int64_t value)
 {
     m_TotalIncome = value;
     m_TotalIncomeIsSet = true;

@@ -108,11 +108,11 @@ public:
     /// <remarks>
     /// Returns the org&#39;s streams, name-ordered, with their live state.
     /// </remarks>
-    /// <param name="limit">Limit caps the streams returned (1–1000, default 100). (optional, default to 0)</param>
-    /// <param name="offset">Offset skips that many streams, name-ordered. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the streams returned (1–1000, default 100). (optional, default to 0L)</param>
+    /// <param name="offset">Offset skips that many streams, name-ordered. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<Streams>> getMqStream(
-        boost::optional<int32_t> limit,
-        boost::optional<int32_t> offset
+        boost::optional<int64_t> limit,
+        boost::optional<int64_t> offset
     ) const;
     /// <summary>
     /// Returns one stream&#39;s configuration and live state.
@@ -134,13 +134,13 @@ public:
     /// <param name="seq">Seq reads the message at this sequence (with next_by_subject: the walk&#39;s start). (optional, default to 0)</param>
     /// <param name="lastBySubject">LastBySubject reads the newest message on this org-relative subject. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="nextBySubject">NextBySubject walks forward from seq collecting messages on this org-relative subject (wildcards supported). (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps a next_by_subject walk (1–1000, default 100). (optional, default to 0)</param>
+    /// <param name="limit">Limit caps a next_by_subject walk (1–1000, default 100). (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<ReadOut>> getMqStreamByNameMessage(
         utility::string_t name,
         boost::optional<int32_t> seq,
         boost::optional<utility::string_t> lastBySubject,
         boost::optional<utility::string_t> nextBySubject,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns a stream&#39;s consumers, name-ordered, with delivery state.
@@ -149,12 +149,12 @@ public:
     /// Returns a stream&#39;s consumers, name-ordered, with delivery state.
     /// </remarks>
     /// <param name="stream">Stream is the stream name, from the path.</param>
-    /// <param name="limit">Limit caps the consumers returned (1–1000, default 100). (optional, default to 0)</param>
-    /// <param name="offset">Offset skips that many consumers, name-ordered. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the consumers returned (1–1000, default 100). (optional, default to 0L)</param>
+    /// <param name="offset">Offset skips that many consumers, name-ordered. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<PickOut>> getMqStreamByStreamConsumer(
         utility::string_t stream,
-        boost::optional<int32_t> limit,
-        boost::optional<int32_t> offset
+        boost::optional<int64_t> limit,
+        boost::optional<int64_t> offset
     ) const;
     /// <summary>
     /// Returns one consumer&#39;s configuration and delivery state.

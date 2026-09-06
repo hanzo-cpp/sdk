@@ -24,19 +24,30 @@
 
 #include "hanzo/ModelBase.h"
 
+#include "hanzo/model/ClipBody.h"
 #include "hanzo/AnyType.h"
-#include "hanzo/model/Event.h"
+#include "hanzo/model/UTM.h"
 #include "hanzo/model/CaptureEvent.h"
+#include "hanzo/model/SpanBody.h"
 #include "hanzo/model/InsightsBody.h"
 #include "hanzo/model/InsightsEvent.h"
+#include "hanzo/model/Exception.h"
+#include "hanzo/model/MetricBody.h"
+#include <vector>
 #include <cpprest/details/basic_types.h>
 #include "hanzo/model/CaptureBatch.h"
 #include <map>
-#include <vector>
+#include "hanzo/model/LogBody.h"
 
 namespace hanzo {
 namespace model {
 
+class ClipBody;
+class Exception;
+class LogBody;
+class MetricBody;
+class SpanBody;
+class UTM;
 class InsightsEvent;
 class CaptureEvent;
 
@@ -84,7 +95,7 @@ public:
     /////////////////////////////////////////////
     /// Post_event_request members
 
-    using VariantType = std::variant<CaptureBatch, Event, InsightsBody, std::vector<std::shared_ptr<Event>>>;
+    using VariantType = std::variant<CaptureBatch, CaptureEvent, InsightsBody, std::vector<std::shared_ptr<CaptureEvent>>>;
 
     const VariantType& getVariant() const;
     void setVariant(VariantType value);

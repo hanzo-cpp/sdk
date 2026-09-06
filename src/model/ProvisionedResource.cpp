@@ -28,7 +28,7 @@ ProvisionedResource::ProvisionedResource()
     m_KindIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_Port = 0;
+    m_Port = 0L;
     m_PortIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
@@ -155,7 +155,7 @@ bool ProvisionedResource::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("port")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPort;
+            int64_t refVal_setPort;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPort);
             setPort(refVal_setPort);
             
@@ -268,7 +268,7 @@ bool ProvisionedResource::fromMultiPart(std::shared_ptr<MultipartFormData> multi
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("port"))))
     {
-        int32_t refVal_setPort;
+        int64_t refVal_setPort;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("port"))), refVal_setPort );
         setPort(refVal_setPort);
     }
@@ -393,13 +393,13 @@ void ProvisionedResource::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t ProvisionedResource::getPort() const
+int64_t ProvisionedResource::getPort() const
 {
     return m_Port;
 }
 
 
-void ProvisionedResource::setPort(int32_t value)
+void ProvisionedResource::setPort(int64_t value)
 {
     m_Port = value;
     m_PortIsSet = true;

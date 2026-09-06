@@ -140,10 +140,10 @@ public:
     /// <summary>
     /// Total is how many subjects were ranked in the window — the org&#39;s active users, or the active/opted-in orgs on the global board. It is the universe the ranks are out of, so it is normally larger than len(rows).
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
 
 protected:
@@ -177,7 +177,7 @@ protected:
     utility::string_t m_Subject;
     bool m_SubjectIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
 };

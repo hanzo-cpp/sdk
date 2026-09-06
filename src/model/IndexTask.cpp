@@ -28,7 +28,7 @@ IndexTask::IndexTask()
     m_StatusIsSet = false;
     m_Type = utility::conversions::to_string_t("");
     m_TypeIsSet = false;
-    m_Uid = 0;
+    m_Uid = 0L;
     m_UidIsSet = false;
 }
 
@@ -141,7 +141,7 @@ bool IndexTask::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("uid")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUid;
+            int64_t refVal_setUid;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUid);
             setUid(refVal_setUid);
             
@@ -224,7 +224,7 @@ bool IndexTask::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("uid"))))
     {
-        int32_t refVal_setUid;
+        int64_t refVal_setUid;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("uid"))), refVal_setUid );
         setUid(refVal_setUid);
     }
@@ -337,13 +337,13 @@ void IndexTask::unsetType()
 {
     m_TypeIsSet = false;
 }
-int32_t IndexTask::getUid() const
+int64_t IndexTask::getUid() const
 {
     return m_Uid;
 }
 
 
-void IndexTask::setUid(int32_t value)
+void IndexTask::setUid(int64_t value)
 {
     m_Uid = value;
     m_UidIsSet = true;

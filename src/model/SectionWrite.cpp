@@ -22,7 +22,7 @@ SectionWrite::SectionWrite()
     m_IdIsSet = false;
     m_Kind = utility::conversions::to_string_t("");
     m_KindIsSet = false;
-    m_Ord = 0;
+    m_Ord = 0L;
     m_OrdIsSet = false;
 }
 
@@ -103,7 +103,7 @@ bool SectionWrite::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("ord")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOrd;
+            int64_t refVal_setOrd;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOrd);
             setOrd(refVal_setOrd);
             
@@ -166,7 +166,7 @@ bool SectionWrite::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("ord"))))
     {
-        int32_t refVal_setOrd;
+        int64_t refVal_setOrd;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ord"))), refVal_setOrd );
         setOrd(refVal_setOrd);
     }
@@ -236,13 +236,13 @@ void SectionWrite::unsetKind()
 {
     m_KindIsSet = false;
 }
-int32_t SectionWrite::getOrd() const
+int64_t SectionWrite::getOrd() const
 {
     return m_Ord;
 }
 
 
-void SectionWrite::setOrd(int32_t value)
+void SectionWrite::setOrd(int64_t value)
 {
     m_Ord = value;
     m_OrdIsSet = true;

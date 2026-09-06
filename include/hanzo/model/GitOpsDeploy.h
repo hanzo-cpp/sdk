@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// ID is CD&#39;s own sequence number for this deploy (status.history[].id). It increases with every applied revision, so the largest id in &#x60;history&#x60; is the most recent deploy — which is the first entry, since the list is reversed.
     /// </summary>
-    int32_t getId() const;
+    int64_t getId() const;
     bool idIsSet() const;
     void unsetId();
-    void setId(int32_t value);
+    void setId(int64_t value);
 
     /// <summary>
     /// Revision is the git commit this deploy applied, as CD recorded it.
@@ -100,7 +100,7 @@ protected:
     utility::string_t m_DeployedAt;
     bool m_DeployedAtIsSet;
 
-    int32_t m_Id;
+    int64_t m_Id;
     bool m_IdIsSet;
 
     utility::string_t m_Revision;

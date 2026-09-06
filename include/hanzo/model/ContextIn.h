@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// BudgetTokens caps the bundle&#39;s size. Clamped to [256, 32000]; 0 or absent uses 4000.
     /// </summary>
-    int32_t getBudgetTokens() const;
+    int64_t getBudgetTokens() const;
     bool budgetTokensIsSet() const;
     void unsetBudgetTokens();
-    void setBudgetTokens(int32_t value);
+    void setBudgetTokens(int64_t value);
 
     /// <summary>
     /// Query is what to retrieve context for. Required, max 4000 bytes.
@@ -78,7 +78,7 @@ public:
 
 
 protected:
-    int32_t m_BudgetTokens;
+    int64_t m_BudgetTokens;
     bool m_BudgetTokensIsSet;
 
     utility::string_t m_Query;

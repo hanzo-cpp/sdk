@@ -52,15 +52,15 @@ public:
     /// O11y_GettableRuleStateWindow members
 
 
-    int32_t getEnd() const;
+    int64_t getEnd() const;
     bool endIsSet() const;
     void unsetEnd();
-    void setEnd(int32_t value);
+    void setEnd(int64_t value);
 
-    int32_t getStart() const;
+    int64_t getStart() const;
     bool startIsSet() const;
     void unsetStart();
-    void setStart(int32_t value);
+    void setStart(int64_t value);
 
     std::shared_ptr<AnyType> getState() const;
     bool stateIsSet() const;
@@ -69,10 +69,10 @@ public:
 
 
 protected:
-    int32_t m_End;
+    int64_t m_End;
     bool m_EndIsSet;
 
-    int32_t m_Start;
+    int64_t m_Start;
     bool m_StartIsSet;
 
     boost::optional<std::shared_ptr<AnyType>> m_State;

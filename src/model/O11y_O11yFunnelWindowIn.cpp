@@ -18,9 +18,9 @@ namespace model {
 
 O11y_O11yFunnelWindowIn::O11y_O11yFunnelWindowIn()
 {
-    m_End_time = 0;
+    m_End_time = 0L;
     m_End_timeIsSet = false;
-    m_Start_time = 0;
+    m_Start_time = 0L;
     m_Start_timeIsSet = false;
 }
 
@@ -58,7 +58,7 @@ bool O11y_O11yFunnelWindowIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("end_time")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setEndTime;
+            int64_t refVal_setEndTime;
             ok &= ModelBase::fromJson(fieldValue, refVal_setEndTime);
             setEndTime(refVal_setEndTime);
             
@@ -69,7 +69,7 @@ bool O11y_O11yFunnelWindowIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("start_time")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStartTime;
+            int64_t refVal_setStartTime;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStartTime);
             setStartTime(refVal_setStartTime);
             
@@ -106,13 +106,13 @@ bool O11y_O11yFunnelWindowIn::fromMultiPart(std::shared_ptr<MultipartFormData> m
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("end_time"))))
     {
-        int32_t refVal_setEndTime;
+        int64_t refVal_setEndTime;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("end_time"))), refVal_setEndTime );
         setEndTime(refVal_setEndTime);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("start_time"))))
     {
-        int32_t refVal_setStartTime;
+        int64_t refVal_setStartTime;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("start_time"))), refVal_setStartTime );
         setStartTime(refVal_setStartTime);
     }
@@ -120,13 +120,13 @@ bool O11y_O11yFunnelWindowIn::fromMultiPart(std::shared_ptr<MultipartFormData> m
 }
 
 
-int32_t O11y_O11yFunnelWindowIn::getEndTime() const
+int64_t O11y_O11yFunnelWindowIn::getEndTime() const
 {
     return m_End_time;
 }
 
 
-void O11y_O11yFunnelWindowIn::setEndTime(int32_t value)
+void O11y_O11yFunnelWindowIn::setEndTime(int64_t value)
 {
     m_End_time = value;
     m_End_timeIsSet = true;
@@ -141,13 +141,13 @@ void O11y_O11yFunnelWindowIn::unsetEnd_time()
 {
     m_End_timeIsSet = false;
 }
-int32_t O11y_O11yFunnelWindowIn::getStartTime() const
+int64_t O11y_O11yFunnelWindowIn::getStartTime() const
 {
     return m_Start_time;
 }
 
 
-void O11y_O11yFunnelWindowIn::setStartTime(int32_t value)
+void O11y_O11yFunnelWindowIn::setStartTime(int64_t value)
 {
     m_Start_time = value;
     m_Start_timeIsSet = true;

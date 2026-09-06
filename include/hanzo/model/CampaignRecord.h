@@ -66,10 +66,10 @@ public:
     /// <summary>
     /// Budget is the campaign&#39;s total budget in CENTS, handed to each executor as the budget for its channel. 0 means none was set.
     /// </summary>
-    int32_t getBudget() const;
+    int64_t getBudget() const;
     bool budgetIsSet() const;
     void unsetBudget();
-    void setBudget(int32_t value);
+    void setBudget(int64_t value);
 
     /// <summary>
     /// Channels are the fan-out targets, at most one per kind and at most 12, each carrying its own post-launch state. Empty means nothing to launch, which is what makes a launch of this campaign a 400.
@@ -90,10 +90,10 @@ public:
     /// <summary>
     /// CreatedAt is when the campaign was created, in unix seconds. Server-set.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// ID is the campaign&#39;s server-minted handle — \&quot;cmp_\&quot; and 128 random bits — and the id every other campaign call is addressed by. Never read off the wire: a create that sends one has it ignored.
@@ -114,10 +114,10 @@ public:
     /// <summary>
     /// ScheduleAt is when the campaign should run, in unix seconds. 0 (absent) means launch immediately. It is passed to each executor; nothing in this service wakes up to launch it for you.
     /// </summary>
-    int32_t getScheduleAt() const;
+    int64_t getScheduleAt() const;
     bool scheduleAtIsSet() const;
     void unsetScheduleAt();
-    void setScheduleAt(int32_t value);
+    void setScheduleAt(int64_t value);
 
     /// <summary>
     /// Status is the lifecycle state, server-owned and never accepted from a caller. Four values actually occur: draft (inert and fully mutable — nothing is sent and no budget is committed), live, paused and failed. After a fan-out live means AT LEAST ONE channel launched — read the channel rows for the rest — and failed means none did.
@@ -130,17 +130,17 @@ public:
     /// <summary>
     /// UpdatedAt is the last write in unix seconds — an edit, a launch or a pause. Server-set on every save.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
 
 protected:
     utility::string_t m_Audience;
     bool m_AudienceIsSet;
 
-    int32_t m_Budget;
+    int64_t m_Budget;
     bool m_BudgetIsSet;
 
     std::vector<std::shared_ptr<ChannelSpec>> m_Channels;
@@ -149,7 +149,7 @@ protected:
     std::vector<utility::string_t> m_Content;
     bool m_ContentIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_Id;
@@ -158,13 +158,13 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_ScheduleAt;
+    int64_t m_ScheduleAt;
     bool m_ScheduleAtIsSet;
 
     utility::string_t m_Status;
     bool m_StatusIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
 };

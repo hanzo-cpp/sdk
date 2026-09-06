@@ -30,7 +30,6 @@
 #include "hanzo/model/MessageList.h"
 #include "hanzo/model/Number.h"
 #include "hanzo/model/NumberList.h"
-#include "hanzo/Object.h"
 #include "hanzo/model/SMS.h"
 #include "hanzo/model/Summary.h"
 #include <cpprest/details/basic_types.h>
@@ -58,7 +57,7 @@ public:
     /// Ends a call this org placed. The holding is read for THIS org before the carrier is asked, for the reason releaseNumber gives one surface up: an id belonging to another tenant would otherwise be hung up by whoever guessed it.
     /// </remarks>
     /// <param name="id"></param>
-    pplx::task<std::shared_ptr<Object>> deleteTelCallsById(
+    pplx::task<void> deleteTelCallsById(
         utility::string_t id
     ) const;
     /// <summary>
@@ -68,7 +67,7 @@ public:
     /// Checks the holding is THIS org&#39;s before it reaches the carrier. Without that read, an id belonging to another tenant would be released by whoever guessed it.
     /// </remarks>
     /// <param name="id"></param>
-    pplx::task<std::shared_ptr<Object>> deleteTelNumbersById(
+    pplx::task<void> deleteTelNumbersById(
         utility::string_t id
     ) const;
     /// <summary>
@@ -104,12 +103,12 @@ public:
     /// <param name="country"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="area"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="type"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit"> (optional, default to 0)</param>
+    /// <param name="limit"> (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<NumberList>> getTelNumbersAvailable(
         boost::optional<utility::string_t> country,
         boost::optional<utility::string_t> area,
         boost::optional<utility::string_t> type,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Counts what this org holds on the telephony plane: its numbers, its calls and its messages.

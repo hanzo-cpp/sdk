@@ -54,26 +54,26 @@ public:
     /// <summary>
     /// Created is how many native issues this pass created.
     /// </summary>
-    int32_t getCreated() const;
+    int64_t getCreated() const;
     bool createdIsSet() const;
     void unsetCreated();
-    void setCreated(int32_t value);
+    void setCreated(int64_t value);
 
     /// <summary>
     /// Failed is how many issues errored; the pass continues past each.
     /// </summary>
-    int32_t getFailed() const;
+    int64_t getFailed() const;
     bool failedIsSet() const;
     void unsetFailed();
-    void setFailed(int32_t value);
+    void setFailed(int64_t value);
 
     /// <summary>
     /// Issues is how many Linear issues were seen.
     /// </summary>
-    int32_t getIssues() const;
+    int64_t getIssues() const;
     bool issuesIsSet() const;
     void unsetIssues();
-    void setIssues(int32_t value);
+    void setIssues(int64_t value);
 
     /// <summary>
     /// Truncated is set when the time budget or the issue cap stopped the pass early. Re-run to continue — the mirror is idempotent by ExtRef, so nothing duplicates.
@@ -86,26 +86,26 @@ public:
     /// <summary>
     /// Updated is how many existing native issues this pass refreshed.
     /// </summary>
-    int32_t getUpdated() const;
+    int64_t getUpdated() const;
     bool updatedIsSet() const;
     void unsetUpdated();
-    void setUpdated(int32_t value);
+    void setUpdated(int64_t value);
 
 
 protected:
-    int32_t m_Created;
+    int64_t m_Created;
     bool m_CreatedIsSet;
 
-    int32_t m_Failed;
+    int64_t m_Failed;
     bool m_FailedIsSet;
 
-    int32_t m_Issues;
+    int64_t m_Issues;
     bool m_IssuesIsSet;
 
     bool m_Truncated;
     bool m_TruncatedIsSet;
 
-    int32_t m_Updated;
+    int64_t m_Updated;
     bool m_UpdatedIsSet;
 
 };

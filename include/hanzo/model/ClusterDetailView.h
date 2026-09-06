@@ -57,10 +57,10 @@ public:
     /// ClusterDetailView members
 
 
-    int32_t getAmdGpu() const;
+    int64_t getAmdGpu() const;
     bool amdGpuIsSet() const;
     void unsetAmdGpu();
-    void setAmdGpu(int32_t value);
+    void setAmdGpu(int64_t value);
 
     utility::string_t getCreatedAt() const;
     bool createdAtIsSet() const;
@@ -87,10 +87,10 @@ public:
     void unsetName();
     void setName(const utility::string_t& value);
 
-    int32_t getNodeCount() const;
+    int64_t getNodeCount() const;
     bool nodeCountIsSet() const;
     void unsetNodeCount();
-    void setNodeCount(int32_t value);
+    void setNodeCount(int64_t value);
 
     std::vector<std::shared_ptr<NodePoolView>> getNodePools() const;
     bool nodePoolsIsSet() const;
@@ -110,10 +110,10 @@ public:
     void unsetNodes();
     void setNodes(const std::vector<std::shared_ptr<MachineView>>& value);
 
-    int32_t getNvidiaGpu() const;
+    int64_t getNvidiaGpu() const;
     bool nvidiaGpuIsSet() const;
     void unsetNvidiaGpu();
-    void setNvidiaGpu(int32_t value);
+    void setNvidiaGpu(int64_t value);
 
     utility::string_t getRegion() const;
     bool regionIsSet() const;
@@ -127,7 +127,7 @@ public:
 
 
 protected:
-    int32_t m_AmdGpu;
+    int64_t m_AmdGpu;
     bool m_AmdGpuIsSet;
 
     utility::string_t m_CreatedAt;
@@ -145,7 +145,7 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_NodeCount;
+    int64_t m_NodeCount;
     bool m_NodeCountIsSet;
 
     std::vector<std::shared_ptr<NodePoolView>> m_NodePools;
@@ -157,7 +157,7 @@ protected:
     std::vector<std::shared_ptr<MachineView>> m_Nodes;
     bool m_NodesIsSet;
 
-    int32_t m_NvidiaGpu;
+    int64_t m_NvidiaGpu;
     bool m_NvidiaGpuIsSet;
 
     utility::string_t m_Region;

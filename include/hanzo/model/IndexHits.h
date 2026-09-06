@@ -57,10 +57,10 @@ public:
     /// <summary>
     /// EstimatedTotalHits is the dialect&#39;s name for the match count. Every hit is materialised here, so for this page it is exact rather than estimated.
     /// </summary>
-    int32_t getEstimatedTotalHits() const;
+    int64_t getEstimatedTotalHits() const;
     bool estimatedTotalHitsIsSet() const;
     void unsetEstimatedTotalHits();
-    void setEstimatedTotalHits(int32_t value);
+    void setEstimatedTotalHits(int64_t value);
 
     /// <summary>
     /// Hits are the matching documents, most relevant first, exactly as stored.
@@ -73,26 +73,26 @@ public:
     /// <summary>
     /// Limit is how many hits this page could hold.
     /// </summary>
-    int32_t getLimit() const;
+    int64_t getLimit() const;
     bool limitIsSet() const;
     void unsetLimit();
-    void setLimit(int32_t value);
+    void setLimit(int64_t value);
 
     /// <summary>
     /// Offset is where this page starts.
     /// </summary>
-    int32_t getOffset() const;
+    int64_t getOffset() const;
     bool offsetIsSet() const;
     void unsetOffset();
-    void setOffset(int32_t value);
+    void setOffset(int64_t value);
 
     /// <summary>
     /// ProcessingTimeMs is how long the query took, in milliseconds.
     /// </summary>
-    int32_t getProcessingTimeMs() const;
+    int64_t getProcessingTimeMs() const;
     bool processingTimeMsIsSet() const;
     void unsetProcessingTimeMs();
-    void setProcessingTimeMs(int32_t value);
+    void setProcessingTimeMs(int64_t value);
 
     /// <summary>
     /// Query echoes the search terms, which is what a client renders above the results.
@@ -104,19 +104,19 @@ public:
 
 
 protected:
-    int32_t m_EstimatedTotalHits;
+    int64_t m_EstimatedTotalHits;
     bool m_EstimatedTotalHitsIsSet;
 
     std::vector<std::shared_ptr<AnyType>> m_Hits;
     bool m_HitsIsSet;
 
-    int32_t m_Limit;
+    int64_t m_Limit;
     bool m_LimitIsSet;
 
-    int32_t m_Offset;
+    int64_t m_Offset;
     bool m_OffsetIsSet;
 
-    int32_t m_ProcessingTimeMs;
+    int64_t m_ProcessingTimeMs;
     bool m_ProcessingTimeMsIsSet;
 
     utility::string_t m_Query;

@@ -52,9 +52,9 @@ Iam_CreateOrganizationInput::Iam_CreateOrganizationInput()
     m_EnableSoftDeletionIsSet = false;
     m_EnableTour = false;
     m_EnableTourIsSet = false;
-    m_FailedSigninFrozenTime = 0;
+    m_FailedSigninFrozenTime = 0L;
     m_FailedSigninFrozenTimeIsSet = false;
-    m_FailedSigninLimit = 0;
+    m_FailedSigninLimit = 0L;
     m_FailedSigninLimitIsSet = false;
     m_Favicon = utility::conversions::to_string_t("");
     m_FaviconIsSet = false;
@@ -64,7 +64,7 @@ Iam_CreateOrganizationInput::Iam_CreateOrganizationInput()
     m_HasPrivilegeConsentIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
-    m_InitScore = 0;
+    m_InitScore = 0L;
     m_InitScoreIsSet = false;
     m_IpRestriction = utility::conversions::to_string_t("");
     m_IpRestrictionIsSet = false;
@@ -93,7 +93,7 @@ Iam_CreateOrganizationInput::Iam_CreateOrganizationInput()
     m_MasterVerificationCode = utility::conversions::to_string_t("");
     m_MasterVerificationCodeIsSet = false;
     m_MfaItemsIsSet = false;
-    m_MfaRememberInHours = 0;
+    m_MfaRememberInHours = 0L;
     m_MfaRememberInHoursIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
@@ -102,7 +102,7 @@ Iam_CreateOrganizationInput::Iam_CreateOrganizationInput()
     m_OrgBalanceIsSet = false;
     m_Owner = utility::conversions::to_string_t("");
     m_OwnerIsSet = false;
-    m_PasswordExpireDays = 0;
+    m_PasswordExpireDays = 0L;
     m_PasswordExpireDaysIsSet = false;
     m_PasswordObfuscatorKey = utility::conversions::to_string_t("");
     m_PasswordObfuscatorKeyIsSet = false;
@@ -657,7 +657,7 @@ bool Iam_CreateOrganizationInput::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("failedSigninFrozenTime")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFailedSigninFrozenTime;
+            int64_t refVal_setFailedSigninFrozenTime;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFailedSigninFrozenTime);
             setFailedSigninFrozenTime(refVal_setFailedSigninFrozenTime);
             
@@ -668,7 +668,7 @@ bool Iam_CreateOrganizationInput::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("failedSigninLimit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFailedSigninLimit;
+            int64_t refVal_setFailedSigninLimit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFailedSigninLimit);
             setFailedSigninLimit(refVal_setFailedSigninLimit);
             
@@ -723,7 +723,7 @@ bool Iam_CreateOrganizationInput::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("initScore")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setInitScore;
+            int64_t refVal_setInitScore;
             ok &= ModelBase::fromJson(fieldValue, refVal_setInitScore);
             setInitScore(refVal_setInitScore);
             
@@ -899,7 +899,7 @@ bool Iam_CreateOrganizationInput::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("mfaRememberInHours")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMfaRememberInHours;
+            int64_t refVal_setMfaRememberInHours;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMfaRememberInHours);
             setMfaRememberInHours(refVal_setMfaRememberInHours);
             
@@ -954,7 +954,7 @@ bool Iam_CreateOrganizationInput::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("passwordExpireDays")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPasswordExpireDays;
+            int64_t refVal_setPasswordExpireDays;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPasswordExpireDays);
             setPasswordExpireDays(refVal_setPasswordExpireDays);
             
@@ -1500,13 +1500,13 @@ bool Iam_CreateOrganizationInput::fromMultiPart(std::shared_ptr<MultipartFormDat
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("failedSigninFrozenTime"))))
     {
-        int32_t refVal_setFailedSigninFrozenTime;
+        int64_t refVal_setFailedSigninFrozenTime;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("failedSigninFrozenTime"))), refVal_setFailedSigninFrozenTime );
         setFailedSigninFrozenTime(refVal_setFailedSigninFrozenTime);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("failedSigninLimit"))))
     {
-        int32_t refVal_setFailedSigninLimit;
+        int64_t refVal_setFailedSigninLimit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("failedSigninLimit"))), refVal_setFailedSigninLimit );
         setFailedSigninLimit(refVal_setFailedSigninLimit);
     }
@@ -1536,7 +1536,7 @@ bool Iam_CreateOrganizationInput::fromMultiPart(std::shared_ptr<MultipartFormDat
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("initScore"))))
     {
-        int32_t refVal_setInitScore;
+        int64_t refVal_setInitScore;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("initScore"))), refVal_setInitScore );
         setInitScore(refVal_setInitScore);
     }
@@ -1632,7 +1632,7 @@ bool Iam_CreateOrganizationInput::fromMultiPart(std::shared_ptr<MultipartFormDat
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("mfaRememberInHours"))))
     {
-        int32_t refVal_setMfaRememberInHours;
+        int64_t refVal_setMfaRememberInHours;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("mfaRememberInHours"))), refVal_setMfaRememberInHours );
         setMfaRememberInHours(refVal_setMfaRememberInHours);
     }
@@ -1662,7 +1662,7 @@ bool Iam_CreateOrganizationInput::fromMultiPart(std::shared_ptr<MultipartFormDat
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("passwordExpireDays"))))
     {
-        int32_t refVal_setPasswordExpireDays;
+        int64_t refVal_setPasswordExpireDays;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("passwordExpireDays"))), refVal_setPasswordExpireDays );
         setPasswordExpireDays(refVal_setPasswordExpireDays);
     }
@@ -2138,13 +2138,13 @@ void Iam_CreateOrganizationInput::unsetEnableTour()
 {
     m_EnableTourIsSet = false;
 }
-int32_t Iam_CreateOrganizationInput::getFailedSigninFrozenTime() const
+int64_t Iam_CreateOrganizationInput::getFailedSigninFrozenTime() const
 {
     return m_FailedSigninFrozenTime;
 }
 
 
-void Iam_CreateOrganizationInput::setFailedSigninFrozenTime(int32_t value)
+void Iam_CreateOrganizationInput::setFailedSigninFrozenTime(int64_t value)
 {
     m_FailedSigninFrozenTime = value;
     m_FailedSigninFrozenTimeIsSet = true;
@@ -2159,13 +2159,13 @@ void Iam_CreateOrganizationInput::unsetFailedSigninFrozenTime()
 {
     m_FailedSigninFrozenTimeIsSet = false;
 }
-int32_t Iam_CreateOrganizationInput::getFailedSigninLimit() const
+int64_t Iam_CreateOrganizationInput::getFailedSigninLimit() const
 {
     return m_FailedSigninLimit;
 }
 
 
-void Iam_CreateOrganizationInput::setFailedSigninLimit(int32_t value)
+void Iam_CreateOrganizationInput::setFailedSigninLimit(int64_t value)
 {
     m_FailedSigninLimit = value;
     m_FailedSigninLimitIsSet = true;
@@ -2264,13 +2264,13 @@ void Iam_CreateOrganizationInput::unsetId()
 {
     m_IdIsSet = false;
 }
-int32_t Iam_CreateOrganizationInput::getInitScore() const
+int64_t Iam_CreateOrganizationInput::getInitScore() const
 {
     return m_InitScore;
 }
 
 
-void Iam_CreateOrganizationInput::setInitScore(int32_t value)
+void Iam_CreateOrganizationInput::setInitScore(int64_t value)
 {
     m_InitScore = value;
     m_InitScoreIsSet = true;
@@ -2600,13 +2600,13 @@ void Iam_CreateOrganizationInput::unsetMfaItems()
 {
     m_MfaItemsIsSet = false;
 }
-int32_t Iam_CreateOrganizationInput::getMfaRememberInHours() const
+int64_t Iam_CreateOrganizationInput::getMfaRememberInHours() const
 {
     return m_MfaRememberInHours;
 }
 
 
-void Iam_CreateOrganizationInput::setMfaRememberInHours(int32_t value)
+void Iam_CreateOrganizationInput::setMfaRememberInHours(int64_t value)
 {
     m_MfaRememberInHours = value;
     m_MfaRememberInHoursIsSet = true;
@@ -2705,13 +2705,13 @@ void Iam_CreateOrganizationInput::unsetOwner()
 {
     m_OwnerIsSet = false;
 }
-int32_t Iam_CreateOrganizationInput::getPasswordExpireDays() const
+int64_t Iam_CreateOrganizationInput::getPasswordExpireDays() const
 {
     return m_PasswordExpireDays;
 }
 
 
-void Iam_CreateOrganizationInput::setPasswordExpireDays(int32_t value)
+void Iam_CreateOrganizationInput::setPasswordExpireDays(int64_t value)
 {
     m_PasswordExpireDays = value;
     m_PasswordExpireDaysIsSet = true;

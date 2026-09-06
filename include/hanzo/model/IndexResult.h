@@ -55,34 +55,34 @@ public:
     /// <summary>
     /// Chunks is how many AST-boundary chunks the repo holds after this pass.
     /// </summary>
-    int32_t getChunks() const;
+    int64_t getChunks() const;
     bool chunksIsSet() const;
     void unsetChunks();
-    void setChunks(int32_t value);
+    void setChunks(int64_t value);
 
     /// <summary>
     /// Files is how many files the repo holds after this pass.
     /// </summary>
-    int32_t getFiles() const;
+    int64_t getFiles() const;
     bool filesIsSet() const;
     void unsetFiles();
-    void setFiles(int32_t value);
+    void setFiles(int64_t value);
 
     /// <summary>
     /// Indexed is how many files were parsed and written on this pass.
     /// </summary>
-    int32_t getIndexed() const;
+    int64_t getIndexed() const;
     bool indexedIsSet() const;
     void unsetIndexed();
-    void setIndexed(int32_t value);
+    void setIndexed(int64_t value);
 
     /// <summary>
     /// Pruned is how many stored files were deleted because prune was set and they were absent from the request.
     /// </summary>
-    int32_t getPruned() const;
+    int64_t getPruned() const;
     bool prunedIsSet() const;
     void unsetPruned();
-    void setPruned(int32_t value);
+    void setPruned(int64_t value);
 
     /// <summary>
     /// Repo is the repository that was indexed.
@@ -103,39 +103,39 @@ public:
     /// <summary>
     /// Skipped is how many files were unchanged by content hash and left alone.
     /// </summary>
-    int32_t getSkipped() const;
+    int64_t getSkipped() const;
     bool skippedIsSet() const;
     void unsetSkipped();
-    void setSkipped(int32_t value);
+    void setSkipped(int64_t value);
 
     /// <summary>
     /// Symbols is how many symbol definitions the repo holds after this pass.
     /// </summary>
-    int32_t getSymbols() const;
+    int64_t getSymbols() const;
     bool symbolsIsSet() const;
     void unsetSymbols();
-    void setSymbols(int32_t value);
+    void setSymbols(int64_t value);
 
     /// <summary>
     /// Vectors is how many of those chunks carry an embedding.
     /// </summary>
-    int32_t getVectors() const;
+    int64_t getVectors() const;
     bool vectorsIsSet() const;
     void unsetVectors();
-    void setVectors(int32_t value);
+    void setVectors(int64_t value);
 
 
 protected:
-    int32_t m_Chunks;
+    int64_t m_Chunks;
     bool m_ChunksIsSet;
 
-    int32_t m_Files;
+    int64_t m_Files;
     bool m_FilesIsSet;
 
-    int32_t m_Indexed;
+    int64_t m_Indexed;
     bool m_IndexedIsSet;
 
-    int32_t m_Pruned;
+    int64_t m_Pruned;
     bool m_PrunedIsSet;
 
     utility::string_t m_Repo;
@@ -144,13 +144,13 @@ protected:
     bool m_Semantic;
     bool m_SemanticIsSet;
 
-    int32_t m_Skipped;
+    int64_t m_Skipped;
     bool m_SkippedIsSet;
 
-    int32_t m_Symbols;
+    int64_t m_Symbols;
     bool m_SymbolsIsSet;
 
-    int32_t m_Vectors;
+    int64_t m_Vectors;
     bool m_VectorsIsSet;
 
 };

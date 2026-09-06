@@ -22,7 +22,7 @@ LeaderRow::LeaderRow()
     m_CiHighIsSet = false;
     m_CiLow = 0.0;
     m_CiLowIsSet = false;
-    m_Claims = 0;
+    m_Claims = 0L;
     m_ClaimsIsSet = false;
     m_Gap = 0.0;
     m_GapIsSet = false;
@@ -34,7 +34,7 @@ LeaderRow::LeaderRow()
     m_MeasuredAtIsSet = false;
     m_Model = utility::conversions::to_string_t("");
     m_ModelIsSet = false;
-    m_n = 0;
+    m_n = 0L;
     m_nIsSet = false;
     m_Protocol = utility::conversions::to_string_t("");
     m_ProtocolIsSet = false;
@@ -157,7 +157,7 @@ bool LeaderRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("claims")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setClaims;
+            int64_t refVal_setClaims;
             ok &= ModelBase::fromJson(fieldValue, refVal_setClaims);
             setClaims(refVal_setClaims);
             
@@ -223,7 +223,7 @@ bool LeaderRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("n")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setN;
+            int64_t refVal_setN;
             ok &= ModelBase::fromJson(fieldValue, refVal_setN);
             setN(refVal_setN);
             
@@ -360,7 +360,7 @@ bool LeaderRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("claims"))))
     {
-        int32_t refVal_setClaims;
+        int64_t refVal_setClaims;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("claims"))), refVal_setClaims );
         setClaims(refVal_setClaims);
     }
@@ -396,7 +396,7 @@ bool LeaderRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("n"))))
     {
-        int32_t refVal_setN;
+        int64_t refVal_setN;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("n"))), refVal_setN );
         setN(refVal_setN);
     }
@@ -470,13 +470,13 @@ void LeaderRow::unsetCiLow()
 {
     m_CiLowIsSet = false;
 }
-int32_t LeaderRow::getClaims() const
+int64_t LeaderRow::getClaims() const
 {
     return m_Claims;
 }
 
 
-void LeaderRow::setClaims(int32_t value)
+void LeaderRow::setClaims(int64_t value)
 {
     m_Claims = value;
     m_ClaimsIsSet = true;
@@ -596,13 +596,13 @@ void LeaderRow::unsetModel()
 {
     m_ModelIsSet = false;
 }
-int32_t LeaderRow::getN() const
+int64_t LeaderRow::getN() const
 {
     return m_n;
 }
 
 
-void LeaderRow::setN(int32_t value)
+void LeaderRow::setN(int64_t value)
 {
     m_n = value;
     m_nIsSet = true;

@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// CreatedAt is unix seconds when the filter was saved, server-assigned.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// Event is the analytics event a member must have fired. EMPTY MEANS NO FILTER: the audience is then every mailable customer in the org, and no warehouse is consulted.
@@ -87,22 +87,22 @@ public:
     /// <summary>
     /// UpdatedAt is unix seconds of the last write, server-assigned, and the key the audience list is ordered by (newest first). A saved audience has no update route, so in practice it stays equal to CreatedAt: to change a filter you save another one.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
     /// <summary>
     /// WindowDays is how far back the event counts, ending now. 0 means 30 and nothing above 3650 is honoured. Ignored when Event is empty.
     /// </summary>
-    int32_t getWindowDays() const;
+    int64_t getWindowDays() const;
     bool windowDaysIsSet() const;
     void unsetWindowDays();
-    void setWindowDays(int32_t value);
+    void setWindowDays(int64_t value);
 
 
 protected:
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_Event;
@@ -114,10 +114,10 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
-    int32_t m_WindowDays;
+    int64_t m_WindowDays;
     bool m_WindowDaysIsSet;
 
 };

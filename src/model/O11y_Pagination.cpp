@@ -18,13 +18,13 @@ namespace model {
 
 O11y_Pagination::O11y_Pagination()
 {
-    m_Page = 0;
+    m_Page = 0L;
     m_PageIsSet = false;
-    m_Pages = 0;
+    m_Pages = 0L;
     m_PagesIsSet = false;
-    m_Per_page = 0;
+    m_Per_page = 0L;
     m_Per_pageIsSet = false;
-    m_Total = 0;
+    m_Total = 0L;
     m_TotalIsSet = false;
 }
 
@@ -72,7 +72,7 @@ bool O11y_Pagination::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("page")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPage;
+            int64_t refVal_setPage;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPage);
             setPage(refVal_setPage);
             
@@ -83,7 +83,7 @@ bool O11y_Pagination::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("pages")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPages;
+            int64_t refVal_setPages;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPages);
             setPages(refVal_setPages);
             
@@ -94,7 +94,7 @@ bool O11y_Pagination::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("per_page")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPerPage;
+            int64_t refVal_setPerPage;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPerPage);
             setPerPage(refVal_setPerPage);
             
@@ -105,7 +105,7 @@ bool O11y_Pagination::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("total")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotal;
+            int64_t refVal_setTotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotal);
             setTotal(refVal_setTotal);
             
@@ -150,25 +150,25 @@ bool O11y_Pagination::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("page"))))
     {
-        int32_t refVal_setPage;
+        int64_t refVal_setPage;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("page"))), refVal_setPage );
         setPage(refVal_setPage);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("pages"))))
     {
-        int32_t refVal_setPages;
+        int64_t refVal_setPages;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("pages"))), refVal_setPages );
         setPages(refVal_setPages);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("per_page"))))
     {
-        int32_t refVal_setPerPage;
+        int64_t refVal_setPerPage;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("per_page"))), refVal_setPerPage );
         setPerPage(refVal_setPerPage);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("total"))))
     {
-        int32_t refVal_setTotal;
+        int64_t refVal_setTotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("total"))), refVal_setTotal );
         setTotal(refVal_setTotal);
     }
@@ -176,13 +176,13 @@ bool O11y_Pagination::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 }
 
 
-int32_t O11y_Pagination::getPage() const
+int64_t O11y_Pagination::getPage() const
 {
     return m_Page;
 }
 
 
-void O11y_Pagination::setPage(int32_t value)
+void O11y_Pagination::setPage(int64_t value)
 {
     m_Page = value;
     m_PageIsSet = true;
@@ -197,13 +197,13 @@ void O11y_Pagination::unsetPage()
 {
     m_PageIsSet = false;
 }
-int32_t O11y_Pagination::getPages() const
+int64_t O11y_Pagination::getPages() const
 {
     return m_Pages;
 }
 
 
-void O11y_Pagination::setPages(int32_t value)
+void O11y_Pagination::setPages(int64_t value)
 {
     m_Pages = value;
     m_PagesIsSet = true;
@@ -218,13 +218,13 @@ void O11y_Pagination::unsetPages()
 {
     m_PagesIsSet = false;
 }
-int32_t O11y_Pagination::getPerPage() const
+int64_t O11y_Pagination::getPerPage() const
 {
     return m_Per_page;
 }
 
 
-void O11y_Pagination::setPerPage(int32_t value)
+void O11y_Pagination::setPerPage(int64_t value)
 {
     m_Per_page = value;
     m_Per_pageIsSet = true;
@@ -239,13 +239,13 @@ void O11y_Pagination::unsetPer_page()
 {
     m_Per_pageIsSet = false;
 }
-int32_t O11y_Pagination::getTotal() const
+int64_t O11y_Pagination::getTotal() const
 {
     return m_Total;
 }
 
 
-void O11y_Pagination::setTotal(int32_t value)
+void O11y_Pagination::setTotal(int64_t value)
 {
     m_Total = value;
     m_TotalIsSet = true;

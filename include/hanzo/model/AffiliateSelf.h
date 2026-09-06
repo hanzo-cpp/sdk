@@ -60,10 +60,10 @@ public:
     /// <summary>
     /// AccruedCents is lifetime commission accrued, in cents. It only grows — a payout is recorded against paidCents and never reduces this.
     /// </summary>
-    int32_t getAccruedCents() const;
+    int64_t getAccruedCents() const;
     bool accruedCentsIsSet() const;
     void unsetAccruedCents();
-    void setAccruedCents(int32_t value);
+    void setAccruedCents(int64_t value);
 
     /// <summary>
     /// Code is the minted referral code, the slug the ?aff link carries. Absent until staff approve; codes live in ONE global namespace across all affiliates.
@@ -76,18 +76,18 @@ public:
     /// <summary>
     /// DefaultRateBps is the direct rate a new affiliate starts at, in basis points of margin (2000 &#x3D; 20%). Answered ONLY to a caller that has not applied, as the quote beside &#x60;schedule&#x60;.
     /// </summary>
-    int32_t getDefaultRateBps() const;
+    int64_t getDefaultRateBps() const;
     bool defaultRateBpsIsSet() const;
     void unsetDefaultRateBps();
-    void setDefaultRateBps(int32_t value);
+    void setDefaultRateBps(int64_t value);
 
     /// <summary>
     /// DownlineTotal counts every org in the caller&#39;s downline across the levels.
     /// </summary>
-    int32_t getDownlineTotal() const;
+    int64_t getDownlineTotal() const;
     bool downlineTotalIsSet() const;
     void unsetDownlineTotal();
-    void setDownlineTotal(int32_t value);
+    void setDownlineTotal(int64_t value);
 
     /// <summary>
     /// Handle is the opt-in public leaderboard name. Empty means opted out: the caller keeps its rank and still sees its own row, it is just not listed.
@@ -132,18 +132,18 @@ public:
     /// <summary>
     /// MarginBps is the platform gross-margin fraction, in basis points, that every rate here is a rate OF. Read live per request, so it is the value in force now, not the one that applied to commission already accrued.
     /// </summary>
-    int32_t getMarginBps() const;
+    int64_t getMarginBps() const;
     bool marginBpsIsSet() const;
     void unsetMarginBps();
-    void setMarginBps(int32_t value);
+    void setMarginBps(int64_t value);
 
     /// <summary>
     /// PaidCents is lifetime commission already paid out, in cents — credits grants and record-only cash disbursements alike.
     /// </summary>
-    int32_t getPaidCents() const;
+    int64_t getPaidCents() const;
     bool paidCentsIsSet() const;
     void unsetPaidCents();
-    void setPaidCents(int32_t value);
+    void setPaidCents(int64_t value);
 
     /// <summary>
     /// Payouts is the payout history, newest first, bounded to the last 100 rows.
@@ -156,18 +156,18 @@ public:
     /// <summary>
     /// PendingCents is accrued minus paid, in cents — what the platform still owes and the ceiling on the next payout. Never negative.
     /// </summary>
-    int32_t getPendingCents() const;
+    int64_t getPendingCents() const;
     bool pendingCentsIsSet() const;
     void unsetPendingCents();
-    void setPendingCents(int32_t value);
+    void setPendingCents(int64_t value);
 
     /// <summary>
     /// RateBps is the caller&#39;s OWN direct (level 1) commission rate, in basis points of margin. Levels 2 and 3 are platform-wide and appear in &#x60;levels&#x60;.
     /// </summary>
-    int32_t getRateBps() const;
+    int64_t getRateBps() const;
     bool rateBpsIsSet() const;
     void unsetRateBps();
-    void setRateBps(int32_t value);
+    void setRateBps(int64_t value);
 
     /// <summary>
     /// Schedule is the rate schedule quoted to a caller that has not applied.
@@ -187,16 +187,16 @@ public:
 
 
 protected:
-    int32_t m_AccruedCents;
+    int64_t m_AccruedCents;
     bool m_AccruedCentsIsSet;
 
     utility::string_t m_Code;
     bool m_CodeIsSet;
 
-    int32_t m_DefaultRateBps;
+    int64_t m_DefaultRateBps;
     bool m_DefaultRateBpsIsSet;
 
-    int32_t m_DownlineTotal;
+    int64_t m_DownlineTotal;
     bool m_DownlineTotalIsSet;
 
     utility::string_t m_Handle;
@@ -214,19 +214,19 @@ protected:
     utility::string_t m_Link;
     bool m_LinkIsSet;
 
-    int32_t m_MarginBps;
+    int64_t m_MarginBps;
     bool m_MarginBpsIsSet;
 
-    int32_t m_PaidCents;
+    int64_t m_PaidCents;
     bool m_PaidCentsIsSet;
 
     std::vector<std::shared_ptr<Remittance>> m_Payouts;
     bool m_PayoutsIsSet;
 
-    int32_t m_PendingCents;
+    int64_t m_PendingCents;
     bool m_PendingCentsIsSet;
 
-    int32_t m_RateBps;
+    int64_t m_RateBps;
     bool m_RateBpsIsSet;
 
     std::vector<std::shared_ptr<LevelView>> m_Schedule;

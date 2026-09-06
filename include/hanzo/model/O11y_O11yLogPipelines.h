@@ -100,10 +100,10 @@ public:
     /// <summary>
     /// DeploySequence orders this deployment among the version&#39;s deployments.
     /// </summary>
-    int32_t getDeploySequence() const;
+    int64_t getDeploySequence() const;
     bool deploySequenceIsSet() const;
     void unsetDeploySequence();
-    void setDeploySequence(int32_t value);
+    void setDeploySequence(int64_t value);
 
     /// <summary>
     /// DeployStatus is where the deployment stands, e.g. dirty, deploying, deployed, in_progress, failed, unknown.
@@ -180,10 +180,10 @@ public:
     /// <summary>
     /// Version is the config version number.
     /// </summary>
-    int32_t getVersion() const;
+    int64_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();
-    void setVersion(int32_t value);
+    void setVersion(int64_t value);
 
 
 protected:
@@ -202,7 +202,7 @@ protected:
     utility::string_t m_DeployResult;
     bool m_DeployResultIsSet;
 
-    int32_t m_DeploySequence;
+    int64_t m_DeploySequence;
     bool m_DeploySequenceIsSet;
 
     utility::string_t m_DeployStatus;
@@ -232,7 +232,7 @@ protected:
     utility::string_t m_UpdatedBy;
     bool m_UpdatedByIsSet;
 
-    int32_t m_Version;
+    int64_t m_Version;
     bool m_VersionIsSet;
 
 };

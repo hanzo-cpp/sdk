@@ -20,7 +20,7 @@ O11y_O11yDashboardList::O11y_O11yDashboardList()
 {
     m_DashboardsIsSet = false;
     m_TagsIsSet = false;
-    m_Total = 0;
+    m_Total = 0L;
     m_TotalIsSet = false;
 }
 
@@ -85,7 +85,7 @@ bool O11y_O11yDashboardList::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("total")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotal;
+            int64_t refVal_setTotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotal);
             setTotal(refVal_setTotal);
             
@@ -138,7 +138,7 @@ bool O11y_O11yDashboardList::fromMultiPart(std::shared_ptr<MultipartFormData> mu
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("total"))))
     {
-        int32_t refVal_setTotal;
+        int64_t refVal_setTotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("total"))), refVal_setTotal );
         setTotal(refVal_setTotal);
     }
@@ -188,13 +188,13 @@ void O11y_O11yDashboardList::unsetTags()
 {
     m_TagsIsSet = false;
 }
-int32_t O11y_O11yDashboardList::getTotal() const
+int64_t O11y_O11yDashboardList::getTotal() const
 {
     return m_Total;
 }
 
 
-void O11y_O11yDashboardList::setTotal(int32_t value)
+void O11y_O11yDashboardList::setTotal(int64_t value)
 {
     m_Total = value;
     m_TotalIsSet = true;

@@ -99,10 +99,10 @@ public:
     /// <summary>
     /// AckPending is the number of delivered, not yet acknowledged messages.
     /// </summary>
-    int32_t getNumAckPending() const;
+    int64_t getNumAckPending() const;
     bool numAckPendingIsSet() const;
     void unsetNum_ack_pending();
-    void setNumAckPending(int32_t value);
+    void setNumAckPending(int64_t value);
 
     /// <summary>
     /// Pending is the number of messages yet to be delivered.
@@ -115,18 +115,18 @@ public:
     /// <summary>
     /// Redelivered is the number of messages currently being redelivered.
     /// </summary>
-    int32_t getNumRedelivered() const;
+    int64_t getNumRedelivered() const;
     bool numRedeliveredIsSet() const;
     void unsetNum_redelivered();
-    void setNumRedelivered(int32_t value);
+    void setNumRedelivered(int64_t value);
 
     /// <summary>
     /// Waiting is the number of pull requests waiting for messages.
     /// </summary>
-    int32_t getNumWaiting() const;
+    int64_t getNumWaiting() const;
     bool numWaitingIsSet() const;
     void unsetNum_waiting();
-    void setNumWaiting(int32_t value);
+    void setNumWaiting(int64_t value);
 
     /// <summary>
     /// Stream is the stream this consumer reads.
@@ -153,16 +153,16 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_Num_ack_pending;
+    int64_t m_Num_ack_pending;
     bool m_Num_ack_pendingIsSet;
 
     int32_t m_Num_pending;
     bool m_Num_pendingIsSet;
 
-    int32_t m_Num_redelivered;
+    int64_t m_Num_redelivered;
     bool m_Num_redeliveredIsSet;
 
-    int32_t m_Num_waiting;
+    int64_t m_Num_waiting;
     bool m_Num_waitingIsSet;
 
     utility::string_t m_Stream_name;

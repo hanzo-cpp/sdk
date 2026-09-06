@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// CreatedOn is unix MILLIseconds, which is what the platform stamps.
     /// </summary>
-    int32_t getCreatedOn() const;
+    int64_t getCreatedOn() const;
     bool createdOnIsSet() const;
     void unsetCreatedOn();
-    void setCreatedOn(int32_t value);
+    void setCreatedOn(int64_t value);
 
     /// <summary>
     /// ID is the message document&#39;s own id.
@@ -97,7 +97,7 @@ protected:
     utility::string_t m_Author;
     bool m_AuthorIsSet;
 
-    int32_t m_CreatedOn;
+    int64_t m_CreatedOn;
     bool m_CreatedOnIsSet;
 
     utility::string_t m_Id;

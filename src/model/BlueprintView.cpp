@@ -22,7 +22,7 @@ BlueprintView::BlueprintView()
     m_Brand = utility::conversions::to_string_t("");
     m_BrandIsSet = false;
     m_CountsIsSet = false;
-    m_Version = 0;
+    m_Version = 0L;
     m_VersionIsSet = false;
 }
 
@@ -103,7 +103,7 @@ bool BlueprintView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("version")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVersion;
+            int64_t refVal_setVersion;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVersion);
             setVersion(refVal_setVersion);
             
@@ -166,7 +166,7 @@ bool BlueprintView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("version"))))
     {
-        int32_t refVal_setVersion;
+        int64_t refVal_setVersion;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("version"))), refVal_setVersion );
         setVersion(refVal_setVersion);
     }
@@ -237,13 +237,13 @@ void BlueprintView::unsetCounts()
 {
     m_CountsIsSet = false;
 }
-int32_t BlueprintView::getVersion() const
+int64_t BlueprintView::getVersion() const
 {
     return m_Version;
 }
 
 
-void BlueprintView::setVersion(int32_t value)
+void BlueprintView::setVersion(int64_t value)
 {
     m_Version = value;
     m_VersionIsSet = true;

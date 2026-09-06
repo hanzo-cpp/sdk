@@ -82,18 +82,18 @@ public:
     /// <summary>
     /// Total is how many services the prober currently watches.
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
     /// <summary>
     /// Up is how many services are up right now.
     /// </summary>
-    int32_t getUp() const;
+    int64_t getUp() const;
     bool upIsSet() const;
     void unsetUp();
-    void setUp(int32_t value);
+    void setUp(int64_t value);
 
 
 protected:
@@ -106,10 +106,10 @@ protected:
     std::vector<std::shared_ptr<O11y_serviceUp>> m_Services;
     bool m_ServicesIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
-    int32_t m_Up;
+    int64_t m_Up;
     bool m_UpIsSet;
 
 };

@@ -18,7 +18,7 @@ namespace model {
 
 Stopped::Stopped()
 {
-    m_Stopped = 0;
+    m_Stopped = 0L;
     m_StoppedIsSet = false;
 }
 
@@ -51,7 +51,7 @@ bool Stopped::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("stopped")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStopped;
+            int64_t refVal_setStopped;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStopped);
             setStopped(refVal_setStopped);
             
@@ -84,7 +84,7 @@ bool Stopped::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("stopped"))))
     {
-        int32_t refVal_setStopped;
+        int64_t refVal_setStopped;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("stopped"))), refVal_setStopped );
         setStopped(refVal_setStopped);
     }
@@ -92,13 +92,13 @@ bool Stopped::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
 }
 
 
-int32_t Stopped::getStopped() const
+int64_t Stopped::getStopped() const
 {
     return m_Stopped;
 }
 
 
-void Stopped::setStopped(int32_t value)
+void Stopped::setStopped(int64_t value)
 {
     m_Stopped = value;
     m_StoppedIsSet = true;

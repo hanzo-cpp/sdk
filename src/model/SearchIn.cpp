@@ -19,7 +19,7 @@ namespace model {
 SearchIn::SearchIn()
 {
     m_DoctypesIsSet = false;
-    m_Limit = 0;
+    m_Limit = 0L;
     m_LimitIsSet = false;
     m_Project = utility::conversions::to_string_t("");
     m_ProjectIsSet = false;
@@ -82,7 +82,7 @@ bool SearchIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("limit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLimit;
+            int64_t refVal_setLimit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLimit);
             setLimit(refVal_setLimit);
             
@@ -155,7 +155,7 @@ bool SearchIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("limit"))))
     {
-        int32_t refVal_setLimit;
+        int64_t refVal_setLimit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("limit"))), refVal_setLimit );
         setLimit(refVal_setLimit);
     }
@@ -196,13 +196,13 @@ void SearchIn::unsetDoctypes()
 {
     m_DoctypesIsSet = false;
 }
-int32_t SearchIn::getLimit() const
+int64_t SearchIn::getLimit() const
 {
     return m_Limit;
 }
 
 
-void SearchIn::setLimit(int32_t value)
+void SearchIn::setLimit(int64_t value)
 {
     m_Limit = value;
     m_LimitIsSet = true;

@@ -79,10 +79,10 @@ public:
     /// <summary>
     /// TaskUID identifies the task for a client that polls it. Polling resolves immediately.
     /// </summary>
-    int32_t getTaskUid() const;
+    int64_t getTaskUid() const;
     bool taskUidIsSet() const;
     void unsetTaskUid();
-    void setTaskUid(int32_t value);
+    void setTaskUid(int64_t value);
 
     /// <summary>
     /// Type is the dialect&#39;s name for the kind of write: indexCreation, indexDeletion, settingsUpdate, documentAdditionOrUpdate, documentDeletion.
@@ -103,7 +103,7 @@ protected:
     utility::string_t m_Status;
     bool m_StatusIsSet;
 
-    int32_t m_TaskUid;
+    int64_t m_TaskUid;
     bool m_TaskUidIsSet;
 
     utility::string_t m_Type;

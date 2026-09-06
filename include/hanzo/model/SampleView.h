@@ -63,18 +63,18 @@ public:
     /// <summary>
     /// CostCents is what this unit resold for over the hour the reading falls in, in whole US cents. 0 means UNPRICED, not free: the operator&#39;s own machines — a linked run-target, a dialed-in BYO worker — are metered for utilization and never resold, so only a priced source ever fills it.
     /// </summary>
-    int32_t getCostCents() const;
+    int64_t getCostCents() const;
     bool costCentsIsSet() const;
     void unsetCostCents();
-    void setCostCents(int32_t value);
+    void setCostCents(int64_t value);
 
     /// <summary>
     /// CPUs is logical cores. The static capability rides every row on purpose: a chart can size load against cores without joining a registry whose row may since have been rewritten or the unit deregistered.
     /// </summary>
-    int32_t getCpus() const;
+    int64_t getCpus() const;
     bool cpusIsSet() const;
     void unsetCpus();
-    void setCpus(int32_t value);
+    void setCpus(int64_t value);
 
     /// <summary>
     /// GPUModel names the representative accelerator (\&quot;GB10\&quot;); GPUs carries how many.
@@ -95,10 +95,10 @@ public:
     /// <summary>
     /// GPUs is how many accelerators the reading covers.
     /// </summary>
-    int32_t getGpus() const;
+    int64_t getGpus() const;
     bool gpusIsSet() const;
     void unsetGpus();
-    void setGpus(int32_t value);
+    void setGpus(int64_t value);
 
     /// <summary>
     /// Host is the hostname the unit reported at the time of the reading.
@@ -125,14 +125,6 @@ public:
     void setLoad1(double value);
 
     /// <summary>
-    /// Load5 is the 5-minute load average, the same units as Load1.
-    /// </summary>
-    double getLoad5() const;
-    bool load5IsSet() const;
-    void unsetLoad5();
-    void setLoad5(double value);
-
-    /// <summary>
     /// Load15 is the 15-minute load average, the same units as Load1.
     /// </summary>
     double getLoad15() const;
@@ -141,28 +133,36 @@ public:
     void setLoad15(double value);
 
     /// <summary>
+    /// Load5 is the 5-minute load average, the same units as Load1.
+    /// </summary>
+    double getLoad5() const;
+    bool load5IsSet() const;
+    void unsetLoad5();
+    void setLoad5(double value);
+
+    /// <summary>
     /// MemFree is host memory available, in BYTES, as reported rather than derived.
     /// </summary>
-    int32_t getMemFree() const;
+    int64_t getMemFree() const;
     bool memFreeIsSet() const;
     void unsetMemFree();
-    void setMemFree(int32_t value);
+    void setMemFree(int64_t value);
 
     /// <summary>
     /// MemUsed is host memory in use, in BYTES.
     /// </summary>
-    int32_t getMemUsed() const;
+    int64_t getMemUsed() const;
     bool memUsedIsSet() const;
     void unsetMemUsed();
-    void setMemUsed(int32_t value);
+    void setMemUsed(int64_t value);
 
     /// <summary>
     /// Memory is total system RAM in BYTES at the time of the reading.
     /// </summary>
-    int32_t getMemory() const;
+    int64_t getMemory() const;
     bool memoryIsSet() const;
     void unsetMemory();
-    void setMemory(int32_t value);
+    void setMemory(int64_t value);
 
     /// <summary>
     /// Source is the plane that reported the reading: \&quot;agent\&quot;, \&quot;byo\&quot; or \&quot;visor\&quot; — the same vocabulary the board&#39;s rows carry, and what ?source&#x3D; narrows on.
@@ -185,10 +185,10 @@ protected:
     utility::string_t m_At;
     bool m_AtIsSet;
 
-    int32_t m_CostCents;
+    int64_t m_CostCents;
     bool m_CostCentsIsSet;
 
-    int32_t m_Cpus;
+    int64_t m_Cpus;
     bool m_CpusIsSet;
 
     utility::string_t m_GpuModel;
@@ -197,7 +197,7 @@ protected:
     double m_GpuUtil;
     bool m_GpuUtilIsSet;
 
-    int32_t m_Gpus;
+    int64_t m_Gpus;
     bool m_GpusIsSet;
 
     utility::string_t m_Host;
@@ -209,19 +209,19 @@ protected:
     double m_Load1;
     bool m_Load1IsSet;
 
-    double m_Load5;
-    bool m_Load5IsSet;
-
     double m_Load15;
     bool m_Load15IsSet;
 
-    int32_t m_MemFree;
+    double m_Load5;
+    bool m_Load5IsSet;
+
+    int64_t m_MemFree;
     bool m_MemFreeIsSet;
 
-    int32_t m_MemUsed;
+    int64_t m_MemUsed;
     bool m_MemUsedIsSet;
 
-    int32_t m_Memory;
+    int64_t m_Memory;
     bool m_MemoryIsSet;
 
     utility::string_t m_Source;

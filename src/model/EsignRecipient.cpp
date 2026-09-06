@@ -32,7 +32,7 @@ EsignRecipient::EsignRecipient()
     m_RoleIsSet = false;
     m_SendStatus = utility::conversions::to_string_t("");
     m_SendStatusIsSet = false;
-    m_SignedAt = 0;
+    m_SignedAt = 0L;
     m_SignedAtIsSet = false;
     m_SigningOrder = 0.0;
     m_SigningOrderIsSet = false;
@@ -191,7 +191,7 @@ bool EsignRecipient::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("signedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSignedAt;
+            int64_t refVal_setSignedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSignedAt);
             setSignedAt(refVal_setSignedAt);
             
@@ -324,7 +324,7 @@ bool EsignRecipient::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("signedAt"))))
     {
-        int32_t refVal_setSignedAt;
+        int64_t refVal_setSignedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("signedAt"))), refVal_setSignedAt );
         setSignedAt(refVal_setSignedAt);
     }
@@ -491,13 +491,13 @@ void EsignRecipient::unsetSendStatus()
 {
     m_SendStatusIsSet = false;
 }
-int32_t EsignRecipient::getSignedAt() const
+int64_t EsignRecipient::getSignedAt() const
 {
     return m_SignedAt;
 }
 
 
-void EsignRecipient::setSignedAt(int32_t value)
+void EsignRecipient::setSignedAt(int64_t value)
 {
     m_SignedAt = value;
     m_SignedAtIsSet = true;

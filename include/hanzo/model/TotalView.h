@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// CostCents is the period&#39;s spend in cents, in the row&#39;s own ledger.
     /// </summary>
-    int32_t getCostCents() const;
+    int64_t getCostCents() const;
     bool costCentsIsSet() const;
     void unsetCostCents();
-    void setCostCents(int32_t value);
+    void setCostCents(int64_t value);
 
     /// <summary>
     /// Provider is the provider the row totals.
@@ -79,10 +79,10 @@ public:
     /// <summary>
     /// Requests is the period&#39;s request count.
     /// </summary>
-    int32_t getRequests() const;
+    int64_t getRequests() const;
     bool requestsIsSet() const;
     void unsetRequests();
-    void setRequests(int32_t value);
+    void setRequests(int64_t value);
 
     /// <summary>
     /// Scope is whose usage the row measures: user or org.
@@ -103,10 +103,10 @@ public:
     /// <summary>
     /// Tokens is the period&#39;s total token count.
     /// </summary>
-    int32_t getTokens() const;
+    int64_t getTokens() const;
     bool tokensIsSet() const;
     void unsetTokens();
-    void setTokens(int32_t value);
+    void setTokens(int64_t value);
 
     /// <summary>
     /// UsedPct is the plan consumption percentage, on the account side.
@@ -127,23 +127,23 @@ public:
     /// <summary>
     /// Windows is how many window instances the row folds.
     /// </summary>
-    int32_t getWindows() const;
+    int64_t getWindows() const;
     bool windowsIsSet() const;
     void unsetWindows();
-    void setWindows(int32_t value);
+    void setWindows(int64_t value);
 
 
 protected:
     utility::string_t m_Confidence;
     bool m_ConfidenceIsSet;
 
-    int32_t m_CostCents;
+    int64_t m_CostCents;
     bool m_CostCentsIsSet;
 
     utility::string_t m_Provider;
     bool m_ProviderIsSet;
 
-    int32_t m_Requests;
+    int64_t m_Requests;
     bool m_RequestsIsSet;
 
     utility::string_t m_Scope;
@@ -152,7 +152,7 @@ protected:
     utility::string_t m_Source;
     bool m_SourceIsSet;
 
-    int32_t m_Tokens;
+    int64_t m_Tokens;
     bool m_TokensIsSet;
 
     double m_UsedPct;
@@ -161,7 +161,7 @@ protected:
     utility::string_t m_Window;
     bool m_WindowIsSet;
 
-    int32_t m_Windows;
+    int64_t m_Windows;
     bool m_WindowsIsSet;
 
 };

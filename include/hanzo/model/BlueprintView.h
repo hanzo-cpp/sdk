@@ -83,10 +83,10 @@ public:
     /// <summary>
     /// Version is the active stored version number (1 is the seed). Each edit appends a new one; nothing is ever overwritten.
     /// </summary>
-    int32_t getVersion() const;
+    int64_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();
-    void setVersion(int32_t value);
+    void setVersion(int64_t value);
 
 
 protected:
@@ -99,7 +99,7 @@ protected:
     std::shared_ptr<BlueprintCounts> m_Counts;
     bool m_CountsIsSet;
 
-    int32_t m_Version;
+    int64_t m_Version;
     bool m_VersionIsSet;
 
 };

@@ -21,9 +21,9 @@ SeoCompetitorIn::SeoCompetitorIn()
     m_KeywordsIsSet = false;
     m_Language = utility::conversions::to_string_t("");
     m_LanguageIsSet = false;
-    m_Limit = 0;
+    m_Limit = 0L;
     m_LimitIsSet = false;
-    m_Location = 0;
+    m_Location = 0L;
     m_LocationIsSet = false;
 }
 
@@ -93,7 +93,7 @@ bool SeoCompetitorIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("limit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLimit;
+            int64_t refVal_setLimit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLimit);
             setLimit(refVal_setLimit);
             
@@ -104,7 +104,7 @@ bool SeoCompetitorIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("location")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLocation;
+            int64_t refVal_setLocation;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLocation);
             setLocation(refVal_setLocation);
             
@@ -161,13 +161,13 @@ bool SeoCompetitorIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("limit"))))
     {
-        int32_t refVal_setLimit;
+        int64_t refVal_setLimit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("limit"))), refVal_setLimit );
         setLimit(refVal_setLimit);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("location"))))
     {
-        int32_t refVal_setLocation;
+        int64_t refVal_setLocation;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("location"))), refVal_setLocation );
         setLocation(refVal_setLocation);
     }
@@ -217,13 +217,13 @@ void SeoCompetitorIn::unsetLanguage()
 {
     m_LanguageIsSet = false;
 }
-int32_t SeoCompetitorIn::getLimit() const
+int64_t SeoCompetitorIn::getLimit() const
 {
     return m_Limit;
 }
 
 
-void SeoCompetitorIn::setLimit(int32_t value)
+void SeoCompetitorIn::setLimit(int64_t value)
 {
     m_Limit = value;
     m_LimitIsSet = true;
@@ -238,13 +238,13 @@ void SeoCompetitorIn::unsetLimit()
 {
     m_LimitIsSet = false;
 }
-int32_t SeoCompetitorIn::getLocation() const
+int64_t SeoCompetitorIn::getLocation() const
 {
     return m_Location;
 }
 
 
-void SeoCompetitorIn::setLocation(int32_t value)
+void SeoCompetitorIn::setLocation(int64_t value)
 {
     m_Location = value;
     m_LocationIsSet = true;

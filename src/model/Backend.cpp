@@ -20,7 +20,7 @@ Backend::Backend()
 {
     m_Url = utility::conversions::to_string_t("");
     m_UrlIsSet = false;
-    m_Weight = 0;
+    m_Weight = 0L;
     m_WeightIsSet = false;
 }
 
@@ -69,7 +69,7 @@ bool Backend::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("weight")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setWeight;
+            int64_t refVal_setWeight;
             ok &= ModelBase::fromJson(fieldValue, refVal_setWeight);
             setWeight(refVal_setWeight);
             
@@ -112,7 +112,7 @@ bool Backend::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("weight"))))
     {
-        int32_t refVal_setWeight;
+        int64_t refVal_setWeight;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("weight"))), refVal_setWeight );
         setWeight(refVal_setWeight);
     }
@@ -141,13 +141,13 @@ void Backend::unsetUrl()
 {
     m_UrlIsSet = false;
 }
-int32_t Backend::getWeight() const
+int64_t Backend::getWeight() const
 {
     return m_Weight;
 }
 
 
-void Backend::setWeight(int32_t value)
+void Backend::setWeight(int64_t value)
 {
     m_Weight = value;
     m_WeightIsSet = true;

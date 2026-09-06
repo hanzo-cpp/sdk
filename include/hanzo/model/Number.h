@@ -96,10 +96,10 @@ public:
     /// <summary>
     /// Monthly is the recurring rental in the MINOR unit of Currency (cents for USD), exactly as the carrier quoted it. It is a price, not a charge: nothing is billed by this field.
     /// </summary>
-    int32_t getMonthly() const;
+    int64_t getMonthly() const;
     bool monthlyIsSet() const;
     void unsetMonthly();
-    void setMonthly(int32_t value);
+    void setMonthly(int64_t value);
 
     /// <summary>
     /// Org is the tenant holding the number. A search result carries none — nobody holds it yet — which is how an available number is told from a held one.
@@ -134,7 +134,7 @@ protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
 
-    int32_t m_Monthly;
+    int64_t m_Monthly;
     bool m_MonthlyIsSet;
 
     utility::string_t m_Org;

@@ -20,11 +20,11 @@ ProjectsRelease::ProjectsRelease()
 {
     m_Active = false;
     m_ActiveIsSet = false;
-    m_Bytes = 0;
+    m_Bytes = 0L;
     m_BytesIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
-    m_Objects = 0;
+    m_Objects = 0L;
     m_ObjectsIsSet = false;
     m_ReleaseId = utility::conversions::to_string_t("");
     m_ReleaseIdIsSet = false;
@@ -111,7 +111,7 @@ bool ProjectsRelease::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("bytes")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBytes;
+            int64_t refVal_setBytes;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBytes);
             setBytes(refVal_setBytes);
             
@@ -122,7 +122,7 @@ bool ProjectsRelease::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -133,7 +133,7 @@ bool ProjectsRelease::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("objects")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setObjects;
+            int64_t refVal_setObjects;
             ok &= ModelBase::fromJson(fieldValue, refVal_setObjects);
             setObjects(refVal_setObjects);
             
@@ -244,19 +244,19 @@ bool ProjectsRelease::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("bytes"))))
     {
-        int32_t refVal_setBytes;
+        int64_t refVal_setBytes;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("bytes"))), refVal_setBytes );
         setBytes(refVal_setBytes);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("objects"))))
     {
-        int32_t refVal_setObjects;
+        int64_t refVal_setObjects;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("objects"))), refVal_setObjects );
         setObjects(refVal_setObjects);
     }
@@ -309,13 +309,13 @@ void ProjectsRelease::unsetActive()
 {
     m_ActiveIsSet = false;
 }
-int32_t ProjectsRelease::getBytes() const
+int64_t ProjectsRelease::getBytes() const
 {
     return m_Bytes;
 }
 
 
-void ProjectsRelease::setBytes(int32_t value)
+void ProjectsRelease::setBytes(int64_t value)
 {
     m_Bytes = value;
     m_BytesIsSet = true;
@@ -330,13 +330,13 @@ void ProjectsRelease::unsetBytes()
 {
     m_BytesIsSet = false;
 }
-int32_t ProjectsRelease::getCreatedAt() const
+int64_t ProjectsRelease::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void ProjectsRelease::setCreatedAt(int32_t value)
+void ProjectsRelease::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -351,13 +351,13 @@ void ProjectsRelease::unsetCreatedAt()
 {
     m_CreatedAtIsSet = false;
 }
-int32_t ProjectsRelease::getObjects() const
+int64_t ProjectsRelease::getObjects() const
 {
     return m_Objects;
 }
 
 
-void ProjectsRelease::setObjects(int32_t value)
+void ProjectsRelease::setObjects(int64_t value)
 {
     m_Objects = value;
     m_ObjectsIsSet = true;

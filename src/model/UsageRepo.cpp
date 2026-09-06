@@ -22,7 +22,7 @@ UsageRepo::UsageRepo()
     m_NameIsSet = false;
     m_Project = utility::conversions::to_string_t("");
     m_ProjectIsSet = false;
-    m_SizeBytes = 0;
+    m_SizeBytes = 0L;
     m_SizeBytesIsSet = false;
 }
 
@@ -87,7 +87,7 @@ bool UsageRepo::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("sizeBytes")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSizeBytes;
+            int64_t refVal_setSizeBytes;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSizeBytes);
             setSizeBytes(refVal_setSizeBytes);
             
@@ -140,7 +140,7 @@ bool UsageRepo::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("sizeBytes"))))
     {
-        int32_t refVal_setSizeBytes;
+        int64_t refVal_setSizeBytes;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("sizeBytes"))), refVal_setSizeBytes );
         setSizeBytes(refVal_setSizeBytes);
     }
@@ -190,13 +190,13 @@ void UsageRepo::unsetProject()
 {
     m_ProjectIsSet = false;
 }
-int32_t UsageRepo::getSizeBytes() const
+int64_t UsageRepo::getSizeBytes() const
 {
     return m_SizeBytes;
 }
 
 
-void UsageRepo::setSizeBytes(int32_t value)
+void UsageRepo::setSizeBytes(int64_t value)
 {
     m_SizeBytes = value;
     m_SizeBytesIsSet = true;

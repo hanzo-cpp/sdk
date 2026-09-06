@@ -55,10 +55,10 @@ public:
     /// Transactions members
 
 
-    int32_t getCount() const;
+    int64_t getCount() const;
     bool countIsSet() const;
     void unsetCount();
-    void setCount(int32_t value);
+    void setCount(int64_t value);
 
     std::vector<std::shared_ptr<Transaction>> getTransactions() const;
     bool transactionsIsSet() const;
@@ -72,7 +72,7 @@ public:
 
 
 protected:
-    int32_t m_Count;
+    int64_t m_Count;
     bool m_CountIsSet;
 
     std::vector<std::shared_ptr<Transaction>> m_Transactions;

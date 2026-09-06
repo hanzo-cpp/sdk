@@ -60,18 +60,18 @@ public:
     /// <summary>
     /// Declared is how many objects the rendered source declares — the denominator the three outcome counts below are read against. Zero means the render produced nothing, which trips the prune fuse rather than sweeping the fleet.
     /// </summary>
-    int32_t getDeclared() const;
+    int64_t getDeclared() const;
     bool declaredIsSet() const;
     void unsetDeclared();
-    void setDeclared(int32_t value);
+    void setDeclared(int64_t value);
 
     /// <summary>
     /// Failed is how many objects the apply could not reconcile. Non-zero is a PARTIAL run reported at 200: the engine applied what it could and each failure names itself in Results, so a caller reads this number rather than the status code to learn whether the fleet matches the source.
     /// </summary>
-    int32_t getFailed() const;
+    int64_t getFailed() const;
     bool failedIsSet() const;
     void unsetFailed();
-    void setFailed(int32_t value);
+    void setFailed(int64_t value);
 
     /// <summary>
     /// Instance is the tracking id this run stamps on everything it manages, so a later run can tell the objects it owns from objects another instance declares. DEPLOY_ENGINE_INSTANCE names it; the default is &#x60;universe&#x60;.
@@ -92,10 +92,10 @@ public:
     /// <summary>
     /// Pruned is how many live objects this run DELETED because the source no longer declares them. Always 0 when Prune is false.
     /// </summary>
-    int32_t getPruned() const;
+    int64_t getPruned() const;
     bool prunedIsSet() const;
     void unsetPruned();
-    void setPruned(int32_t value);
+    void setPruned(int64_t value);
 
     /// <summary>
     /// Results is one entry per object the run acted on, in the order the engine applied them. Empty (never null) when the run reconciled nothing.
@@ -124,17 +124,17 @@ public:
     /// <summary>
     /// Synced is how many objects the run applied successfully.
     /// </summary>
-    int32_t getSynced() const;
+    int64_t getSynced() const;
     bool syncedIsSet() const;
     void unsetSynced();
-    void setSynced(int32_t value);
+    void setSynced(int64_t value);
 
 
 protected:
-    int32_t m_Declared;
+    int64_t m_Declared;
     bool m_DeclaredIsSet;
 
-    int32_t m_Failed;
+    int64_t m_Failed;
     bool m_FailedIsSet;
 
     utility::string_t m_Instance;
@@ -143,7 +143,7 @@ protected:
     bool m_Prune;
     bool m_PruneIsSet;
 
-    int32_t m_Pruned;
+    int64_t m_Pruned;
     bool m_PrunedIsSet;
 
     std::vector<std::shared_ptr<AppliedResource>> m_Results;
@@ -155,7 +155,7 @@ protected:
     std::shared_ptr<ReconcileSource> m_Source;
     bool m_SourceIsSet;
 
-    int32_t m_Synced;
+    int64_t m_Synced;
     bool m_SyncedIsSet;
 
 };

@@ -24,7 +24,7 @@ IssueEdit::IssueEdit()
     m_DescriptionIsSet = false;
     m_Key = utility::conversions::to_string_t("");
     m_KeyIsSet = false;
-    m_Num = 0;
+    m_Num = 0L;
     m_NumIsSet = false;
     m_Priority = utility::conversions::to_string_t("");
     m_PriorityIsSet = false;
@@ -126,7 +126,7 @@ bool IssueEdit::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("num")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNum;
+            int64_t refVal_setNum;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNum);
             setNum(refVal_setNum);
             
@@ -234,7 +234,7 @@ bool IssueEdit::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("num"))))
     {
-        int32_t refVal_setNum;
+        int64_t refVal_setNum;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("num"))), refVal_setNum );
         setNum(refVal_setNum);
     }
@@ -323,13 +323,13 @@ void IssueEdit::unsetKey()
 {
     m_KeyIsSet = false;
 }
-int32_t IssueEdit::getNum() const
+int64_t IssueEdit::getNum() const
 {
     return m_Num;
 }
 
 
-void IssueEdit::setNum(int32_t value)
+void IssueEdit::setNum(int64_t value)
 {
     m_Num = value;
     m_NumIsSet = true;

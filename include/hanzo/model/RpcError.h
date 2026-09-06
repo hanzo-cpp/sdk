@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// Code is the JSON-RPC error code the chain reported, passed through as it came. -32603 (internal error) is the one value this deployment mints itself, for an upstream that could not be reached at all.
     /// </summary>
-    int32_t getCode() const;
+    int64_t getCode() const;
     bool codeIsSet() const;
     void unsetCode();
-    void setCode(int32_t value);
+    void setCode(int64_t value);
 
     /// <summary>
     /// Message is the chain&#39;s own explanation, e.g. \&quot;execution reverted\&quot;. It is \&quot;upstream unavailable\&quot; when the deployment minted the error rather than the chain — that is the one message this side writes.
@@ -70,7 +70,7 @@ public:
 
 
 protected:
-    int32_t m_Code;
+    int64_t m_Code;
     bool m_CodeIsSet;
 
     utility::string_t m_Message;

@@ -18,18 +18,18 @@ namespace model {
 
 ControlList::ControlList()
 {
-    m_Absent = 0;
+    m_Absent = 0L;
     m_AbsentIsSet = false;
-    m_Automated = 0;
+    m_Automated = 0L;
     m_AutomatedIsSet = false;
     m_ControlsIsSet = false;
-    m_Partial = 0;
+    m_Partial = 0L;
     m_PartialIsSet = false;
     m_Statement = utility::conversions::to_string_t("");
     m_StatementIsSet = false;
-    m_Total = 0;
+    m_Total = 0L;
     m_TotalIsSet = false;
-    m_Unverified = 0;
+    m_Unverified = 0L;
     m_UnverifiedIsSet = false;
     m_Version = utility::conversions::to_string_t("");
     m_VersionIsSet = false;
@@ -99,7 +99,7 @@ bool ControlList::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("absent")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAbsent;
+            int64_t refVal_setAbsent;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAbsent);
             setAbsent(refVal_setAbsent);
             
@@ -110,7 +110,7 @@ bool ControlList::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("automated")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAutomated;
+            int64_t refVal_setAutomated;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAutomated);
             setAutomated(refVal_setAutomated);
             
@@ -132,7 +132,7 @@ bool ControlList::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("partial")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPartial;
+            int64_t refVal_setPartial;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPartial);
             setPartial(refVal_setPartial);
             
@@ -154,7 +154,7 @@ bool ControlList::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("total")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotal;
+            int64_t refVal_setTotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotal);
             setTotal(refVal_setTotal);
             
@@ -165,7 +165,7 @@ bool ControlList::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("unverified")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUnverified;
+            int64_t refVal_setUnverified;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUnverified);
             setUnverified(refVal_setUnverified);
             
@@ -237,13 +237,13 @@ bool ControlList::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("absent"))))
     {
-        int32_t refVal_setAbsent;
+        int64_t refVal_setAbsent;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("absent"))), refVal_setAbsent );
         setAbsent(refVal_setAbsent);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("automated"))))
     {
-        int32_t refVal_setAutomated;
+        int64_t refVal_setAutomated;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("automated"))), refVal_setAutomated );
         setAutomated(refVal_setAutomated);
     }
@@ -255,7 +255,7 @@ bool ControlList::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("partial"))))
     {
-        int32_t refVal_setPartial;
+        int64_t refVal_setPartial;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("partial"))), refVal_setPartial );
         setPartial(refVal_setPartial);
     }
@@ -267,13 +267,13 @@ bool ControlList::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("total"))))
     {
-        int32_t refVal_setTotal;
+        int64_t refVal_setTotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("total"))), refVal_setTotal );
         setTotal(refVal_setTotal);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("unverified"))))
     {
-        int32_t refVal_setUnverified;
+        int64_t refVal_setUnverified;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("unverified"))), refVal_setUnverified );
         setUnverified(refVal_setUnverified);
     }
@@ -287,13 +287,13 @@ bool ControlList::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 }
 
 
-int32_t ControlList::getAbsent() const
+int64_t ControlList::getAbsent() const
 {
     return m_Absent;
 }
 
 
-void ControlList::setAbsent(int32_t value)
+void ControlList::setAbsent(int64_t value)
 {
     m_Absent = value;
     m_AbsentIsSet = true;
@@ -308,13 +308,13 @@ void ControlList::unsetAbsent()
 {
     m_AbsentIsSet = false;
 }
-int32_t ControlList::getAutomated() const
+int64_t ControlList::getAutomated() const
 {
     return m_Automated;
 }
 
 
-void ControlList::setAutomated(int32_t value)
+void ControlList::setAutomated(int64_t value)
 {
     m_Automated = value;
     m_AutomatedIsSet = true;
@@ -350,13 +350,13 @@ void ControlList::unsetControls()
 {
     m_ControlsIsSet = false;
 }
-int32_t ControlList::getPartial() const
+int64_t ControlList::getPartial() const
 {
     return m_Partial;
 }
 
 
-void ControlList::setPartial(int32_t value)
+void ControlList::setPartial(int64_t value)
 {
     m_Partial = value;
     m_PartialIsSet = true;
@@ -392,13 +392,13 @@ void ControlList::unsetStatement()
 {
     m_StatementIsSet = false;
 }
-int32_t ControlList::getTotal() const
+int64_t ControlList::getTotal() const
 {
     return m_Total;
 }
 
 
-void ControlList::setTotal(int32_t value)
+void ControlList::setTotal(int64_t value)
 {
     m_Total = value;
     m_TotalIsSet = true;
@@ -413,13 +413,13 @@ void ControlList::unsetTotal()
 {
     m_TotalIsSet = false;
 }
-int32_t ControlList::getUnverified() const
+int64_t ControlList::getUnverified() const
 {
     return m_Unverified;
 }
 
 
-void ControlList::setUnverified(int32_t value)
+void ControlList::setUnverified(int64_t value)
 {
     m_Unverified = value;
     m_UnverifiedIsSet = true;

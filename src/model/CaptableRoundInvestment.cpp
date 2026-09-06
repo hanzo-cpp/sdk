@@ -26,7 +26,7 @@ CaptableRoundInvestment::CaptableRoundInvestment()
     m_dateIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
-    m_Shares = 0;
+    m_Shares = 0L;
     m_SharesIsSet = false;
     m_StakeholderId = utility::conversions::to_string_t("");
     m_StakeholderIdIsSet = false;
@@ -137,7 +137,7 @@ bool CaptableRoundInvestment::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("shares")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setShares;
+            int64_t refVal_setShares;
             ok &= ModelBase::fromJson(fieldValue, refVal_setShares);
             setShares(refVal_setShares);
             
@@ -240,7 +240,7 @@ bool CaptableRoundInvestment::fromMultiPart(std::shared_ptr<MultipartFormData> m
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("shares"))))
     {
-        int32_t refVal_setShares;
+        int64_t refVal_setShares;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("shares"))), refVal_setShares );
         setShares(refVal_setShares);
     }
@@ -344,13 +344,13 @@ void CaptableRoundInvestment::unsetId()
 {
     m_IdIsSet = false;
 }
-int32_t CaptableRoundInvestment::getShares() const
+int64_t CaptableRoundInvestment::getShares() const
 {
     return m_Shares;
 }
 
 
-void CaptableRoundInvestment::setShares(int32_t value)
+void CaptableRoundInvestment::setShares(int64_t value)
 {
     m_Shares = value;
     m_SharesIsSet = true;

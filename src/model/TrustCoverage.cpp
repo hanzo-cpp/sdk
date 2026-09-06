@@ -20,7 +20,7 @@ TrustCoverage::TrustCoverage()
 {
     m_ControlsIsSet = false;
     m_FrameworksIsSet = false;
-    m_Generated = 0;
+    m_Generated = 0L;
     m_GeneratedIsSet = false;
     m_Version = utility::conversions::to_string_t("");
     m_VersionIsSet = false;
@@ -92,7 +92,7 @@ bool TrustCoverage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("generated")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setGenerated;
+            int64_t refVal_setGenerated;
             ok &= ModelBase::fromJson(fieldValue, refVal_setGenerated);
             setGenerated(refVal_setGenerated);
             
@@ -160,7 +160,7 @@ bool TrustCoverage::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("generated"))))
     {
-        int32_t refVal_setGenerated;
+        int64_t refVal_setGenerated;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("generated"))), refVal_setGenerated );
         setGenerated(refVal_setGenerated);
     }
@@ -216,13 +216,13 @@ void TrustCoverage::unsetFrameworks()
 {
     m_FrameworksIsSet = false;
 }
-int32_t TrustCoverage::getGenerated() const
+int64_t TrustCoverage::getGenerated() const
 {
     return m_Generated;
 }
 
 
-void TrustCoverage::setGenerated(int32_t value)
+void TrustCoverage::setGenerated(int64_t value)
 {
     m_Generated = value;
     m_GeneratedIsSet = true;

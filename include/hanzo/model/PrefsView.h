@@ -60,16 +60,16 @@ public:
     /// <summary>
     /// UpdatedAt is when the document was last written, unix seconds. Absent when nothing has been saved.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
 
 protected:
     boost::optional<std::shared_ptr<AnyType>> m_Prefs;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
 };

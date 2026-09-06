@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// CreatedAt is when the share was opened, unix seconds.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// Token is the share&#39;s own identifier, the leaf of its public URL.
@@ -100,7 +100,7 @@ protected:
     utility::string_t m_BackendMode;
     bool m_BackendModeIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_Token;

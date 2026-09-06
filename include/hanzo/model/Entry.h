@@ -159,10 +159,10 @@ public:
     /// <summary>
     /// Stars is GitHub&#39;s stargazer count for the source repository, read at the last sync and never accumulated here. It is not a ranking — the page sorts on Updated — but it is the tiebreak when two orgs claim one ID. Absent for a site with no repository behind it, and for a repository nobody has starred.
     /// </summary>
-    int32_t getStars() const;
+    int64_t getStars() const;
     bool starsIsSet() const;
     void unsetStars();
-    void setStars(int32_t value);
+    void setStars(int64_t value);
 
     /// <summary>
     /// lineage, if forked from one
@@ -245,7 +245,7 @@ protected:
     utility::string_t m_Scope;
     bool m_ScopeIsSet;
 
-    int32_t m_Stars;
+    int64_t m_Stars;
     bool m_StarsIsSet;
 
     utility::string_t m_r_template;

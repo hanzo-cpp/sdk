@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// CreatedAt is when the run was recorded, as Unix seconds. The ledger is read newest-first on this column.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// Err is why the run failed, when it did. Empty on a successful run.
@@ -121,7 +121,7 @@ protected:
     utility::string_t m_Args;
     bool m_ArgsIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_Err;

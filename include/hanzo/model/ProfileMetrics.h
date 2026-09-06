@@ -74,18 +74,18 @@ public:
     /// <summary>
     /// Records is how many business records the org holds — the volume that tells a real book of customers from an empty account. It feeds the &#x60;customers&#x60; signal, which crosses at a threshold rather than at one row.
     /// </summary>
-    int32_t getRecords() const;
+    int64_t getRecords() const;
     bool recordsIsSet() const;
     void unsetRecords();
-    void setRecords(int32_t value);
+    void setRecords(int64_t value);
 
     /// <summary>
     /// RevenueCents is the org&#39;s money OF RECORD — what its books say, in whole cents, never a float and never a display string. This is the number the scaling stage is decided on; funnel.revenue is the beacon&#39;s separate, unreconciled view of the same business. Zero when the org has none, and also zero when the books could not be read, which is why the &#x60;revenue&#x60; signal beside it is the thing to trust.
     /// </summary>
-    int32_t getRevenueCents() const;
+    int64_t getRevenueCents() const;
     bool revenueCentsIsSet() const;
     void unsetRevenueCents();
-    void setRevenueCents(int32_t value);
+    void setRevenueCents(int64_t value);
 
 
 protected:
@@ -95,10 +95,10 @@ protected:
     std::shared_ptr<ProgressView> m_LaunchProgress;
     bool m_LaunchProgressIsSet;
 
-    int32_t m_Records;
+    int64_t m_Records;
     bool m_RecordsIsSet;
 
-    int32_t m_RevenueCents;
+    int64_t m_RevenueCents;
     bool m_RevenueCentsIsSet;
 
 };

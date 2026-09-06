@@ -22,7 +22,7 @@ Rule::Rule()
     m_CategoryIsSet = false;
     m_Pattern = utility::conversions::to_string_t("");
     m_PatternIsSet = false;
-    m_Priority = 0;
+    m_Priority = 0L;
     m_PriorityIsSet = false;
 }
 
@@ -87,7 +87,7 @@ bool Rule::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("priority")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPriority;
+            int64_t refVal_setPriority;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPriority);
             setPriority(refVal_setPriority);
             
@@ -140,7 +140,7 @@ bool Rule::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("priority"))))
     {
-        int32_t refVal_setPriority;
+        int64_t refVal_setPriority;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("priority"))), refVal_setPriority );
         setPriority(refVal_setPriority);
     }
@@ -190,13 +190,13 @@ void Rule::unsetPattern()
 {
     m_PatternIsSet = false;
 }
-int32_t Rule::getPriority() const
+int64_t Rule::getPriority() const
 {
     return m_Priority;
 }
 
 
-void Rule::setPriority(int32_t value)
+void Rule::setPriority(int64_t value)
 {
     m_Priority = value;
     m_PriorityIsSet = true;

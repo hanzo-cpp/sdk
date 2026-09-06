@@ -20,7 +20,7 @@ GraphNeighborsIn::GraphNeighborsIn()
 {
     m_As_of = utility::conversions::to_string_t("");
     m_As_ofIsSet = false;
-    m_Depth = 0;
+    m_Depth = 0L;
     m_DepthIsSet = false;
     m_Direction = utility::conversions::to_string_t("");
     m_DirectionIsSet = false;
@@ -89,7 +89,7 @@ bool GraphNeighborsIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("depth")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDepth;
+            int64_t refVal_setDepth;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDepth);
             setDepth(refVal_setDepth);
             
@@ -177,7 +177,7 @@ bool GraphNeighborsIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("depth"))))
     {
-        int32_t refVal_setDepth;
+        int64_t refVal_setDepth;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("depth"))), refVal_setDepth );
         setDepth(refVal_setDepth);
     }
@@ -224,13 +224,13 @@ void GraphNeighborsIn::unsetAs_of()
 {
     m_As_ofIsSet = false;
 }
-int32_t GraphNeighborsIn::getDepth() const
+int64_t GraphNeighborsIn::getDepth() const
 {
     return m_Depth;
 }
 
 
-void GraphNeighborsIn::setDepth(int32_t value)
+void GraphNeighborsIn::setDepth(int64_t value)
 {
     m_Depth = value;
     m_DepthIsSet = true;

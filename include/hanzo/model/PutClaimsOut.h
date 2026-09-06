@@ -56,10 +56,10 @@ public:
     /// <summary>
     /// Recorded is how many rows were written.
     /// </summary>
-    int32_t getRecorded() const;
+    int64_t getRecorded() const;
     bool recordedIsSet() const;
     void unsetRecorded();
-    void setRecorded(int32_t value);
+    void setRecorded(int64_t value);
 
     /// <summary>
     /// Rejected names the rows that were not, and why.
@@ -71,7 +71,7 @@ public:
 
 
 protected:
-    int32_t m_Recorded;
+    int64_t m_Recorded;
     bool m_RecordedIsSet;
 
     std::vector<utility::string_t> m_Rejected;

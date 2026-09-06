@@ -18,11 +18,11 @@ namespace model {
 
 Collected::Collected()
 {
-    m_BalanceUsedCents = 0;
+    m_BalanceUsedCents = 0L;
     m_BalanceUsedCentsIsSet = false;
-    m_CardChargedCents = 0;
+    m_CardChargedCents = 0L;
     m_CardChargedCentsIsSet = false;
-    m_CreditUsedCents = 0;
+    m_CreditUsedCents = 0L;
     m_CreditUsedCentsIsSet = false;
     m_InvoiceIsSet = false;
     m_Paid = false;
@@ -92,7 +92,7 @@ bool Collected::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("balanceUsedCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBalanceUsedCents;
+            int64_t refVal_setBalanceUsedCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBalanceUsedCents);
             setBalanceUsedCents(refVal_setBalanceUsedCents);
             
@@ -103,7 +103,7 @@ bool Collected::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cardChargedCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCardChargedCents;
+            int64_t refVal_setCardChargedCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCardChargedCents);
             setCardChargedCents(refVal_setCardChargedCents);
             
@@ -114,7 +114,7 @@ bool Collected::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("creditUsedCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreditUsedCents;
+            int64_t refVal_setCreditUsedCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreditUsedCents);
             setCreditUsedCents(refVal_setCreditUsedCents);
             
@@ -215,19 +215,19 @@ bool Collected::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("balanceUsedCents"))))
     {
-        int32_t refVal_setBalanceUsedCents;
+        int64_t refVal_setBalanceUsedCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("balanceUsedCents"))), refVal_setBalanceUsedCents );
         setBalanceUsedCents(refVal_setBalanceUsedCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cardChargedCents"))))
     {
-        int32_t refVal_setCardChargedCents;
+        int64_t refVal_setCardChargedCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cardChargedCents"))), refVal_setCardChargedCents );
         setCardChargedCents(refVal_setCardChargedCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("creditUsedCents"))))
     {
-        int32_t refVal_setCreditUsedCents;
+        int64_t refVal_setCreditUsedCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("creditUsedCents"))), refVal_setCreditUsedCents );
         setCreditUsedCents(refVal_setCreditUsedCents);
     }
@@ -259,13 +259,13 @@ bool Collected::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 }
 
 
-int32_t Collected::getBalanceUsedCents() const
+int64_t Collected::getBalanceUsedCents() const
 {
     return m_BalanceUsedCents;
 }
 
 
-void Collected::setBalanceUsedCents(int32_t value)
+void Collected::setBalanceUsedCents(int64_t value)
 {
     m_BalanceUsedCents = value;
     m_BalanceUsedCentsIsSet = true;
@@ -280,13 +280,13 @@ void Collected::unsetBalanceUsedCents()
 {
     m_BalanceUsedCentsIsSet = false;
 }
-int32_t Collected::getCardChargedCents() const
+int64_t Collected::getCardChargedCents() const
 {
     return m_CardChargedCents;
 }
 
 
-void Collected::setCardChargedCents(int32_t value)
+void Collected::setCardChargedCents(int64_t value)
 {
     m_CardChargedCents = value;
     m_CardChargedCentsIsSet = true;
@@ -301,13 +301,13 @@ void Collected::unsetCardChargedCents()
 {
     m_CardChargedCentsIsSet = false;
 }
-int32_t Collected::getCreditUsedCents() const
+int64_t Collected::getCreditUsedCents() const
 {
     return m_CreditUsedCents;
 }
 
 
-void Collected::setCreditUsedCents(int32_t value)
+void Collected::setCreditUsedCents(int64_t value)
 {
     m_CreditUsedCents = value;
     m_CreditUsedCentsIsSet = true;

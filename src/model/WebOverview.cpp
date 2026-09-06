@@ -20,15 +20,15 @@ WebOverview::WebOverview()
 {
     m_Available = false;
     m_AvailableIsSet = false;
-    m_Pageviews = 0;
+    m_Pageviews = 0L;
     m_PageviewsIsSet = false;
     m_Reason = utility::conversions::to_string_t("");
     m_ReasonIsSet = false;
-    m_Sessions = 0;
+    m_Sessions = 0L;
     m_SessionsIsSet = false;
     m_Source = utility::conversions::to_string_t("");
     m_SourceIsSet = false;
-    m_Visitors = 0;
+    m_Visitors = 0L;
     m_VisitorsIsSet = false;
 }
 
@@ -97,7 +97,7 @@ bool WebOverview::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("pageviews")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPageviews;
+            int64_t refVal_setPageviews;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPageviews);
             setPageviews(refVal_setPageviews);
             
@@ -119,7 +119,7 @@ bool WebOverview::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("sessions")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSessions;
+            int64_t refVal_setSessions;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSessions);
             setSessions(refVal_setSessions);
             
@@ -141,7 +141,7 @@ bool WebOverview::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("visitors")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVisitors;
+            int64_t refVal_setVisitors;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVisitors);
             setVisitors(refVal_setVisitors);
             
@@ -200,7 +200,7 @@ bool WebOverview::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("pageviews"))))
     {
-        int32_t refVal_setPageviews;
+        int64_t refVal_setPageviews;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("pageviews"))), refVal_setPageviews );
         setPageviews(refVal_setPageviews);
     }
@@ -212,7 +212,7 @@ bool WebOverview::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("sessions"))))
     {
-        int32_t refVal_setSessions;
+        int64_t refVal_setSessions;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("sessions"))), refVal_setSessions );
         setSessions(refVal_setSessions);
     }
@@ -224,7 +224,7 @@ bool WebOverview::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("visitors"))))
     {
-        int32_t refVal_setVisitors;
+        int64_t refVal_setVisitors;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("visitors"))), refVal_setVisitors );
         setVisitors(refVal_setVisitors);
     }
@@ -253,13 +253,13 @@ void WebOverview::unsetAvailable()
 {
     m_AvailableIsSet = false;
 }
-int32_t WebOverview::getPageviews() const
+int64_t WebOverview::getPageviews() const
 {
     return m_Pageviews;
 }
 
 
-void WebOverview::setPageviews(int32_t value)
+void WebOverview::setPageviews(int64_t value)
 {
     m_Pageviews = value;
     m_PageviewsIsSet = true;
@@ -295,13 +295,13 @@ void WebOverview::unsetReason()
 {
     m_ReasonIsSet = false;
 }
-int32_t WebOverview::getSessions() const
+int64_t WebOverview::getSessions() const
 {
     return m_Sessions;
 }
 
 
-void WebOverview::setSessions(int32_t value)
+void WebOverview::setSessions(int64_t value)
 {
     m_Sessions = value;
     m_SessionsIsSet = true;
@@ -337,13 +337,13 @@ void WebOverview::unsetSource()
 {
     m_SourceIsSet = false;
 }
-int32_t WebOverview::getVisitors() const
+int64_t WebOverview::getVisitors() const
 {
     return m_Visitors;
 }
 
 
-void WebOverview::setVisitors(int32_t value)
+void WebOverview::setVisitors(int64_t value)
 {
     m_Visitors = value;
     m_VisitorsIsSet = true;

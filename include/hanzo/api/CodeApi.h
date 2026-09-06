@@ -82,12 +82,12 @@ public:
     /// <param name="q">Q is the search query. Required, max 4000 bytes. For type&#x3D;regex it is a regular expression; for type&#x3D;symbol it is a symbol name. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="type">Type selects the retrieval tier: \&quot;text\&quot; (FTS5 trigram), \&quot;regex\&quot;, \&quot;symbol\&quot; (definitions), \&quot;semantic\&quot; (embeddings) or \&quot;hybrid\&quot;. Anything else — including empty — reads as hybrid. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="repo">Repo narrows to one repository. Empty searches every repo the org has indexed. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many spans come back: default 20, maximum 100. A value that is not a positive integer reads as the default. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many spans come back: default 20, maximum 100. A value that is not a positive integer reads as the default. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<SearchResults>> getCodeSearch(
         boost::optional<utility::string_t> q,
         boost::optional<utility::string_t> type,
         boost::optional<utility::string_t> repo,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns one repository&#39;s file structure with a per-file symbol count — get_repo_structure over the org&#39;s own index, with no git checkout involved.

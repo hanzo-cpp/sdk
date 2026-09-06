@@ -18,11 +18,11 @@ namespace model {
 
 SetReferenceOut::SetReferenceOut()
 {
-    m_Overrides = 0;
+    m_Overrides = 0L;
     m_OverridesIsSet = false;
     m_set = utility::conversions::to_string_t("");
     m_setIsSet = false;
-    m_Written = 0;
+    m_Written = 0L;
     m_WrittenIsSet = false;
 }
 
@@ -65,7 +65,7 @@ bool SetReferenceOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("overrides")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOverrides;
+            int64_t refVal_setOverrides;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOverrides);
             setOverrides(refVal_setOverrides);
             
@@ -87,7 +87,7 @@ bool SetReferenceOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("written")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setWritten;
+            int64_t refVal_setWritten;
             ok &= ModelBase::fromJson(fieldValue, refVal_setWritten);
             setWritten(refVal_setWritten);
             
@@ -128,7 +128,7 @@ bool SetReferenceOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("overrides"))))
     {
-        int32_t refVal_setOverrides;
+        int64_t refVal_setOverrides;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("overrides"))), refVal_setOverrides );
         setOverrides(refVal_setOverrides);
     }
@@ -140,7 +140,7 @@ bool SetReferenceOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("written"))))
     {
-        int32_t refVal_setWritten;
+        int64_t refVal_setWritten;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("written"))), refVal_setWritten );
         setWritten(refVal_setWritten);
     }
@@ -148,13 +148,13 @@ bool SetReferenceOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 }
 
 
-int32_t SetReferenceOut::getOverrides() const
+int64_t SetReferenceOut::getOverrides() const
 {
     return m_Overrides;
 }
 
 
-void SetReferenceOut::setOverrides(int32_t value)
+void SetReferenceOut::setOverrides(int64_t value)
 {
     m_Overrides = value;
     m_OverridesIsSet = true;
@@ -190,13 +190,13 @@ void SetReferenceOut::unsetset()
 {
     m_setIsSet = false;
 }
-int32_t SetReferenceOut::getWritten() const
+int64_t SetReferenceOut::getWritten() const
 {
     return m_Written;
 }
 
 
-void SetReferenceOut::setWritten(int32_t value)
+void SetReferenceOut::setWritten(int64_t value)
 {
     m_Written = value;
     m_WrittenIsSet = true;

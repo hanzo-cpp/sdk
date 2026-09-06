@@ -20,9 +20,9 @@ RiskDatasetDisposal::RiskDatasetDisposal()
 {
     m_Dataset = utility::conversions::to_string_t("");
     m_DatasetIsSet = false;
-    m_Rows = 0;
+    m_Rows = 0L;
     m_RowsIsSet = false;
-    m_Versions = 0;
+    m_Versions = 0L;
     m_VersionsIsSet = false;
 }
 
@@ -76,7 +76,7 @@ bool RiskDatasetDisposal::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("rows")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRows;
+            int64_t refVal_setRows;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRows);
             setRows(refVal_setRows);
             
@@ -87,7 +87,7 @@ bool RiskDatasetDisposal::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("versions")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVersions;
+            int64_t refVal_setVersions;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVersions);
             setVersions(refVal_setVersions);
             
@@ -134,13 +134,13 @@ bool RiskDatasetDisposal::fromMultiPart(std::shared_ptr<MultipartFormData> multi
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("rows"))))
     {
-        int32_t refVal_setRows;
+        int64_t refVal_setRows;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("rows"))), refVal_setRows );
         setRows(refVal_setRows);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("versions"))))
     {
-        int32_t refVal_setVersions;
+        int64_t refVal_setVersions;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("versions"))), refVal_setVersions );
         setVersions(refVal_setVersions);
     }
@@ -169,13 +169,13 @@ void RiskDatasetDisposal::unsetDataset()
 {
     m_DatasetIsSet = false;
 }
-int32_t RiskDatasetDisposal::getRows() const
+int64_t RiskDatasetDisposal::getRows() const
 {
     return m_Rows;
 }
 
 
-void RiskDatasetDisposal::setRows(int32_t value)
+void RiskDatasetDisposal::setRows(int64_t value)
 {
     m_Rows = value;
     m_RowsIsSet = true;
@@ -190,13 +190,13 @@ void RiskDatasetDisposal::unsetRows()
 {
     m_RowsIsSet = false;
 }
-int32_t RiskDatasetDisposal::getVersions() const
+int64_t RiskDatasetDisposal::getVersions() const
 {
     return m_Versions;
 }
 
 
-void RiskDatasetDisposal::setVersions(int32_t value)
+void RiskDatasetDisposal::setVersions(int64_t value)
 {
     m_Versions = value;
     m_VersionsIsSet = true;

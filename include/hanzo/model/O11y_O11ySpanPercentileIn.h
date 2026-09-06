@@ -88,10 +88,10 @@ public:
     /// <summary>
     /// SpanDuration is the span&#39;s duration in nanoseconds.
     /// </summary>
-    int32_t getSpanDuration() const;
+    int64_t getSpanDuration() const;
     bool spanDurationIsSet() const;
     void unsetSpanDuration();
-    void setSpanDuration(int32_t value);
+    void setSpanDuration(int64_t value);
 
     /// <summary>
     /// Start is the window start, as epoch nanoseconds.
@@ -115,7 +115,7 @@ protected:
     utility::string_t m_ServiceName;
     bool m_ServiceNameIsSet;
 
-    int32_t m_SpanDuration;
+    int64_t m_SpanDuration;
     bool m_SpanDurationIsSet;
 
     int32_t m_Start;

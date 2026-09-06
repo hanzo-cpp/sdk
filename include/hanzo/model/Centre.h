@@ -105,10 +105,10 @@ public:
     /// <summary>
     /// Generated is when this answer was computed, unix milliseconds.
     /// </summary>
-    int32_t getGenerated() const;
+    int64_t getGenerated() const;
     bool generatedIsSet() const;
     void unsetGenerated();
-    void setGenerated(int32_t value);
+    void setGenerated(int64_t value);
 
     /// <summary>
     /// Inventory is how the controls themselves stand, independent of framework.
@@ -185,7 +185,7 @@ protected:
     std::vector<std::shared_ptr<FrameworkRow>> m_Frameworks;
     bool m_FrameworksIsSet;
 
-    int32_t m_Generated;
+    int64_t m_Generated;
     bool m_GeneratedIsSet;
 
     std::shared_ptr<TrustTally> m_Inventory;

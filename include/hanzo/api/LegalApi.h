@@ -58,9 +58,9 @@ public:
     /// <remarks>
     /// Returns the org&#39;s generated documents, newest first, WITHOUT their rendered content — fetch one document to read its body.  The response is marked no-store: these records name the counterparties an org is contracting with, and must not sit in a shared cache.
     /// </remarks>
-    /// <param name="limit">Limit bounds the page. Absent or unparseable means the store&#39;s own default. (optional, default to 0)</param>
+    /// <param name="limit">Limit bounds the page. Absent or unparseable means the store&#39;s own default. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<DocumentPage>> getLegalDocuments(
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns one of the org&#39;s documents WITH its rendered body.
@@ -78,9 +78,9 @@ public:
     /// <remarks>
     /// Returns the org&#39;s filing records, newest first — which documents were filed where, through which provider, and what the filing&#39;s honest status is.
     /// </remarks>
-    /// <param name="limit">Limit bounds the page. Absent or unparseable means the store&#39;s own default. (optional, default to 0)</param>
+    /// <param name="limit">Limit bounds the page. Absent or unparseable means the store&#39;s own default. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<FilingPage>> getLegalFilings(
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Reports that the legal subsystem is serving and how many built-in templates its catalog carries.

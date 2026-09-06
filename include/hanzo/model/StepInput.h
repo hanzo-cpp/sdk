@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// DelaySeconds is how long after the previous step this one sends (after enrollment, for the first step). Must be &gt;&#x3D; 0.
     /// </summary>
-    int32_t getDelaySeconds() const;
+    int64_t getDelaySeconds() const;
     bool delaySecondsIsSet() const;
     void unsetDelaySeconds();
-    void setDelaySeconds(int32_t value);
+    void setDelaySeconds(int64_t value);
 
     /// <summary>
     /// SequenceID is the sequence id from the path (the route&#39;s :id).
@@ -89,7 +89,7 @@ protected:
     utility::string_t m_Body;
     bool m_BodyIsSet;
 
-    int32_t m_DelaySeconds;
+    int64_t m_DelaySeconds;
     bool m_DelaySecondsIsSet;
 
     utility::string_t m_Id;

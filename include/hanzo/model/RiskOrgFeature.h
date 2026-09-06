@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// Buckets is how many five-minute buckets of this organisation&#39;s surface were measured.
     /// </summary>
-    int32_t getBuckets() const;
+    int64_t getBuckets() const;
     bool bucketsIsSet() const;
     void unsetBuckets();
-    void setBuckets(int32_t value);
+    void setBuckets(int64_t value);
 
     /// <summary>
     /// Max is the largest value it reached in the window.
@@ -95,10 +95,10 @@ public:
     /// <summary>
     /// Present is in how many of them the dimension carried a value at all.
     /// </summary>
-    int32_t getPresent() const;
+    int64_t getPresent() const;
     bool presentIsSet() const;
     void unsetPresent();
-    void setPresent(int32_t value);
+    void setPresent(int64_t value);
 
     /// <summary>
     /// Source names the plane it is rolled up from, so a dimension that reads zero everywhere traces to a plane the organisation does not use rather than to a defect.
@@ -121,7 +121,7 @@ protected:
     bool m_Blind;
     bool m_BlindIsSet;
 
-    int32_t m_Buckets;
+    int64_t m_Buckets;
     bool m_BucketsIsSet;
 
     double m_Max;
@@ -133,7 +133,7 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_Present;
+    int64_t m_Present;
     bool m_PresentIsSet;
 
     utility::string_t m_Source;

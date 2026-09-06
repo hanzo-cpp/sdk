@@ -54,25 +54,25 @@ public:
     /// <summary>
     /// DocTypes is how many DocTypes the org has defined.
     /// </summary>
-    int32_t getDoctypes() const;
+    int64_t getDoctypes() const;
     bool doctypesIsSet() const;
     void unsetDoctypes();
-    void setDoctypes(int32_t value);
+    void setDoctypes(int64_t value);
 
     /// <summary>
     /// Documents is how many documents exist across them.
     /// </summary>
-    int32_t getDocuments() const;
+    int64_t getDocuments() const;
     bool documentsIsSet() const;
     void unsetDocuments();
-    void setDocuments(int32_t value);
+    void setDocuments(int64_t value);
 
 
 protected:
-    int32_t m_Doctypes;
+    int64_t m_Doctypes;
     bool m_DoctypesIsSet;
 
-    int32_t m_Documents;
+    int64_t m_Documents;
     bool m_DocumentsIsSet;
 
 };

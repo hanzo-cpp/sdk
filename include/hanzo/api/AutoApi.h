@@ -77,9 +77,9 @@ public:
     /// <remarks>
     /// Returns the caller org&#39;s automations, most-recently-updated first. The optional &#x60;limit&#x60; query bounds the page.
     /// </remarks>
-    /// <param name="limit">Limit bounds the page (default 200, maximum 1000). (optional, default to 0)</param>
+    /// <param name="limit">Limit bounds the page (default 200, maximum 1000). (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<FlowPage>> getAutoFlows(
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns one automation and its latest version.
@@ -98,10 +98,10 @@ public:
     /// Returns one flow&#39;s versions, newest first. The optional &#x60;limit&#x60; query bounds the page.
     /// </remarks>
     /// <param name="id">ID is the flow whose versions to list, from the path.</param>
-    /// <param name="limit">Limit bounds the page (default 200, maximum 1000). (optional, default to 0)</param>
+    /// <param name="limit">Limit bounds the page (default 200, maximum 1000). (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<VersionPage>> getAutoFlowsByIdVersions(
         utility::string_t id,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns the caller org&#39;s run history, newest first.
@@ -110,10 +110,10 @@ public:
     /// Returns the caller org&#39;s run history, newest first. The optional &#x60;flowId&#x60; query narrows it to one flow and &#x60;limit&#x60; bounds the page.
     /// </remarks>
     /// <param name="flowId">FlowID narrows the history to one flow. Omit it for the whole org&#39;s runs. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit bounds the page (default 200, maximum 1000). (optional, default to 0)</param>
+    /// <param name="limit">Limit bounds the page (default 200, maximum 1000). (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<RunPage>> getAutoRuns(
         boost::optional<utility::string_t> flowId,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns one run.

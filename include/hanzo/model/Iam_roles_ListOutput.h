@@ -59,17 +59,17 @@ public:
     void unsetRoles();
     void setRoles(const std::vector<std::shared_ptr<Iam_Role>>& value);
 
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
 
 protected:
     std::vector<std::shared_ptr<Iam_Role>> m_Roles;
     bool m_RolesIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
 };

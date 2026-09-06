@@ -66,10 +66,10 @@ public:
     /// <summary>
     /// Budget is the campaign&#39;s total budget in CENTS. Negative reads as 0.
     /// </summary>
-    int32_t getBudget() const;
+    int64_t getBudget() const;
     bool budgetIsSet() const;
     void unsetBudget();
-    void setBudget(int32_t value);
+    void setBudget(int64_t value);
 
     /// <summary>
     /// Channels are the fan-out targets, at most one per kind (paid, organic, email) and at most 12. A channel&#39;s status and provider id are server-owned: whatever the caller sends for them is replaced with \&quot;pending\&quot;.
@@ -98,17 +98,17 @@ public:
     /// <summary>
     /// ScheduleAt is when the campaign should run, in unix seconds. Negative reads as 0 (immediately).
     /// </summary>
-    int32_t getScheduleAt() const;
+    int64_t getScheduleAt() const;
     bool scheduleAtIsSet() const;
     void unsetScheduleAt();
-    void setScheduleAt(int32_t value);
+    void setScheduleAt(int64_t value);
 
 
 protected:
     utility::string_t m_Audience;
     bool m_AudienceIsSet;
 
-    int32_t m_Budget;
+    int64_t m_Budget;
     bool m_BudgetIsSet;
 
     std::vector<std::shared_ptr<ChannelSpec>> m_Channels;
@@ -120,7 +120,7 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_ScheduleAt;
+    int64_t m_ScheduleAt;
     bool m_ScheduleAtIsSet;
 
 };

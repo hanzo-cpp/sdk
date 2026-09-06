@@ -70,10 +70,10 @@ public:
     /// <summary>
     /// RetentionDays is how far back the plan may read. GET /v1/usage/analytics clamps a custom window&#39;s start to this, so an older &#x60;start&#x60; returns the clamped window rather than an error.
     /// </summary>
-    int32_t getRetentionDays() const;
+    int64_t getRetentionDays() const;
     bool retentionDaysIsSet() const;
     void unsetRetentionDays();
-    void setRetentionDays(int32_t value);
+    void setRetentionDays(int64_t value);
 
 
 protected:
@@ -83,7 +83,7 @@ protected:
     bool m_r_export;
     bool m_r_exportIsSet;
 
-    int32_t m_RetentionDays;
+    int64_t m_RetentionDays;
     bool m_RetentionDaysIsSet;
 
 };

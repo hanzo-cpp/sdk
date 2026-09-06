@@ -18,7 +18,7 @@ namespace model {
 
 BoardPage::BoardPage()
 {
-    m_Count = 0;
+    m_Count = 0L;
     m_CountIsSet = false;
     m_DataIsSet = false;
 }
@@ -57,7 +57,7 @@ bool BoardPage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("count")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCount;
+            int64_t refVal_setCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCount);
             setCount(refVal_setCount);
             
@@ -105,7 +105,7 @@ bool BoardPage::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("count"))))
     {
-        int32_t refVal_setCount;
+        int64_t refVal_setCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("count"))), refVal_setCount );
         setCount(refVal_setCount);
     }
@@ -119,13 +119,13 @@ bool BoardPage::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 }
 
 
-int32_t BoardPage::getCount() const
+int64_t BoardPage::getCount() const
 {
     return m_Count;
 }
 
 
-void BoardPage::setCount(int32_t value)
+void BoardPage::setCount(int64_t value)
 {
     m_Count = value;
     m_CountIsSet = true;

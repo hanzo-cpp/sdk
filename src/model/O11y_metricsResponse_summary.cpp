@@ -20,11 +20,11 @@ O11y_metricsResponse_summary::O11y_metricsResponse_summary()
 {
     m_ErrorRate = 0.0;
     m_ErrorRateIsSet = false;
-    m_Errors = 0;
+    m_Errors = 0L;
     m_ErrorsIsSet = false;
     m_P95Ms = 0.0;
     m_P95MsIsSet = false;
-    m_Requests = 0;
+    m_Requests = 0L;
     m_RequestsIsSet = false;
 }
 
@@ -83,7 +83,7 @@ bool O11y_metricsResponse_summary::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("errors")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setErrors;
+            int64_t refVal_setErrors;
             ok &= ModelBase::fromJson(fieldValue, refVal_setErrors);
             setErrors(refVal_setErrors);
             
@@ -105,7 +105,7 @@ bool O11y_metricsResponse_summary::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("requests")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRequests;
+            int64_t refVal_setRequests;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRequests);
             setRequests(refVal_setRequests);
             
@@ -156,7 +156,7 @@ bool O11y_metricsResponse_summary::fromMultiPart(std::shared_ptr<MultipartFormDa
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("errors"))))
     {
-        int32_t refVal_setErrors;
+        int64_t refVal_setErrors;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("errors"))), refVal_setErrors );
         setErrors(refVal_setErrors);
     }
@@ -168,7 +168,7 @@ bool O11y_metricsResponse_summary::fromMultiPart(std::shared_ptr<MultipartFormDa
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("requests"))))
     {
-        int32_t refVal_setRequests;
+        int64_t refVal_setRequests;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("requests"))), refVal_setRequests );
         setRequests(refVal_setRequests);
     }
@@ -197,13 +197,13 @@ void O11y_metricsResponse_summary::unsetErrorRate()
 {
     m_ErrorRateIsSet = false;
 }
-int32_t O11y_metricsResponse_summary::getErrors() const
+int64_t O11y_metricsResponse_summary::getErrors() const
 {
     return m_Errors;
 }
 
 
-void O11y_metricsResponse_summary::setErrors(int32_t value)
+void O11y_metricsResponse_summary::setErrors(int64_t value)
 {
     m_Errors = value;
     m_ErrorsIsSet = true;
@@ -239,13 +239,13 @@ void O11y_metricsResponse_summary::unsetP95Ms()
 {
     m_P95MsIsSet = false;
 }
-int32_t O11y_metricsResponse_summary::getRequests() const
+int64_t O11y_metricsResponse_summary::getRequests() const
 {
     return m_Requests;
 }
 
 
-void O11y_metricsResponse_summary::setRequests(int32_t value)
+void O11y_metricsResponse_summary::setRequests(int64_t value)
 {
     m_Requests = value;
     m_RequestsIsSet = true;

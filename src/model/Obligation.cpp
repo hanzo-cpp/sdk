@@ -18,7 +18,7 @@ namespace model {
 
 Obligation::Obligation()
 {
-    m_AmountCents = 0;
+    m_AmountCents = 0L;
     m_AmountCentsIsSet = false;
     m_AsOf = utility::conversions::to_string_t("");
     m_AsOfIsSet = false;
@@ -107,7 +107,7 @@ bool Obligation::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("amountCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAmountCents;
+            int64_t refVal_setAmountCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAmountCents);
             setAmountCents(refVal_setAmountCents);
             
@@ -260,7 +260,7 @@ bool Obligation::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("amountCents"))))
     {
-        int32_t refVal_setAmountCents;
+        int64_t refVal_setAmountCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("amountCents"))), refVal_setAmountCents );
         setAmountCents(refVal_setAmountCents);
     }
@@ -316,13 +316,13 @@ bool Obligation::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 }
 
 
-int32_t Obligation::getAmountCents() const
+int64_t Obligation::getAmountCents() const
 {
     return m_AmountCents;
 }
 
 
-void Obligation::setAmountCents(int32_t value)
+void Obligation::setAmountCents(int64_t value)
 {
     m_AmountCents = value;
     m_AmountCentsIsSet = true;

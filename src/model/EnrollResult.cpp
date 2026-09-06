@@ -18,13 +18,13 @@ namespace model {
 
 EnrollResult::EnrollResult()
 {
-    m_AlreadyEnrolled = 0;
+    m_AlreadyEnrolled = 0L;
     m_AlreadyEnrolledIsSet = false;
-    m_Enrolled = 0;
+    m_Enrolled = 0L;
     m_EnrolledIsSet = false;
     m_EnrollmentId = utility::conversions::to_string_t("");
     m_EnrollmentIdIsSet = false;
-    m_Resolved = 0;
+    m_Resolved = 0L;
     m_ResolvedIsSet = false;
 }
 
@@ -72,7 +72,7 @@ bool EnrollResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("alreadyEnrolled")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAlreadyEnrolled;
+            int64_t refVal_setAlreadyEnrolled;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAlreadyEnrolled);
             setAlreadyEnrolled(refVal_setAlreadyEnrolled);
             
@@ -83,7 +83,7 @@ bool EnrollResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("enrolled")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setEnrolled;
+            int64_t refVal_setEnrolled;
             ok &= ModelBase::fromJson(fieldValue, refVal_setEnrolled);
             setEnrolled(refVal_setEnrolled);
             
@@ -105,7 +105,7 @@ bool EnrollResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("resolved")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setResolved;
+            int64_t refVal_setResolved;
             ok &= ModelBase::fromJson(fieldValue, refVal_setResolved);
             setResolved(refVal_setResolved);
             
@@ -150,13 +150,13 @@ bool EnrollResult::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("alreadyEnrolled"))))
     {
-        int32_t refVal_setAlreadyEnrolled;
+        int64_t refVal_setAlreadyEnrolled;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("alreadyEnrolled"))), refVal_setAlreadyEnrolled );
         setAlreadyEnrolled(refVal_setAlreadyEnrolled);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("enrolled"))))
     {
-        int32_t refVal_setEnrolled;
+        int64_t refVal_setEnrolled;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("enrolled"))), refVal_setEnrolled );
         setEnrolled(refVal_setEnrolled);
     }
@@ -168,7 +168,7 @@ bool EnrollResult::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("resolved"))))
     {
-        int32_t refVal_setResolved;
+        int64_t refVal_setResolved;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("resolved"))), refVal_setResolved );
         setResolved(refVal_setResolved);
     }
@@ -176,13 +176,13 @@ bool EnrollResult::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
 }
 
 
-int32_t EnrollResult::getAlreadyEnrolled() const
+int64_t EnrollResult::getAlreadyEnrolled() const
 {
     return m_AlreadyEnrolled;
 }
 
 
-void EnrollResult::setAlreadyEnrolled(int32_t value)
+void EnrollResult::setAlreadyEnrolled(int64_t value)
 {
     m_AlreadyEnrolled = value;
     m_AlreadyEnrolledIsSet = true;
@@ -197,13 +197,13 @@ void EnrollResult::unsetAlreadyEnrolled()
 {
     m_AlreadyEnrolledIsSet = false;
 }
-int32_t EnrollResult::getEnrolled() const
+int64_t EnrollResult::getEnrolled() const
 {
     return m_Enrolled;
 }
 
 
-void EnrollResult::setEnrolled(int32_t value)
+void EnrollResult::setEnrolled(int64_t value)
 {
     m_Enrolled = value;
     m_EnrolledIsSet = true;
@@ -239,13 +239,13 @@ void EnrollResult::unsetEnrollmentId()
 {
     m_EnrollmentIdIsSet = false;
 }
-int32_t EnrollResult::getResolved() const
+int64_t EnrollResult::getResolved() const
 {
     return m_Resolved;
 }
 
 
-void EnrollResult::setResolved(int32_t value)
+void EnrollResult::setResolved(int64_t value)
 {
     m_Resolved = value;
     m_ResolvedIsSet = true;

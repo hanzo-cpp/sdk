@@ -59,10 +59,10 @@ public:
     /// <summary>
     /// null — no per-invocation cost source
     /// </summary>
-    int32_t getCostCents() const;
+    int64_t getCostCents() const;
     bool costCentsIsSet() const;
     void unsetCostCents();
-    void setCostCents(int32_t value);
+    void setCostCents(int64_t value);
 
     /// <summary>
     /// one line per function that ran in the window
@@ -82,7 +82,7 @@ public:
 
 
 protected:
-    int32_t m_CostCents;
+    int64_t m_CostCents;
     bool m_CostCentsIsSet;
 
     std::vector<std::shared_ptr<CostLine>> m_Series;

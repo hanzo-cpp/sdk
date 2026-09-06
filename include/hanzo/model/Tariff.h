@@ -66,10 +66,10 @@ public:
     /// <summary>
     /// DueNowCents is what is charged to begin: every non-recurring line.
     /// </summary>
-    int32_t getDueNowCents() const;
+    int64_t getDueNowCents() const;
     bool dueNowCentsIsSet() const;
     void unsetDueNowCents();
-    void setDueNowCents(int32_t value);
+    void setDueNowCents(int64_t value);
 
     /// <summary>
     /// Jurisdiction is the state of formation the filing fee belongs to.
@@ -98,10 +98,10 @@ public:
     /// <summary>
     /// RecurringCents is what repeats, and Recurring says how often.
     /// </summary>
-    int32_t getRecurringCents() const;
+    int64_t getRecurringCents() const;
     bool recurringCentsIsSet() const;
     void unsetRecurringCents();
-    void setRecurringCents(int32_t value);
+    void setRecurringCents(int64_t value);
 
     /// <summary>
     /// Structure is the entity this prices: c-corp, llc or dao-llc.
@@ -116,7 +116,7 @@ protected:
     utility::string_t m_Currency;
     bool m_CurrencyIsSet;
 
-    int32_t m_DueNowCents;
+    int64_t m_DueNowCents;
     bool m_DueNowCentsIsSet;
 
     utility::string_t m_Jurisdiction;
@@ -128,7 +128,7 @@ protected:
     utility::string_t m_Recurring;
     bool m_RecurringIsSet;
 
-    int32_t m_RecurringCents;
+    int64_t m_RecurringCents;
     bool m_RecurringCentsIsSet;
 
     utility::string_t m_Structure;

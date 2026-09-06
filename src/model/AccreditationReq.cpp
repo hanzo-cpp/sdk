@@ -22,7 +22,7 @@ AccreditationReq::AccreditationReq()
     m_BasisIsSet = false;
     m_EvidenceDocId = utility::conversions::to_string_t("");
     m_EvidenceDocIdIsSet = false;
-    m_ExpiresAt = 0;
+    m_ExpiresAt = 0L;
     m_ExpiresAtIsSet = false;
     m_Method = utility::conversions::to_string_t("");
     m_MethodIsSet = false;
@@ -115,7 +115,7 @@ bool AccreditationReq::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("expiresAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExpiresAt;
+            int64_t refVal_setExpiresAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExpiresAt);
             setExpiresAt(refVal_setExpiresAt);
             
@@ -228,7 +228,7 @@ bool AccreditationReq::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("expiresAt"))))
     {
-        int32_t refVal_setExpiresAt;
+        int64_t refVal_setExpiresAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("expiresAt"))), refVal_setExpiresAt );
         setExpiresAt(refVal_setExpiresAt);
     }
@@ -302,13 +302,13 @@ void AccreditationReq::unsetEvidenceDocId()
 {
     m_EvidenceDocIdIsSet = false;
 }
-int32_t AccreditationReq::getExpiresAt() const
+int64_t AccreditationReq::getExpiresAt() const
 {
     return m_ExpiresAt;
 }
 
 
-void AccreditationReq::setExpiresAt(int32_t value)
+void AccreditationReq::setExpiresAt(int64_t value)
 {
     m_ExpiresAt = value;
     m_ExpiresAtIsSet = true;

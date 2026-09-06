@@ -51,22 +51,22 @@ public:
     /// O11y_NodeCountsByReadiness members
 
 
-    int32_t getNotReady() const;
+    int64_t getNotReady() const;
     bool notReadyIsSet() const;
     void unsetNotReady();
-    void setNotReady(int32_t value);
+    void setNotReady(int64_t value);
 
-    int32_t getReady() const;
+    int64_t getReady() const;
     bool readyIsSet() const;
     void unsetReady();
-    void setReady(int32_t value);
+    void setReady(int64_t value);
 
 
 protected:
-    int32_t m_NotReady;
+    int64_t m_NotReady;
     bool m_NotReadyIsSet;
 
-    int32_t m_Ready;
+    int64_t m_Ready;
     bool m_ReadyIsSet;
 
 };

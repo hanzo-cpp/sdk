@@ -18,9 +18,9 @@ namespace model {
 
 ProjectView::ProjectView()
 {
-    m_Applications = 0;
+    m_Applications = 0L;
     m_ApplicationsIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
@@ -86,7 +86,7 @@ bool ProjectView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("applications")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setApplications;
+            int64_t refVal_setApplications;
             ok &= ModelBase::fromJson(fieldValue, refVal_setApplications);
             setApplications(refVal_setApplications);
             
@@ -97,7 +97,7 @@ bool ProjectView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -194,13 +194,13 @@ bool ProjectView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("applications"))))
     {
-        int32_t refVal_setApplications;
+        int64_t refVal_setApplications;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("applications"))), refVal_setApplications );
         setApplications(refVal_setApplications);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -232,13 +232,13 @@ bool ProjectView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 }
 
 
-int32_t ProjectView::getApplications() const
+int64_t ProjectView::getApplications() const
 {
     return m_Applications;
 }
 
 
-void ProjectView::setApplications(int32_t value)
+void ProjectView::setApplications(int64_t value)
 {
     m_Applications = value;
     m_ApplicationsIsSet = true;
@@ -253,13 +253,13 @@ void ProjectView::unsetApplications()
 {
     m_ApplicationsIsSet = false;
 }
-int32_t ProjectView::getCreatedAt() const
+int64_t ProjectView::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void ProjectView::setCreatedAt(int32_t value)
+void ProjectView::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;

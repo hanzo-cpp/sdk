@@ -73,10 +73,10 @@ public:
     /// <summary>
     /// Delivered is how many times a consumer has been handed this message (pulls only).
     /// </summary>
-    int32_t getNumDelivered() const;
+    int64_t getNumDelivered() const;
     bool numDeliveredIsSet() const;
     void unsetNum_delivered();
-    void setNumDelivered(int32_t value);
+    void setNumDelivered(int64_t value);
 
     /// <summary>
     /// Remaining is how many messages follow this one for the consumer (pulls only).
@@ -118,7 +118,7 @@ protected:
     std::map<utility::string_t, std::vector<utility::string_t>> m_Headers;
     bool m_HeadersIsSet;
 
-    int32_t m_Num_delivered;
+    int64_t m_Num_delivered;
     bool m_Num_deliveredIsSet;
 
     int32_t m_Num_pending;

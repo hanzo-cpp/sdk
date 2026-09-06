@@ -22,7 +22,7 @@ Analysis::Analysis()
     m_AlphaIsSet = false;
     m_Experiment = utility::conversions::to_string_t("");
     m_ExperimentIsSet = false;
-    m_ExposedTotal = 0;
+    m_ExposedTotal = 0L;
     m_ExposedTotalIsSet = false;
     m_Metric = utility::conversions::to_string_t("");
     m_MetricIsSet = false;
@@ -107,7 +107,7 @@ bool Analysis::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("exposedTotal")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExposedTotal;
+            int64_t refVal_setExposedTotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExposedTotal);
             setExposedTotal(refVal_setExposedTotal);
             
@@ -205,7 +205,7 @@ bool Analysis::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("exposedTotal"))))
     {
-        int32_t refVal_setExposedTotal;
+        int64_t refVal_setExposedTotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("exposedTotal"))), refVal_setExposedTotal );
         setExposedTotal(refVal_setExposedTotal);
     }
@@ -273,13 +273,13 @@ void Analysis::unsetExperiment()
 {
     m_ExperimentIsSet = false;
 }
-int32_t Analysis::getExposedTotal() const
+int64_t Analysis::getExposedTotal() const
 {
     return m_ExposedTotal;
 }
 
 
-void Analysis::setExposedTotal(int32_t value)
+void Analysis::setExposedTotal(int64_t value)
 {
     m_ExposedTotal = value;
     m_ExposedTotalIsSet = true;

@@ -83,10 +83,10 @@ public:
     /// <summary>
     /// Children is the DIRECT fan-out — how many sessions name this one as parent — and not the size of the subtree. Read the tree for that.
     /// </summary>
-    int32_t getChildren() const;
+    int64_t getChildren() const;
     bool childrenIsSet() const;
     void unsetChildren();
-    void setChildren(int32_t value);
+    void setChildren(int64_t value);
 
     /// <summary>
     /// CreatedAt is when the row was written, same format. Every path that opens a session stamps it and StartedAt from one clock reading, so the two are equal on every session this surface has ever produced.
@@ -115,10 +115,10 @@ public:
     /// <summary>
     /// Events is how many turns the session&#39;s log holds, counted at read time. It is the whole log, however few of them RecentEvents carries.
     /// </summary>
-    int32_t getEvents() const;
+    int64_t getEvents() const;
     bool eventsIsSet() const;
     void unsetEvents();
-    void setEvents(int32_t value);
+    void setEvents(int64_t value);
 
     /// <summary>
     /// Execution context (mission-control): the machine/repo/cwd a card shows and the run-target a session is dispatched to. Omitted when a surface didn&#39;t report it.
@@ -291,7 +291,7 @@ protected:
     utility::string_t m_Agent;
     bool m_AgentIsSet;
 
-    int32_t m_Children;
+    int64_t m_Children;
     bool m_ChildrenIsSet;
 
     utility::string_t m_CreatedAt;
@@ -303,7 +303,7 @@ protected:
     utility::string_t m_EndedAt;
     bool m_EndedAtIsSet;
 
-    int32_t m_Events;
+    int64_t m_Events;
     bool m_EventsIsSet;
 
     utility::string_t m_Host;

@@ -22,9 +22,9 @@ RiskModelValue::RiskModelValue()
     m_AddressIsSet = false;
     m_At = utility::conversions::to_string_t("");
     m_AtIsSet = false;
-    m_Learned = 0;
+    m_Learned = 0L;
     m_LearnedIsSet = false;
-    m_Sequence = 0;
+    m_Sequence = 0L;
     m_SequenceIsSet = false;
     m_Shape = utility::conversions::to_string_t("");
     m_ShapeIsSet = false;
@@ -108,7 +108,7 @@ bool RiskModelValue::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("learned")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLearned;
+            int64_t refVal_setLearned;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLearned);
             setLearned(refVal_setLearned);
             
@@ -119,7 +119,7 @@ bool RiskModelValue::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("sequence")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSequence;
+            int64_t refVal_setSequence;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSequence);
             setSequence(refVal_setSequence);
             
@@ -206,13 +206,13 @@ bool RiskModelValue::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("learned"))))
     {
-        int32_t refVal_setLearned;
+        int64_t refVal_setLearned;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("learned"))), refVal_setLearned );
         setLearned(refVal_setLearned);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("sequence"))))
     {
-        int32_t refVal_setSequence;
+        int64_t refVal_setSequence;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("sequence"))), refVal_setSequence );
         setSequence(refVal_setSequence);
     }
@@ -274,13 +274,13 @@ void RiskModelValue::unsetAt()
 {
     m_AtIsSet = false;
 }
-int32_t RiskModelValue::getLearned() const
+int64_t RiskModelValue::getLearned() const
 {
     return m_Learned;
 }
 
 
-void RiskModelValue::setLearned(int32_t value)
+void RiskModelValue::setLearned(int64_t value)
 {
     m_Learned = value;
     m_LearnedIsSet = true;
@@ -295,13 +295,13 @@ void RiskModelValue::unsetLearned()
 {
     m_LearnedIsSet = false;
 }
-int32_t RiskModelValue::getSequence() const
+int64_t RiskModelValue::getSequence() const
 {
     return m_Sequence;
 }
 
 
-void RiskModelValue::setSequence(int32_t value)
+void RiskModelValue::setSequence(int64_t value)
 {
     m_Sequence = value;
     m_SequenceIsSet = true;

@@ -18,7 +18,7 @@ namespace model {
 
 Iam_filter::Iam_filter()
 {
-    m_MaxResults = 0;
+    m_MaxResults = 0L;
     m_MaxResultsIsSet = false;
     m_Supported = false;
     m_SupportedIsSet = false;
@@ -58,7 +58,7 @@ bool Iam_filter::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("maxResults")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMaxResults;
+            int64_t refVal_setMaxResults;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMaxResults);
             setMaxResults(refVal_setMaxResults);
             
@@ -106,7 +106,7 @@ bool Iam_filter::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("maxResults"))))
     {
-        int32_t refVal_setMaxResults;
+        int64_t refVal_setMaxResults;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("maxResults"))), refVal_setMaxResults );
         setMaxResults(refVal_setMaxResults);
     }
@@ -120,13 +120,13 @@ bool Iam_filter::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 }
 
 
-int32_t Iam_filter::getMaxResults() const
+int64_t Iam_filter::getMaxResults() const
 {
     return m_MaxResults;
 }
 
 
-void Iam_filter::setMaxResults(int32_t value)
+void Iam_filter::setMaxResults(int64_t value)
 {
     m_MaxResults = value;
     m_MaxResultsIsSet = true;

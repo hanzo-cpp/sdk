@@ -18,13 +18,13 @@ namespace model {
 
 AdSummary::AdSummary()
 {
-    m_Active = 0;
+    m_Active = 0L;
     m_ActiveIsSet = false;
-    m_Budget = 0;
+    m_Budget = 0L;
     m_BudgetIsSet = false;
-    m_Campaigns = 0;
+    m_Campaigns = 0L;
     m_CampaignsIsSet = false;
-    m_Spend = 0;
+    m_Spend = 0L;
     m_SpendIsSet = false;
 }
 
@@ -72,7 +72,7 @@ bool AdSummary::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("active")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setActive;
+            int64_t refVal_setActive;
             ok &= ModelBase::fromJson(fieldValue, refVal_setActive);
             setActive(refVal_setActive);
             
@@ -83,7 +83,7 @@ bool AdSummary::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("budget")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBudget;
+            int64_t refVal_setBudget;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBudget);
             setBudget(refVal_setBudget);
             
@@ -94,7 +94,7 @@ bool AdSummary::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("campaigns")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCampaigns;
+            int64_t refVal_setCampaigns;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCampaigns);
             setCampaigns(refVal_setCampaigns);
             
@@ -105,7 +105,7 @@ bool AdSummary::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("spend")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSpend;
+            int64_t refVal_setSpend;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSpend);
             setSpend(refVal_setSpend);
             
@@ -150,25 +150,25 @@ bool AdSummary::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("active"))))
     {
-        int32_t refVal_setActive;
+        int64_t refVal_setActive;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("active"))), refVal_setActive );
         setActive(refVal_setActive);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("budget"))))
     {
-        int32_t refVal_setBudget;
+        int64_t refVal_setBudget;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("budget"))), refVal_setBudget );
         setBudget(refVal_setBudget);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("campaigns"))))
     {
-        int32_t refVal_setCampaigns;
+        int64_t refVal_setCampaigns;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("campaigns"))), refVal_setCampaigns );
         setCampaigns(refVal_setCampaigns);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("spend"))))
     {
-        int32_t refVal_setSpend;
+        int64_t refVal_setSpend;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("spend"))), refVal_setSpend );
         setSpend(refVal_setSpend);
     }
@@ -176,13 +176,13 @@ bool AdSummary::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 }
 
 
-int32_t AdSummary::getActive() const
+int64_t AdSummary::getActive() const
 {
     return m_Active;
 }
 
 
-void AdSummary::setActive(int32_t value)
+void AdSummary::setActive(int64_t value)
 {
     m_Active = value;
     m_ActiveIsSet = true;
@@ -197,13 +197,13 @@ void AdSummary::unsetActive()
 {
     m_ActiveIsSet = false;
 }
-int32_t AdSummary::getBudget() const
+int64_t AdSummary::getBudget() const
 {
     return m_Budget;
 }
 
 
-void AdSummary::setBudget(int32_t value)
+void AdSummary::setBudget(int64_t value)
 {
     m_Budget = value;
     m_BudgetIsSet = true;
@@ -218,13 +218,13 @@ void AdSummary::unsetBudget()
 {
     m_BudgetIsSet = false;
 }
-int32_t AdSummary::getCampaigns() const
+int64_t AdSummary::getCampaigns() const
 {
     return m_Campaigns;
 }
 
 
-void AdSummary::setCampaigns(int32_t value)
+void AdSummary::setCampaigns(int64_t value)
 {
     m_Campaigns = value;
     m_CampaignsIsSet = true;
@@ -239,13 +239,13 @@ void AdSummary::unsetCampaigns()
 {
     m_CampaignsIsSet = false;
 }
-int32_t AdSummary::getSpend() const
+int64_t AdSummary::getSpend() const
 {
     return m_Spend;
 }
 
 
-void AdSummary::setSpend(int32_t value)
+void AdSummary::setSpend(int64_t value)
 {
     m_Spend = value;
     m_SpendIsSet = true;

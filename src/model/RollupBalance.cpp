@@ -18,11 +18,11 @@ namespace model {
 
 RollupBalance::RollupBalance()
 {
-    m_AvailableCents = 0;
+    m_AvailableCents = 0L;
     m_AvailableCentsIsSet = false;
-    m_BalanceCents = 0;
+    m_BalanceCents = 0L;
     m_BalanceCentsIsSet = false;
-    m_HoldsCents = 0;
+    m_HoldsCents = 0L;
     m_HoldsCentsIsSet = false;
 }
 
@@ -65,7 +65,7 @@ bool RollupBalance::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("availableCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAvailableCents;
+            int64_t refVal_setAvailableCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAvailableCents);
             setAvailableCents(refVal_setAvailableCents);
             
@@ -76,7 +76,7 @@ bool RollupBalance::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("balanceCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBalanceCents;
+            int64_t refVal_setBalanceCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBalanceCents);
             setBalanceCents(refVal_setBalanceCents);
             
@@ -87,7 +87,7 @@ bool RollupBalance::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("holdsCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setHoldsCents;
+            int64_t refVal_setHoldsCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setHoldsCents);
             setHoldsCents(refVal_setHoldsCents);
             
@@ -128,19 +128,19 @@ bool RollupBalance::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("availableCents"))))
     {
-        int32_t refVal_setAvailableCents;
+        int64_t refVal_setAvailableCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("availableCents"))), refVal_setAvailableCents );
         setAvailableCents(refVal_setAvailableCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("balanceCents"))))
     {
-        int32_t refVal_setBalanceCents;
+        int64_t refVal_setBalanceCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("balanceCents"))), refVal_setBalanceCents );
         setBalanceCents(refVal_setBalanceCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("holdsCents"))))
     {
-        int32_t refVal_setHoldsCents;
+        int64_t refVal_setHoldsCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("holdsCents"))), refVal_setHoldsCents );
         setHoldsCents(refVal_setHoldsCents);
     }
@@ -148,13 +148,13 @@ bool RollupBalance::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 }
 
 
-int32_t RollupBalance::getAvailableCents() const
+int64_t RollupBalance::getAvailableCents() const
 {
     return m_AvailableCents;
 }
 
 
-void RollupBalance::setAvailableCents(int32_t value)
+void RollupBalance::setAvailableCents(int64_t value)
 {
     m_AvailableCents = value;
     m_AvailableCentsIsSet = true;
@@ -169,13 +169,13 @@ void RollupBalance::unsetAvailableCents()
 {
     m_AvailableCentsIsSet = false;
 }
-int32_t RollupBalance::getBalanceCents() const
+int64_t RollupBalance::getBalanceCents() const
 {
     return m_BalanceCents;
 }
 
 
-void RollupBalance::setBalanceCents(int32_t value)
+void RollupBalance::setBalanceCents(int64_t value)
 {
     m_BalanceCents = value;
     m_BalanceCentsIsSet = true;
@@ -190,13 +190,13 @@ void RollupBalance::unsetBalanceCents()
 {
     m_BalanceCentsIsSet = false;
 }
-int32_t RollupBalance::getHoldsCents() const
+int64_t RollupBalance::getHoldsCents() const
 {
     return m_HoldsCents;
 }
 
 
-void RollupBalance::setHoldsCents(int32_t value)
+void RollupBalance::setHoldsCents(int64_t value)
 {
     m_HoldsCents = value;
     m_HoldsCentsIsSet = true;

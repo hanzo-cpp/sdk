@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// IndexGranularity is the index granularity in rows.
     /// </summary>
-    int32_t getIndexGranularity() const;
+    int64_t getIndexGranularity() const;
     bool indexGranularityIsSet() const;
     void unsetIndexGranularity();
-    void setIndexGranularity(int32_t value);
+    void setIndexGranularity(int64_t value);
 
     /// <summary>
     /// Name is the field to tune. Required.
@@ -108,7 +108,7 @@ protected:
     utility::string_t m_Index;
     bool m_IndexIsSet;
 
-    int32_t m_IndexGranularity;
+    int64_t m_IndexGranularity;
     bool m_IndexGranularityIsSet;
 
     utility::string_t m_Name;

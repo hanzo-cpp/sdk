@@ -54,36 +54,36 @@ public:
     /// <summary>
     /// OK is how many rows run what they declare.
     /// </summary>
-    int32_t getOk() const;
+    int64_t getOk() const;
     bool okIsSet() const;
     void unsetOk();
-    void setOk(int32_t value);
+    void setOk(int64_t value);
 
     /// <summary>
     /// Red is how many have drifted badly.
     /// </summary>
-    int32_t getRed() const;
+    int64_t getRed() const;
     bool redIsSet() const;
     void unsetRed();
-    void setRed(int32_t value);
+    void setRed(int64_t value);
 
     /// <summary>
     /// Yellow is how many have drifted within tolerance.
     /// </summary>
-    int32_t getYellow() const;
+    int64_t getYellow() const;
     bool yellowIsSet() const;
     void unsetYellow();
-    void setYellow(int32_t value);
+    void setYellow(int64_t value);
 
 
 protected:
-    int32_t m_Ok;
+    int64_t m_Ok;
     bool m_OkIsSet;
 
-    int32_t m_Red;
+    int64_t m_Red;
     bool m_RedIsSet;
 
-    int32_t m_Yellow;
+    int64_t m_Yellow;
     bool m_YellowIsSet;
 
 };

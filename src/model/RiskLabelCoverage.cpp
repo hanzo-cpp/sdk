@@ -18,34 +18,34 @@ namespace model {
 
 RiskLabelCoverage::RiskLabelCoverage()
 {
-    m_Contested = 0;
+    m_Contested = 0L;
     m_ContestedIsSet = false;
-    m_Events = 0;
+    m_Events = 0L;
     m_EventsIsSet = false;
     m_Explore = 0.0;
     m_ExploreIsSet = false;
-    m_Facts = 0;
+    m_Facts = 0L;
     m_FactsIsSet = false;
     m_From = utility::conversions::to_string_t("");
     m_FromIsSet = false;
-    m_Horizon = 0;
+    m_Horizon = 0L;
     m_HorizonIsSet = false;
-    m_Judged = 0;
+    m_Judged = 0L;
     m_JudgedIsSet = false;
-    m_Matured = 0;
+    m_Matured = 0L;
     m_MaturedIsSet = false;
-    m_Pending = 0;
+    m_Pending = 0L;
     m_PendingIsSet = false;
-    m_Productive = 0;
+    m_Productive = 0L;
     m_ProductiveIsSet = false;
     m_SourcesIsSet = false;
     m_To = utility::conversions::to_string_t("");
     m_ToIsSet = false;
-    m_Unlabelled = 0;
+    m_Unlabelled = 0L;
     m_UnlabelledIsSet = false;
-    m_Unmatured = 0;
+    m_Unmatured = 0L;
     m_UnmaturedIsSet = false;
-    m_Unproductive = 0;
+    m_Unproductive = 0L;
     m_UnproductiveIsSet = false;
 }
 
@@ -148,7 +148,7 @@ bool RiskLabelCoverage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("contested")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setContested;
+            int64_t refVal_setContested;
             ok &= ModelBase::fromJson(fieldValue, refVal_setContested);
             setContested(refVal_setContested);
             
@@ -159,7 +159,7 @@ bool RiskLabelCoverage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("events")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setEvents;
+            int64_t refVal_setEvents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setEvents);
             setEvents(refVal_setEvents);
             
@@ -181,7 +181,7 @@ bool RiskLabelCoverage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("facts")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFacts;
+            int64_t refVal_setFacts;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFacts);
             setFacts(refVal_setFacts);
             
@@ -203,7 +203,7 @@ bool RiskLabelCoverage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("horizon")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setHorizon;
+            int64_t refVal_setHorizon;
             ok &= ModelBase::fromJson(fieldValue, refVal_setHorizon);
             setHorizon(refVal_setHorizon);
             
@@ -214,7 +214,7 @@ bool RiskLabelCoverage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("judged")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setJudged;
+            int64_t refVal_setJudged;
             ok &= ModelBase::fromJson(fieldValue, refVal_setJudged);
             setJudged(refVal_setJudged);
             
@@ -225,7 +225,7 @@ bool RiskLabelCoverage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("matured")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMatured;
+            int64_t refVal_setMatured;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMatured);
             setMatured(refVal_setMatured);
             
@@ -236,7 +236,7 @@ bool RiskLabelCoverage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("pending")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPending;
+            int64_t refVal_setPending;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPending);
             setPending(refVal_setPending);
             
@@ -247,7 +247,7 @@ bool RiskLabelCoverage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("productive")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setProductive;
+            int64_t refVal_setProductive;
             ok &= ModelBase::fromJson(fieldValue, refVal_setProductive);
             setProductive(refVal_setProductive);
             
@@ -280,7 +280,7 @@ bool RiskLabelCoverage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("unlabelled")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUnlabelled;
+            int64_t refVal_setUnlabelled;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUnlabelled);
             setUnlabelled(refVal_setUnlabelled);
             
@@ -291,7 +291,7 @@ bool RiskLabelCoverage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("unmatured")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUnmatured;
+            int64_t refVal_setUnmatured;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUnmatured);
             setUnmatured(refVal_setUnmatured);
             
@@ -302,7 +302,7 @@ bool RiskLabelCoverage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("unproductive")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUnproductive;
+            int64_t refVal_setUnproductive;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUnproductive);
             setUnproductive(refVal_setUnproductive);
             
@@ -391,13 +391,13 @@ bool RiskLabelCoverage::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("contested"))))
     {
-        int32_t refVal_setContested;
+        int64_t refVal_setContested;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("contested"))), refVal_setContested );
         setContested(refVal_setContested);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("events"))))
     {
-        int32_t refVal_setEvents;
+        int64_t refVal_setEvents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("events"))), refVal_setEvents );
         setEvents(refVal_setEvents);
     }
@@ -409,7 +409,7 @@ bool RiskLabelCoverage::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("facts"))))
     {
-        int32_t refVal_setFacts;
+        int64_t refVal_setFacts;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("facts"))), refVal_setFacts );
         setFacts(refVal_setFacts);
     }
@@ -421,31 +421,31 @@ bool RiskLabelCoverage::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("horizon"))))
     {
-        int32_t refVal_setHorizon;
+        int64_t refVal_setHorizon;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("horizon"))), refVal_setHorizon );
         setHorizon(refVal_setHorizon);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("judged"))))
     {
-        int32_t refVal_setJudged;
+        int64_t refVal_setJudged;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("judged"))), refVal_setJudged );
         setJudged(refVal_setJudged);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("matured"))))
     {
-        int32_t refVal_setMatured;
+        int64_t refVal_setMatured;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("matured"))), refVal_setMatured );
         setMatured(refVal_setMatured);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("pending"))))
     {
-        int32_t refVal_setPending;
+        int64_t refVal_setPending;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("pending"))), refVal_setPending );
         setPending(refVal_setPending);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("productive"))))
     {
-        int32_t refVal_setProductive;
+        int64_t refVal_setProductive;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("productive"))), refVal_setProductive );
         setProductive(refVal_setProductive);
     }
@@ -463,19 +463,19 @@ bool RiskLabelCoverage::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("unlabelled"))))
     {
-        int32_t refVal_setUnlabelled;
+        int64_t refVal_setUnlabelled;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("unlabelled"))), refVal_setUnlabelled );
         setUnlabelled(refVal_setUnlabelled);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("unmatured"))))
     {
-        int32_t refVal_setUnmatured;
+        int64_t refVal_setUnmatured;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("unmatured"))), refVal_setUnmatured );
         setUnmatured(refVal_setUnmatured);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("unproductive"))))
     {
-        int32_t refVal_setUnproductive;
+        int64_t refVal_setUnproductive;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("unproductive"))), refVal_setUnproductive );
         setUnproductive(refVal_setUnproductive);
     }
@@ -483,13 +483,13 @@ bool RiskLabelCoverage::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
 }
 
 
-int32_t RiskLabelCoverage::getContested() const
+int64_t RiskLabelCoverage::getContested() const
 {
     return m_Contested;
 }
 
 
-void RiskLabelCoverage::setContested(int32_t value)
+void RiskLabelCoverage::setContested(int64_t value)
 {
     m_Contested = value;
     m_ContestedIsSet = true;
@@ -504,13 +504,13 @@ void RiskLabelCoverage::unsetContested()
 {
     m_ContestedIsSet = false;
 }
-int32_t RiskLabelCoverage::getEvents() const
+int64_t RiskLabelCoverage::getEvents() const
 {
     return m_Events;
 }
 
 
-void RiskLabelCoverage::setEvents(int32_t value)
+void RiskLabelCoverage::setEvents(int64_t value)
 {
     m_Events = value;
     m_EventsIsSet = true;
@@ -546,13 +546,13 @@ void RiskLabelCoverage::unsetExplore()
 {
     m_ExploreIsSet = false;
 }
-int32_t RiskLabelCoverage::getFacts() const
+int64_t RiskLabelCoverage::getFacts() const
 {
     return m_Facts;
 }
 
 
-void RiskLabelCoverage::setFacts(int32_t value)
+void RiskLabelCoverage::setFacts(int64_t value)
 {
     m_Facts = value;
     m_FactsIsSet = true;
@@ -588,13 +588,13 @@ void RiskLabelCoverage::unsetFrom()
 {
     m_FromIsSet = false;
 }
-int32_t RiskLabelCoverage::getHorizon() const
+int64_t RiskLabelCoverage::getHorizon() const
 {
     return m_Horizon;
 }
 
 
-void RiskLabelCoverage::setHorizon(int32_t value)
+void RiskLabelCoverage::setHorizon(int64_t value)
 {
     m_Horizon = value;
     m_HorizonIsSet = true;
@@ -609,13 +609,13 @@ void RiskLabelCoverage::unsetHorizon()
 {
     m_HorizonIsSet = false;
 }
-int32_t RiskLabelCoverage::getJudged() const
+int64_t RiskLabelCoverage::getJudged() const
 {
     return m_Judged;
 }
 
 
-void RiskLabelCoverage::setJudged(int32_t value)
+void RiskLabelCoverage::setJudged(int64_t value)
 {
     m_Judged = value;
     m_JudgedIsSet = true;
@@ -630,13 +630,13 @@ void RiskLabelCoverage::unsetJudged()
 {
     m_JudgedIsSet = false;
 }
-int32_t RiskLabelCoverage::getMatured() const
+int64_t RiskLabelCoverage::getMatured() const
 {
     return m_Matured;
 }
 
 
-void RiskLabelCoverage::setMatured(int32_t value)
+void RiskLabelCoverage::setMatured(int64_t value)
 {
     m_Matured = value;
     m_MaturedIsSet = true;
@@ -651,13 +651,13 @@ void RiskLabelCoverage::unsetMatured()
 {
     m_MaturedIsSet = false;
 }
-int32_t RiskLabelCoverage::getPending() const
+int64_t RiskLabelCoverage::getPending() const
 {
     return m_Pending;
 }
 
 
-void RiskLabelCoverage::setPending(int32_t value)
+void RiskLabelCoverage::setPending(int64_t value)
 {
     m_Pending = value;
     m_PendingIsSet = true;
@@ -672,13 +672,13 @@ void RiskLabelCoverage::unsetPending()
 {
     m_PendingIsSet = false;
 }
-int32_t RiskLabelCoverage::getProductive() const
+int64_t RiskLabelCoverage::getProductive() const
 {
     return m_Productive;
 }
 
 
-void RiskLabelCoverage::setProductive(int32_t value)
+void RiskLabelCoverage::setProductive(int64_t value)
 {
     m_Productive = value;
     m_ProductiveIsSet = true;
@@ -735,13 +735,13 @@ void RiskLabelCoverage::unsetTo()
 {
     m_ToIsSet = false;
 }
-int32_t RiskLabelCoverage::getUnlabelled() const
+int64_t RiskLabelCoverage::getUnlabelled() const
 {
     return m_Unlabelled;
 }
 
 
-void RiskLabelCoverage::setUnlabelled(int32_t value)
+void RiskLabelCoverage::setUnlabelled(int64_t value)
 {
     m_Unlabelled = value;
     m_UnlabelledIsSet = true;
@@ -756,13 +756,13 @@ void RiskLabelCoverage::unsetUnlabelled()
 {
     m_UnlabelledIsSet = false;
 }
-int32_t RiskLabelCoverage::getUnmatured() const
+int64_t RiskLabelCoverage::getUnmatured() const
 {
     return m_Unmatured;
 }
 
 
-void RiskLabelCoverage::setUnmatured(int32_t value)
+void RiskLabelCoverage::setUnmatured(int64_t value)
 {
     m_Unmatured = value;
     m_UnmaturedIsSet = true;
@@ -777,13 +777,13 @@ void RiskLabelCoverage::unsetUnmatured()
 {
     m_UnmaturedIsSet = false;
 }
-int32_t RiskLabelCoverage::getUnproductive() const
+int64_t RiskLabelCoverage::getUnproductive() const
 {
     return m_Unproductive;
 }
 
 
-void RiskLabelCoverage::setUnproductive(int32_t value)
+void RiskLabelCoverage::setUnproductive(int64_t value)
 {
     m_Unproductive = value;
     m_UnproductiveIsSet = true;

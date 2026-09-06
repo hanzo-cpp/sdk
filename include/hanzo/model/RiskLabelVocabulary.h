@@ -80,10 +80,10 @@ public:
     /// <summary>
     /// Retention is the platform floor in days: no tenant may dispose of a label younger than this, because a label can be the input to an adverse action.
     /// </summary>
-    int32_t getRetention() const;
+    int64_t getRetention() const;
     bool retentionIsSet() const;
     void unsetRetention();
-    void setRetention(int32_t value);
+    void setRetention(int64_t value);
 
     /// <summary>
     /// Rule states the tie-breaks below rank, in order, so a caller reading a contested resolution can reproduce it.
@@ -104,7 +104,7 @@ protected:
     std::vector<utility::string_t> m_Precedence;
     bool m_PrecedenceIsSet;
 
-    int32_t m_Retention;
+    int64_t m_Retention;
     bool m_RetentionIsSet;
 
     std::vector<utility::string_t> m_Rule;

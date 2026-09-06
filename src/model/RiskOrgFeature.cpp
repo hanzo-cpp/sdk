@@ -20,7 +20,7 @@ RiskOrgFeature::RiskOrgFeature()
 {
     m_Blind = false;
     m_BlindIsSet = false;
-    m_Buckets = 0;
+    m_Buckets = 0L;
     m_BucketsIsSet = false;
     m_Max = 0.0;
     m_MaxIsSet = false;
@@ -28,7 +28,7 @@ RiskOrgFeature::RiskOrgFeature()
     m_MeanIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_Present = 0;
+    m_Present = 0L;
     m_PresentIsSet = false;
     m_Source = utility::conversions::to_string_t("");
     m_SourceIsSet = false;
@@ -111,7 +111,7 @@ bool RiskOrgFeature::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("buckets")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBuckets;
+            int64_t refVal_setBuckets;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBuckets);
             setBuckets(refVal_setBuckets);
             
@@ -155,7 +155,7 @@ bool RiskOrgFeature::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("present")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPresent;
+            int64_t refVal_setPresent;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPresent);
             setPresent(refVal_setPresent);
             
@@ -244,7 +244,7 @@ bool RiskOrgFeature::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("buckets"))))
     {
-        int32_t refVal_setBuckets;
+        int64_t refVal_setBuckets;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("buckets"))), refVal_setBuckets );
         setBuckets(refVal_setBuckets);
     }
@@ -268,7 +268,7 @@ bool RiskOrgFeature::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("present"))))
     {
-        int32_t refVal_setPresent;
+        int64_t refVal_setPresent;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("present"))), refVal_setPresent );
         setPresent(refVal_setPresent);
     }
@@ -309,13 +309,13 @@ void RiskOrgFeature::unsetBlind()
 {
     m_BlindIsSet = false;
 }
-int32_t RiskOrgFeature::getBuckets() const
+int64_t RiskOrgFeature::getBuckets() const
 {
     return m_Buckets;
 }
 
 
-void RiskOrgFeature::setBuckets(int32_t value)
+void RiskOrgFeature::setBuckets(int64_t value)
 {
     m_Buckets = value;
     m_BucketsIsSet = true;
@@ -393,13 +393,13 @@ void RiskOrgFeature::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t RiskOrgFeature::getPresent() const
+int64_t RiskOrgFeature::getPresent() const
 {
     return m_Present;
 }
 
 
-void RiskOrgFeature::setPresent(int32_t value)
+void RiskOrgFeature::setPresent(int64_t value)
 {
     m_Present = value;
     m_PresentIsSet = true;

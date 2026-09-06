@@ -152,7 +152,7 @@ bool O11y_O11yLogRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("attributes_int")));
         if(!fieldValue.is_null())
         {
-            std::map<utility::string_t, int32_t> refVal_setAttributesInt;
+            std::map<utility::string_t, int64_t> refVal_setAttributesInt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAttributesInt);
             setAttributesInt(refVal_setAttributesInt);
             
@@ -355,7 +355,7 @@ bool O11y_O11yLogRecord::fromMultiPart(std::shared_ptr<MultipartFormData> multip
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("attributes_int"))))
     {
-        std::map<utility::string_t, int32_t> refVal_setAttributesInt;
+        std::map<utility::string_t, int64_t> refVal_setAttributesInt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("attributes_int"))), refVal_setAttributesInt );
         setAttributesInt(refVal_setAttributesInt);
     }
@@ -465,13 +465,13 @@ void O11y_O11yLogRecord::unsetAttributes_float()
 {
     m_Attributes_floatIsSet = false;
 }
-std::map<utility::string_t, int32_t> O11y_O11yLogRecord::getAttributesInt() const
+std::map<utility::string_t, int64_t> O11y_O11yLogRecord::getAttributesInt() const
 {
     return m_Attributes_int;
 }
 
 
-void O11y_O11yLogRecord::setAttributesInt(std::map<utility::string_t, int32_t> value)
+void O11y_O11yLogRecord::setAttributesInt(std::map<utility::string_t, int64_t> value)
 {
     m_Attributes_int = value;
     m_Attributes_intIsSet = true;

@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// calls the plan allows per period; 0 &#x3D; unbounded
     /// </summary>
-    int32_t getLimit() const;
+    int64_t getLimit() const;
     bool limitIsSet() const;
     void unsetLimit();
-    void setLimit(int32_t value);
+    void setLimit(int64_t value);
 
     /// <summary>
     /// the tier the limit came from
@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// unix seconds; when THAT window starts again
     /// </summary>
-    int32_t getResets() const;
+    int64_t getResets() const;
     bool resetsIsSet() const;
     void unsetResets();
-    void setResets(int32_t value);
+    void setResets(int64_t value);
 
     /// <summary>
     /// the subject is at the limit
@@ -87,10 +87,10 @@ public:
     /// <summary>
     /// Used is how many zero-priced calls this subject has been SERVED in the period ending at Resets — the UTC calendar day. Only a served call counts, so an admission check, a refusal, or a vendor that never answered leaves it where it stood. It stops AT Limit rather than climbing past it, so Limit-Used is what remains and never goes negative.
     /// </summary>
-    int32_t getUsed() const;
+    int64_t getUsed() const;
     bool usedIsSet() const;
     void unsetUsed();
-    void setUsed(int32_t value);
+    void setUsed(int64_t value);
 
     /// <summary>
     /// Window is which ceiling these numbers describe — \&quot;hour\&quot; or \&quot;day\&quot; — because a caller is held to both and only one of them is the answer. It is the window that REFUSED where one did, and otherwise the one with least left, so Limit-Used is always the number that will actually stop them next. Empty where no window bounds the subject at all.
@@ -102,19 +102,19 @@ public:
 
 
 protected:
-    int32_t m_Limit;
+    int64_t m_Limit;
     bool m_LimitIsSet;
 
     utility::string_t m_Plan;
     bool m_PlanIsSet;
 
-    int32_t m_Resets;
+    int64_t m_Resets;
     bool m_ResetsIsSet;
 
     bool m_Spent;
     bool m_SpentIsSet;
 
-    int32_t m_Used;
+    int64_t m_Used;
     bool m_UsedIsSet;
 
     utility::string_t m_Window;

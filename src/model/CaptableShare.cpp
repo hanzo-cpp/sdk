@@ -29,7 +29,7 @@ CaptableShare::CaptableShare()
     m_IssueDateIsSet = false;
     m_PricePerShare = 0.0;
     m_PricePerShareIsSet = false;
-    m_Quantity = 0;
+    m_Quantity = 0L;
     m_QuantityIsSet = false;
     m_ShareClassId = utility::conversions::to_string_t("");
     m_ShareClassIdIsSet = false;
@@ -200,7 +200,7 @@ bool CaptableShare::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("quantity")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setQuantity;
+            int64_t refVal_setQuantity;
             ok &= ModelBase::fromJson(fieldValue, refVal_setQuantity);
             setQuantity(refVal_setQuantity);
             
@@ -383,7 +383,7 @@ bool CaptableShare::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("quantity"))))
     {
-        int32_t refVal_setQuantity;
+        int64_t refVal_setQuantity;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("quantity"))), refVal_setQuantity );
         setQuantity(refVal_setQuantity);
     }
@@ -553,13 +553,13 @@ void CaptableShare::unsetPricePerShare()
 {
     m_PricePerShareIsSet = false;
 }
-int32_t CaptableShare::getQuantity() const
+int64_t CaptableShare::getQuantity() const
 {
     return m_Quantity;
 }
 
 
-void CaptableShare::setQuantity(int32_t value)
+void CaptableShare::setQuantity(int64_t value)
 {
     m_Quantity = value;
     m_QuantityIsSet = true;

@@ -19,11 +19,11 @@ namespace model {
 TierLimits::TierLimits()
 {
     m_AllowedModelsIsSet = false;
-    m_DailyCreditsCents = 0;
+    m_DailyCreditsCents = 0L;
     m_DailyCreditsCentsIsSet = false;
     m_DisplayName = utility::conversions::to_string_t("");
     m_DisplayNameIsSet = false;
-    m_MaxAgents = 0;
+    m_MaxAgents = 0L;
     m_MaxAgentsIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
@@ -96,7 +96,7 @@ bool TierLimits::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("dailyCreditsCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDailyCreditsCents;
+            int64_t refVal_setDailyCreditsCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDailyCreditsCents);
             setDailyCreditsCents(refVal_setDailyCreditsCents);
             
@@ -118,7 +118,7 @@ bool TierLimits::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("maxAgents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMaxAgents;
+            int64_t refVal_setMaxAgents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMaxAgents);
             setMaxAgents(refVal_setMaxAgents);
             
@@ -199,7 +199,7 @@ bool TierLimits::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("dailyCreditsCents"))))
     {
-        int32_t refVal_setDailyCreditsCents;
+        int64_t refVal_setDailyCreditsCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("dailyCreditsCents"))), refVal_setDailyCreditsCents );
         setDailyCreditsCents(refVal_setDailyCreditsCents);
     }
@@ -211,7 +211,7 @@ bool TierLimits::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("maxAgents"))))
     {
-        int32_t refVal_setMaxAgents;
+        int64_t refVal_setMaxAgents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("maxAgents"))), refVal_setMaxAgents );
         setMaxAgents(refVal_setMaxAgents);
     }
@@ -252,13 +252,13 @@ void TierLimits::unsetAllowedModels()
 {
     m_AllowedModelsIsSet = false;
 }
-int32_t TierLimits::getDailyCreditsCents() const
+int64_t TierLimits::getDailyCreditsCents() const
 {
     return m_DailyCreditsCents;
 }
 
 
-void TierLimits::setDailyCreditsCents(int32_t value)
+void TierLimits::setDailyCreditsCents(int64_t value)
 {
     m_DailyCreditsCents = value;
     m_DailyCreditsCentsIsSet = true;
@@ -294,13 +294,13 @@ void TierLimits::unsetDisplayName()
 {
     m_DisplayNameIsSet = false;
 }
-int32_t TierLimits::getMaxAgents() const
+int64_t TierLimits::getMaxAgents() const
 {
     return m_MaxAgents;
 }
 
 
-void TierLimits::setMaxAgents(int32_t value)
+void TierLimits::setMaxAgents(int64_t value)
 {
     m_MaxAgents = value;
     m_MaxAgentsIsSet = true;

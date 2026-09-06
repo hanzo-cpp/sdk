@@ -26,9 +26,9 @@ Offer::Offer()
     m_DomainIsSet = false;
     m_Premium = false;
     m_PremiumIsSet = false;
-    m_PriceCents = 0;
+    m_PriceCents = 0L;
     m_PriceCentsIsSet = false;
-    m_RenewalPriceCents = 0;
+    m_RenewalPriceCents = 0L;
     m_RenewalPriceCentsIsSet = false;
     m_Tld = utility::conversions::to_string_t("");
     m_TldIsSet = false;
@@ -137,7 +137,7 @@ bool Offer::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("priceCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPriceCents;
+            int64_t refVal_setPriceCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPriceCents);
             setPriceCents(refVal_setPriceCents);
             
@@ -148,7 +148,7 @@ bool Offer::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("renewalPriceCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRenewalPriceCents;
+            int64_t refVal_setRenewalPriceCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRenewalPriceCents);
             setRenewalPriceCents(refVal_setRenewalPriceCents);
             
@@ -240,13 +240,13 @@ bool Offer::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("priceCents"))))
     {
-        int32_t refVal_setPriceCents;
+        int64_t refVal_setPriceCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("priceCents"))), refVal_setPriceCents );
         setPriceCents(refVal_setPriceCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("renewalPriceCents"))))
     {
-        int32_t refVal_setRenewalPriceCents;
+        int64_t refVal_setRenewalPriceCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("renewalPriceCents"))), refVal_setRenewalPriceCents );
         setRenewalPriceCents(refVal_setRenewalPriceCents);
     }
@@ -344,13 +344,13 @@ void Offer::unsetPremium()
 {
     m_PremiumIsSet = false;
 }
-int32_t Offer::getPriceCents() const
+int64_t Offer::getPriceCents() const
 {
     return m_PriceCents;
 }
 
 
-void Offer::setPriceCents(int32_t value)
+void Offer::setPriceCents(int64_t value)
 {
     m_PriceCents = value;
     m_PriceCentsIsSet = true;
@@ -365,13 +365,13 @@ void Offer::unsetPriceCents()
 {
     m_PriceCentsIsSet = false;
 }
-int32_t Offer::getRenewalPriceCents() const
+int64_t Offer::getRenewalPriceCents() const
 {
     return m_RenewalPriceCents;
 }
 
 
-void Offer::setRenewalPriceCents(int32_t value)
+void Offer::setRenewalPriceCents(int64_t value)
 {
     m_RenewalPriceCents = value;
     m_RenewalPriceCentsIsSet = true;

@@ -20,13 +20,13 @@ Redemption::Redemption()
 {
     m_Code = utility::conversions::to_string_t("");
     m_CodeIsSet = false;
-    m_DiscountCents = 0;
+    m_DiscountCents = 0L;
     m_DiscountCentsIsSet = false;
     m_Plan = utility::conversions::to_string_t("");
     m_PlanIsSet = false;
-    m_RedeemedAt = 0;
+    m_RedeemedAt = 0L;
     m_RedeemedAtIsSet = false;
-    m_Seats = 0;
+    m_Seats = 0L;
     m_SeatsIsSet = false;
 }
 
@@ -90,7 +90,7 @@ bool Redemption::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("discountCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDiscountCents;
+            int64_t refVal_setDiscountCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDiscountCents);
             setDiscountCents(refVal_setDiscountCents);
             
@@ -112,7 +112,7 @@ bool Redemption::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("redeemedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRedeemedAt;
+            int64_t refVal_setRedeemedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRedeemedAt);
             setRedeemedAt(refVal_setRedeemedAt);
             
@@ -123,7 +123,7 @@ bool Redemption::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("seats")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSeats;
+            int64_t refVal_setSeats;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSeats);
             setSeats(refVal_setSeats);
             
@@ -178,7 +178,7 @@ bool Redemption::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("discountCents"))))
     {
-        int32_t refVal_setDiscountCents;
+        int64_t refVal_setDiscountCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("discountCents"))), refVal_setDiscountCents );
         setDiscountCents(refVal_setDiscountCents);
     }
@@ -190,13 +190,13 @@ bool Redemption::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("redeemedAt"))))
     {
-        int32_t refVal_setRedeemedAt;
+        int64_t refVal_setRedeemedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("redeemedAt"))), refVal_setRedeemedAt );
         setRedeemedAt(refVal_setRedeemedAt);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("seats"))))
     {
-        int32_t refVal_setSeats;
+        int64_t refVal_setSeats;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("seats"))), refVal_setSeats );
         setSeats(refVal_setSeats);
     }
@@ -225,13 +225,13 @@ void Redemption::unsetCode()
 {
     m_CodeIsSet = false;
 }
-int32_t Redemption::getDiscountCents() const
+int64_t Redemption::getDiscountCents() const
 {
     return m_DiscountCents;
 }
 
 
-void Redemption::setDiscountCents(int32_t value)
+void Redemption::setDiscountCents(int64_t value)
 {
     m_DiscountCents = value;
     m_DiscountCentsIsSet = true;
@@ -267,13 +267,13 @@ void Redemption::unsetPlan()
 {
     m_PlanIsSet = false;
 }
-int32_t Redemption::getRedeemedAt() const
+int64_t Redemption::getRedeemedAt() const
 {
     return m_RedeemedAt;
 }
 
 
-void Redemption::setRedeemedAt(int32_t value)
+void Redemption::setRedeemedAt(int64_t value)
 {
     m_RedeemedAt = value;
     m_RedeemedAtIsSet = true;
@@ -288,13 +288,13 @@ void Redemption::unsetRedeemedAt()
 {
     m_RedeemedAtIsSet = false;
 }
-int32_t Redemption::getSeats() const
+int64_t Redemption::getSeats() const
 {
     return m_Seats;
 }
 
 
-void Redemption::setSeats(int32_t value)
+void Redemption::setSeats(int64_t value)
 {
     m_Seats = value;
     m_SeatsIsSet = true;

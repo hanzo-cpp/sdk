@@ -22,11 +22,14 @@
 
 #include "hanzo/ModelBase.h"
 
+#include "hanzo/model/DriftFlag.h"
 #include <cpprest/details/basic_types.h>
+#include <vector>
 
 namespace hanzo {
 namespace model {
 
+class DriftFlag;
 
 
 class  Verdict
@@ -52,63 +55,29 @@ public:
     /// Verdict members
 
 
-    int32_t getBuilds() const;
-    bool buildsIsSet() const;
-    void unsetBuilds();
-    void setBuilds(int32_t value);
+    /// <summary>
+    /// Flags are the findings behind the severity, in detection order: floating-declared, floating-running, stale, un-rolled, then the release-artifact ones. Always present — &#x60;[]&#x60; for a row that runs what it declares, never null.
+    /// </summary>
+    std::vector<std::shared_ptr<DriftFlag>> getFlags() const;
+    bool flagsIsSet() const;
+    void unsetFlags();
+    void setFlags(const std::vector<std::shared_ptr<DriftFlag>>& value);
 
-    utility::string_t getCommit() const;
-    bool commitIsSet() const;
-    void unsetCommit();
-    void setCommit(const utility::string_t& value);
-
-    bool isFired() const;
-    bool firedIsSet() const;
-    void unsetFired();
-    void setFired(bool value);
-
-    utility::string_t getOrg() const;
-    bool orgIsSet() const;
-    void unsetOrg();
-    void setOrg(const utility::string_t& value);
-
-    utility::string_t getReason() const;
-    bool reasonIsSet() const;
-    void unsetReason();
-    void setReason(const utility::string_t& value);
-
-    utility::string_t getRef() const;
-    bool refIsSet() const;
-    void unsetRef();
-    void setRef(const utility::string_t& value);
-
-    utility::string_t getRepo() const;
-    bool repoIsSet() const;
-    void unsetRepo();
-    void setRepo(const utility::string_t& value);
+    /// <summary>
+    /// Severity is the roll-up over Flags — red if any flag is red, else yellow if any is yellow, else ok. It is the column a board sorts and filters on, and \&quot;ok\&quot; is exactly what no flags means.
+    /// </summary>
+    utility::string_t getSeverity() const;
+    bool severityIsSet() const;
+    void unsetSeverity();
+    void setSeverity(const utility::string_t& value);
 
 
 protected:
-    int32_t m_Builds;
-    bool m_BuildsIsSet;
+    std::vector<std::shared_ptr<DriftFlag>> m_Flags;
+    bool m_FlagsIsSet;
 
-    utility::string_t m_Commit;
-    bool m_CommitIsSet;
-
-    bool m_Fired;
-    bool m_FiredIsSet;
-
-    utility::string_t m_Org;
-    bool m_OrgIsSet;
-
-    utility::string_t m_Reason;
-    bool m_ReasonIsSet;
-
-    utility::string_t m_Ref;
-    bool m_RefIsSet;
-
-    utility::string_t m_Repo;
-    bool m_RepoIsSet;
+    utility::string_t m_Severity;
+    bool m_SeverityIsSet;
 
 };
 

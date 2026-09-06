@@ -28,6 +28,7 @@
 #include "hanzo/model/KbAuthorizeOut.h"
 #include "hanzo/model/KbConnectorsOut.h"
 #include "hanzo/model/KbSyncOut.h"
+#include "hanzo/model/ReindexOut.h"
 #include "hanzo/model/SearchIn.h"
 #include "hanzo/model/SearchOut.h"
 #include <cpprest/details/basic_types.h>
@@ -127,6 +128,14 @@ public:
     /// Ingests an uploaded export as a tree of kb.page documents with its link structure intact. &#x60;?format&#x3D;&#x60; picks the normalizer — obsidian, notion, roam or evernote — and the export arrives as a multipart &#x60;file&#x60; part, or as the raw request body when there is no multipart part: an Obsidian or Notion vault zip, a Roam JSON (raw or inside the zip Roam downloads), or an Evernote .enex.  The pages are filed through the SAME ingest path a connector sync uses, so the kb.page hook indexes each one for retrieval AND extracts its &#x60;[[wikilinks]]&#x60; into kb.link edges — the imported vault is searchable and its graph is navigable without a second pass. Parents are filed before their children, and each page takes a slug unique within the org (suffixed -2, -3, … on collision), so a re-import adds pages rather than overwriting the ones already there.  Scoped to the caller&#39;s validated org; &#x60;?project&#x3D;&#x60; narrows every imported page to one project. No validated principal is 403, and an org that has not installed the kb module is refused with the install call to make first. The bounds are 64 MB per upload, 5000 pages and 8 MB per archive entry: pages past the five-thousandth are dropped and a larger entry is truncated at its bound, and a page the store rejects is skipped — so the answer&#39;s &#x60;imported&#x60; count is what was actually filed, not what was sent.
     /// </remarks>
     pplx::task<void> postKnowledgeImport(
+    ) const;
+    /// <summary>
+    /// Rebuilds the caller org&#39;s retrieval from its documents: the vector collection is dropped and created again at the configured embedding size and every page, memory and source is embedded into it; the lexical index is reconciled to the same set.
+    /// </summary>
+    /// <remarks>
+    /// Rebuilds the caller org&#39;s retrieval from its documents: the vector collection is dropped and created again at the configured embedding size and every page, memory and source is embedded into it; the lexical index is reconciled to the same set. It is what an operator runs after the embedding model or its dimension changes, and what puts an org&#39;s retrieval right after a vector outage. It requires ORG ADMIN and runs inline: an org&#39;s knowledge is a few thousand documents, and the answer is the count.  The request has no body. Response: {\&quot;vectors\&quot;: 412, \&quot;lexical\&quot;: 412, \&quot;removed\&quot;: 3, \&quot;failed\&quot;: 0}
+    /// </remarks>
+    pplx::task<std::shared_ptr<ReindexOut>> postKnowledgeReindex(
     ) const;
     /// <summary>
     /// Runs a semantic search over the caller org&#39;s own knowledge — its wiki pages, its agent memories and everything its connectors have synced — and returns the matching passages.

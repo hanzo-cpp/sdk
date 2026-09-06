@@ -18,11 +18,11 @@ namespace model {
 
 SafeTxIn::SafeTxIn()
 {
-    m_ChainId = 0;
+    m_ChainId = 0L;
     m_ChainIdIsSet = false;
     m_Data = utility::conversions::to_string_t("");
     m_DataIsSet = false;
-    m_Nonce = 0;
+    m_Nonce = 0L;
     m_NonceIsSet = false;
     m_To = utility::conversions::to_string_t("");
     m_ToIsSet = false;
@@ -79,7 +79,7 @@ bool SafeTxIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("chainId")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setChainId;
+            int64_t refVal_setChainId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setChainId);
             setChainId(refVal_setChainId);
             
@@ -101,7 +101,7 @@ bool SafeTxIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("nonce")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNonce;
+            int64_t refVal_setNonce;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNonce);
             setNonce(refVal_setNonce);
             
@@ -172,7 +172,7 @@ bool SafeTxIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("chainId"))))
     {
-        int32_t refVal_setChainId;
+        int64_t refVal_setChainId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("chainId"))), refVal_setChainId );
         setChainId(refVal_setChainId);
     }
@@ -184,7 +184,7 @@ bool SafeTxIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("nonce"))))
     {
-        int32_t refVal_setNonce;
+        int64_t refVal_setNonce;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("nonce"))), refVal_setNonce );
         setNonce(refVal_setNonce);
     }
@@ -204,13 +204,13 @@ bool SafeTxIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 }
 
 
-int32_t SafeTxIn::getChainId() const
+int64_t SafeTxIn::getChainId() const
 {
     return m_ChainId;
 }
 
 
-void SafeTxIn::setChainId(int32_t value)
+void SafeTxIn::setChainId(int64_t value)
 {
     m_ChainId = value;
     m_ChainIdIsSet = true;
@@ -246,13 +246,13 @@ void SafeTxIn::unsetData()
 {
     m_DataIsSet = false;
 }
-int32_t SafeTxIn::getNonce() const
+int64_t SafeTxIn::getNonce() const
 {
     return m_Nonce;
 }
 
 
-void SafeTxIn::setNonce(int32_t value)
+void SafeTxIn::setNonce(int64_t value)
 {
     m_Nonce = value;
     m_NonceIsSet = true;

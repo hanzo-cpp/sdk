@@ -56,10 +56,10 @@ public:
     /// <summary>
     /// ExpiresAt is when the grant stops being accepted, as Unix seconds. It is short-lived by design and is handed out ONCE, on the response that queues the deployment — a later read of that deployment does not carry it, so a grant cannot be fetched again after the build it was minted for.
     /// </summary>
-    int32_t getExpiresAt() const;
+    int64_t getExpiresAt() const;
     bool expiresAtIsSet() const;
     void unsetExpiresAt();
-    void setExpiresAt(int32_t value);
+    void setExpiresAt(int64_t value);
 
     /// <summary>
     /// Fields are form values every POST must carry VERBATIM, alongside &#x60;key&#x60; and &#x60;file&#x60;. The signature covers them, so altering any one of them — including widening the key to reach outside the prefix — invalidates the grant rather than extending it.
@@ -72,10 +72,10 @@ public:
     /// <summary>
     /// MaxBytes bounds ONE object, not the upload as a whole.
     /// </summary>
-    int32_t getMaxBytes() const;
+    int64_t getMaxBytes() const;
     bool maxBytesIsSet() const;
     void unsetMaxBytes();
-    void setMaxBytes(int32_t value);
+    void setMaxBytes(int64_t value);
 
     /// <summary>
     /// Prefix is the only place this grant can write: the deployment&#39;s own key prefix. It authorizes WRITES ONLY, which is why completing a deployment reconciles the prefix against a manifest instead of letting CI delete.
@@ -95,13 +95,13 @@ public:
 
 
 protected:
-    int32_t m_ExpiresAt;
+    int64_t m_ExpiresAt;
     bool m_ExpiresAtIsSet;
 
     std::map<utility::string_t, utility::string_t> m_Fields;
     bool m_FieldsIsSet;
 
-    int32_t m_MaxBytes;
+    int64_t m_MaxBytes;
     bool m_MaxBytesIsSet;
 
     utility::string_t m_Prefix;

@@ -90,10 +90,10 @@ public:
     /// <summary>
     /// Timestamp is when the change was made, as a millisecond epoch.
     /// </summary>
-    int32_t getTimestamp() const;
+    int64_t getTimestamp() const;
     bool timestampIsSet() const;
     void unsetTimestamp();
-    void setTimestamp(int32_t value);
+    void setTimestamp(int64_t value);
 
 
 protected:
@@ -109,7 +109,7 @@ protected:
     std::vector<std::shared_ptr<O11y_FunnelStep>> m_Steps;
     bool m_StepsIsSet;
 
-    int32_t m_Timestamp;
+    int64_t m_Timestamp;
     bool m_TimestampIsSet;
 
 };

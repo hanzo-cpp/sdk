@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// CreatedAt is when the document was uploaded, in unix milliseconds.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// DataroomDocumentId is the membership id — this document&#39;s place in THIS room, distinct from the document id.
@@ -87,10 +87,10 @@ public:
     /// <summary>
     /// FileSize is the stored byte count, null when it was not recorded.
     /// </summary>
-    int32_t getFileSize() const;
+    int64_t getFileSize() const;
     bool fileSizeIsSet() const;
     void unsetFileSize();
-    void setFileSize(int32_t value);
+    void setFileSize(int64_t value);
 
     /// <summary>
     /// ID is the document id.
@@ -111,18 +111,18 @@ public:
     /// <summary>
     /// NumPages is the page count, null when it was not supplied at upload.
     /// </summary>
-    int32_t getNumPages() const;
+    int64_t getNumPages() const;
     bool numPagesIsSet() const;
     void unsetNumPages();
-    void setNumPages(int32_t value);
+    void setNumPages(int64_t value);
 
     /// <summary>
     /// OrderIndex is the document&#39;s place in the viewer&#39;s list, null when it was added without one. Unordered documents sort last.
     /// </summary>
-    int32_t getOrderIndex() const;
+    int64_t getOrderIndex() const;
     bool orderIndexIsSet() const;
     void unsetOrderIndex();
-    void setOrderIndex(int32_t value);
+    void setOrderIndex(int64_t value);
 
     /// <summary>
     /// Type is the document&#39;s kind, null when it was not recorded.
@@ -135,17 +135,17 @@ public:
     /// <summary>
     /// UpdatedAt is when the document row last changed, in unix milliseconds.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
 
 protected:
     utility::string_t m_ContentType;
     bool m_ContentTypeIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_DataroomDocumentId;
@@ -154,7 +154,7 @@ protected:
     utility::string_t m_FileKey;
     bool m_FileKeyIsSet;
 
-    int32_t m_FileSize;
+    int64_t m_FileSize;
     bool m_FileSizeIsSet;
 
     utility::string_t m_Id;
@@ -163,16 +163,16 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_NumPages;
+    int64_t m_NumPages;
     bool m_NumPagesIsSet;
 
-    int32_t m_OrderIndex;
+    int64_t m_OrderIndex;
     bool m_OrderIndexIsSet;
 
     utility::string_t m_Type;
     bool m_TypeIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
 };

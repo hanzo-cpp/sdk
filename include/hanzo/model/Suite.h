@@ -56,10 +56,10 @@ public:
     /// <summary>
     /// Attempts is how many times to try each item; the harness&#39;s default applies when it is omitted.
     /// </summary>
-    int32_t getAttempts() const;
+    int64_t getAttempts() const;
     bool attemptsIsSet() const;
     void unsetAttempts();
-    void setAttempts(int32_t value);
+    void setAttempts(int64_t value);
 
     /// <summary>
     /// Benchmarks are the catalog ids to run. At least one is required, and every id must be in the catalog.
@@ -87,7 +87,7 @@ public:
 
 
 protected:
-    int32_t m_Attempts;
+    int64_t m_Attempts;
     bool m_AttemptsIsSet;
 
     std::vector<utility::string_t> m_Benchmarks;

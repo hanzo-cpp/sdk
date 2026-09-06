@@ -123,18 +123,18 @@ public:
     /// <summary>
     /// Running is how many of those are in &#x60;running&#x60; right now — the number a dispatcher weighs against Capacity. paused sessions are in Sessions and not here.
     /// </summary>
-    int32_t getRunning() const;
+    int64_t getRunning() const;
     bool runningIsSet() const;
     void unsetRunning();
-    void setRunning(int32_t value);
+    void setRunning(int64_t value);
 
     /// <summary>
     /// Sessions is how many of the org&#39;s sessions are mapped to this machine, by target id OR by matching Host. All of them, whatever their status.
     /// </summary>
-    int32_t getSessions() const;
+    int64_t getSessions() const;
     bool sessionsIsSet() const;
     void unsetSessions();
-    void setSessions(int32_t value);
+    void setSessions(int64_t value);
 
     /// <summary>
     /// Spec is what the machine IS — os, arch, cores, RAM, accelerators — the static half, changed only when something reports it again. Absent when nothing has ever been reported, and a scheduler reads absence as \&quot;cannot satisfy a floor\&quot; rather than as \&quot;no limits\&quot;.
@@ -186,10 +186,10 @@ protected:
     utility::string_t m_MetricsAt;
     bool m_MetricsAtIsSet;
 
-    int32_t m_Running;
+    int64_t m_Running;
     bool m_RunningIsSet;
 
-    int32_t m_Sessions;
+    int64_t m_Sessions;
     bool m_SessionsIsSet;
 
     std::shared_ptr<Spec> m_Spec;

@@ -54,47 +54,47 @@ public:
     /// <summary>
     /// Accounts is how many accounts the org has connected, in any status.
     /// </summary>
-    int32_t getAccounts() const;
+    int64_t getAccounts() const;
     bool accountsIsSet() const;
     void unsetAccounts();
-    void setAccounts(int32_t value);
+    void setAccounts(int64_t value);
 
     /// <summary>
     /// Posts is how many posts the org has, in any state.
     /// </summary>
-    int32_t getPosts() const;
+    int64_t getPosts() const;
     bool postsIsSet() const;
     void unsetPosts();
-    void setPosts(int32_t value);
+    void setPosts(int64_t value);
 
     /// <summary>
     /// Published is how many of them have published.
     /// </summary>
-    int32_t getPublished() const;
+    int64_t getPublished() const;
     bool publishedIsSet() const;
     void unsetPublished();
-    void setPublished(int32_t value);
+    void setPublished(int64_t value);
 
     /// <summary>
     /// Scheduled is how many of them are waiting for their scheduled time.
     /// </summary>
-    int32_t getScheduled() const;
+    int64_t getScheduled() const;
     bool scheduledIsSet() const;
     void unsetScheduled();
-    void setScheduled(int32_t value);
+    void setScheduled(int64_t value);
 
 
 protected:
-    int32_t m_Accounts;
+    int64_t m_Accounts;
     bool m_AccountsIsSet;
 
-    int32_t m_Posts;
+    int64_t m_Posts;
     bool m_PostsIsSet;
 
-    int32_t m_Published;
+    int64_t m_Published;
     bool m_PublishedIsSet;
 
-    int32_t m_Scheduled;
+    int64_t m_Scheduled;
     bool m_ScheduledIsSet;
 
 };

@@ -127,10 +127,10 @@ public:
     /// <summary>
     /// Turns is HOW MANY turns the transcript holds — a COUNT, unlike the &#x60;turn&#x60; on each turn of the full story, which is that turn&#39;s position. The full read returns at most 1000 of them; this number is not capped.
     /// </summary>
-    int32_t getTurns() const;
+    int64_t getTurns() const;
     bool turnsIsSet() const;
     void unsetTurns();
-    void setTurns(int32_t value);
+    void setTurns(int64_t value);
 
 
 protected:
@@ -161,7 +161,7 @@ protected:
     utility::string_t m_Title;
     bool m_TitleIsSet;
 
-    int32_t m_Turns;
+    int64_t m_Turns;
     bool m_TurnsIsSet;
 
 };

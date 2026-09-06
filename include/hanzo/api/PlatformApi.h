@@ -41,7 +41,6 @@
 #include "hanzo/model/PreviewView.h"
 #include "hanzo/model/ProjectView.h"
 #include "hanzo/model/PromoteReq.h"
-#include "hanzo/model/Push.h"
 #include "hanzo/model/Readiness.h"
 #include "hanzo/model/ReleaseBoard.h"
 #include "hanzo/model/RestartRef.h"
@@ -52,7 +51,6 @@
 #include "hanzo/model/RunnerBuildReq.h"
 #include "hanzo/model/RunnerBuildResp.h"
 #include "hanzo/model/SetEnvReq.h"
-#include "hanzo/model/Verdict.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -327,16 +325,6 @@ public:
     pplx::task<std::shared_ptr<Restarted>> postPlatformFleetByAppDeploy(
         utility::string_t app,
         std::shared_ptr<RestartRef> restartRef
-    ) const;
-    /// <summary>
-    /// Receive a push from the forge and trigger its build
-    /// </summary>
-    /// <remarks>
-    /// The forge&#39;s push-to-deploy endpoint. git.hanzo.ai runs as a separate server, so its pushes never reach this fleet&#39;s own receive-pack; without this a push to the host we call canonical builds nothing. A verified push is handed to the SAME two clients a native push travels — the single-registrant deploy trigger, and the many-subscriber lifecycle stream that notifies and indexes — and the build decision itself stays downstream in the one place that knows what a push means.  PUBLIC at the JWT layer, because the forge carries no Hanzo session: AUTHENTICATION IS THE SIGNATURE. The HMAC covers the raw bytes and is verified BEFORE the payload is parsed, so an unauthenticated body is never decoded. The secret is read from KMS; a deployment that cannot read it answers 503 and processes nothing, rather than trusting a delivery it could not check. The body is read UNCOMPRESSED — a request declaring a Content-Encoding is refused 415 before it is touched, because decoding one is unbounded work bought with a few bytes and no credential. A bad signature is 401, a payload over 8 MiB is 413, and a malformed one 400.  A verified push that reaches both clients answers 200 with fired true and the NUMBER OF BUILDS it launched — zero is ordinary, since most pushes track no application, and it is the answer &#39;fired&#39; cannot give. A push that could not be dispatched answers 500: the delivery page shows it red, and the Replay that prompts reaches a fresh attempt rather than being declined as already landed.  The deliveries deliberately ignored answer 200 with a reason and nothing else: a payload that is not a push, a ref DELETE (a zero &#x60;after&#x60; has no commit to build), a BOT-authored push (release automation pushes as the forge&#39;s own Actions user, and a release must never rebuild itself), a push from a forge namespace that maps to no org, and a redelivery of a push already fired. Branches and tags both reach the build trigger, because releases are cut by tag and filtering here would silently stop publishing.
-    /// </remarks>
-    /// <param name="push"> (optional)</param>
-    pplx::task<std::shared_ptr<Verdict>> postPlatformHook(
-        boost::optional<std::shared_ptr<Push>> push
     ) const;
     /// <summary>
     /// Creates an application from a git repo or a container image.

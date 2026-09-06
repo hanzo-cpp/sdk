@@ -63,17 +63,17 @@ public:
     /// <summary>
     /// real invocation count in the bucket
     /// </summary>
-    int32_t getV() const;
+    int64_t getV() const;
     bool VIsSet() const;
     void unsetv();
-    void setV(int32_t value);
+    void setV(int64_t value);
 
 
 protected:
     utility::string_t m_t;
     bool m_tIsSet;
 
-    int32_t m_v;
+    int64_t m_v;
     bool m_vIsSet;
 
 };

@@ -18,7 +18,7 @@ namespace model {
 
 PopulatedFlow::PopulatedFlow()
 {
-    m_Created = 0;
+    m_Created = 0L;
     m_CreatedIsSet = false;
     m_ExternalId = utility::conversions::to_string_t("");
     m_ExternalIdIsSet = false;
@@ -32,7 +32,7 @@ PopulatedFlow::PopulatedFlow()
     m_PublishedVersionIdIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
-    m_Updated = 0;
+    m_Updated = 0L;
     m_UpdatedIsSet = false;
     m_VersionIsSet = false;
 }
@@ -111,7 +111,7 @@ bool PopulatedFlow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("created")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreated;
+            int64_t refVal_setCreated;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreated);
             setCreated(refVal_setCreated);
             
@@ -199,7 +199,7 @@ bool PopulatedFlow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updated")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdated;
+            int64_t refVal_setUpdated;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdated);
             setUpdated(refVal_setUpdated);
             
@@ -279,7 +279,7 @@ bool PopulatedFlow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("created"))))
     {
-        int32_t refVal_setCreated;
+        int64_t refVal_setCreated;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("created"))), refVal_setCreated );
         setCreated(refVal_setCreated);
     }
@@ -327,7 +327,7 @@ bool PopulatedFlow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updated"))))
     {
-        int32_t refVal_setUpdated;
+        int64_t refVal_setUpdated;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updated"))), refVal_setUpdated );
         setUpdated(refVal_setUpdated);
     }
@@ -341,13 +341,13 @@ bool PopulatedFlow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 }
 
 
-int32_t PopulatedFlow::getCreated() const
+int64_t PopulatedFlow::getCreated() const
 {
     return m_Created;
 }
 
 
-void PopulatedFlow::setCreated(int32_t value)
+void PopulatedFlow::setCreated(int64_t value)
 {
     m_Created = value;
     m_CreatedIsSet = true;
@@ -508,13 +508,13 @@ void PopulatedFlow::unsetStatus()
 {
     m_StatusIsSet = false;
 }
-int32_t PopulatedFlow::getUpdated() const
+int64_t PopulatedFlow::getUpdated() const
 {
     return m_Updated;
 }
 
 
-void PopulatedFlow::setUpdated(int32_t value)
+void PopulatedFlow::setUpdated(int64_t value)
 {
     m_Updated = value;
     m_UpdatedIsSet = true;

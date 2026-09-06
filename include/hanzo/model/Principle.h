@@ -79,10 +79,10 @@ public:
     /// <summary>
     /// 1..64, the hexagram number + canonical order
     /// </summary>
-    int32_t getN() const;
+    int64_t getN() const;
     bool NIsSet() const;
     void unsetn();
-    void setN(int32_t value);
+    void setN(int64_t value);
 
     /// <summary>
     /// the principle&#39;s short name
@@ -127,7 +127,7 @@ protected:
     utility::string_t m_Hexagram;
     bool m_HexagramIsSet;
 
-    int32_t m_n;
+    int64_t m_n;
     bool m_nIsSet;
 
     utility::string_t m_Name;

@@ -24,7 +24,7 @@ Enrolment::Enrolment()
     m_GithubLoginIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
-    m_ShareBps = 0;
+    m_ShareBps = 0L;
     m_ShareBpsIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
@@ -140,7 +140,7 @@ bool Enrolment::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("shareBps")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setShareBps;
+            int64_t refVal_setShareBps;
             ok &= ModelBase::fromJson(fieldValue, refVal_setShareBps);
             setShareBps(refVal_setShareBps);
             
@@ -278,7 +278,7 @@ bool Enrolment::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("shareBps"))))
     {
-        int32_t refVal_setShareBps;
+        int64_t refVal_setShareBps;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("shareBps"))), refVal_setShareBps );
         setShareBps(refVal_setShareBps);
     }
@@ -379,13 +379,13 @@ void Enrolment::unsetId()
 {
     m_IdIsSet = false;
 }
-int32_t Enrolment::getShareBps() const
+int64_t Enrolment::getShareBps() const
 {
     return m_ShareBps;
 }
 
 
-void Enrolment::setShareBps(int32_t value)
+void Enrolment::setShareBps(int64_t value)
 {
     m_ShareBps = value;
     m_ShareBpsIsSet = true;

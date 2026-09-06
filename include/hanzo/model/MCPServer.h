@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// CreatedAt is when the server was registered, Unix seconds.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// HasSecret is whether a credential is sealed in KMS for this server. The VALUE is never returned by any route.
@@ -129,7 +129,7 @@ protected:
     utility::string_t m_AuthHeader;
     bool m_AuthHeaderIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     bool m_HasSecret;

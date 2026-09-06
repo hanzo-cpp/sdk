@@ -60,35 +60,35 @@ public:
     void unsetAccount();
     void setAccount(const utility::string_t& value);
 
-    int32_t getCachedInputTokens() const;
+    int64_t getCachedInputTokens() const;
     bool cachedInputTokensIsSet() const;
     void unsetCachedInputTokens();
-    void setCachedInputTokens(int32_t value);
+    void setCachedInputTokens(int64_t value);
 
     utility::string_t getConfidence() const;
     bool confidenceIsSet() const;
     void unsetConfidence();
     void setConfidence(const utility::string_t& value);
 
-    int32_t getCostCents() const;
+    int64_t getCostCents() const;
     bool costCentsIsSet() const;
     void unsetCostCents();
-    void setCostCents(int32_t value);
+    void setCostCents(int64_t value);
 
-    int32_t getCostLimitCents() const;
+    int64_t getCostLimitCents() const;
     bool costLimitCentsIsSet() const;
     void unsetCostLimitCents();
-    void setCostLimitCents(int32_t value);
+    void setCostLimitCents(int64_t value);
 
     utility::string_t getCurrency() const;
     bool currencyIsSet() const;
     void unsetCurrency();
     void setCurrency(const utility::string_t& value);
 
-    int32_t getInputTokens() const;
+    int64_t getInputTokens() const;
     bool inputTokensIsSet() const;
     void unsetInputTokens();
-    void setInputTokens(int32_t value);
+    void setInputTokens(int64_t value);
 
     utility::string_t getKind() const;
     bool kindIsSet() const;
@@ -105,10 +105,10 @@ public:
     void unsetMachine();
     void setMachine(const utility::string_t& value);
 
-    int32_t getOutputTokens() const;
+    int64_t getOutputTokens() const;
     bool outputTokensIsSet() const;
     void unsetOutputTokens();
-    void setOutputTokens(int32_t value);
+    void setOutputTokens(int64_t value);
 
     utility::string_t getPlan() const;
     bool planIsSet() const;
@@ -120,10 +120,10 @@ public:
     void unsetProvider();
     void setProvider(const utility::string_t& value);
 
-    int32_t getRequests() const;
+    int64_t getRequests() const;
     bool requestsIsSet() const;
     void unsetRequests();
-    void setRequests(int32_t value);
+    void setRequests(int64_t value);
 
     utility::string_t getResetsAt() const;
     bool resetsAtIsSet() const;
@@ -143,10 +143,10 @@ public:
     void unsetSynthetic();
     void setSynthetic(bool value);
 
-    int32_t getTotalTokens() const;
+    int64_t getTotalTokens() const;
     bool totalTokensIsSet() const;
     void unsetTotalTokens();
-    void setTotalTokens(int32_t value);
+    void setTotalTokens(int64_t value);
 
     double getUsedPct() const;
     bool usedPctIsSet() const;
@@ -173,22 +173,22 @@ protected:
     utility::string_t m_Account;
     bool m_AccountIsSet;
 
-    int32_t m_CachedInputTokens;
+    int64_t m_CachedInputTokens;
     bool m_CachedInputTokensIsSet;
 
     utility::string_t m_Confidence;
     bool m_ConfidenceIsSet;
 
-    int32_t m_CostCents;
+    int64_t m_CostCents;
     bool m_CostCentsIsSet;
 
-    int32_t m_CostLimitCents;
+    int64_t m_CostLimitCents;
     bool m_CostLimitCentsIsSet;
 
     utility::string_t m_Currency;
     bool m_CurrencyIsSet;
 
-    int32_t m_InputTokens;
+    int64_t m_InputTokens;
     bool m_InputTokensIsSet;
 
     utility::string_t m_Kind;
@@ -200,7 +200,7 @@ protected:
     utility::string_t m_Machine;
     bool m_MachineIsSet;
 
-    int32_t m_OutputTokens;
+    int64_t m_OutputTokens;
     bool m_OutputTokensIsSet;
 
     utility::string_t m_Plan;
@@ -209,7 +209,7 @@ protected:
     utility::string_t m_Provider;
     bool m_ProviderIsSet;
 
-    int32_t m_Requests;
+    int64_t m_Requests;
     bool m_RequestsIsSet;
 
     utility::string_t m_ResetsAt;
@@ -221,7 +221,7 @@ protected:
     bool m_Synthetic;
     bool m_SyntheticIsSet;
 
-    int32_t m_TotalTokens;
+    int64_t m_TotalTokens;
     bool m_TotalTokensIsSet;
 
     double m_UsedPct;

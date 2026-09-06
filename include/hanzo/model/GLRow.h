@@ -71,26 +71,26 @@ public:
     /// <summary>
     /// Credit is the amount credited to that account, in whole cents.
     /// </summary>
-    int32_t getCredit() const;
+    int64_t getCredit() const;
     bool creditIsSet() const;
     void unsetCredit();
-    void setCredit(int32_t value);
+    void setCredit(int64_t value);
 
     /// <summary>
     /// Debit is the amount debited to that account, in whole cents. Exactly one of debit and credit is non-zero on a leg; a negative amount is never used to mean the other side.
     /// </summary>
-    int32_t getDebit() const;
+    int64_t getDebit() const;
     bool debitIsSet() const;
     void unsetDebit();
-    void setDebit(int32_t value);
+    void setDebit(int64_t value);
 
     /// <summary>
     /// ID is the entry&#39;s position in the ledger. The ledger is append-only, so ids ascend with posting order and a higher id is a later entry.
     /// </summary>
-    int32_t getId() const;
+    int64_t getId() const;
     bool idIsSet() const;
     void unsetId();
-    void setId(int32_t value);
+    void setId(int64_t value);
 
     /// <summary>
     /// PostingAt is the accounting date this entry belongs to — what the reports window on, which need not be when the row was written.
@@ -132,13 +132,13 @@ protected:
     utility::string_t m_Against;
     bool m_AgainstIsSet;
 
-    int32_t m_Credit;
+    int64_t m_Credit;
     bool m_CreditIsSet;
 
-    int32_t m_Debit;
+    int64_t m_Debit;
     bool m_DebitIsSet;
 
-    int32_t m_Id;
+    int64_t m_Id;
     bool m_IdIsSet;
 
     utility::string_t m_PostingAt;

@@ -69,7 +69,7 @@ public:
     void setLocation(const utility::string_t& value);
 
     /// <summary>
-    /// Machine is the id of the machine holding this card, addressable as-is on /v1/visor/machines/:id.
+    /// Machine is the id of the machine holding this card, addressable as-is on /v1/compute/machines/:id.
     /// </summary>
     utility::string_t getMachine() const;
     bool machineIsSet() const;

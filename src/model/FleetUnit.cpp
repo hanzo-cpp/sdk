@@ -25,11 +25,11 @@ FleetUnit::FleetUnit()
     m_Label = utility::conversions::to_string_t("");
     m_LabelIsSet = false;
     m_MetricsIsSet = false;
-    m_Queued = 0;
+    m_Queued = 0L;
     m_QueuedIsSet = false;
-    m_Running = 0;
+    m_Running = 0L;
     m_RunningIsSet = false;
-    m_Sessions = 0;
+    m_Sessions = 0L;
     m_SessionsIsSet = false;
     m_Source = utility::conversions::to_string_t("");
     m_SourceIsSet = false;
@@ -163,7 +163,7 @@ bool FleetUnit::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("queued")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setQueued;
+            int64_t refVal_setQueued;
             ok &= ModelBase::fromJson(fieldValue, refVal_setQueued);
             setQueued(refVal_setQueued);
             
@@ -174,7 +174,7 @@ bool FleetUnit::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("running")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRunning;
+            int64_t refVal_setRunning;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRunning);
             setRunning(refVal_setRunning);
             
@@ -185,7 +185,7 @@ bool FleetUnit::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("sessions")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSessions;
+            int64_t refVal_setSessions;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSessions);
             setSessions(refVal_setSessions);
             
@@ -326,19 +326,19 @@ bool FleetUnit::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("queued"))))
     {
-        int32_t refVal_setQueued;
+        int64_t refVal_setQueued;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("queued"))), refVal_setQueued );
         setQueued(refVal_setQueued);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("running"))))
     {
-        int32_t refVal_setRunning;
+        int64_t refVal_setRunning;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("running"))), refVal_setRunning );
         setRunning(refVal_setRunning);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("sessions"))))
     {
-        int32_t refVal_setSessions;
+        int64_t refVal_setSessions;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("sessions"))), refVal_setSessions );
         setSessions(refVal_setSessions);
     }
@@ -454,13 +454,13 @@ void FleetUnit::unsetMetrics()
 {
     m_MetricsIsSet = false;
 }
-int32_t FleetUnit::getQueued() const
+int64_t FleetUnit::getQueued() const
 {
     return m_Queued;
 }
 
 
-void FleetUnit::setQueued(int32_t value)
+void FleetUnit::setQueued(int64_t value)
 {
     m_Queued = value;
     m_QueuedIsSet = true;
@@ -475,13 +475,13 @@ void FleetUnit::unsetQueued()
 {
     m_QueuedIsSet = false;
 }
-int32_t FleetUnit::getRunning() const
+int64_t FleetUnit::getRunning() const
 {
     return m_Running;
 }
 
 
-void FleetUnit::setRunning(int32_t value)
+void FleetUnit::setRunning(int64_t value)
 {
     m_Running = value;
     m_RunningIsSet = true;
@@ -496,13 +496,13 @@ void FleetUnit::unsetRunning()
 {
     m_RunningIsSet = false;
 }
-int32_t FleetUnit::getSessions() const
+int64_t FleetUnit::getSessions() const
 {
     return m_Sessions;
 }
 
 
-void FleetUnit::setSessions(int32_t value)
+void FleetUnit::setSessions(int64_t value)
 {
     m_Sessions = value;
     m_SessionsIsSet = true;

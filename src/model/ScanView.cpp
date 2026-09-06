@@ -18,21 +18,21 @@ namespace model {
 
 ScanView::ScanView()
 {
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
-    m_Critical = 0;
+    m_Critical = 0L;
     m_CriticalIsSet = false;
-    m_Files = 0;
+    m_Files = 0L;
     m_FilesIsSet = false;
-    m_Findings = 0;
+    m_Findings = 0L;
     m_FindingsIsSet = false;
-    m_High = 0;
+    m_High = 0L;
     m_HighIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
-    m_Low = 0;
+    m_Low = 0L;
     m_LowIsSet = false;
-    m_Medium = 0;
+    m_Medium = 0L;
     m_MediumIsSet = false;
     m_Project = utility::conversions::to_string_t("");
     m_ProjectIsSet = false;
@@ -107,7 +107,7 @@ bool ScanView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -118,7 +118,7 @@ bool ScanView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("critical")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCritical;
+            int64_t refVal_setCritical;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCritical);
             setCritical(refVal_setCritical);
             
@@ -129,7 +129,7 @@ bool ScanView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("files")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFiles;
+            int64_t refVal_setFiles;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFiles);
             setFiles(refVal_setFiles);
             
@@ -140,7 +140,7 @@ bool ScanView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("findings")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFindings;
+            int64_t refVal_setFindings;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFindings);
             setFindings(refVal_setFindings);
             
@@ -151,7 +151,7 @@ bool ScanView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("high")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setHigh;
+            int64_t refVal_setHigh;
             ok &= ModelBase::fromJson(fieldValue, refVal_setHigh);
             setHigh(refVal_setHigh);
             
@@ -173,7 +173,7 @@ bool ScanView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("low")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLow;
+            int64_t refVal_setLow;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLow);
             setLow(refVal_setLow);
             
@@ -184,7 +184,7 @@ bool ScanView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("medium")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMedium;
+            int64_t refVal_setMedium;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMedium);
             setMedium(refVal_setMedium);
             
@@ -260,31 +260,31 @@ bool ScanView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("critical"))))
     {
-        int32_t refVal_setCritical;
+        int64_t refVal_setCritical;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("critical"))), refVal_setCritical );
         setCritical(refVal_setCritical);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("files"))))
     {
-        int32_t refVal_setFiles;
+        int64_t refVal_setFiles;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("files"))), refVal_setFiles );
         setFiles(refVal_setFiles);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("findings"))))
     {
-        int32_t refVal_setFindings;
+        int64_t refVal_setFindings;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("findings"))), refVal_setFindings );
         setFindings(refVal_setFindings);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("high"))))
     {
-        int32_t refVal_setHigh;
+        int64_t refVal_setHigh;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("high"))), refVal_setHigh );
         setHigh(refVal_setHigh);
     }
@@ -296,13 +296,13 @@ bool ScanView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("low"))))
     {
-        int32_t refVal_setLow;
+        int64_t refVal_setLow;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("low"))), refVal_setLow );
         setLow(refVal_setLow);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("medium"))))
     {
-        int32_t refVal_setMedium;
+        int64_t refVal_setMedium;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("medium"))), refVal_setMedium );
         setMedium(refVal_setMedium);
     }
@@ -316,13 +316,13 @@ bool ScanView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 }
 
 
-int32_t ScanView::getCreatedAt() const
+int64_t ScanView::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void ScanView::setCreatedAt(int32_t value)
+void ScanView::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -337,13 +337,13 @@ void ScanView::unsetCreatedAt()
 {
     m_CreatedAtIsSet = false;
 }
-int32_t ScanView::getCritical() const
+int64_t ScanView::getCritical() const
 {
     return m_Critical;
 }
 
 
-void ScanView::setCritical(int32_t value)
+void ScanView::setCritical(int64_t value)
 {
     m_Critical = value;
     m_CriticalIsSet = true;
@@ -358,13 +358,13 @@ void ScanView::unsetCritical()
 {
     m_CriticalIsSet = false;
 }
-int32_t ScanView::getFiles() const
+int64_t ScanView::getFiles() const
 {
     return m_Files;
 }
 
 
-void ScanView::setFiles(int32_t value)
+void ScanView::setFiles(int64_t value)
 {
     m_Files = value;
     m_FilesIsSet = true;
@@ -379,13 +379,13 @@ void ScanView::unsetFiles()
 {
     m_FilesIsSet = false;
 }
-int32_t ScanView::getFindings() const
+int64_t ScanView::getFindings() const
 {
     return m_Findings;
 }
 
 
-void ScanView::setFindings(int32_t value)
+void ScanView::setFindings(int64_t value)
 {
     m_Findings = value;
     m_FindingsIsSet = true;
@@ -400,13 +400,13 @@ void ScanView::unsetFindings()
 {
     m_FindingsIsSet = false;
 }
-int32_t ScanView::getHigh() const
+int64_t ScanView::getHigh() const
 {
     return m_High;
 }
 
 
-void ScanView::setHigh(int32_t value)
+void ScanView::setHigh(int64_t value)
 {
     m_High = value;
     m_HighIsSet = true;
@@ -442,13 +442,13 @@ void ScanView::unsetId()
 {
     m_IdIsSet = false;
 }
-int32_t ScanView::getLow() const
+int64_t ScanView::getLow() const
 {
     return m_Low;
 }
 
 
-void ScanView::setLow(int32_t value)
+void ScanView::setLow(int64_t value)
 {
     m_Low = value;
     m_LowIsSet = true;
@@ -463,13 +463,13 @@ void ScanView::unsetLow()
 {
     m_LowIsSet = false;
 }
-int32_t ScanView::getMedium() const
+int64_t ScanView::getMedium() const
 {
     return m_Medium;
 }
 
 
-void ScanView::setMedium(int32_t value)
+void ScanView::setMedium(int64_t value)
 {
     m_Medium = value;
     m_MediumIsSet = true;

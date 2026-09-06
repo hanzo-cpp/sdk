@@ -18,23 +18,23 @@ namespace model {
 
 Quote::Quote()
 {
-    m_ChargeCents = 0;
+    m_ChargeCents = 0L;
     m_ChargeCentsIsSet = false;
     m_Code = utility::conversions::to_string_t("");
     m_CodeIsSet = false;
-    m_DiscountCents = 0;
+    m_DiscountCents = 0L;
     m_DiscountCentsIsSet = false;
     m_Eligible = false;
     m_EligibleIsSet = false;
-    m_ListCents = 0;
+    m_ListCents = 0L;
     m_ListCentsIsSet = false;
     m_Plan = utility::conversions::to_string_t("");
     m_PlanIsSet = false;
     m_Reason = utility::conversions::to_string_t("");
     m_ReasonIsSet = false;
-    m_Remaining = 0;
+    m_Remaining = 0L;
     m_RemainingIsSet = false;
-    m_Seats = 0;
+    m_Seats = 0L;
     m_SeatsIsSet = false;
 }
 
@@ -107,7 +107,7 @@ bool Quote::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("chargeCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setChargeCents;
+            int64_t refVal_setChargeCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setChargeCents);
             setChargeCents(refVal_setChargeCents);
             
@@ -129,7 +129,7 @@ bool Quote::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("discountCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDiscountCents;
+            int64_t refVal_setDiscountCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDiscountCents);
             setDiscountCents(refVal_setDiscountCents);
             
@@ -151,7 +151,7 @@ bool Quote::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("listCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setListCents;
+            int64_t refVal_setListCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setListCents);
             setListCents(refVal_setListCents);
             
@@ -184,7 +184,7 @@ bool Quote::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("remaining")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRemaining;
+            int64_t refVal_setRemaining;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRemaining);
             setRemaining(refVal_setRemaining);
             
@@ -195,7 +195,7 @@ bool Quote::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("seats")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSeats;
+            int64_t refVal_setSeats;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSeats);
             setSeats(refVal_setSeats);
             
@@ -260,7 +260,7 @@ bool Quote::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("chargeCents"))))
     {
-        int32_t refVal_setChargeCents;
+        int64_t refVal_setChargeCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("chargeCents"))), refVal_setChargeCents );
         setChargeCents(refVal_setChargeCents);
     }
@@ -272,7 +272,7 @@ bool Quote::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("discountCents"))))
     {
-        int32_t refVal_setDiscountCents;
+        int64_t refVal_setDiscountCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("discountCents"))), refVal_setDiscountCents );
         setDiscountCents(refVal_setDiscountCents);
     }
@@ -284,7 +284,7 @@ bool Quote::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("listCents"))))
     {
-        int32_t refVal_setListCents;
+        int64_t refVal_setListCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("listCents"))), refVal_setListCents );
         setListCents(refVal_setListCents);
     }
@@ -302,13 +302,13 @@ bool Quote::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("remaining"))))
     {
-        int32_t refVal_setRemaining;
+        int64_t refVal_setRemaining;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("remaining"))), refVal_setRemaining );
         setRemaining(refVal_setRemaining);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("seats"))))
     {
-        int32_t refVal_setSeats;
+        int64_t refVal_setSeats;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("seats"))), refVal_setSeats );
         setSeats(refVal_setSeats);
     }
@@ -316,13 +316,13 @@ bool Quote::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
 }
 
 
-int32_t Quote::getChargeCents() const
+int64_t Quote::getChargeCents() const
 {
     return m_ChargeCents;
 }
 
 
-void Quote::setChargeCents(int32_t value)
+void Quote::setChargeCents(int64_t value)
 {
     m_ChargeCents = value;
     m_ChargeCentsIsSet = true;
@@ -358,13 +358,13 @@ void Quote::unsetCode()
 {
     m_CodeIsSet = false;
 }
-int32_t Quote::getDiscountCents() const
+int64_t Quote::getDiscountCents() const
 {
     return m_DiscountCents;
 }
 
 
-void Quote::setDiscountCents(int32_t value)
+void Quote::setDiscountCents(int64_t value)
 {
     m_DiscountCents = value;
     m_DiscountCentsIsSet = true;
@@ -400,13 +400,13 @@ void Quote::unsetEligible()
 {
     m_EligibleIsSet = false;
 }
-int32_t Quote::getListCents() const
+int64_t Quote::getListCents() const
 {
     return m_ListCents;
 }
 
 
-void Quote::setListCents(int32_t value)
+void Quote::setListCents(int64_t value)
 {
     m_ListCents = value;
     m_ListCentsIsSet = true;
@@ -463,13 +463,13 @@ void Quote::unsetReason()
 {
     m_ReasonIsSet = false;
 }
-int32_t Quote::getRemaining() const
+int64_t Quote::getRemaining() const
 {
     return m_Remaining;
 }
 
 
-void Quote::setRemaining(int32_t value)
+void Quote::setRemaining(int64_t value)
 {
     m_Remaining = value;
     m_RemainingIsSet = true;
@@ -484,13 +484,13 @@ void Quote::unsetRemaining()
 {
     m_RemainingIsSet = false;
 }
-int32_t Quote::getSeats() const
+int64_t Quote::getSeats() const
 {
     return m_Seats;
 }
 
 
-void Quote::setSeats(int32_t value)
+void Quote::setSeats(int64_t value)
 {
     m_Seats = value;
     m_SeatsIsSet = true;

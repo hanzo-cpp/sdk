@@ -82,18 +82,18 @@ public:
     /// <summary>
     /// Limit is the page size actually served: the one asked for, clamped to the plane&#39;s own bound of 5000. Fewer rows than Limit means the version ended.
     /// </summary>
-    int32_t getLimit() const;
+    int64_t getLimit() const;
     bool limitIsSet() const;
     void unsetLimit();
-    void setLimit(int32_t value);
+    void setLimit(int64_t value);
 
     /// <summary>
     /// Offset is where this page starts in the version&#39;s own row order, which is by row id and therefore stable forever.
     /// </summary>
-    int32_t getOffset() const;
+    int64_t getOffset() const;
     bool offsetIsSet() const;
     void unsetOffset();
-    void setOffset(int32_t value);
+    void setOffset(int64_t value);
 
     /// <summary>
     /// Rows is the page. Never null.
@@ -106,10 +106,10 @@ public:
     /// <summary>
     /// Version is which published version it was read from — the one asked for, or the newest published one when the request named none.
     /// </summary>
-    int32_t getVersion() const;
+    int64_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();
-    void setVersion(int32_t value);
+    void setVersion(int64_t value);
 
 
 protected:
@@ -122,16 +122,16 @@ protected:
     std::vector<utility::string_t> m_Dims;
     bool m_DimsIsSet;
 
-    int32_t m_Limit;
+    int64_t m_Limit;
     bool m_LimitIsSet;
 
-    int32_t m_Offset;
+    int64_t m_Offset;
     bool m_OffsetIsSet;
 
     std::vector<std::shared_ptr<RiskDatasetRow>> m_Rows;
     bool m_RowsIsSet;
 
-    int32_t m_Version;
+    int64_t m_Version;
     bool m_VersionIsSet;
 
 };

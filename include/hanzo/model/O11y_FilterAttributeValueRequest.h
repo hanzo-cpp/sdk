@@ -70,10 +70,10 @@ public:
     void unsetDataSource();
     void setDataSource(const utility::string_t& value);
 
-    int32_t getEndTimeMillis() const;
+    int64_t getEndTimeMillis() const;
     bool endTimeMillisIsSet() const;
     void unsetEndTimeMillis();
-    void setEndTimeMillis(int32_t value);
+    void setEndTimeMillis(int64_t value);
 
     std::vector<std::shared_ptr<O11y_FilterItem>> getExistingFilterItems() const;
     bool existingFilterItemsIsSet() const;
@@ -95,10 +95,10 @@ public:
     void unsetIncludeRelated();
     void setIncludeRelated(bool value);
 
-    int32_t getLimit() const;
+    int64_t getLimit() const;
     bool limitIsSet() const;
     void unsetLimit();
-    void setLimit(int32_t value);
+    void setLimit(int64_t value);
 
     std::vector<utility::string_t> getMetricNames() const;
     bool metricNamesIsSet() const;
@@ -110,10 +110,10 @@ public:
     void unsetSearchText();
     void setSearchText(const utility::string_t& value);
 
-    int32_t getStartTimeMillis() const;
+    int64_t getStartTimeMillis() const;
     bool startTimeMillisIsSet() const;
     void unsetStartTimeMillis();
-    void setStartTimeMillis(int32_t value);
+    void setStartTimeMillis(int64_t value);
 
     utility::string_t getTagType() const;
     bool tagTypeIsSet() const;
@@ -131,7 +131,7 @@ protected:
     utility::string_t m_DataSource;
     bool m_DataSourceIsSet;
 
-    int32_t m_EndTimeMillis;
+    int64_t m_EndTimeMillis;
     bool m_EndTimeMillisIsSet;
 
     std::vector<std::shared_ptr<O11y_FilterItem>> m_ExistingFilterItems;
@@ -146,7 +146,7 @@ protected:
     bool m_IncludeRelated;
     bool m_IncludeRelatedIsSet;
 
-    int32_t m_Limit;
+    int64_t m_Limit;
     bool m_LimitIsSet;
 
     std::vector<utility::string_t> m_MetricNames;
@@ -155,7 +155,7 @@ protected:
     utility::string_t m_SearchText;
     bool m_SearchTextIsSet;
 
-    int32_t m_StartTimeMillis;
+    int64_t m_StartTimeMillis;
     bool m_StartTimeMillisIsSet;
 
     utility::string_t m_TagType;

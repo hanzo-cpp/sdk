@@ -18,7 +18,7 @@ namespace model {
 
 Audience::Audience()
 {
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_Event = utility::conversions::to_string_t("");
     m_EventIsSet = false;
@@ -26,9 +26,9 @@ Audience::Audience()
     m_IdIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_UpdatedAt = 0;
+    m_UpdatedAt = 0L;
     m_UpdatedAtIsSet = false;
-    m_WindowDays = 0;
+    m_WindowDays = 0L;
     m_WindowDaysIsSet = false;
 }
 
@@ -86,7 +86,7 @@ bool Audience::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -130,7 +130,7 @@ bool Audience::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updatedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdatedAt;
+            int64_t refVal_setUpdatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdatedAt);
             setUpdatedAt(refVal_setUpdatedAt);
             
@@ -141,7 +141,7 @@ bool Audience::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("windowDays")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setWindowDays;
+            int64_t refVal_setWindowDays;
             ok &= ModelBase::fromJson(fieldValue, refVal_setWindowDays);
             setWindowDays(refVal_setWindowDays);
             
@@ -194,7 +194,7 @@ bool Audience::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -218,13 +218,13 @@ bool Audience::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
-        int32_t refVal_setUpdatedAt;
+        int64_t refVal_setUpdatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))), refVal_setUpdatedAt );
         setUpdatedAt(refVal_setUpdatedAt);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("windowDays"))))
     {
-        int32_t refVal_setWindowDays;
+        int64_t refVal_setWindowDays;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("windowDays"))), refVal_setWindowDays );
         setWindowDays(refVal_setWindowDays);
     }
@@ -232,13 +232,13 @@ bool Audience::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 }
 
 
-int32_t Audience::getCreatedAt() const
+int64_t Audience::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void Audience::setCreatedAt(int32_t value)
+void Audience::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -316,13 +316,13 @@ void Audience::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t Audience::getUpdatedAt() const
+int64_t Audience::getUpdatedAt() const
 {
     return m_UpdatedAt;
 }
 
 
-void Audience::setUpdatedAt(int32_t value)
+void Audience::setUpdatedAt(int64_t value)
 {
     m_UpdatedAt = value;
     m_UpdatedAtIsSet = true;
@@ -337,13 +337,13 @@ void Audience::unsetUpdatedAt()
 {
     m_UpdatedAtIsSet = false;
 }
-int32_t Audience::getWindowDays() const
+int64_t Audience::getWindowDays() const
 {
     return m_WindowDays;
 }
 
 
-void Audience::setWindowDays(int32_t value)
+void Audience::setWindowDays(int64_t value)
 {
     m_WindowDays = value;
     m_WindowDaysIsSet = true;

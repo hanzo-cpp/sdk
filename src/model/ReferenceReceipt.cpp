@@ -20,7 +20,7 @@ ReferenceReceipt::ReferenceReceipt()
 {
     m_AsOf = utility::conversions::to_string_t("");
     m_AsOfIsSet = false;
-    m_Keys = 0;
+    m_Keys = 0L;
     m_KeysIsSet = false;
     m_Refusal = utility::conversions::to_string_t("");
     m_RefusalIsSet = false;
@@ -90,7 +90,7 @@ bool ReferenceReceipt::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("keys")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setKeys;
+            int64_t refVal_setKeys;
             ok &= ModelBase::fromJson(fieldValue, refVal_setKeys);
             setKeys(refVal_setKeys);
             
@@ -178,7 +178,7 @@ bool ReferenceReceipt::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("keys"))))
     {
-        int32_t refVal_setKeys;
+        int64_t refVal_setKeys;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("keys"))), refVal_setKeys );
         setKeys(refVal_setKeys);
     }
@@ -225,13 +225,13 @@ void ReferenceReceipt::unsetAsOf()
 {
     m_AsOfIsSet = false;
 }
-int32_t ReferenceReceipt::getKeys() const
+int64_t ReferenceReceipt::getKeys() const
 {
     return m_Keys;
 }
 
 
-void ReferenceReceipt::setKeys(int32_t value)
+void ReferenceReceipt::setKeys(int64_t value)
 {
     m_Keys = value;
     m_KeysIsSet = true;

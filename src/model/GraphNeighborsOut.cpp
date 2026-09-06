@@ -18,9 +18,9 @@ namespace model {
 
 GraphNeighborsOut::GraphNeighborsOut()
 {
-    m_Bound = 0;
+    m_Bound = 0L;
     m_BoundIsSet = false;
-    m_Depth = 0;
+    m_Depth = 0L;
     m_DepthIsSet = false;
     m_EntitiesIsSet = false;
     m_Truncated = false;
@@ -71,7 +71,7 @@ bool GraphNeighborsOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("bound")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBound;
+            int64_t refVal_setBound;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBound);
             setBound(refVal_setBound);
             
@@ -82,7 +82,7 @@ bool GraphNeighborsOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("depth")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDepth;
+            int64_t refVal_setDepth;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDepth);
             setDepth(refVal_setDepth);
             
@@ -149,13 +149,13 @@ bool GraphNeighborsOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("bound"))))
     {
-        int32_t refVal_setBound;
+        int64_t refVal_setBound;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("bound"))), refVal_setBound );
         setBound(refVal_setBound);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("depth"))))
     {
-        int32_t refVal_setDepth;
+        int64_t refVal_setDepth;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("depth"))), refVal_setDepth );
         setDepth(refVal_setDepth);
     }
@@ -175,13 +175,13 @@ bool GraphNeighborsOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
 }
 
 
-int32_t GraphNeighborsOut::getBound() const
+int64_t GraphNeighborsOut::getBound() const
 {
     return m_Bound;
 }
 
 
-void GraphNeighborsOut::setBound(int32_t value)
+void GraphNeighborsOut::setBound(int64_t value)
 {
     m_Bound = value;
     m_BoundIsSet = true;
@@ -196,13 +196,13 @@ void GraphNeighborsOut::unsetBound()
 {
     m_BoundIsSet = false;
 }
-int32_t GraphNeighborsOut::getDepth() const
+int64_t GraphNeighborsOut::getDepth() const
 {
     return m_Depth;
 }
 
 
-void GraphNeighborsOut::setDepth(int32_t value)
+void GraphNeighborsOut::setDepth(int64_t value)
 {
     m_Depth = value;
     m_DepthIsSet = true;

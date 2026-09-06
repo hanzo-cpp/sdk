@@ -55,18 +55,18 @@ public:
     /// <summary>
     /// Applications is how many platform apps this org has under the project, counted per request. It is the one fact IAM cannot answer about a project.
     /// </summary>
-    int32_t getApplications() const;
+    int64_t getApplications() const;
     bool applicationsIsSet() const;
     void unsetApplications();
-    void setApplications(int32_t value);
+    void setApplications(int64_t value);
 
     /// <summary>
     /// CreatedAt is IAM&#39;s creation time as unix seconds. 0 when IAM&#39;s timestamp is absent or unparseable — never a fabricated time.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// Description is IAM&#39;s free text about the project. Nothing derives from it.
@@ -102,10 +102,10 @@ public:
 
 
 protected:
-    int32_t m_Applications;
+    int64_t m_Applications;
     bool m_ApplicationsIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_Description;

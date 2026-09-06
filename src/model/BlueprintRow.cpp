@@ -18,9 +18,9 @@ namespace model {
 
 BlueprintRow::BlueprintRow()
 {
-    m_EstCentsPerMonth = 0;
+    m_EstCentsPerMonth = 0L;
     m_EstCentsPerMonthIsSet = false;
-    m_Services = 0;
+    m_Services = 0L;
     m_ServicesIsSet = false;
     m_TemplateId = utility::conversions::to_string_t("");
     m_TemplateIdIsSet = false;
@@ -65,7 +65,7 @@ bool BlueprintRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("estCentsPerMonth")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setEstCentsPerMonth;
+            int64_t refVal_setEstCentsPerMonth;
             ok &= ModelBase::fromJson(fieldValue, refVal_setEstCentsPerMonth);
             setEstCentsPerMonth(refVal_setEstCentsPerMonth);
             
@@ -76,7 +76,7 @@ bool BlueprintRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("services")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setServices;
+            int64_t refVal_setServices;
             ok &= ModelBase::fromJson(fieldValue, refVal_setServices);
             setServices(refVal_setServices);
             
@@ -128,13 +128,13 @@ bool BlueprintRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("estCentsPerMonth"))))
     {
-        int32_t refVal_setEstCentsPerMonth;
+        int64_t refVal_setEstCentsPerMonth;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("estCentsPerMonth"))), refVal_setEstCentsPerMonth );
         setEstCentsPerMonth(refVal_setEstCentsPerMonth);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("services"))))
     {
-        int32_t refVal_setServices;
+        int64_t refVal_setServices;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("services"))), refVal_setServices );
         setServices(refVal_setServices);
     }
@@ -148,13 +148,13 @@ bool BlueprintRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
 }
 
 
-int32_t BlueprintRow::getEstCentsPerMonth() const
+int64_t BlueprintRow::getEstCentsPerMonth() const
 {
     return m_EstCentsPerMonth;
 }
 
 
-void BlueprintRow::setEstCentsPerMonth(int32_t value)
+void BlueprintRow::setEstCentsPerMonth(int64_t value)
 {
     m_EstCentsPerMonth = value;
     m_EstCentsPerMonthIsSet = true;
@@ -169,13 +169,13 @@ void BlueprintRow::unsetEstCentsPerMonth()
 {
     m_EstCentsPerMonthIsSet = false;
 }
-int32_t BlueprintRow::getServices() const
+int64_t BlueprintRow::getServices() const
 {
     return m_Services;
 }
 
 
-void BlueprintRow::setServices(int32_t value)
+void BlueprintRow::setServices(int64_t value)
 {
     m_Services = value;
     m_ServicesIsSet = true;

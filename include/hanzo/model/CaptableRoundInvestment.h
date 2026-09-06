@@ -87,10 +87,10 @@ public:
     /// <summary>
     /// Shares is how many shares the investment bought; 0 when the round issues no equity at the time of investment.
     /// </summary>
-    int32_t getShares() const;
+    int64_t getShares() const;
     bool sharesIsSet() const;
     void unsetShares();
-    void setShares(int32_t value);
+    void setShares(int64_t value);
 
     /// <summary>
     /// StakeholderID is the investor.
@@ -122,7 +122,7 @@ protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
 
-    int32_t m_Shares;
+    int64_t m_Shares;
     bool m_SharesIsSet;
 
     utility::string_t m_StakeholderId;

@@ -18,23 +18,23 @@ namespace model {
 
 IndexResult::IndexResult()
 {
-    m_Chunks = 0;
+    m_Chunks = 0L;
     m_ChunksIsSet = false;
-    m_Files = 0;
+    m_Files = 0L;
     m_FilesIsSet = false;
-    m_Indexed = 0;
+    m_Indexed = 0L;
     m_IndexedIsSet = false;
-    m_Pruned = 0;
+    m_Pruned = 0L;
     m_PrunedIsSet = false;
     m_Repo = utility::conversions::to_string_t("");
     m_RepoIsSet = false;
     m_Semantic = false;
     m_SemanticIsSet = false;
-    m_Skipped = 0;
+    m_Skipped = 0L;
     m_SkippedIsSet = false;
-    m_Symbols = 0;
+    m_Symbols = 0L;
     m_SymbolsIsSet = false;
-    m_Vectors = 0;
+    m_Vectors = 0L;
     m_VectorsIsSet = false;
 }
 
@@ -107,7 +107,7 @@ bool IndexResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("chunks")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setChunks;
+            int64_t refVal_setChunks;
             ok &= ModelBase::fromJson(fieldValue, refVal_setChunks);
             setChunks(refVal_setChunks);
             
@@ -118,7 +118,7 @@ bool IndexResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("files")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFiles;
+            int64_t refVal_setFiles;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFiles);
             setFiles(refVal_setFiles);
             
@@ -129,7 +129,7 @@ bool IndexResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("indexed")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setIndexed;
+            int64_t refVal_setIndexed;
             ok &= ModelBase::fromJson(fieldValue, refVal_setIndexed);
             setIndexed(refVal_setIndexed);
             
@@ -140,7 +140,7 @@ bool IndexResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("pruned")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPruned;
+            int64_t refVal_setPruned;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPruned);
             setPruned(refVal_setPruned);
             
@@ -173,7 +173,7 @@ bool IndexResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("skipped")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSkipped;
+            int64_t refVal_setSkipped;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSkipped);
             setSkipped(refVal_setSkipped);
             
@@ -184,7 +184,7 @@ bool IndexResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("symbols")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSymbols;
+            int64_t refVal_setSymbols;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSymbols);
             setSymbols(refVal_setSymbols);
             
@@ -195,7 +195,7 @@ bool IndexResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("vectors")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVectors;
+            int64_t refVal_setVectors;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVectors);
             setVectors(refVal_setVectors);
             
@@ -260,25 +260,25 @@ bool IndexResult::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("chunks"))))
     {
-        int32_t refVal_setChunks;
+        int64_t refVal_setChunks;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("chunks"))), refVal_setChunks );
         setChunks(refVal_setChunks);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("files"))))
     {
-        int32_t refVal_setFiles;
+        int64_t refVal_setFiles;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("files"))), refVal_setFiles );
         setFiles(refVal_setFiles);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("indexed"))))
     {
-        int32_t refVal_setIndexed;
+        int64_t refVal_setIndexed;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("indexed"))), refVal_setIndexed );
         setIndexed(refVal_setIndexed);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("pruned"))))
     {
-        int32_t refVal_setPruned;
+        int64_t refVal_setPruned;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("pruned"))), refVal_setPruned );
         setPruned(refVal_setPruned);
     }
@@ -296,19 +296,19 @@ bool IndexResult::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("skipped"))))
     {
-        int32_t refVal_setSkipped;
+        int64_t refVal_setSkipped;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("skipped"))), refVal_setSkipped );
         setSkipped(refVal_setSkipped);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("symbols"))))
     {
-        int32_t refVal_setSymbols;
+        int64_t refVal_setSymbols;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("symbols"))), refVal_setSymbols );
         setSymbols(refVal_setSymbols);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("vectors"))))
     {
-        int32_t refVal_setVectors;
+        int64_t refVal_setVectors;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("vectors"))), refVal_setVectors );
         setVectors(refVal_setVectors);
     }
@@ -316,13 +316,13 @@ bool IndexResult::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 }
 
 
-int32_t IndexResult::getChunks() const
+int64_t IndexResult::getChunks() const
 {
     return m_Chunks;
 }
 
 
-void IndexResult::setChunks(int32_t value)
+void IndexResult::setChunks(int64_t value)
 {
     m_Chunks = value;
     m_ChunksIsSet = true;
@@ -337,13 +337,13 @@ void IndexResult::unsetChunks()
 {
     m_ChunksIsSet = false;
 }
-int32_t IndexResult::getFiles() const
+int64_t IndexResult::getFiles() const
 {
     return m_Files;
 }
 
 
-void IndexResult::setFiles(int32_t value)
+void IndexResult::setFiles(int64_t value)
 {
     m_Files = value;
     m_FilesIsSet = true;
@@ -358,13 +358,13 @@ void IndexResult::unsetFiles()
 {
     m_FilesIsSet = false;
 }
-int32_t IndexResult::getIndexed() const
+int64_t IndexResult::getIndexed() const
 {
     return m_Indexed;
 }
 
 
-void IndexResult::setIndexed(int32_t value)
+void IndexResult::setIndexed(int64_t value)
 {
     m_Indexed = value;
     m_IndexedIsSet = true;
@@ -379,13 +379,13 @@ void IndexResult::unsetIndexed()
 {
     m_IndexedIsSet = false;
 }
-int32_t IndexResult::getPruned() const
+int64_t IndexResult::getPruned() const
 {
     return m_Pruned;
 }
 
 
-void IndexResult::setPruned(int32_t value)
+void IndexResult::setPruned(int64_t value)
 {
     m_Pruned = value;
     m_PrunedIsSet = true;
@@ -442,13 +442,13 @@ void IndexResult::unsetSemantic()
 {
     m_SemanticIsSet = false;
 }
-int32_t IndexResult::getSkipped() const
+int64_t IndexResult::getSkipped() const
 {
     return m_Skipped;
 }
 
 
-void IndexResult::setSkipped(int32_t value)
+void IndexResult::setSkipped(int64_t value)
 {
     m_Skipped = value;
     m_SkippedIsSet = true;
@@ -463,13 +463,13 @@ void IndexResult::unsetSkipped()
 {
     m_SkippedIsSet = false;
 }
-int32_t IndexResult::getSymbols() const
+int64_t IndexResult::getSymbols() const
 {
     return m_Symbols;
 }
 
 
-void IndexResult::setSymbols(int32_t value)
+void IndexResult::setSymbols(int64_t value)
 {
     m_Symbols = value;
     m_SymbolsIsSet = true;
@@ -484,13 +484,13 @@ void IndexResult::unsetSymbols()
 {
     m_SymbolsIsSet = false;
 }
-int32_t IndexResult::getVectors() const
+int64_t IndexResult::getVectors() const
 {
     return m_Vectors;
 }
 
 
-void IndexResult::setVectors(int32_t value)
+void IndexResult::setVectors(int64_t value)
 {
     m_Vectors = value;
     m_VectorsIsSet = true;

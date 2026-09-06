@@ -55,18 +55,18 @@ public:
     /// <summary>
     /// CommissionCents is what the caller earned that period, in cents: the sum over each referred org and upline level of margin × that level&#39;s rate. Always ≤ marginCents, by construction.
     /// </summary>
-    int32_t getCommissionCents() const;
+    int64_t getCommissionCents() const;
     bool commissionCentsIsSet() const;
     void unsetCommissionCents();
-    void setCommissionCents(int32_t value);
+    void setCommissionCents(int64_t value);
 
     /// <summary>
     /// MarginCents is the margin Hanzo earned in that period on the spend of every org the caller referred, in cents — the base commission is a rate OF. It is the aggregate base, never any one customer&#39;s bill.
     /// </summary>
-    int32_t getMarginCents() const;
+    int64_t getMarginCents() const;
     bool marginCentsIsSet() const;
     void unsetMarginCents();
-    void setMarginCents(int32_t value);
+    void setMarginCents(int64_t value);
 
     /// <summary>
     /// Period is the accrual bucket: the UTC year-month, \&quot;YYYY-MM\&quot;. Commission is latched at most once per referred org per period, so one row is one month.
@@ -78,10 +78,10 @@ public:
 
 
 protected:
-    int32_t m_CommissionCents;
+    int64_t m_CommissionCents;
     bool m_CommissionCentsIsSet;
 
-    int32_t m_MarginCents;
+    int64_t m_MarginCents;
     bool m_MarginCentsIsSet;
 
     utility::string_t m_Period;

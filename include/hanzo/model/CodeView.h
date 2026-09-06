@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// Clicks is how many pings this code has taken. The one STORED counter here and pure vanity: no accrual or payout reads it, pings are coalesced in memory and flushed in batches, and a dropped tally is accepted rather than contending with the money write path. Do not reconcile it against anything.
     /// </summary>
-    int32_t getClicks() const;
+    int64_t getClicks() const;
     bool clicksIsSet() const;
     void unsetClicks();
-    void setClicks(int32_t value);
+    void setClicks(int64_t value);
 
     /// <summary>
     /// Code is the link&#39;s slug — 3–32 chars of a–z, 0–9 and hyphen — unique across the WHOLE directory, so any affiliate&#39;s code resolves an attribution.
@@ -71,18 +71,18 @@ public:
     /// <summary>
     /// Conversions is how many of those signups have actually produced positive commission for the caller. Also derived, from the accrual rows, so it is ≤ signups and lags a referral until the first sweep after it spends.
     /// </summary>
-    int32_t getConversions() const;
+    int64_t getConversions() const;
     bool conversionsIsSet() const;
     void unsetConversions();
-    void setConversions(int32_t value);
+    void setConversions(int64_t value);
 
     /// <summary>
     /// CreatedAt is when the link was minted, Unix seconds UTC.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// Label is the caller&#39;s own note for the link (\&quot;twitter\&quot;, \&quot;newsletter\&quot;). Cosmetic: trimmed, stripped of control characters, capped at 48 bytes, and never part of the code. \&quot;primary\&quot; on the link mirrored at approval.
@@ -95,10 +95,10 @@ public:
     /// <summary>
     /// Signups is how many orgs were attributed with this code — DERIVED by counting attribution edges, never stored, so it cannot drift from the ledger.
     /// </summary>
-    int32_t getSignups() const;
+    int64_t getSignups() const;
     bool signupsIsSet() const;
     void unsetSignups();
-    void setSignups(int32_t value);
+    void setSignups(int64_t value);
 
     /// <summary>
     /// URL is the full shareable link, the brand host plus ?aff&#x3D;&lt;code&gt;. The host is the deployment&#39;s own brand, so a Lux or Zoo install never mints a hanzo.ai link.
@@ -110,22 +110,22 @@ public:
 
 
 protected:
-    int32_t m_Clicks;
+    int64_t m_Clicks;
     bool m_ClicksIsSet;
 
     utility::string_t m_Code;
     bool m_CodeIsSet;
 
-    int32_t m_Conversions;
+    int64_t m_Conversions;
     bool m_ConversionsIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_Label;
     bool m_LabelIsSet;
 
-    int32_t m_Signups;
+    int64_t m_Signups;
     bool m_SignupsIsSet;
 
     utility::string_t m_Url;

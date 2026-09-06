@@ -74,10 +74,10 @@ public:
     /// <summary>
     /// TotalBytes is the sum over Repos — the org&#39;s whole git footprint.
     /// </summary>
-    int32_t getTotalBytes() const;
+    int64_t getTotalBytes() const;
     bool totalBytesIsSet() const;
     void unsetTotalBytes();
-    void setTotalBytes(int32_t value);
+    void setTotalBytes(int64_t value);
 
 
 protected:
@@ -87,7 +87,7 @@ protected:
     std::vector<std::shared_ptr<UsageRepo>> m_Repos;
     bool m_ReposIsSet;
 
-    int32_t m_TotalBytes;
+    int64_t m_TotalBytes;
     bool m_TotalBytesIsSet;
 
 };

@@ -22,7 +22,7 @@ ControlCommandView::ControlCommandView()
     m_CommandIsSet = false;
     m_Message = utility::conversions::to_string_t("");
     m_MessageIsSet = false;
-    m_Seq = 0;
+    m_Seq = 0L;
     m_SeqIsSet = false;
 }
 
@@ -103,7 +103,7 @@ bool ControlCommandView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("seq")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSeq;
+            int64_t refVal_setSeq;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSeq);
             setSeq(refVal_setSeq);
             
@@ -166,7 +166,7 @@ bool ControlCommandView::fromMultiPart(std::shared_ptr<MultipartFormData> multip
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("seq"))))
     {
-        int32_t refVal_setSeq;
+        int64_t refVal_setSeq;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("seq"))), refVal_setSeq );
         setSeq(refVal_setSeq);
     }
@@ -236,13 +236,13 @@ void ControlCommandView::unsetPayload()
 {
     m_Payload.reset();
 }
-int32_t ControlCommandView::getSeq() const
+int64_t ControlCommandView::getSeq() const
 {
     return m_Seq;
 }
 
 
-void ControlCommandView::setSeq(int32_t value)
+void ControlCommandView::setSeq(int64_t value)
 {
     m_Seq = value;
     m_SeqIsSet = true;

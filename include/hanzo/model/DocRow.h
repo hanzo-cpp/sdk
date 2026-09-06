@@ -127,10 +127,10 @@ public:
     /// <summary>
     /// Updated is when the record last changed, unix milliseconds.
     /// </summary>
-    int32_t getUpdated() const;
+    int64_t getUpdated() const;
     bool updatedIsSet() const;
     void unsetUpdated();
-    void setUpdated(int32_t value);
+    void setUpdated(int64_t value);
 
 
 protected:
@@ -161,7 +161,7 @@ protected:
     utility::string_t m_Title;
     bool m_TitleIsSet;
 
-    int32_t m_Updated;
+    int64_t m_Updated;
     bool m_UpdatedIsSet;
 
 };

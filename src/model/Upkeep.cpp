@@ -27,7 +27,7 @@ Upkeep::Upkeep()
     m_ObligationsIsSet = false;
     m_Structure = utility::conversions::to_string_t("");
     m_StructureIsSet = false;
-    m_YearlyCents = 0;
+    m_YearlyCents = 0L;
     m_YearlyCentsIsSet = false;
 }
 
@@ -140,7 +140,7 @@ bool Upkeep::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("yearlyCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setYearlyCents;
+            int64_t refVal_setYearlyCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setYearlyCents);
             setYearlyCents(refVal_setYearlyCents);
             
@@ -223,7 +223,7 @@ bool Upkeep::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("yearlyCents"))))
     {
-        int32_t refVal_setYearlyCents;
+        int64_t refVal_setYearlyCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("yearlyCents"))), refVal_setYearlyCents );
         setYearlyCents(refVal_setYearlyCents);
     }
@@ -336,13 +336,13 @@ void Upkeep::unsetStructure()
 {
     m_StructureIsSet = false;
 }
-int32_t Upkeep::getYearlyCents() const
+int64_t Upkeep::getYearlyCents() const
 {
     return m_YearlyCents;
 }
 
 
-void Upkeep::setYearlyCents(int32_t value)
+void Upkeep::setYearlyCents(int64_t value)
 {
     m_YearlyCents = value;
     m_YearlyCentsIsSet = true;

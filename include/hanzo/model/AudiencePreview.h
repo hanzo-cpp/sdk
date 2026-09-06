@@ -64,18 +64,18 @@ public:
     /// <summary>
     /// Count is the cohort size: distinct warehouse identifiers for an event audience, mailable customers for an event-less (whole-org) one.
     /// </summary>
-    int32_t getCount() const;
+    int64_t getCount() const;
     bool countIsSet() const;
     void unsetCount();
-    void setCount(int32_t value);
+    void setCount(int64_t value);
 
     /// <summary>
     /// Deliverable is how many de-duplicated mailboxes a send would reach. Two customers sharing an address count once, so it is &lt;&#x3D; Count.
     /// </summary>
-    int32_t getDeliverable() const;
+    int64_t getDeliverable() const;
     bool deliverableIsSet() const;
     void unsetDeliverable();
-    void setDeliverable(int32_t value);
+    void setDeliverable(int64_t value);
 
     /// <summary>
     /// Reason is the error text of the read that failed: the org&#39;s roster could not be loaded (\&quot;identity store unavailable…\&quot;), or the cohort query had no warehouse to run against (\&quot;analytics warehouse not configured\&quot;). Absent when the evaluation succeeded, so its presence and Available&#x3D;false are one fact seen twice.
@@ -104,20 +104,20 @@ public:
     /// <summary>
     /// Unmatched is how many cohort identifiers named nobody on the org&#39;s roster and so have no address to mail. It is reported rather than hidden: it is the honest explanation for a cohort of 500 that mails 3. Always 0 for an event-less (whole-org) audience, which starts from the roster and has nothing to match.
     /// </summary>
-    int32_t getUnmatched() const;
+    int64_t getUnmatched() const;
     bool unmatchedIsSet() const;
     void unsetUnmatched();
-    void setUnmatched(int32_t value);
+    void setUnmatched(int64_t value);
 
 
 protected:
     bool m_Available;
     bool m_AvailableIsSet;
 
-    int32_t m_Count;
+    int64_t m_Count;
     bool m_CountIsSet;
 
-    int32_t m_Deliverable;
+    int64_t m_Deliverable;
     bool m_DeliverableIsSet;
 
     utility::string_t m_Reason;
@@ -129,7 +129,7 @@ protected:
     utility::string_t m_Source;
     bool m_SourceIsSet;
 
-    int32_t m_Unmatched;
+    int64_t m_Unmatched;
     bool m_UnmatchedIsSet;
 
 };

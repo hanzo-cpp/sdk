@@ -60,10 +60,10 @@ public:
     void unsetAudience();
     void setAudience(const utility::string_t& value);
 
-    int32_t getBudget() const;
+    int64_t getBudget() const;
     bool budgetIsSet() const;
     void unsetBudget();
-    void setBudget(int32_t value);
+    void setBudget(int64_t value);
 
     std::vector<std::shared_ptr<ChannelSpec>> getChannels() const;
     bool channelsIsSet() const;
@@ -88,17 +88,17 @@ public:
     void unsetName();
     void setName(const utility::string_t& value);
 
-    int32_t getScheduleAt() const;
+    int64_t getScheduleAt() const;
     bool scheduleAtIsSet() const;
     void unsetScheduleAt();
-    void setScheduleAt(int32_t value);
+    void setScheduleAt(int64_t value);
 
 
 protected:
     utility::string_t m_Audience;
     bool m_AudienceIsSet;
 
-    int32_t m_Budget;
+    int64_t m_Budget;
     bool m_BudgetIsSet;
 
     std::vector<std::shared_ptr<ChannelSpec>> m_Channels;
@@ -113,7 +113,7 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_ScheduleAt;
+    int64_t m_ScheduleAt;
     bool m_ScheduleAtIsSet;
 
 };

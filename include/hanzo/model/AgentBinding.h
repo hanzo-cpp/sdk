@@ -53,7 +53,7 @@ public:
 
 
     /// <summary>
-    /// AgentName is the cloud Agent (/v1/agents) this machine runs — the agent a message to the bot is actually run against. It is the one field that decides what the bot DOES.
+    /// AgentName is the cloud Agent (/v1/agent) this machine runs — the agent a message to the bot is actually run against. It is the one field that decides what the bot DOES.
     /// </summary>
     utility::string_t getAgentName() const;
     bool agentNameIsSet() const;

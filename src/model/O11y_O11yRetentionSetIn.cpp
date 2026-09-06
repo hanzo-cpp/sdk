@@ -18,11 +18,11 @@ namespace model {
 
 O11y_O11yRetentionSetIn::O11y_O11yRetentionSetIn()
 {
-    m_ColdStorageDurationDays = 0;
+    m_ColdStorageDurationDays = 0L;
     m_ColdStorageDurationDaysIsSet = false;
     m_ColdStorageVolume = utility::conversions::to_string_t("");
     m_ColdStorageVolumeIsSet = false;
-    m_DefaultTTLDays = 0;
+    m_DefaultTTLDays = 0L;
     m_DefaultTTLDaysIsSet = false;
     m_TtlConditionsIsSet = false;
     m_Type = utility::conversions::to_string_t("");
@@ -78,7 +78,7 @@ bool O11y_O11yRetentionSetIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("coldStorageDurationDays")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setColdStorageDurationDays;
+            int64_t refVal_setColdStorageDurationDays;
             ok &= ModelBase::fromJson(fieldValue, refVal_setColdStorageDurationDays);
             setColdStorageDurationDays(refVal_setColdStorageDurationDays);
             
@@ -100,7 +100,7 @@ bool O11y_O11yRetentionSetIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("defaultTTLDays")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDefaultTTLDays;
+            int64_t refVal_setDefaultTTLDays;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDefaultTTLDays);
             setDefaultTTLDays(refVal_setDefaultTTLDays);
             
@@ -171,7 +171,7 @@ bool O11y_O11yRetentionSetIn::fromMultiPart(std::shared_ptr<MultipartFormData> m
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("coldStorageDurationDays"))))
     {
-        int32_t refVal_setColdStorageDurationDays;
+        int64_t refVal_setColdStorageDurationDays;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("coldStorageDurationDays"))), refVal_setColdStorageDurationDays );
         setColdStorageDurationDays(refVal_setColdStorageDurationDays);
     }
@@ -183,7 +183,7 @@ bool O11y_O11yRetentionSetIn::fromMultiPart(std::shared_ptr<MultipartFormData> m
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("defaultTTLDays"))))
     {
-        int32_t refVal_setDefaultTTLDays;
+        int64_t refVal_setDefaultTTLDays;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("defaultTTLDays"))), refVal_setDefaultTTLDays );
         setDefaultTTLDays(refVal_setDefaultTTLDays);
     }
@@ -203,13 +203,13 @@ bool O11y_O11yRetentionSetIn::fromMultiPart(std::shared_ptr<MultipartFormData> m
 }
 
 
-int32_t O11y_O11yRetentionSetIn::getColdStorageDurationDays() const
+int64_t O11y_O11yRetentionSetIn::getColdStorageDurationDays() const
 {
     return m_ColdStorageDurationDays;
 }
 
 
-void O11y_O11yRetentionSetIn::setColdStorageDurationDays(int32_t value)
+void O11y_O11yRetentionSetIn::setColdStorageDurationDays(int64_t value)
 {
     m_ColdStorageDurationDays = value;
     m_ColdStorageDurationDaysIsSet = true;
@@ -245,13 +245,13 @@ void O11y_O11yRetentionSetIn::unsetColdStorageVolume()
 {
     m_ColdStorageVolumeIsSet = false;
 }
-int32_t O11y_O11yRetentionSetIn::getDefaultTTLDays() const
+int64_t O11y_O11yRetentionSetIn::getDefaultTTLDays() const
 {
     return m_DefaultTTLDays;
 }
 
 
-void O11y_O11yRetentionSetIn::setDefaultTTLDays(int32_t value)
+void O11y_O11yRetentionSetIn::setDefaultTTLDays(int64_t value)
 {
     m_DefaultTTLDays = value;
     m_DefaultTTLDaysIsSet = true;

@@ -18,7 +18,7 @@ namespace model {
 
 O11y_O11yLLMObservation::O11y_O11yLLMObservation()
 {
-    m_CompletionTokens = 0;
+    m_CompletionTokens = 0L;
     m_CompletionTokensIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
@@ -30,7 +30,7 @@ O11y_O11yLLMObservation::O11y_O11yLLMObservation()
     m_NameIsSet = false;
     m_ParentObservationId = utility::conversions::to_string_t("");
     m_ParentObservationIdIsSet = false;
-    m_PromptTokens = 0;
+    m_PromptTokens = 0L;
     m_PromptTokensIsSet = false;
     m_Provider = utility::conversions::to_string_t("");
     m_ProviderIsSet = false;
@@ -44,7 +44,7 @@ O11y_O11yLLMObservation::O11y_O11yLLMObservation()
     m_StatusCodeIsSet = false;
     m_TotalCost = 0.0;
     m_TotalCostIsSet = false;
-    m_TotalTokens = 0;
+    m_TotalTokens = 0L;
     m_TotalTokensIsSet = false;
     m_TraceId = utility::conversions::to_string_t("");
     m_TraceIdIsSet = false;
@@ -163,7 +163,7 @@ bool O11y_O11yLLMObservation::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("completionTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCompletionTokens;
+            int64_t refVal_setCompletionTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCompletionTokens);
             setCompletionTokens(refVal_setCompletionTokens);
             
@@ -229,7 +229,7 @@ bool O11y_O11yLLMObservation::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("promptTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPromptTokens;
+            int64_t refVal_setPromptTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPromptTokens);
             setPromptTokens(refVal_setPromptTokens);
             
@@ -306,7 +306,7 @@ bool O11y_O11yLLMObservation::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("totalTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotalTokens;
+            int64_t refVal_setTotalTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalTokens);
             setTotalTokens(refVal_setTotalTokens);
             
@@ -436,7 +436,7 @@ bool O11y_O11yLLMObservation::fromMultiPart(std::shared_ptr<MultipartFormData> m
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("completionTokens"))))
     {
-        int32_t refVal_setCompletionTokens;
+        int64_t refVal_setCompletionTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("completionTokens"))), refVal_setCompletionTokens );
         setCompletionTokens(refVal_setCompletionTokens);
     }
@@ -472,7 +472,7 @@ bool O11y_O11yLLMObservation::fromMultiPart(std::shared_ptr<MultipartFormData> m
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("promptTokens"))))
     {
-        int32_t refVal_setPromptTokens;
+        int64_t refVal_setPromptTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("promptTokens"))), refVal_setPromptTokens );
         setPromptTokens(refVal_setPromptTokens);
     }
@@ -514,7 +514,7 @@ bool O11y_O11yLLMObservation::fromMultiPart(std::shared_ptr<MultipartFormData> m
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("totalTokens"))))
     {
-        int32_t refVal_setTotalTokens;
+        int64_t refVal_setTotalTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("totalTokens"))), refVal_setTotalTokens );
         setTotalTokens(refVal_setTotalTokens);
     }
@@ -540,13 +540,13 @@ bool O11y_O11yLLMObservation::fromMultiPart(std::shared_ptr<MultipartFormData> m
 }
 
 
-int32_t O11y_O11yLLMObservation::getCompletionTokens() const
+int64_t O11y_O11yLLMObservation::getCompletionTokens() const
 {
     return m_CompletionTokens;
 }
 
 
-void O11y_O11yLLMObservation::setCompletionTokens(int32_t value)
+void O11y_O11yLLMObservation::setCompletionTokens(int64_t value)
 {
     m_CompletionTokens = value;
     m_CompletionTokensIsSet = true;
@@ -666,13 +666,13 @@ void O11y_O11yLLMObservation::unsetParentObservationId()
 {
     m_ParentObservationIdIsSet = false;
 }
-int32_t O11y_O11yLLMObservation::getPromptTokens() const
+int64_t O11y_O11yLLMObservation::getPromptTokens() const
 {
     return m_PromptTokens;
 }
 
 
-void O11y_O11yLLMObservation::setPromptTokens(int32_t value)
+void O11y_O11yLLMObservation::setPromptTokens(int64_t value)
 {
     m_PromptTokens = value;
     m_PromptTokensIsSet = true;
@@ -813,13 +813,13 @@ void O11y_O11yLLMObservation::unsetTotalCost()
 {
     m_TotalCostIsSet = false;
 }
-int32_t O11y_O11yLLMObservation::getTotalTokens() const
+int64_t O11y_O11yLLMObservation::getTotalTokens() const
 {
     return m_TotalTokens;
 }
 
 
-void O11y_O11yLLMObservation::setTotalTokens(int32_t value)
+void O11y_O11yLLMObservation::setTotalTokens(int64_t value)
 {
     m_TotalTokens = value;
     m_TotalTokensIsSet = true;

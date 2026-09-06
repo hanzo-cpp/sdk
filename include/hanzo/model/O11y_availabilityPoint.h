@@ -63,28 +63,28 @@ public:
     /// <summary>
     /// Total is how many services reported at all inside the bucket. It can be lower than the current total: a target added last week reported nothing the week before, and saying so is the point.
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
     /// <summary>
     /// Up is how many services were up at the end of the bucket.
     /// </summary>
-    int32_t getUp() const;
+    int64_t getUp() const;
     bool upIsSet() const;
     void unsetUp();
-    void setUp(int32_t value);
+    void setUp(int64_t value);
 
 
 protected:
     utility::string_t m_t;
     bool m_tIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
-    int32_t m_Up;
+    int64_t m_Up;
     bool m_UpIsSet;
 
 };

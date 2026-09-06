@@ -20,13 +20,15 @@ Sandbox::Sandbox()
 {
     m_r_class = utility::conversions::to_string_t("");
     m_r_classIsSet = false;
-    m_ConnectedAt = 0;
+    m_Cluster = utility::conversions::to_string_t("");
+    m_ClusterIsSet = false;
+    m_ConnectedAt = 0L;
     m_ConnectedAtIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_Error = utility::conversions::to_string_t("");
     m_ErrorIsSet = false;
-    m_ExpiresAt = 0;
+    m_ExpiresAt = 0L;
     m_ExpiresAtIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
@@ -34,7 +36,7 @@ Sandbox::Sandbox()
     m_ImageIsSet = false;
     m_Kind = utility::conversions::to_string_t("");
     m_KindIsSet = false;
-    m_LastUsedAt = 0;
+    m_LastUsedAt = 0L;
     m_LastUsedAtIsSet = false;
     m_Org = utility::conversions::to_string_t("");
     m_OrgIsSet = false;
@@ -64,6 +66,11 @@ web::json::value Sandbox::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("class"))] = ModelBase::toJson(m_r_class);
+    }
+    if(m_ClusterIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("cluster"))] = ModelBase::toJson(m_Cluster);
     }
     if(m_ConnectedAtIsSet)
     {
@@ -148,12 +155,23 @@ bool Sandbox::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("cluster"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cluster")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setCluster;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setCluster);
+            setCluster(refVal_setCluster);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("connectedAt"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("connectedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setConnectedAt;
+            int64_t refVal_setConnectedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setConnectedAt);
             setConnectedAt(refVal_setConnectedAt);
             
@@ -164,7 +182,7 @@ bool Sandbox::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -186,7 +204,7 @@ bool Sandbox::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("expiresAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExpiresAt;
+            int64_t refVal_setExpiresAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExpiresAt);
             setExpiresAt(refVal_setExpiresAt);
             
@@ -230,7 +248,7 @@ bool Sandbox::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("lastUsedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLastUsedAt;
+            int64_t refVal_setLastUsedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLastUsedAt);
             setLastUsedAt(refVal_setLastUsedAt);
             
@@ -305,6 +323,10 @@ void Sandbox::toMultipart(std::shared_ptr<MultipartFormData> multipart, const ut
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("class")), m_r_class));
     }
+    if(m_ClusterIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("cluster")), m_Cluster));
+    }
     if(m_ConnectedAtIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("connectedAt")), m_ConnectedAt));
@@ -374,15 +396,21 @@ bool Sandbox::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("class"))), refVal_setRClass );
         setRClass(refVal_setRClass);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cluster"))))
+    {
+        utility::string_t refVal_setCluster;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cluster"))), refVal_setCluster );
+        setCluster(refVal_setCluster);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("connectedAt"))))
     {
-        int32_t refVal_setConnectedAt;
+        int64_t refVal_setConnectedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("connectedAt"))), refVal_setConnectedAt );
         setConnectedAt(refVal_setConnectedAt);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -394,7 +422,7 @@ bool Sandbox::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("expiresAt"))))
     {
-        int32_t refVal_setExpiresAt;
+        int64_t refVal_setExpiresAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("expiresAt"))), refVal_setExpiresAt );
         setExpiresAt(refVal_setExpiresAt);
     }
@@ -418,7 +446,7 @@ bool Sandbox::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("lastUsedAt"))))
     {
-        int32_t refVal_setLastUsedAt;
+        int64_t refVal_setLastUsedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("lastUsedAt"))), refVal_setLastUsedAt );
         setLastUsedAt(refVal_setLastUsedAt);
     }
@@ -477,13 +505,34 @@ void Sandbox::unsetr_class()
 {
     m_r_classIsSet = false;
 }
-int32_t Sandbox::getConnectedAt() const
+utility::string_t Sandbox::getCluster() const
+{
+    return m_Cluster;
+}
+
+
+void Sandbox::setCluster(const utility::string_t& value)
+{
+    m_Cluster = value;
+    m_ClusterIsSet = true;
+}
+
+bool Sandbox::clusterIsSet() const
+{
+    return m_ClusterIsSet;
+}
+
+void Sandbox::unsetCluster()
+{
+    m_ClusterIsSet = false;
+}
+int64_t Sandbox::getConnectedAt() const
 {
     return m_ConnectedAt;
 }
 
 
-void Sandbox::setConnectedAt(int32_t value)
+void Sandbox::setConnectedAt(int64_t value)
 {
     m_ConnectedAt = value;
     m_ConnectedAtIsSet = true;
@@ -498,13 +547,13 @@ void Sandbox::unsetConnectedAt()
 {
     m_ConnectedAtIsSet = false;
 }
-int32_t Sandbox::getCreatedAt() const
+int64_t Sandbox::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void Sandbox::setCreatedAt(int32_t value)
+void Sandbox::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -540,13 +589,13 @@ void Sandbox::unsetError()
 {
     m_ErrorIsSet = false;
 }
-int32_t Sandbox::getExpiresAt() const
+int64_t Sandbox::getExpiresAt() const
 {
     return m_ExpiresAt;
 }
 
 
-void Sandbox::setExpiresAt(int32_t value)
+void Sandbox::setExpiresAt(int64_t value)
 {
     m_ExpiresAt = value;
     m_ExpiresAtIsSet = true;
@@ -624,13 +673,13 @@ void Sandbox::unsetKind()
 {
     m_KindIsSet = false;
 }
-int32_t Sandbox::getLastUsedAt() const
+int64_t Sandbox::getLastUsedAt() const
 {
     return m_LastUsedAt;
 }
 
 
-void Sandbox::setLastUsedAt(int32_t value)
+void Sandbox::setLastUsedAt(int64_t value)
 {
     m_LastUsedAt = value;
     m_LastUsedAtIsSet = true;

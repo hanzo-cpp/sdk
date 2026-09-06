@@ -33,7 +33,7 @@ HelpApi::~HelpApi()
 {
 }
 
-pplx::task<std::shared_ptr<HelpArticleList>> HelpApi::getHelpArticles(boost::optional<utility::string_t> category, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<HelpArticleList>> HelpApi::getHelpArticles(boost::optional<utility::string_t> category, boost::optional<int64_t> limit) const
 {
 
 

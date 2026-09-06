@@ -23,7 +23,7 @@ Centre::Centre()
     m_DocumentsIsSet = false;
     m_FaqIsSet = false;
     m_FrameworksIsSet = false;
-    m_Generated = 0;
+    m_Generated = 0L;
     m_GeneratedIsSet = false;
     m_InventoryIsSet = false;
     m_Org = utility::conversions::to_string_t("");
@@ -184,7 +184,7 @@ bool Centre::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("generated")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setGenerated;
+            int64_t refVal_setGenerated;
             ok &= ModelBase::fromJson(fieldValue, refVal_setGenerated);
             setGenerated(refVal_setGenerated);
             
@@ -387,7 +387,7 @@ bool Centre::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("generated"))))
     {
-        int32_t refVal_setGenerated;
+        int64_t refVal_setGenerated;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("generated"))), refVal_setGenerated );
         setGenerated(refVal_setGenerated);
     }
@@ -548,13 +548,13 @@ void Centre::unsetFrameworks()
 {
     m_FrameworksIsSet = false;
 }
-int32_t Centre::getGenerated() const
+int64_t Centre::getGenerated() const
 {
     return m_Generated;
 }
 
 
-void Centre::setGenerated(int32_t value)
+void Centre::setGenerated(int64_t value)
 {
     m_Generated = value;
     m_GeneratedIsSet = true;

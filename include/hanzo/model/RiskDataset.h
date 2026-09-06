@@ -99,10 +99,10 @@ public:
     /// <summary>
     /// Oversize is how many of the window&#39;s subjects this version could NOT carry because their subject identity exceeds the plane&#39;s per-subject byte bound.  It is on the wire, not only in a log, because it is the one degradation a caller cannot otherwise detect: the rows that are here look complete, and a dataset silently missing a population is a model silently blind to it. Non-zero does not make a version invalid — it makes it a version whose coverage is STATED. Zero is the normal case and omits.
     /// </summary>
-    int32_t getOversize() const;
+    int64_t getOversize() const;
     bool oversizeIsSet() const;
     void unsetOversize();
-    void setOversize(int32_t value);
+    void setOversize(int64_t value);
 
     /// <summary>
     /// Refusal names why there are no bytes, when there are none.
@@ -123,10 +123,10 @@ public:
     /// <summary>
     /// Share is the fraction of the window&#39;s subjects admitted, in thousandths. 1000 means the whole window fitted under the cap; anything less means the version is a reproducible sample and says by how much.
     /// </summary>
-    int32_t getShare() const;
+    int64_t getShare() const;
     bool shareIsSet() const;
     void unsetShare();
-    void setShare(int32_t value);
+    void setShare(int64_t value);
 
     /// <summary>
     /// Spec is the bound query this version was built from, exactly as recorded.
@@ -155,10 +155,10 @@ public:
     /// <summary>
     /// Version is which version this is, from 1 and monotone within the dataset. A number is never reused — not even after a disposal, where the next declare continues the count — so \&quot;signups v3\&quot; means one thing forever, which is what makes a model&#39;s citation of it checkable.
     /// </summary>
-    int32_t getVersion() const;
+    int64_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();
-    void setVersion(int32_t value);
+    void setVersion(int64_t value);
 
 
 protected:
@@ -177,7 +177,7 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_Oversize;
+    int64_t m_Oversize;
     bool m_OversizeIsSet;
 
     utility::string_t m_Refusal;
@@ -186,7 +186,7 @@ protected:
     bool m_Running;
     bool m_RunningIsSet;
 
-    int32_t m_Share;
+    int64_t m_Share;
     bool m_ShareIsSet;
 
     std::shared_ptr<RiskDatasetSpec> m_Spec;
@@ -198,7 +198,7 @@ protected:
     bool m_Truncated;
     bool m_TruncatedIsSet;
 
-    int32_t m_Version;
+    int64_t m_Version;
     bool m_VersionIsSet;
 
 };

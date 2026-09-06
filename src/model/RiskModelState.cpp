@@ -24,13 +24,13 @@ RiskModelState::RiskModelState()
     m_CutIsSet = false;
     m_Descends = utility::conversions::to_string_t("");
     m_DescendsIsSet = false;
-    m_Disposed = 0;
+    m_Disposed = 0L;
     m_DisposedIsSet = false;
-    m_Learned = 0;
+    m_Learned = 0L;
     m_LearnedIsSet = false;
     m_Live = false;
     m_LiveIsSet = false;
-    m_Policy = 0;
+    m_Policy = 0L;
     m_PolicyIsSet = false;
     m_Realised = 0.0;
     m_RealisedIsSet = false;
@@ -176,7 +176,7 @@ bool RiskModelState::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("blind")));
         if(!fieldValue.is_null())
         {
-            std::map<utility::string_t, int32_t> refVal_setBlind;
+            std::map<utility::string_t, int64_t> refVal_setBlind;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBlind);
             setBlind(refVal_setBlind);
             
@@ -209,7 +209,7 @@ bool RiskModelState::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("disposed")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDisposed;
+            int64_t refVal_setDisposed;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDisposed);
             setDisposed(refVal_setDisposed);
             
@@ -220,7 +220,7 @@ bool RiskModelState::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("learned")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLearned;
+            int64_t refVal_setLearned;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLearned);
             setLearned(refVal_setLearned);
             
@@ -242,7 +242,7 @@ bool RiskModelState::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("policy")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPolicy;
+            int64_t refVal_setPolicy;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPolicy);
             setPolicy(refVal_setPolicy);
             
@@ -264,7 +264,7 @@ bool RiskModelState::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("refused")));
         if(!fieldValue.is_null())
         {
-            std::map<utility::string_t, int32_t> refVal_setRefused;
+            std::map<utility::string_t, int64_t> refVal_setRefused;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRefused);
             setRefused(refVal_setRefused);
             
@@ -459,7 +459,7 @@ bool RiskModelState::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("blind"))))
     {
-        std::map<utility::string_t, int32_t> refVal_setBlind;
+        std::map<utility::string_t, int64_t> refVal_setBlind;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("blind"))), refVal_setBlind );
         setBlind(refVal_setBlind);
     }
@@ -477,13 +477,13 @@ bool RiskModelState::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("disposed"))))
     {
-        int32_t refVal_setDisposed;
+        int64_t refVal_setDisposed;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("disposed"))), refVal_setDisposed );
         setDisposed(refVal_setDisposed);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("learned"))))
     {
-        int32_t refVal_setLearned;
+        int64_t refVal_setLearned;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("learned"))), refVal_setLearned );
         setLearned(refVal_setLearned);
     }
@@ -495,7 +495,7 @@ bool RiskModelState::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("policy"))))
     {
-        int32_t refVal_setPolicy;
+        int64_t refVal_setPolicy;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("policy"))), refVal_setPolicy );
         setPolicy(refVal_setPolicy);
     }
@@ -507,7 +507,7 @@ bool RiskModelState::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("refused"))))
     {
-        std::map<utility::string_t, int32_t> refVal_setRefused;
+        std::map<utility::string_t, int64_t> refVal_setRefused;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("refused"))), refVal_setRefused );
         setRefused(refVal_setRefused);
     }
@@ -584,13 +584,13 @@ void RiskModelState::unsetAggregates()
 {
     m_AggregatesIsSet = false;
 }
-std::map<utility::string_t, int32_t> RiskModelState::getBlind() const
+std::map<utility::string_t, int64_t> RiskModelState::getBlind() const
 {
     return m_Blind;
 }
 
 
-void RiskModelState::setBlind(std::map<utility::string_t, int32_t> value)
+void RiskModelState::setBlind(std::map<utility::string_t, int64_t> value)
 {
     m_Blind = value;
     m_BlindIsSet = true;
@@ -647,13 +647,13 @@ void RiskModelState::unsetDescends()
 {
     m_DescendsIsSet = false;
 }
-int32_t RiskModelState::getDisposed() const
+int64_t RiskModelState::getDisposed() const
 {
     return m_Disposed;
 }
 
 
-void RiskModelState::setDisposed(int32_t value)
+void RiskModelState::setDisposed(int64_t value)
 {
     m_Disposed = value;
     m_DisposedIsSet = true;
@@ -668,13 +668,13 @@ void RiskModelState::unsetDisposed()
 {
     m_DisposedIsSet = false;
 }
-int32_t RiskModelState::getLearned() const
+int64_t RiskModelState::getLearned() const
 {
     return m_Learned;
 }
 
 
-void RiskModelState::setLearned(int32_t value)
+void RiskModelState::setLearned(int64_t value)
 {
     m_Learned = value;
     m_LearnedIsSet = true;
@@ -710,13 +710,13 @@ void RiskModelState::unsetLive()
 {
     m_LiveIsSet = false;
 }
-int32_t RiskModelState::getPolicy() const
+int64_t RiskModelState::getPolicy() const
 {
     return m_Policy;
 }
 
 
-void RiskModelState::setPolicy(int32_t value)
+void RiskModelState::setPolicy(int64_t value)
 {
     m_Policy = value;
     m_PolicyIsSet = true;
@@ -752,13 +752,13 @@ void RiskModelState::unsetRealised()
 {
     m_RealisedIsSet = false;
 }
-std::map<utility::string_t, int32_t> RiskModelState::getRefused() const
+std::map<utility::string_t, int64_t> RiskModelState::getRefused() const
 {
     return m_Refused;
 }
 
 
-void RiskModelState::setRefused(std::map<utility::string_t, int32_t> value)
+void RiskModelState::setRefused(std::map<utility::string_t, int64_t> value)
 {
     m_Refused = value;
     m_RefusedIsSet = true;

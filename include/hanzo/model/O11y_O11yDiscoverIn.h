@@ -82,10 +82,10 @@ public:
     /// <summary>
     /// Limit caps how many rows come back.
     /// </summary>
-    int32_t getLimit() const;
+    int64_t getLimit() const;
     bool limitIsSet() const;
     void unsetLimit();
-    void setLimit(int32_t value);
+    void setLimit(int64_t value);
 
     /// <summary>
     /// OrderBy is the column or aggregation to sort the rows on.
@@ -130,7 +130,7 @@ protected:
     std::vector<utility::string_t> m_GroupBy;
     bool m_GroupByIsSet;
 
-    int32_t m_Limit;
+    int64_t m_Limit;
     bool m_LimitIsSet;
 
     utility::string_t m_OrderBy;

@@ -18,21 +18,21 @@ namespace model {
 
 SeoBacklinkOut::SeoBacklinkOut()
 {
-    m_Backlinks = 0;
+    m_Backlinks = 0L;
     m_BacklinksIsSet = false;
-    m_Broken = 0;
+    m_Broken = 0L;
     m_BrokenIsSet = false;
     m_Cost = utility::conversions::to_string_t("");
     m_CostIsSet = false;
-    m_Domains = 0;
+    m_Domains = 0L;
     m_DomainsIsSet = false;
     m_FirstSeen = utility::conversions::to_string_t("");
     m_FirstSeenIsSet = false;
-    m_Pages = 0;
+    m_Pages = 0L;
     m_PagesIsSet = false;
-    m_Rank = 0;
+    m_Rank = 0L;
     m_RankIsSet = false;
-    m_Spam = 0;
+    m_Spam = 0L;
     m_SpamIsSet = false;
     m_Target = utility::conversions::to_string_t("");
     m_TargetIsSet = false;
@@ -107,7 +107,7 @@ bool SeoBacklinkOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("backlinks")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBacklinks;
+            int64_t refVal_setBacklinks;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBacklinks);
             setBacklinks(refVal_setBacklinks);
             
@@ -118,7 +118,7 @@ bool SeoBacklinkOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("broken")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBroken;
+            int64_t refVal_setBroken;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBroken);
             setBroken(refVal_setBroken);
             
@@ -140,7 +140,7 @@ bool SeoBacklinkOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("domains")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDomains;
+            int64_t refVal_setDomains;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDomains);
             setDomains(refVal_setDomains);
             
@@ -162,7 +162,7 @@ bool SeoBacklinkOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("pages")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPages;
+            int64_t refVal_setPages;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPages);
             setPages(refVal_setPages);
             
@@ -173,7 +173,7 @@ bool SeoBacklinkOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("rank")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRank;
+            int64_t refVal_setRank;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRank);
             setRank(refVal_setRank);
             
@@ -184,7 +184,7 @@ bool SeoBacklinkOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("spam")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSpam;
+            int64_t refVal_setSpam;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSpam);
             setSpam(refVal_setSpam);
             
@@ -260,13 +260,13 @@ bool SeoBacklinkOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("backlinks"))))
     {
-        int32_t refVal_setBacklinks;
+        int64_t refVal_setBacklinks;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("backlinks"))), refVal_setBacklinks );
         setBacklinks(refVal_setBacklinks);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("broken"))))
     {
-        int32_t refVal_setBroken;
+        int64_t refVal_setBroken;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("broken"))), refVal_setBroken );
         setBroken(refVal_setBroken);
     }
@@ -278,7 +278,7 @@ bool SeoBacklinkOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("domains"))))
     {
-        int32_t refVal_setDomains;
+        int64_t refVal_setDomains;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("domains"))), refVal_setDomains );
         setDomains(refVal_setDomains);
     }
@@ -290,19 +290,19 @@ bool SeoBacklinkOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("pages"))))
     {
-        int32_t refVal_setPages;
+        int64_t refVal_setPages;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("pages"))), refVal_setPages );
         setPages(refVal_setPages);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("rank"))))
     {
-        int32_t refVal_setRank;
+        int64_t refVal_setRank;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("rank"))), refVal_setRank );
         setRank(refVal_setRank);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("spam"))))
     {
-        int32_t refVal_setSpam;
+        int64_t refVal_setSpam;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("spam"))), refVal_setSpam );
         setSpam(refVal_setSpam);
     }
@@ -316,13 +316,13 @@ bool SeoBacklinkOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 }
 
 
-int32_t SeoBacklinkOut::getBacklinks() const
+int64_t SeoBacklinkOut::getBacklinks() const
 {
     return m_Backlinks;
 }
 
 
-void SeoBacklinkOut::setBacklinks(int32_t value)
+void SeoBacklinkOut::setBacklinks(int64_t value)
 {
     m_Backlinks = value;
     m_BacklinksIsSet = true;
@@ -337,13 +337,13 @@ void SeoBacklinkOut::unsetBacklinks()
 {
     m_BacklinksIsSet = false;
 }
-int32_t SeoBacklinkOut::getBroken() const
+int64_t SeoBacklinkOut::getBroken() const
 {
     return m_Broken;
 }
 
 
-void SeoBacklinkOut::setBroken(int32_t value)
+void SeoBacklinkOut::setBroken(int64_t value)
 {
     m_Broken = value;
     m_BrokenIsSet = true;
@@ -379,13 +379,13 @@ void SeoBacklinkOut::unsetCost()
 {
     m_CostIsSet = false;
 }
-int32_t SeoBacklinkOut::getDomains() const
+int64_t SeoBacklinkOut::getDomains() const
 {
     return m_Domains;
 }
 
 
-void SeoBacklinkOut::setDomains(int32_t value)
+void SeoBacklinkOut::setDomains(int64_t value)
 {
     m_Domains = value;
     m_DomainsIsSet = true;
@@ -421,13 +421,13 @@ void SeoBacklinkOut::unsetFirstSeen()
 {
     m_FirstSeenIsSet = false;
 }
-int32_t SeoBacklinkOut::getPages() const
+int64_t SeoBacklinkOut::getPages() const
 {
     return m_Pages;
 }
 
 
-void SeoBacklinkOut::setPages(int32_t value)
+void SeoBacklinkOut::setPages(int64_t value)
 {
     m_Pages = value;
     m_PagesIsSet = true;
@@ -442,13 +442,13 @@ void SeoBacklinkOut::unsetPages()
 {
     m_PagesIsSet = false;
 }
-int32_t SeoBacklinkOut::getRank() const
+int64_t SeoBacklinkOut::getRank() const
 {
     return m_Rank;
 }
 
 
-void SeoBacklinkOut::setRank(int32_t value)
+void SeoBacklinkOut::setRank(int64_t value)
 {
     m_Rank = value;
     m_RankIsSet = true;
@@ -463,13 +463,13 @@ void SeoBacklinkOut::unsetRank()
 {
     m_RankIsSet = false;
 }
-int32_t SeoBacklinkOut::getSpam() const
+int64_t SeoBacklinkOut::getSpam() const
 {
     return m_Spam;
 }
 
 
-void SeoBacklinkOut::setSpam(int32_t value)
+void SeoBacklinkOut::setSpam(int64_t value)
 {
     m_Spam = value;
     m_SpamIsSet = true;

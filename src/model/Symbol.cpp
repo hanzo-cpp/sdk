@@ -20,7 +20,7 @@ Symbol::Symbol()
 {
     m_Detail = utility::conversions::to_string_t("");
     m_DetailIsSet = false;
-    m_Kind = 0;
+    m_Kind = 0L;
     m_KindIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
@@ -82,7 +82,7 @@ bool Symbol::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("kind")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setKind;
+            int64_t refVal_setKind;
             ok &= ModelBase::fromJson(fieldValue, refVal_setKind);
             setKind(refVal_setKind);
             
@@ -155,7 +155,7 @@ bool Symbol::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("kind"))))
     {
-        int32_t refVal_setKind;
+        int64_t refVal_setKind;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("kind"))), refVal_setKind );
         setKind(refVal_setKind);
     }
@@ -196,13 +196,13 @@ void Symbol::unsetDetail()
 {
     m_DetailIsSet = false;
 }
-int32_t Symbol::getKind() const
+int64_t Symbol::getKind() const
 {
     return m_Kind;
 }
 
 
-void Symbol::setKind(int32_t value)
+void Symbol::setKind(int64_t value)
 {
     m_Kind = value;
     m_KindIsSet = true;

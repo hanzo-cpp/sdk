@@ -20,7 +20,7 @@ CatalogPage::CatalogPage()
 {
     m_DataIsSet = false;
     m_FacetsIsSet = false;
-    m_Total = 0;
+    m_Total = 0L;
     m_TotalIsSet = false;
 }
 
@@ -74,7 +74,7 @@ bool CatalogPage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("facets")));
         if(!fieldValue.is_null())
         {
-            std::map<utility::string_t, std::map<utility::string_t, int32_t>> refVal_setFacets;
+            std::map<utility::string_t, std::map<utility::string_t, int64_t>> refVal_setFacets;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFacets);
             setFacets(refVal_setFacets);
             
@@ -85,7 +85,7 @@ bool CatalogPage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("total")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotal;
+            int64_t refVal_setTotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotal);
             setTotal(refVal_setTotal);
             
@@ -132,13 +132,13 @@ bool CatalogPage::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("facets"))))
     {
-        std::map<utility::string_t, std::map<utility::string_t, int32_t>> refVal_setFacets;
+        std::map<utility::string_t, std::map<utility::string_t, int64_t>> refVal_setFacets;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("facets"))), refVal_setFacets );
         setFacets(refVal_setFacets);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("total"))))
     {
-        int32_t refVal_setTotal;
+        int64_t refVal_setTotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("total"))), refVal_setTotal );
         setTotal(refVal_setTotal);
     }
@@ -167,13 +167,13 @@ void CatalogPage::unsetData()
 {
     m_DataIsSet = false;
 }
-std::map<utility::string_t, std::map<utility::string_t, int32_t>> CatalogPage::getFacets() const
+std::map<utility::string_t, std::map<utility::string_t, int64_t>> CatalogPage::getFacets() const
 {
     return m_Facets;
 }
 
 
-void CatalogPage::setFacets(const std::map<utility::string_t, std::map<utility::string_t, int32_t>>& value)
+void CatalogPage::setFacets(const std::map<utility::string_t, std::map<utility::string_t, int64_t>>& value)
 {
     m_Facets = value;
     m_FacetsIsSet = true;
@@ -188,13 +188,13 @@ void CatalogPage::unsetFacets()
 {
     m_FacetsIsSet = false;
 }
-int32_t CatalogPage::getTotal() const
+int64_t CatalogPage::getTotal() const
 {
     return m_Total;
 }
 
 
-void CatalogPage::setTotal(int32_t value)
+void CatalogPage::setTotal(int64_t value)
 {
     m_Total = value;
     m_TotalIsSet = true;

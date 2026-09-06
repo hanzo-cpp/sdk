@@ -21,7 +21,7 @@ Delivery::Delivery()
     m_Data = utility::conversions::to_string_t("");
     m_DataIsSet = false;
     m_HeadersIsSet = false;
-    m_Num_delivered = 0;
+    m_Num_delivered = 0L;
     m_Num_deliveredIsSet = false;
     m_Num_pending = 0;
     m_Num_pendingIsSet = false;
@@ -114,7 +114,7 @@ bool Delivery::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("num_delivered")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNumDelivered;
+            int64_t refVal_setNumDelivered;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNumDelivered);
             setNumDelivered(refVal_setNumDelivered);
             
@@ -227,7 +227,7 @@ bool Delivery::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("num_delivered"))))
     {
-        int32_t refVal_setNumDelivered;
+        int64_t refVal_setNumDelivered;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("num_delivered"))), refVal_setNumDelivered );
         setNumDelivered(refVal_setNumDelivered);
     }
@@ -301,13 +301,13 @@ void Delivery::unsetHeaders()
 {
     m_HeadersIsSet = false;
 }
-int32_t Delivery::getNumDelivered() const
+int64_t Delivery::getNumDelivered() const
 {
     return m_Num_delivered;
 }
 
 
-void Delivery::setNumDelivered(int32_t value)
+void Delivery::setNumDelivered(int64_t value)
 {
     m_Num_delivered = value;
     m_Num_deliveredIsSet = true;

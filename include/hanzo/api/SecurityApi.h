@@ -56,11 +56,11 @@ public:
     /// </remarks>
     /// <param name="scanId">ScanID narrows to a single scan. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="minSeverity">MinSeverity drops everything below that rank: critical, high, medium or low. A value outside that set is refused rather than quietly ignored, so a filter typo cannot read as \&quot;no findings\&quot;. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps the page. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the page. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<FindingList>> getSecurityFindings(
         boost::optional<utility::string_t> scanId,
         boost::optional<utility::string_t> minSeverity,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns a single finding: which rule fired, where (path and line), the masked preview and the SHA-256 fingerprint of the secret — the raw secret is not stored and cannot be read back.
@@ -94,9 +94,9 @@ public:
     /// <remarks>
     /// Is the org&#39;s scan history, newest first, each as the same summary the submission answered — files read, findings fired, tally by severity.  Strictly org-scoped: a caller only ever sees its own scans, and one with no validated org is refused.
     /// </remarks>
-    /// <param name="limit">Limit caps the page. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the page. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<ScanList>> getSecurityScans(
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns one scan together with every finding on it, so the detail view is one round-trip rather than a list call per scan.

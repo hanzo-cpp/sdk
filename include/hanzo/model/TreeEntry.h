@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// Symbols is how many top-level declarations the file defines. A file with none is still listed: the file set is the authority here and the counts decorate it.
     /// </summary>
-    int32_t getSymbols() const;
+    int64_t getSymbols() const;
     bool symbolsIsSet() const;
     void unsetSymbols();
-    void setSymbols(int32_t value);
+    void setSymbols(int64_t value);
 
 
 protected:
@@ -84,7 +84,7 @@ protected:
     utility::string_t m_Path;
     bool m_PathIsSet;
 
-    int32_t m_Symbols;
+    int64_t m_Symbols;
     bool m_SymbolsIsSet;
 
 };

@@ -36,7 +36,7 @@ Receipt::Receipt()
     m_PayerIsSet = false;
     m_Resource = utility::conversions::to_string_t("");
     m_ResourceIsSet = false;
-    m_SettledAt = 0;
+    m_SettledAt = 0L;
     m_SettledAtIsSet = false;
     m_SettledVia = utility::conversions::to_string_t("");
     m_SettledViaIsSet = false;
@@ -227,7 +227,7 @@ bool Receipt::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("settledAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSettledAt;
+            int64_t refVal_setSettledAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSettledAt);
             setSettledAt(refVal_setSettledAt);
             
@@ -380,7 +380,7 @@ bool Receipt::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("settledAt"))))
     {
-        int32_t refVal_setSettledAt;
+        int64_t refVal_setSettledAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("settledAt"))), refVal_setSettledAt );
         setSettledAt(refVal_setSettledAt);
     }
@@ -589,13 +589,13 @@ void Receipt::unsetResource()
 {
     m_ResourceIsSet = false;
 }
-int32_t Receipt::getSettledAt() const
+int64_t Receipt::getSettledAt() const
 {
     return m_SettledAt;
 }
 
 
-void Receipt::setSettledAt(int32_t value)
+void Receipt::setSettledAt(int64_t value)
 {
     m_SettledAt = value;
     m_SettledAtIsSet = true;

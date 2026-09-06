@@ -18,15 +18,15 @@ namespace model {
 
 LinearBackfillResult::LinearBackfillResult()
 {
-    m_Created = 0;
+    m_Created = 0L;
     m_CreatedIsSet = false;
-    m_Failed = 0;
+    m_Failed = 0L;
     m_FailedIsSet = false;
-    m_Issues = 0;
+    m_Issues = 0L;
     m_IssuesIsSet = false;
     m_Truncated = false;
     m_TruncatedIsSet = false;
-    m_Updated = 0;
+    m_Updated = 0L;
     m_UpdatedIsSet = false;
 }
 
@@ -79,7 +79,7 @@ bool LinearBackfillResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("created")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreated;
+            int64_t refVal_setCreated;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreated);
             setCreated(refVal_setCreated);
             
@@ -90,7 +90,7 @@ bool LinearBackfillResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("failed")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFailed;
+            int64_t refVal_setFailed;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFailed);
             setFailed(refVal_setFailed);
             
@@ -101,7 +101,7 @@ bool LinearBackfillResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("issues")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setIssues;
+            int64_t refVal_setIssues;
             ok &= ModelBase::fromJson(fieldValue, refVal_setIssues);
             setIssues(refVal_setIssues);
             
@@ -123,7 +123,7 @@ bool LinearBackfillResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updated")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdated;
+            int64_t refVal_setUpdated;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdated);
             setUpdated(refVal_setUpdated);
             
@@ -172,19 +172,19 @@ bool LinearBackfillResult::fromMultiPart(std::shared_ptr<MultipartFormData> mult
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("created"))))
     {
-        int32_t refVal_setCreated;
+        int64_t refVal_setCreated;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("created"))), refVal_setCreated );
         setCreated(refVal_setCreated);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("failed"))))
     {
-        int32_t refVal_setFailed;
+        int64_t refVal_setFailed;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("failed"))), refVal_setFailed );
         setFailed(refVal_setFailed);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("issues"))))
     {
-        int32_t refVal_setIssues;
+        int64_t refVal_setIssues;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("issues"))), refVal_setIssues );
         setIssues(refVal_setIssues);
     }
@@ -196,7 +196,7 @@ bool LinearBackfillResult::fromMultiPart(std::shared_ptr<MultipartFormData> mult
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updated"))))
     {
-        int32_t refVal_setUpdated;
+        int64_t refVal_setUpdated;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updated"))), refVal_setUpdated );
         setUpdated(refVal_setUpdated);
     }
@@ -204,13 +204,13 @@ bool LinearBackfillResult::fromMultiPart(std::shared_ptr<MultipartFormData> mult
 }
 
 
-int32_t LinearBackfillResult::getCreated() const
+int64_t LinearBackfillResult::getCreated() const
 {
     return m_Created;
 }
 
 
-void LinearBackfillResult::setCreated(int32_t value)
+void LinearBackfillResult::setCreated(int64_t value)
 {
     m_Created = value;
     m_CreatedIsSet = true;
@@ -225,13 +225,13 @@ void LinearBackfillResult::unsetCreated()
 {
     m_CreatedIsSet = false;
 }
-int32_t LinearBackfillResult::getFailed() const
+int64_t LinearBackfillResult::getFailed() const
 {
     return m_Failed;
 }
 
 
-void LinearBackfillResult::setFailed(int32_t value)
+void LinearBackfillResult::setFailed(int64_t value)
 {
     m_Failed = value;
     m_FailedIsSet = true;
@@ -246,13 +246,13 @@ void LinearBackfillResult::unsetFailed()
 {
     m_FailedIsSet = false;
 }
-int32_t LinearBackfillResult::getIssues() const
+int64_t LinearBackfillResult::getIssues() const
 {
     return m_Issues;
 }
 
 
-void LinearBackfillResult::setIssues(int32_t value)
+void LinearBackfillResult::setIssues(int64_t value)
 {
     m_Issues = value;
     m_IssuesIsSet = true;
@@ -288,13 +288,13 @@ void LinearBackfillResult::unsetTruncated()
 {
     m_TruncatedIsSet = false;
 }
-int32_t LinearBackfillResult::getUpdated() const
+int64_t LinearBackfillResult::getUpdated() const
 {
     return m_Updated;
 }
 
 
-void LinearBackfillResult::setUpdated(int32_t value)
+void LinearBackfillResult::setUpdated(int64_t value)
 {
     m_Updated = value;
     m_UpdatedIsSet = true;

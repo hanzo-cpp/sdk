@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// Keywords is how many of the phrases it places for.
     /// </summary>
-    int32_t getKeywords() const;
+    int64_t getKeywords() const;
     bool keywordsIsSet() const;
     void unsetKeywords();
-    void setKeywords(int32_t value);
+    void setKeywords(int64_t value);
 
     /// <summary>
     /// Position is its average rank across the phrases.
@@ -97,7 +97,7 @@ protected:
     utility::string_t m_Domain;
     bool m_DomainIsSet;
 
-    int32_t m_Keywords;
+    int64_t m_Keywords;
     bool m_KeywordsIsSet;
 
     double m_Position;

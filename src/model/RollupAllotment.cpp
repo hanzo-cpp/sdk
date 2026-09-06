@@ -18,13 +18,13 @@ namespace model {
 
 RollupAllotment::RollupAllotment()
 {
-    m_ConsumedCents = 0;
+    m_ConsumedCents = 0L;
     m_ConsumedCentsIsSet = false;
-    m_GrantedCents = 0;
+    m_GrantedCents = 0L;
     m_GrantedCentsIsSet = false;
-    m_MonthlyCents = 0;
+    m_MonthlyCents = 0L;
     m_MonthlyCentsIsSet = false;
-    m_RemainingCents = 0;
+    m_RemainingCents = 0L;
     m_RemainingCentsIsSet = false;
 }
 
@@ -72,7 +72,7 @@ bool RollupAllotment::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("consumedCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setConsumedCents;
+            int64_t refVal_setConsumedCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setConsumedCents);
             setConsumedCents(refVal_setConsumedCents);
             
@@ -83,7 +83,7 @@ bool RollupAllotment::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("grantedCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setGrantedCents;
+            int64_t refVal_setGrantedCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setGrantedCents);
             setGrantedCents(refVal_setGrantedCents);
             
@@ -94,7 +94,7 @@ bool RollupAllotment::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("monthlyCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMonthlyCents;
+            int64_t refVal_setMonthlyCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMonthlyCents);
             setMonthlyCents(refVal_setMonthlyCents);
             
@@ -105,7 +105,7 @@ bool RollupAllotment::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("remainingCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRemainingCents;
+            int64_t refVal_setRemainingCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRemainingCents);
             setRemainingCents(refVal_setRemainingCents);
             
@@ -150,25 +150,25 @@ bool RollupAllotment::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("consumedCents"))))
     {
-        int32_t refVal_setConsumedCents;
+        int64_t refVal_setConsumedCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("consumedCents"))), refVal_setConsumedCents );
         setConsumedCents(refVal_setConsumedCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("grantedCents"))))
     {
-        int32_t refVal_setGrantedCents;
+        int64_t refVal_setGrantedCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("grantedCents"))), refVal_setGrantedCents );
         setGrantedCents(refVal_setGrantedCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("monthlyCents"))))
     {
-        int32_t refVal_setMonthlyCents;
+        int64_t refVal_setMonthlyCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("monthlyCents"))), refVal_setMonthlyCents );
         setMonthlyCents(refVal_setMonthlyCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("remainingCents"))))
     {
-        int32_t refVal_setRemainingCents;
+        int64_t refVal_setRemainingCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("remainingCents"))), refVal_setRemainingCents );
         setRemainingCents(refVal_setRemainingCents);
     }
@@ -176,13 +176,13 @@ bool RollupAllotment::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 }
 
 
-int32_t RollupAllotment::getConsumedCents() const
+int64_t RollupAllotment::getConsumedCents() const
 {
     return m_ConsumedCents;
 }
 
 
-void RollupAllotment::setConsumedCents(int32_t value)
+void RollupAllotment::setConsumedCents(int64_t value)
 {
     m_ConsumedCents = value;
     m_ConsumedCentsIsSet = true;
@@ -197,13 +197,13 @@ void RollupAllotment::unsetConsumedCents()
 {
     m_ConsumedCentsIsSet = false;
 }
-int32_t RollupAllotment::getGrantedCents() const
+int64_t RollupAllotment::getGrantedCents() const
 {
     return m_GrantedCents;
 }
 
 
-void RollupAllotment::setGrantedCents(int32_t value)
+void RollupAllotment::setGrantedCents(int64_t value)
 {
     m_GrantedCents = value;
     m_GrantedCentsIsSet = true;
@@ -218,13 +218,13 @@ void RollupAllotment::unsetGrantedCents()
 {
     m_GrantedCentsIsSet = false;
 }
-int32_t RollupAllotment::getMonthlyCents() const
+int64_t RollupAllotment::getMonthlyCents() const
 {
     return m_MonthlyCents;
 }
 
 
-void RollupAllotment::setMonthlyCents(int32_t value)
+void RollupAllotment::setMonthlyCents(int64_t value)
 {
     m_MonthlyCents = value;
     m_MonthlyCentsIsSet = true;
@@ -239,13 +239,13 @@ void RollupAllotment::unsetMonthlyCents()
 {
     m_MonthlyCentsIsSet = false;
 }
-int32_t RollupAllotment::getRemainingCents() const
+int64_t RollupAllotment::getRemainingCents() const
 {
     return m_RemainingCents;
 }
 
 
-void RollupAllotment::setRemainingCents(int32_t value)
+void RollupAllotment::setRemainingCents(int64_t value)
 {
     m_RemainingCents = value;
     m_RemainingCentsIsSet = true;

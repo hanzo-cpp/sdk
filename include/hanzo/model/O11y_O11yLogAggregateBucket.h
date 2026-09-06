@@ -64,10 +64,10 @@ public:
     /// <summary>
     /// Timestamp is the start of the bucket.
     /// </summary>
-    int32_t getTimestamp() const;
+    int64_t getTimestamp() const;
     bool timestampIsSet() const;
     void unsetTimestamp();
-    void setTimestamp(int32_t value);
+    void setTimestamp(int64_t value);
 
     std::shared_ptr<AnyType> getValue() const;
     bool valueIsSet() const;
@@ -79,7 +79,7 @@ protected:
     std::map<utility::string_t, std::shared_ptr<AnyType>> m_GroupBy;
     bool m_GroupByIsSet;
 
-    int32_t m_Timestamp;
+    int64_t m_Timestamp;
     bool m_TimestampIsSet;
 
     boost::optional<std::shared_ptr<AnyType>> m_Value;

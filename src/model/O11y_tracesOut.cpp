@@ -18,11 +18,11 @@ namespace model {
 
 O11y_tracesOut::O11y_tracesOut()
 {
-    m_Count = 0;
+    m_Count = 0L;
     m_CountIsSet = false;
-    m_Limit = 0;
+    m_Limit = 0L;
     m_LimitIsSet = false;
-    m_SinceSec = 0;
+    m_SinceSec = 0L;
     m_SinceSecIsSet = false;
     m_TracesIsSet = false;
 }
@@ -71,7 +71,7 @@ bool O11y_tracesOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("count")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCount;
+            int64_t refVal_setCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCount);
             setCount(refVal_setCount);
             
@@ -82,7 +82,7 @@ bool O11y_tracesOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("limit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLimit;
+            int64_t refVal_setLimit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLimit);
             setLimit(refVal_setLimit);
             
@@ -93,7 +93,7 @@ bool O11y_tracesOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("sinceSec")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSinceSec;
+            int64_t refVal_setSinceSec;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSinceSec);
             setSinceSec(refVal_setSinceSec);
             
@@ -149,19 +149,19 @@ bool O11y_tracesOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("count"))))
     {
-        int32_t refVal_setCount;
+        int64_t refVal_setCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("count"))), refVal_setCount );
         setCount(refVal_setCount);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("limit"))))
     {
-        int32_t refVal_setLimit;
+        int64_t refVal_setLimit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("limit"))), refVal_setLimit );
         setLimit(refVal_setLimit);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("sinceSec"))))
     {
-        int32_t refVal_setSinceSec;
+        int64_t refVal_setSinceSec;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("sinceSec"))), refVal_setSinceSec );
         setSinceSec(refVal_setSinceSec);
     }
@@ -175,13 +175,13 @@ bool O11y_tracesOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 }
 
 
-int32_t O11y_tracesOut::getCount() const
+int64_t O11y_tracesOut::getCount() const
 {
     return m_Count;
 }
 
 
-void O11y_tracesOut::setCount(int32_t value)
+void O11y_tracesOut::setCount(int64_t value)
 {
     m_Count = value;
     m_CountIsSet = true;
@@ -196,13 +196,13 @@ void O11y_tracesOut::unsetCount()
 {
     m_CountIsSet = false;
 }
-int32_t O11y_tracesOut::getLimit() const
+int64_t O11y_tracesOut::getLimit() const
 {
     return m_Limit;
 }
 
 
-void O11y_tracesOut::setLimit(int32_t value)
+void O11y_tracesOut::setLimit(int64_t value)
 {
     m_Limit = value;
     m_LimitIsSet = true;
@@ -217,13 +217,13 @@ void O11y_tracesOut::unsetLimit()
 {
     m_LimitIsSet = false;
 }
-int32_t O11y_tracesOut::getSinceSec() const
+int64_t O11y_tracesOut::getSinceSec() const
 {
     return m_SinceSec;
 }
 
 
-void O11y_tracesOut::setSinceSec(int32_t value)
+void O11y_tracesOut::setSinceSec(int64_t value)
 {
     m_SinceSec = value;
     m_SinceSecIsSet = true;

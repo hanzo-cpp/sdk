@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// CachedInputTokens is the prompt tokens served from the provider&#39;s cache; omitted when unknown.
     /// </summary>
-    int32_t getCachedInputTokens() const;
+    int64_t getCachedInputTokens() const;
     bool cachedInputTokensIsSet() const;
     void unsetCachedInputTokens();
-    void setCachedInputTokens(int32_t value);
+    void setCachedInputTokens(int64_t value);
 
     /// <summary>
     /// Confidence says how much the counters beside it mean — a meter that reported only a percentage leaves them at zero, and this is how a reader tells that from a true zero.
@@ -79,18 +79,18 @@ public:
     /// <summary>
     /// CostCents is what the window cost on the PROVIDER&#39;s own plan, in US cents. It is not a Hanzo charge.
     /// </summary>
-    int32_t getCostCents() const;
+    int64_t getCostCents() const;
     bool costCentsIsSet() const;
     void unsetCostCents();
-    void setCostCents(int32_t value);
+    void setCostCents(int64_t value);
 
     /// <summary>
     /// CostLimitCents is the plan&#39;s spend ceiling for the window, in US cents.
     /// </summary>
-    int32_t getCostLimitCents() const;
+    int64_t getCostLimitCents() const;
     bool costLimitCentsIsSet() const;
     void unsetCostLimitCents();
-    void setCostLimitCents(int32_t value);
+    void setCostLimitCents(int64_t value);
 
     /// <summary>
     /// Currency is the provider&#39;s currency when it is not US cents.
@@ -103,10 +103,10 @@ public:
     /// <summary>
     /// InputTokens is prompt tokens consumed in the window; omitted when unknown.
     /// </summary>
-    int32_t getInputTokens() const;
+    int64_t getInputTokens() const;
     bool inputTokensIsSet() const;
     void unsetInputTokens();
-    void setInputTokens(int32_t value);
+    void setInputTokens(int64_t value);
 
     /// <summary>
     /// Lane is the meter lane this instance belongs to, e.g. a provider&#39;s own rolling-window meter.
@@ -127,10 +127,10 @@ public:
     /// <summary>
     /// OutputTokens is completion tokens produced in the window; omitted when unknown.
     /// </summary>
-    int32_t getOutputTokens() const;
+    int64_t getOutputTokens() const;
     bool outputTokensIsSet() const;
     void unsetOutputTokens();
-    void setOutputTokens(int32_t value);
+    void setOutputTokens(int64_t value);
 
     /// <summary>
     /// Plan is the subscription plan the account is on, as the provider names it.
@@ -143,10 +143,10 @@ public:
     /// <summary>
     /// Requests is how many requests were made in the window; omitted when the meter did not report it.
     /// </summary>
-    int32_t getRequests() const;
+    int64_t getRequests() const;
     bool requestsIsSet() const;
     void unsetRequests();
-    void setRequests(int32_t value);
+    void setRequests(int64_t value);
 
     /// <summary>
     /// ResetsAt is when this window rolls over, RFC3339 UTC; omitted when unknown.
@@ -167,10 +167,10 @@ public:
     /// <summary>
     /// TotalTokens is the window&#39;s total tokens; omitted when unknown.
     /// </summary>
-    int32_t getTotalTokens() const;
+    int64_t getTotalTokens() const;
     bool totalTokensIsSet() const;
     void unsetTotalTokens();
-    void setTotalTokens(int32_t value);
+    void setTotalTokens(int64_t value);
 
     /// <summary>
     /// UsedPct is how much of the window&#39;s allowance is consumed, 0–100.
@@ -209,22 +209,22 @@ protected:
     utility::string_t m_Account;
     bool m_AccountIsSet;
 
-    int32_t m_CachedInputTokens;
+    int64_t m_CachedInputTokens;
     bool m_CachedInputTokensIsSet;
 
     utility::string_t m_Confidence;
     bool m_ConfidenceIsSet;
 
-    int32_t m_CostCents;
+    int64_t m_CostCents;
     bool m_CostCentsIsSet;
 
-    int32_t m_CostLimitCents;
+    int64_t m_CostLimitCents;
     bool m_CostLimitCentsIsSet;
 
     utility::string_t m_Currency;
     bool m_CurrencyIsSet;
 
-    int32_t m_InputTokens;
+    int64_t m_InputTokens;
     bool m_InputTokensIsSet;
 
     utility::string_t m_Lane;
@@ -233,13 +233,13 @@ protected:
     utility::string_t m_Machine;
     bool m_MachineIsSet;
 
-    int32_t m_OutputTokens;
+    int64_t m_OutputTokens;
     bool m_OutputTokensIsSet;
 
     utility::string_t m_Plan;
     bool m_PlanIsSet;
 
-    int32_t m_Requests;
+    int64_t m_Requests;
     bool m_RequestsIsSet;
 
     utility::string_t m_ResetsAt;
@@ -248,7 +248,7 @@ protected:
     bool m_Synthetic;
     bool m_SyntheticIsSet;
 
-    int32_t m_TotalTokens;
+    int64_t m_TotalTokens;
     bool m_TotalTokensIsSet;
 
     double m_UsedPct;

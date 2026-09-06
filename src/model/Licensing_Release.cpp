@@ -26,7 +26,7 @@ Licensing_Release::Licensing_Release()
     m_Cosign_certIsSet = false;
     m_Cosign_signature = utility::conversions::to_string_t("");
     m_Cosign_signatureIsSet = false;
-    m_Created_at = 0;
+    m_Created_at = 0L;
     m_Created_atIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
@@ -171,7 +171,7 @@ bool Licensing_Release::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("created_at")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -349,7 +349,7 @@ bool Licensing_Release::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("created_at"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("created_at"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -483,13 +483,13 @@ void Licensing_Release::unsetCosign_signature()
 {
     m_Cosign_signatureIsSet = false;
 }
-int32_t Licensing_Release::getCreatedAt() const
+int64_t Licensing_Release::getCreatedAt() const
 {
     return m_Created_at;
 }
 
 
-void Licensing_Release::setCreatedAt(int32_t value)
+void Licensing_Release::setCreatedAt(int64_t value)
 {
     m_Created_at = value;
     m_Created_atIsSet = true;

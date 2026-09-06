@@ -26,7 +26,7 @@ EventView::EventView()
     m_IdIsSet = false;
     m_Kind = utility::conversions::to_string_t("");
     m_KindIsSet = false;
-    m_Seq = 0;
+    m_Seq = 0L;
     m_SeqIsSet = false;
     m_SessionId = utility::conversions::to_string_t("");
     m_SessionIdIsSet = false;
@@ -146,7 +146,7 @@ bool EventView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("seq")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSeq;
+            int64_t refVal_setSeq;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSeq);
             setSeq(refVal_setSeq);
             
@@ -244,7 +244,7 @@ bool EventView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("seq"))))
     {
-        int32_t refVal_setSeq;
+        int64_t refVal_setSeq;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("seq"))), refVal_setSeq );
         setSeq(refVal_setSeq);
     }
@@ -362,13 +362,13 @@ void EventView::unsetPayload()
 {
     m_Payload.reset();
 }
-int32_t EventView::getSeq() const
+int64_t EventView::getSeq() const
 {
     return m_Seq;
 }
 
 
-void EventView::setSeq(int32_t value)
+void EventView::setSeq(int64_t value)
 {
     m_Seq = value;
     m_SeqIsSet = true;

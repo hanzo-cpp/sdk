@@ -23,7 +23,7 @@ Category::Category()
     m_IdIsSet = false;
     m_Label = utility::conversions::to_string_t("");
     m_LabelIsSet = false;
-    m_Order = 0;
+    m_Order = 0L;
     m_OrderIsSet = false;
     m_Owner = utility::conversions::to_string_t("");
     m_OwnerIsSet = false;
@@ -124,7 +124,7 @@ bool Category::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("order")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOrder;
+            int64_t refVal_setOrder;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOrder);
             setOrder(refVal_setOrder);
             
@@ -232,7 +232,7 @@ bool Category::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("order"))))
     {
-        int32_t refVal_setOrder;
+        int64_t refVal_setOrder;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("order"))), refVal_setOrder );
         setOrder(refVal_setOrder);
     }
@@ -321,13 +321,13 @@ void Category::unsetLabel()
 {
     m_LabelIsSet = false;
 }
-int32_t Category::getOrder() const
+int64_t Category::getOrder() const
 {
     return m_Order;
 }
 
 
-void Category::setOrder(int32_t value)
+void Category::setOrder(int64_t value)
 {
     m_Order = value;
     m_OrderIsSet = true;

@@ -26,7 +26,7 @@ FrameworkRow::FrameworkRow()
     m_NameIsSet = false;
     m_Publisher = utility::conversions::to_string_t("");
     m_PublisherIsSet = false;
-    m_Total = 0;
+    m_Total = 0L;
     m_TotalIsSet = false;
     m_Unit = utility::conversions::to_string_t("");
     m_UnitIsSet = false;
@@ -137,7 +137,7 @@ bool FrameworkRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("total")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotal;
+            int64_t refVal_setTotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotal);
             setTotal(refVal_setTotal);
             
@@ -240,7 +240,7 @@ bool FrameworkRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("total"))))
     {
-        int32_t refVal_setTotal;
+        int64_t refVal_setTotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("total"))), refVal_setTotal );
         setTotal(refVal_setTotal);
     }
@@ -344,13 +344,13 @@ void FrameworkRow::unsetPublisher()
 {
     m_PublisherIsSet = false;
 }
-int32_t FrameworkRow::getTotal() const
+int64_t FrameworkRow::getTotal() const
 {
     return m_Total;
 }
 
 
-void FrameworkRow::setTotal(int32_t value)
+void FrameworkRow::setTotal(int64_t value)
 {
     m_Total = value;
     m_TotalIsSet = true;

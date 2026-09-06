@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// CPUs is logical cores on the unit.
     /// </summary>
-    int32_t getCpus() const;
+    int64_t getCpus() const;
     bool cpusIsSet() const;
     void unsetCpus();
-    void setCpus(int32_t value);
+    void setCpus(int64_t value);
 
     /// <summary>
     /// GPUModel names the FIRST accelerator (\&quot;NVIDIA GB10\&quot;) as the representative of the set; GPUs carries how many. Empty for a cluster, whose cards are counted rather than modelled, and for a unit with none.
@@ -79,18 +79,18 @@ public:
     /// <summary>
     /// GPUs is how many accelerators the unit has. For a cluster it is the vendor totals summed across every node, so it counts cards, not machines.
     /// </summary>
-    int32_t getGpus() const;
+    int64_t getGpus() const;
     bool gpusIsSet() const;
     void unsetGpus();
-    void setGpus(int32_t value);
+    void setGpus(int64_t value);
 
     /// <summary>
     /// Memory is total system RAM in BYTES — not GB, and not what is free right now (fleetMetrics carries that). Absent when the source reports no RAM figure.
     /// </summary>
-    int32_t getMemory() const;
+    int64_t getMemory() const;
     bool memoryIsSet() const;
     void unsetMemory();
-    void setMemory(int32_t value);
+    void setMemory(int64_t value);
 
     /// <summary>
     /// OS is the operating system the unit runs: linux, darwin or windows. Empty when the source does not report one — a cluster row does not.
@@ -105,16 +105,16 @@ protected:
     utility::string_t m_Arch;
     bool m_ArchIsSet;
 
-    int32_t m_Cpus;
+    int64_t m_Cpus;
     bool m_CpusIsSet;
 
     utility::string_t m_GpuModel;
     bool m_GpuModelIsSet;
 
-    int32_t m_Gpus;
+    int64_t m_Gpus;
     bool m_GpusIsSet;
 
-    int32_t m_Memory;
+    int64_t m_Memory;
     bool m_MemoryIsSet;
 
     utility::string_t m_Os;

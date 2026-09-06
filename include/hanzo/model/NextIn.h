@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// Batch is how many messages to pull (1–1000, default 1).
     /// </summary>
-    int32_t getBatch() const;
+    int64_t getBatch() const;
     bool batchIsSet() const;
     void unsetBatch();
-    void setBatch(int32_t value);
+    void setBatch(int64_t value);
 
     /// <summary>
     /// Expires is how long to wait for messages, e.g. \&quot;5s\&quot; (default \&quot;30s\&quot;, max \&quot;60s\&quot;).
@@ -94,7 +94,7 @@ public:
 
 
 protected:
-    int32_t m_Batch;
+    int64_t m_Batch;
     bool m_BatchIsSet;
 
     utility::string_t m_Expires;

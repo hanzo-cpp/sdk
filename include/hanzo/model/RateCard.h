@@ -63,28 +63,28 @@ public:
     /// <summary>
     /// MicroUSDPerGBHour is the price of one GiB of memory for one hour, in millionths of a US dollar.
     /// </summary>
-    int32_t getMicroUsdPerGbHour() const;
+    int64_t getMicroUsdPerGbHour() const;
     bool microUsdPerGbHourIsSet() const;
     void unsetMicroUsdPerGbHour();
-    void setMicroUsdPerGbHour(int32_t value);
+    void setMicroUsdPerGbHour(int64_t value);
 
     /// <summary>
     /// MicroUSDPerVCPUHour is the price of one vCPU for one hour, in millionths of a US dollar.
     /// </summary>
-    int32_t getMicroUsdPerVcpuHour() const;
+    int64_t getMicroUsdPerVcpuHour() const;
     bool microUsdPerVcpuHourIsSet() const;
     void unsetMicroUsdPerVcpuHour();
-    void setMicroUsdPerVcpuHour(int32_t value);
+    void setMicroUsdPerVcpuHour(int64_t value);
 
 
 protected:
     utility::string_t m_Basis;
     bool m_BasisIsSet;
 
-    int32_t m_MicroUsdPerGbHour;
+    int64_t m_MicroUsdPerGbHour;
     bool m_MicroUsdPerGbHourIsSet;
 
-    int32_t m_MicroUsdPerVcpuHour;
+    int64_t m_MicroUsdPerVcpuHour;
     bool m_MicroUsdPerVcpuHourIsSet;
 
 };

@@ -20,21 +20,21 @@ CampaignRecord::CampaignRecord()
 {
     m_Audience = utility::conversions::to_string_t("");
     m_AudienceIsSet = false;
-    m_Budget = 0;
+    m_Budget = 0L;
     m_BudgetIsSet = false;
     m_ChannelsIsSet = false;
     m_ContentIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_ScheduleAt = 0;
+    m_ScheduleAt = 0L;
     m_ScheduleAtIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
-    m_UpdatedAt = 0;
+    m_UpdatedAt = 0L;
     m_UpdatedAtIsSet = false;
 }
 
@@ -123,7 +123,7 @@ bool CampaignRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("budget")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBudget;
+            int64_t refVal_setBudget;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBudget);
             setBudget(refVal_setBudget);
             
@@ -156,7 +156,7 @@ bool CampaignRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -189,7 +189,7 @@ bool CampaignRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("scheduleAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setScheduleAt;
+            int64_t refVal_setScheduleAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setScheduleAt);
             setScheduleAt(refVal_setScheduleAt);
             
@@ -211,7 +211,7 @@ bool CampaignRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updatedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdatedAt;
+            int64_t refVal_setUpdatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdatedAt);
             setUpdatedAt(refVal_setUpdatedAt);
             
@@ -286,7 +286,7 @@ bool CampaignRecord::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("budget"))))
     {
-        int32_t refVal_setBudget;
+        int64_t refVal_setBudget;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("budget"))), refVal_setBudget );
         setBudget(refVal_setBudget);
     }
@@ -304,7 +304,7 @@ bool CampaignRecord::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -322,7 +322,7 @@ bool CampaignRecord::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("scheduleAt"))))
     {
-        int32_t refVal_setScheduleAt;
+        int64_t refVal_setScheduleAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("scheduleAt"))), refVal_setScheduleAt );
         setScheduleAt(refVal_setScheduleAt);
     }
@@ -334,7 +334,7 @@ bool CampaignRecord::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
-        int32_t refVal_setUpdatedAt;
+        int64_t refVal_setUpdatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))), refVal_setUpdatedAt );
         setUpdatedAt(refVal_setUpdatedAt);
     }
@@ -363,13 +363,13 @@ void CampaignRecord::unsetAudience()
 {
     m_AudienceIsSet = false;
 }
-int32_t CampaignRecord::getBudget() const
+int64_t CampaignRecord::getBudget() const
 {
     return m_Budget;
 }
 
 
-void CampaignRecord::setBudget(int32_t value)
+void CampaignRecord::setBudget(int64_t value)
 {
     m_Budget = value;
     m_BudgetIsSet = true;
@@ -426,13 +426,13 @@ void CampaignRecord::unsetContent()
 {
     m_ContentIsSet = false;
 }
-int32_t CampaignRecord::getCreatedAt() const
+int64_t CampaignRecord::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void CampaignRecord::setCreatedAt(int32_t value)
+void CampaignRecord::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -489,13 +489,13 @@ void CampaignRecord::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t CampaignRecord::getScheduleAt() const
+int64_t CampaignRecord::getScheduleAt() const
 {
     return m_ScheduleAt;
 }
 
 
-void CampaignRecord::setScheduleAt(int32_t value)
+void CampaignRecord::setScheduleAt(int64_t value)
 {
     m_ScheduleAt = value;
     m_ScheduleAtIsSet = true;
@@ -531,13 +531,13 @@ void CampaignRecord::unsetStatus()
 {
     m_StatusIsSet = false;
 }
-int32_t CampaignRecord::getUpdatedAt() const
+int64_t CampaignRecord::getUpdatedAt() const
 {
     return m_UpdatedAt;
 }
 
 
-void CampaignRecord::setUpdatedAt(int32_t value)
+void CampaignRecord::setUpdatedAt(int64_t value)
 {
     m_UpdatedAt = value;
     m_UpdatedAtIsSet = true;

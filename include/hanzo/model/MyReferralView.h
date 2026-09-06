@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// CreatedAt is when the referral was recorded, as a Unix timestamp.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// ID is the referral&#39;s handle.
@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// QualifiedAt is when the referee first made metered spend, as a Unix timestamp; 0 while the referral is still pending.
     /// </summary>
-    int32_t getQualifiedAt() const;
+    int64_t getQualifiedAt() const;
     bool qualifiedAtIsSet() const;
     void unsetQualifiedAt();
-    void setQualifiedAt(int32_t value);
+    void setQualifiedAt(int64_t value);
 
     /// <summary>
     /// Referee is the org that signed up with my code.
@@ -94,13 +94,13 @@ public:
 
 
 protected:
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_Id;
     bool m_IdIsSet;
 
-    int32_t m_QualifiedAt;
+    int64_t m_QualifiedAt;
     bool m_QualifiedAtIsSet;
 
     utility::string_t m_Referee;

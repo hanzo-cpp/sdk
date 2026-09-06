@@ -80,13 +80,13 @@ public:
     /// <param name="relation">Relation narrows to one relation. Absent matches every relation. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="value">Value narrows to assertions pointing AT one value, which is how the edges into an entity are read. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="asOf">AsOf bounds the read to what was knowable at an instant, RFC 3339. Absent reads everything this plane holds. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many assertions come back. Absent, zero, or anything above the walk ceiling is the ceiling. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many assertions come back. Absent, zero, or anything above the walk ceiling is the ceiling. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<GraphReadOut>> graphRead(
         boost::optional<utility::string_t> entity,
         boost::optional<utility::string_t> relation,
         boost::optional<utility::string_t> value,
         boost::optional<utility::string_t> asOf,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// What is in force about an entity as of an instant, and what disagreed
@@ -107,12 +107,12 @@ public:
     /// <param name="q">Q is what to look for: words, matched as prefixes, all of them required. Punctuation is text here rather than syntax, so an entity key searches as itself. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="relation">Relation narrows to one relation. Absent matches every relation. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="asOf">AsOf bounds the search to what was knowable at an instant, RFC 3339. Absent searches everything this plane holds. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many assertions come back. Absent, zero, or anything above the walk ceiling is the ceiling. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many assertions come back. Absent, zero, or anything above the walk ceiling is the ceiling. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<GraphReadOut>> graphSearch(
         boost::optional<utility::string_t> q,
         boost::optional<utility::string_t> relation,
         boost::optional<utility::string_t> asOf,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// The relations in use, and the rule that resolves a conflict

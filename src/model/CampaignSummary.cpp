@@ -18,12 +18,12 @@ namespace model {
 
 CampaignSummary::CampaignSummary()
 {
-    m_Budget = 0;
+    m_Budget = 0L;
     m_BudgetIsSet = false;
-    m_Campaigns = 0;
+    m_Campaigns = 0L;
     m_CampaignsIsSet = false;
     m_ChannelsIsSet = false;
-    m_Live = 0;
+    m_Live = 0L;
     m_LiveIsSet = false;
 }
 
@@ -71,7 +71,7 @@ bool CampaignSummary::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("budget")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBudget;
+            int64_t refVal_setBudget;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBudget);
             setBudget(refVal_setBudget);
             
@@ -82,7 +82,7 @@ bool CampaignSummary::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("campaigns")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCampaigns;
+            int64_t refVal_setCampaigns;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCampaigns);
             setCampaigns(refVal_setCampaigns);
             
@@ -104,7 +104,7 @@ bool CampaignSummary::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("live")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLive;
+            int64_t refVal_setLive;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLive);
             setLive(refVal_setLive);
             
@@ -149,13 +149,13 @@ bool CampaignSummary::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("budget"))))
     {
-        int32_t refVal_setBudget;
+        int64_t refVal_setBudget;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("budget"))), refVal_setBudget );
         setBudget(refVal_setBudget);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("campaigns"))))
     {
-        int32_t refVal_setCampaigns;
+        int64_t refVal_setCampaigns;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("campaigns"))), refVal_setCampaigns );
         setCampaigns(refVal_setCampaigns);
     }
@@ -167,7 +167,7 @@ bool CampaignSummary::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("live"))))
     {
-        int32_t refVal_setLive;
+        int64_t refVal_setLive;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("live"))), refVal_setLive );
         setLive(refVal_setLive);
     }
@@ -175,13 +175,13 @@ bool CampaignSummary::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 }
 
 
-int32_t CampaignSummary::getBudget() const
+int64_t CampaignSummary::getBudget() const
 {
     return m_Budget;
 }
 
 
-void CampaignSummary::setBudget(int32_t value)
+void CampaignSummary::setBudget(int64_t value)
 {
     m_Budget = value;
     m_BudgetIsSet = true;
@@ -196,13 +196,13 @@ void CampaignSummary::unsetBudget()
 {
     m_BudgetIsSet = false;
 }
-int32_t CampaignSummary::getCampaigns() const
+int64_t CampaignSummary::getCampaigns() const
 {
     return m_Campaigns;
 }
 
 
-void CampaignSummary::setCampaigns(int32_t value)
+void CampaignSummary::setCampaigns(int64_t value)
 {
     m_Campaigns = value;
     m_CampaignsIsSet = true;
@@ -238,13 +238,13 @@ void CampaignSummary::unsetChannels()
 {
     m_ChannelsIsSet = false;
 }
-int32_t CampaignSummary::getLive() const
+int64_t CampaignSummary::getLive() const
 {
     return m_Live;
 }
 
 
-void CampaignSummary::setLive(int32_t value)
+void CampaignSummary::setLive(int64_t value)
 {
     m_Live = value;
     m_LiveIsSet = true;

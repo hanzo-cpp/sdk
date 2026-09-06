@@ -20,13 +20,13 @@ CapVerdict::CapVerdict()
 {
     m_Allow = false;
     m_AllowIsSet = false;
-    m_CapCents = 0;
+    m_CapCents = 0L;
     m_CapCentsIsSet = false;
     m_Reason = utility::conversions::to_string_t("");
     m_ReasonIsSet = false;
-    m_SpentCents = 0;
+    m_SpentCents = 0L;
     m_SpentCentsIsSet = false;
-    m_WarnPct = 0;
+    m_WarnPct = 0L;
     m_WarnPctIsSet = false;
 }
 
@@ -90,7 +90,7 @@ bool CapVerdict::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("capCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCapCents;
+            int64_t refVal_setCapCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCapCents);
             setCapCents(refVal_setCapCents);
             
@@ -112,7 +112,7 @@ bool CapVerdict::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("spentCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSpentCents;
+            int64_t refVal_setSpentCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSpentCents);
             setSpentCents(refVal_setSpentCents);
             
@@ -123,7 +123,7 @@ bool CapVerdict::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("warnPct")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setWarnPct;
+            int64_t refVal_setWarnPct;
             ok &= ModelBase::fromJson(fieldValue, refVal_setWarnPct);
             setWarnPct(refVal_setWarnPct);
             
@@ -178,7 +178,7 @@ bool CapVerdict::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("capCents"))))
     {
-        int32_t refVal_setCapCents;
+        int64_t refVal_setCapCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("capCents"))), refVal_setCapCents );
         setCapCents(refVal_setCapCents);
     }
@@ -190,13 +190,13 @@ bool CapVerdict::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("spentCents"))))
     {
-        int32_t refVal_setSpentCents;
+        int64_t refVal_setSpentCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("spentCents"))), refVal_setSpentCents );
         setSpentCents(refVal_setSpentCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("warnPct"))))
     {
-        int32_t refVal_setWarnPct;
+        int64_t refVal_setWarnPct;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("warnPct"))), refVal_setWarnPct );
         setWarnPct(refVal_setWarnPct);
     }
@@ -225,13 +225,13 @@ void CapVerdict::unsetAllow()
 {
     m_AllowIsSet = false;
 }
-int32_t CapVerdict::getCapCents() const
+int64_t CapVerdict::getCapCents() const
 {
     return m_CapCents;
 }
 
 
-void CapVerdict::setCapCents(int32_t value)
+void CapVerdict::setCapCents(int64_t value)
 {
     m_CapCents = value;
     m_CapCentsIsSet = true;
@@ -267,13 +267,13 @@ void CapVerdict::unsetReason()
 {
     m_ReasonIsSet = false;
 }
-int32_t CapVerdict::getSpentCents() const
+int64_t CapVerdict::getSpentCents() const
 {
     return m_SpentCents;
 }
 
 
-void CapVerdict::setSpentCents(int32_t value)
+void CapVerdict::setSpentCents(int64_t value)
 {
     m_SpentCents = value;
     m_SpentCentsIsSet = true;
@@ -288,13 +288,13 @@ void CapVerdict::unsetSpentCents()
 {
     m_SpentCentsIsSet = false;
 }
-int32_t CapVerdict::getWarnPct() const
+int64_t CapVerdict::getWarnPct() const
 {
     return m_WarnPct;
 }
 
 
-void CapVerdict::setWarnPct(int32_t value)
+void CapVerdict::setWarnPct(int64_t value)
 {
     m_WarnPct = value;
     m_WarnPctIsSet = true;

@@ -18,14 +18,14 @@ namespace model {
 
 RoomWork::RoomWork()
 {
-    m_Open = 0;
+    m_Open = 0L;
     m_OpenIsSet = false;
     m_Room = utility::conversions::to_string_t("");
     m_RoomIsSet = false;
     m_StatusIsSet = false;
-    m_Total = 0;
+    m_Total = 0L;
     m_TotalIsSet = false;
-    m_Updated = 0;
+    m_Updated = 0L;
     m_UpdatedIsSet = false;
 }
 
@@ -78,7 +78,7 @@ bool RoomWork::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("open")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOpen;
+            int64_t refVal_setOpen;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOpen);
             setOpen(refVal_setOpen);
             
@@ -100,7 +100,7 @@ bool RoomWork::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("status")));
         if(!fieldValue.is_null())
         {
-            std::map<utility::string_t, int32_t> refVal_setStatus;
+            std::map<utility::string_t, int64_t> refVal_setStatus;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStatus);
             setStatus(refVal_setStatus);
             
@@ -111,7 +111,7 @@ bool RoomWork::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("total")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotal;
+            int64_t refVal_setTotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotal);
             setTotal(refVal_setTotal);
             
@@ -122,7 +122,7 @@ bool RoomWork::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updated")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdated;
+            int64_t refVal_setUpdated;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdated);
             setUpdated(refVal_setUpdated);
             
@@ -171,7 +171,7 @@ bool RoomWork::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("open"))))
     {
-        int32_t refVal_setOpen;
+        int64_t refVal_setOpen;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("open"))), refVal_setOpen );
         setOpen(refVal_setOpen);
     }
@@ -183,19 +183,19 @@ bool RoomWork::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("status"))))
     {
-        std::map<utility::string_t, int32_t> refVal_setStatus;
+        std::map<utility::string_t, int64_t> refVal_setStatus;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("status"))), refVal_setStatus );
         setStatus(refVal_setStatus);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("total"))))
     {
-        int32_t refVal_setTotal;
+        int64_t refVal_setTotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("total"))), refVal_setTotal );
         setTotal(refVal_setTotal);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updated"))))
     {
-        int32_t refVal_setUpdated;
+        int64_t refVal_setUpdated;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updated"))), refVal_setUpdated );
         setUpdated(refVal_setUpdated);
     }
@@ -203,13 +203,13 @@ bool RoomWork::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 }
 
 
-int32_t RoomWork::getOpen() const
+int64_t RoomWork::getOpen() const
 {
     return m_Open;
 }
 
 
-void RoomWork::setOpen(int32_t value)
+void RoomWork::setOpen(int64_t value)
 {
     m_Open = value;
     m_OpenIsSet = true;
@@ -245,13 +245,13 @@ void RoomWork::unsetRoom()
 {
     m_RoomIsSet = false;
 }
-std::map<utility::string_t, int32_t> RoomWork::getStatus() const
+std::map<utility::string_t, int64_t> RoomWork::getStatus() const
 {
     return m_Status;
 }
 
 
-void RoomWork::setStatus(std::map<utility::string_t, int32_t> value)
+void RoomWork::setStatus(std::map<utility::string_t, int64_t> value)
 {
     m_Status = value;
     m_StatusIsSet = true;
@@ -266,13 +266,13 @@ void RoomWork::unsetStatus()
 {
     m_StatusIsSet = false;
 }
-int32_t RoomWork::getTotal() const
+int64_t RoomWork::getTotal() const
 {
     return m_Total;
 }
 
 
-void RoomWork::setTotal(int32_t value)
+void RoomWork::setTotal(int64_t value)
 {
     m_Total = value;
     m_TotalIsSet = true;
@@ -287,13 +287,13 @@ void RoomWork::unsetTotal()
 {
     m_TotalIsSet = false;
 }
-int32_t RoomWork::getUpdated() const
+int64_t RoomWork::getUpdated() const
 {
     return m_Updated;
 }
 
 
-void RoomWork::setUpdated(int32_t value)
+void RoomWork::setUpdated(int64_t value)
 {
     m_Updated = value;
     m_UpdatedIsSet = true;

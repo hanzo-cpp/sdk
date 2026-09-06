@@ -24,7 +24,7 @@ Principle::Principle()
     m_DomainIsSet = false;
     m_Hexagram = utility::conversions::to_string_t("");
     m_HexagramIsSet = false;
-    m_n = 0;
+    m_n = 0L;
     m_nIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
@@ -133,7 +133,7 @@ bool Principle::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("n")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setN;
+            int64_t refVal_setN;
             ok &= ModelBase::fromJson(fieldValue, refVal_setN);
             setN(refVal_setN);
             
@@ -256,7 +256,7 @@ bool Principle::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("n"))))
     {
-        int32_t refVal_setN;
+        int64_t refVal_setN;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("n"))), refVal_setN );
         setN(refVal_setN);
     }
@@ -351,13 +351,13 @@ void Principle::unsetHexagram()
 {
     m_HexagramIsSet = false;
 }
-int32_t Principle::getN() const
+int64_t Principle::getN() const
 {
     return m_n;
 }
 
 
-void Principle::setN(int32_t value)
+void Principle::setN(int64_t value)
 {
     m_n = value;
     m_nIsSet = true;

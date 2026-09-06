@@ -21,9 +21,9 @@ SeoIdeaIn::SeoIdeaIn()
     m_KeywordsIsSet = false;
     m_Language = utility::conversions::to_string_t("");
     m_LanguageIsSet = false;
-    m_Limit = 0;
+    m_Limit = 0L;
     m_LimitIsSet = false;
-    m_Location = 0;
+    m_Location = 0L;
     m_LocationIsSet = false;
 }
 
@@ -93,7 +93,7 @@ bool SeoIdeaIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("limit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLimit;
+            int64_t refVal_setLimit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLimit);
             setLimit(refVal_setLimit);
             
@@ -104,7 +104,7 @@ bool SeoIdeaIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("location")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLocation;
+            int64_t refVal_setLocation;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLocation);
             setLocation(refVal_setLocation);
             
@@ -161,13 +161,13 @@ bool SeoIdeaIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("limit"))))
     {
-        int32_t refVal_setLimit;
+        int64_t refVal_setLimit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("limit"))), refVal_setLimit );
         setLimit(refVal_setLimit);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("location"))))
     {
-        int32_t refVal_setLocation;
+        int64_t refVal_setLocation;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("location"))), refVal_setLocation );
         setLocation(refVal_setLocation);
     }
@@ -217,13 +217,13 @@ void SeoIdeaIn::unsetLanguage()
 {
     m_LanguageIsSet = false;
 }
-int32_t SeoIdeaIn::getLimit() const
+int64_t SeoIdeaIn::getLimit() const
 {
     return m_Limit;
 }
 
 
-void SeoIdeaIn::setLimit(int32_t value)
+void SeoIdeaIn::setLimit(int64_t value)
 {
     m_Limit = value;
     m_LimitIsSet = true;
@@ -238,13 +238,13 @@ void SeoIdeaIn::unsetLimit()
 {
     m_LimitIsSet = false;
 }
-int32_t SeoIdeaIn::getLocation() const
+int64_t SeoIdeaIn::getLocation() const
 {
     return m_Location;
 }
 
 
-void SeoIdeaIn::setLocation(int32_t value)
+void SeoIdeaIn::setLocation(int64_t value)
 {
     m_Location = value;
     m_LocationIsSet = true;

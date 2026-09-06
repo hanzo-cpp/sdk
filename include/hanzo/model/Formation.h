@@ -78,10 +78,10 @@ public:
     /// <summary>
     /// CreatedAt is the unix second the formation was opened.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// DocumentIDs are the data room ids of the GENERATED formation documents.
@@ -206,10 +206,10 @@ public:
     /// <summary>
     /// UpdatedAt is the unix second of the most recent write to the formation.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
 
 protected:
@@ -219,7 +219,7 @@ protected:
     bool m_CapTableImported;
     bool m_CapTableImportedIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     std::vector<utility::string_t> m_DocumentIds;
@@ -267,7 +267,7 @@ protected:
     utility::string_t m_Structure;
     bool m_StructureIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
 };

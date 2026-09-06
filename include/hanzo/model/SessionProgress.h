@@ -79,10 +79,10 @@ public:
     /// <summary>
     /// Pct is how much of the run is done, 0 to 100. THE KEY IS ABSENT when progress is indeterminate — a run nobody can estimate is not a run that has done nothing, and rendering the second for the first is the mistake this omission exists to make impossible. Read &#x60;phase&#x60; before reaching for it.
     /// </summary>
-    int32_t getPct() const;
+    int64_t getPct() const;
     bool pctIsSet() const;
     void unsetPct();
-    void setPct(int32_t value);
+    void setPct(int64_t value);
 
     /// <summary>
     /// Phase is what shape the run is in: running, blocked, done, error, or unknown when nothing has estimated it yet. blocked means the transcript shows the run waiting on something — an approval, a credential, an answer — which is the one state the running surface cannot report about itself. error only ever comes from the session&#39;s own terminal status.
@@ -103,7 +103,7 @@ protected:
     bool m_Estimated;
     bool m_EstimatedIsSet;
 
-    int32_t m_Pct;
+    int64_t m_Pct;
     bool m_PctIsSet;
 
     utility::string_t m_Phase;

@@ -63,34 +63,34 @@ public:
     /// <summary>
     /// ClosingCredit is that closing balance in cents when it is a credit balance.
     /// </summary>
-    int32_t getClosingCredit() const;
+    int64_t getClosingCredit() const;
     bool closingCreditIsSet() const;
     void unsetClosingCredit();
-    void setClosingCredit(int32_t value);
+    void setClosingCredit(int64_t value);
 
     /// <summary>
     /// ClosingDebit is the balance at the end of the window, in cents, when it is a debit balance. This is the column the report&#39;s totals are summed from.
     /// </summary>
-    int32_t getClosingDebit() const;
+    int64_t getClosingDebit() const;
     bool closingDebitIsSet() const;
     void unsetClosingDebit();
-    void setClosingDebit(int32_t value);
+    void setClosingDebit(int64_t value);
 
     /// <summary>
     /// Credit is the same window movement in cents when it was net credit.
     /// </summary>
-    int32_t getCredit() const;
+    int64_t getCredit() const;
     bool creditIsSet() const;
     void unsetCredit();
-    void setCredit(int32_t value);
+    void setCredit(int64_t value);
 
     /// <summary>
     /// Debit is the account&#39;s MOVEMENT within the window — closing minus opening, not the closing balance — in cents, when that movement was net debit. Zero when the account moved net credit.
     /// </summary>
-    int32_t getDebit() const;
+    int64_t getDebit() const;
     bool debitIsSet() const;
     void unsetDebit();
-    void setDebit(int32_t value);
+    void setDebit(int64_t value);
 
     /// <summary>
     /// Name is that account&#39;s human name from the fixed chart.
@@ -103,18 +103,18 @@ public:
     /// <summary>
     /// OpeningCredit is the same opening balance in cents when it fell on the credit side. Zero when the balance was a debit one.
     /// </summary>
-    int32_t getOpeningCredit() const;
+    int64_t getOpeningCredit() const;
     bool openingCreditIsSet() const;
     void unsetOpeningCredit();
-    void setOpeningCredit(int32_t value);
+    void setOpeningCredit(int64_t value);
 
     /// <summary>
     /// OpeningDebit is the account&#39;s balance before the window began, in whole cents, when that balance was on the debit side. Zero when the balance was a credit one — the pair is exclusive, never two halves of one number.
     /// </summary>
-    int32_t getOpeningDebit() const;
+    int64_t getOpeningDebit() const;
     bool openingDebitIsSet() const;
     void unsetOpeningDebit();
-    void setOpeningDebit(int32_t value);
+    void setOpeningDebit(int64_t value);
 
     /// <summary>
     /// Type is the account&#39;s fundamental class — asset, liability, income, expense or equity — which is also its normal balance side. It is carried for presentation and does NOT decide which column an amount lands in: placement follows the sign of the real net, so a contra balance shows up as one.
@@ -129,25 +129,25 @@ protected:
     utility::string_t m_Account;
     bool m_AccountIsSet;
 
-    int32_t m_ClosingCredit;
+    int64_t m_ClosingCredit;
     bool m_ClosingCreditIsSet;
 
-    int32_t m_ClosingDebit;
+    int64_t m_ClosingDebit;
     bool m_ClosingDebitIsSet;
 
-    int32_t m_Credit;
+    int64_t m_Credit;
     bool m_CreditIsSet;
 
-    int32_t m_Debit;
+    int64_t m_Debit;
     bool m_DebitIsSet;
 
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_OpeningCredit;
+    int64_t m_OpeningCredit;
     bool m_OpeningCreditIsSet;
 
-    int32_t m_OpeningDebit;
+    int64_t m_OpeningDebit;
     bool m_OpeningDebitIsSet;
 
     utility::string_t m_Type;

@@ -22,17 +22,17 @@ Promo::Promo()
     m_ActiveIsSet = false;
     m_Code = utility::conversions::to_string_t("");
     m_CodeIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
-    m_MaxRedemptions = 0;
+    m_MaxRedemptions = 0L;
     m_MaxRedemptionsIsSet = false;
-    m_PercentOff = 0;
+    m_PercentOff = 0L;
     m_PercentOffIsSet = false;
     m_Plans = utility::conversions::to_string_t("");
     m_PlansIsSet = false;
-    m_TeamSeatCap = 0;
+    m_TeamSeatCap = 0L;
     m_TeamSeatCapIsSet = false;
 }
 
@@ -122,7 +122,7 @@ bool Promo::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -144,7 +144,7 @@ bool Promo::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("maxRedemptions")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMaxRedemptions;
+            int64_t refVal_setMaxRedemptions;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMaxRedemptions);
             setMaxRedemptions(refVal_setMaxRedemptions);
             
@@ -155,7 +155,7 @@ bool Promo::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("percentOff")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPercentOff;
+            int64_t refVal_setPercentOff;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPercentOff);
             setPercentOff(refVal_setPercentOff);
             
@@ -177,7 +177,7 @@ bool Promo::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("teamSeatCap")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTeamSeatCap;
+            int64_t refVal_setTeamSeatCap;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTeamSeatCap);
             setTeamSeatCap(refVal_setTeamSeatCap);
             
@@ -250,7 +250,7 @@ bool Promo::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -262,13 +262,13 @@ bool Promo::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("maxRedemptions"))))
     {
-        int32_t refVal_setMaxRedemptions;
+        int64_t refVal_setMaxRedemptions;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("maxRedemptions"))), refVal_setMaxRedemptions );
         setMaxRedemptions(refVal_setMaxRedemptions);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("percentOff"))))
     {
-        int32_t refVal_setPercentOff;
+        int64_t refVal_setPercentOff;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("percentOff"))), refVal_setPercentOff );
         setPercentOff(refVal_setPercentOff);
     }
@@ -280,7 +280,7 @@ bool Promo::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("teamSeatCap"))))
     {
-        int32_t refVal_setTeamSeatCap;
+        int64_t refVal_setTeamSeatCap;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("teamSeatCap"))), refVal_setTeamSeatCap );
         setTeamSeatCap(refVal_setTeamSeatCap);
     }
@@ -330,13 +330,13 @@ void Promo::unsetCode()
 {
     m_CodeIsSet = false;
 }
-int32_t Promo::getCreatedAt() const
+int64_t Promo::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void Promo::setCreatedAt(int32_t value)
+void Promo::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -372,13 +372,13 @@ void Promo::unsetDescription()
 {
     m_DescriptionIsSet = false;
 }
-int32_t Promo::getMaxRedemptions() const
+int64_t Promo::getMaxRedemptions() const
 {
     return m_MaxRedemptions;
 }
 
 
-void Promo::setMaxRedemptions(int32_t value)
+void Promo::setMaxRedemptions(int64_t value)
 {
     m_MaxRedemptions = value;
     m_MaxRedemptionsIsSet = true;
@@ -393,13 +393,13 @@ void Promo::unsetMaxRedemptions()
 {
     m_MaxRedemptionsIsSet = false;
 }
-int32_t Promo::getPercentOff() const
+int64_t Promo::getPercentOff() const
 {
     return m_PercentOff;
 }
 
 
-void Promo::setPercentOff(int32_t value)
+void Promo::setPercentOff(int64_t value)
 {
     m_PercentOff = value;
     m_PercentOffIsSet = true;
@@ -435,13 +435,13 @@ void Promo::unsetPlans()
 {
     m_PlansIsSet = false;
 }
-int32_t Promo::getTeamSeatCap() const
+int64_t Promo::getTeamSeatCap() const
 {
     return m_TeamSeatCap;
 }
 
 
-void Promo::setTeamSeatCap(int32_t value)
+void Promo::setTeamSeatCap(int64_t value)
 {
     m_TeamSeatCap = value;
     m_TeamSeatCapIsSet = true;

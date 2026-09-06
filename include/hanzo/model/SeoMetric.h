@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// Difficulty is how hard the first page is to reach organically, 0 to 100. Present on seoIdea, which measures it; absent on seoKeyword, which does not.
     /// </summary>
-    int32_t getDifficulty() const;
+    int64_t getDifficulty() const;
     bool difficultyIsSet() const;
     void unsetDifficulty();
-    void setDifficulty(int32_t value);
+    void setDifficulty(int64_t value);
 
     /// <summary>
     /// Keyword is the phrase.
@@ -95,10 +95,10 @@ public:
     /// <summary>
     /// Volume is the average monthly searches.
     /// </summary>
-    int32_t getVolume() const;
+    int64_t getVolume() const;
     bool volumeIsSet() const;
     void unsetVolume();
-    void setVolume(int32_t value);
+    void setVolume(int64_t value);
 
 
 protected:
@@ -108,7 +108,7 @@ protected:
     double m_Cpc;
     bool m_CpcIsSet;
 
-    int32_t m_Difficulty;
+    int64_t m_Difficulty;
     bool m_DifficultyIsSet;
 
     utility::string_t m_Keyword;
@@ -117,7 +117,7 @@ protected:
     utility::string_t m_Level;
     bool m_LevelIsSet;
 
-    int32_t m_Volume;
+    int64_t m_Volume;
     bool m_VolumeIsSet;
 
 };

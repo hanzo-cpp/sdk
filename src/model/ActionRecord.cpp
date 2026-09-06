@@ -20,7 +20,7 @@ ActionRecord::ActionRecord()
 {
     m_Args = utility::conversions::to_string_t("");
     m_ArgsIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_Err = utility::conversions::to_string_t("");
     m_ErrIsSet = false;
@@ -111,7 +111,7 @@ bool ActionRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -244,7 +244,7 @@ bool ActionRecord::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -309,13 +309,13 @@ void ActionRecord::unsetArgs()
 {
     m_ArgsIsSet = false;
 }
-int32_t ActionRecord::getCreatedAt() const
+int64_t ActionRecord::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void ActionRecord::setCreatedAt(int32_t value)
+void ActionRecord::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;

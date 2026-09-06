@@ -18,7 +18,7 @@ namespace model {
 
 O11y_HostRecord::O11y_HostRecord()
 {
-    m_ActiveHostCount = 0;
+    m_ActiveHostCount = 0L;
     m_ActiveHostCountIsSet = false;
     m_Cpu = 0.0;
     m_CpuIsSet = false;
@@ -26,7 +26,7 @@ O11y_HostRecord::O11y_HostRecord()
     m_DiskUsageIsSet = false;
     m_HostName = utility::conversions::to_string_t("");
     m_HostNameIsSet = false;
-    m_InactiveHostCount = 0;
+    m_InactiveHostCount = 0L;
     m_InactiveHostCountIsSet = false;
     m_Load15 = 0.0;
     m_Load15IsSet = false;
@@ -111,7 +111,7 @@ bool O11y_HostRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("activeHostCount")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setActiveHostCount;
+            int64_t refVal_setActiveHostCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setActiveHostCount);
             setActiveHostCount(refVal_setActiveHostCount);
             
@@ -155,7 +155,7 @@ bool O11y_HostRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("inactiveHostCount")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setInactiveHostCount;
+            int64_t refVal_setInactiveHostCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setInactiveHostCount);
             setInactiveHostCount(refVal_setInactiveHostCount);
             
@@ -279,7 +279,7 @@ bool O11y_HostRecord::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("activeHostCount"))))
     {
-        int32_t refVal_setActiveHostCount;
+        int64_t refVal_setActiveHostCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("activeHostCount"))), refVal_setActiveHostCount );
         setActiveHostCount(refVal_setActiveHostCount);
     }
@@ -303,7 +303,7 @@ bool O11y_HostRecord::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("inactiveHostCount"))))
     {
-        int32_t refVal_setInactiveHostCount;
+        int64_t refVal_setInactiveHostCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("inactiveHostCount"))), refVal_setInactiveHostCount );
         setInactiveHostCount(refVal_setInactiveHostCount);
     }
@@ -341,13 +341,13 @@ bool O11y_HostRecord::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 }
 
 
-int32_t O11y_HostRecord::getActiveHostCount() const
+int64_t O11y_HostRecord::getActiveHostCount() const
 {
     return m_ActiveHostCount;
 }
 
 
-void O11y_HostRecord::setActiveHostCount(int32_t value)
+void O11y_HostRecord::setActiveHostCount(int64_t value)
 {
     m_ActiveHostCount = value;
     m_ActiveHostCountIsSet = true;
@@ -425,13 +425,13 @@ void O11y_HostRecord::unsetHostName()
 {
     m_HostNameIsSet = false;
 }
-int32_t O11y_HostRecord::getInactiveHostCount() const
+int64_t O11y_HostRecord::getInactiveHostCount() const
 {
     return m_InactiveHostCount;
 }
 
 
-void O11y_HostRecord::setInactiveHostCount(int32_t value)
+void O11y_HostRecord::setInactiveHostCount(int64_t value)
 {
     m_InactiveHostCount = value;
     m_InactiveHostCountIsSet = true;

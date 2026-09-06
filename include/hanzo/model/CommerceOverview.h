@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// Orders is how many order_completed events landed in the window.
     /// </summary>
-    int32_t getOrders() const;
+    int64_t getOrders() const;
     bool ordersIsSet() const;
     void unsetOrders();
-    void setOrders(int32_t value);
+    void setOrders(int64_t value);
 
     /// <summary>
     /// Reason says why the lens is unavailable. Omitted when it is available.
@@ -108,7 +108,7 @@ protected:
     bool m_Available;
     bool m_AvailableIsSet;
 
-    int32_t m_Orders;
+    int64_t m_Orders;
     bool m_OrdersIsSet;
 
     utility::string_t m_Reason;

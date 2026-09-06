@@ -18,9 +18,9 @@ namespace model {
 
 Query::Query()
 {
-    m_Character = 0;
+    m_Character = 0L;
     m_CharacterIsSet = false;
-    m_Line = 0;
+    m_Line = 0L;
     m_LineIsSet = false;
     m_Path = utility::conversions::to_string_t("");
     m_PathIsSet = false;
@@ -86,7 +86,7 @@ bool Query::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("character")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCharacter;
+            int64_t refVal_setCharacter;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCharacter);
             setCharacter(refVal_setCharacter);
             
@@ -97,7 +97,7 @@ bool Query::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("line")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLine;
+            int64_t refVal_setLine;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLine);
             setLine(refVal_setLine);
             
@@ -194,13 +194,13 @@ bool Query::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("character"))))
     {
-        int32_t refVal_setCharacter;
+        int64_t refVal_setCharacter;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("character"))), refVal_setCharacter );
         setCharacter(refVal_setCharacter);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("line"))))
     {
-        int32_t refVal_setLine;
+        int64_t refVal_setLine;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("line"))), refVal_setLine );
         setLine(refVal_setLine);
     }
@@ -232,13 +232,13 @@ bool Query::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
 }
 
 
-int32_t Query::getCharacter() const
+int64_t Query::getCharacter() const
 {
     return m_Character;
 }
 
 
-void Query::setCharacter(int32_t value)
+void Query::setCharacter(int64_t value)
 {
     m_Character = value;
     m_CharacterIsSet = true;
@@ -253,13 +253,13 @@ void Query::unsetCharacter()
 {
     m_CharacterIsSet = false;
 }
-int32_t Query::getLine() const
+int64_t Query::getLine() const
 {
     return m_Line;
 }
 
 
-void Query::setLine(int32_t value)
+void Query::setLine(int64_t value)
 {
     m_Line = value;
     m_LineIsSet = true;

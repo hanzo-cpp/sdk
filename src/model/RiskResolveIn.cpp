@@ -18,7 +18,7 @@ namespace model {
 
 RiskResolveIn::RiskResolveIn()
 {
-    m_Horizon = 0;
+    m_Horizon = 0L;
     m_HorizonIsSet = false;
     m_Now = utility::conversions::to_string_t("");
     m_NowIsSet = false;
@@ -64,7 +64,7 @@ bool RiskResolveIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("horizon")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setHorizon;
+            int64_t refVal_setHorizon;
             ok &= ModelBase::fromJson(fieldValue, refVal_setHorizon);
             setHorizon(refVal_setHorizon);
             
@@ -127,7 +127,7 @@ bool RiskResolveIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("horizon"))))
     {
-        int32_t refVal_setHorizon;
+        int64_t refVal_setHorizon;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("horizon"))), refVal_setHorizon );
         setHorizon(refVal_setHorizon);
     }
@@ -147,13 +147,13 @@ bool RiskResolveIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 }
 
 
-int32_t RiskResolveIn::getHorizon() const
+int64_t RiskResolveIn::getHorizon() const
 {
     return m_Horizon;
 }
 
 
-void RiskResolveIn::setHorizon(int32_t value)
+void RiskResolveIn::setHorizon(int64_t value)
 {
     m_Horizon = value;
     m_HorizonIsSet = true;

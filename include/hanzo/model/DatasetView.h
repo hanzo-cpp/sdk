@@ -73,10 +73,10 @@ public:
     /// <summary>
     /// Items is how many examples the set holds. It is filled only by the single read — a listing does not count, so it is absent there rather than zero.
     /// </summary>
-    int32_t getItems() const;
+    int64_t getItems() const;
     bool itemsIsSet() const;
     void unsetItems();
-    void setItems(int32_t value);
+    void setItems(int64_t value);
 
     /// <summary>
     /// Metadata is the free-form object stored with the set, echoed back verbatim.
@@ -110,7 +110,7 @@ protected:
     utility::string_t m_Description;
     bool m_DescriptionIsSet;
 
-    int32_t m_Items;
+    int64_t m_Items;
     bool m_ItemsIsSet;
 
     std::map<utility::string_t, std::shared_ptr<Object>> m_Metadata;

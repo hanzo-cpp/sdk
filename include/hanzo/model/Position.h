@@ -54,25 +54,25 @@ public:
     /// <summary>
     /// Character is a 0-based UTF-16 code-unit offset within Line, per the LSP specification: not a byte offset and not a rune index. An emoji before the cursor counts as one here and as two in Go&#39;s arithmetic.
     /// </summary>
-    int32_t getCharacter() const;
+    int64_t getCharacter() const;
     bool characterIsSet() const;
     void unsetCharacter();
-    void setCharacter(int32_t value);
+    void setCharacter(int64_t value);
 
     /// <summary>
     /// Line is 0-BASED, per the LSP specification — one less than the line an editor shows a human.
     /// </summary>
-    int32_t getLine() const;
+    int64_t getLine() const;
     bool lineIsSet() const;
     void unsetLine();
-    void setLine(int32_t value);
+    void setLine(int64_t value);
 
 
 protected:
-    int32_t m_Character;
+    int64_t m_Character;
     bool m_CharacterIsSet;
 
-    int32_t m_Line;
+    int64_t m_Line;
     bool m_LineIsSet;
 
 };

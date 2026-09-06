@@ -24,7 +24,7 @@ DefRow::DefRow()
     m_Updated_atIsSet = false;
     m_Updated_by = utility::conversions::to_string_t("");
     m_Updated_byIsSet = false;
-    m_Version = 0;
+    m_Version = 0L;
     m_VersionIsSet = false;
 }
 
@@ -121,7 +121,7 @@ bool DefRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("version")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVersion;
+            int64_t refVal_setVersion;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVersion);
             setVersion(refVal_setVersion);
             
@@ -194,7 +194,7 @@ bool DefRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("version"))))
     {
-        int32_t refVal_setVersion;
+        int64_t refVal_setVersion;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("version"))), refVal_setVersion );
         setVersion(refVal_setVersion);
     }
@@ -285,13 +285,13 @@ void DefRow::unsetUpdated_by()
 {
     m_Updated_byIsSet = false;
 }
-int32_t DefRow::getVersion() const
+int64_t DefRow::getVersion() const
 {
     return m_Version;
 }
 
 
-void DefRow::setVersion(int32_t value)
+void DefRow::setVersion(int64_t value)
 {
     m_Version = value;
     m_VersionIsSet = true;

@@ -19,7 +19,7 @@ namespace model {
 O11y_O11yReductionRulePreviewIn::O11y_O11yReductionRulePreviewIn()
 {
     m_LabelsIsSet = false;
-    m_LookbackMs = 0;
+    m_LookbackMs = 0L;
     m_LookbackMsIsSet = false;
     m_MatchType = utility::conversions::to_string_t("");
     m_MatchTypeIsSet = false;
@@ -82,7 +82,7 @@ bool O11y_O11yReductionRulePreviewIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("lookbackMs")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLookbackMs;
+            int64_t refVal_setLookbackMs;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLookbackMs);
             setLookbackMs(refVal_setLookbackMs);
             
@@ -155,7 +155,7 @@ bool O11y_O11yReductionRulePreviewIn::fromMultiPart(std::shared_ptr<MultipartFor
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("lookbackMs"))))
     {
-        int32_t refVal_setLookbackMs;
+        int64_t refVal_setLookbackMs;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("lookbackMs"))), refVal_setLookbackMs );
         setLookbackMs(refVal_setLookbackMs);
     }
@@ -196,13 +196,13 @@ void O11y_O11yReductionRulePreviewIn::unsetLabels()
 {
     m_LabelsIsSet = false;
 }
-int32_t O11y_O11yReductionRulePreviewIn::getLookbackMs() const
+int64_t O11y_O11yReductionRulePreviewIn::getLookbackMs() const
 {
     return m_LookbackMs;
 }
 
 
-void O11y_O11yReductionRulePreviewIn::setLookbackMs(int32_t value)
+void O11y_O11yReductionRulePreviewIn::setLookbackMs(int64_t value)
 {
     m_LookbackMs = value;
     m_LookbackMsIsSet = true;

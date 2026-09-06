@@ -106,10 +106,10 @@ public:
     /// <summary>
     /// Version is which version of this template the caller&#39;s org resolves to. A built-in is version 1; the org&#39;s first override is 2 and each save increments, so an override version never collides with the built-in&#39;s.
     /// </summary>
-    int32_t getVersion() const;
+    int64_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();
-    void setVersion(int32_t value);
+    void setVersion(int64_t value);
 
 
 protected:
@@ -131,7 +131,7 @@ protected:
     utility::string_t m_Title;
     bool m_TitleIsSet;
 
-    int32_t m_Version;
+    int64_t m_Version;
     bool m_VersionIsSet;
 
 };

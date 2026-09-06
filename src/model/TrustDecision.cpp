@@ -18,7 +18,7 @@ namespace model {
 
 TrustDecision::TrustDecision()
 {
-    m_Days = 0;
+    m_Days = 0L;
     m_DaysIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
@@ -65,7 +65,7 @@ bool TrustDecision::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("days")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDays;
+            int64_t refVal_setDays;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDays);
             setDays(refVal_setDays);
             
@@ -128,7 +128,7 @@ bool TrustDecision::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("days"))))
     {
-        int32_t refVal_setDays;
+        int64_t refVal_setDays;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("days"))), refVal_setDays );
         setDays(refVal_setDays);
     }
@@ -148,13 +148,13 @@ bool TrustDecision::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 }
 
 
-int32_t TrustDecision::getDays() const
+int64_t TrustDecision::getDays() const
 {
     return m_Days;
 }
 
 
-void TrustDecision::setDays(int32_t value)
+void TrustDecision::setDays(int64_t value)
 {
     m_Days = value;
     m_DaysIsSet = true;

@@ -55,42 +55,42 @@ public:
     /// <summary>
     /// CreatedAt is when the scan ran, in Unix milliseconds.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// Critical is how many findings carry the highest severity.
     /// </summary>
-    int32_t getCritical() const;
+    int64_t getCritical() const;
     bool criticalIsSet() const;
     void unsetCritical();
-    void setCritical(int32_t value);
+    void setCritical(int64_t value);
 
     /// <summary>
     /// Files is how many files the scan read.
     /// </summary>
-    int32_t getFiles() const;
+    int64_t getFiles() const;
     bool filesIsSet() const;
     void unsetFiles();
-    void setFiles(int32_t value);
+    void setFiles(int64_t value);
 
     /// <summary>
     /// Findings is how many secrets fired across them.
     /// </summary>
-    int32_t getFindings() const;
+    int64_t getFindings() const;
     bool findingsIsSet() const;
     void unsetFindings();
-    void setFindings(int32_t value);
+    void setFindings(int64_t value);
 
     /// <summary>
     /// High is how many findings rank high.
     /// </summary>
-    int32_t getHigh() const;
+    int64_t getHigh() const;
     bool highIsSet() const;
     void unsetHigh();
-    void setHigh(int32_t value);
+    void setHigh(int64_t value);
 
     /// <summary>
     /// ID addresses this scan and every finding on it.
@@ -103,18 +103,18 @@ public:
     /// <summary>
     /// Low is how many findings rank low.
     /// </summary>
-    int32_t getLow() const;
+    int64_t getLow() const;
     bool lowIsSet() const;
     void unsetLow();
-    void setLow(int32_t value);
+    void setLow(int64_t value);
 
     /// <summary>
     /// Medium is how many findings rank medium.
     /// </summary>
-    int32_t getMedium() const;
+    int64_t getMedium() const;
     bool mediumIsSet() const;
     void unsetMedium();
-    void setMedium(int32_t value);
+    void setMedium(int64_t value);
 
     /// <summary>
     /// Project is the sub-scope the scan was filed under.
@@ -126,28 +126,28 @@ public:
 
 
 protected:
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
-    int32_t m_Critical;
+    int64_t m_Critical;
     bool m_CriticalIsSet;
 
-    int32_t m_Files;
+    int64_t m_Files;
     bool m_FilesIsSet;
 
-    int32_t m_Findings;
+    int64_t m_Findings;
     bool m_FindingsIsSet;
 
-    int32_t m_High;
+    int64_t m_High;
     bool m_HighIsSet;
 
     utility::string_t m_Id;
     bool m_IdIsSet;
 
-    int32_t m_Low;
+    int64_t m_Low;
     bool m_LowIsSet;
 
-    int32_t m_Medium;
+    int64_t m_Medium;
     bool m_MediumIsSet;
 
     utility::string_t m_Project;

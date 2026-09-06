@@ -22,7 +22,7 @@ O11y_O11yFieldSetting::O11y_O11yFieldSetting()
     m_DataTypeIsSet = false;
     m_Index = utility::conversions::to_string_t("");
     m_IndexIsSet = false;
-    m_IndexGranularity = 0;
+    m_IndexGranularity = 0L;
     m_IndexGranularityIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
@@ -108,7 +108,7 @@ bool O11y_O11yFieldSetting::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("indexGranularity")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setIndexGranularity;
+            int64_t refVal_setIndexGranularity;
             ok &= ModelBase::fromJson(fieldValue, refVal_setIndexGranularity);
             setIndexGranularity(refVal_setIndexGranularity);
             
@@ -206,7 +206,7 @@ bool O11y_O11yFieldSetting::fromMultiPart(std::shared_ptr<MultipartFormData> mul
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("indexGranularity"))))
     {
-        int32_t refVal_setIndexGranularity;
+        int64_t refVal_setIndexGranularity;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("indexGranularity"))), refVal_setIndexGranularity );
         setIndexGranularity(refVal_setIndexGranularity);
     }
@@ -274,13 +274,13 @@ void O11y_O11yFieldSetting::unsetIndex()
 {
     m_IndexIsSet = false;
 }
-int32_t O11y_O11yFieldSetting::getIndexGranularity() const
+int64_t O11y_O11yFieldSetting::getIndexGranularity() const
 {
     return m_IndexGranularity;
 }
 
 
-void O11y_O11yFieldSetting::setIndexGranularity(int32_t value)
+void O11y_O11yFieldSetting::setIndexGranularity(int64_t value)
 {
     m_IndexGranularity = value;
     m_IndexGranularityIsSet = true;

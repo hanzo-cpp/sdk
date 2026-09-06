@@ -20,13 +20,13 @@ BackendStatus::BackendStatus()
 {
     m_Error = utility::conversions::to_string_t("");
     m_ErrorIsSet = false;
-    m_Hits = 0;
+    m_Hits = 0L;
     m_HitsIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
-    m_Took_ms = 0;
+    m_Took_ms = 0L;
     m_Took_msIsSet = false;
 }
 
@@ -90,7 +90,7 @@ bool BackendStatus::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("hits")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setHits;
+            int64_t refVal_setHits;
             ok &= ModelBase::fromJson(fieldValue, refVal_setHits);
             setHits(refVal_setHits);
             
@@ -123,7 +123,7 @@ bool BackendStatus::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("took_ms")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTookMs;
+            int64_t refVal_setTookMs;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTookMs);
             setTookMs(refVal_setTookMs);
             
@@ -178,7 +178,7 @@ bool BackendStatus::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("hits"))))
     {
-        int32_t refVal_setHits;
+        int64_t refVal_setHits;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("hits"))), refVal_setHits );
         setHits(refVal_setHits);
     }
@@ -196,7 +196,7 @@ bool BackendStatus::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("took_ms"))))
     {
-        int32_t refVal_setTookMs;
+        int64_t refVal_setTookMs;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("took_ms"))), refVal_setTookMs );
         setTookMs(refVal_setTookMs);
     }
@@ -225,13 +225,13 @@ void BackendStatus::unsetError()
 {
     m_ErrorIsSet = false;
 }
-int32_t BackendStatus::getHits() const
+int64_t BackendStatus::getHits() const
 {
     return m_Hits;
 }
 
 
-void BackendStatus::setHits(int32_t value)
+void BackendStatus::setHits(int64_t value)
 {
     m_Hits = value;
     m_HitsIsSet = true;
@@ -288,13 +288,13 @@ void BackendStatus::unsetStatus()
 {
     m_StatusIsSet = false;
 }
-int32_t BackendStatus::getTookMs() const
+int64_t BackendStatus::getTookMs() const
 {
     return m_Took_ms;
 }
 
 
-void BackendStatus::setTookMs(int32_t value)
+void BackendStatus::setTookMs(int64_t value)
 {
     m_Took_ms = value;
     m_Took_msIsSet = true;

@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// CreatedAt is unix seconds.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// Description is the human-readable offer.
@@ -87,18 +87,18 @@ public:
     /// <summary>
     /// MaxRedemptions is the hard fleet-wide cap; the redemption past it is declined.
     /// </summary>
-    int32_t getMaxRedemptions() const;
+    int64_t getMaxRedemptions() const;
     bool maxRedemptionsIsSet() const;
     void unsetMaxRedemptions();
-    void setMaxRedemptions(int32_t value);
+    void setMaxRedemptions(int64_t value);
 
     /// <summary>
     /// PercentOff is the discount applied to ONE month&#39;s list price.
     /// </summary>
-    int32_t getPercentOff() const;
+    int64_t getPercentOff() const;
     bool percentOffIsSet() const;
     void unsetPercentOff();
-    void setPercentOff(int32_t value);
+    void setPercentOff(int64_t value);
 
     /// <summary>
     /// Plans is the csv of eligible plan ids (\&quot;pro,max,team\&quot;).
@@ -111,10 +111,10 @@ public:
     /// <summary>
     /// TeamSeatCap is how many Team seats bill at the promo rate; seats beyond it bill at list.
     /// </summary>
-    int32_t getTeamSeatCap() const;
+    int64_t getTeamSeatCap() const;
     bool teamSeatCapIsSet() const;
     void unsetTeamSeatCap();
-    void setTeamSeatCap(int32_t value);
+    void setTeamSeatCap(int64_t value);
 
 
 protected:
@@ -124,22 +124,22 @@ protected:
     utility::string_t m_Code;
     bool m_CodeIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_Description;
     bool m_DescriptionIsSet;
 
-    int32_t m_MaxRedemptions;
+    int64_t m_MaxRedemptions;
     bool m_MaxRedemptionsIsSet;
 
-    int32_t m_PercentOff;
+    int64_t m_PercentOff;
     bool m_PercentOffIsSet;
 
     utility::string_t m_Plans;
     bool m_PlansIsSet;
 
-    int32_t m_TeamSeatCap;
+    int64_t m_TeamSeatCap;
     bool m_TeamSeatCapIsSet;
 
 };

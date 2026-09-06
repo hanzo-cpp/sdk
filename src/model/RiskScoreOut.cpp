@@ -23,7 +23,7 @@ RiskScoreOut::RiskScoreOut()
     m_CausesIsSet = false;
     m_Cut = 0.0;
     m_CutIsSet = false;
-    m_Policy = 0;
+    m_Policy = 0L;
     m_PolicyIsSet = false;
     m_Refusal = utility::conversions::to_string_t("");
     m_RefusalIsSet = false;
@@ -145,7 +145,7 @@ bool RiskScoreOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("policy")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPolicy;
+            int64_t refVal_setPolicy;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPolicy);
             setPolicy(refVal_setPolicy);
             
@@ -298,7 +298,7 @@ bool RiskScoreOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("policy"))))
     {
-        int32_t refVal_setPolicy;
+        int64_t refVal_setPolicy;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("policy"))), refVal_setPolicy );
         setPolicy(refVal_setPolicy);
     }
@@ -405,13 +405,13 @@ void RiskScoreOut::unsetCut()
 {
     m_CutIsSet = false;
 }
-int32_t RiskScoreOut::getPolicy() const
+int64_t RiskScoreOut::getPolicy() const
 {
     return m_Policy;
 }
 
 
-void RiskScoreOut::setPolicy(int32_t value)
+void RiskScoreOut::setPolicy(int64_t value)
 {
     m_Policy = value;
     m_PolicyIsSet = true;

@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// CreatedAt is when the edge was FIRST recorded, Unix seconds UTC. On a re-post it is the original time, not now.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// ID is the attribution edge&#39;s server-minted handle, \&quot;afr_\&quot;-prefixed.
@@ -92,7 +92,7 @@ protected:
     bool m_Created;
     bool m_CreatedIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_Id;

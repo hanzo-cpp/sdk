@@ -22,7 +22,7 @@ O11y_WebhookConfig::O11y_WebhookConfig()
     m_Http_configIsSet = false;
     m_Max_alerts = 0;
     m_Max_alertsIsSet = false;
-    m_Timeout = 0;
+    m_Timeout = 0L;
     m_TimeoutIsSet = false;
     m_Url_file = utility::conversions::to_string_t("");
     m_Url_fileIsSet = false;
@@ -115,7 +115,7 @@ bool O11y_WebhookConfig::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("timeout")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTimeout;
+            int64_t refVal_setTimeout;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTimeout);
             setTimeout(refVal_setTimeout);
             
@@ -208,7 +208,7 @@ bool O11y_WebhookConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multip
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("timeout"))))
     {
-        int32_t refVal_setTimeout;
+        int64_t refVal_setTimeout;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("timeout"))), refVal_setTimeout );
         setTimeout(refVal_setTimeout);
     }
@@ -291,13 +291,13 @@ void O11y_WebhookConfig::unsetMax_alerts()
 {
     m_Max_alertsIsSet = false;
 }
-int32_t O11y_WebhookConfig::getTimeout() const
+int64_t O11y_WebhookConfig::getTimeout() const
 {
     return m_Timeout;
 }
 
 
-void O11y_WebhookConfig::setTimeout(int32_t value)
+void O11y_WebhookConfig::setTimeout(int64_t value)
 {
     m_Timeout = value;
     m_TimeoutIsSet = true;

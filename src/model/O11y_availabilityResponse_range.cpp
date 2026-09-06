@@ -18,9 +18,9 @@ namespace model {
 
 O11y_availabilityResponse_range::O11y_availabilityResponse_range()
 {
-    m_SinceSec = 0;
+    m_SinceSec = 0L;
     m_SinceSecIsSet = false;
-    m_StepSec = 0;
+    m_StepSec = 0L;
     m_StepSecIsSet = false;
 }
 
@@ -58,7 +58,7 @@ bool O11y_availabilityResponse_range::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("sinceSec")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSinceSec;
+            int64_t refVal_setSinceSec;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSinceSec);
             setSinceSec(refVal_setSinceSec);
             
@@ -69,7 +69,7 @@ bool O11y_availabilityResponse_range::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("stepSec")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStepSec;
+            int64_t refVal_setStepSec;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStepSec);
             setStepSec(refVal_setStepSec);
             
@@ -106,13 +106,13 @@ bool O11y_availabilityResponse_range::fromMultiPart(std::shared_ptr<MultipartFor
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("sinceSec"))))
     {
-        int32_t refVal_setSinceSec;
+        int64_t refVal_setSinceSec;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("sinceSec"))), refVal_setSinceSec );
         setSinceSec(refVal_setSinceSec);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("stepSec"))))
     {
-        int32_t refVal_setStepSec;
+        int64_t refVal_setStepSec;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("stepSec"))), refVal_setStepSec );
         setStepSec(refVal_setStepSec);
     }
@@ -120,13 +120,13 @@ bool O11y_availabilityResponse_range::fromMultiPart(std::shared_ptr<MultipartFor
 }
 
 
-int32_t O11y_availabilityResponse_range::getSinceSec() const
+int64_t O11y_availabilityResponse_range::getSinceSec() const
 {
     return m_SinceSec;
 }
 
 
-void O11y_availabilityResponse_range::setSinceSec(int32_t value)
+void O11y_availabilityResponse_range::setSinceSec(int64_t value)
 {
     m_SinceSec = value;
     m_SinceSecIsSet = true;
@@ -141,13 +141,13 @@ void O11y_availabilityResponse_range::unsetSinceSec()
 {
     m_SinceSecIsSet = false;
 }
-int32_t O11y_availabilityResponse_range::getStepSec() const
+int64_t O11y_availabilityResponse_range::getStepSec() const
 {
     return m_StepSec;
 }
 
 
-void O11y_availabilityResponse_range::setStepSec(int32_t value)
+void O11y_availabilityResponse_range::setStepSec(int64_t value)
 {
     m_StepSec = value;
     m_StepSecIsSet = true;

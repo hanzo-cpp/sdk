@@ -21,7 +21,7 @@ O11y_O11yDiscoverIn::O11y_O11yDiscoverIn()
     m_AggregationsIsSet = false;
     m_FiltersIsSet = false;
     m_GroupByIsSet = false;
-    m_Limit = 0;
+    m_Limit = 0L;
     m_LimitIsSet = false;
     m_OrderBy = utility::conversions::to_string_t("");
     m_OrderByIsSet = false;
@@ -130,7 +130,7 @@ bool O11y_O11yDiscoverIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("limit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLimit;
+            int64_t refVal_setLimit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLimit);
             setLimit(refVal_setLimit);
             
@@ -253,7 +253,7 @@ bool O11y_O11yDiscoverIn::fromMultiPart(std::shared_ptr<MultipartFormData> multi
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("limit"))))
     {
-        int32_t refVal_setLimit;
+        int64_t refVal_setLimit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("limit"))), refVal_setLimit );
         setLimit(refVal_setLimit);
     }
@@ -348,13 +348,13 @@ void O11y_O11yDiscoverIn::unsetGroupBy()
 {
     m_GroupByIsSet = false;
 }
-int32_t O11y_O11yDiscoverIn::getLimit() const
+int64_t O11y_O11yDiscoverIn::getLimit() const
 {
     return m_Limit;
 }
 
 
-void O11y_O11yDiscoverIn::setLimit(int32_t value)
+void O11y_O11yDiscoverIn::setLimit(int64_t value)
 {
     m_Limit = value;
     m_LimitIsSet = true;

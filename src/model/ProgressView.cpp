@@ -18,13 +18,13 @@ namespace model {
 
 ProgressView::ProgressView()
 {
-    m_Done = 0;
+    m_Done = 0L;
     m_DoneIsSet = false;
     m_Next = utility::conversions::to_string_t("");
     m_NextIsSet = false;
-    m_Percent = 0;
+    m_Percent = 0L;
     m_PercentIsSet = false;
-    m_Total = 0;
+    m_Total = 0L;
     m_TotalIsSet = false;
 }
 
@@ -72,7 +72,7 @@ bool ProgressView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("done")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDone;
+            int64_t refVal_setDone;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDone);
             setDone(refVal_setDone);
             
@@ -94,7 +94,7 @@ bool ProgressView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("percent")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPercent;
+            int64_t refVal_setPercent;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPercent);
             setPercent(refVal_setPercent);
             
@@ -105,7 +105,7 @@ bool ProgressView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("total")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotal;
+            int64_t refVal_setTotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotal);
             setTotal(refVal_setTotal);
             
@@ -150,7 +150,7 @@ bool ProgressView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("done"))))
     {
-        int32_t refVal_setDone;
+        int64_t refVal_setDone;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("done"))), refVal_setDone );
         setDone(refVal_setDone);
     }
@@ -162,13 +162,13 @@ bool ProgressView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("percent"))))
     {
-        int32_t refVal_setPercent;
+        int64_t refVal_setPercent;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("percent"))), refVal_setPercent );
         setPercent(refVal_setPercent);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("total"))))
     {
-        int32_t refVal_setTotal;
+        int64_t refVal_setTotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("total"))), refVal_setTotal );
         setTotal(refVal_setTotal);
     }
@@ -176,13 +176,13 @@ bool ProgressView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
 }
 
 
-int32_t ProgressView::getDone() const
+int64_t ProgressView::getDone() const
 {
     return m_Done;
 }
 
 
-void ProgressView::setDone(int32_t value)
+void ProgressView::setDone(int64_t value)
 {
     m_Done = value;
     m_DoneIsSet = true;
@@ -218,13 +218,13 @@ void ProgressView::unsetNext()
 {
     m_NextIsSet = false;
 }
-int32_t ProgressView::getPercent() const
+int64_t ProgressView::getPercent() const
 {
     return m_Percent;
 }
 
 
-void ProgressView::setPercent(int32_t value)
+void ProgressView::setPercent(int64_t value)
 {
     m_Percent = value;
     m_PercentIsSet = true;
@@ -239,13 +239,13 @@ void ProgressView::unsetPercent()
 {
     m_PercentIsSet = false;
 }
-int32_t ProgressView::getTotal() const
+int64_t ProgressView::getTotal() const
 {
     return m_Total;
 }
 
 
-void ProgressView::setTotal(int32_t value)
+void ProgressView::setTotal(int64_t value)
 {
     m_Total = value;
     m_TotalIsSet = true;

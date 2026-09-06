@@ -33,7 +33,7 @@ O11y_FunnelStep::O11y_FunnelStep()
     m_Service_nameIsSet = false;
     m_Span_name = utility::conversions::to_string_t("");
     m_Span_nameIsSet = false;
-    m_Step_order = 0;
+    m_Step_order = 0L;
     m_Step_orderIsSet = false;
 }
 
@@ -210,7 +210,7 @@ bool O11y_FunnelStep::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("step_order")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStepOrder;
+            int64_t refVal_setStepOrder;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStepOrder);
             setStepOrder(refVal_setStepOrder);
             
@@ -333,7 +333,7 @@ bool O11y_FunnelStep::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("step_order"))))
     {
-        int32_t refVal_setStepOrder;
+        int64_t refVal_setStepOrder;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("step_order"))), refVal_setStepOrder );
         setStepOrder(refVal_setStepOrder);
     }
@@ -529,13 +529,13 @@ void O11y_FunnelStep::unsetSpan_name()
 {
     m_Span_nameIsSet = false;
 }
-int32_t O11y_FunnelStep::getStepOrder() const
+int64_t O11y_FunnelStep::getStepOrder() const
 {
     return m_Step_order;
 }
 
 
-void O11y_FunnelStep::setStepOrder(int32_t value)
+void O11y_FunnelStep::setStepOrder(int64_t value)
 {
     m_Step_order = value;
     m_Step_orderIsSet = true;

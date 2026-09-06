@@ -20,7 +20,7 @@ Licensing_IssueResponse::Licensing_IssueResponse()
 {
     m_App_id = utility::conversions::to_string_t("");
     m_App_idIsSet = false;
-    m_Exp = 0;
+    m_Exp = 0L;
     m_ExpIsSet = false;
     m_FeaturesIsSet = false;
     m_Fingerprint_bound = false;
@@ -103,7 +103,7 @@ bool Licensing_IssueResponse::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("exp")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExp;
+            int64_t refVal_setExp;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExp);
             setExp(refVal_setExp);
             
@@ -221,7 +221,7 @@ bool Licensing_IssueResponse::fromMultiPart(std::shared_ptr<MultipartFormData> m
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("exp"))))
     {
-        int32_t refVal_setExp;
+        int64_t refVal_setExp;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("exp"))), refVal_setExp );
         setExp(refVal_setExp);
     }
@@ -280,13 +280,13 @@ void Licensing_IssueResponse::unsetApp_id()
 {
     m_App_idIsSet = false;
 }
-int32_t Licensing_IssueResponse::getExp() const
+int64_t Licensing_IssueResponse::getExp() const
 {
     return m_Exp;
 }
 
 
-void Licensing_IssueResponse::setExp(int32_t value)
+void Licensing_IssueResponse::setExp(int64_t value)
 {
     m_Exp = value;
     m_ExpIsSet = true;

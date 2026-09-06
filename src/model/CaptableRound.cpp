@@ -20,7 +20,7 @@ CaptableRound::CaptableRound()
 {
     m_CloseDate = utility::conversions::to_string_t("");
     m_CloseDateIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
@@ -132,7 +132,7 @@ bool CaptableRound::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -310,7 +310,7 @@ bool CaptableRound::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -393,13 +393,13 @@ void CaptableRound::unsetCloseDate()
 {
     m_CloseDateIsSet = false;
 }
-int32_t CaptableRound::getCreatedAt() const
+int64_t CaptableRound::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void CaptableRound::setCreatedAt(int32_t value)
+void CaptableRound::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;

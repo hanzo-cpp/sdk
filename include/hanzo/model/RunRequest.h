@@ -73,10 +73,10 @@ public:
     /// <summary>
     /// Limit caps how many examples this run scores. It defaults to 20, and anything above 100 falls back to that default.
     /// </summary>
-    int32_t getLimit() const;
+    int64_t getLimit() const;
     bool limitIsSet() const;
     void unsetLimit();
-    void setLimit(int32_t value);
+    void setLimit(int64_t value);
 
     /// <summary>
     /// Model is the model under test.
@@ -102,7 +102,7 @@ protected:
     std::shared_ptr<JudgeSpec> m_Judge;
     bool m_JudgeIsSet;
 
-    int32_t m_Limit;
+    int64_t m_Limit;
     bool m_LimitIsSet;
 
     utility::string_t m_Model;

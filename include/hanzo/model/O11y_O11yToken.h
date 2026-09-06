@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// ExpiresIn is the access token&#39;s lifetime in seconds.
     /// </summary>
-    int32_t getExpiresIn() const;
+    int64_t getExpiresIn() const;
     bool expiresInIsSet() const;
     void unsetExpiresIn();
-    void setExpiresIn(int32_t value);
+    void setExpiresIn(int64_t value);
 
     /// <summary>
     /// RefreshToken buys the next pair via rotateSession.
@@ -89,7 +89,7 @@ protected:
     utility::string_t m_AccessToken;
     bool m_AccessTokenIsSet;
 
-    int32_t m_ExpiresIn;
+    int64_t m_ExpiresIn;
     bool m_ExpiresInIsSet;
 
     utility::string_t m_RefreshToken;

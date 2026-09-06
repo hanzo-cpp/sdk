@@ -20,19 +20,19 @@ Spend::Spend()
 {
     m_Available = false;
     m_AvailableIsSet = false;
-    m_AvailableCents = 0;
+    m_AvailableCents = 0L;
     m_AvailableCentsIsSet = false;
-    m_BalanceCents = 0;
+    m_BalanceCents = 0L;
     m_BalanceCentsIsSet = false;
     m_ByCategoryIsSet = false;
-    m_MtdCents = 0;
+    m_MtdCents = 0L;
     m_MtdCentsIsSet = false;
-    m_OverageCents = 0;
+    m_OverageCents = 0L;
     m_OverageCentsIsSet = false;
     m_SeriesIsSet = false;
     m_Source = utility::conversions::to_string_t("");
     m_SourceIsSet = false;
-    m_TotalCents = 0;
+    m_TotalCents = 0L;
     m_TotalCentsIsSet = false;
 }
 
@@ -116,7 +116,7 @@ bool Spend::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("availableCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAvailableCents;
+            int64_t refVal_setAvailableCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAvailableCents);
             setAvailableCents(refVal_setAvailableCents);
             
@@ -127,7 +127,7 @@ bool Spend::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("balanceCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBalanceCents;
+            int64_t refVal_setBalanceCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBalanceCents);
             setBalanceCents(refVal_setBalanceCents);
             
@@ -149,7 +149,7 @@ bool Spend::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("mtdCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMtdCents;
+            int64_t refVal_setMtdCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMtdCents);
             setMtdCents(refVal_setMtdCents);
             
@@ -160,7 +160,7 @@ bool Spend::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("overageCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOverageCents;
+            int64_t refVal_setOverageCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOverageCents);
             setOverageCents(refVal_setOverageCents);
             
@@ -193,7 +193,7 @@ bool Spend::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("totalCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotalCents;
+            int64_t refVal_setTotalCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalCents);
             setTotalCents(refVal_setTotalCents);
             
@@ -264,13 +264,13 @@ bool Spend::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("availableCents"))))
     {
-        int32_t refVal_setAvailableCents;
+        int64_t refVal_setAvailableCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("availableCents"))), refVal_setAvailableCents );
         setAvailableCents(refVal_setAvailableCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("balanceCents"))))
     {
-        int32_t refVal_setBalanceCents;
+        int64_t refVal_setBalanceCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("balanceCents"))), refVal_setBalanceCents );
         setBalanceCents(refVal_setBalanceCents);
     }
@@ -282,13 +282,13 @@ bool Spend::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("mtdCents"))))
     {
-        int32_t refVal_setMtdCents;
+        int64_t refVal_setMtdCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("mtdCents"))), refVal_setMtdCents );
         setMtdCents(refVal_setMtdCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("overageCents"))))
     {
-        int32_t refVal_setOverageCents;
+        int64_t refVal_setOverageCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("overageCents"))), refVal_setOverageCents );
         setOverageCents(refVal_setOverageCents);
     }
@@ -306,7 +306,7 @@ bool Spend::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("totalCents"))))
     {
-        int32_t refVal_setTotalCents;
+        int64_t refVal_setTotalCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("totalCents"))), refVal_setTotalCents );
         setTotalCents(refVal_setTotalCents);
     }
@@ -335,13 +335,13 @@ void Spend::unsetAvailable()
 {
     m_AvailableIsSet = false;
 }
-int32_t Spend::getAvailableCents() const
+int64_t Spend::getAvailableCents() const
 {
     return m_AvailableCents;
 }
 
 
-void Spend::setAvailableCents(int32_t value)
+void Spend::setAvailableCents(int64_t value)
 {
     m_AvailableCents = value;
     m_AvailableCentsIsSet = true;
@@ -356,13 +356,13 @@ void Spend::unsetAvailableCents()
 {
     m_AvailableCentsIsSet = false;
 }
-int32_t Spend::getBalanceCents() const
+int64_t Spend::getBalanceCents() const
 {
     return m_BalanceCents;
 }
 
 
-void Spend::setBalanceCents(int32_t value)
+void Spend::setBalanceCents(int64_t value)
 {
     m_BalanceCents = value;
     m_BalanceCentsIsSet = true;
@@ -398,13 +398,13 @@ void Spend::unsetByCategory()
 {
     m_ByCategoryIsSet = false;
 }
-int32_t Spend::getMtdCents() const
+int64_t Spend::getMtdCents() const
 {
     return m_MtdCents;
 }
 
 
-void Spend::setMtdCents(int32_t value)
+void Spend::setMtdCents(int64_t value)
 {
     m_MtdCents = value;
     m_MtdCentsIsSet = true;
@@ -419,13 +419,13 @@ void Spend::unsetMtdCents()
 {
     m_MtdCentsIsSet = false;
 }
-int32_t Spend::getOverageCents() const
+int64_t Spend::getOverageCents() const
 {
     return m_OverageCents;
 }
 
 
-void Spend::setOverageCents(int32_t value)
+void Spend::setOverageCents(int64_t value)
 {
     m_OverageCents = value;
     m_OverageCentsIsSet = true;
@@ -482,13 +482,13 @@ void Spend::unsetSource()
 {
     m_SourceIsSet = false;
 }
-int32_t Spend::getTotalCents() const
+int64_t Spend::getTotalCents() const
 {
     return m_TotalCents;
 }
 
 
-void Spend::setTotalCents(int32_t value)
+void Spend::setTotalCents(int64_t value)
 {
     m_TotalCents = value;
     m_TotalCentsIsSet = true;

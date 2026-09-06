@@ -33,9 +33,9 @@ TargetView::TargetView()
     m_MetricsIsSet = false;
     m_MetricsAt = utility::conversions::to_string_t("");
     m_MetricsAtIsSet = false;
-    m_Running = 0;
+    m_Running = 0L;
     m_RunningIsSet = false;
-    m_Sessions = 0;
+    m_Sessions = 0L;
     m_SessionsIsSet = false;
     m_SpecIsSet = false;
     m_Status = utility::conversions::to_string_t("");
@@ -221,7 +221,7 @@ bool TargetView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("running")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRunning;
+            int64_t refVal_setRunning;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRunning);
             setRunning(refVal_setRunning);
             
@@ -232,7 +232,7 @@ bool TargetView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("sessions")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSessions;
+            int64_t refVal_setSessions;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSessions);
             setSessions(refVal_setSessions);
             
@@ -394,13 +394,13 @@ bool TargetView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("running"))))
     {
-        int32_t refVal_setRunning;
+        int64_t refVal_setRunning;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("running"))), refVal_setRunning );
         setRunning(refVal_setRunning);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("sessions"))))
     {
-        int32_t refVal_setSessions;
+        int64_t refVal_setSessions;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("sessions"))), refVal_setSessions );
         setSessions(refVal_setSessions);
     }
@@ -594,13 +594,13 @@ void TargetView::unsetMetricsAt()
 {
     m_MetricsAtIsSet = false;
 }
-int32_t TargetView::getRunning() const
+int64_t TargetView::getRunning() const
 {
     return m_Running;
 }
 
 
-void TargetView::setRunning(int32_t value)
+void TargetView::setRunning(int64_t value)
 {
     m_Running = value;
     m_RunningIsSet = true;
@@ -615,13 +615,13 @@ void TargetView::unsetRunning()
 {
     m_RunningIsSet = false;
 }
-int32_t TargetView::getSessions() const
+int64_t TargetView::getSessions() const
 {
     return m_Sessions;
 }
 
 
-void TargetView::setSessions(int32_t value)
+void TargetView::setSessions(int64_t value)
 {
     m_Sessions = value;
     m_SessionsIsSet = true;

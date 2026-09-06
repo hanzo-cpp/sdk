@@ -71,26 +71,26 @@ public:
     /// <summary>
     /// Count is how many nodes the pool starts with.
     /// </summary>
-    int32_t getCount() const;
+    int64_t getCount() const;
     bool countIsSet() const;
     void unsetCount();
-    void setCount(int32_t value);
+    void setCount(int64_t value);
 
     /// <summary>
     /// MaxNodes is the ceiling the autoscaler may not grow the pool past, and so the bound on what this pool can spend. Ignored unless AutoScale is set.
     /// </summary>
-    int32_t getMaxNodes() const;
+    int64_t getMaxNodes() const;
     bool maxNodesIsSet() const;
     void unsetMaxNodes();
-    void setMaxNodes(int32_t value);
+    void setMaxNodes(int64_t value);
 
     /// <summary>
     /// MinNodes is the floor the autoscaler may not shrink the pool below. Ignored unless AutoScale is set.
     /// </summary>
-    int32_t getMinNodes() const;
+    int64_t getMinNodes() const;
     bool minNodesIsSet() const;
     void unsetMinNodes();
-    void setMinNodes(int32_t value);
+    void setMinNodes(int64_t value);
 
     /// <summary>
     /// Name is the pool&#39;s name.
@@ -124,13 +124,13 @@ protected:
     utility::string_t m_ClusterId;
     bool m_ClusterIdIsSet;
 
-    int32_t m_Count;
+    int64_t m_Count;
     bool m_CountIsSet;
 
-    int32_t m_MaxNodes;
+    int64_t m_MaxNodes;
     bool m_MaxNodesIsSet;
 
-    int32_t m_MinNodes;
+    int64_t m_MinNodes;
     bool m_MinNodesIsSet;
 
     utility::string_t m_Name;

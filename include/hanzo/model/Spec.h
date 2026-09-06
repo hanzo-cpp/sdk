@@ -66,10 +66,10 @@ public:
     /// <summary>
     /// logical cores
     /// </summary>
-    int32_t getCpus() const;
+    int64_t getCpus() const;
     bool cpusIsSet() const;
     void unsetCpus();
-    void setCpus(int32_t value);
+    void setCpus(int64_t value);
 
     /// <summary>
     /// GPUs is every accelerator the machine advertises, one entry each, capped at 32 on write. Empty means the probe found none — and that is the answer a Need is checked against, so a machine with no entry here clears no accelerator floor. The list is not vendor-filtered: what satisfies a job is counts and VRAM, never a brand (see Need).
@@ -82,10 +82,10 @@ public:
     /// <summary>
     /// total RAM, bytes
     /// </summary>
-    int32_t getMemory() const;
+    int64_t getMemory() const;
     bool memoryIsSet() const;
     void unsetMemory();
-    void setMemory(int32_t value);
+    void setMemory(int64_t value);
 
     /// <summary>
     /// linux | darwin | windows
@@ -100,13 +100,13 @@ protected:
     utility::string_t m_Arch;
     bool m_ArchIsSet;
 
-    int32_t m_Cpus;
+    int64_t m_Cpus;
     bool m_CpusIsSet;
 
     std::vector<std::shared_ptr<GPU>> m_Gpus;
     bool m_GpusIsSet;
 
-    int32_t m_Memory;
+    int64_t m_Memory;
     bool m_MemoryIsSet;
 
     utility::string_t m_Os;

@@ -18,20 +18,20 @@ namespace model {
 
 Holding::Holding()
 {
-    m_CostCents = 0;
+    m_CostCents = 0L;
     m_CostCentsIsSet = false;
     m_Domain = utility::conversions::to_string_t("");
     m_DomainIsSet = false;
     m_ExpiresAt = utility::conversions::to_string_t("");
     m_ExpiresAtIsSet = false;
     m_NameserversIsSet = false;
-    m_Order = 0;
+    m_Order = 0L;
     m_OrderIsSet = false;
     m_Org = utility::conversions::to_string_t("");
     m_OrgIsSet = false;
-    m_PriceCents = 0;
+    m_PriceCents = 0L;
     m_PriceCentsIsSet = false;
-    m_RegisteredAt = 0;
+    m_RegisteredAt = 0L;
     m_RegisteredAtIsSet = false;
 }
 
@@ -99,7 +99,7 @@ bool Holding::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("costCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCostCents;
+            int64_t refVal_setCostCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCostCents);
             setCostCents(refVal_setCostCents);
             
@@ -143,7 +143,7 @@ bool Holding::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("order")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOrder;
+            int64_t refVal_setOrder;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOrder);
             setOrder(refVal_setOrder);
             
@@ -165,7 +165,7 @@ bool Holding::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("priceCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPriceCents;
+            int64_t refVal_setPriceCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPriceCents);
             setPriceCents(refVal_setPriceCents);
             
@@ -176,7 +176,7 @@ bool Holding::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("registeredAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRegisteredAt;
+            int64_t refVal_setRegisteredAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRegisteredAt);
             setRegisteredAt(refVal_setRegisteredAt);
             
@@ -237,7 +237,7 @@ bool Holding::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))))
     {
-        int32_t refVal_setCostCents;
+        int64_t refVal_setCostCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))), refVal_setCostCents );
         setCostCents(refVal_setCostCents);
     }
@@ -261,7 +261,7 @@ bool Holding::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("order"))))
     {
-        int32_t refVal_setOrder;
+        int64_t refVal_setOrder;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("order"))), refVal_setOrder );
         setOrder(refVal_setOrder);
     }
@@ -273,13 +273,13 @@ bool Holding::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("priceCents"))))
     {
-        int32_t refVal_setPriceCents;
+        int64_t refVal_setPriceCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("priceCents"))), refVal_setPriceCents );
         setPriceCents(refVal_setPriceCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("registeredAt"))))
     {
-        int32_t refVal_setRegisteredAt;
+        int64_t refVal_setRegisteredAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("registeredAt"))), refVal_setRegisteredAt );
         setRegisteredAt(refVal_setRegisteredAt);
     }
@@ -287,13 +287,13 @@ bool Holding::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
 }
 
 
-int32_t Holding::getCostCents() const
+int64_t Holding::getCostCents() const
 {
     return m_CostCents;
 }
 
 
-void Holding::setCostCents(int32_t value)
+void Holding::setCostCents(int64_t value)
 {
     m_CostCents = value;
     m_CostCentsIsSet = true;
@@ -371,13 +371,13 @@ void Holding::unsetNameservers()
 {
     m_NameserversIsSet = false;
 }
-int32_t Holding::getOrder() const
+int64_t Holding::getOrder() const
 {
     return m_Order;
 }
 
 
-void Holding::setOrder(int32_t value)
+void Holding::setOrder(int64_t value)
 {
     m_Order = value;
     m_OrderIsSet = true;
@@ -413,13 +413,13 @@ void Holding::unsetOrg()
 {
     m_OrgIsSet = false;
 }
-int32_t Holding::getPriceCents() const
+int64_t Holding::getPriceCents() const
 {
     return m_PriceCents;
 }
 
 
-void Holding::setPriceCents(int32_t value)
+void Holding::setPriceCents(int64_t value)
 {
     m_PriceCents = value;
     m_PriceCentsIsSet = true;
@@ -434,13 +434,13 @@ void Holding::unsetPriceCents()
 {
     m_PriceCentsIsSet = false;
 }
-int32_t Holding::getRegisteredAt() const
+int64_t Holding::getRegisteredAt() const
 {
     return m_RegisteredAt;
 }
 
 
-void Holding::setRegisteredAt(int32_t value)
+void Holding::setRegisteredAt(int64_t value)
 {
     m_RegisteredAt = value;
     m_RegisteredAtIsSet = true;

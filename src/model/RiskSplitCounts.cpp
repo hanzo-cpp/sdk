@@ -18,21 +18,21 @@ namespace model {
 
 RiskSplitCounts::RiskSplitCounts()
 {
-    m_Judged = 0;
+    m_Judged = 0L;
     m_JudgedIsSet = false;
-    m_Productive = 0;
+    m_Productive = 0L;
     m_ProductiveIsSet = false;
-    m_Rows = 0;
+    m_Rows = 0L;
     m_RowsIsSet = false;
-    m_Subjects = 0;
+    m_Subjects = 0L;
     m_SubjectsIsSet = false;
-    m_Test = 0;
+    m_Test = 0L;
     m_TestIsSet = false;
-    m_Train = 0;
+    m_Train = 0L;
     m_TrainIsSet = false;
-    m_Unproductive = 0;
+    m_Unproductive = 0L;
     m_UnproductiveIsSet = false;
-    m_Val = 0;
+    m_Val = 0L;
     m_ValIsSet = false;
 }
 
@@ -100,7 +100,7 @@ bool RiskSplitCounts::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("judged")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setJudged;
+            int64_t refVal_setJudged;
             ok &= ModelBase::fromJson(fieldValue, refVal_setJudged);
             setJudged(refVal_setJudged);
             
@@ -111,7 +111,7 @@ bool RiskSplitCounts::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("productive")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setProductive;
+            int64_t refVal_setProductive;
             ok &= ModelBase::fromJson(fieldValue, refVal_setProductive);
             setProductive(refVal_setProductive);
             
@@ -122,7 +122,7 @@ bool RiskSplitCounts::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("rows")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRows;
+            int64_t refVal_setRows;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRows);
             setRows(refVal_setRows);
             
@@ -133,7 +133,7 @@ bool RiskSplitCounts::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("subjects")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSubjects;
+            int64_t refVal_setSubjects;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSubjects);
             setSubjects(refVal_setSubjects);
             
@@ -144,7 +144,7 @@ bool RiskSplitCounts::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("test")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTest;
+            int64_t refVal_setTest;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTest);
             setTest(refVal_setTest);
             
@@ -155,7 +155,7 @@ bool RiskSplitCounts::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("train")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTrain;
+            int64_t refVal_setTrain;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTrain);
             setTrain(refVal_setTrain);
             
@@ -166,7 +166,7 @@ bool RiskSplitCounts::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("unproductive")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUnproductive;
+            int64_t refVal_setUnproductive;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUnproductive);
             setUnproductive(refVal_setUnproductive);
             
@@ -177,7 +177,7 @@ bool RiskSplitCounts::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("val")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVal;
+            int64_t refVal_setVal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVal);
             setVal(refVal_setVal);
             
@@ -238,49 +238,49 @@ bool RiskSplitCounts::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("judged"))))
     {
-        int32_t refVal_setJudged;
+        int64_t refVal_setJudged;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("judged"))), refVal_setJudged );
         setJudged(refVal_setJudged);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("productive"))))
     {
-        int32_t refVal_setProductive;
+        int64_t refVal_setProductive;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("productive"))), refVal_setProductive );
         setProductive(refVal_setProductive);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("rows"))))
     {
-        int32_t refVal_setRows;
+        int64_t refVal_setRows;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("rows"))), refVal_setRows );
         setRows(refVal_setRows);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("subjects"))))
     {
-        int32_t refVal_setSubjects;
+        int64_t refVal_setSubjects;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("subjects"))), refVal_setSubjects );
         setSubjects(refVal_setSubjects);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("test"))))
     {
-        int32_t refVal_setTest;
+        int64_t refVal_setTest;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("test"))), refVal_setTest );
         setTest(refVal_setTest);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("train"))))
     {
-        int32_t refVal_setTrain;
+        int64_t refVal_setTrain;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("train"))), refVal_setTrain );
         setTrain(refVal_setTrain);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("unproductive"))))
     {
-        int32_t refVal_setUnproductive;
+        int64_t refVal_setUnproductive;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("unproductive"))), refVal_setUnproductive );
         setUnproductive(refVal_setUnproductive);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("val"))))
     {
-        int32_t refVal_setVal;
+        int64_t refVal_setVal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("val"))), refVal_setVal );
         setVal(refVal_setVal);
     }
@@ -288,13 +288,13 @@ bool RiskSplitCounts::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 }
 
 
-int32_t RiskSplitCounts::getJudged() const
+int64_t RiskSplitCounts::getJudged() const
 {
     return m_Judged;
 }
 
 
-void RiskSplitCounts::setJudged(int32_t value)
+void RiskSplitCounts::setJudged(int64_t value)
 {
     m_Judged = value;
     m_JudgedIsSet = true;
@@ -309,13 +309,13 @@ void RiskSplitCounts::unsetJudged()
 {
     m_JudgedIsSet = false;
 }
-int32_t RiskSplitCounts::getProductive() const
+int64_t RiskSplitCounts::getProductive() const
 {
     return m_Productive;
 }
 
 
-void RiskSplitCounts::setProductive(int32_t value)
+void RiskSplitCounts::setProductive(int64_t value)
 {
     m_Productive = value;
     m_ProductiveIsSet = true;
@@ -330,13 +330,13 @@ void RiskSplitCounts::unsetProductive()
 {
     m_ProductiveIsSet = false;
 }
-int32_t RiskSplitCounts::getRows() const
+int64_t RiskSplitCounts::getRows() const
 {
     return m_Rows;
 }
 
 
-void RiskSplitCounts::setRows(int32_t value)
+void RiskSplitCounts::setRows(int64_t value)
 {
     m_Rows = value;
     m_RowsIsSet = true;
@@ -351,13 +351,13 @@ void RiskSplitCounts::unsetRows()
 {
     m_RowsIsSet = false;
 }
-int32_t RiskSplitCounts::getSubjects() const
+int64_t RiskSplitCounts::getSubjects() const
 {
     return m_Subjects;
 }
 
 
-void RiskSplitCounts::setSubjects(int32_t value)
+void RiskSplitCounts::setSubjects(int64_t value)
 {
     m_Subjects = value;
     m_SubjectsIsSet = true;
@@ -372,13 +372,13 @@ void RiskSplitCounts::unsetSubjects()
 {
     m_SubjectsIsSet = false;
 }
-int32_t RiskSplitCounts::getTest() const
+int64_t RiskSplitCounts::getTest() const
 {
     return m_Test;
 }
 
 
-void RiskSplitCounts::setTest(int32_t value)
+void RiskSplitCounts::setTest(int64_t value)
 {
     m_Test = value;
     m_TestIsSet = true;
@@ -393,13 +393,13 @@ void RiskSplitCounts::unsetTest()
 {
     m_TestIsSet = false;
 }
-int32_t RiskSplitCounts::getTrain() const
+int64_t RiskSplitCounts::getTrain() const
 {
     return m_Train;
 }
 
 
-void RiskSplitCounts::setTrain(int32_t value)
+void RiskSplitCounts::setTrain(int64_t value)
 {
     m_Train = value;
     m_TrainIsSet = true;
@@ -414,13 +414,13 @@ void RiskSplitCounts::unsetTrain()
 {
     m_TrainIsSet = false;
 }
-int32_t RiskSplitCounts::getUnproductive() const
+int64_t RiskSplitCounts::getUnproductive() const
 {
     return m_Unproductive;
 }
 
 
-void RiskSplitCounts::setUnproductive(int32_t value)
+void RiskSplitCounts::setUnproductive(int64_t value)
 {
     m_Unproductive = value;
     m_UnproductiveIsSet = true;
@@ -435,13 +435,13 @@ void RiskSplitCounts::unsetUnproductive()
 {
     m_UnproductiveIsSet = false;
 }
-int32_t RiskSplitCounts::getVal() const
+int64_t RiskSplitCounts::getVal() const
 {
     return m_Val;
 }
 
 
-void RiskSplitCounts::setVal(int32_t value)
+void RiskSplitCounts::setVal(int64_t value)
 {
     m_Val = value;
     m_ValIsSet = true;

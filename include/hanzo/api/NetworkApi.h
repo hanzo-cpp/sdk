@@ -22,10 +22,15 @@
 
 #include "hanzo/ApiClient.h"
 
+#include "hanzo/model/IdentityIn.h"
+#include "hanzo/model/IdentityList.h"
+#include "hanzo/model/IdentityView.h"
 #include "hanzo/model/MeshServiceList.h"
 #include "hanzo/model/NetworkList.h"
 #include "hanzo/model/NetworkView.h"
+#include "hanzo/model/PublishedView.h"
 #include "hanzo/model/RouterList.h"
+#include "hanzo/model/ServiceIn.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -45,6 +50,16 @@ public:
     virtual ~NetworkApi();
 
     /// <summary>
+    /// Removes one of the org&#39;s fabric identities.
+    /// </summary>
+    /// <remarks>
+    /// Removes one of the org&#39;s fabric identities. The device&#39;s credential stops authenticating and its enrollment, if unspent, stops enrolling.  An id belonging to another org — or to nothing — is 404 before any write reaches the controller: whether an identity exists is itself a cross-tenant fact, and a delete may only ever act on what the caller could list.
+    /// </remarks>
+    /// <param name="id">ID is the identity id from the path. The URL is the addressing authority, so it binds from there whatever else the request carries.</param>
+    pplx::task<void> deleteNetworkIdentitiesById(
+        utility::string_t id
+    ) const;
+    /// <summary>
     /// Returns the caller&#39;s org overlay network on the Zero Trust fabric.
     /// </summary>
     /// <remarks>
@@ -63,6 +78,14 @@ public:
         utility::string_t id
     ) const;
     /// <summary>
+    /// Returns the fabric identities the caller&#39;s org owns.
+    /// </summary>
+    /// <remarks>
+    /// Returns the fabric identities the caller&#39;s org owns.  One row per identity tagged with the org&#39;s \&quot;org-&lt;org&gt;\&quot; role attribute — a device minted here, enrolled or not. An identity that has not yet enrolled still carries its one-time enrollment, so a mislaid JWT is read again here rather than re-minted.  A tenancy read over the full inventory, so like the mesh list it does NOT degrade: an unconfigured deployment answers 503.
+    /// </remarks>
+    pplx::task<std::shared_ptr<IdentityList>> getNetworkIdentities(
+    ) const;
+    /// <summary>
     /// Returns the Zero Trust routers the caller&#39;s org owns.
     /// </summary>
     /// <remarks>
@@ -77,6 +100,26 @@ public:
     /// Returns the Zero Trust edge services the caller&#39;s org owns.  One row per real ZT edge service tagged with the org&#39;s \&quot;org-&lt;org&gt;\&quot; role attribute: mtls is \&quot;required\&quot; when the service mandates end-to-end encryption and \&quot;enabled\&quot; otherwise (the fabric always mutually authenticates every link), and status is \&quot;active\&quot; because a listed service is a configured, dialable entry. A service tagged for another org, or tagged for none, is invisible here.  Unlike the network and router reads this does NOT degrade: an unconfigured deployment answers 503 and an unreachable controller surfaces the upstream&#39;s status, so a mesh page never renders \&quot;no services\&quot; for a fabric it simply could not read.
     /// </remarks>
     pplx::task<std::shared_ptr<MeshServiceList>> getNetworkServices(
+    ) const;
+    /// <summary>
+    /// Mints a fabric identity for a device the caller&#39;s org brings.
+    /// </summary>
+    /// <remarks>
+    /// Mints a fabric identity for a device the caller&#39;s org brings.  The identity is created of type Device, tagged with the org&#39;s \&quot;org-&lt;org&gt;\&quot; role attribute plus any supplied roles — each scoped to the org, and a \&quot;&lt;service&gt;-host\&quot; role refused unless the org has published that service. The answer carries the controller&#39;s one-time enrollment JWT: the device presents it once to join the fabric, and until it does the same token can be read back off GET /v1/network/identities.  A write, so it does not degrade: an unconfigured deployment answers 503.
+    /// </remarks>
+    /// <param name="identityIn"></param>
+    pplx::task<std::shared_ptr<IdentityView>> postNetworkIdentities(
+        std::shared_ptr<IdentityIn> identityIn
+    ) const;
+    /// <summary>
+    /// Puts a name on the org&#39;s overlay: a fabric service forwarding to host:port on whichever of the org&#39;s devices carries the \&quot;&lt;name&gt;-host\&quot; role, dialable at \&quot;&lt;name&gt;.&lt;org&gt;.zt\&quot; by any of the org&#39;s identities — and by the cloud&#39;s own, which is what lets a BYO cluster&#39;s apiserver be attached to the fleet with a \&quot;.zt\&quot; kubeconfig.
+    /// </summary>
+    /// <remarks>
+    /// Puts a name on the org&#39;s overlay: a fabric service forwarding to host:port on whichever of the org&#39;s devices carries the \&quot;&lt;name&gt;-host\&quot; role, dialable at \&quot;&lt;name&gt;.&lt;org&gt;.zt\&quot; by any of the org&#39;s identities — and by the cloud&#39;s own, which is what lets a BYO cluster&#39;s apiserver be attached to the fleet with a \&quot;.zt\&quot; kubeconfig.  Answers 201 with the service and its DNS name. The objects behind it are created in dependency order and unwound on failure, so a half-published service never lingers on the fabric.  A write, so it does not degrade: an unconfigured deployment answers 503.
+    /// </remarks>
+    /// <param name="serviceIn"></param>
+    pplx::task<std::shared_ptr<PublishedView>> postNetworkServices(
+        std::shared_ptr<ServiceIn> serviceIn
     ) const;
 
 protected:

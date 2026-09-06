@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// Pageviews is how many $pageview events fell in this bucket.
     /// </summary>
-    int32_t getPageviews() const;
+    int64_t getPageviews() const;
     bool pageviewsIsSet() const;
     void unsetPageviews();
-    void setPageviews(int32_t value);
+    void setPageviews(int64_t value);
 
     /// <summary>
     /// Pct is this bucket&#39;s share of ALL in-window pageviews, 0..100, one decimal — not of the returned rows, so a top-N shows the long tail honestly.
@@ -79,23 +79,23 @@ public:
     /// <summary>
     /// Visitors is how many distinct people they came from.
     /// </summary>
-    int32_t getVisitors() const;
+    int64_t getVisitors() const;
     bool visitorsIsSet() const;
     void unsetVisitors();
-    void setVisitors(int32_t value);
+    void setVisitors(int64_t value);
 
 
 protected:
     utility::string_t m_Key;
     bool m_KeyIsSet;
 
-    int32_t m_Pageviews;
+    int64_t m_Pageviews;
     bool m_PageviewsIsSet;
 
     double m_Pct;
     bool m_PctIsSet;
 
-    int32_t m_Visitors;
+    int64_t m_Visitors;
     bool m_VisitorsIsSet;
 
 };

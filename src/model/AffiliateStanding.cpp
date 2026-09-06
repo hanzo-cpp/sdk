@@ -18,11 +18,11 @@ namespace model {
 
 AffiliateStanding::AffiliateStanding()
 {
-    m_AccruedCents = 0;
+    m_AccruedCents = 0L;
     m_AccruedCentsIsSet = false;
     m_Code = utility::conversions::to_string_t("");
     m_CodeIsSet = false;
-    m_DefaultRateBps = 0;
+    m_DefaultRateBps = 0L;
     m_DefaultRateBpsIsSet = false;
     m_Handle = utility::conversions::to_string_t("");
     m_HandleIsSet = false;
@@ -32,16 +32,16 @@ AffiliateStanding::AffiliateStanding()
     m_IsAffiliateIsSet = false;
     m_Link = utility::conversions::to_string_t("");
     m_LinkIsSet = false;
-    m_MarginBps = 0;
+    m_MarginBps = 0L;
     m_MarginBpsIsSet = false;
-    m_PaidCents = 0;
+    m_PaidCents = 0L;
     m_PaidCentsIsSet = false;
     m_PayoutsIsSet = false;
-    m_PendingCents = 0;
+    m_PendingCents = 0L;
     m_PendingCentsIsSet = false;
-    m_RateBps = 0;
+    m_RateBps = 0L;
     m_RateBpsIsSet = false;
-    m_ReferredCount = 0;
+    m_ReferredCount = 0L;
     m_ReferredCountIsSet = false;
     m_RequestedCode = utility::conversions::to_string_t("");
     m_RequestedCodeIsSet = false;
@@ -148,7 +148,7 @@ bool AffiliateStanding::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("accruedCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAccruedCents;
+            int64_t refVal_setAccruedCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAccruedCents);
             setAccruedCents(refVal_setAccruedCents);
             
@@ -170,7 +170,7 @@ bool AffiliateStanding::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("defaultRateBps")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDefaultRateBps;
+            int64_t refVal_setDefaultRateBps;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDefaultRateBps);
             setDefaultRateBps(refVal_setDefaultRateBps);
             
@@ -225,7 +225,7 @@ bool AffiliateStanding::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("marginBps")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMarginBps;
+            int64_t refVal_setMarginBps;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMarginBps);
             setMarginBps(refVal_setMarginBps);
             
@@ -236,7 +236,7 @@ bool AffiliateStanding::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("paidCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPaidCents;
+            int64_t refVal_setPaidCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPaidCents);
             setPaidCents(refVal_setPaidCents);
             
@@ -258,7 +258,7 @@ bool AffiliateStanding::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("pendingCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPendingCents;
+            int64_t refVal_setPendingCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPendingCents);
             setPendingCents(refVal_setPendingCents);
             
@@ -269,7 +269,7 @@ bool AffiliateStanding::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("rateBps")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRateBps;
+            int64_t refVal_setRateBps;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRateBps);
             setRateBps(refVal_setRateBps);
             
@@ -280,7 +280,7 @@ bool AffiliateStanding::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("referredCount")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setReferredCount;
+            int64_t refVal_setReferredCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setReferredCount);
             setReferredCount(refVal_setReferredCount);
             
@@ -391,7 +391,7 @@ bool AffiliateStanding::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("accruedCents"))))
     {
-        int32_t refVal_setAccruedCents;
+        int64_t refVal_setAccruedCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("accruedCents"))), refVal_setAccruedCents );
         setAccruedCents(refVal_setAccruedCents);
     }
@@ -403,7 +403,7 @@ bool AffiliateStanding::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("defaultRateBps"))))
     {
-        int32_t refVal_setDefaultRateBps;
+        int64_t refVal_setDefaultRateBps;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("defaultRateBps"))), refVal_setDefaultRateBps );
         setDefaultRateBps(refVal_setDefaultRateBps);
     }
@@ -433,13 +433,13 @@ bool AffiliateStanding::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("marginBps"))))
     {
-        int32_t refVal_setMarginBps;
+        int64_t refVal_setMarginBps;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("marginBps"))), refVal_setMarginBps );
         setMarginBps(refVal_setMarginBps);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("paidCents"))))
     {
-        int32_t refVal_setPaidCents;
+        int64_t refVal_setPaidCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("paidCents"))), refVal_setPaidCents );
         setPaidCents(refVal_setPaidCents);
     }
@@ -451,19 +451,19 @@ bool AffiliateStanding::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("pendingCents"))))
     {
-        int32_t refVal_setPendingCents;
+        int64_t refVal_setPendingCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("pendingCents"))), refVal_setPendingCents );
         setPendingCents(refVal_setPendingCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("rateBps"))))
     {
-        int32_t refVal_setRateBps;
+        int64_t refVal_setRateBps;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("rateBps"))), refVal_setRateBps );
         setRateBps(refVal_setRateBps);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("referredCount"))))
     {
-        int32_t refVal_setReferredCount;
+        int64_t refVal_setReferredCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("referredCount"))), refVal_setReferredCount );
         setReferredCount(refVal_setReferredCount);
     }
@@ -483,13 +483,13 @@ bool AffiliateStanding::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
 }
 
 
-int32_t AffiliateStanding::getAccruedCents() const
+int64_t AffiliateStanding::getAccruedCents() const
 {
     return m_AccruedCents;
 }
 
 
-void AffiliateStanding::setAccruedCents(int32_t value)
+void AffiliateStanding::setAccruedCents(int64_t value)
 {
     m_AccruedCents = value;
     m_AccruedCentsIsSet = true;
@@ -525,13 +525,13 @@ void AffiliateStanding::unsetCode()
 {
     m_CodeIsSet = false;
 }
-int32_t AffiliateStanding::getDefaultRateBps() const
+int64_t AffiliateStanding::getDefaultRateBps() const
 {
     return m_DefaultRateBps;
 }
 
 
-void AffiliateStanding::setDefaultRateBps(int32_t value)
+void AffiliateStanding::setDefaultRateBps(int64_t value)
 {
     m_DefaultRateBps = value;
     m_DefaultRateBpsIsSet = true;
@@ -630,13 +630,13 @@ void AffiliateStanding::unsetLink()
 {
     m_LinkIsSet = false;
 }
-int32_t AffiliateStanding::getMarginBps() const
+int64_t AffiliateStanding::getMarginBps() const
 {
     return m_MarginBps;
 }
 
 
-void AffiliateStanding::setMarginBps(int32_t value)
+void AffiliateStanding::setMarginBps(int64_t value)
 {
     m_MarginBps = value;
     m_MarginBpsIsSet = true;
@@ -651,13 +651,13 @@ void AffiliateStanding::unsetMarginBps()
 {
     m_MarginBpsIsSet = false;
 }
-int32_t AffiliateStanding::getPaidCents() const
+int64_t AffiliateStanding::getPaidCents() const
 {
     return m_PaidCents;
 }
 
 
-void AffiliateStanding::setPaidCents(int32_t value)
+void AffiliateStanding::setPaidCents(int64_t value)
 {
     m_PaidCents = value;
     m_PaidCentsIsSet = true;
@@ -693,13 +693,13 @@ void AffiliateStanding::unsetPayouts()
 {
     m_PayoutsIsSet = false;
 }
-int32_t AffiliateStanding::getPendingCents() const
+int64_t AffiliateStanding::getPendingCents() const
 {
     return m_PendingCents;
 }
 
 
-void AffiliateStanding::setPendingCents(int32_t value)
+void AffiliateStanding::setPendingCents(int64_t value)
 {
     m_PendingCents = value;
     m_PendingCentsIsSet = true;
@@ -714,13 +714,13 @@ void AffiliateStanding::unsetPendingCents()
 {
     m_PendingCentsIsSet = false;
 }
-int32_t AffiliateStanding::getRateBps() const
+int64_t AffiliateStanding::getRateBps() const
 {
     return m_RateBps;
 }
 
 
-void AffiliateStanding::setRateBps(int32_t value)
+void AffiliateStanding::setRateBps(int64_t value)
 {
     m_RateBps = value;
     m_RateBpsIsSet = true;
@@ -735,13 +735,13 @@ void AffiliateStanding::unsetRateBps()
 {
     m_RateBpsIsSet = false;
 }
-int32_t AffiliateStanding::getReferredCount() const
+int64_t AffiliateStanding::getReferredCount() const
 {
     return m_ReferredCount;
 }
 
 
-void AffiliateStanding::setReferredCount(int32_t value)
+void AffiliateStanding::setReferredCount(int64_t value)
 {
     m_ReferredCount = value;
     m_ReferredCountIsSet = true;

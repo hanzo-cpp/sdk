@@ -21,7 +21,7 @@ UsageView::UsageView()
     m_Org = utility::conversions::to_string_t("");
     m_OrgIsSet = false;
     m_ReposIsSet = false;
-    m_TotalBytes = 0;
+    m_TotalBytes = 0L;
     m_TotalBytesIsSet = false;
 }
 
@@ -86,7 +86,7 @@ bool UsageView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("totalBytes")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotalBytes;
+            int64_t refVal_setTotalBytes;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalBytes);
             setTotalBytes(refVal_setTotalBytes);
             
@@ -139,7 +139,7 @@ bool UsageView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("totalBytes"))))
     {
-        int32_t refVal_setTotalBytes;
+        int64_t refVal_setTotalBytes;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("totalBytes"))), refVal_setTotalBytes );
         setTotalBytes(refVal_setTotalBytes);
     }
@@ -189,13 +189,13 @@ void UsageView::unsetRepos()
 {
     m_ReposIsSet = false;
 }
-int32_t UsageView::getTotalBytes() const
+int64_t UsageView::getTotalBytes() const
 {
     return m_TotalBytes;
 }
 
 
-void UsageView::setTotalBytes(int32_t value)
+void UsageView::setTotalBytes(int64_t value)
 {
     m_TotalBytes = value;
     m_TotalBytesIsSet = true;

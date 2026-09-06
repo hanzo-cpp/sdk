@@ -22,11 +22,11 @@ FileItem::FileItem()
     m_EtagIsSet = false;
     m_IsFolder = false;
     m_IsFolderIsSet = false;
-    m_ModifiedAt = 0;
+    m_ModifiedAt = 0L;
     m_ModifiedAtIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_Size = 0;
+    m_Size = 0L;
     m_SizeIsSet = false;
 }
 
@@ -101,7 +101,7 @@ bool FileItem::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("modifiedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setModifiedAt;
+            int64_t refVal_setModifiedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setModifiedAt);
             setModifiedAt(refVal_setModifiedAt);
             
@@ -123,7 +123,7 @@ bool FileItem::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("size")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSize;
+            int64_t refVal_setSize;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSize);
             setSize(refVal_setSize);
             
@@ -184,7 +184,7 @@ bool FileItem::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("modifiedAt"))))
     {
-        int32_t refVal_setModifiedAt;
+        int64_t refVal_setModifiedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("modifiedAt"))), refVal_setModifiedAt );
         setModifiedAt(refVal_setModifiedAt);
     }
@@ -196,7 +196,7 @@ bool FileItem::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("size"))))
     {
-        int32_t refVal_setSize;
+        int64_t refVal_setSize;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("size"))), refVal_setSize );
         setSize(refVal_setSize);
     }
@@ -246,13 +246,13 @@ void FileItem::unsetIsFolder()
 {
     m_IsFolderIsSet = false;
 }
-int32_t FileItem::getModifiedAt() const
+int64_t FileItem::getModifiedAt() const
 {
     return m_ModifiedAt;
 }
 
 
-void FileItem::setModifiedAt(int32_t value)
+void FileItem::setModifiedAt(int64_t value)
 {
     m_ModifiedAt = value;
     m_ModifiedAtIsSet = true;
@@ -288,13 +288,13 @@ void FileItem::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t FileItem::getSize() const
+int64_t FileItem::getSize() const
 {
     return m_Size;
 }
 
 
-void FileItem::setSize(int32_t value)
+void FileItem::setSize(int64_t value)
 {
     m_Size = value;
     m_SizeIsSet = true;

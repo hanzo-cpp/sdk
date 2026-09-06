@@ -18,13 +18,13 @@ namespace model {
 
 Span::Span()
 {
-    m_EndLine = 0;
+    m_EndLine = 0L;
     m_EndLineIsSet = false;
     m_file = utility::conversions::to_string_t("");
     m_fileIsSet = false;
     m_Kind = utility::conversions::to_string_t("");
     m_KindIsSet = false;
-    m_Line = 0;
+    m_Line = 0L;
     m_LineIsSet = false;
     m_Repo = utility::conversions::to_string_t("");
     m_RepoIsSet = false;
@@ -114,7 +114,7 @@ bool Span::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("endLine")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setEndLine;
+            int64_t refVal_setEndLine;
             ok &= ModelBase::fromJson(fieldValue, refVal_setEndLine);
             setEndLine(refVal_setEndLine);
             
@@ -147,7 +147,7 @@ bool Span::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("line")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLine;
+            int64_t refVal_setLine;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLine);
             setLine(refVal_setLine);
             
@@ -282,7 +282,7 @@ bool Span::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("endLine"))))
     {
-        int32_t refVal_setEndLine;
+        int64_t refVal_setEndLine;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("endLine"))), refVal_setEndLine );
         setEndLine(refVal_setEndLine);
     }
@@ -300,7 +300,7 @@ bool Span::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("line"))))
     {
-        int32_t refVal_setLine;
+        int64_t refVal_setLine;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("line"))), refVal_setLine );
         setLine(refVal_setLine);
     }
@@ -344,13 +344,13 @@ bool Span::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
 }
 
 
-int32_t Span::getEndLine() const
+int64_t Span::getEndLine() const
 {
     return m_EndLine;
 }
 
 
-void Span::setEndLine(int32_t value)
+void Span::setEndLine(int64_t value)
 {
     m_EndLine = value;
     m_EndLineIsSet = true;
@@ -407,13 +407,13 @@ void Span::unsetKind()
 {
     m_KindIsSet = false;
 }
-int32_t Span::getLine() const
+int64_t Span::getLine() const
 {
     return m_Line;
 }
 
 
-void Span::setLine(int32_t value)
+void Span::setLine(int64_t value)
 {
     m_Line = value;
     m_LineIsSet = true;

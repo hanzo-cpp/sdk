@@ -23,7 +23,7 @@ ByoWorker::ByoWorker()
     m_CapabilitiesIsSet = false;
     m_CpuModel = utility::conversions::to_string_t("");
     m_CpuModelIsSet = false;
-    m_Cpus = 0;
+    m_Cpus = 0L;
     m_CpusIsSet = false;
     m_Cuda = utility::conversions::to_string_t("");
     m_CudaIsSet = false;
@@ -45,7 +45,7 @@ ByoWorker::ByoWorker()
     m_LastHeartbeatIsSet = false;
     m_Location = utility::conversions::to_string_t("");
     m_LocationIsSet = false;
-    m_Memory = 0;
+    m_Memory = 0L;
     m_MemoryIsSet = false;
     m_Os = utility::conversions::to_string_t("");
     m_OsIsSet = false;
@@ -221,7 +221,7 @@ bool ByoWorker::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cpus")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCpus;
+            int64_t refVal_setCpus;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCpus);
             setCpus(refVal_setCpus);
             
@@ -353,7 +353,7 @@ bool ByoWorker::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("memory")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMemory;
+            int64_t refVal_setMemory;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMemory);
             setMemory(refVal_setMemory);
             
@@ -539,7 +539,7 @@ bool ByoWorker::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cpus"))))
     {
-        int32_t refVal_setCpus;
+        int64_t refVal_setCpus;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cpus"))), refVal_setCpus );
         setCpus(refVal_setCpus);
     }
@@ -611,7 +611,7 @@ bool ByoWorker::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("memory"))))
     {
-        int32_t refVal_setMemory;
+        int64_t refVal_setMemory;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("memory"))), refVal_setMemory );
         setMemory(refVal_setMemory);
     }
@@ -712,13 +712,13 @@ void ByoWorker::unsetCpuModel()
 {
     m_CpuModelIsSet = false;
 }
-int32_t ByoWorker::getCpus() const
+int64_t ByoWorker::getCpus() const
 {
     return m_Cpus;
 }
 
 
-void ByoWorker::setCpus(int32_t value)
+void ByoWorker::setCpus(int64_t value)
 {
     m_Cpus = value;
     m_CpusIsSet = true;
@@ -964,13 +964,13 @@ void ByoWorker::unsetLocation()
 {
     m_LocationIsSet = false;
 }
-int32_t ByoWorker::getMemory() const
+int64_t ByoWorker::getMemory() const
 {
     return m_Memory;
 }
 
 
-void ByoWorker::setMemory(int32_t value)
+void ByoWorker::setMemory(int64_t value)
 {
     m_Memory = value;
     m_MemoryIsSet = true;

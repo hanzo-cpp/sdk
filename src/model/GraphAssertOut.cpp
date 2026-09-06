@@ -18,12 +18,12 @@ namespace model {
 
 GraphAssertOut::GraphAssertOut()
 {
-    m_Duplicate = 0;
+    m_Duplicate = 0L;
     m_DuplicateIsSet = false;
     m_ReasonsIsSet = false;
-    m_Recorded = 0;
+    m_Recorded = 0L;
     m_RecordedIsSet = false;
-    m_Refused = 0;
+    m_Refused = 0L;
     m_RefusedIsSet = false;
 }
 
@@ -71,7 +71,7 @@ bool GraphAssertOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("duplicate")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDuplicate;
+            int64_t refVal_setDuplicate;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDuplicate);
             setDuplicate(refVal_setDuplicate);
             
@@ -93,7 +93,7 @@ bool GraphAssertOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("recorded")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRecorded;
+            int64_t refVal_setRecorded;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRecorded);
             setRecorded(refVal_setRecorded);
             
@@ -104,7 +104,7 @@ bool GraphAssertOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("refused")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRefused;
+            int64_t refVal_setRefused;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRefused);
             setRefused(refVal_setRefused);
             
@@ -149,7 +149,7 @@ bool GraphAssertOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("duplicate"))))
     {
-        int32_t refVal_setDuplicate;
+        int64_t refVal_setDuplicate;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("duplicate"))), refVal_setDuplicate );
         setDuplicate(refVal_setDuplicate);
     }
@@ -161,13 +161,13 @@ bool GraphAssertOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("recorded"))))
     {
-        int32_t refVal_setRecorded;
+        int64_t refVal_setRecorded;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("recorded"))), refVal_setRecorded );
         setRecorded(refVal_setRecorded);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("refused"))))
     {
-        int32_t refVal_setRefused;
+        int64_t refVal_setRefused;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("refused"))), refVal_setRefused );
         setRefused(refVal_setRefused);
     }
@@ -175,13 +175,13 @@ bool GraphAssertOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 }
 
 
-int32_t GraphAssertOut::getDuplicate() const
+int64_t GraphAssertOut::getDuplicate() const
 {
     return m_Duplicate;
 }
 
 
-void GraphAssertOut::setDuplicate(int32_t value)
+void GraphAssertOut::setDuplicate(int64_t value)
 {
     m_Duplicate = value;
     m_DuplicateIsSet = true;
@@ -217,13 +217,13 @@ void GraphAssertOut::unsetReasons()
 {
     m_ReasonsIsSet = false;
 }
-int32_t GraphAssertOut::getRecorded() const
+int64_t GraphAssertOut::getRecorded() const
 {
     return m_Recorded;
 }
 
 
-void GraphAssertOut::setRecorded(int32_t value)
+void GraphAssertOut::setRecorded(int64_t value)
 {
     m_Recorded = value;
     m_RecordedIsSet = true;
@@ -238,13 +238,13 @@ void GraphAssertOut::unsetRecorded()
 {
     m_RecordedIsSet = false;
 }
-int32_t GraphAssertOut::getRefused() const
+int64_t GraphAssertOut::getRefused() const
 {
     return m_Refused;
 }
 
 
-void GraphAssertOut::setRefused(int32_t value)
+void GraphAssertOut::setRefused(int64_t value)
 {
     m_Refused = value;
     m_RefusedIsSet = true;

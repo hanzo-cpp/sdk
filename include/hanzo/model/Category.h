@@ -82,10 +82,10 @@ public:
     /// <summary>
     /// Order is where the category sits among its siblings, ascending.
     /// </summary>
-    int32_t getOrder() const;
+    int64_t getOrder() const;
     bool orderIsSet() const;
     void unsetOrder();
-    void setOrder(int32_t value);
+    void setOrder(int64_t value);
 
     /// <summary>
     /// Owner is the org this category belongs to: the platform&#39;s own org for a category every tenant sees, or your org for one you added. It tells a console which rows it may offer to edit.
@@ -122,7 +122,7 @@ protected:
     utility::string_t m_Label;
     bool m_LabelIsSet;
 
-    int32_t m_Order;
+    int64_t m_Order;
     bool m_OrderIsSet;
 
     utility::string_t m_Owner;

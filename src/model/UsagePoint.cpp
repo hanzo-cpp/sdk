@@ -18,13 +18,13 @@ namespace model {
 
 UsagePoint::UsagePoint()
 {
-    m_Requests = 0;
+    m_Requests = 0L;
     m_RequestsIsSet = false;
-    m_SpendCents = 0;
+    m_SpendCents = 0L;
     m_SpendCentsIsSet = false;
     m_t = utility::conversions::to_string_t("");
     m_tIsSet = false;
-    m_Tokens = 0;
+    m_Tokens = 0L;
     m_TokensIsSet = false;
 }
 
@@ -72,7 +72,7 @@ bool UsagePoint::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("requests")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRequests;
+            int64_t refVal_setRequests;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRequests);
             setRequests(refVal_setRequests);
             
@@ -83,7 +83,7 @@ bool UsagePoint::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("spendCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSpendCents;
+            int64_t refVal_setSpendCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSpendCents);
             setSpendCents(refVal_setSpendCents);
             
@@ -105,7 +105,7 @@ bool UsagePoint::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTokens;
+            int64_t refVal_setTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTokens);
             setTokens(refVal_setTokens);
             
@@ -150,13 +150,13 @@ bool UsagePoint::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("requests"))))
     {
-        int32_t refVal_setRequests;
+        int64_t refVal_setRequests;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("requests"))), refVal_setRequests );
         setRequests(refVal_setRequests);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("spendCents"))))
     {
-        int32_t refVal_setSpendCents;
+        int64_t refVal_setSpendCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("spendCents"))), refVal_setSpendCents );
         setSpendCents(refVal_setSpendCents);
     }
@@ -168,7 +168,7 @@ bool UsagePoint::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tokens"))))
     {
-        int32_t refVal_setTokens;
+        int64_t refVal_setTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("tokens"))), refVal_setTokens );
         setTokens(refVal_setTokens);
     }
@@ -176,13 +176,13 @@ bool UsagePoint::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 }
 
 
-int32_t UsagePoint::getRequests() const
+int64_t UsagePoint::getRequests() const
 {
     return m_Requests;
 }
 
 
-void UsagePoint::setRequests(int32_t value)
+void UsagePoint::setRequests(int64_t value)
 {
     m_Requests = value;
     m_RequestsIsSet = true;
@@ -197,13 +197,13 @@ void UsagePoint::unsetRequests()
 {
     m_RequestsIsSet = false;
 }
-int32_t UsagePoint::getSpendCents() const
+int64_t UsagePoint::getSpendCents() const
 {
     return m_SpendCents;
 }
 
 
-void UsagePoint::setSpendCents(int32_t value)
+void UsagePoint::setSpendCents(int64_t value)
 {
     m_SpendCents = value;
     m_SpendCentsIsSet = true;
@@ -239,13 +239,13 @@ void UsagePoint::unsett()
 {
     m_tIsSet = false;
 }
-int32_t UsagePoint::getTokens() const
+int64_t UsagePoint::getTokens() const
 {
     return m_Tokens;
 }
 
 
-void UsagePoint::setTokens(int32_t value)
+void UsagePoint::setTokens(int64_t value)
 {
     m_Tokens = value;
     m_TokensIsSet = true;

@@ -18,7 +18,7 @@ namespace model {
 
 KbSyncOut::KbSyncOut()
 {
-    m_Ingested = 0;
+    m_Ingested = 0L;
     m_IngestedIsSet = false;
     m_Provider = utility::conversions::to_string_t("");
     m_ProviderIsSet = false;
@@ -58,7 +58,7 @@ bool KbSyncOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("ingested")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setIngested;
+            int64_t refVal_setIngested;
             ok &= ModelBase::fromJson(fieldValue, refVal_setIngested);
             setIngested(refVal_setIngested);
             
@@ -106,7 +106,7 @@ bool KbSyncOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("ingested"))))
     {
-        int32_t refVal_setIngested;
+        int64_t refVal_setIngested;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ingested"))), refVal_setIngested );
         setIngested(refVal_setIngested);
     }
@@ -120,13 +120,13 @@ bool KbSyncOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 }
 
 
-int32_t KbSyncOut::getIngested() const
+int64_t KbSyncOut::getIngested() const
 {
     return m_Ingested;
 }
 
 
-void KbSyncOut::setIngested(int32_t value)
+void KbSyncOut::setIngested(int64_t value)
 {
     m_Ingested = value;
     m_IngestedIsSet = true;

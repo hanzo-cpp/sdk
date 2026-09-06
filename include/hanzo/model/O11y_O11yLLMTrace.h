@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// CompletionTokens is the trace&#39;s total output tokens.
     /// </summary>
-    int32_t getCompletionTokens() const;
+    int64_t getCompletionTokens() const;
     bool completionTokensIsSet() const;
     void unsetCompletionTokens();
-    void setCompletionTokens(int32_t value);
+    void setCompletionTokens(int64_t value);
 
     /// <summary>
     /// ID is the trace id.
@@ -79,18 +79,18 @@ public:
     /// <summary>
     /// Observations is how many observations the trace holds.
     /// </summary>
-    int32_t getObservations() const;
+    int64_t getObservations() const;
     bool observationsIsSet() const;
     void unsetObservations();
-    void setObservations(int32_t value);
+    void setObservations(int64_t value);
 
     /// <summary>
     /// PromptTokens is the trace&#39;s total input tokens.
     /// </summary>
-    int32_t getPromptTokens() const;
+    int64_t getPromptTokens() const;
     bool promptTokensIsSet() const;
     void unsetPromptTokens();
-    void setPromptTokens(int32_t value);
+    void setPromptTokens(int64_t value);
 
     /// <summary>
     /// ServiceName is the app that emitted it.
@@ -119,10 +119,10 @@ public:
     /// <summary>
     /// TotalTokens is the trace&#39;s total tokens.
     /// </summary>
-    int32_t getTotalTokens() const;
+    int64_t getTotalTokens() const;
     bool totalTokensIsSet() const;
     void unsetTotalTokens();
-    void setTotalTokens(int32_t value);
+    void setTotalTokens(int64_t value);
 
     /// <summary>
     /// UserID is the end user the trace is attributed to.
@@ -134,7 +134,7 @@ public:
 
 
 protected:
-    int32_t m_CompletionTokens;
+    int64_t m_CompletionTokens;
     bool m_CompletionTokensIsSet;
 
     utility::string_t m_Id;
@@ -143,10 +143,10 @@ protected:
     double m_LatencyMs;
     bool m_LatencyMsIsSet;
 
-    int32_t m_Observations;
+    int64_t m_Observations;
     bool m_ObservationsIsSet;
 
-    int32_t m_PromptTokens;
+    int64_t m_PromptTokens;
     bool m_PromptTokensIsSet;
 
     utility::string_t m_ServiceName;
@@ -158,7 +158,7 @@ protected:
     double m_TotalCost;
     bool m_TotalCostIsSet;
 
-    int32_t m_TotalTokens;
+    int64_t m_TotalTokens;
     bool m_TotalTokensIsSet;
 
     utility::string_t m_UserId;

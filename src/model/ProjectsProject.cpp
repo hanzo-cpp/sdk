@@ -24,7 +24,7 @@ ProjectsProject::ProjectsProject()
     m_BucketIsSet = false;
     m_CacheControl = utility::conversions::to_string_t("");
     m_CacheControlIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_CurrentDeploymentId = utility::conversions::to_string_t("");
     m_CurrentDeploymentIdIsSet = false;
@@ -42,7 +42,7 @@ ProjectsProject::ProjectsProject()
     m_IdIsSet = false;
     m_Key = utility::conversions::to_string_t("");
     m_KeyIsSet = false;
-    m_LastPurgeAt = 0;
+    m_LastPurgeAt = 0L;
     m_LastPurgeAtIsSet = false;
     m_License = utility::conversions::to_string_t("");
     m_LicenseIsSet = false;
@@ -62,7 +62,7 @@ ProjectsProject::ProjectsProject()
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
     m_TagsIsSet = false;
-    m_UpdatedAt = 0;
+    m_UpdatedAt = 0L;
     m_UpdatedAtIsSet = false;
     m_Upstream = utility::conversions::to_string_t("");
     m_UpstreamIsSet = false;
@@ -257,7 +257,7 @@ bool ProjectsProject::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -356,7 +356,7 @@ bool ProjectsProject::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("lastPurgeAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLastPurgeAt;
+            int64_t refVal_setLastPurgeAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLastPurgeAt);
             setLastPurgeAt(refVal_setLastPurgeAt);
             
@@ -477,7 +477,7 @@ bool ProjectsProject::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updatedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdatedAt;
+            int64_t refVal_setUpdatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdatedAt);
             setUpdatedAt(refVal_setUpdatedAt);
             
@@ -650,7 +650,7 @@ bool ProjectsProject::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -704,7 +704,7 @@ bool ProjectsProject::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("lastPurgeAt"))))
     {
-        int32_t refVal_setLastPurgeAt;
+        int64_t refVal_setLastPurgeAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("lastPurgeAt"))), refVal_setLastPurgeAt );
         setLastPurgeAt(refVal_setLastPurgeAt);
     }
@@ -770,7 +770,7 @@ bool ProjectsProject::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
-        int32_t refVal_setUpdatedAt;
+        int64_t refVal_setUpdatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))), refVal_setUpdatedAt );
         setUpdatedAt(refVal_setUpdatedAt);
     }
@@ -853,13 +853,13 @@ void ProjectsProject::unsetCacheControl()
 {
     m_CacheControlIsSet = false;
 }
-int32_t ProjectsProject::getCreatedAt() const
+int64_t ProjectsProject::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void ProjectsProject::setCreatedAt(int32_t value)
+void ProjectsProject::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -1042,13 +1042,13 @@ void ProjectsProject::unsetKey()
 {
     m_KeyIsSet = false;
 }
-int32_t ProjectsProject::getLastPurgeAt() const
+int64_t ProjectsProject::getLastPurgeAt() const
 {
     return m_LastPurgeAt;
 }
 
 
-void ProjectsProject::setLastPurgeAt(int32_t value)
+void ProjectsProject::setLastPurgeAt(int64_t value)
 {
     m_LastPurgeAt = value;
     m_LastPurgeAtIsSet = true;
@@ -1273,13 +1273,13 @@ void ProjectsProject::unsetTags()
 {
     m_TagsIsSet = false;
 }
-int32_t ProjectsProject::getUpdatedAt() const
+int64_t ProjectsProject::getUpdatedAt() const
 {
     return m_UpdatedAt;
 }
 
 
-void ProjectsProject::setUpdatedAt(int32_t value)
+void ProjectsProject::setUpdatedAt(int64_t value)
 {
     m_UpdatedAt = value;
     m_UpdatedAtIsSet = true;

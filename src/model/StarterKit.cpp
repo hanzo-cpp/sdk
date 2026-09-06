@@ -37,7 +37,7 @@ StarterKit::StarterKit()
     m_SlugIsSet = false;
     m_Source = utility::conversions::to_string_t("");
     m_SourceIsSet = false;
-    m_Tier = 0;
+    m_Tier = 0L;
     m_TierIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
@@ -250,7 +250,7 @@ bool StarterKit::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tier")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTier;
+            int64_t refVal_setTier;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTier);
             setTier(refVal_setTier);
             
@@ -428,7 +428,7 @@ bool StarterKit::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tier"))))
     {
-        int32_t refVal_setTier;
+        int64_t refVal_setTier;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("tier"))), refVal_setTier );
         setTier(refVal_setTier);
     }
@@ -664,13 +664,13 @@ void StarterKit::unsetSource()
 {
     m_SourceIsSet = false;
 }
-int32_t StarterKit::getTier() const
+int64_t StarterKit::getTier() const
 {
     return m_Tier;
 }
 
 
-void StarterKit::setTier(int32_t value)
+void StarterKit::setTier(int64_t value)
 {
     m_Tier = value;
     m_TierIsSet = true;

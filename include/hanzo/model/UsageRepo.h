@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// SizeBytes is the repo&#39;s on-disk size at its last measurement.
     /// </summary>
-    int32_t getSizeBytes() const;
+    int64_t getSizeBytes() const;
     bool sizeBytesIsSet() const;
     void unsetSizeBytes();
-    void setSizeBytes(int32_t value);
+    void setSizeBytes(int64_t value);
 
 
 protected:
@@ -84,7 +84,7 @@ protected:
     utility::string_t m_Project;
     bool m_ProjectIsSet;
 
-    int32_t m_SizeBytes;
+    int64_t m_SizeBytes;
     bool m_SizeBytesIsSet;
 
 };

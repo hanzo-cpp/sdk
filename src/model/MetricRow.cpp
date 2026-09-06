@@ -20,7 +20,7 @@ MetricRow::MetricRow()
 {
     m_CreatedAt = utility::conversions::to_string_t("");
     m_CreatedAtIsSet = false;
-    m_CurrentVersion = 0;
+    m_CurrentVersion = 0L;
     m_CurrentVersionIsSet = false;
     m_LastUpdatedAt = utility::conversions::to_string_t("");
     m_LastUpdatedAtIsSet = false;
@@ -28,7 +28,7 @@ MetricRow::MetricRow()
     m_NameIsSet = false;
     m_Type = utility::conversions::to_string_t("");
     m_TypeIsSet = false;
-    m_Versions = 0;
+    m_Versions = 0L;
     m_VersionsIsSet = false;
 }
 
@@ -97,7 +97,7 @@ bool MetricRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("currentVersion")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCurrentVersion;
+            int64_t refVal_setCurrentVersion;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCurrentVersion);
             setCurrentVersion(refVal_setCurrentVersion);
             
@@ -141,7 +141,7 @@ bool MetricRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("versions")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVersions;
+            int64_t refVal_setVersions;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVersions);
             setVersions(refVal_setVersions);
             
@@ -200,7 +200,7 @@ bool MetricRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("currentVersion"))))
     {
-        int32_t refVal_setCurrentVersion;
+        int64_t refVal_setCurrentVersion;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("currentVersion"))), refVal_setCurrentVersion );
         setCurrentVersion(refVal_setCurrentVersion);
     }
@@ -224,7 +224,7 @@ bool MetricRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("versions"))))
     {
-        int32_t refVal_setVersions;
+        int64_t refVal_setVersions;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("versions"))), refVal_setVersions );
         setVersions(refVal_setVersions);
     }
@@ -253,13 +253,13 @@ void MetricRow::unsetCreatedAt()
 {
     m_CreatedAtIsSet = false;
 }
-int32_t MetricRow::getCurrentVersion() const
+int64_t MetricRow::getCurrentVersion() const
 {
     return m_CurrentVersion;
 }
 
 
-void MetricRow::setCurrentVersion(int32_t value)
+void MetricRow::setCurrentVersion(int64_t value)
 {
     m_CurrentVersion = value;
     m_CurrentVersionIsSet = true;
@@ -337,13 +337,13 @@ void MetricRow::unsetType()
 {
     m_TypeIsSet = false;
 }
-int32_t MetricRow::getVersions() const
+int64_t MetricRow::getVersions() const
 {
     return m_Versions;
 }
 
 
-void MetricRow::setVersions(int32_t value)
+void MetricRow::setVersions(int64_t value)
 {
     m_Versions = value;
     m_VersionsIsSet = true;

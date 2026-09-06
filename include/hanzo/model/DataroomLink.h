@@ -72,10 +72,10 @@ public:
     /// <summary>
     /// CreatedAt is when the link was minted, in unix milliseconds.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// DataroomId is the room the link opens, null for a single-document link.
@@ -112,10 +112,10 @@ public:
     /// <summary>
     /// ExpiresAt is when the link closes, in unix milliseconds; null never expires.
     /// </summary>
-    int32_t getExpiresAt() const;
+    int64_t getExpiresAt() const;
     bool expiresAtIsSet() const;
     void unsetExpiresAt();
-    void setExpiresAt(int32_t value);
+    void setExpiresAt(int64_t value);
 
     /// <summary>
     /// HasPassword reports THAT a password is set. The stored form is a bcrypt hash and no route returns it.
@@ -160,10 +160,10 @@ public:
     /// <summary>
     /// UpdatedAt is when the link last changed, in unix milliseconds.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
 
 protected:
@@ -173,7 +173,7 @@ protected:
     std::vector<utility::string_t> m_AllowList;
     bool m_AllowListIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_DataroomId;
@@ -188,7 +188,7 @@ protected:
     bool m_EmailProtected;
     bool m_EmailProtectedIsSet;
 
-    int32_t m_ExpiresAt;
+    int64_t m_ExpiresAt;
     bool m_ExpiresAtIsSet;
 
     bool m_HasPassword;
@@ -206,7 +206,7 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
 };

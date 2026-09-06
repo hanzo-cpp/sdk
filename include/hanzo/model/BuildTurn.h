@@ -103,10 +103,10 @@ public:
     /// <summary>
     /// Seq is this turn&#39;s POSITION in the session&#39;s log — monotonic from 1, per session — and it is what a commit&#39;s &#x60;Hanzo-Turn:&#x60; trailer names. It is not a count of anything: the count is &#x60;turns&#x60; on the summary beside it.
     /// </summary>
-    int32_t getTurn() const;
+    int64_t getTurn() const;
     bool turnIsSet() const;
     void unsetTurn();
-    void setTurn(int32_t value);
+    void setTurn(int64_t value);
 
 
 protected:
@@ -128,7 +128,7 @@ protected:
     utility::string_t m_Subject;
     bool m_SubjectIsSet;
 
-    int32_t m_Turn;
+    int64_t m_Turn;
     bool m_TurnIsSet;
 
 };

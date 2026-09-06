@@ -24,11 +24,11 @@ ModelRow::ModelRow()
     m_PctIsSet = false;
     m_Provider = utility::conversions::to_string_t("");
     m_ProviderIsSet = false;
-    m_Requests = 0;
+    m_Requests = 0L;
     m_RequestsIsSet = false;
-    m_SpendCents = 0;
+    m_SpendCents = 0L;
     m_SpendCentsIsSet = false;
-    m_Tokens = 0;
+    m_Tokens = 0L;
     m_TokensIsSet = false;
 }
 
@@ -119,7 +119,7 @@ bool ModelRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("requests")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRequests;
+            int64_t refVal_setRequests;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRequests);
             setRequests(refVal_setRequests);
             
@@ -130,7 +130,7 @@ bool ModelRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("spendCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSpendCents;
+            int64_t refVal_setSpendCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSpendCents);
             setSpendCents(refVal_setSpendCents);
             
@@ -141,7 +141,7 @@ bool ModelRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTokens;
+            int64_t refVal_setTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTokens);
             setTokens(refVal_setTokens);
             
@@ -212,19 +212,19 @@ bool ModelRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("requests"))))
     {
-        int32_t refVal_setRequests;
+        int64_t refVal_setRequests;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("requests"))), refVal_setRequests );
         setRequests(refVal_setRequests);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("spendCents"))))
     {
-        int32_t refVal_setSpendCents;
+        int64_t refVal_setSpendCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("spendCents"))), refVal_setSpendCents );
         setSpendCents(refVal_setSpendCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tokens"))))
     {
-        int32_t refVal_setTokens;
+        int64_t refVal_setTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("tokens"))), refVal_setTokens );
         setTokens(refVal_setTokens);
     }
@@ -295,13 +295,13 @@ void ModelRow::unsetProvider()
 {
     m_ProviderIsSet = false;
 }
-int32_t ModelRow::getRequests() const
+int64_t ModelRow::getRequests() const
 {
     return m_Requests;
 }
 
 
-void ModelRow::setRequests(int32_t value)
+void ModelRow::setRequests(int64_t value)
 {
     m_Requests = value;
     m_RequestsIsSet = true;
@@ -316,13 +316,13 @@ void ModelRow::unsetRequests()
 {
     m_RequestsIsSet = false;
 }
-int32_t ModelRow::getSpendCents() const
+int64_t ModelRow::getSpendCents() const
 {
     return m_SpendCents;
 }
 
 
-void ModelRow::setSpendCents(int32_t value)
+void ModelRow::setSpendCents(int64_t value)
 {
     m_SpendCents = value;
     m_SpendCentsIsSet = true;
@@ -337,13 +337,13 @@ void ModelRow::unsetSpendCents()
 {
     m_SpendCentsIsSet = false;
 }
-int32_t ModelRow::getTokens() const
+int64_t ModelRow::getTokens() const
 {
     return m_Tokens;
 }
 
 
-void ModelRow::setTokens(int32_t value)
+void ModelRow::setTokens(int64_t value)
 {
     m_Tokens = value;
     m_TokensIsSet = true;

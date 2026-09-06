@@ -18,13 +18,13 @@ namespace model {
 
 ProductRow::ProductRow()
 {
-    m_Orders = 0;
+    m_Orders = 0L;
     m_OrdersIsSet = false;
     m_ProductId = utility::conversions::to_string_t("");
     m_ProductIdIsSet = false;
     m_Revenue = 0.0;
     m_RevenueIsSet = false;
-    m_Units = 0;
+    m_Units = 0L;
     m_UnitsIsSet = false;
 }
 
@@ -72,7 +72,7 @@ bool ProductRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("orders")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOrders;
+            int64_t refVal_setOrders;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOrders);
             setOrders(refVal_setOrders);
             
@@ -105,7 +105,7 @@ bool ProductRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("units")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUnits;
+            int64_t refVal_setUnits;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUnits);
             setUnits(refVal_setUnits);
             
@@ -150,7 +150,7 @@ bool ProductRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("orders"))))
     {
-        int32_t refVal_setOrders;
+        int64_t refVal_setOrders;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("orders"))), refVal_setOrders );
         setOrders(refVal_setOrders);
     }
@@ -168,7 +168,7 @@ bool ProductRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("units"))))
     {
-        int32_t refVal_setUnits;
+        int64_t refVal_setUnits;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("units"))), refVal_setUnits );
         setUnits(refVal_setUnits);
     }
@@ -176,13 +176,13 @@ bool ProductRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 }
 
 
-int32_t ProductRow::getOrders() const
+int64_t ProductRow::getOrders() const
 {
     return m_Orders;
 }
 
 
-void ProductRow::setOrders(int32_t value)
+void ProductRow::setOrders(int64_t value)
 {
     m_Orders = value;
     m_OrdersIsSet = true;
@@ -239,13 +239,13 @@ void ProductRow::unsetRevenue()
 {
     m_RevenueIsSet = false;
 }
-int32_t ProductRow::getUnits() const
+int64_t ProductRow::getUnits() const
 {
     return m_Units;
 }
 
 
-void ProductRow::setUnits(int32_t value)
+void ProductRow::setUnits(int64_t value)
 {
     m_Units = value;
     m_UnitsIsSet = true;

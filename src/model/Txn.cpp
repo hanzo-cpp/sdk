@@ -18,7 +18,7 @@ namespace model {
 
 Txn::Txn()
 {
-    m_AmountCents = 0;
+    m_AmountCents = 0L;
     m_AmountCentsIsSet = false;
     m_Category = utility::conversions::to_string_t("");
     m_CategoryIsSet = false;
@@ -32,7 +32,7 @@ Txn::Txn()
     m_SourceIsSet = false;
     m_Vendor = utility::conversions::to_string_t("");
     m_VendorIsSet = false;
-    m_VoucherId = 0;
+    m_VoucherId = 0L;
     m_VoucherIdIsSet = false;
 }
 
@@ -100,7 +100,7 @@ bool Txn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("amountCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAmountCents;
+            int64_t refVal_setAmountCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAmountCents);
             setAmountCents(refVal_setAmountCents);
             
@@ -177,7 +177,7 @@ bool Txn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("voucherId")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVoucherId;
+            int64_t refVal_setVoucherId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVoucherId);
             setVoucherId(refVal_setVoucherId);
             
@@ -238,7 +238,7 @@ bool Txn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const util
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("amountCents"))))
     {
-        int32_t refVal_setAmountCents;
+        int64_t refVal_setAmountCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("amountCents"))), refVal_setAmountCents );
         setAmountCents(refVal_setAmountCents);
     }
@@ -280,7 +280,7 @@ bool Txn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const util
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("voucherId"))))
     {
-        int32_t refVal_setVoucherId;
+        int64_t refVal_setVoucherId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("voucherId"))), refVal_setVoucherId );
         setVoucherId(refVal_setVoucherId);
     }
@@ -288,13 +288,13 @@ bool Txn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const util
 }
 
 
-int32_t Txn::getAmountCents() const
+int64_t Txn::getAmountCents() const
 {
     return m_AmountCents;
 }
 
 
-void Txn::setAmountCents(int32_t value)
+void Txn::setAmountCents(int64_t value)
 {
     m_AmountCents = value;
     m_AmountCentsIsSet = true;
@@ -435,13 +435,13 @@ void Txn::unsetVendor()
 {
     m_VendorIsSet = false;
 }
-int32_t Txn::getVoucherId() const
+int64_t Txn::getVoucherId() const
 {
     return m_VoucherId;
 }
 
 
-void Txn::setVoucherId(int32_t value)
+void Txn::setVoucherId(int64_t value)
 {
     m_VoucherId = value;
     m_VoucherIdIsSet = true;

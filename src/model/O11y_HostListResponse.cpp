@@ -27,7 +27,7 @@ O11y_HostListResponse::O11y_HostListResponse()
     m_RecordsIsSet = false;
     m_SentAnyHostMetricsData = false;
     m_SentAnyHostMetricsDataIsSet = false;
-    m_Total = 0;
+    m_Total = 0L;
     m_TotalIsSet = false;
     m_Type = utility::conversions::to_string_t("");
     m_TypeIsSet = false;
@@ -163,7 +163,7 @@ bool O11y_HostListResponse::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("total")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotal;
+            int64_t refVal_setTotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotal);
             setTotal(refVal_setTotal);
             
@@ -271,7 +271,7 @@ bool O11y_HostListResponse::fromMultiPart(std::shared_ptr<MultipartFormData> mul
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("total"))))
     {
-        int32_t refVal_setTotal;
+        int64_t refVal_setTotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("total"))), refVal_setTotal );
         setTotal(refVal_setTotal);
     }
@@ -411,13 +411,13 @@ void O11y_HostListResponse::unsetSentAnyHostMetricsData()
 {
     m_SentAnyHostMetricsDataIsSet = false;
 }
-int32_t O11y_HostListResponse::getTotal() const
+int64_t O11y_HostListResponse::getTotal() const
 {
     return m_Total;
 }
 
 
-void O11y_HostListResponse::setTotal(int32_t value)
+void O11y_HostListResponse::setTotal(int64_t value)
 {
     m_Total = value;
     m_TotalIsSet = true;

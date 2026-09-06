@@ -20,7 +20,7 @@ IndexCount::IndexCount()
 {
     m_IsIndexing = false;
     m_IsIndexingIsSet = false;
-    m_NumberOfDocuments = 0;
+    m_NumberOfDocuments = 0L;
     m_NumberOfDocumentsIsSet = false;
 }
 
@@ -69,7 +69,7 @@ bool IndexCount::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("numberOfDocuments")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNumberOfDocuments;
+            int64_t refVal_setNumberOfDocuments;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNumberOfDocuments);
             setNumberOfDocuments(refVal_setNumberOfDocuments);
             
@@ -112,7 +112,7 @@ bool IndexCount::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("numberOfDocuments"))))
     {
-        int32_t refVal_setNumberOfDocuments;
+        int64_t refVal_setNumberOfDocuments;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("numberOfDocuments"))), refVal_setNumberOfDocuments );
         setNumberOfDocuments(refVal_setNumberOfDocuments);
     }
@@ -141,13 +141,13 @@ void IndexCount::unsetIsIndexing()
 {
     m_IsIndexingIsSet = false;
 }
-int32_t IndexCount::getNumberOfDocuments() const
+int64_t IndexCount::getNumberOfDocuments() const
 {
     return m_NumberOfDocuments;
 }
 
 
-void IndexCount::setNumberOfDocuments(int32_t value)
+void IndexCount::setNumberOfDocuments(int64_t value)
 {
     m_NumberOfDocuments = value;
     m_NumberOfDocumentsIsSet = true;

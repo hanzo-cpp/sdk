@@ -18,36 +18,36 @@ namespace model {
 
 MetricsResponse::MetricsResponse()
 {
-    m_Arr = 0;
+    m_Arr = 0L;
     m_ArrIsSet = false;
-    m_Burn = 0;
+    m_Burn = 0L;
     m_BurnIsSet = false;
-    m_Cash = 0;
+    m_Cash = 0L;
     m_CashIsSet = false;
-    m_Cogs = 0;
+    m_Cogs = 0L;
     m_CogsIsSet = false;
-    m_DeferredRevenue = 0;
+    m_DeferredRevenue = 0L;
     m_DeferredRevenueIsSet = false;
     m_FiguresIsSet = false;
     m_From = utility::conversions::to_string_t("");
     m_FromIsSet = false;
-    m_GrossMarginBps = 0;
+    m_GrossMarginBps = 0L;
     m_GrossMarginBpsIsSet = false;
-    m_GrossProfit = 0;
+    m_GrossProfit = 0L;
     m_GrossProfitIsSet = false;
-    m_MonthlyBurn = 0;
+    m_MonthlyBurn = 0L;
     m_MonthlyBurnIsSet = false;
-    m_Months = 0;
+    m_Months = 0L;
     m_MonthsIsSet = false;
-    m_Mrr = 0;
+    m_Mrr = 0L;
     m_MrrIsSet = false;
-    m_NetIncome = 0;
+    m_NetIncome = 0L;
     m_NetIncomeIsSet = false;
     m_Period = utility::conversions::to_string_t("");
     m_PeriodIsSet = false;
-    m_Revenue = 0;
+    m_Revenue = 0L;
     m_RevenueIsSet = false;
-    m_RunwayMonths = 0;
+    m_RunwayMonths = 0L;
     m_RunwayMonthsIsSet = false;
     m_To = utility::conversions::to_string_t("");
     m_ToIsSet = false;
@@ -162,7 +162,7 @@ bool MetricsResponse::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("arr")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setArr;
+            int64_t refVal_setArr;
             ok &= ModelBase::fromJson(fieldValue, refVal_setArr);
             setArr(refVal_setArr);
             
@@ -173,7 +173,7 @@ bool MetricsResponse::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("burn")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBurn;
+            int64_t refVal_setBurn;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBurn);
             setBurn(refVal_setBurn);
             
@@ -184,7 +184,7 @@ bool MetricsResponse::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cash")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCash;
+            int64_t refVal_setCash;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCash);
             setCash(refVal_setCash);
             
@@ -195,7 +195,7 @@ bool MetricsResponse::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cogs")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCogs;
+            int64_t refVal_setCogs;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCogs);
             setCogs(refVal_setCogs);
             
@@ -206,7 +206,7 @@ bool MetricsResponse::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("deferredRevenue")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDeferredRevenue;
+            int64_t refVal_setDeferredRevenue;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDeferredRevenue);
             setDeferredRevenue(refVal_setDeferredRevenue);
             
@@ -239,7 +239,7 @@ bool MetricsResponse::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("grossMarginBps")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setGrossMarginBps;
+            int64_t refVal_setGrossMarginBps;
             ok &= ModelBase::fromJson(fieldValue, refVal_setGrossMarginBps);
             setGrossMarginBps(refVal_setGrossMarginBps);
             
@@ -250,7 +250,7 @@ bool MetricsResponse::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("grossProfit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setGrossProfit;
+            int64_t refVal_setGrossProfit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setGrossProfit);
             setGrossProfit(refVal_setGrossProfit);
             
@@ -261,7 +261,7 @@ bool MetricsResponse::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("monthlyBurn")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMonthlyBurn;
+            int64_t refVal_setMonthlyBurn;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMonthlyBurn);
             setMonthlyBurn(refVal_setMonthlyBurn);
             
@@ -272,7 +272,7 @@ bool MetricsResponse::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("months")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMonths;
+            int64_t refVal_setMonths;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMonths);
             setMonths(refVal_setMonths);
             
@@ -283,7 +283,7 @@ bool MetricsResponse::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("mrr")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMrr;
+            int64_t refVal_setMrr;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMrr);
             setMrr(refVal_setMrr);
             
@@ -294,7 +294,7 @@ bool MetricsResponse::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("netIncome")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNetIncome;
+            int64_t refVal_setNetIncome;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNetIncome);
             setNetIncome(refVal_setNetIncome);
             
@@ -316,7 +316,7 @@ bool MetricsResponse::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("revenue")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRevenue;
+            int64_t refVal_setRevenue;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRevenue);
             setRevenue(refVal_setRevenue);
             
@@ -327,7 +327,7 @@ bool MetricsResponse::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("runwayMonths")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRunwayMonths;
+            int64_t refVal_setRunwayMonths;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRunwayMonths);
             setRunwayMonths(refVal_setRunwayMonths);
             
@@ -435,31 +435,31 @@ bool MetricsResponse::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("arr"))))
     {
-        int32_t refVal_setArr;
+        int64_t refVal_setArr;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("arr"))), refVal_setArr );
         setArr(refVal_setArr);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("burn"))))
     {
-        int32_t refVal_setBurn;
+        int64_t refVal_setBurn;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("burn"))), refVal_setBurn );
         setBurn(refVal_setBurn);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cash"))))
     {
-        int32_t refVal_setCash;
+        int64_t refVal_setCash;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cash"))), refVal_setCash );
         setCash(refVal_setCash);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cogs"))))
     {
-        int32_t refVal_setCogs;
+        int64_t refVal_setCogs;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cogs"))), refVal_setCogs );
         setCogs(refVal_setCogs);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("deferredRevenue"))))
     {
-        int32_t refVal_setDeferredRevenue;
+        int64_t refVal_setDeferredRevenue;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("deferredRevenue"))), refVal_setDeferredRevenue );
         setDeferredRevenue(refVal_setDeferredRevenue);
     }
@@ -477,37 +477,37 @@ bool MetricsResponse::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("grossMarginBps"))))
     {
-        int32_t refVal_setGrossMarginBps;
+        int64_t refVal_setGrossMarginBps;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("grossMarginBps"))), refVal_setGrossMarginBps );
         setGrossMarginBps(refVal_setGrossMarginBps);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("grossProfit"))))
     {
-        int32_t refVal_setGrossProfit;
+        int64_t refVal_setGrossProfit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("grossProfit"))), refVal_setGrossProfit );
         setGrossProfit(refVal_setGrossProfit);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("monthlyBurn"))))
     {
-        int32_t refVal_setMonthlyBurn;
+        int64_t refVal_setMonthlyBurn;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("monthlyBurn"))), refVal_setMonthlyBurn );
         setMonthlyBurn(refVal_setMonthlyBurn);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("months"))))
     {
-        int32_t refVal_setMonths;
+        int64_t refVal_setMonths;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("months"))), refVal_setMonths );
         setMonths(refVal_setMonths);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("mrr"))))
     {
-        int32_t refVal_setMrr;
+        int64_t refVal_setMrr;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("mrr"))), refVal_setMrr );
         setMrr(refVal_setMrr);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("netIncome"))))
     {
-        int32_t refVal_setNetIncome;
+        int64_t refVal_setNetIncome;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("netIncome"))), refVal_setNetIncome );
         setNetIncome(refVal_setNetIncome);
     }
@@ -519,13 +519,13 @@ bool MetricsResponse::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("revenue"))))
     {
-        int32_t refVal_setRevenue;
+        int64_t refVal_setRevenue;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("revenue"))), refVal_setRevenue );
         setRevenue(refVal_setRevenue);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("runwayMonths"))))
     {
-        int32_t refVal_setRunwayMonths;
+        int64_t refVal_setRunwayMonths;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("runwayMonths"))), refVal_setRunwayMonths );
         setRunwayMonths(refVal_setRunwayMonths);
     }
@@ -539,13 +539,13 @@ bool MetricsResponse::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 }
 
 
-int32_t MetricsResponse::getArr() const
+int64_t MetricsResponse::getArr() const
 {
     return m_Arr;
 }
 
 
-void MetricsResponse::setArr(int32_t value)
+void MetricsResponse::setArr(int64_t value)
 {
     m_Arr = value;
     m_ArrIsSet = true;
@@ -560,13 +560,13 @@ void MetricsResponse::unsetArr()
 {
     m_ArrIsSet = false;
 }
-int32_t MetricsResponse::getBurn() const
+int64_t MetricsResponse::getBurn() const
 {
     return m_Burn;
 }
 
 
-void MetricsResponse::setBurn(int32_t value)
+void MetricsResponse::setBurn(int64_t value)
 {
     m_Burn = value;
     m_BurnIsSet = true;
@@ -581,13 +581,13 @@ void MetricsResponse::unsetBurn()
 {
     m_BurnIsSet = false;
 }
-int32_t MetricsResponse::getCash() const
+int64_t MetricsResponse::getCash() const
 {
     return m_Cash;
 }
 
 
-void MetricsResponse::setCash(int32_t value)
+void MetricsResponse::setCash(int64_t value)
 {
     m_Cash = value;
     m_CashIsSet = true;
@@ -602,13 +602,13 @@ void MetricsResponse::unsetCash()
 {
     m_CashIsSet = false;
 }
-int32_t MetricsResponse::getCogs() const
+int64_t MetricsResponse::getCogs() const
 {
     return m_Cogs;
 }
 
 
-void MetricsResponse::setCogs(int32_t value)
+void MetricsResponse::setCogs(int64_t value)
 {
     m_Cogs = value;
     m_CogsIsSet = true;
@@ -623,13 +623,13 @@ void MetricsResponse::unsetCogs()
 {
     m_CogsIsSet = false;
 }
-int32_t MetricsResponse::getDeferredRevenue() const
+int64_t MetricsResponse::getDeferredRevenue() const
 {
     return m_DeferredRevenue;
 }
 
 
-void MetricsResponse::setDeferredRevenue(int32_t value)
+void MetricsResponse::setDeferredRevenue(int64_t value)
 {
     m_DeferredRevenue = value;
     m_DeferredRevenueIsSet = true;
@@ -686,13 +686,13 @@ void MetricsResponse::unsetFrom()
 {
     m_FromIsSet = false;
 }
-int32_t MetricsResponse::getGrossMarginBps() const
+int64_t MetricsResponse::getGrossMarginBps() const
 {
     return m_GrossMarginBps;
 }
 
 
-void MetricsResponse::setGrossMarginBps(int32_t value)
+void MetricsResponse::setGrossMarginBps(int64_t value)
 {
     m_GrossMarginBps = value;
     m_GrossMarginBpsIsSet = true;
@@ -707,13 +707,13 @@ void MetricsResponse::unsetGrossMarginBps()
 {
     m_GrossMarginBpsIsSet = false;
 }
-int32_t MetricsResponse::getGrossProfit() const
+int64_t MetricsResponse::getGrossProfit() const
 {
     return m_GrossProfit;
 }
 
 
-void MetricsResponse::setGrossProfit(int32_t value)
+void MetricsResponse::setGrossProfit(int64_t value)
 {
     m_GrossProfit = value;
     m_GrossProfitIsSet = true;
@@ -728,13 +728,13 @@ void MetricsResponse::unsetGrossProfit()
 {
     m_GrossProfitIsSet = false;
 }
-int32_t MetricsResponse::getMonthlyBurn() const
+int64_t MetricsResponse::getMonthlyBurn() const
 {
     return m_MonthlyBurn;
 }
 
 
-void MetricsResponse::setMonthlyBurn(int32_t value)
+void MetricsResponse::setMonthlyBurn(int64_t value)
 {
     m_MonthlyBurn = value;
     m_MonthlyBurnIsSet = true;
@@ -749,13 +749,13 @@ void MetricsResponse::unsetMonthlyBurn()
 {
     m_MonthlyBurnIsSet = false;
 }
-int32_t MetricsResponse::getMonths() const
+int64_t MetricsResponse::getMonths() const
 {
     return m_Months;
 }
 
 
-void MetricsResponse::setMonths(int32_t value)
+void MetricsResponse::setMonths(int64_t value)
 {
     m_Months = value;
     m_MonthsIsSet = true;
@@ -770,13 +770,13 @@ void MetricsResponse::unsetMonths()
 {
     m_MonthsIsSet = false;
 }
-int32_t MetricsResponse::getMrr() const
+int64_t MetricsResponse::getMrr() const
 {
     return m_Mrr;
 }
 
 
-void MetricsResponse::setMrr(int32_t value)
+void MetricsResponse::setMrr(int64_t value)
 {
     m_Mrr = value;
     m_MrrIsSet = true;
@@ -791,13 +791,13 @@ void MetricsResponse::unsetMrr()
 {
     m_MrrIsSet = false;
 }
-int32_t MetricsResponse::getNetIncome() const
+int64_t MetricsResponse::getNetIncome() const
 {
     return m_NetIncome;
 }
 
 
-void MetricsResponse::setNetIncome(int32_t value)
+void MetricsResponse::setNetIncome(int64_t value)
 {
     m_NetIncome = value;
     m_NetIncomeIsSet = true;
@@ -833,13 +833,13 @@ void MetricsResponse::unsetPeriod()
 {
     m_PeriodIsSet = false;
 }
-int32_t MetricsResponse::getRevenue() const
+int64_t MetricsResponse::getRevenue() const
 {
     return m_Revenue;
 }
 
 
-void MetricsResponse::setRevenue(int32_t value)
+void MetricsResponse::setRevenue(int64_t value)
 {
     m_Revenue = value;
     m_RevenueIsSet = true;
@@ -854,13 +854,13 @@ void MetricsResponse::unsetRevenue()
 {
     m_RevenueIsSet = false;
 }
-int32_t MetricsResponse::getRunwayMonths() const
+int64_t MetricsResponse::getRunwayMonths() const
 {
     return m_RunwayMonths;
 }
 
 
-void MetricsResponse::setRunwayMonths(int32_t value)
+void MetricsResponse::setRunwayMonths(int64_t value)
 {
     m_RunwayMonths = value;
     m_RunwayMonthsIsSet = true;

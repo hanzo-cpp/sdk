@@ -18,11 +18,11 @@ namespace model {
 
 RiskSourceCoverage::RiskSourceCoverage()
 {
-    m_Facts = 0;
+    m_Facts = 0L;
     m_FactsIsSet = false;
     m_Source = utility::conversions::to_string_t("");
     m_SourceIsSet = false;
-    m_Won = 0;
+    m_Won = 0L;
     m_WonIsSet = false;
 }
 
@@ -65,7 +65,7 @@ bool RiskSourceCoverage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("facts")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFacts;
+            int64_t refVal_setFacts;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFacts);
             setFacts(refVal_setFacts);
             
@@ -87,7 +87,7 @@ bool RiskSourceCoverage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("won")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setWon;
+            int64_t refVal_setWon;
             ok &= ModelBase::fromJson(fieldValue, refVal_setWon);
             setWon(refVal_setWon);
             
@@ -128,7 +128,7 @@ bool RiskSourceCoverage::fromMultiPart(std::shared_ptr<MultipartFormData> multip
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("facts"))))
     {
-        int32_t refVal_setFacts;
+        int64_t refVal_setFacts;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("facts"))), refVal_setFacts );
         setFacts(refVal_setFacts);
     }
@@ -140,7 +140,7 @@ bool RiskSourceCoverage::fromMultiPart(std::shared_ptr<MultipartFormData> multip
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("won"))))
     {
-        int32_t refVal_setWon;
+        int64_t refVal_setWon;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("won"))), refVal_setWon );
         setWon(refVal_setWon);
     }
@@ -148,13 +148,13 @@ bool RiskSourceCoverage::fromMultiPart(std::shared_ptr<MultipartFormData> multip
 }
 
 
-int32_t RiskSourceCoverage::getFacts() const
+int64_t RiskSourceCoverage::getFacts() const
 {
     return m_Facts;
 }
 
 
-void RiskSourceCoverage::setFacts(int32_t value)
+void RiskSourceCoverage::setFacts(int64_t value)
 {
     m_Facts = value;
     m_FactsIsSet = true;
@@ -190,13 +190,13 @@ void RiskSourceCoverage::unsetSource()
 {
     m_SourceIsSet = false;
 }
-int32_t RiskSourceCoverage::getWon() const
+int64_t RiskSourceCoverage::getWon() const
 {
     return m_Won;
 }
 
 
-void RiskSourceCoverage::setWon(int32_t value)
+void RiskSourceCoverage::setWon(int64_t value)
 {
     m_Won = value;
     m_WonIsSet = true;

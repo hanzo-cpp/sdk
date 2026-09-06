@@ -52,97 +52,61 @@ public:
     /// CodingStartIn members
 
 
-    /// <summary>
-    /// After names a previous run&#39;s session, and starts this one from where that one stopped instead of from the repository&#39;s default. It is how a follow-up instruction — \&quot;now add tests for it\&quot; — builds on work already done rather than beginning again on a fresh clone.  It sets the base and nothing else, so this run still writes its OWN branch. One run, one branch: a run that wrote back onto an earlier run&#39;s branch would break the rule the forge&#39;s ref policy is built on, and would leave two turns of work with one name to review.  A caller who already knows the branch may pass Base directly; this exists because the branch is derived from a session id and nobody should have to know how. Base wins if both are given.
-    /// </summary>
     utility::string_t getAfter() const;
     bool afterIsSet() const;
     void unsetAfter();
     void setAfter(const utility::string_t& value);
 
-    /// <summary>
-    /// AgentRef names a configured agent to run as, which is how an org pins a harness, a model and a prompt to a name. Empty runs the default agent.
-    /// </summary>
     utility::string_t getAgentRef() const;
     bool agentRefIsSet() const;
     void unsetAgentRef();
     void setAgentRef(const utility::string_t& value);
 
-    /// <summary>
-    /// Base is the branch to start from. Empty takes the repository&#39;s default. The run never writes here — it writes the agent branch it answers with.
-    /// </summary>
     utility::string_t getBase() const;
     bool baseIsSet() const;
     void unsetBase();
     void setBase(const utility::string_t& value);
 
-    /// <summary>
-    /// Desktop asks for a run with a SCREEN — an image carrying an X server — for a task that has to drive a browser or another windowed program. False, the default, is a headless checkout, which is what writing code needs.
-    /// </summary>
     bool isDesktop() const;
     bool desktopIsSet() const;
     void unsetDesktop();
     void setDesktop(bool value);
 
-    /// <summary>
-    /// Project scopes the run to one board&#39;s work when the org keeps more than one. Empty is the org&#39;s default.
-    /// </summary>
     utility::string_t getProject() const;
     bool projectIsSet() const;
     void unsetProject();
     void setProject(const utility::string_t& value);
 
-    /// <summary>
-    /// Prompt is the task, in the words you would use with a colleague who has the checkout open. It is the whole instruction: there is no second field for context, and a prompt that names files and the outcome it wants gets a run that does not have to guess either.
-    /// </summary>
     utility::string_t getPrompt() const;
     bool promptIsSet() const;
     void unsetPrompt();
     void setPrompt(const utility::string_t& value);
 
-    /// <summary>
-    /// ReplyChannel / ReplyThread are WHERE THE RUN NARRATES ITSELF, when the surface that started it has somewhere for it to talk. Empty means nobody is listening and the run simply does not narrate — which is the app surface&#39;s case, because /v1/agents/coding hands back a session id and the session stream is a better progress feed than any message could be.  It is an ADDRESS and not a token: the engine says \&quot;put this text there\&quot;, and the process that owns the workspace&#39;s bot credential is the one that actually posts. So a run reports into a Slack thread without the engine ever holding the token that could post anywhere else in that workspace.
-    /// </summary>
     utility::string_t getReplyChannel() const;
     bool replyChannelIsSet() const;
     void unsetReplyChannel();
     void setReplyChannel(const utility::string_t& value);
 
-    /// <summary>
-    /// ReplyThread narrows that address to one THREAD inside the channel: on Slack it is the parent message&#39;s ts, the same value a reply carries as thread_ts. Empty puts the run&#39;s status line at the top level of the channel instead.  The channel is what decides whether a run narrates at all, so this on its own addresses nothing — a thread with no ReplyChannel is a run nobody hears.
-    /// </summary>
     utility::string_t getReplyThread() const;
     bool replyThreadIsSet() const;
     void unsetReplyThread();
     void setReplyThread(const utility::string_t& value);
 
-    /// <summary>
-    /// Repo is what to work on, as &#x60;owner/name&#x60; in the caller&#39;s own org. The engine resolves the clone URL and the push credential from the org itself, so this says WHICH repository and never how to reach it.
-    /// </summary>
     utility::string_t getRepo() const;
     bool repoIsSet() const;
     void unsetRepo();
     void setRepo(const utility::string_t& value);
 
-    /// <summary>
-    /// TargetID routes the run to a registered machine the org has claimed instead of to a sandbox in our cluster. Empty runs it here, which is the usual case.
-    /// </summary>
     utility::string_t getTargetId() const;
     bool targetIdIsSet() const;
     void unsetTargetId();
     void setTargetId(const utility::string_t& value);
 
-    /// <summary>
-    /// TimeoutSeconds bounds the whole run. Unset takes the default budget; a run that hits the bound is stopped and reports what it had done by then.
-    /// </summary>
-    int32_t getTimeoutSeconds() const;
+    int64_t getTimeoutSeconds() const;
     bool timeoutSecondsIsSet() const;
     void unsetTimeoutSeconds();
-    void setTimeoutSeconds(int32_t value);
+    void setTimeoutSeconds(int64_t value);
 
-    /// <summary>
-    /// Tool is which harness runs the prompt — dev | claude | codex | python | node — and Desktop is whether the run needs a screen. Both are empty by default, which is &#x60;dev&#x60; with no screen, and that default is what every caller gets until it says otherwise.  They are two fields because they are two questions. The harness decides what argv starts; the screen decides which image carries an X server. A caller may want claude WITH a browser it can see, and a single enum would have made that combination unsayable.
-    /// </summary>
     utility::string_t getTool() const;
     bool toolIsSet() const;
     void unsetTool();
@@ -180,7 +144,7 @@ protected:
     utility::string_t m_TargetId;
     bool m_TargetIdIsSet;
 
-    int32_t m_TimeoutSeconds;
+    int64_t m_TimeoutSeconds;
     bool m_TimeoutSecondsIsSet;
 
     utility::string_t m_Tool;

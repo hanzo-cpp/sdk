@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// DurationMs is how long the single attempt took, in MILLISECONDS.
     /// </summary>
-    int32_t getDurationMs() const;
+    int64_t getDurationMs() const;
     bool durationMsIsSet() const;
     void unsetDurationMs();
-    void setDurationMs(int32_t value);
+    void setDurationMs(int64_t value);
 
     /// <summary>
     /// Error says what stopped it. Empty when delivered.
@@ -79,23 +79,23 @@ public:
     /// <summary>
     /// HTTPStatus is what the subscriber answered, or 0 if it never answered.
     /// </summary>
-    int32_t getHttpStatus() const;
+    int64_t getHttpStatus() const;
     bool httpStatusIsSet() const;
     void unsetHttpStatus();
-    void setHttpStatus(int32_t value);
+    void setHttpStatus(int64_t value);
 
 
 protected:
     bool m_Delivered;
     bool m_DeliveredIsSet;
 
-    int32_t m_DurationMs;
+    int64_t m_DurationMs;
     bool m_DurationMsIsSet;
 
     utility::string_t m_Error;
     bool m_ErrorIsSet;
 
-    int32_t m_HttpStatus;
+    int64_t m_HttpStatus;
     bool m_HttpStatusIsSet;
 
 };

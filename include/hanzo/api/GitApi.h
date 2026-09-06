@@ -50,7 +50,6 @@
 #include "hanzo/model/SubscriptionView.h"
 #include "hanzo/model/TreeJSON.h"
 #include "hanzo/model/UsageView.h"
-#include "hanzo/model/ZapProcReq.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -90,18 +89,6 @@ public:
         utility::string_t name
     ) const;
     /// <summary>
-    /// Removes one outbound mirror target; later pushes stop being forwarded to it.
-    /// </summary>
-    /// <remarks>
-    /// Removes one outbound mirror target; later pushes stop being forwarded to it. Answers 204 with no body. Nothing is done to the downstream remote itself — only this repo&#39;s intent to push there is dropped.
-    /// </remarks>
-    /// <param name="name">Name is the repo, from the :name path segment.</param>
-    /// <param name="id">ID is the row to remove, from the :id path segment.</param>
-    pplx::task<void> deleteGitReposByNameMirrorsById(
-        utility::string_t name,
-        utility::string_t id
-    ) const;
-    /// <summary>
     /// Removes one Slack subscription from a repo; the notifier stops posting that repo&#39;s events to that channel.
     /// </summary>
     /// <remarks>
@@ -110,6 +97,18 @@ public:
     /// <param name="name">Name is the repo, from the :name path segment.</param>
     /// <param name="id">ID is the row to remove, from the :id path segment.</param>
     pplx::task<void> deleteGitReposByNameSubscriptionsById(
+        utility::string_t name,
+        utility::string_t id
+    ) const;
+    /// <summary>
+    /// Removes one outbound mirror target; later pushes stop being forwarded to it.
+    /// </summary>
+    /// <remarks>
+    /// Removes one outbound mirror target; later pushes stop being forwarded to it. Answers 204 with no body. Nothing is done to the downstream remote itself — only this repo&#39;s intent to push there is dropped.
+    /// </remarks>
+    /// <param name="name">Name is the repo, from the :name path segment.</param>
+    /// <param name="id">ID is the row to remove, from the :id path segment.</param>
+    pplx::task<void> deleteGitReposByNameTargetsById(
         utility::string_t name,
         utility::string_t id
     ) const;
@@ -228,12 +227,12 @@ public:
     /// <param name="name">Name is the repo to read, from the :name path segment.</param>
     /// <param name="ref">Ref is the branch, tag or commit to walk back from; empty means HEAD. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="path">Path narrows the history to commits touching it; empty walks the whole ref. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps the page. Anything not positive means 50; the cap is 100. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the page. Anything not positive means 50; the cap is 100. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<CommitsJSON>> getGitReposByNameCommits(
         utility::string_t name,
         boost::optional<utility::string_t> ref,
         boost::optional<utility::string_t> path,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns every file a glob selects at one revision, WITH its bytes and the revision they came from.
@@ -248,16 +247,6 @@ public:
         utility::string_t name,
         boost::optional<utility::string_t> ref,
         boost::optional<utility::string_t> glob
-    ) const;
-    /// <summary>
-    /// Returns a repo&#39;s outbound mirror targets — the downstream remotes the mirror reactor pushes to whenever a push lands here.
-    /// </summary>
-    /// <remarks>
-    /// Returns a repo&#39;s outbound mirror targets — the downstream remotes the mirror reactor pushes to whenever a push lands here.
-    /// </remarks>
-    /// <param name="name">Name is the repo&#39;s org-unique handle, from the :name path segment. A trailing \&quot;.git\&quot; is stripped.</param>
-    pplx::task<std::shared_ptr<MirrorList>> getGitReposByNameMirrors(
-        utility::string_t name
     ) const;
     /// <summary>
     /// Returns a repo&#39;s pull requests, newest number first — what is waiting to be reviewed, and what has already landed.
@@ -281,7 +270,7 @@ public:
     /// <param name="number">Number is the proposal&#39;s per-repo number, from the :number path segment.</param>
     pplx::task<std::shared_ptr<PullView>> getGitReposByNamePullsByNumber(
         utility::string_t name,
-        int32_t number
+        int64_t number
     ) const;
     /// <summary>
     /// Returns the README at the tree root as plain text — unrendered, so the caller decides how to present it.
@@ -313,6 +302,16 @@ public:
     /// </remarks>
     /// <param name="name">Name is the repo&#39;s org-unique handle, from the :name path segment. A trailing \&quot;.git\&quot; is stripped.</param>
     pplx::task<std::shared_ptr<SubscriptionList>> getGitReposByNameSubscriptions(
+        utility::string_t name
+    ) const;
+    /// <summary>
+    /// Returns a repo&#39;s outbound mirror targets — the downstream remotes the mirror reactor pushes to whenever a push lands here.
+    /// </summary>
+    /// <remarks>
+    /// Returns a repo&#39;s outbound mirror targets — the downstream remotes the mirror reactor pushes to whenever a push lands here.
+    /// </remarks>
+    /// <param name="name">Name is the repo&#39;s org-unique handle, from the :name path segment. A trailing \&quot;.git\&quot; is stripped.</param>
+    pplx::task<std::shared_ptr<MirrorList>> getGitReposByNameTargets(
         utility::string_t name
     ) const;
     /// <summary>
@@ -452,18 +451,6 @@ public:
         std::shared_ptr<MirrorReq> mirrorReq
     ) const;
     /// <summary>
-    /// Registers a downstream remote the repo&#39;s advanced refs are pushed to whenever a push lands here.
-    /// </summary>
-    /// <remarks>
-    /// Registers a downstream remote the repo&#39;s advanced refs are pushed to whenever a push lands here. Answers 201. The URL must be https to a host on the mirror allowlist (github.com / gitlab.com): the same set the mirror credential may be sent to, so a target can never capture the shared token or point the push at an internal service. Any embedded userinfo is stripped — credentials ride env-only at push time and never enter the stored URL. One mirror per host per repo; a second is a 409.
-    /// </remarks>
-    /// <param name="name">Name is the repo whose advanced refs are pushed downstream, from the :name path segment.</param>
-    /// <param name="mirrorTargetReq"></param>
-    pplx::task<std::shared_ptr<MirrorTargetView>> postGitReposByNameMirrors(
-        utility::string_t name,
-        std::shared_ptr<MirrorTargetReq> mirrorTargetReq
-    ) const;
-    /// <summary>
     /// Proposes a branch for merging and returns it with its number.
     /// </summary>
     /// <remarks>
@@ -485,7 +472,7 @@ public:
     /// <param name="number">Number is the proposal&#39;s per-repo number, from the :number path segment.</param>
     pplx::task<std::shared_ptr<PullView>> postGitReposByNamePullsByNumberMerge(
         utility::string_t name,
-        int32_t number
+        int64_t number
     ) const;
     /// <summary>
     /// Lands a set of files as one commit without a git client — the hanzo.app builder&#39;s push.
@@ -512,58 +499,24 @@ public:
         std::shared_ptr<SubscribeReq> subscribeReq
     ) const;
     /// <summary>
-    /// Retired — forge pushes build via platform.hanzo.ai
+    /// Registers a downstream remote the repo&#39;s advanced refs are pushed to whenever a push lands here.
     /// </summary>
     /// <remarks>
-    /// GONE (410). Push-to-deploy belongs to POST https://platform.hanzo.ai/v1/git-webhook, which owns the build system-of-record and dispatches BuildKit Jobs. git.hanzo.ai delivers there through ONE forge-wide system webhook covering every repository; a repo opts in by committing hanzo.yml, not by owning a hook of its own.  Every delivery answers 410 whatever it carries — this endpoint reads no body and authenticates nothing.  410 rather than 404, because the address was real and its meaning moved, which is the distinction 410 carries. A 404 from this estate is ambiguous: Hanzo Git serves /v1, so /api/v1 404s too and reads as \&quot;the API is switched off\&quot;. A retired endpoint says it is retired and names its replacement, so the answer carries its own fix.
+    /// Registers a downstream remote the repo&#39;s advanced refs are pushed to whenever a push lands here. Answers 201. The URL must be https to a host on the mirror allowlist (github.com / gitlab.com): the same set the mirror credential may be sent to, so a target can never capture the shared token or point the push at an internal service. Any embedded userinfo is stripped — credentials ride env-only at push time and never enter the stored URL. One mirror per host per repo; a second is a 409.
+    /// </remarks>
+    /// <param name="name">Name is the repo whose advanced refs are pushed downstream, from the :name path segment.</param>
+    /// <param name="mirrorTargetReq"></param>
+    pplx::task<std::shared_ptr<MirrorTargetView>> postGitReposByNameTargets(
+        utility::string_t name,
+        std::shared_ptr<MirrorTargetReq> mirrorTargetReq
+    ) const;
+    /// <summary>
+    /// Retired — push-to-deploy has no inbound webhook
+    /// </summary>
+    /// <remarks>
+    /// GONE (410). Push-to-deploy is not triggered by an inbound webhook. A push into this host&#39;s own git server fires the builder in-process, and a repository whose canonical home is GitHub is delivered by the Hanzo Platform GitHub App to POST /v1/integration/github/webhook. The forge does not report a push over HTTP.  Every delivery answers 410 whatever it carries — this endpoint reads no body and authenticates nothing.  410 rather than 404, because the address was real and its meaning moved, which is the distinction 410 carries. A 404 from this estate is ambiguous: Hanzo Git serves /v1, so /api/v1 404s too and reads as \&quot;the API is switched off\&quot;. A retired endpoint says it is retired and names its replacement, so the answer carries its own fix.
     /// </remarks>
     pplx::task<void> postGitWebhook(
-    ) const;
-    /// <summary>
-    /// Create a repository over the ZAP transport
-    /// </summary>
-    /// <remarks>
-    /// Creates a repository in the caller&#39;s org and project scope and answers with its record. &#x60;name&#x60; is required and &#x60;description&#x60; is optional; &#x60;project&#x60; narrows the scope within the org. A name already taken in that scope is a 409 envelope and an invalid name a 400.  A ZAP PROCEDURE, not a REST resource. It answers the bridge&#39;s {status, msg, data} envelope rather than the raw view the /v1 route returns, and it calls the SAME core function the REST route calls, so the two transports cannot diverge in behaviour. Org and project scope come from the request identity and NEVER from the body: the body cannot widen the caller&#39;s scope. Without a validated org the answer is a 403 envelope.
-    /// </remarks>
-    /// <param name="zapProcReq"> (optional)</param>
-    pplx::task<void> postGitZapCreaterepo(
-        boost::optional<std::shared_ptr<ZapProcReq>> zapProcReq
-    ) const;
-    /// <summary>
-    /// Delete a repository over the ZAP transport
-    /// </summary>
-    /// <remarks>
-    /// Deletes the repository named by &#x60;name&#x60; and answers with the deleted name. A repository outside the caller&#39;s org and project scope is a 404 envelope, so a delete can never reach another tenant&#39;s repository.  A ZAP PROCEDURE, not a REST resource. It answers the bridge&#39;s {status, msg, data} envelope rather than the raw view the /v1 route returns, and it calls the SAME core function the REST route calls, so the two transports cannot diverge in behaviour. Org and project scope come from the request identity and NEVER from the body: the body cannot widen the caller&#39;s scope. Without a validated org the answer is a 403 envelope.
-    /// </remarks>
-    /// <param name="zapProcReq"> (optional)</param>
-    pplx::task<void> postGitZapDeleterepo(
-        boost::optional<std::shared_ptr<ZapProcReq>> zapProcReq
-    ) const;
-    /// <summary>
-    /// Read one repository over the ZAP transport
-    /// </summary>
-    /// <remarks>
-    /// Answers a single repository&#39;s record, named by &#x60;name&#x60;. A repository outside the caller&#39;s org and project scope is a 404 envelope, the same answer one that does not exist gets.  A ZAP PROCEDURE, not a REST resource. It answers the bridge&#39;s {status, msg, data} envelope rather than the raw view the /v1 route returns, and it calls the SAME core function the REST route calls, so the two transports cannot diverge in behaviour. Org and project scope come from the request identity and NEVER from the body: the body cannot widen the caller&#39;s scope. Without a validated org the answer is a 403 envelope.
-    /// </remarks>
-    /// <param name="zapProcReq"> (optional)</param>
-    pplx::task<void> postGitZapGetrepo(
-        boost::optional<std::shared_ptr<ZapProcReq>> zapProcReq
-    ) const;
-    /// <summary>
-    /// List your repositories over the ZAP transport
-    /// </summary>
-    /// <remarks>
-    /// Answers every repository in the caller&#39;s org and project scope. It reads NO body — the scope is entirely the caller&#39;s identity — so a request with an empty object is correct.  A ZAP PROCEDURE, not a REST resource. It answers the bridge&#39;s {status, msg, data} envelope rather than the raw view the /v1 route returns, and it calls the SAME core function the REST route calls, so the two transports cannot diverge in behaviour. Org and project scope come from the request identity and NEVER from the body: the body cannot widen the caller&#39;s scope. Without a validated org the answer is a 403 envelope.
-    /// </remarks>
-    pplx::task<void> postGitZapListrepos(
-    ) const;
-    /// <summary>
-    /// Report your org&#39;s git storage footprint over the ZAP transport
-    /// </summary>
-    /// <remarks>
-    /// Answers every repository in the caller&#39;s org with its size in bytes, plus the org&#39;s total — what git storage is actually being used, and by which repository. It reads NO body, and it is scoped to the caller&#39;s own org, so it is that org&#39;s footprint and never the fleet&#39;s.  A ZAP PROCEDURE, not a REST resource. It answers the bridge&#39;s {status, msg, data} envelope rather than the raw view the /v1 route returns, and it calls the SAME core function the REST route calls, so the two transports cannot diverge in behaviour. Org and project scope come from the request identity and NEVER from the body: the body cannot widen the caller&#39;s scope. Without a validated org the answer is a 403 envelope.
-    /// </remarks>
-    pplx::task<void> postGitZapUsage(
     ) const;
 
 protected:

@@ -64,10 +64,10 @@ public:
     /// <summary>
     /// Exp is the token&#39;s expiry, Unix seconds.
     /// </summary>
-    int32_t getExp() const;
+    int64_t getExp() const;
     bool expIsSet() const;
     void unsetExp();
-    void setExp(int32_t value);
+    void setExp(int64_t value);
 
     /// <summary>
     /// Features are the capability grants the token carries.
@@ -130,7 +130,7 @@ protected:
     utility::string_t m_App_id;
     bool m_App_idIsSet;
 
-    int32_t m_Exp;
+    int64_t m_Exp;
     bool m_ExpIsSet;
 
     std::vector<utility::string_t> m_Features;

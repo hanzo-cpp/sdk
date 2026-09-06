@@ -58,10 +58,10 @@ public:
     /// <summary>
     /// Duplicate is how many members this tenant already held, byte for byte. The idempotency key is the assertion&#39;s CONTENT digest — kind, subject, at, seen, disposition, source, evidence, the asserting identity and confidence, folded in length-prefixed — so a webhook redelivering one chargeback is a duplicate and costs nothing, while an assertion differing in ANY of those fields is a DIFFERENT assertion and is recorded beside the first. Nothing was written and nothing was overwritten; it is an outcome, never an error. The asserting identity is in the digest, so the same claim filed by a second credential is two assertions and not a redelivery.
     /// </summary>
-    int32_t getDuplicate() const;
+    int64_t getDuplicate() const;
     bool duplicateIsSet() const;
     void unsetDuplicate();
-    void setDuplicate(int32_t value);
+    void setDuplicate(int64_t value);
 
     /// <summary>
     /// Mirror names why the columnar copy did not take this batch, when it did not. The record is already durable in the tenant&#39;s own store by then — the warehouse copy exists to make a training join cheap, and its absence is a gap in that join, never a lost label.
@@ -74,26 +74,26 @@ public:
     /// <summary>
     /// Pending is how many assertions the derived copy is still to take. Every write attempt carries the backlog forward as well as its own batch, so a warehouse that was unreachable closes its gap on the next write rather than leaving a hole in a training join nothing would report. It is counted under a cap and saturates there: zero means caught up, and a large number means a backlog to work through rather than an inventory to reconcile.
     /// </summary>
-    int32_t getPending() const;
+    int64_t getPending() const;
     bool pendingIsSet() const;
     void unsetPending();
-    void setPending(int32_t value);
+    void setPending(int64_t value);
 
     /// <summary>
     /// Recorded is how many members became a NEW row in the tenant&#39;s record. Recorded + Duplicate + Refused is exactly the number of labels sent, so a caller reconciling a webhook delivery can do it on the counts alone.
     /// </summary>
-    int32_t getRecorded() const;
+    int64_t getRecorded() const;
     bool recordedIsSet() const;
     void unsetRecorded();
-    void setRecorded(int32_t value);
+    void setRecorded(int64_t value);
 
     /// <summary>
     /// Refused is how many members failed admission and were NOT recorded. Refusal is per member and never discards the rest of the batch: an empty or over-512-byte subject or evidence, a kind, disposition or source outside the closed vocabulary, an &#x60;at&#x60; or &#x60;seen&#x60; that is not RFC 3339, a &#x60;seen&#x60; before the &#x60;at&#x60; it judges, either instant more than five minutes past the server clock, or a confidence outside [0,1]. Results names which member and why, so the refused ones are exactly the ones to fix and resend.
     /// </summary>
-    int32_t getRefused() const;
+    int64_t getRefused() const;
     bool refusedIsSet() const;
     void unsetRefused();
-    void setRefused(int32_t value);
+    void setRefused(int64_t value);
 
     /// <summary>
     /// Results is per fact, in the order sent, so a caller can retry exactly the members that were refused and can log the content digest of the ones that landed.
@@ -105,19 +105,19 @@ public:
 
 
 protected:
-    int32_t m_Duplicate;
+    int64_t m_Duplicate;
     bool m_DuplicateIsSet;
 
     utility::string_t m_Mirror;
     bool m_MirrorIsSet;
 
-    int32_t m_Pending;
+    int64_t m_Pending;
     bool m_PendingIsSet;
 
-    int32_t m_Recorded;
+    int64_t m_Recorded;
     bool m_RecordedIsSet;
 
-    int32_t m_Refused;
+    int64_t m_Refused;
     bool m_RefusedIsSet;
 
     std::vector<std::shared_ptr<RiskLabelResult>> m_Results;

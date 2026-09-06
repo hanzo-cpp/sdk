@@ -77,9 +77,9 @@ public:
     /// <remarks>
     /// Features is the feature catalogue in its two honest lenses.  The MODEL lens is the governed inventory: one entry per dimension of the model space, each carrying the typology it serves, the supervisor&#39;s own words for the indicator, and the published standard those words come from — so a coverage claim is checkable rather than asserted. It is the same for every organisation.  The SURFACE lens is what THIS organisation&#39;s own event surface actually carries, measured over the window: how many of its buckets carry each dimension at all, and what the dimension reads where it is present. A dimension present in no bucket is BLIND, and saying so is the difference between no risk and no data.
     /// </remarks>
-    /// <param name="days">Days is how far back to measure the organisation&#39;s own coverage, 1 to 400. Zero takes thirty. (optional, default to 0)</param>
+    /// <param name="days">Days is how far back to measure the organisation&#39;s own coverage, 1 to 400. Zero takes thirty. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<RiskCatalog>> riskFeatures(
-        boost::optional<int32_t> days
+        boost::optional<int64_t> days
     ) const;
     /// <summary>
     /// Teach your organisation&#39;s own model from its own events

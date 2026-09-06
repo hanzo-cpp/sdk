@@ -68,18 +68,18 @@ public:
     /// <summary>
     /// AvailableCents is what of that balance is still spendable.
     /// </summary>
-    int32_t getAvailableCents() const;
+    int64_t getAvailableCents() const;
     bool availableCentsIsSet() const;
     void unsetAvailableCents();
-    void setAvailableCents(int32_t value);
+    void setAvailableCents(int64_t value);
 
     /// <summary>
     /// BalanceCents is the prepaid wallet&#39;s balance, in US cents.
     /// </summary>
-    int32_t getBalanceCents() const;
+    int64_t getBalanceCents() const;
     bool balanceCentsIsSet() const;
     void unsetBalanceCents();
-    void setBalanceCents(int32_t value);
+    void setBalanceCents(int64_t value);
 
     /// <summary>
     /// ByCategory is the window&#39;s spend split by ledger category, largest first.
@@ -92,18 +92,18 @@ public:
     /// <summary>
     /// MTDCents is commerce&#39;s authoritative month-to-date consumed figure, which is a different period from the window and is not derived from it.
     /// </summary>
-    int32_t getMtdCents() const;
+    int64_t getMtdCents() const;
     bool mtdCentsIsSet() const;
     void unsetMtdCents();
-    void setMtdCents(int32_t value);
+    void setMtdCents(int64_t value);
 
     /// <summary>
     /// OverageCents is month-to-date consumption beyond the plan&#39;s allowance.
     /// </summary>
-    int32_t getOverageCents() const;
+    int64_t getOverageCents() const;
     bool overageCentsIsSet() const;
     void unsetOverageCents();
-    void setOverageCents(int32_t value);
+    void setOverageCents(int64_t value);
 
     /// <summary>
     /// Series is the window&#39;s spend over time, gap-filled at the window&#39;s interval.
@@ -124,29 +124,29 @@ public:
     /// <summary>
     /// TotalCents is consumption over the requested window, in US cents. It is self-consistent with ByCategory and Series.
     /// </summary>
-    int32_t getTotalCents() const;
+    int64_t getTotalCents() const;
     bool totalCentsIsSet() const;
     void unsetTotalCents();
-    void setTotalCents(int32_t value);
+    void setTotalCents(int64_t value);
 
 
 protected:
     bool m_Available;
     bool m_AvailableIsSet;
 
-    int32_t m_AvailableCents;
+    int64_t m_AvailableCents;
     bool m_AvailableCentsIsSet;
 
-    int32_t m_BalanceCents;
+    int64_t m_BalanceCents;
     bool m_BalanceCentsIsSet;
 
     std::vector<std::shared_ptr<CategorySpend>> m_ByCategory;
     bool m_ByCategoryIsSet;
 
-    int32_t m_MtdCents;
+    int64_t m_MtdCents;
     bool m_MtdCentsIsSet;
 
-    int32_t m_OverageCents;
+    int64_t m_OverageCents;
     bool m_OverageCentsIsSet;
 
     std::vector<std::shared_ptr<SpendPoint>> m_Series;
@@ -155,7 +155,7 @@ protected:
     utility::string_t m_Source;
     bool m_SourceIsSet;
 
-    int32_t m_TotalCents;
+    int64_t m_TotalCents;
     bool m_TotalCentsIsSet;
 
 };

@@ -22,13 +22,13 @@ SeoMetric::SeoMetric()
     m_CompetitionIsSet = false;
     m_Cpc = 0.0;
     m_CpcIsSet = false;
-    m_Difficulty = 0;
+    m_Difficulty = 0L;
     m_DifficultyIsSet = false;
     m_Keyword = utility::conversions::to_string_t("");
     m_KeywordIsSet = false;
     m_Level = utility::conversions::to_string_t("");
     m_LevelIsSet = false;
-    m_Volume = 0;
+    m_Volume = 0L;
     m_VolumeIsSet = false;
 }
 
@@ -108,7 +108,7 @@ bool SeoMetric::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("difficulty")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDifficulty;
+            int64_t refVal_setDifficulty;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDifficulty);
             setDifficulty(refVal_setDifficulty);
             
@@ -141,7 +141,7 @@ bool SeoMetric::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("volume")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVolume;
+            int64_t refVal_setVolume;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVolume);
             setVolume(refVal_setVolume);
             
@@ -206,7 +206,7 @@ bool SeoMetric::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("difficulty"))))
     {
-        int32_t refVal_setDifficulty;
+        int64_t refVal_setDifficulty;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("difficulty"))), refVal_setDifficulty );
         setDifficulty(refVal_setDifficulty);
     }
@@ -224,7 +224,7 @@ bool SeoMetric::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("volume"))))
     {
-        int32_t refVal_setVolume;
+        int64_t refVal_setVolume;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("volume"))), refVal_setVolume );
         setVolume(refVal_setVolume);
     }
@@ -274,13 +274,13 @@ void SeoMetric::unsetCpc()
 {
     m_CpcIsSet = false;
 }
-int32_t SeoMetric::getDifficulty() const
+int64_t SeoMetric::getDifficulty() const
 {
     return m_Difficulty;
 }
 
 
-void SeoMetric::setDifficulty(int32_t value)
+void SeoMetric::setDifficulty(int64_t value)
 {
     m_Difficulty = value;
     m_DifficultyIsSet = true;
@@ -337,13 +337,13 @@ void SeoMetric::unsetLevel()
 {
     m_LevelIsSet = false;
 }
-int32_t SeoMetric::getVolume() const
+int64_t SeoMetric::getVolume() const
 {
     return m_Volume;
 }
 
 
-void SeoMetric::setVolume(int32_t value)
+void SeoMetric::setVolume(int64_t value)
 {
     m_Volume = value;
     m_VolumeIsSet = true;

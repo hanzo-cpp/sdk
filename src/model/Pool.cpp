@@ -20,9 +20,9 @@ Pool::Pool()
 {
     m_At = utility::conversions::to_string_t("");
     m_AtIsSet = false;
-    m_Count = 0;
+    m_Count = 0L;
     m_CountIsSet = false;
-    m_Fee = 0;
+    m_Fee = 0L;
     m_FeeIsSet = false;
     m_Locked = utility::conversions::to_string_t("");
     m_LockedIsSet = false;
@@ -116,7 +116,7 @@ bool Pool::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("count")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCount;
+            int64_t refVal_setCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCount);
             setCount(refVal_setCount);
             
@@ -127,7 +127,7 @@ bool Pool::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("fee")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFee;
+            int64_t refVal_setFee;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFee);
             setFee(refVal_setFee);
             
@@ -264,13 +264,13 @@ bool Pool::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("count"))))
     {
-        int32_t refVal_setCount;
+        int64_t refVal_setCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("count"))), refVal_setCount );
         setCount(refVal_setCount);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("fee"))))
     {
-        int32_t refVal_setFee;
+        int64_t refVal_setFee;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("fee"))), refVal_setFee );
         setFee(refVal_setFee);
     }
@@ -335,13 +335,13 @@ void Pool::unsetAt()
 {
     m_AtIsSet = false;
 }
-int32_t Pool::getCount() const
+int64_t Pool::getCount() const
 {
     return m_Count;
 }
 
 
-void Pool::setCount(int32_t value)
+void Pool::setCount(int64_t value)
 {
     m_Count = value;
     m_CountIsSet = true;
@@ -356,13 +356,13 @@ void Pool::unsetCount()
 {
     m_CountIsSet = false;
 }
-int32_t Pool::getFee() const
+int64_t Pool::getFee() const
 {
     return m_Fee;
 }
 
 
-void Pool::setFee(int32_t value)
+void Pool::setFee(int64_t value)
 {
     m_Fee = value;
     m_FeeIsSet = true;

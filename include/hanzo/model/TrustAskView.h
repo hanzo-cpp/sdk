@@ -55,18 +55,18 @@ public:
     /// <summary>
     /// CreatedAt is when the ask arrived, in unix milliseconds.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// DecidedAt is when it was answered, in unix milliseconds; 0 while open.
     /// </summary>
-    int32_t getDecidedAt() const;
+    int64_t getDecidedAt() const;
     bool decidedAtIsSet() const;
     void unsetDecidedAt();
-    void setDecidedAt(int32_t value);
+    void setDecidedAt(int64_t value);
 
     /// <summary>
     /// DecidedBy is who answered it.
@@ -87,10 +87,10 @@ public:
     /// <summary>
     /// ExpiresAt is when a granted ask closes, in unix milliseconds.
     /// </summary>
-    int32_t getExpiresAt() const;
+    int64_t getExpiresAt() const;
     bool expiresAtIsSet() const;
     void unsetExpiresAt();
-    void setExpiresAt(int32_t value);
+    void setExpiresAt(int64_t value);
 
     /// <summary>
     /// ID is the request&#39;s id.
@@ -158,10 +158,10 @@ public:
 
 
 protected:
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
-    int32_t m_DecidedAt;
+    int64_t m_DecidedAt;
     bool m_DecidedAtIsSet;
 
     utility::string_t m_DecidedBy;
@@ -170,7 +170,7 @@ protected:
     utility::string_t m_Email;
     bool m_EmailIsSet;
 
-    int32_t m_ExpiresAt;
+    int64_t m_ExpiresAt;
     bool m_ExpiresAtIsSet;
 
     utility::string_t m_Id;

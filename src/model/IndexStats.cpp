@@ -18,7 +18,7 @@ namespace model {
 
 IndexStats::IndexStats()
 {
-    m_DatabaseSize = 0;
+    m_DatabaseSize = 0L;
     m_DatabaseSizeIsSet = false;
     m_IndexesIsSet = false;
 }
@@ -57,7 +57,7 @@ bool IndexStats::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("databaseSize")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDatabaseSize;
+            int64_t refVal_setDatabaseSize;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDatabaseSize);
             setDatabaseSize(refVal_setDatabaseSize);
             
@@ -105,7 +105,7 @@ bool IndexStats::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("databaseSize"))))
     {
-        int32_t refVal_setDatabaseSize;
+        int64_t refVal_setDatabaseSize;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("databaseSize"))), refVal_setDatabaseSize );
         setDatabaseSize(refVal_setDatabaseSize);
     }
@@ -119,13 +119,13 @@ bool IndexStats::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 }
 
 
-int32_t IndexStats::getDatabaseSize() const
+int64_t IndexStats::getDatabaseSize() const
 {
     return m_DatabaseSize;
 }
 
 
-void IndexStats::setDatabaseSize(int32_t value)
+void IndexStats::setDatabaseSize(int64_t value)
 {
     m_DatabaseSize = value;
     m_DatabaseSizeIsSet = true;

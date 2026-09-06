@@ -48,7 +48,7 @@ Iam_AuditLog::Iam_AuditLog()
     m_RequestUriIsSet = false;
     m_Response = utility::conversions::to_string_t("");
     m_ResponseIsSet = false;
-    m_StatusCode = 0;
+    m_StatusCode = 0L;
     m_StatusCodeIsSet = false;
     m_UpdatedAt = utility::datetime();
     m_UpdatedAtIsSet = false;
@@ -335,7 +335,7 @@ bool Iam_AuditLog::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("statusCode")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStatusCode;
+            int64_t refVal_setStatusCode;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStatusCode);
             setStatusCode(refVal_setStatusCode);
             
@@ -548,7 +548,7 @@ bool Iam_AuditLog::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("statusCode"))))
     {
-        int32_t refVal_setStatusCode;
+        int64_t refVal_setStatusCode;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("statusCode"))), refVal_setStatusCode );
         setStatusCode(refVal_setStatusCode);
     }
@@ -883,13 +883,13 @@ void Iam_AuditLog::unsetResponse()
 {
     m_ResponseIsSet = false;
 }
-int32_t Iam_AuditLog::getStatusCode() const
+int64_t Iam_AuditLog::getStatusCode() const
 {
     return m_StatusCode;
 }
 
 
-void Iam_AuditLog::setStatusCode(int32_t value)
+void Iam_AuditLog::setStatusCode(int64_t value)
 {
     m_StatusCode = value;
     m_StatusCodeIsSet = true;

@@ -30,7 +30,7 @@ PromptDetail::PromptDetail()
     m_TagsIsSet = false;
     m_Type = utility::conversions::to_string_t("");
     m_TypeIsSet = false;
-    m_Version = 0;
+    m_Version = 0L;
     m_VersionIsSet = false;
     m_VersionHistoryIsSet = false;
 }
@@ -181,7 +181,7 @@ bool PromptDetail::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("version")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVersion;
+            int64_t refVal_setVersion;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVersion);
             setVersion(refVal_setVersion);
             
@@ -299,7 +299,7 @@ bool PromptDetail::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("version"))))
     {
-        int32_t refVal_setVersion;
+        int64_t refVal_setVersion;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("version"))), refVal_setVersion );
         setVersion(refVal_setVersion);
     }
@@ -460,13 +460,13 @@ void PromptDetail::unsetType()
 {
     m_TypeIsSet = false;
 }
-int32_t PromptDetail::getVersion() const
+int64_t PromptDetail::getVersion() const
 {
     return m_Version;
 }
 
 
-void PromptDetail::setVersion(int32_t value)
+void PromptDetail::setVersion(int64_t value)
 {
     m_Version = value;
     m_VersionIsSet = true;

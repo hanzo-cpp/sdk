@@ -43,7 +43,7 @@ O11y_PagerdutyConfig::O11y_PagerdutyConfig()
     m_SeverityIsSet = false;
     m_Source = utility::conversions::to_string_t("");
     m_SourceIsSet = false;
-    m_Timeout = 0;
+    m_Timeout = 0L;
     m_TimeoutIsSet = false;
 }
 
@@ -353,7 +353,7 @@ bool O11y_PagerdutyConfig::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("timeout")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTimeout;
+            int64_t refVal_setTimeout;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTimeout);
             setTimeout(refVal_setTimeout);
             
@@ -571,7 +571,7 @@ bool O11y_PagerdutyConfig::fromMultiPart(std::shared_ptr<MultipartFormData> mult
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("timeout"))))
     {
-        int32_t refVal_setTimeout;
+        int64_t refVal_setTimeout;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("timeout"))), refVal_setTimeout );
         setTimeout(refVal_setTimeout);
     }
@@ -940,13 +940,13 @@ void O11y_PagerdutyConfig::unsetSource()
 {
     m_SourceIsSet = false;
 }
-int32_t O11y_PagerdutyConfig::getTimeout() const
+int64_t O11y_PagerdutyConfig::getTimeout() const
 {
     return m_Timeout;
 }
 
 
-void O11y_PagerdutyConfig::setTimeout(int32_t value)
+void O11y_PagerdutyConfig::setTimeout(int64_t value)
 {
     m_Timeout = value;
     m_TimeoutIsSet = true;

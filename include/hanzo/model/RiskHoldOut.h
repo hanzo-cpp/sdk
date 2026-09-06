@@ -54,18 +54,18 @@ public:
     /// <summary>
     /// Changed is how many records moved into that state. A record already in it is not counted and is not an error: the op is idempotent, so a retry after a network failure is safe.
     /// </summary>
-    int32_t getChanged() const;
+    int64_t getChanged() const;
     bool changedIsSet() const;
     void unsetChanged();
-    void setChanged(int32_t value);
+    void setChanged(int64_t value);
 
     /// <summary>
     /// Held is how many records this tenant is now holding, at any age. Retention never disposes of one.
     /// </summary>
-    int32_t getHeld() const;
+    int64_t getHeld() const;
     bool heldIsSet() const;
     void unsetHeld();
-    void setHeld(int32_t value);
+    void setHeld(int64_t value);
 
     /// <summary>
     /// Hold echoes the state asked for.
@@ -78,23 +78,23 @@ public:
     /// <summary>
     /// Missing is how many of the named ids this tenant does not hold. It is reported rather than refused, so a sweep over a list that includes disposed records still places every hold it can — but it is REPORTED, because a hold that silently did nothing is a compliance control that lies.
     /// </summary>
-    int32_t getMissing() const;
+    int64_t getMissing() const;
     bool missingIsSet() const;
     void unsetMissing();
-    void setMissing(int32_t value);
+    void setMissing(int64_t value);
 
 
 protected:
-    int32_t m_Changed;
+    int64_t m_Changed;
     bool m_ChangedIsSet;
 
-    int32_t m_Held;
+    int64_t m_Held;
     bool m_HeldIsSet;
 
     bool m_Hold;
     bool m_HoldIsSet;
 
-    int32_t m_Missing;
+    int64_t m_Missing;
     bool m_MissingIsSet;
 
 };

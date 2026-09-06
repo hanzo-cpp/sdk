@@ -30,7 +30,7 @@ Waiting::Waiting()
     m_NameIsSet = false;
     m_Org = utility::conversions::to_string_t("");
     m_OrgIsSet = false;
-    m_Since = 0;
+    m_Since = 0L;
     m_SinceIsSet = false;
 }
 
@@ -159,7 +159,7 @@ bool Waiting::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("since")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSince;
+            int64_t refVal_setSince;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSince);
             setSince(refVal_setSince);
             
@@ -252,7 +252,7 @@ bool Waiting::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("since"))))
     {
-        int32_t refVal_setSince;
+        int64_t refVal_setSince;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("since"))), refVal_setSince );
         setSince(refVal_setSince);
     }
@@ -386,13 +386,13 @@ void Waiting::unsetOrg()
 {
     m_OrgIsSet = false;
 }
-int32_t Waiting::getSince() const
+int64_t Waiting::getSince() const
 {
     return m_Since;
 }
 
 
-void Waiting::setSince(int32_t value)
+void Waiting::setSince(int64_t value)
 {
     m_Since = value;
     m_SinceIsSet = true;

@@ -18,11 +18,11 @@ namespace model {
 
 StatusBreakdown::StatusBreakdown()
 {
-    m_Error = 0;
+    m_Error = 0L;
     m_ErrorIsSet = false;
-    m_Success = 0;
+    m_Success = 0L;
     m_SuccessIsSet = false;
-    m_Timeout = 0;
+    m_Timeout = 0L;
     m_TimeoutIsSet = false;
 }
 
@@ -65,7 +65,7 @@ bool StatusBreakdown::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("error")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setError;
+            int64_t refVal_setError;
             ok &= ModelBase::fromJson(fieldValue, refVal_setError);
             setError(refVal_setError);
             
@@ -76,7 +76,7 @@ bool StatusBreakdown::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("success")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSuccess;
+            int64_t refVal_setSuccess;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSuccess);
             setSuccess(refVal_setSuccess);
             
@@ -87,7 +87,7 @@ bool StatusBreakdown::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("timeout")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTimeout;
+            int64_t refVal_setTimeout;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTimeout);
             setTimeout(refVal_setTimeout);
             
@@ -128,19 +128,19 @@ bool StatusBreakdown::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("error"))))
     {
-        int32_t refVal_setError;
+        int64_t refVal_setError;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("error"))), refVal_setError );
         setError(refVal_setError);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("success"))))
     {
-        int32_t refVal_setSuccess;
+        int64_t refVal_setSuccess;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("success"))), refVal_setSuccess );
         setSuccess(refVal_setSuccess);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("timeout"))))
     {
-        int32_t refVal_setTimeout;
+        int64_t refVal_setTimeout;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("timeout"))), refVal_setTimeout );
         setTimeout(refVal_setTimeout);
     }
@@ -148,13 +148,13 @@ bool StatusBreakdown::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 }
 
 
-int32_t StatusBreakdown::getError() const
+int64_t StatusBreakdown::getError() const
 {
     return m_Error;
 }
 
 
-void StatusBreakdown::setError(int32_t value)
+void StatusBreakdown::setError(int64_t value)
 {
     m_Error = value;
     m_ErrorIsSet = true;
@@ -169,13 +169,13 @@ void StatusBreakdown::unsetError()
 {
     m_ErrorIsSet = false;
 }
-int32_t StatusBreakdown::getSuccess() const
+int64_t StatusBreakdown::getSuccess() const
 {
     return m_Success;
 }
 
 
-void StatusBreakdown::setSuccess(int32_t value)
+void StatusBreakdown::setSuccess(int64_t value)
 {
     m_Success = value;
     m_SuccessIsSet = true;
@@ -190,13 +190,13 @@ void StatusBreakdown::unsetSuccess()
 {
     m_SuccessIsSet = false;
 }
-int32_t StatusBreakdown::getTimeout() const
+int64_t StatusBreakdown::getTimeout() const
 {
     return m_Timeout;
 }
 
 
-void StatusBreakdown::setTimeout(int32_t value)
+void StatusBreakdown::setTimeout(int64_t value)
 {
     m_Timeout = value;
     m_TimeoutIsSet = true;

@@ -71,18 +71,18 @@ public:
     /// <summary>
     /// Learned is how many events are behind the masses.
     /// </summary>
-    int32_t getLearned() const;
+    int64_t getLearned() const;
     bool learnedIsSet() const;
     void unsetLearned();
-    void setLearned(int32_t value);
+    void setLearned(int64_t value);
 
     /// <summary>
     /// Sequence is this value&#39;s place in YOUR organisation&#39;s own history, from 1 and contiguous until retention disposes of the oldest.
     /// </summary>
-    int32_t getSequence() const;
+    int64_t getSequence() const;
     bool sequenceIsSet() const;
     void unsetSequence();
-    void setSequence(int32_t value);
+    void setSequence(int64_t value);
 
     /// <summary>
     /// Shape NAMES the model space the masses are only meaningful against, as &#x60;&lt;family&gt;:&lt;digest&gt;&#x60; — the KIND of model, and that family&#39;s own digest over the feature inventory in order and the detector&#39;s geometry parameters. Compare it with the &#x60;shape&#x60; on your model state (GET /v1/risk/state): equal means adopting this value restores masses into the space already running, and different means adopting it REPLANTS the model into the space this value describes. That is what makes a searched shape installable.  A DIFFERENT FAMILY IS NOT ADOPTABLE AT ALL, and that is the one difference the family term makes here: a different geometry in the same family is a replant, and a different family is a refusal naming both — its masses do not describe your model in any space.
@@ -108,10 +108,10 @@ protected:
     utility::string_t m_At;
     bool m_AtIsSet;
 
-    int32_t m_Learned;
+    int64_t m_Learned;
     bool m_LearnedIsSet;
 
-    int32_t m_Sequence;
+    int64_t m_Sequence;
     bool m_SequenceIsSet;
 
     utility::string_t m_Shape;

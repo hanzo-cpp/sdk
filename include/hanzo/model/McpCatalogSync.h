@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// Added is how many listings the catalog did not have before.
     /// </summary>
-    int32_t getAdded() const;
+    int64_t getAdded() const;
     bool addedIsSet() const;
     void unsetAdded();
-    void setAdded(int32_t value);
+    void setAdded(int64_t value);
 
     /// <summary>
     /// Registry is the upstream this pass read.
@@ -71,31 +71,31 @@ public:
     /// <summary>
     /// Total is how many listings the catalog holds now.
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
     /// <summary>
     /// Updated is how many the publisher has changed since we last looked.
     /// </summary>
-    int32_t getUpdated() const;
+    int64_t getUpdated() const;
     bool updatedIsSet() const;
     void unsetUpdated();
-    void setUpdated(int32_t value);
+    void setUpdated(int64_t value);
 
 
 protected:
-    int32_t m_Added;
+    int64_t m_Added;
     bool m_AddedIsSet;
 
     utility::string_t m_Registry;
     bool m_RegistryIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
-    int32_t m_Updated;
+    int64_t m_Updated;
     bool m_UpdatedIsSet;
 
 };

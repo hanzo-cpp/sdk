@@ -22,11 +22,11 @@ O11y_PostableProfile::O11y_PostableProfile()
     m_Existing_observability_toolIsSet = false;
     m_Has_existing_observability_tool = false;
     m_Has_existing_observability_toolIsSet = false;
-    m_Logs_scale_per_day_in_gb = 0;
+    m_Logs_scale_per_day_in_gb = 0L;
     m_Logs_scale_per_day_in_gbIsSet = false;
-    m_Number_of_hosts = 0;
+    m_Number_of_hosts = 0L;
     m_Number_of_hostsIsSet = false;
-    m_Number_of_services = 0;
+    m_Number_of_services = 0L;
     m_Number_of_servicesIsSet = false;
     m_Reasons_for_interest_in_o11yIsSet = false;
     m_Timeline_for_migrating_to_o11y = utility::conversions::to_string_t("");
@@ -128,7 +128,7 @@ bool O11y_PostableProfile::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("logs_scale_per_day_in_gb")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLogsScalePerDayInGb;
+            int64_t refVal_setLogsScalePerDayInGb;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLogsScalePerDayInGb);
             setLogsScalePerDayInGb(refVal_setLogsScalePerDayInGb);
             
@@ -139,7 +139,7 @@ bool O11y_PostableProfile::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("number_of_hosts")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNumberOfHosts;
+            int64_t refVal_setNumberOfHosts;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNumberOfHosts);
             setNumberOfHosts(refVal_setNumberOfHosts);
             
@@ -150,7 +150,7 @@ bool O11y_PostableProfile::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("number_of_services")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNumberOfServices;
+            int64_t refVal_setNumberOfServices;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNumberOfServices);
             setNumberOfServices(refVal_setNumberOfServices);
             
@@ -271,19 +271,19 @@ bool O11y_PostableProfile::fromMultiPart(std::shared_ptr<MultipartFormData> mult
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("logs_scale_per_day_in_gb"))))
     {
-        int32_t refVal_setLogsScalePerDayInGb;
+        int64_t refVal_setLogsScalePerDayInGb;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("logs_scale_per_day_in_gb"))), refVal_setLogsScalePerDayInGb );
         setLogsScalePerDayInGb(refVal_setLogsScalePerDayInGb);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("number_of_hosts"))))
     {
-        int32_t refVal_setNumberOfHosts;
+        int64_t refVal_setNumberOfHosts;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("number_of_hosts"))), refVal_setNumberOfHosts );
         setNumberOfHosts(refVal_setNumberOfHosts);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("number_of_services"))))
     {
-        int32_t refVal_setNumberOfServices;
+        int64_t refVal_setNumberOfServices;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("number_of_services"))), refVal_setNumberOfServices );
         setNumberOfServices(refVal_setNumberOfServices);
     }
@@ -357,13 +357,13 @@ void O11y_PostableProfile::unsetHas_existing_observability_tool()
 {
     m_Has_existing_observability_toolIsSet = false;
 }
-int32_t O11y_PostableProfile::getLogsScalePerDayInGb() const
+int64_t O11y_PostableProfile::getLogsScalePerDayInGb() const
 {
     return m_Logs_scale_per_day_in_gb;
 }
 
 
-void O11y_PostableProfile::setLogsScalePerDayInGb(int32_t value)
+void O11y_PostableProfile::setLogsScalePerDayInGb(int64_t value)
 {
     m_Logs_scale_per_day_in_gb = value;
     m_Logs_scale_per_day_in_gbIsSet = true;
@@ -378,13 +378,13 @@ void O11y_PostableProfile::unsetLogs_scale_per_day_in_gb()
 {
     m_Logs_scale_per_day_in_gbIsSet = false;
 }
-int32_t O11y_PostableProfile::getNumberOfHosts() const
+int64_t O11y_PostableProfile::getNumberOfHosts() const
 {
     return m_Number_of_hosts;
 }
 
 
-void O11y_PostableProfile::setNumberOfHosts(int32_t value)
+void O11y_PostableProfile::setNumberOfHosts(int64_t value)
 {
     m_Number_of_hosts = value;
     m_Number_of_hostsIsSet = true;
@@ -399,13 +399,13 @@ void O11y_PostableProfile::unsetNumber_of_hosts()
 {
     m_Number_of_hostsIsSet = false;
 }
-int32_t O11y_PostableProfile::getNumberOfServices() const
+int64_t O11y_PostableProfile::getNumberOfServices() const
 {
     return m_Number_of_services;
 }
 
 
-void O11y_PostableProfile::setNumberOfServices(int32_t value)
+void O11y_PostableProfile::setNumberOfServices(int64_t value)
 {
     m_Number_of_services = value;
     m_Number_of_servicesIsSet = true;

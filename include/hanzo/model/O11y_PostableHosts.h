@@ -58,10 +58,10 @@ public:
     /// O11y_PostableHosts members
 
 
-    int32_t getEnd() const;
+    int64_t getEnd() const;
     bool endIsSet() const;
     void unsetEnd();
-    void setEnd(int32_t value);
+    void setEnd(int64_t value);
 
     std::shared_ptr<O11y_HostFilter> getFilter() const;
     bool filterIsSet() const;
@@ -73,29 +73,29 @@ public:
     void unsetGroupBy();
     void setGroupBy(const std::vector<std::shared_ptr<O11y_GroupByKey>>& value);
 
-    int32_t getLimit() const;
+    int64_t getLimit() const;
     bool limitIsSet() const;
     void unsetLimit();
-    void setLimit(int32_t value);
+    void setLimit(int64_t value);
 
-    int32_t getOffset() const;
+    int64_t getOffset() const;
     bool offsetIsSet() const;
     void unsetOffset();
-    void setOffset(int32_t value);
+    void setOffset(int64_t value);
 
     std::shared_ptr<O11y_querybuildertypesv5_OrderBy> getOrderBy() const;
     bool orderByIsSet() const;
     void unsetOrderBy();
     void setOrderBy(const std::shared_ptr<O11y_querybuildertypesv5_OrderBy>& value);
 
-    int32_t getStart() const;
+    int64_t getStart() const;
     bool startIsSet() const;
     void unsetStart();
-    void setStart(int32_t value);
+    void setStart(int64_t value);
 
 
 protected:
-    int32_t m_End;
+    int64_t m_End;
     bool m_EndIsSet;
 
     std::shared_ptr<O11y_HostFilter> m_Filter;
@@ -104,16 +104,16 @@ protected:
     std::vector<std::shared_ptr<O11y_GroupByKey>> m_GroupBy;
     bool m_GroupByIsSet;
 
-    int32_t m_Limit;
+    int64_t m_Limit;
     bool m_LimitIsSet;
 
-    int32_t m_Offset;
+    int64_t m_Offset;
     bool m_OffsetIsSet;
 
     std::shared_ptr<O11y_querybuildertypesv5_OrderBy> m_OrderBy;
     bool m_OrderByIsSet;
 
-    int32_t m_Start;
+    int64_t m_Start;
     bool m_StartIsSet;
 
 };

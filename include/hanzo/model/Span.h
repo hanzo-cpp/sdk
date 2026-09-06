@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// EndLine is the last line of the span, inclusive. It equals Line for a one-line span rather than being zero or absent.
     /// </summary>
-    int32_t getEndLine() const;
+    int64_t getEndLine() const;
     bool endLineIsSet() const;
     void unsetEndLine();
-    void setEndLine(int32_t value);
+    void setEndLine(int64_t value);
 
     /// <summary>
     /// File is the path inside the repo, relative to its root and never absolute.
@@ -79,10 +79,10 @@ public:
     /// <summary>
     /// Line is where the span starts, 1-based, as an editor counts.
     /// </summary>
-    int32_t getLine() const;
+    int64_t getLine() const;
     bool lineIsSet() const;
     void unsetLine();
-    void setLine(int32_t value);
+    void setLine(int64_t value);
 
     /// <summary>
     /// Repo is the indexed repository the span was found in, as it was indexed (\&quot;owner/name\&quot;). A search may be scoped to one repo or run across all of them, so this is how a caller tells the results apart.
@@ -134,7 +134,7 @@ public:
 
 
 protected:
-    int32_t m_EndLine;
+    int64_t m_EndLine;
     bool m_EndLineIsSet;
 
     utility::string_t m_file;
@@ -143,7 +143,7 @@ protected:
     utility::string_t m_Kind;
     bool m_KindIsSet;
 
-    int32_t m_Line;
+    int64_t m_Line;
     bool m_LineIsSet;
 
     utility::string_t m_Repo;

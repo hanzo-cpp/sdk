@@ -84,6 +84,8 @@ Iam_User::Iam_User()
     m_CurrencyIsSet = false;
     m_Custom = utility::conversions::to_string_t("");
     m_CustomIsSet = false;
+    m_Custom10 = utility::conversions::to_string_t("");
+    m_Custom10IsSet = false;
     m_Custom2 = utility::conversions::to_string_t("");
     m_Custom2IsSet = false;
     m_Custom3 = utility::conversions::to_string_t("");
@@ -100,8 +102,6 @@ Iam_User::Iam_User()
     m_Custom8IsSet = false;
     m_Custom9 = utility::conversions::to_string_t("");
     m_Custom9IsSet = false;
-    m_Custom10 = utility::conversions::to_string_t("");
-    m_Custom10IsSet = false;
     m_Dailymotion = utility::conversions::to_string_t("");
     m_DailymotionIsSet = false;
     m_Deezer = utility::conversions::to_string_t("");
@@ -193,7 +193,7 @@ Iam_User::Iam_User()
     m_IsVerifiedIsSet = false;
     m_Kakao = utility::conversions::to_string_t("");
     m_KakaoIsSet = false;
-    m_Karma = 0;
+    m_Karma = 0L;
     m_KarmaIsSet = false;
     m_Kwai = utility::conversions::to_string_t("");
     m_KwaiIsSet = false;
@@ -292,7 +292,7 @@ Iam_User::Iam_User()
     m_PropertiesIsSet = false;
     m_Qq = utility::conversions::to_string_t("");
     m_QqIsSet = false;
-    m_Ranking = 0;
+    m_Ranking = 0L;
     m_RankingIsSet = false;
     m_RealName = utility::conversions::to_string_t("");
     m_RealNameIsSet = false;
@@ -305,11 +305,11 @@ Iam_User::Iam_User()
     m_RegisterTypeIsSet = false;
     m_Salesforce = utility::conversions::to_string_t("");
     m_SalesforceIsSet = false;
-    m_Score = 0;
+    m_Score = 0L;
     m_ScoreIsSet = false;
     m_Shopify = utility::conversions::to_string_t("");
     m_ShopifyIsSet = false;
-    m_SigninWrongTimes = 0;
+    m_SigninWrongTimes = 0L;
     m_SigninWrongTimesIsSet = false;
     m_SignupApplication = utility::conversions::to_string_t("");
     m_SignupApplicationIsSet = false;
@@ -563,6 +563,11 @@ web::json::value Iam_User::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("custom"))] = ModelBase::toJson(m_Custom);
     }
+    if(m_Custom10IsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("custom10"))] = ModelBase::toJson(m_Custom10);
+    }
     if(m_Custom2IsSet)
     {
         
@@ -602,11 +607,6 @@ web::json::value Iam_User::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("custom9"))] = ModelBase::toJson(m_Custom9);
-    }
-    if(m_Custom10IsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("custom10"))] = ModelBase::toJson(m_Custom10);
     }
     if(m_DailymotionIsSet)
     {
@@ -1700,6 +1700,17 @@ bool Iam_User::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("custom10"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("custom10")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setCustom10;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setCustom10);
+            setCustom10(refVal_setCustom10);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("custom2"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("custom2")));
@@ -1785,17 +1796,6 @@ bool Iam_User::fromJson(const web::json::value& val)
             utility::string_t refVal_setCustom9;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCustom9);
             setCustom9(refVal_setCustom9);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("custom10"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("custom10")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setCustom10;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setCustom10);
-            setCustom10(refVal_setCustom10);
             
         }
     }
@@ -2310,7 +2310,7 @@ bool Iam_User::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("karma")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setKarma;
+            int64_t refVal_setKarma;
             ok &= ModelBase::fromJson(fieldValue, refVal_setKarma);
             setKarma(refVal_setKarma);
             
@@ -2882,7 +2882,7 @@ bool Iam_User::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("ranking")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRanking;
+            int64_t refVal_setRanking;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRanking);
             setRanking(refVal_setRanking);
             
@@ -2959,7 +2959,7 @@ bool Iam_User::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("score")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setScore;
+            int64_t refVal_setScore;
             ok &= ModelBase::fromJson(fieldValue, refVal_setScore);
             setScore(refVal_setScore);
             
@@ -2981,7 +2981,7 @@ bool Iam_User::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("signinWrongTimes")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSigninWrongTimes;
+            int64_t refVal_setSigninWrongTimes;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSigninWrongTimes);
             setSigninWrongTimes(refVal_setSigninWrongTimes);
             
@@ -3489,6 +3489,10 @@ void Iam_User::toMultipart(std::shared_ptr<MultipartFormData> multipart, const u
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("custom")), m_Custom));
     }
+    if(m_Custom10IsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("custom10")), m_Custom10));
+    }
     if(m_Custom2IsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("custom2")), m_Custom2));
@@ -3520,10 +3524,6 @@ void Iam_User::toMultipart(std::shared_ptr<MultipartFormData> multipart, const u
     if(m_Custom9IsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("custom9")), m_Custom9));
-    }
-    if(m_Custom10IsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("custom10")), m_Custom10));
     }
     if(m_DailymotionIsSet)
     {
@@ -4306,6 +4306,12 @@ bool Iam_User::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("custom"))), refVal_setCustom );
         setCustom(refVal_setCustom);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("custom10"))))
+    {
+        utility::string_t refVal_setCustom10;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("custom10"))), refVal_setCustom10 );
+        setCustom10(refVal_setCustom10);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("custom2"))))
     {
         utility::string_t refVal_setCustom2;
@@ -4353,12 +4359,6 @@ bool Iam_User::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
         utility::string_t refVal_setCustom9;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("custom9"))), refVal_setCustom9 );
         setCustom9(refVal_setCustom9);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("custom10"))))
-    {
-        utility::string_t refVal_setCustom10;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("custom10"))), refVal_setCustom10 );
-        setCustom10(refVal_setCustom10);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("dailymotion"))))
     {
@@ -4638,7 +4638,7 @@ bool Iam_User::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("karma"))))
     {
-        int32_t refVal_setKarma;
+        int64_t refVal_setKarma;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("karma"))), refVal_setKarma );
         setKarma(refVal_setKarma);
     }
@@ -4950,7 +4950,7 @@ bool Iam_User::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("ranking"))))
     {
-        int32_t refVal_setRanking;
+        int64_t refVal_setRanking;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ranking"))), refVal_setRanking );
         setRanking(refVal_setRanking);
     }
@@ -4992,7 +4992,7 @@ bool Iam_User::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("score"))))
     {
-        int32_t refVal_setScore;
+        int64_t refVal_setScore;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("score"))), refVal_setScore );
         setScore(refVal_setScore);
     }
@@ -5004,7 +5004,7 @@ bool Iam_User::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("signinWrongTimes"))))
     {
-        int32_t refVal_setSigninWrongTimes;
+        int64_t refVal_setSigninWrongTimes;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("signinWrongTimes"))), refVal_setSigninWrongTimes );
         setSigninWrongTimes(refVal_setSigninWrongTimes);
     }
@@ -5939,6 +5939,27 @@ void Iam_User::unsetCustom()
 {
     m_CustomIsSet = false;
 }
+utility::string_t Iam_User::getCustom10() const
+{
+    return m_Custom10;
+}
+
+
+void Iam_User::setCustom10(const utility::string_t& value)
+{
+    m_Custom10 = value;
+    m_Custom10IsSet = true;
+}
+
+bool Iam_User::custom10IsSet() const
+{
+    return m_Custom10IsSet;
+}
+
+void Iam_User::unsetCustom10()
+{
+    m_Custom10IsSet = false;
+}
 utility::string_t Iam_User::getCustom2() const
 {
     return m_Custom2;
@@ -6106,27 +6127,6 @@ bool Iam_User::custom9IsSet() const
 void Iam_User::unsetCustom9()
 {
     m_Custom9IsSet = false;
-}
-utility::string_t Iam_User::getCustom10() const
-{
-    return m_Custom10;
-}
-
-
-void Iam_User::setCustom10(const utility::string_t& value)
-{
-    m_Custom10 = value;
-    m_Custom10IsSet = true;
-}
-
-bool Iam_User::custom10IsSet() const
-{
-    return m_Custom10IsSet;
-}
-
-void Iam_User::unsetCustom10()
-{
-    m_Custom10IsSet = false;
 }
 utility::string_t Iam_User::getDailymotion() const
 {
@@ -7094,13 +7094,13 @@ void Iam_User::unsetKakao()
 {
     m_KakaoIsSet = false;
 }
-int32_t Iam_User::getKarma() const
+int64_t Iam_User::getKarma() const
 {
     return m_Karma;
 }
 
 
-void Iam_User::setKarma(int32_t value)
+void Iam_User::setKarma(int64_t value)
 {
     m_Karma = value;
     m_KarmaIsSet = true;
@@ -8186,13 +8186,13 @@ void Iam_User::unsetQq()
 {
     m_QqIsSet = false;
 }
-int32_t Iam_User::getRanking() const
+int64_t Iam_User::getRanking() const
 {
     return m_Ranking;
 }
 
 
-void Iam_User::setRanking(int32_t value)
+void Iam_User::setRanking(int64_t value)
 {
     m_Ranking = value;
     m_RankingIsSet = true;
@@ -8333,13 +8333,13 @@ void Iam_User::unsetSalesforce()
 {
     m_SalesforceIsSet = false;
 }
-int32_t Iam_User::getScore() const
+int64_t Iam_User::getScore() const
 {
     return m_Score;
 }
 
 
-void Iam_User::setScore(int32_t value)
+void Iam_User::setScore(int64_t value)
 {
     m_Score = value;
     m_ScoreIsSet = true;
@@ -8375,13 +8375,13 @@ void Iam_User::unsetShopify()
 {
     m_ShopifyIsSet = false;
 }
-int32_t Iam_User::getSigninWrongTimes() const
+int64_t Iam_User::getSigninWrongTimes() const
 {
     return m_SigninWrongTimes;
 }
 
 
-void Iam_User::setSigninWrongTimes(int32_t value)
+void Iam_User::setSigninWrongTimes(int64_t value)
 {
     m_SigninWrongTimes = value;
     m_SigninWrongTimesIsSet = true;

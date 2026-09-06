@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// Colno is the column number.
     /// </summary>
-    int32_t getColno() const;
+    int64_t getColno() const;
     bool colnoIsSet() const;
     void unsetColno();
-    void setColno(int32_t value);
+    void setColno(int64_t value);
 
     /// <summary>
     /// Filename is the file it is in.
@@ -95,10 +95,10 @@ public:
     /// <summary>
     /// Lineno is the line number.
     /// </summary>
-    int32_t getLineno() const;
+    int64_t getLineno() const;
     bool linenoIsSet() const;
     void unsetLineno();
-    void setLineno(int32_t value);
+    void setLineno(int64_t value);
 
     /// <summary>
     /// Module is the module the function is in.
@@ -113,7 +113,7 @@ protected:
     utility::string_t m_AbsPath;
     bool m_AbsPathIsSet;
 
-    int32_t m_Colno;
+    int64_t m_Colno;
     bool m_ColnoIsSet;
 
     utility::string_t m_Filename;
@@ -125,7 +125,7 @@ protected:
     bool m_InApp;
     bool m_InAppIsSet;
 
-    int32_t m_Lineno;
+    int64_t m_Lineno;
     bool m_LinenoIsSet;
 
     utility::string_t m_Module;

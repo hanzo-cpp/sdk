@@ -25,7 +25,7 @@ Route::Route()
     m_MiddlewaresIsSet = false;
     m_PathPrefix = utility::conversions::to_string_t("");
     m_PathPrefixIsSet = false;
-    m_Priority = 0;
+    m_Priority = 0L;
     m_PriorityIsSet = false;
     m_Service = utility::conversions::to_string_t("");
     m_ServiceIsSet = false;
@@ -136,7 +136,7 @@ bool Route::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("priority")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPriority;
+            int64_t refVal_setPriority;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPriority);
             setPriority(refVal_setPriority);
             
@@ -239,7 +239,7 @@ bool Route::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("priority"))))
     {
-        int32_t refVal_setPriority;
+        int64_t refVal_setPriority;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("priority"))), refVal_setPriority );
         setPriority(refVal_setPriority);
     }
@@ -343,13 +343,13 @@ void Route::unsetPathPrefix()
 {
     m_PathPrefixIsSet = false;
 }
-int32_t Route::getPriority() const
+int64_t Route::getPriority() const
 {
     return m_Priority;
 }
 
 
-void Route::setPriority(int32_t value)
+void Route::setPriority(int64_t value)
 {
     m_Priority = value;
     m_PriorityIsSet = true;

@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// ExpiresAt is when the nonce stops being redeemable, as a Unix timestamp.
     /// </summary>
-    int32_t getExpiresAt() const;
+    int64_t getExpiresAt() const;
     bool expiresAtIsSet() const;
     void unsetExpiresAt();
-    void setExpiresAt(int32_t value);
+    void setExpiresAt(int64_t value);
 
     /// <summary>
     /// Message is the EXACT text to personal_sign. It is reconstructed server-side from the validated org, the slot and the nonce at redemption, so signing anything else cannot claim the slot.
@@ -87,14 +87,14 @@ public:
     /// <summary>
     /// TTLSeconds is the challenge lifetime in seconds.
     /// </summary>
-    int32_t getTtlSeconds() const;
+    int64_t getTtlSeconds() const;
     bool ttlSecondsIsSet() const;
     void unsetTtlSeconds();
-    void setTtlSeconds(int32_t value);
+    void setTtlSeconds(int64_t value);
 
 
 protected:
-    int32_t m_ExpiresAt;
+    int64_t m_ExpiresAt;
     bool m_ExpiresAtIsSet;
 
     utility::string_t m_Message;
@@ -106,7 +106,7 @@ protected:
     int32_t m_TokenId;
     bool m_TokenIdIsSet;
 
-    int32_t m_TtlSeconds;
+    int64_t m_TtlSeconds;
     bool m_TtlSecondsIsSet;
 
 };

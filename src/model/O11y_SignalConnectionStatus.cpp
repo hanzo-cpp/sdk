@@ -20,7 +20,7 @@ O11y_SignalConnectionStatus::O11y_SignalConnectionStatus()
 {
     m_Last_received_from = utility::conversions::to_string_t("");
     m_Last_received_fromIsSet = false;
-    m_Last_received_ts_ms = 0;
+    m_Last_received_ts_ms = 0L;
     m_Last_received_ts_msIsSet = false;
 }
 
@@ -69,7 +69,7 @@ bool O11y_SignalConnectionStatus::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("last_received_ts_ms")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLastReceivedTsMs;
+            int64_t refVal_setLastReceivedTsMs;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLastReceivedTsMs);
             setLastReceivedTsMs(refVal_setLastReceivedTsMs);
             
@@ -112,7 +112,7 @@ bool O11y_SignalConnectionStatus::fromMultiPart(std::shared_ptr<MultipartFormDat
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("last_received_ts_ms"))))
     {
-        int32_t refVal_setLastReceivedTsMs;
+        int64_t refVal_setLastReceivedTsMs;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("last_received_ts_ms"))), refVal_setLastReceivedTsMs );
         setLastReceivedTsMs(refVal_setLastReceivedTsMs);
     }
@@ -141,13 +141,13 @@ void O11y_SignalConnectionStatus::unsetLast_received_from()
 {
     m_Last_received_fromIsSet = false;
 }
-int32_t O11y_SignalConnectionStatus::getLastReceivedTsMs() const
+int64_t O11y_SignalConnectionStatus::getLastReceivedTsMs() const
 {
     return m_Last_received_ts_ms;
 }
 
 
-void O11y_SignalConnectionStatus::setLastReceivedTsMs(int32_t value)
+void O11y_SignalConnectionStatus::setLastReceivedTsMs(int64_t value)
 {
     m_Last_received_ts_ms = value;
     m_Last_received_ts_msIsSet = true;

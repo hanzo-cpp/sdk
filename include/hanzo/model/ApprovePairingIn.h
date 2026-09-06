@@ -61,7 +61,7 @@ public:
     void setChannel(const utility::string_t& value);
 
     /// <summary>
-    /// Code is the pairing code from GET /v1/channels/pairing. It is a capability: holding it is what authorises the approval, alongside org admin.
+    /// Code is the pairing code from GET /v1/channel/pairing. It is a capability: holding it is what authorises the approval, alongside org admin.
     /// </summary>
     utility::string_t getCode() const;
     bool codeIsSet() const;

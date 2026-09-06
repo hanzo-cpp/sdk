@@ -25,9 +25,9 @@ CampaignResults::CampaignResults()
     m_CampaignId = utility::conversions::to_string_t("");
     m_CampaignIdIsSet = false;
     m_ChannelsIsSet = false;
-    m_Clicks = 0;
+    m_Clicks = 0L;
     m_ClicksIsSet = false;
-    m_Conversions = 0;
+    m_Conversions = 0L;
     m_ConversionsIsSet = false;
     m_Ctr = 0.0;
     m_CtrIsSet = false;
@@ -35,7 +35,7 @@ CampaignResults::CampaignResults()
     m_CvrIsSet = false;
     m_End = utility::conversions::to_string_t("");
     m_EndIsSet = false;
-    m_Impressions = 0;
+    m_Impressions = 0L;
     m_ImpressionsIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
@@ -47,13 +47,13 @@ CampaignResults::CampaignResults()
     m_RoasIsSet = false;
     m_Source = utility::conversions::to_string_t("");
     m_SourceIsSet = false;
-    m_SpendCents = 0;
+    m_SpendCents = 0L;
     m_SpendCentsIsSet = false;
     m_Start = utility::conversions::to_string_t("");
     m_StartIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
-    m_Visitors = 0;
+    m_Visitors = 0L;
     m_VisitorsIsSet = false;
 }
 
@@ -236,7 +236,7 @@ bool CampaignResults::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("clicks")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setClicks;
+            int64_t refVal_setClicks;
             ok &= ModelBase::fromJson(fieldValue, refVal_setClicks);
             setClicks(refVal_setClicks);
             
@@ -247,7 +247,7 @@ bool CampaignResults::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("conversions")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setConversions;
+            int64_t refVal_setConversions;
             ok &= ModelBase::fromJson(fieldValue, refVal_setConversions);
             setConversions(refVal_setConversions);
             
@@ -291,7 +291,7 @@ bool CampaignResults::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("impressions")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setImpressions;
+            int64_t refVal_setImpressions;
             ok &= ModelBase::fromJson(fieldValue, refVal_setImpressions);
             setImpressions(refVal_setImpressions);
             
@@ -357,7 +357,7 @@ bool CampaignResults::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("spendCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSpendCents;
+            int64_t refVal_setSpendCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSpendCents);
             setSpendCents(refVal_setSpendCents);
             
@@ -390,7 +390,7 @@ bool CampaignResults::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("visitors")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVisitors;
+            int64_t refVal_setVisitors;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVisitors);
             setVisitors(refVal_setVisitors);
             
@@ -529,13 +529,13 @@ bool CampaignResults::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("clicks"))))
     {
-        int32_t refVal_setClicks;
+        int64_t refVal_setClicks;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("clicks"))), refVal_setClicks );
         setClicks(refVal_setClicks);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("conversions"))))
     {
-        int32_t refVal_setConversions;
+        int64_t refVal_setConversions;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("conversions"))), refVal_setConversions );
         setConversions(refVal_setConversions);
     }
@@ -559,7 +559,7 @@ bool CampaignResults::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("impressions"))))
     {
-        int32_t refVal_setImpressions;
+        int64_t refVal_setImpressions;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("impressions"))), refVal_setImpressions );
         setImpressions(refVal_setImpressions);
     }
@@ -595,7 +595,7 @@ bool CampaignResults::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("spendCents"))))
     {
-        int32_t refVal_setSpendCents;
+        int64_t refVal_setSpendCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("spendCents"))), refVal_setSpendCents );
         setSpendCents(refVal_setSpendCents);
     }
@@ -613,7 +613,7 @@ bool CampaignResults::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("visitors"))))
     {
-        int32_t refVal_setVisitors;
+        int64_t refVal_setVisitors;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("visitors"))), refVal_setVisitors );
         setVisitors(refVal_setVisitors);
     }
@@ -725,13 +725,13 @@ void CampaignResults::unsetChannels()
 {
     m_ChannelsIsSet = false;
 }
-int32_t CampaignResults::getClicks() const
+int64_t CampaignResults::getClicks() const
 {
     return m_Clicks;
 }
 
 
-void CampaignResults::setClicks(int32_t value)
+void CampaignResults::setClicks(int64_t value)
 {
     m_Clicks = value;
     m_ClicksIsSet = true;
@@ -746,13 +746,13 @@ void CampaignResults::unsetClicks()
 {
     m_ClicksIsSet = false;
 }
-int32_t CampaignResults::getConversions() const
+int64_t CampaignResults::getConversions() const
 {
     return m_Conversions;
 }
 
 
-void CampaignResults::setConversions(int32_t value)
+void CampaignResults::setConversions(int64_t value)
 {
     m_Conversions = value;
     m_ConversionsIsSet = true;
@@ -830,13 +830,13 @@ void CampaignResults::unsetEnd()
 {
     m_EndIsSet = false;
 }
-int32_t CampaignResults::getImpressions() const
+int64_t CampaignResults::getImpressions() const
 {
     return m_Impressions;
 }
 
 
-void CampaignResults::setImpressions(int32_t value)
+void CampaignResults::setImpressions(int64_t value)
 {
     m_Impressions = value;
     m_ImpressionsIsSet = true;
@@ -956,13 +956,13 @@ void CampaignResults::unsetSource()
 {
     m_SourceIsSet = false;
 }
-int32_t CampaignResults::getSpendCents() const
+int64_t CampaignResults::getSpendCents() const
 {
     return m_SpendCents;
 }
 
 
-void CampaignResults::setSpendCents(int32_t value)
+void CampaignResults::setSpendCents(int64_t value)
 {
     m_SpendCents = value;
     m_SpendCentsIsSet = true;
@@ -1019,13 +1019,13 @@ void CampaignResults::unsetStatus()
 {
     m_StatusIsSet = false;
 }
-int32_t CampaignResults::getVisitors() const
+int64_t CampaignResults::getVisitors() const
 {
     return m_Visitors;
 }
 
 
-void CampaignResults::setVisitors(int32_t value)
+void CampaignResults::setVisitors(int64_t value)
 {
     m_Visitors = value;
     m_VisitorsIsSet = true;

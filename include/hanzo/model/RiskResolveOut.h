@@ -58,10 +58,10 @@ public:
     /// <summary>
     /// Horizon is the maturity horizon this answer was computed under, IN DAYS — the caller&#39;s, or 120 when it stated none. Each event&#39;s as-of is its own &#x60;at&#x60; plus this many days, and that as-of is what decides which assertions were visible to it; an event whose as-of falls after Now is not resolved at all and is counted in Unmatured instead.
     /// </summary>
-    int32_t getHorizon() const;
+    int64_t getHorizon() const;
     bool horizonIsSet() const;
     void unsetHorizon();
-    void setHorizon(int32_t value);
+    void setHorizon(int64_t value);
 
     /// <summary>
     /// Labels is one entry per named event that BOTH matured and had at least one assertion knowable by its own as-of, in the order the events were named. The three outcomes partition the ask: len(labels) + Unmatured + Unlabelled is the number of DISTINCT events named, an event named twice having been answered once.
@@ -82,22 +82,22 @@ public:
     /// <summary>
     /// Unlabelled is how many matured events had no assertion knowable by their own as-of. That is the ordinary state of most traffic and it is reported rather than answered as unproductive: manufacturing negatives is how a fraud model comes to describe the incumbent block list.
     /// </summary>
-    int32_t getUnlabelled() const;
+    int64_t getUnlabelled() const;
     bool unlabelledIsSet() const;
     void unsetUnlabelled();
-    void setUnlabelled(int32_t value);
+    void setUnlabelled(int64_t value);
 
     /// <summary>
     /// Unmatured is how many named events had not aged past the horizon. They are not unlabelled — they are not yet ASKABLE, and a supervised training set must exclude them rather than treat them as negatives.
     /// </summary>
-    int32_t getUnmatured() const;
+    int64_t getUnmatured() const;
     bool unmaturedIsSet() const;
     void unsetUnmatured();
-    void setUnmatured(int32_t value);
+    void setUnmatured(int64_t value);
 
 
 protected:
-    int32_t m_Horizon;
+    int64_t m_Horizon;
     bool m_HorizonIsSet;
 
     std::vector<std::shared_ptr<RiskResolved>> m_Labels;
@@ -106,10 +106,10 @@ protected:
     utility::string_t m_Now;
     bool m_NowIsSet;
 
-    int32_t m_Unlabelled;
+    int64_t m_Unlabelled;
     bool m_UnlabelledIsSet;
 
-    int32_t m_Unmatured;
+    int64_t m_Unmatured;
     bool m_UnmaturedIsSet;
 
 };

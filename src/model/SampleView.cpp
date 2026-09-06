@@ -20,15 +20,15 @@ SampleView::SampleView()
 {
     m_At = utility::conversions::to_string_t("");
     m_AtIsSet = false;
-    m_CostCents = 0;
+    m_CostCents = 0L;
     m_CostCentsIsSet = false;
-    m_Cpus = 0;
+    m_Cpus = 0L;
     m_CpusIsSet = false;
     m_GpuModel = utility::conversions::to_string_t("");
     m_GpuModelIsSet = false;
     m_GpuUtil = 0.0;
     m_GpuUtilIsSet = false;
-    m_Gpus = 0;
+    m_Gpus = 0L;
     m_GpusIsSet = false;
     m_Host = utility::conversions::to_string_t("");
     m_HostIsSet = false;
@@ -36,15 +36,15 @@ SampleView::SampleView()
     m_KindIsSet = false;
     m_Load1 = 0.0;
     m_Load1IsSet = false;
-    m_Load5 = 0.0;
-    m_Load5IsSet = false;
     m_Load15 = 0.0;
     m_Load15IsSet = false;
-    m_MemFree = 0;
+    m_Load5 = 0.0;
+    m_Load5IsSet = false;
+    m_MemFree = 0L;
     m_MemFreeIsSet = false;
-    m_MemUsed = 0;
+    m_MemUsed = 0L;
     m_MemUsedIsSet = false;
-    m_Memory = 0;
+    m_Memory = 0L;
     m_MemoryIsSet = false;
     m_Source = utility::conversions::to_string_t("");
     m_SourceIsSet = false;
@@ -109,15 +109,15 @@ web::json::value SampleView::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("load1"))] = ModelBase::toJson(m_Load1);
     }
-    if(m_Load5IsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("load5"))] = ModelBase::toJson(m_Load5);
-    }
     if(m_Load15IsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("load15"))] = ModelBase::toJson(m_Load15);
+    }
+    if(m_Load5IsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("load5"))] = ModelBase::toJson(m_Load5);
     }
     if(m_MemFreeIsSet)
     {
@@ -167,7 +167,7 @@ bool SampleView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("costCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCostCents;
+            int64_t refVal_setCostCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCostCents);
             setCostCents(refVal_setCostCents);
             
@@ -178,7 +178,7 @@ bool SampleView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cpus")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCpus;
+            int64_t refVal_setCpus;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCpus);
             setCpus(refVal_setCpus);
             
@@ -211,7 +211,7 @@ bool SampleView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("gpus")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setGpus;
+            int64_t refVal_setGpus;
             ok &= ModelBase::fromJson(fieldValue, refVal_setGpus);
             setGpus(refVal_setGpus);
             
@@ -250,17 +250,6 @@ bool SampleView::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("load5"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("load5")));
-        if(!fieldValue.is_null())
-        {
-            double refVal_setLoad5;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setLoad5);
-            setLoad5(refVal_setLoad5);
-            
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("load15"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("load15")));
@@ -272,12 +261,23 @@ bool SampleView::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("load5"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("load5")));
+        if(!fieldValue.is_null())
+        {
+            double refVal_setLoad5;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setLoad5);
+            setLoad5(refVal_setLoad5);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("memFree"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("memFree")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMemFree;
+            int64_t refVal_setMemFree;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMemFree);
             setMemFree(refVal_setMemFree);
             
@@ -288,7 +288,7 @@ bool SampleView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("memUsed")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMemUsed;
+            int64_t refVal_setMemUsed;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMemUsed);
             setMemUsed(refVal_setMemUsed);
             
@@ -299,7 +299,7 @@ bool SampleView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("memory")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMemory;
+            int64_t refVal_setMemory;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMemory);
             setMemory(refVal_setMemory);
             
@@ -373,13 +373,13 @@ void SampleView::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("load1")), m_Load1));
     }
-    if(m_Load5IsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("load5")), m_Load5));
-    }
     if(m_Load15IsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("load15")), m_Load15));
+    }
+    if(m_Load5IsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("load5")), m_Load5));
     }
     if(m_MemFreeIsSet)
     {
@@ -420,13 +420,13 @@ bool SampleView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))))
     {
-        int32_t refVal_setCostCents;
+        int64_t refVal_setCostCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))), refVal_setCostCents );
         setCostCents(refVal_setCostCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cpus"))))
     {
-        int32_t refVal_setCpus;
+        int64_t refVal_setCpus;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cpus"))), refVal_setCpus );
         setCpus(refVal_setCpus);
     }
@@ -444,7 +444,7 @@ bool SampleView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("gpus"))))
     {
-        int32_t refVal_setGpus;
+        int64_t refVal_setGpus;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("gpus"))), refVal_setGpus );
         setGpus(refVal_setGpus);
     }
@@ -466,33 +466,33 @@ bool SampleView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("load1"))), refVal_setLoad1 );
         setLoad1(refVal_setLoad1);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("load5"))))
-    {
-        double refVal_setLoad5;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("load5"))), refVal_setLoad5 );
-        setLoad5(refVal_setLoad5);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("load15"))))
     {
         double refVal_setLoad15;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("load15"))), refVal_setLoad15 );
         setLoad15(refVal_setLoad15);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("load5"))))
+    {
+        double refVal_setLoad5;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("load5"))), refVal_setLoad5 );
+        setLoad5(refVal_setLoad5);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("memFree"))))
     {
-        int32_t refVal_setMemFree;
+        int64_t refVal_setMemFree;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("memFree"))), refVal_setMemFree );
         setMemFree(refVal_setMemFree);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("memUsed"))))
     {
-        int32_t refVal_setMemUsed;
+        int64_t refVal_setMemUsed;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("memUsed"))), refVal_setMemUsed );
         setMemUsed(refVal_setMemUsed);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("memory"))))
     {
-        int32_t refVal_setMemory;
+        int64_t refVal_setMemory;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("memory"))), refVal_setMemory );
         setMemory(refVal_setMemory);
     }
@@ -533,13 +533,13 @@ void SampleView::unsetAt()
 {
     m_AtIsSet = false;
 }
-int32_t SampleView::getCostCents() const
+int64_t SampleView::getCostCents() const
 {
     return m_CostCents;
 }
 
 
-void SampleView::setCostCents(int32_t value)
+void SampleView::setCostCents(int64_t value)
 {
     m_CostCents = value;
     m_CostCentsIsSet = true;
@@ -554,13 +554,13 @@ void SampleView::unsetCostCents()
 {
     m_CostCentsIsSet = false;
 }
-int32_t SampleView::getCpus() const
+int64_t SampleView::getCpus() const
 {
     return m_Cpus;
 }
 
 
-void SampleView::setCpus(int32_t value)
+void SampleView::setCpus(int64_t value)
 {
     m_Cpus = value;
     m_CpusIsSet = true;
@@ -617,13 +617,13 @@ void SampleView::unsetGpuUtil()
 {
     m_GpuUtilIsSet = false;
 }
-int32_t SampleView::getGpus() const
+int64_t SampleView::getGpus() const
 {
     return m_Gpus;
 }
 
 
-void SampleView::setGpus(int32_t value)
+void SampleView::setGpus(int64_t value)
 {
     m_Gpus = value;
     m_GpusIsSet = true;
@@ -701,27 +701,6 @@ void SampleView::unsetLoad1()
 {
     m_Load1IsSet = false;
 }
-double SampleView::getLoad5() const
-{
-    return m_Load5;
-}
-
-
-void SampleView::setLoad5(double value)
-{
-    m_Load5 = value;
-    m_Load5IsSet = true;
-}
-
-bool SampleView::load5IsSet() const
-{
-    return m_Load5IsSet;
-}
-
-void SampleView::unsetLoad5()
-{
-    m_Load5IsSet = false;
-}
 double SampleView::getLoad15() const
 {
     return m_Load15;
@@ -743,13 +722,34 @@ void SampleView::unsetLoad15()
 {
     m_Load15IsSet = false;
 }
-int32_t SampleView::getMemFree() const
+double SampleView::getLoad5() const
+{
+    return m_Load5;
+}
+
+
+void SampleView::setLoad5(double value)
+{
+    m_Load5 = value;
+    m_Load5IsSet = true;
+}
+
+bool SampleView::load5IsSet() const
+{
+    return m_Load5IsSet;
+}
+
+void SampleView::unsetLoad5()
+{
+    m_Load5IsSet = false;
+}
+int64_t SampleView::getMemFree() const
 {
     return m_MemFree;
 }
 
 
-void SampleView::setMemFree(int32_t value)
+void SampleView::setMemFree(int64_t value)
 {
     m_MemFree = value;
     m_MemFreeIsSet = true;
@@ -764,13 +764,13 @@ void SampleView::unsetMemFree()
 {
     m_MemFreeIsSet = false;
 }
-int32_t SampleView::getMemUsed() const
+int64_t SampleView::getMemUsed() const
 {
     return m_MemUsed;
 }
 
 
-void SampleView::setMemUsed(int32_t value)
+void SampleView::setMemUsed(int64_t value)
 {
     m_MemUsed = value;
     m_MemUsedIsSet = true;
@@ -785,13 +785,13 @@ void SampleView::unsetMemUsed()
 {
     m_MemUsedIsSet = false;
 }
-int32_t SampleView::getMemory() const
+int64_t SampleView::getMemory() const
 {
     return m_Memory;
 }
 
 
-void SampleView::setMemory(int32_t value)
+void SampleView::setMemory(int64_t value)
 {
     m_Memory = value;
     m_MemoryIsSet = true;

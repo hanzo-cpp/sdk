@@ -57,18 +57,18 @@ public:
     /// <summary>
     /// CachePaths overrides CacheTTLSec per path PREFIX (key \&quot;/v1/models\&quot; → seconds). The longest matching prefix wins.
     /// </summary>
-    std::map<utility::string_t, int32_t> getCachePaths() const;
+    std::map<utility::string_t, int64_t> getCachePaths() const;
     bool cachePathsIsSet() const;
     void unsetCache_paths();
-    void setCachePaths(std::map<utility::string_t, int32_t> value);
+    void setCachePaths(std::map<utility::string_t, int64_t> value);
 
     /// <summary>
     /// CacheTTLSec is the org&#39;s default edge-cache TTL for its responses, in seconds; 0 means no caching. Unset inherits the platform default.
     /// </summary>
-    int32_t getCacheTtlSec() const;
+    int64_t getCacheTtlSec() const;
     bool cacheTtlSecIsSet() const;
     void unsetCache_ttl_sec();
-    void setCacheTtlSec(int32_t value);
+    void setCacheTtlSec(int64_t value);
 
     /// <summary>
     /// CORSOrigins is the PLATFORM-scope CORS allowlist EdgeCORS admits: an exact origin, a bare host, or a \&quot;*.host\&quot; wildcard. Writable only by a SuperAdmin — CORS is evaluated before identity, so it has no tenant to scope to.
@@ -97,26 +97,26 @@ public:
     /// <summary>
     /// OrgRPM is the org&#39;s OWN authenticated rate ceiling, requests per minute, as ScopeRateLimit enforces it. Unset inherits the platform default, then the static boot default.
     /// </summary>
-    int32_t getOrgRpm() const;
+    int64_t getOrgRpm() const;
     bool orgRpmIsSet() const;
     void unsetOrg_rpm();
-    void setOrgRpm(int32_t value);
+    void setOrgRpm(int64_t value);
 
     /// <summary>
     /// PerIPRPM is the PLATFORM-scope pre-auth flood cap: requests EdgeRateLimit admits per WindowSec from one client IP. SuperAdmin-only, same reason.
     /// </summary>
-    int32_t getPerIpRpm() const;
+    int64_t getPerIpRpm() const;
     bool perIpRpmIsSet() const;
     void unsetPer_ip_rpm();
-    void setPerIpRpm(int32_t value);
+    void setPerIpRpm(int64_t value);
 
     /// <summary>
     /// UpdatedAt is the unix second this policy row was last written. Server-stamped; a client-supplied value is ignored.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdated_at();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
     /// <summary>
     /// UpdatedBy is the validated user id that wrote this policy row. Server-stamped; a client-supplied value is ignored.
@@ -129,17 +129,17 @@ public:
     /// <summary>
     /// WindowSec is the window PerIPRPM is counted over, in seconds. SuperAdmin-only.
     /// </summary>
-    int32_t getWindowSec() const;
+    int64_t getWindowSec() const;
     bool windowSecIsSet() const;
     void unsetWindow_sec();
-    void setWindowSec(int32_t value);
+    void setWindowSec(int64_t value);
 
 
 protected:
-    std::map<utility::string_t, int32_t> m_Cache_paths;
+    std::map<utility::string_t, int64_t> m_Cache_paths;
     bool m_Cache_pathsIsSet;
 
-    int32_t m_Cache_ttl_sec;
+    int64_t m_Cache_ttl_sec;
     bool m_Cache_ttl_secIsSet;
 
     std::vector<utility::string_t> m_Cors_origins;
@@ -151,19 +151,19 @@ protected:
     utility::string_t m_Mode;
     bool m_ModeIsSet;
 
-    int32_t m_Org_rpm;
+    int64_t m_Org_rpm;
     bool m_Org_rpmIsSet;
 
-    int32_t m_Per_ip_rpm;
+    int64_t m_Per_ip_rpm;
     bool m_Per_ip_rpmIsSet;
 
-    int32_t m_Updated_at;
+    int64_t m_Updated_at;
     bool m_Updated_atIsSet;
 
     utility::string_t m_Updated_by;
     bool m_Updated_byIsSet;
 
-    int32_t m_Window_sec;
+    int64_t m_Window_sec;
     bool m_Window_secIsSet;
 
 };

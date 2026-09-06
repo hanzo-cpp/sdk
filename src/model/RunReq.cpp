@@ -19,17 +19,17 @@ namespace model {
 RunReq::RunReq()
 {
     m_EnvIsSet = false;
-    m_Gpu = 0;
+    m_Gpu = 0L;
     m_GpuIsSet = false;
     m_Image = utility::conversions::to_string_t("");
     m_ImageIsSet = false;
-    m_MaxScale = 0;
+    m_MaxScale = 0L;
     m_MaxScaleIsSet = false;
-    m_MinScale = 0;
+    m_MinScale = 0L;
     m_MinScaleIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_Port = 0;
+    m_Port = 0L;
     m_PortIsSet = false;
     m_Runtime = utility::conversions::to_string_t("");
     m_RuntimeIsSet = false;
@@ -117,7 +117,7 @@ bool RunReq::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("gpu")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setGpu;
+            int64_t refVal_setGpu;
             ok &= ModelBase::fromJson(fieldValue, refVal_setGpu);
             setGpu(refVal_setGpu);
             
@@ -139,7 +139,7 @@ bool RunReq::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("maxScale")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMaxScale;
+            int64_t refVal_setMaxScale;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMaxScale);
             setMaxScale(refVal_setMaxScale);
             
@@ -150,7 +150,7 @@ bool RunReq::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("minScale")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMinScale;
+            int64_t refVal_setMinScale;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMinScale);
             setMinScale(refVal_setMinScale);
             
@@ -172,7 +172,7 @@ bool RunReq::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("port")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPort;
+            int64_t refVal_setPort;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPort);
             setPort(refVal_setPort);
             
@@ -265,7 +265,7 @@ bool RunReq::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("gpu"))))
     {
-        int32_t refVal_setGpu;
+        int64_t refVal_setGpu;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("gpu"))), refVal_setGpu );
         setGpu(refVal_setGpu);
     }
@@ -277,13 +277,13 @@ bool RunReq::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("maxScale"))))
     {
-        int32_t refVal_setMaxScale;
+        int64_t refVal_setMaxScale;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("maxScale"))), refVal_setMaxScale );
         setMaxScale(refVal_setMaxScale);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("minScale"))))
     {
-        int32_t refVal_setMinScale;
+        int64_t refVal_setMinScale;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("minScale"))), refVal_setMinScale );
         setMinScale(refVal_setMinScale);
     }
@@ -295,7 +295,7 @@ bool RunReq::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("port"))))
     {
-        int32_t refVal_setPort;
+        int64_t refVal_setPort;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("port"))), refVal_setPort );
         setPort(refVal_setPort);
     }
@@ -336,13 +336,13 @@ void RunReq::unsetEnv()
 {
     m_EnvIsSet = false;
 }
-int32_t RunReq::getGpu() const
+int64_t RunReq::getGpu() const
 {
     return m_Gpu;
 }
 
 
-void RunReq::setGpu(int32_t value)
+void RunReq::setGpu(int64_t value)
 {
     m_Gpu = value;
     m_GpuIsSet = true;
@@ -378,13 +378,13 @@ void RunReq::unsetImage()
 {
     m_ImageIsSet = false;
 }
-int32_t RunReq::getMaxScale() const
+int64_t RunReq::getMaxScale() const
 {
     return m_MaxScale;
 }
 
 
-void RunReq::setMaxScale(int32_t value)
+void RunReq::setMaxScale(int64_t value)
 {
     m_MaxScale = value;
     m_MaxScaleIsSet = true;
@@ -399,13 +399,13 @@ void RunReq::unsetMaxScale()
 {
     m_MaxScaleIsSet = false;
 }
-int32_t RunReq::getMinScale() const
+int64_t RunReq::getMinScale() const
 {
     return m_MinScale;
 }
 
 
-void RunReq::setMinScale(int32_t value)
+void RunReq::setMinScale(int64_t value)
 {
     m_MinScale = value;
     m_MinScaleIsSet = true;
@@ -441,13 +441,13 @@ void RunReq::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t RunReq::getPort() const
+int64_t RunReq::getPort() const
 {
     return m_Port;
 }
 
 
-void RunReq::setPort(int32_t value)
+void RunReq::setPort(int64_t value)
 {
     m_Port = value;
     m_PortIsSet = true;

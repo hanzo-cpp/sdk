@@ -18,15 +18,15 @@ namespace model {
 
 TierBalance::TierBalance()
 {
-    m_CreditsRemaining = 0;
+    m_CreditsRemaining = 0L;
     m_CreditsRemainingIsSet = false;
     m_Currency = utility::conversions::to_string_t("");
     m_CurrencyIsSet = false;
-    m_DailyRemaining = 0;
+    m_DailyRemaining = 0L;
     m_DailyRemainingIsSet = false;
-    m_EffectiveAvailable = 0;
+    m_EffectiveAvailable = 0L;
     m_EffectiveAvailableIsSet = false;
-    m_PrepaidAvailable = 0;
+    m_PrepaidAvailable = 0L;
     m_PrepaidAvailableIsSet = false;
 }
 
@@ -79,7 +79,7 @@ bool TierBalance::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("creditsRemaining")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreditsRemaining;
+            int64_t refVal_setCreditsRemaining;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreditsRemaining);
             setCreditsRemaining(refVal_setCreditsRemaining);
             
@@ -101,7 +101,7 @@ bool TierBalance::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("dailyRemaining")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDailyRemaining;
+            int64_t refVal_setDailyRemaining;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDailyRemaining);
             setDailyRemaining(refVal_setDailyRemaining);
             
@@ -112,7 +112,7 @@ bool TierBalance::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("effectiveAvailable")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setEffectiveAvailable;
+            int64_t refVal_setEffectiveAvailable;
             ok &= ModelBase::fromJson(fieldValue, refVal_setEffectiveAvailable);
             setEffectiveAvailable(refVal_setEffectiveAvailable);
             
@@ -123,7 +123,7 @@ bool TierBalance::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("prepaidAvailable")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPrepaidAvailable;
+            int64_t refVal_setPrepaidAvailable;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPrepaidAvailable);
             setPrepaidAvailable(refVal_setPrepaidAvailable);
             
@@ -172,7 +172,7 @@ bool TierBalance::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("creditsRemaining"))))
     {
-        int32_t refVal_setCreditsRemaining;
+        int64_t refVal_setCreditsRemaining;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("creditsRemaining"))), refVal_setCreditsRemaining );
         setCreditsRemaining(refVal_setCreditsRemaining);
     }
@@ -184,19 +184,19 @@ bool TierBalance::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("dailyRemaining"))))
     {
-        int32_t refVal_setDailyRemaining;
+        int64_t refVal_setDailyRemaining;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("dailyRemaining"))), refVal_setDailyRemaining );
         setDailyRemaining(refVal_setDailyRemaining);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("effectiveAvailable"))))
     {
-        int32_t refVal_setEffectiveAvailable;
+        int64_t refVal_setEffectiveAvailable;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("effectiveAvailable"))), refVal_setEffectiveAvailable );
         setEffectiveAvailable(refVal_setEffectiveAvailable);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("prepaidAvailable"))))
     {
-        int32_t refVal_setPrepaidAvailable;
+        int64_t refVal_setPrepaidAvailable;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("prepaidAvailable"))), refVal_setPrepaidAvailable );
         setPrepaidAvailable(refVal_setPrepaidAvailable);
     }
@@ -204,13 +204,13 @@ bool TierBalance::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 }
 
 
-int32_t TierBalance::getCreditsRemaining() const
+int64_t TierBalance::getCreditsRemaining() const
 {
     return m_CreditsRemaining;
 }
 
 
-void TierBalance::setCreditsRemaining(int32_t value)
+void TierBalance::setCreditsRemaining(int64_t value)
 {
     m_CreditsRemaining = value;
     m_CreditsRemainingIsSet = true;
@@ -246,13 +246,13 @@ void TierBalance::unsetCurrency()
 {
     m_CurrencyIsSet = false;
 }
-int32_t TierBalance::getDailyRemaining() const
+int64_t TierBalance::getDailyRemaining() const
 {
     return m_DailyRemaining;
 }
 
 
-void TierBalance::setDailyRemaining(int32_t value)
+void TierBalance::setDailyRemaining(int64_t value)
 {
     m_DailyRemaining = value;
     m_DailyRemainingIsSet = true;
@@ -267,13 +267,13 @@ void TierBalance::unsetDailyRemaining()
 {
     m_DailyRemainingIsSet = false;
 }
-int32_t TierBalance::getEffectiveAvailable() const
+int64_t TierBalance::getEffectiveAvailable() const
 {
     return m_EffectiveAvailable;
 }
 
 
-void TierBalance::setEffectiveAvailable(int32_t value)
+void TierBalance::setEffectiveAvailable(int64_t value)
 {
     m_EffectiveAvailable = value;
     m_EffectiveAvailableIsSet = true;
@@ -288,13 +288,13 @@ void TierBalance::unsetEffectiveAvailable()
 {
     m_EffectiveAvailableIsSet = false;
 }
-int32_t TierBalance::getPrepaidAvailable() const
+int64_t TierBalance::getPrepaidAvailable() const
 {
     return m_PrepaidAvailable;
 }
 
 
-void TierBalance::setPrepaidAvailable(int32_t value)
+void TierBalance::setPrepaidAvailable(int64_t value)
 {
     m_PrepaidAvailable = value;
     m_PrepaidAvailableIsSet = true;

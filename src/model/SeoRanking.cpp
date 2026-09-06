@@ -20,7 +20,7 @@ SeoRanking::SeoRanking()
 {
     m_Keyword = utility::conversions::to_string_t("");
     m_KeywordIsSet = false;
-    m_Position = 0;
+    m_Position = 0L;
     m_PositionIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
@@ -28,7 +28,7 @@ SeoRanking::SeoRanking()
     m_TrafficIsSet = false;
     m_Url = utility::conversions::to_string_t("");
     m_UrlIsSet = false;
-    m_Volume = 0;
+    m_Volume = 0L;
     m_VolumeIsSet = false;
 }
 
@@ -97,7 +97,7 @@ bool SeoRanking::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("position")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPosition;
+            int64_t refVal_setPosition;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPosition);
             setPosition(refVal_setPosition);
             
@@ -141,7 +141,7 @@ bool SeoRanking::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("volume")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVolume;
+            int64_t refVal_setVolume;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVolume);
             setVolume(refVal_setVolume);
             
@@ -200,7 +200,7 @@ bool SeoRanking::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("position"))))
     {
-        int32_t refVal_setPosition;
+        int64_t refVal_setPosition;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("position"))), refVal_setPosition );
         setPosition(refVal_setPosition);
     }
@@ -224,7 +224,7 @@ bool SeoRanking::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("volume"))))
     {
-        int32_t refVal_setVolume;
+        int64_t refVal_setVolume;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("volume"))), refVal_setVolume );
         setVolume(refVal_setVolume);
     }
@@ -253,13 +253,13 @@ void SeoRanking::unsetKeyword()
 {
     m_KeywordIsSet = false;
 }
-int32_t SeoRanking::getPosition() const
+int64_t SeoRanking::getPosition() const
 {
     return m_Position;
 }
 
 
-void SeoRanking::setPosition(int32_t value)
+void SeoRanking::setPosition(int64_t value)
 {
     m_Position = value;
     m_PositionIsSet = true;
@@ -337,13 +337,13 @@ void SeoRanking::unsetUrl()
 {
     m_UrlIsSet = false;
 }
-int32_t SeoRanking::getVolume() const
+int64_t SeoRanking::getVolume() const
 {
     return m_Volume;
 }
 
 
-void SeoRanking::setVolume(int32_t value)
+void SeoRanking::setVolume(int64_t value)
 {
     m_Volume = value;
     m_VolumeIsSet = true;

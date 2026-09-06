@@ -22,13 +22,13 @@ SampleIngest::SampleIngest()
     m_GpuModelIsSet = false;
     m_GpuUtil = 0.0;
     m_GpuUtilIsSet = false;
-    m_Gpus = 0;
+    m_Gpus = 0L;
     m_GpusIsSet = false;
     m_Host = utility::conversions::to_string_t("");
     m_HostIsSet = false;
-    m_MemFree = 0;
+    m_MemFree = 0L;
     m_MemFreeIsSet = false;
-    m_MemUsed = 0;
+    m_MemUsed = 0L;
     m_MemUsedIsSet = false;
     m_Unit = utility::conversions::to_string_t("");
     m_UnitIsSet = false;
@@ -115,7 +115,7 @@ bool SampleIngest::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("gpus")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setGpus;
+            int64_t refVal_setGpus;
             ok &= ModelBase::fromJson(fieldValue, refVal_setGpus);
             setGpus(refVal_setGpus);
             
@@ -137,7 +137,7 @@ bool SampleIngest::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("memFree")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMemFree;
+            int64_t refVal_setMemFree;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMemFree);
             setMemFree(refVal_setMemFree);
             
@@ -148,7 +148,7 @@ bool SampleIngest::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("memUsed")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMemUsed;
+            int64_t refVal_setMemUsed;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMemUsed);
             setMemUsed(refVal_setMemUsed);
             
@@ -228,7 +228,7 @@ bool SampleIngest::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("gpus"))))
     {
-        int32_t refVal_setGpus;
+        int64_t refVal_setGpus;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("gpus"))), refVal_setGpus );
         setGpus(refVal_setGpus);
     }
@@ -240,13 +240,13 @@ bool SampleIngest::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("memFree"))))
     {
-        int32_t refVal_setMemFree;
+        int64_t refVal_setMemFree;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("memFree"))), refVal_setMemFree );
         setMemFree(refVal_setMemFree);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("memUsed"))))
     {
-        int32_t refVal_setMemUsed;
+        int64_t refVal_setMemUsed;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("memUsed"))), refVal_setMemUsed );
         setMemUsed(refVal_setMemUsed);
     }
@@ -302,13 +302,13 @@ void SampleIngest::unsetGpuUtil()
 {
     m_GpuUtilIsSet = false;
 }
-int32_t SampleIngest::getGpus() const
+int64_t SampleIngest::getGpus() const
 {
     return m_Gpus;
 }
 
 
-void SampleIngest::setGpus(int32_t value)
+void SampleIngest::setGpus(int64_t value)
 {
     m_Gpus = value;
     m_GpusIsSet = true;
@@ -344,13 +344,13 @@ void SampleIngest::unsetHost()
 {
     m_HostIsSet = false;
 }
-int32_t SampleIngest::getMemFree() const
+int64_t SampleIngest::getMemFree() const
 {
     return m_MemFree;
 }
 
 
-void SampleIngest::setMemFree(int32_t value)
+void SampleIngest::setMemFree(int64_t value)
 {
     m_MemFree = value;
     m_MemFreeIsSet = true;
@@ -365,13 +365,13 @@ void SampleIngest::unsetMemFree()
 {
     m_MemFreeIsSet = false;
 }
-int32_t SampleIngest::getMemUsed() const
+int64_t SampleIngest::getMemUsed() const
 {
     return m_MemUsed;
 }
 
 
-void SampleIngest::setMemUsed(int32_t value)
+void SampleIngest::setMemUsed(int64_t value)
 {
     m_MemUsed = value;
     m_MemUsedIsSet = true;

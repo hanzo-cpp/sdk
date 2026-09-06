@@ -19,7 +19,7 @@ namespace model {
 O11y_O11yMetricAttributes::O11y_O11yMetricAttributes()
 {
     m_AttributesIsSet = false;
-    m_TotalKeys = 0;
+    m_TotalKeys = 0L;
     m_TotalKeysIsSet = false;
 }
 
@@ -68,7 +68,7 @@ bool O11y_O11yMetricAttributes::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("totalKeys")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotalKeys;
+            int64_t refVal_setTotalKeys;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalKeys);
             setTotalKeys(refVal_setTotalKeys);
             
@@ -111,7 +111,7 @@ bool O11y_O11yMetricAttributes::fromMultiPart(std::shared_ptr<MultipartFormData>
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("totalKeys"))))
     {
-        int32_t refVal_setTotalKeys;
+        int64_t refVal_setTotalKeys;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("totalKeys"))), refVal_setTotalKeys );
         setTotalKeys(refVal_setTotalKeys);
     }
@@ -140,13 +140,13 @@ void O11y_O11yMetricAttributes::unsetAttributes()
 {
     m_AttributesIsSet = false;
 }
-int32_t O11y_O11yMetricAttributes::getTotalKeys() const
+int64_t O11y_O11yMetricAttributes::getTotalKeys() const
 {
     return m_TotalKeys;
 }
 
 
-void O11y_O11yMetricAttributes::setTotalKeys(int32_t value)
+void O11y_O11yMetricAttributes::setTotalKeys(int64_t value)
 {
     m_TotalKeys = value;
     m_TotalKeysIsSet = true;

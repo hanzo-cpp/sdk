@@ -303,7 +303,7 @@ pplx::task<std::shared_ptr<RiskDatasetVersions>> DatasetApi::riskDataset(utility
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<RiskLineage>> DatasetApi::riskDatasetLineage(utility::string_t name, boost::optional<int32_t> version) const
+pplx::task<std::shared_ptr<RiskLineage>> DatasetApi::riskDatasetLineage(utility::string_t name, boost::optional<int64_t> version) const
 {
 
 
@@ -678,7 +678,7 @@ pplx::task<std::shared_ptr<RiskDatasetDisposal>> DatasetApi::riskDeleteDataset(u
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<RiskDatasetRows>> DatasetApi::riskExportDataset(utility::string_t name, boost::optional<int32_t> version, boost::optional<utility::string_t> split, boost::optional<int32_t> offset, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<RiskDatasetRows>> DatasetApi::riskExportDataset(utility::string_t name, boost::optional<int64_t> version, boost::optional<utility::string_t> split, boost::optional<int64_t> offset, boost::optional<int64_t> limit) const
 {
 
 

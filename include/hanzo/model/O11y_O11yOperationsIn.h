@@ -66,10 +66,10 @@ public:
     /// <summary>
     /// Limit caps how many operations come back.
     /// </summary>
-    int32_t getLimit() const;
+    int64_t getLimit() const;
     bool limitIsSet() const;
     void unsetLimit();
-    void setLimit(int32_t value);
+    void setLimit(int64_t value);
 
     /// <summary>
     /// Service is the service whose operations are read.
@@ -100,7 +100,7 @@ protected:
     utility::string_t m_End;
     bool m_EndIsSet;
 
-    int32_t m_Limit;
+    int64_t m_Limit;
     bool m_LimitIsSet;
 
     utility::string_t m_Service;

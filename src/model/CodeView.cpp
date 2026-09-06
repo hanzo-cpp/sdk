@@ -18,17 +18,17 @@ namespace model {
 
 CodeView::CodeView()
 {
-    m_Clicks = 0;
+    m_Clicks = 0L;
     m_ClicksIsSet = false;
     m_Code = utility::conversions::to_string_t("");
     m_CodeIsSet = false;
-    m_Conversions = 0;
+    m_Conversions = 0L;
     m_ConversionsIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_Label = utility::conversions::to_string_t("");
     m_LabelIsSet = false;
-    m_Signups = 0;
+    m_Signups = 0L;
     m_SignupsIsSet = false;
     m_Url = utility::conversions::to_string_t("");
     m_UrlIsSet = false;
@@ -93,7 +93,7 @@ bool CodeView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("clicks")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setClicks;
+            int64_t refVal_setClicks;
             ok &= ModelBase::fromJson(fieldValue, refVal_setClicks);
             setClicks(refVal_setClicks);
             
@@ -115,7 +115,7 @@ bool CodeView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("conversions")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setConversions;
+            int64_t refVal_setConversions;
             ok &= ModelBase::fromJson(fieldValue, refVal_setConversions);
             setConversions(refVal_setConversions);
             
@@ -126,7 +126,7 @@ bool CodeView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -148,7 +148,7 @@ bool CodeView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("signups")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSignups;
+            int64_t refVal_setSignups;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSignups);
             setSignups(refVal_setSignups);
             
@@ -216,7 +216,7 @@ bool CodeView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("clicks"))))
     {
-        int32_t refVal_setClicks;
+        int64_t refVal_setClicks;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("clicks"))), refVal_setClicks );
         setClicks(refVal_setClicks);
     }
@@ -228,13 +228,13 @@ bool CodeView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("conversions"))))
     {
-        int32_t refVal_setConversions;
+        int64_t refVal_setConversions;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("conversions"))), refVal_setConversions );
         setConversions(refVal_setConversions);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -246,7 +246,7 @@ bool CodeView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("signups"))))
     {
-        int32_t refVal_setSignups;
+        int64_t refVal_setSignups;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("signups"))), refVal_setSignups );
         setSignups(refVal_setSignups);
     }
@@ -260,13 +260,13 @@ bool CodeView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 }
 
 
-int32_t CodeView::getClicks() const
+int64_t CodeView::getClicks() const
 {
     return m_Clicks;
 }
 
 
-void CodeView::setClicks(int32_t value)
+void CodeView::setClicks(int64_t value)
 {
     m_Clicks = value;
     m_ClicksIsSet = true;
@@ -302,13 +302,13 @@ void CodeView::unsetCode()
 {
     m_CodeIsSet = false;
 }
-int32_t CodeView::getConversions() const
+int64_t CodeView::getConversions() const
 {
     return m_Conversions;
 }
 
 
-void CodeView::setConversions(int32_t value)
+void CodeView::setConversions(int64_t value)
 {
     m_Conversions = value;
     m_ConversionsIsSet = true;
@@ -323,13 +323,13 @@ void CodeView::unsetConversions()
 {
     m_ConversionsIsSet = false;
 }
-int32_t CodeView::getCreatedAt() const
+int64_t CodeView::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void CodeView::setCreatedAt(int32_t value)
+void CodeView::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -365,13 +365,13 @@ void CodeView::unsetLabel()
 {
     m_LabelIsSet = false;
 }
-int32_t CodeView::getSignups() const
+int64_t CodeView::getSignups() const
 {
     return m_Signups;
 }
 
 
-void CodeView::setSignups(int32_t value)
+void CodeView::setSignups(int64_t value)
 {
     m_Signups = value;
     m_SignupsIsSet = true;

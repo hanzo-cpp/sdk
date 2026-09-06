@@ -54,25 +54,25 @@ public:
     /// <summary>
     /// Live is the number of vouchers newly posted to the live ledger.
     /// </summary>
-    int32_t getLive() const;
+    int64_t getLive() const;
     bool liveIsSet() const;
     void unsetLive();
-    void setLive(int32_t value);
+    void setLive(int64_t value);
 
     /// <summary>
     /// Sandbox is the number newly posted to the sandbox ledger.
     /// </summary>
-    int32_t getSandbox() const;
+    int64_t getSandbox() const;
     bool sandboxIsSet() const;
     void unsetSandbox();
-    void setSandbox(int32_t value);
+    void setSandbox(int64_t value);
 
 
 protected:
-    int32_t m_Live;
+    int64_t m_Live;
     bool m_LiveIsSet;
 
-    int32_t m_Sandbox;
+    int64_t m_Sandbox;
     bool m_SandboxIsSet;
 
 };

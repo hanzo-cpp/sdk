@@ -21,7 +21,7 @@ SeoIdeaOut::SeoIdeaOut()
     m_Cost = utility::conversions::to_string_t("");
     m_CostIsSet = false;
     m_KeywordsIsSet = false;
-    m_Total = 0;
+    m_Total = 0L;
     m_TotalIsSet = false;
 }
 
@@ -86,7 +86,7 @@ bool SeoIdeaOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("total")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotal;
+            int64_t refVal_setTotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotal);
             setTotal(refVal_setTotal);
             
@@ -139,7 +139,7 @@ bool SeoIdeaOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("total"))))
     {
-        int32_t refVal_setTotal;
+        int64_t refVal_setTotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("total"))), refVal_setTotal );
         setTotal(refVal_setTotal);
     }
@@ -189,13 +189,13 @@ void SeoIdeaOut::unsetKeywords()
 {
     m_KeywordsIsSet = false;
 }
-int32_t SeoIdeaOut::getTotal() const
+int64_t SeoIdeaOut::getTotal() const
 {
     return m_Total;
 }
 
 
-void SeoIdeaOut::setTotal(int32_t value)
+void SeoIdeaOut::setTotal(int64_t value)
 {
     m_Total = value;
     m_TotalIsSet = true;

@@ -18,15 +18,15 @@ namespace model {
 
 O11y_PodCountsByPhase::O11y_PodCountsByPhase()
 {
-    m_Failed = 0;
+    m_Failed = 0L;
     m_FailedIsSet = false;
-    m_Pending = 0;
+    m_Pending = 0L;
     m_PendingIsSet = false;
-    m_Running = 0;
+    m_Running = 0L;
     m_RunningIsSet = false;
-    m_Succeeded = 0;
+    m_Succeeded = 0L;
     m_SucceededIsSet = false;
-    m_Unknown = 0;
+    m_Unknown = 0L;
     m_UnknownIsSet = false;
 }
 
@@ -79,7 +79,7 @@ bool O11y_PodCountsByPhase::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("failed")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFailed;
+            int64_t refVal_setFailed;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFailed);
             setFailed(refVal_setFailed);
             
@@ -90,7 +90,7 @@ bool O11y_PodCountsByPhase::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("pending")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPending;
+            int64_t refVal_setPending;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPending);
             setPending(refVal_setPending);
             
@@ -101,7 +101,7 @@ bool O11y_PodCountsByPhase::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("running")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRunning;
+            int64_t refVal_setRunning;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRunning);
             setRunning(refVal_setRunning);
             
@@ -112,7 +112,7 @@ bool O11y_PodCountsByPhase::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("succeeded")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSucceeded;
+            int64_t refVal_setSucceeded;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSucceeded);
             setSucceeded(refVal_setSucceeded);
             
@@ -123,7 +123,7 @@ bool O11y_PodCountsByPhase::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("unknown")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUnknown;
+            int64_t refVal_setUnknown;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUnknown);
             setUnknown(refVal_setUnknown);
             
@@ -172,31 +172,31 @@ bool O11y_PodCountsByPhase::fromMultiPart(std::shared_ptr<MultipartFormData> mul
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("failed"))))
     {
-        int32_t refVal_setFailed;
+        int64_t refVal_setFailed;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("failed"))), refVal_setFailed );
         setFailed(refVal_setFailed);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("pending"))))
     {
-        int32_t refVal_setPending;
+        int64_t refVal_setPending;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("pending"))), refVal_setPending );
         setPending(refVal_setPending);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("running"))))
     {
-        int32_t refVal_setRunning;
+        int64_t refVal_setRunning;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("running"))), refVal_setRunning );
         setRunning(refVal_setRunning);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("succeeded"))))
     {
-        int32_t refVal_setSucceeded;
+        int64_t refVal_setSucceeded;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("succeeded"))), refVal_setSucceeded );
         setSucceeded(refVal_setSucceeded);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("unknown"))))
     {
-        int32_t refVal_setUnknown;
+        int64_t refVal_setUnknown;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("unknown"))), refVal_setUnknown );
         setUnknown(refVal_setUnknown);
     }
@@ -204,13 +204,13 @@ bool O11y_PodCountsByPhase::fromMultiPart(std::shared_ptr<MultipartFormData> mul
 }
 
 
-int32_t O11y_PodCountsByPhase::getFailed() const
+int64_t O11y_PodCountsByPhase::getFailed() const
 {
     return m_Failed;
 }
 
 
-void O11y_PodCountsByPhase::setFailed(int32_t value)
+void O11y_PodCountsByPhase::setFailed(int64_t value)
 {
     m_Failed = value;
     m_FailedIsSet = true;
@@ -225,13 +225,13 @@ void O11y_PodCountsByPhase::unsetFailed()
 {
     m_FailedIsSet = false;
 }
-int32_t O11y_PodCountsByPhase::getPending() const
+int64_t O11y_PodCountsByPhase::getPending() const
 {
     return m_Pending;
 }
 
 
-void O11y_PodCountsByPhase::setPending(int32_t value)
+void O11y_PodCountsByPhase::setPending(int64_t value)
 {
     m_Pending = value;
     m_PendingIsSet = true;
@@ -246,13 +246,13 @@ void O11y_PodCountsByPhase::unsetPending()
 {
     m_PendingIsSet = false;
 }
-int32_t O11y_PodCountsByPhase::getRunning() const
+int64_t O11y_PodCountsByPhase::getRunning() const
 {
     return m_Running;
 }
 
 
-void O11y_PodCountsByPhase::setRunning(int32_t value)
+void O11y_PodCountsByPhase::setRunning(int64_t value)
 {
     m_Running = value;
     m_RunningIsSet = true;
@@ -267,13 +267,13 @@ void O11y_PodCountsByPhase::unsetRunning()
 {
     m_RunningIsSet = false;
 }
-int32_t O11y_PodCountsByPhase::getSucceeded() const
+int64_t O11y_PodCountsByPhase::getSucceeded() const
 {
     return m_Succeeded;
 }
 
 
-void O11y_PodCountsByPhase::setSucceeded(int32_t value)
+void O11y_PodCountsByPhase::setSucceeded(int64_t value)
 {
     m_Succeeded = value;
     m_SucceededIsSet = true;
@@ -288,13 +288,13 @@ void O11y_PodCountsByPhase::unsetSucceeded()
 {
     m_SucceededIsSet = false;
 }
-int32_t O11y_PodCountsByPhase::getUnknown() const
+int64_t O11y_PodCountsByPhase::getUnknown() const
 {
     return m_Unknown;
 }
 
 
-void O11y_PodCountsByPhase::setUnknown(int32_t value)
+void O11y_PodCountsByPhase::setUnknown(int64_t value)
 {
     m_Unknown = value;
     m_UnknownIsSet = true;

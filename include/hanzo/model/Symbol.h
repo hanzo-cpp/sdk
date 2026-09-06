@@ -65,10 +65,10 @@ public:
     /// <summary>
     /// Kind is the LSP SymbolKind number (5 class, 6 method, 12 function, 23 struct, …), passed through rather than translated to a word — these callers already speak LSP, and inventing a second vocabulary is how the two drift.
     /// </summary>
-    int32_t getKind() const;
+    int64_t getKind() const;
     bool kindIsSet() const;
     void unsetKind();
-    void setKind(int32_t value);
+    void setKind(int64_t value);
 
     /// <summary>
     /// Name is the declared identifier.
@@ -91,7 +91,7 @@ protected:
     utility::string_t m_Detail;
     bool m_DetailIsSet;
 
-    int32_t m_Kind;
+    int64_t m_Kind;
     bool m_KindIsSet;
 
     utility::string_t m_Name;

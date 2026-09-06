@@ -73,10 +73,10 @@ public:
     /// <summary>
     /// CreatedAt is when the slot was first claimed, as a Unix timestamp.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// Namespace is the Kubernetes namespace the node&#39;s CR lives in.
@@ -137,10 +137,10 @@ public:
     /// <summary>
     /// UpdatedAt is when the slot last changed, as a Unix timestamp.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
     /// <summary>
     /// Wallet is the lowercase Ethereum address that proved ownership of the NFT.
@@ -158,7 +158,7 @@ protected:
     utility::string_t m_CrName;
     bool m_CrNameIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_r_namespace;
@@ -182,7 +182,7 @@ protected:
     int32_t m_TokenId;
     bool m_TokenIdIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
     utility::string_t m_Wallet;

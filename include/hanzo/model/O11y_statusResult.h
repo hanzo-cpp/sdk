@@ -74,10 +74,10 @@ public:
     /// <summary>
     /// LatencyMs is the health probe&#39;s round trip in MILLISECONDS, time-boxed at two seconds. It is 0 when no probe answered, which is not a fast service.
     /// </summary>
-    int32_t getLatencyMs() const;
+    int64_t getLatencyMs() const;
     bool latencyMsIsSet() const;
     void unsetLatencyMs();
-    void setLatencyMs(int32_t value);
+    void setLatencyMs(int64_t value);
 
     /// <summary>
     /// Product is the service this answer is about, echoed back.
@@ -111,7 +111,7 @@ protected:
     std::vector<std::shared_ptr<O11y_deployment>> m_Deployments;
     bool m_DeploymentsIsSet;
 
-    int32_t m_LatencyMs;
+    int64_t m_LatencyMs;
     bool m_LatencyMsIsSet;
 
     utility::string_t m_Product;

@@ -20,7 +20,7 @@ O11y_O11yToken::O11y_O11yToken()
 {
     m_AccessToken = utility::conversions::to_string_t("");
     m_AccessTokenIsSet = false;
-    m_ExpiresIn = 0;
+    m_ExpiresIn = 0L;
     m_ExpiresInIsSet = false;
     m_RefreshToken = utility::conversions::to_string_t("");
     m_RefreshTokenIsSet = false;
@@ -83,7 +83,7 @@ bool O11y_O11yToken::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("expiresIn")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExpiresIn;
+            int64_t refVal_setExpiresIn;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExpiresIn);
             setExpiresIn(refVal_setExpiresIn);
             
@@ -156,7 +156,7 @@ bool O11y_O11yToken::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("expiresIn"))))
     {
-        int32_t refVal_setExpiresIn;
+        int64_t refVal_setExpiresIn;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("expiresIn"))), refVal_setExpiresIn );
         setExpiresIn(refVal_setExpiresIn);
     }
@@ -197,13 +197,13 @@ void O11y_O11yToken::unsetAccessToken()
 {
     m_AccessTokenIsSet = false;
 }
-int32_t O11y_O11yToken::getExpiresIn() const
+int64_t O11y_O11yToken::getExpiresIn() const
 {
     return m_ExpiresIn;
 }
 
 
-void O11y_O11yToken::setExpiresIn(int32_t value)
+void O11y_O11yToken::setExpiresIn(int64_t value)
 {
     m_ExpiresIn = value;
     m_ExpiresInIsSet = true;

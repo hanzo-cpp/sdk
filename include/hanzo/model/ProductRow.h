@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// Orders is how many order_completed events carried it.
     /// </summary>
-    int32_t getOrders() const;
+    int64_t getOrders() const;
     bool ordersIsSet() const;
     void unsetOrders();
-    void setOrders(int32_t value);
+    void setOrders(int64_t value);
 
     /// <summary>
     /// ProductID is the product the order events named.
@@ -79,14 +79,14 @@ public:
     /// <summary>
     /// Units is the summed quantity sold.
     /// </summary>
-    int32_t getUnits() const;
+    int64_t getUnits() const;
     bool unitsIsSet() const;
     void unsetUnits();
-    void setUnits(int32_t value);
+    void setUnits(int64_t value);
 
 
 protected:
-    int32_t m_Orders;
+    int64_t m_Orders;
     bool m_OrdersIsSet;
 
     utility::string_t m_ProductId;
@@ -95,7 +95,7 @@ protected:
     double m_Revenue;
     bool m_RevenueIsSet;
 
-    int32_t m_Units;
+    int64_t m_Units;
     bool m_UnitsIsSet;
 
 };

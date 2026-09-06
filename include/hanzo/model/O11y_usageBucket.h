@@ -55,18 +55,18 @@ public:
     /// <summary>
     /// Calls is how many LLM calls landed in the bucket.
     /// </summary>
-    int32_t getCalls() const;
+    int64_t getCalls() const;
     bool callsIsSet() const;
     void unsetCalls();
-    void setCalls(int32_t value);
+    void setCalls(int64_t value);
 
     /// <summary>
     /// CostCents is what they cost, in cents.
     /// </summary>
-    int32_t getCostCents() const;
+    int64_t getCostCents() const;
     bool costCentsIsSet() const;
     void unsetCostCents();
-    void setCostCents(int32_t value);
+    void setCostCents(int64_t value);
 
     /// <summary>
     /// T is the bucket start, RFC3339 in UTC.
@@ -79,23 +79,23 @@ public:
     /// <summary>
     /// Tokens is how many tokens they consumed.
     /// </summary>
-    int32_t getTokens() const;
+    int64_t getTokens() const;
     bool tokensIsSet() const;
     void unsetTokens();
-    void setTokens(int32_t value);
+    void setTokens(int64_t value);
 
 
 protected:
-    int32_t m_Calls;
+    int64_t m_Calls;
     bool m_CallsIsSet;
 
-    int32_t m_CostCents;
+    int64_t m_CostCents;
     bool m_CostCentsIsSet;
 
     utility::string_t m_t;
     bool m_tIsSet;
 
-    int32_t m_Tokens;
+    int64_t m_Tokens;
     bool m_TokensIsSet;
 
 };

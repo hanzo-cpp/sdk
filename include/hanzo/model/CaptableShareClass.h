@@ -87,18 +87,18 @@ public:
     /// <summary>
     /// Idx is the class&#39;s 1-based position within the company, in creation order.
     /// </summary>
-    int32_t getIdx() const;
+    int64_t getIdx() const;
     bool idxIsSet() const;
     void unsetIdx();
-    void setIdx(int32_t value);
+    void setIdx(int64_t value);
 
     /// <summary>
     /// InitialSharesAuthorized is how many shares of this class are authorized.
     /// </summary>
-    int32_t getInitialSharesAuthorized() const;
+    int64_t getInitialSharesAuthorized() const;
     bool initialSharesAuthorizedIsSet() const;
     void unsetInitialSharesAuthorized();
-    void setInitialSharesAuthorized(int32_t value);
+    void setInitialSharesAuthorized(int64_t value);
 
     /// <summary>
     /// LiquidationPreferenceMultiple is the preference multiple on liquidation.
@@ -151,18 +151,18 @@ public:
     /// <summary>
     /// Seniority orders classes in a liquidation waterfall; higher is more senior.
     /// </summary>
-    int32_t getSeniority() const;
+    int64_t getSeniority() const;
     bool seniorityIsSet() const;
     void unsetSeniority();
-    void setSeniority(int32_t value);
+    void setSeniority(int64_t value);
 
     /// <summary>
     /// VotesPerShare is how many votes one share of this class carries.
     /// </summary>
-    int32_t getVotesPerShare() const;
+    int64_t getVotesPerShare() const;
     bool votesPerShareIsSet() const;
     void unsetVotesPerShare();
-    void setVotesPerShare(int32_t value);
+    void setVotesPerShare(int64_t value);
 
 
 protected:
@@ -178,10 +178,10 @@ protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
 
-    int32_t m_Idx;
+    int64_t m_Idx;
     bool m_IdxIsSet;
 
-    int32_t m_InitialSharesAuthorized;
+    int64_t m_InitialSharesAuthorized;
     bool m_InitialSharesAuthorizedIsSet;
 
     double m_LiquidationPreferenceMultiple;
@@ -202,10 +202,10 @@ protected:
     double m_PricePerShare;
     bool m_PricePerShareIsSet;
 
-    int32_t m_Seniority;
+    int64_t m_Seniority;
     bool m_SeniorityIsSet;
 
-    int32_t m_VotesPerShare;
+    int64_t m_VotesPerShare;
     bool m_VotesPerShareIsSet;
 
 };

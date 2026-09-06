@@ -25,7 +25,7 @@ Preset::Preset()
     m_NoteIsSet = false;
     m_Owner = utility::conversions::to_string_t("");
     m_OwnerIsSet = false;
-    m_Panel = 0;
+    m_Panel = 0L;
     m_PanelIsSet = false;
     m_RankIsSet = false;
 }
@@ -128,7 +128,7 @@ bool Preset::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("panel")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPanel;
+            int64_t refVal_setPanel;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPanel);
             setPanel(refVal_setPanel);
             
@@ -216,7 +216,7 @@ bool Preset::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("panel"))))
     {
-        int32_t refVal_setPanel;
+        int64_t refVal_setPanel;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("panel"))), refVal_setPanel );
         setPanel(refVal_setPanel);
     }
@@ -314,13 +314,13 @@ void Preset::unsetOwner()
 {
     m_OwnerIsSet = false;
 }
-int32_t Preset::getPanel() const
+int64_t Preset::getPanel() const
 {
     return m_Panel;
 }
 
 
-void Preset::setPanel(int32_t value)
+void Preset::setPanel(int64_t value)
 {
     m_Panel = value;
     m_PanelIsSet = true;

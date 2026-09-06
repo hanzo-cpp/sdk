@@ -20,9 +20,9 @@ Outcome::Outcome()
 {
     m_Control = false;
     m_ControlIsSet = false;
-    m_Converted = 0;
+    m_Converted = 0L;
     m_ConvertedIsSet = false;
-    m_Exposed = 0;
+    m_Exposed = 0L;
     m_ExposedIsSet = false;
     m_Lift = 0.0;
     m_LiftIsSet = false;
@@ -118,7 +118,7 @@ bool Outcome::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("converted")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setConverted;
+            int64_t refVal_setConverted;
             ok &= ModelBase::fromJson(fieldValue, refVal_setConverted);
             setConverted(refVal_setConverted);
             
@@ -129,7 +129,7 @@ bool Outcome::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("exposed")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExposed;
+            int64_t refVal_setExposed;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExposed);
             setExposed(refVal_setExposed);
             
@@ -266,13 +266,13 @@ bool Outcome::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("converted"))))
     {
-        int32_t refVal_setConverted;
+        int64_t refVal_setConverted;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("converted"))), refVal_setConverted );
         setConverted(refVal_setConverted);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("exposed"))))
     {
-        int32_t refVal_setExposed;
+        int64_t refVal_setExposed;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("exposed"))), refVal_setExposed );
         setExposed(refVal_setExposed);
     }
@@ -337,13 +337,13 @@ void Outcome::unsetControl()
 {
     m_ControlIsSet = false;
 }
-int32_t Outcome::getConverted() const
+int64_t Outcome::getConverted() const
 {
     return m_Converted;
 }
 
 
-void Outcome::setConverted(int32_t value)
+void Outcome::setConverted(int64_t value)
 {
     m_Converted = value;
     m_ConvertedIsSet = true;
@@ -358,13 +358,13 @@ void Outcome::unsetConverted()
 {
     m_ConvertedIsSet = false;
 }
-int32_t Outcome::getExposed() const
+int64_t Outcome::getExposed() const
 {
     return m_Exposed;
 }
 
 
-void Outcome::setExposed(int32_t value)
+void Outcome::setExposed(int64_t value)
 {
     m_Exposed = value;
     m_ExposedIsSet = true;

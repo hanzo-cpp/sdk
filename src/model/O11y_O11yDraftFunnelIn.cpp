@@ -18,13 +18,13 @@ namespace model {
 
 O11y_O11yDraftFunnelIn::O11y_O11yDraftFunnelIn()
 {
-    m_End_time = 0;
+    m_End_time = 0L;
     m_End_timeIsSet = false;
-    m_Start_time = 0;
+    m_Start_time = 0L;
     m_Start_timeIsSet = false;
-    m_Step_end = 0;
+    m_Step_end = 0L;
     m_Step_endIsSet = false;
-    m_Step_start = 0;
+    m_Step_start = 0L;
     m_Step_startIsSet = false;
     m_StepsIsSet = false;
 }
@@ -78,7 +78,7 @@ bool O11y_O11yDraftFunnelIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("end_time")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setEndTime;
+            int64_t refVal_setEndTime;
             ok &= ModelBase::fromJson(fieldValue, refVal_setEndTime);
             setEndTime(refVal_setEndTime);
             
@@ -89,7 +89,7 @@ bool O11y_O11yDraftFunnelIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("start_time")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStartTime;
+            int64_t refVal_setStartTime;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStartTime);
             setStartTime(refVal_setStartTime);
             
@@ -100,7 +100,7 @@ bool O11y_O11yDraftFunnelIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("step_end")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStepEnd;
+            int64_t refVal_setStepEnd;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStepEnd);
             setStepEnd(refVal_setStepEnd);
             
@@ -111,7 +111,7 @@ bool O11y_O11yDraftFunnelIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("step_start")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStepStart;
+            int64_t refVal_setStepStart;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStepStart);
             setStepStart(refVal_setStepStart);
             
@@ -171,25 +171,25 @@ bool O11y_O11yDraftFunnelIn::fromMultiPart(std::shared_ptr<MultipartFormData> mu
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("end_time"))))
     {
-        int32_t refVal_setEndTime;
+        int64_t refVal_setEndTime;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("end_time"))), refVal_setEndTime );
         setEndTime(refVal_setEndTime);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("start_time"))))
     {
-        int32_t refVal_setStartTime;
+        int64_t refVal_setStartTime;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("start_time"))), refVal_setStartTime );
         setStartTime(refVal_setStartTime);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("step_end"))))
     {
-        int32_t refVal_setStepEnd;
+        int64_t refVal_setStepEnd;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("step_end"))), refVal_setStepEnd );
         setStepEnd(refVal_setStepEnd);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("step_start"))))
     {
-        int32_t refVal_setStepStart;
+        int64_t refVal_setStepStart;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("step_start"))), refVal_setStepStart );
         setStepStart(refVal_setStepStart);
     }
@@ -203,13 +203,13 @@ bool O11y_O11yDraftFunnelIn::fromMultiPart(std::shared_ptr<MultipartFormData> mu
 }
 
 
-int32_t O11y_O11yDraftFunnelIn::getEndTime() const
+int64_t O11y_O11yDraftFunnelIn::getEndTime() const
 {
     return m_End_time;
 }
 
 
-void O11y_O11yDraftFunnelIn::setEndTime(int32_t value)
+void O11y_O11yDraftFunnelIn::setEndTime(int64_t value)
 {
     m_End_time = value;
     m_End_timeIsSet = true;
@@ -224,13 +224,13 @@ void O11y_O11yDraftFunnelIn::unsetEnd_time()
 {
     m_End_timeIsSet = false;
 }
-int32_t O11y_O11yDraftFunnelIn::getStartTime() const
+int64_t O11y_O11yDraftFunnelIn::getStartTime() const
 {
     return m_Start_time;
 }
 
 
-void O11y_O11yDraftFunnelIn::setStartTime(int32_t value)
+void O11y_O11yDraftFunnelIn::setStartTime(int64_t value)
 {
     m_Start_time = value;
     m_Start_timeIsSet = true;
@@ -245,13 +245,13 @@ void O11y_O11yDraftFunnelIn::unsetStart_time()
 {
     m_Start_timeIsSet = false;
 }
-int32_t O11y_O11yDraftFunnelIn::getStepEnd() const
+int64_t O11y_O11yDraftFunnelIn::getStepEnd() const
 {
     return m_Step_end;
 }
 
 
-void O11y_O11yDraftFunnelIn::setStepEnd(int32_t value)
+void O11y_O11yDraftFunnelIn::setStepEnd(int64_t value)
 {
     m_Step_end = value;
     m_Step_endIsSet = true;
@@ -266,13 +266,13 @@ void O11y_O11yDraftFunnelIn::unsetStep_end()
 {
     m_Step_endIsSet = false;
 }
-int32_t O11y_O11yDraftFunnelIn::getStepStart() const
+int64_t O11y_O11yDraftFunnelIn::getStepStart() const
 {
     return m_Step_start;
 }
 
 
-void O11y_O11yDraftFunnelIn::setStepStart(int32_t value)
+void O11y_O11yDraftFunnelIn::setStepStart(int64_t value)
 {
     m_Step_start = value;
     m_Step_startIsSet = true;

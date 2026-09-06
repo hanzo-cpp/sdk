@@ -295,7 +295,7 @@ pplx::task<std::shared_ptr<FileContent>> CodeApi::getCodeFile(boost::optional<ut
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<SearchResults>> CodeApi::getCodeSearch(boost::optional<utility::string_t> q, boost::optional<utility::string_t> type, boost::optional<utility::string_t> repo, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<SearchResults>> CodeApi::getCodeSearch(boost::optional<utility::string_t> q, boost::optional<utility::string_t> type, boost::optional<utility::string_t> repo, boost::optional<int64_t> limit) const
 {
 
 

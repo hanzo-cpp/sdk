@@ -74,10 +74,10 @@ public:
     /// <summary>
     /// Tools is how many tools THIS PROCESS&#39;s MCP server carries: its own typed-op registry, projected. It is the only number a subsystem can state honestly — what the FLEET&#39;s server carries is a question only the host can ask, and it asks it by asking every subsystem (POST /v1/mcp, tools/list).
     /// </summary>
-    int32_t getTools() const;
+    int64_t getTools() const;
     bool toolsIsSet() const;
     void unsetTools();
-    void setTools(int32_t value);
+    void setTools(int64_t value);
 
 
 protected:
@@ -87,7 +87,7 @@ protected:
     std::vector<utility::string_t> m_Names;
     bool m_NamesIsSet;
 
-    int32_t m_Tools;
+    int64_t m_Tools;
     bool m_ToolsIsSet;
 
 };

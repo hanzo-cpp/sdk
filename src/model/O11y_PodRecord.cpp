@@ -19,7 +19,7 @@ namespace model {
 O11y_PodRecord::O11y_PodRecord()
 {
     m_MetaIsSet = false;
-    m_PodAge = 0;
+    m_PodAge = 0L;
     m_PodAgeIsSet = false;
     m_PodCPU = 0.0;
     m_PodCPUIsSet = false;
@@ -128,7 +128,7 @@ bool O11y_PodRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("podAge")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPodAge;
+            int64_t refVal_setPodAge;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPodAge);
             setPodAge(refVal_setPodAge);
             
@@ -306,7 +306,7 @@ bool O11y_PodRecord::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("podAge"))))
     {
-        int32_t refVal_setPodAge;
+        int64_t refVal_setPodAge;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("podAge"))), refVal_setPodAge );
         setPodAge(refVal_setPodAge);
     }
@@ -389,13 +389,13 @@ void O11y_PodRecord::unsetMeta()
 {
     m_MetaIsSet = false;
 }
-int32_t O11y_PodRecord::getPodAge() const
+int64_t O11y_PodRecord::getPodAge() const
 {
     return m_PodAge;
 }
 
 
-void O11y_PodRecord::setPodAge(int32_t value)
+void O11y_PodRecord::setPodAge(int64_t value)
 {
     m_PodAge = value;
     m_PodAgeIsSet = true;

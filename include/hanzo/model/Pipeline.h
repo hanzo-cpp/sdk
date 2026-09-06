@@ -60,10 +60,10 @@ public:
     /// <summary>
     /// Behind counts commits after the one that last produced an image whose own build has FINISHED without producing one, and Since is when the oldest of them landed. A commit still building is not counted, so a push in flight is not drift and a service appears here only once something has actually stopped without shipping. How long that has stood is the number worth acting on; that it is true says nothing about whether anyone should move.
     /// </summary>
-    int32_t getBehind() const;
+    int64_t getBehind() const;
     bool behindIsSet() const;
     void unsetBehind();
-    void setBehind(int32_t value);
+    void setBehind(int64_t value);
 
     std::shared_ptr<Artifact> getBuilt() const;
     bool builtIsSet() const;
@@ -122,10 +122,10 @@ public:
     void unsetPinnedAt();
     void setPinnedAt(const utility::datetime& value);
 
-    int32_t getReady() const;
+    int64_t getReady() const;
     bool readyIsSet() const;
     void unsetReady();
-    void setReady(int32_t value);
+    void setReady(int64_t value);
 
     /// <summary>
     /// hanzo-inc/cloud
@@ -145,14 +145,14 @@ public:
     void unsetSince();
     void setSince(const utility::datetime& value);
 
-    int32_t getWant() const;
+    int64_t getWant() const;
     bool wantIsSet() const;
     void unsetWant();
-    void setWant(int32_t value);
+    void setWant(int64_t value);
 
 
 protected:
-    int32_t m_Behind;
+    int64_t m_Behind;
     bool m_BehindIsSet;
 
     std::shared_ptr<Artifact> m_Built;
@@ -182,7 +182,7 @@ protected:
     utility::datetime m_PinnedAt;
     bool m_PinnedAtIsSet;
 
-    int32_t m_Ready;
+    int64_t m_Ready;
     bool m_ReadyIsSet;
 
     utility::string_t m_Repo;
@@ -194,7 +194,7 @@ protected:
     utility::datetime m_Since;
     bool m_SinceIsSet;
 
-    int32_t m_Want;
+    int64_t m_Want;
     bool m_WantIsSet;
 
 };

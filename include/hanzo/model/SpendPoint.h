@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// Cents is the consumption recorded in that bucket, in US cents.
     /// </summary>
-    int32_t getCents() const;
+    int64_t getCents() const;
     bool centsIsSet() const;
     void unsetCents();
-    void setCents(int32_t value);
+    void setCents(int64_t value);
 
     /// <summary>
     /// T is the bucket&#39;s start instant, RFC3339 UTC. Buckets are gap-filled, so a window with no spend still has its points.
@@ -70,7 +70,7 @@ public:
 
 
 protected:
-    int32_t m_Cents;
+    int64_t m_Cents;
     bool m_CentsIsSet;
 
     utility::string_t m_t;

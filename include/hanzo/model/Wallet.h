@@ -81,10 +81,10 @@ public:
     /// <summary>
     /// CreatedAt is when the wallet was provisioned, Unix seconds. Listings order by it, newest first.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// Custody is the backend holding the signing material, fixed at creation: \&quot;kms\&quot; (a secp256k1 key sealed under KMS and opened in-process), \&quot;mpc\&quot; or \&quot;treasury\&quot; (an m-of-n threshold key on the deployed ring, which differ by governance and not by signing mechanics), or \&quot;safe\&quot; (a Safe contract owned by an MPC key). A kind the deployment has not wired refuses with 503 rather than fabricating a signature.
@@ -150,7 +150,7 @@ protected:
     utility::string_t m_Chain;
     bool m_ChainIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_Custody;

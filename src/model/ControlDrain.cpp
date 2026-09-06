@@ -19,7 +19,7 @@ namespace model {
 ControlDrain::ControlDrain()
 {
     m_CommandsIsSet = false;
-    m_Cursor = 0;
+    m_Cursor = 0L;
     m_CursorIsSet = false;
 }
 
@@ -68,7 +68,7 @@ bool ControlDrain::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cursor")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCursor;
+            int64_t refVal_setCursor;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCursor);
             setCursor(refVal_setCursor);
             
@@ -111,7 +111,7 @@ bool ControlDrain::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cursor"))))
     {
-        int32_t refVal_setCursor;
+        int64_t refVal_setCursor;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cursor"))), refVal_setCursor );
         setCursor(refVal_setCursor);
     }
@@ -140,13 +140,13 @@ void ControlDrain::unsetCommands()
 {
     m_CommandsIsSet = false;
 }
-int32_t ControlDrain::getCursor() const
+int64_t ControlDrain::getCursor() const
 {
     return m_Cursor;
 }
 
 
-void ControlDrain::setCursor(int32_t value)
+void ControlDrain::setCursor(int64_t value)
 {
     m_Cursor = value;
     m_CursorIsSet = true;

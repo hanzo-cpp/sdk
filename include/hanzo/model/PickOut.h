@@ -65,17 +65,17 @@ public:
     /// <summary>
     /// Total is the stream&#39;s consumer count before paging.
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
 
 protected:
     std::vector<std::shared_ptr<Consumer>> m_Consumers;
     bool m_ConsumersIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
 };

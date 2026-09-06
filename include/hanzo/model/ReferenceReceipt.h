@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// Keys is how many designations that load carried. Zero from a publisher who designates somebody is a failed load wearing a successful one&#39;s clothes, and belongs in Refusal instead.
     /// </summary>
-    int32_t getKeys() const;
+    int64_t getKeys() const;
     bool keysIsSet() const;
     void unsetKeys();
-    void setKeys(int32_t value);
+    void setKeys(int64_t value);
 
     /// <summary>
     /// Refusal is why the load failed, when it did.
@@ -97,7 +97,7 @@ protected:
     utility::string_t m_AsOf;
     bool m_AsOfIsSet;
 
-    int32_t m_Keys;
+    int64_t m_Keys;
     bool m_KeysIsSet;
 
     utility::string_t m_Refusal;

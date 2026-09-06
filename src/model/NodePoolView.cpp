@@ -20,11 +20,11 @@ NodePoolView::NodePoolView()
 {
     m_AutoScale = false;
     m_AutoScaleIsSet = false;
-    m_Count = 0;
+    m_Count = 0L;
     m_CountIsSet = false;
-    m_MaxNodes = 0;
+    m_MaxNodes = 0L;
     m_MaxNodesIsSet = false;
-    m_MinNodes = 0;
+    m_MinNodes = 0L;
     m_MinNodesIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
@@ -104,7 +104,7 @@ bool NodePoolView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("count")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCount;
+            int64_t refVal_setCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCount);
             setCount(refVal_setCount);
             
@@ -115,7 +115,7 @@ bool NodePoolView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("maxNodes")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMaxNodes;
+            int64_t refVal_setMaxNodes;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMaxNodes);
             setMaxNodes(refVal_setMaxNodes);
             
@@ -126,7 +126,7 @@ bool NodePoolView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("minNodes")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMinNodes;
+            int64_t refVal_setMinNodes;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMinNodes);
             setMinNodes(refVal_setMinNodes);
             
@@ -222,19 +222,19 @@ bool NodePoolView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("count"))))
     {
-        int32_t refVal_setCount;
+        int64_t refVal_setCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("count"))), refVal_setCount );
         setCount(refVal_setCount);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("maxNodes"))))
     {
-        int32_t refVal_setMaxNodes;
+        int64_t refVal_setMaxNodes;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("maxNodes"))), refVal_setMaxNodes );
         setMaxNodes(refVal_setMaxNodes);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("minNodes"))))
     {
-        int32_t refVal_setMinNodes;
+        int64_t refVal_setMinNodes;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("minNodes"))), refVal_setMinNodes );
         setMinNodes(refVal_setMinNodes);
     }
@@ -281,13 +281,13 @@ void NodePoolView::unsetAutoScale()
 {
     m_AutoScaleIsSet = false;
 }
-int32_t NodePoolView::getCount() const
+int64_t NodePoolView::getCount() const
 {
     return m_Count;
 }
 
 
-void NodePoolView::setCount(int32_t value)
+void NodePoolView::setCount(int64_t value)
 {
     m_Count = value;
     m_CountIsSet = true;
@@ -302,13 +302,13 @@ void NodePoolView::unsetCount()
 {
     m_CountIsSet = false;
 }
-int32_t NodePoolView::getMaxNodes() const
+int64_t NodePoolView::getMaxNodes() const
 {
     return m_MaxNodes;
 }
 
 
-void NodePoolView::setMaxNodes(int32_t value)
+void NodePoolView::setMaxNodes(int64_t value)
 {
     m_MaxNodes = value;
     m_MaxNodesIsSet = true;
@@ -323,13 +323,13 @@ void NodePoolView::unsetMaxNodes()
 {
     m_MaxNodesIsSet = false;
 }
-int32_t NodePoolView::getMinNodes() const
+int64_t NodePoolView::getMinNodes() const
 {
     return m_MinNodes;
 }
 
 
-void NodePoolView::setMinNodes(int32_t value)
+void NodePoolView::setMinNodes(int64_t value)
 {
     m_MinNodes = value;
     m_MinNodesIsSet = true;

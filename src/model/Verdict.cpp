@@ -18,20 +18,9 @@ namespace model {
 
 Verdict::Verdict()
 {
-    m_Builds = 0;
-    m_BuildsIsSet = false;
-    m_Commit = utility::conversions::to_string_t("");
-    m_CommitIsSet = false;
-    m_Fired = false;
-    m_FiredIsSet = false;
-    m_Org = utility::conversions::to_string_t("");
-    m_OrgIsSet = false;
-    m_Reason = utility::conversions::to_string_t("");
-    m_ReasonIsSet = false;
-    m_Ref = utility::conversions::to_string_t("");
-    m_RefIsSet = false;
-    m_Repo = utility::conversions::to_string_t("");
-    m_RepoIsSet = false;
+    m_FlagsIsSet = false;
+    m_Severity = utility::conversions::to_string_t("");
+    m_SeverityIsSet = false;
 }
 
 Verdict::~Verdict()
@@ -46,40 +35,15 @@ void Verdict::validate()
 web::json::value Verdict::toJson() const
 {
     web::json::value val = web::json::value::object();
-    if(m_BuildsIsSet)
+    if(m_FlagsIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("builds"))] = ModelBase::toJson(m_Builds);
+        val[utility::conversions::to_string_t(_XPLATSTR("flags"))] = ModelBase::toJson(m_Flags);
     }
-    if(m_CommitIsSet)
+    if(m_SeverityIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("commit"))] = ModelBase::toJson(m_Commit);
-    }
-    if(m_FiredIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("fired"))] = ModelBase::toJson(m_Fired);
-    }
-    if(m_OrgIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("org"))] = ModelBase::toJson(m_Org);
-    }
-    if(m_ReasonIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("reason"))] = ModelBase::toJson(m_Reason);
-    }
-    if(m_RefIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("ref"))] = ModelBase::toJson(m_Ref);
-    }
-    if(m_RepoIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("repo"))] = ModelBase::toJson(m_Repo);
+        val[utility::conversions::to_string_t(_XPLATSTR("severity"))] = ModelBase::toJson(m_Severity);
     }
 
     return val;
@@ -88,80 +52,25 @@ web::json::value Verdict::toJson() const
 bool Verdict::fromJson(const web::json::value& val)
 {
     bool ok = true;
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("builds"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("flags"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("builds")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("flags")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBuilds;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBuilds);
-            setBuilds(refVal_setBuilds);
+            std::vector<std::shared_ptr<DriftFlag>> refVal_setFlags;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setFlags);
+            setFlags(refVal_setFlags);
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("commit"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("severity"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("commit")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("severity")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setCommit;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setCommit);
-            setCommit(refVal_setCommit);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("fired"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("fired")));
-        if(!fieldValue.is_null())
-        {
-            bool refVal_setFired;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setFired);
-            setFired(refVal_setFired);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("org"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("org")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setOrg;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setOrg);
-            setOrg(refVal_setOrg);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("reason"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("reason")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setReason;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setReason);
-            setReason(refVal_setReason);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("ref"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("ref")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setRef;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setRef);
-            setRef(refVal_setRef);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("repo"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("repo")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setRepo;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setRepo);
-            setRepo(refVal_setRepo);
+            utility::string_t refVal_setSeverity;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSeverity);
+            setSeverity(refVal_setSeverity);
             
         }
     }
@@ -175,33 +84,13 @@ void Verdict::toMultipart(std::shared_ptr<MultipartFormData> multipart, const ut
     {
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
-    if(m_BuildsIsSet)
+    if(m_FlagsIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("builds")), m_Builds));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("flags")), m_Flags));
     }
-    if(m_CommitIsSet)
+    if(m_SeverityIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("commit")), m_Commit));
-    }
-    if(m_FiredIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("fired")), m_Fired));
-    }
-    if(m_OrgIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("org")), m_Org));
-    }
-    if(m_ReasonIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("reason")), m_Reason));
-    }
-    if(m_RefIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("ref")), m_Ref));
-    }
-    if(m_RepoIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("repo")), m_Repo));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("severity")), m_Severity));
     }
 }
 
@@ -214,198 +103,63 @@ bool Verdict::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("builds"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("flags"))))
     {
-        int32_t refVal_setBuilds;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("builds"))), refVal_setBuilds );
-        setBuilds(refVal_setBuilds);
+        std::vector<std::shared_ptr<DriftFlag>> refVal_setFlags;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("flags"))), refVal_setFlags );
+        setFlags(refVal_setFlags);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("commit"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("severity"))))
     {
-        utility::string_t refVal_setCommit;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("commit"))), refVal_setCommit );
-        setCommit(refVal_setCommit);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("fired"))))
-    {
-        bool refVal_setFired;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("fired"))), refVal_setFired );
-        setFired(refVal_setFired);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("org"))))
-    {
-        utility::string_t refVal_setOrg;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("org"))), refVal_setOrg );
-        setOrg(refVal_setOrg);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("reason"))))
-    {
-        utility::string_t refVal_setReason;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("reason"))), refVal_setReason );
-        setReason(refVal_setReason);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("ref"))))
-    {
-        utility::string_t refVal_setRef;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ref"))), refVal_setRef );
-        setRef(refVal_setRef);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("repo"))))
-    {
-        utility::string_t refVal_setRepo;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("repo"))), refVal_setRepo );
-        setRepo(refVal_setRepo);
+        utility::string_t refVal_setSeverity;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("severity"))), refVal_setSeverity );
+        setSeverity(refVal_setSeverity);
     }
     return ok;
 }
 
 
-int32_t Verdict::getBuilds() const
+std::vector<std::shared_ptr<DriftFlag>> Verdict::getFlags() const
 {
-    return m_Builds;
+    return m_Flags;
 }
 
 
-void Verdict::setBuilds(int32_t value)
+void Verdict::setFlags(const std::vector<std::shared_ptr<DriftFlag>>& value)
 {
-    m_Builds = value;
-    m_BuildsIsSet = true;
+    m_Flags = value;
+    m_FlagsIsSet = true;
 }
 
-bool Verdict::buildsIsSet() const
+bool Verdict::flagsIsSet() const
 {
-    return m_BuildsIsSet;
+    return m_FlagsIsSet;
 }
 
-void Verdict::unsetBuilds()
+void Verdict::unsetFlags()
 {
-    m_BuildsIsSet = false;
+    m_FlagsIsSet = false;
 }
-utility::string_t Verdict::getCommit() const
+utility::string_t Verdict::getSeverity() const
 {
-    return m_Commit;
-}
-
-
-void Verdict::setCommit(const utility::string_t& value)
-{
-    m_Commit = value;
-    m_CommitIsSet = true;
-}
-
-bool Verdict::commitIsSet() const
-{
-    return m_CommitIsSet;
-}
-
-void Verdict::unsetCommit()
-{
-    m_CommitIsSet = false;
-}
-bool Verdict::isFired() const
-{
-    return m_Fired;
+    return m_Severity;
 }
 
 
-void Verdict::setFired(bool value)
+void Verdict::setSeverity(const utility::string_t& value)
 {
-    m_Fired = value;
-    m_FiredIsSet = true;
+    m_Severity = value;
+    m_SeverityIsSet = true;
 }
 
-bool Verdict::firedIsSet() const
+bool Verdict::severityIsSet() const
 {
-    return m_FiredIsSet;
+    return m_SeverityIsSet;
 }
 
-void Verdict::unsetFired()
+void Verdict::unsetSeverity()
 {
-    m_FiredIsSet = false;
-}
-utility::string_t Verdict::getOrg() const
-{
-    return m_Org;
-}
-
-
-void Verdict::setOrg(const utility::string_t& value)
-{
-    m_Org = value;
-    m_OrgIsSet = true;
-}
-
-bool Verdict::orgIsSet() const
-{
-    return m_OrgIsSet;
-}
-
-void Verdict::unsetOrg()
-{
-    m_OrgIsSet = false;
-}
-utility::string_t Verdict::getReason() const
-{
-    return m_Reason;
-}
-
-
-void Verdict::setReason(const utility::string_t& value)
-{
-    m_Reason = value;
-    m_ReasonIsSet = true;
-}
-
-bool Verdict::reasonIsSet() const
-{
-    return m_ReasonIsSet;
-}
-
-void Verdict::unsetReason()
-{
-    m_ReasonIsSet = false;
-}
-utility::string_t Verdict::getRef() const
-{
-    return m_Ref;
-}
-
-
-void Verdict::setRef(const utility::string_t& value)
-{
-    m_Ref = value;
-    m_RefIsSet = true;
-}
-
-bool Verdict::refIsSet() const
-{
-    return m_RefIsSet;
-}
-
-void Verdict::unsetRef()
-{
-    m_RefIsSet = false;
-}
-utility::string_t Verdict::getRepo() const
-{
-    return m_Repo;
-}
-
-
-void Verdict::setRepo(const utility::string_t& value)
-{
-    m_Repo = value;
-    m_RepoIsSet = true;
-}
-
-bool Verdict::repoIsSet() const
-{
-    return m_RepoIsSet;
-}
-
-void Verdict::unsetRepo()
-{
-    m_RepoIsSet = false;
+    m_SeverityIsSet = false;
 }
 
 }

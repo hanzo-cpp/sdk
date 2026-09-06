@@ -24,7 +24,7 @@ CaptableStakeholder::CaptableStakeholder()
     m_CompanyNameIsSet = false;
     m_Country = utility::conversions::to_string_t("");
     m_CountryIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_CurrentRelationship = utility::conversions::to_string_t("");
     m_CurrentRelationshipIsSet = false;
@@ -175,7 +175,7 @@ bool CaptableStakeholder::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -388,7 +388,7 @@ bool CaptableStakeholder::fromMultiPart(std::shared_ptr<MultipartFormData> multi
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -519,13 +519,13 @@ void CaptableStakeholder::unsetCountry()
 {
     m_CountryIsSet = false;
 }
-int32_t CaptableStakeholder::getCreatedAt() const
+int64_t CaptableStakeholder::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void CaptableStakeholder::setCreatedAt(int32_t value)
+void CaptableStakeholder::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;

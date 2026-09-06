@@ -18,9 +18,9 @@ namespace model {
 
 CheckView::CheckView()
 {
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
-    m_DecidedAt = 0;
+    m_DecidedAt = 0L;
     m_DecidedAtIsSet = false;
     m_DecidedBy = utility::conversions::to_string_t("");
     m_DecidedByIsSet = false;
@@ -34,7 +34,7 @@ CheckView::CheckView()
     m_StatusIsSet = false;
     m_SubjectId = utility::conversions::to_string_t("");
     m_SubjectIdIsSet = false;
-    m_UpdatedAt = 0;
+    m_UpdatedAt = 0L;
     m_UpdatedAtIsSet = false;
     m_VerifyUrl = utility::conversions::to_string_t("");
     m_VerifyUrlIsSet = false;
@@ -114,7 +114,7 @@ bool CheckView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -125,7 +125,7 @@ bool CheckView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("decidedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDecidedAt;
+            int64_t refVal_setDecidedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDecidedAt);
             setDecidedAt(refVal_setDecidedAt);
             
@@ -202,7 +202,7 @@ bool CheckView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updatedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdatedAt;
+            int64_t refVal_setUpdatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdatedAt);
             setUpdatedAt(refVal_setUpdatedAt);
             
@@ -282,13 +282,13 @@ bool CheckView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("decidedAt"))))
     {
-        int32_t refVal_setDecidedAt;
+        int64_t refVal_setDecidedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("decidedAt"))), refVal_setDecidedAt );
         setDecidedAt(refVal_setDecidedAt);
     }
@@ -330,7 +330,7 @@ bool CheckView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
-        int32_t refVal_setUpdatedAt;
+        int64_t refVal_setUpdatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))), refVal_setUpdatedAt );
         setUpdatedAt(refVal_setUpdatedAt);
     }
@@ -344,13 +344,13 @@ bool CheckView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 }
 
 
-int32_t CheckView::getCreatedAt() const
+int64_t CheckView::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void CheckView::setCreatedAt(int32_t value)
+void CheckView::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -365,13 +365,13 @@ void CheckView::unsetCreatedAt()
 {
     m_CreatedAtIsSet = false;
 }
-int32_t CheckView::getDecidedAt() const
+int64_t CheckView::getDecidedAt() const
 {
     return m_DecidedAt;
 }
 
 
-void CheckView::setDecidedAt(int32_t value)
+void CheckView::setDecidedAt(int64_t value)
 {
     m_DecidedAt = value;
     m_DecidedAtIsSet = true;
@@ -512,13 +512,13 @@ void CheckView::unsetSubjectId()
 {
     m_SubjectIdIsSet = false;
 }
-int32_t CheckView::getUpdatedAt() const
+int64_t CheckView::getUpdatedAt() const
 {
     return m_UpdatedAt;
 }
 
 
-void CheckView::setUpdatedAt(int32_t value)
+void CheckView::setUpdatedAt(int64_t value)
 {
     m_UpdatedAt = value;
     m_UpdatedAtIsSet = true;

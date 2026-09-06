@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// Timestamp is the point&#39;s time as a Unix timestamp in milliseconds.
     /// </summary>
-    int32_t getTimestamp() const;
+    int64_t getTimestamp() const;
     bool timestampIsSet() const;
     void unsetTimestamp();
-    void setTimestamp(int32_t value);
+    void setTimestamp(int64_t value);
 
     /// <summary>
     /// Value is the point&#39;s value.
@@ -89,7 +89,7 @@ protected:
     bool m_Partial;
     bool m_PartialIsSet;
 
-    int32_t m_Timestamp;
+    int64_t m_Timestamp;
     bool m_TimestampIsSet;
 
     double m_Value;

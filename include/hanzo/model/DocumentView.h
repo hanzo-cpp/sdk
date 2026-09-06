@@ -73,10 +73,10 @@ public:
     void unsetContentType();
     void setContentType(const utility::string_t& value);
 
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     utility::string_t getEsignProvider() const;
     bool esignProviderIsSet() const;
@@ -88,10 +88,10 @@ public:
     void unsetId();
     void setId(const utility::string_t& value);
 
-    int32_t getSignedAt() const;
+    int64_t getSignedAt() const;
     bool signedAtIsSet() const;
     void unsetSignedAt();
-    void setSignedAt(int32_t value);
+    void setSignedAt(int64_t value);
 
     utility::string_t getStatus() const;
     bool statusIsSet() const;
@@ -103,20 +103,20 @@ public:
     void unsetTemplateId();
     void setTemplateId(const utility::string_t& value);
 
-    int32_t getTemplateVersion() const;
+    int64_t getTemplateVersion() const;
     bool templateVersionIsSet() const;
     void unsetTemplateVersion();
-    void setTemplateVersion(int32_t value);
+    void setTemplateVersion(int64_t value);
 
     utility::string_t getTitle() const;
     bool titleIsSet() const;
     void unsetTitle();
     void setTitle(const utility::string_t& value);
 
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
 
 protected:
@@ -129,7 +129,7 @@ protected:
     utility::string_t m_ContentType;
     bool m_ContentTypeIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_EsignProvider;
@@ -138,7 +138,7 @@ protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
 
-    int32_t m_SignedAt;
+    int64_t m_SignedAt;
     bool m_SignedAtIsSet;
 
     utility::string_t m_Status;
@@ -147,13 +147,13 @@ protected:
     utility::string_t m_TemplateId;
     bool m_TemplateIdIsSet;
 
-    int32_t m_TemplateVersion;
+    int64_t m_TemplateVersion;
     bool m_TemplateVersionIsSet;
 
     utility::string_t m_Title;
     bool m_TitleIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
 };

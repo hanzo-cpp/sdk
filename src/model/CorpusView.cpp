@@ -18,7 +18,7 @@ namespace model {
 
 CorpusView::CorpusView()
 {
-    m_Count = 0;
+    m_Count = 0L;
     m_CountIsSet = false;
     m_Stage = utility::conversions::to_string_t("");
     m_StageIsSet = false;
@@ -64,7 +64,7 @@ bool CorpusView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("count")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCount;
+            int64_t refVal_setCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCount);
             setCount(refVal_setCount);
             
@@ -127,7 +127,7 @@ bool CorpusView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("count"))))
     {
-        int32_t refVal_setCount;
+        int64_t refVal_setCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("count"))), refVal_setCount );
         setCount(refVal_setCount);
     }
@@ -147,13 +147,13 @@ bool CorpusView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 }
 
 
-int32_t CorpusView::getCount() const
+int64_t CorpusView::getCount() const
 {
     return m_Count;
 }
 
 
-void CorpusView::setCount(int32_t value)
+void CorpusView::setCount(int64_t value)
 {
     m_Count = value;
     m_CountIsSet = true;

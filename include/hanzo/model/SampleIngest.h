@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// GPUs is how many accelerators this reading covers.
     /// </summary>
-    int32_t getGpus() const;
+    int64_t getGpus() const;
     bool gpusIsSet() const;
     void unsetGpus();
-    void setGpus(int32_t value);
+    void setGpus(int64_t value);
 
     /// <summary>
     /// Host is the node&#39;s hostname, for display.
@@ -87,18 +87,18 @@ public:
     /// <summary>
     /// MemFree is host memory still available, in BYTES.
     /// </summary>
-    int32_t getMemFree() const;
+    int64_t getMemFree() const;
     bool memFreeIsSet() const;
     void unsetMemFree();
-    void setMemFree(int32_t value);
+    void setMemFree(int64_t value);
 
     /// <summary>
     /// MemUsed is host memory in use, in BYTES.
     /// </summary>
-    int32_t getMemUsed() const;
+    int64_t getMemUsed() const;
     bool memUsedIsSet() const;
     void unsetMemUsed();
-    void setMemUsed(int32_t value);
+    void setMemUsed(int64_t value);
 
     /// <summary>
     /// Unit is the reporting node&#39;s own id — the same id it registered under, and the key the board joins this series onto. Required.
@@ -116,16 +116,16 @@ protected:
     double m_GpuUtil;
     bool m_GpuUtilIsSet;
 
-    int32_t m_Gpus;
+    int64_t m_Gpus;
     bool m_GpusIsSet;
 
     utility::string_t m_Host;
     bool m_HostIsSet;
 
-    int32_t m_MemFree;
+    int64_t m_MemFree;
     bool m_MemFreeIsSet;
 
-    int32_t m_MemUsed;
+    int64_t m_MemUsed;
     bool m_MemUsedIsSet;
 
     utility::string_t m_Unit;

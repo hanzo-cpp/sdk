@@ -18,11 +18,11 @@ namespace model {
 
 DriftTally::DriftTally()
 {
-    m_Ok = 0;
+    m_Ok = 0L;
     m_OkIsSet = false;
-    m_Red = 0;
+    m_Red = 0L;
     m_RedIsSet = false;
-    m_Yellow = 0;
+    m_Yellow = 0L;
     m_YellowIsSet = false;
 }
 
@@ -65,7 +65,7 @@ bool DriftTally::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("ok")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOk;
+            int64_t refVal_setOk;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOk);
             setOk(refVal_setOk);
             
@@ -76,7 +76,7 @@ bool DriftTally::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("red")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRed;
+            int64_t refVal_setRed;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRed);
             setRed(refVal_setRed);
             
@@ -87,7 +87,7 @@ bool DriftTally::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("yellow")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setYellow;
+            int64_t refVal_setYellow;
             ok &= ModelBase::fromJson(fieldValue, refVal_setYellow);
             setYellow(refVal_setYellow);
             
@@ -128,19 +128,19 @@ bool DriftTally::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("ok"))))
     {
-        int32_t refVal_setOk;
+        int64_t refVal_setOk;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ok"))), refVal_setOk );
         setOk(refVal_setOk);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("red"))))
     {
-        int32_t refVal_setRed;
+        int64_t refVal_setRed;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("red"))), refVal_setRed );
         setRed(refVal_setRed);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("yellow"))))
     {
-        int32_t refVal_setYellow;
+        int64_t refVal_setYellow;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("yellow"))), refVal_setYellow );
         setYellow(refVal_setYellow);
     }
@@ -148,13 +148,13 @@ bool DriftTally::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 }
 
 
-int32_t DriftTally::getOk() const
+int64_t DriftTally::getOk() const
 {
     return m_Ok;
 }
 
 
-void DriftTally::setOk(int32_t value)
+void DriftTally::setOk(int64_t value)
 {
     m_Ok = value;
     m_OkIsSet = true;
@@ -169,13 +169,13 @@ void DriftTally::unsetOk()
 {
     m_OkIsSet = false;
 }
-int32_t DriftTally::getRed() const
+int64_t DriftTally::getRed() const
 {
     return m_Red;
 }
 
 
-void DriftTally::setRed(int32_t value)
+void DriftTally::setRed(int64_t value)
 {
     m_Red = value;
     m_RedIsSet = true;
@@ -190,13 +190,13 @@ void DriftTally::unsetRed()
 {
     m_RedIsSet = false;
 }
-int32_t DriftTally::getYellow() const
+int64_t DriftTally::getYellow() const
 {
     return m_Yellow;
 }
 
 
-void DriftTally::setYellow(int32_t value)
+void DriftTally::setYellow(int64_t value)
 {
     m_Yellow = value;
     m_YellowIsSet = true;

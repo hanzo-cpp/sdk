@@ -51,38 +51,38 @@ public:
     /// RollupAllotment members
 
 
-    int32_t getConsumedCents() const;
+    int64_t getConsumedCents() const;
     bool consumedCentsIsSet() const;
     void unsetConsumedCents();
-    void setConsumedCents(int32_t value);
+    void setConsumedCents(int64_t value);
 
-    int32_t getGrantedCents() const;
+    int64_t getGrantedCents() const;
     bool grantedCentsIsSet() const;
     void unsetGrantedCents();
-    void setGrantedCents(int32_t value);
+    void setGrantedCents(int64_t value);
 
-    int32_t getMonthlyCents() const;
+    int64_t getMonthlyCents() const;
     bool monthlyCentsIsSet() const;
     void unsetMonthlyCents();
-    void setMonthlyCents(int32_t value);
+    void setMonthlyCents(int64_t value);
 
-    int32_t getRemainingCents() const;
+    int64_t getRemainingCents() const;
     bool remainingCentsIsSet() const;
     void unsetRemainingCents();
-    void setRemainingCents(int32_t value);
+    void setRemainingCents(int64_t value);
 
 
 protected:
-    int32_t m_ConsumedCents;
+    int64_t m_ConsumedCents;
     bool m_ConsumedCentsIsSet;
 
-    int32_t m_GrantedCents;
+    int64_t m_GrantedCents;
     bool m_GrantedCentsIsSet;
 
-    int32_t m_MonthlyCents;
+    int64_t m_MonthlyCents;
     bool m_MonthlyCentsIsSet;
 
-    int32_t m_RemainingCents;
+    int64_t m_RemainingCents;
     bool m_RemainingCentsIsSet;
 
 };

@@ -18,7 +18,7 @@ namespace model {
 
 TicketGrant::TicketGrant()
 {
-    m_ExpiresIn = 0;
+    m_ExpiresIn = 0L;
     m_ExpiresInIsSet = false;
     m_Ticket = utility::conversions::to_string_t("");
     m_TicketIsSet = false;
@@ -65,7 +65,7 @@ bool TicketGrant::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("expiresIn")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExpiresIn;
+            int64_t refVal_setExpiresIn;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExpiresIn);
             setExpiresIn(refVal_setExpiresIn);
             
@@ -128,7 +128,7 @@ bool TicketGrant::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("expiresIn"))))
     {
-        int32_t refVal_setExpiresIn;
+        int64_t refVal_setExpiresIn;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("expiresIn"))), refVal_setExpiresIn );
         setExpiresIn(refVal_setExpiresIn);
     }
@@ -148,13 +148,13 @@ bool TicketGrant::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 }
 
 
-int32_t TicketGrant::getExpiresIn() const
+int64_t TicketGrant::getExpiresIn() const
 {
     return m_ExpiresIn;
 }
 
 
-void TicketGrant::setExpiresIn(int32_t value)
+void TicketGrant::setExpiresIn(int64_t value)
 {
     m_ExpiresIn = value;
     m_ExpiresInIsSet = true;

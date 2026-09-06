@@ -20,11 +20,11 @@ BreakdownRow::BreakdownRow()
 {
     m_Key = utility::conversions::to_string_t("");
     m_KeyIsSet = false;
-    m_Pageviews = 0;
+    m_Pageviews = 0L;
     m_PageviewsIsSet = false;
     m_Pct = 0.0;
     m_PctIsSet = false;
-    m_Visitors = 0;
+    m_Visitors = 0L;
     m_VisitorsIsSet = false;
 }
 
@@ -83,7 +83,7 @@ bool BreakdownRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("pageviews")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPageviews;
+            int64_t refVal_setPageviews;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPageviews);
             setPageviews(refVal_setPageviews);
             
@@ -105,7 +105,7 @@ bool BreakdownRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("visitors")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVisitors;
+            int64_t refVal_setVisitors;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVisitors);
             setVisitors(refVal_setVisitors);
             
@@ -156,7 +156,7 @@ bool BreakdownRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("pageviews"))))
     {
-        int32_t refVal_setPageviews;
+        int64_t refVal_setPageviews;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("pageviews"))), refVal_setPageviews );
         setPageviews(refVal_setPageviews);
     }
@@ -168,7 +168,7 @@ bool BreakdownRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("visitors"))))
     {
-        int32_t refVal_setVisitors;
+        int64_t refVal_setVisitors;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("visitors"))), refVal_setVisitors );
         setVisitors(refVal_setVisitors);
     }
@@ -197,13 +197,13 @@ void BreakdownRow::unsetKey()
 {
     m_KeyIsSet = false;
 }
-int32_t BreakdownRow::getPageviews() const
+int64_t BreakdownRow::getPageviews() const
 {
     return m_Pageviews;
 }
 
 
-void BreakdownRow::setPageviews(int32_t value)
+void BreakdownRow::setPageviews(int64_t value)
 {
     m_Pageviews = value;
     m_PageviewsIsSet = true;
@@ -239,13 +239,13 @@ void BreakdownRow::unsetPct()
 {
     m_PctIsSet = false;
 }
-int32_t BreakdownRow::getVisitors() const
+int64_t BreakdownRow::getVisitors() const
 {
     return m_Visitors;
 }
 
 
-void BreakdownRow::setVisitors(int32_t value)
+void BreakdownRow::setVisitors(int64_t value)
 {
     m_Visitors = value;
     m_VisitorsIsSet = true;

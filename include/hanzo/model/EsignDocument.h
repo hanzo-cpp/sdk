@@ -60,18 +60,18 @@ public:
     /// <summary>
     /// CompletedAt is when the document sealed, in unix milliseconds; null until it does.
     /// </summary>
-    int32_t getCompletedAt() const;
+    int64_t getCompletedAt() const;
     bool completedAtIsSet() const;
     void unsetCompletedAt();
-    void setCompletedAt(int32_t value);
+    void setCompletedAt(int64_t value);
 
     /// <summary>
     /// CreatedAt is when the document was uploaded, in unix milliseconds.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// ExternalID is the caller&#39;s own identifier for this document, echoed back as it was given; null when none was.
@@ -156,17 +156,17 @@ public:
     /// <summary>
     /// UpdatedAt is when the document last changed, in unix milliseconds.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
 
 protected:
-    int32_t m_CompletedAt;
+    int64_t m_CompletedAt;
     bool m_CompletedAtIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_ExternalId;
@@ -199,7 +199,7 @@ protected:
     utility::string_t m_Title;
     bool m_TitleIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
 };

@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// BalanceCents is the subject&#39;s balance AFTER the charge settled, in cents, so a caller does not have to re-read to show the new number.
     /// </summary>
-    int32_t getBalanceCents() const;
+    int64_t getBalanceCents() const;
     bool balanceCentsIsSet() const;
     void unsetBalanceCents();
-    void setBalanceCents(int32_t value);
+    void setBalanceCents(int64_t value);
 
     /// <summary>
     /// ProcessorRef is the payment processor&#39;s own reference. It is the only field that proves money moved at the GATEWAY rather than merely in our ledger, which is why it is answered and not only logged. Absent where the processor returned none.
@@ -94,7 +94,7 @@ public:
 
 
 protected:
-    int32_t m_BalanceCents;
+    int64_t m_BalanceCents;
     bool m_BalanceCentsIsSet;
 
     utility::string_t m_ProcessorRef;

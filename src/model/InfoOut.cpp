@@ -20,13 +20,13 @@ InfoOut::InfoOut()
 {
     m_Jetstream = false;
     m_JetstreamIsSet = false;
-    m_Max_payload = 0;
+    m_Max_payload = 0L;
     m_Max_payloadIsSet = false;
     m_Server_id = utility::conversions::to_string_t("");
     m_Server_idIsSet = false;
     m_Server_name = utility::conversions::to_string_t("");
     m_Server_nameIsSet = false;
-    m_Streams = 0;
+    m_Streams = 0L;
     m_StreamsIsSet = false;
     m_Version = utility::conversions::to_string_t("");
     m_VersionIsSet = false;
@@ -97,7 +97,7 @@ bool InfoOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("max_payload")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMaxPayload;
+            int64_t refVal_setMaxPayload;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMaxPayload);
             setMaxPayload(refVal_setMaxPayload);
             
@@ -130,7 +130,7 @@ bool InfoOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("streams")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStreams;
+            int64_t refVal_setStreams;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStreams);
             setStreams(refVal_setStreams);
             
@@ -200,7 +200,7 @@ bool InfoOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("max_payload"))))
     {
-        int32_t refVal_setMaxPayload;
+        int64_t refVal_setMaxPayload;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("max_payload"))), refVal_setMaxPayload );
         setMaxPayload(refVal_setMaxPayload);
     }
@@ -218,7 +218,7 @@ bool InfoOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("streams"))))
     {
-        int32_t refVal_setStreams;
+        int64_t refVal_setStreams;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("streams"))), refVal_setStreams );
         setStreams(refVal_setStreams);
     }
@@ -253,13 +253,13 @@ void InfoOut::unsetJetstream()
 {
     m_JetstreamIsSet = false;
 }
-int32_t InfoOut::getMaxPayload() const
+int64_t InfoOut::getMaxPayload() const
 {
     return m_Max_payload;
 }
 
 
-void InfoOut::setMaxPayload(int32_t value)
+void InfoOut::setMaxPayload(int64_t value)
 {
     m_Max_payload = value;
     m_Max_payloadIsSet = true;
@@ -316,13 +316,13 @@ void InfoOut::unsetServer_name()
 {
     m_Server_nameIsSet = false;
 }
-int32_t InfoOut::getStreams() const
+int64_t InfoOut::getStreams() const
 {
     return m_Streams;
 }
 
 
-void InfoOut::setStreams(int32_t value)
+void InfoOut::setStreams(int64_t value)
 {
     m_Streams = value;
     m_StreamsIsSet = true;

@@ -18,11 +18,11 @@ namespace model {
 
 LimitsBlock::LimitsBlock()
 {
-    m_ApiRateLimit = 0;
+    m_ApiRateLimit = 0L;
     m_ApiRateLimitIsSet = false;
-    m_MaxAlerts = 0;
+    m_MaxAlerts = 0L;
     m_MaxAlertsIsSet = false;
-    m_McpRateLimit = 0;
+    m_McpRateLimit = 0L;
     m_McpRateLimitIsSet = false;
     m_ModelApi = false;
     m_ModelApiIsSet = false;
@@ -72,7 +72,7 @@ bool LimitsBlock::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("apiRateLimit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setApiRateLimit;
+            int64_t refVal_setApiRateLimit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setApiRateLimit);
             setApiRateLimit(refVal_setApiRateLimit);
             
@@ -83,7 +83,7 @@ bool LimitsBlock::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("maxAlerts")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMaxAlerts;
+            int64_t refVal_setMaxAlerts;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMaxAlerts);
             setMaxAlerts(refVal_setMaxAlerts);
             
@@ -94,7 +94,7 @@ bool LimitsBlock::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("mcpRateLimit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMcpRateLimit;
+            int64_t refVal_setMcpRateLimit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMcpRateLimit);
             setMcpRateLimit(refVal_setMcpRateLimit);
             
@@ -150,19 +150,19 @@ bool LimitsBlock::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("apiRateLimit"))))
     {
-        int32_t refVal_setApiRateLimit;
+        int64_t refVal_setApiRateLimit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("apiRateLimit"))), refVal_setApiRateLimit );
         setApiRateLimit(refVal_setApiRateLimit);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("maxAlerts"))))
     {
-        int32_t refVal_setMaxAlerts;
+        int64_t refVal_setMaxAlerts;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("maxAlerts"))), refVal_setMaxAlerts );
         setMaxAlerts(refVal_setMaxAlerts);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("mcpRateLimit"))))
     {
-        int32_t refVal_setMcpRateLimit;
+        int64_t refVal_setMcpRateLimit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("mcpRateLimit"))), refVal_setMcpRateLimit );
         setMcpRateLimit(refVal_setMcpRateLimit);
     }
@@ -176,13 +176,13 @@ bool LimitsBlock::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 }
 
 
-int32_t LimitsBlock::getApiRateLimit() const
+int64_t LimitsBlock::getApiRateLimit() const
 {
     return m_ApiRateLimit;
 }
 
 
-void LimitsBlock::setApiRateLimit(int32_t value)
+void LimitsBlock::setApiRateLimit(int64_t value)
 {
     m_ApiRateLimit = value;
     m_ApiRateLimitIsSet = true;
@@ -197,13 +197,13 @@ void LimitsBlock::unsetApiRateLimit()
 {
     m_ApiRateLimitIsSet = false;
 }
-int32_t LimitsBlock::getMaxAlerts() const
+int64_t LimitsBlock::getMaxAlerts() const
 {
     return m_MaxAlerts;
 }
 
 
-void LimitsBlock::setMaxAlerts(int32_t value)
+void LimitsBlock::setMaxAlerts(int64_t value)
 {
     m_MaxAlerts = value;
     m_MaxAlertsIsSet = true;
@@ -218,13 +218,13 @@ void LimitsBlock::unsetMaxAlerts()
 {
     m_MaxAlertsIsSet = false;
 }
-int32_t LimitsBlock::getMcpRateLimit() const
+int64_t LimitsBlock::getMcpRateLimit() const
 {
     return m_McpRateLimit;
 }
 
 
-void LimitsBlock::setMcpRateLimit(int32_t value)
+void LimitsBlock::setMcpRateLimit(int64_t value)
 {
     m_McpRateLimit = value;
     m_McpRateLimitIsSet = true;

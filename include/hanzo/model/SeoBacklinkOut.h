@@ -55,18 +55,18 @@ public:
     /// <summary>
     /// Backlinks is how many links point at it.
     /// </summary>
-    int32_t getBacklinks() const;
+    int64_t getBacklinks() const;
     bool backlinksIsSet() const;
     void unsetBacklinks();
-    void setBacklinks(int32_t value);
+    void setBacklinks(int64_t value);
 
     /// <summary>
     /// Broken is how many of those links point at something that no longer answers.
     /// </summary>
-    int32_t getBroken() const;
+    int64_t getBroken() const;
     bool brokenIsSet() const;
     void unsetBroken();
-    void setBroken(int32_t value);
+    void setBroken(int64_t value);
 
     /// <summary>
     /// Cost is what this call cost, in USD, as an exact decimal string.
@@ -79,10 +79,10 @@ public:
     /// <summary>
     /// Domains is how many distinct sites those links come from — the number that matters, since a thousand links from one site is one site.
     /// </summary>
-    int32_t getDomains() const;
+    int64_t getDomains() const;
     bool domainsIsSet() const;
     void unsetDomains();
-    void setDomains(int32_t value);
+    void setDomains(int64_t value);
 
     /// <summary>
     /// FirstSeen is when the upstream first saw a link to this target, RFC 3339.
@@ -95,26 +95,26 @@ public:
     /// <summary>
     /// Pages is how many distinct pages link in.
     /// </summary>
-    int32_t getPages() const;
+    int64_t getPages() const;
     bool pagesIsSet() const;
     void unsetPages();
-    void setPages(int32_t value);
+    void setPages(int64_t value);
 
     /// <summary>
     /// Rank is the upstream&#39;s authority score for the target, 0 to 1000.
     /// </summary>
-    int32_t getRank() const;
+    int64_t getRank() const;
     bool rankIsSet() const;
     void unsetRank();
-    void setRank(int32_t value);
+    void setRank(int64_t value);
 
     /// <summary>
     /// Spam is the share of the profile judged spam, 0 to 100.
     /// </summary>
-    int32_t getSpam() const;
+    int64_t getSpam() const;
     bool spamIsSet() const;
     void unsetSpam();
-    void setSpam(int32_t value);
+    void setSpam(int64_t value);
 
     /// <summary>
     /// Target is the target as the upstream resolved it.
@@ -126,28 +126,28 @@ public:
 
 
 protected:
-    int32_t m_Backlinks;
+    int64_t m_Backlinks;
     bool m_BacklinksIsSet;
 
-    int32_t m_Broken;
+    int64_t m_Broken;
     bool m_BrokenIsSet;
 
     utility::string_t m_Cost;
     bool m_CostIsSet;
 
-    int32_t m_Domains;
+    int64_t m_Domains;
     bool m_DomainsIsSet;
 
     utility::string_t m_FirstSeen;
     bool m_FirstSeenIsSet;
 
-    int32_t m_Pages;
+    int64_t m_Pages;
     bool m_PagesIsSet;
 
-    int32_t m_Rank;
+    int64_t m_Rank;
     bool m_RankIsSet;
 
-    int32_t m_Spam;
+    int64_t m_Spam;
     bool m_SpamIsSet;
 
     utility::string_t m_Target;

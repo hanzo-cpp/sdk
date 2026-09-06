@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// Authorized is how many shares of the class are authorized.
     /// </summary>
-    int32_t getAuthorized() const;
+    int64_t getAuthorized() const;
     bool authorizedIsSet() const;
     void unsetAuthorized();
-    void setAuthorized(int32_t value);
+    void setAuthorized(int64_t value);
 
     /// <summary>
     /// ClassType is COMMON or PREFERRED.
@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// Issued is how many shares of the class have been issued.
     /// </summary>
-    int32_t getIssued() const;
+    int64_t getIssued() const;
     bool issuedIsSet() const;
     void unsetIssued();
-    void setIssued(int32_t value);
+    void setIssued(int64_t value);
 
     /// <summary>
     /// Name is the class name.
@@ -94,13 +94,13 @@ public:
 
 
 protected:
-    int32_t m_Authorized;
+    int64_t m_Authorized;
     bool m_AuthorizedIsSet;
 
     utility::string_t m_ClassType;
     bool m_ClassTypeIsSet;
 
-    int32_t m_Issued;
+    int64_t m_Issued;
     bool m_IssuedIsSet;
 
     utility::string_t m_Name;

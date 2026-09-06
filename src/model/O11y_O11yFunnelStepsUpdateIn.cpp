@@ -25,7 +25,7 @@ O11y_O11yFunnelStepsUpdateIn::O11y_O11yFunnelStepsUpdateIn()
     m_Funnel_name = utility::conversions::to_string_t("");
     m_Funnel_nameIsSet = false;
     m_StepsIsSet = false;
-    m_Timestamp = 0;
+    m_Timestamp = 0L;
     m_TimestampIsSet = false;
 }
 
@@ -122,7 +122,7 @@ bool O11y_O11yFunnelStepsUpdateIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("timestamp")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTimestamp;
+            int64_t refVal_setTimestamp;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTimestamp);
             setTimestamp(refVal_setTimestamp);
             
@@ -195,7 +195,7 @@ bool O11y_O11yFunnelStepsUpdateIn::fromMultiPart(std::shared_ptr<MultipartFormDa
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("timestamp"))))
     {
-        int32_t refVal_setTimestamp;
+        int64_t refVal_setTimestamp;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("timestamp"))), refVal_setTimestamp );
         setTimestamp(refVal_setTimestamp);
     }
@@ -287,13 +287,13 @@ void O11y_O11yFunnelStepsUpdateIn::unsetSteps()
 {
     m_StepsIsSet = false;
 }
-int32_t O11y_O11yFunnelStepsUpdateIn::getTimestamp() const
+int64_t O11y_O11yFunnelStepsUpdateIn::getTimestamp() const
 {
     return m_Timestamp;
 }
 
 
-void O11y_O11yFunnelStepsUpdateIn::setTimestamp(int32_t value)
+void O11y_O11yFunnelStepsUpdateIn::setTimestamp(int64_t value)
 {
     m_Timestamp = value;
     m_TimestampIsSet = true;

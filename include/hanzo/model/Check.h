@@ -65,10 +65,10 @@ public:
     void unsetJob();
     void setJob(const utility::string_t& value);
 
-    int32_t getNumber() const;
+    int64_t getNumber() const;
     bool numberIsSet() const;
     void unsetnumber();
-    void setNumber(int32_t value);
+    void setNumber(int64_t value);
 
     /// <summary>
     /// State is success | failure | running | absent. &#x60;absent&#x60; is not a kind of failure and is kept apart from one: a failing run is a build that ran and said no, while an absent run is Hanzo Git never having constructed a run for the commit at all — a workflow it cannot parse or a reference it cannot resolve. There is no log to open for the second, so a page that draws them the same sends you looking for one that does not exist.
@@ -104,7 +104,7 @@ protected:
     utility::string_t m_Job;
     bool m_JobIsSet;
 
-    int32_t m_number;
+    int64_t m_number;
     bool m_numberIsSet;
 
     utility::string_t m_State;

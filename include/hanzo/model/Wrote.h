@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// Bytes is how many bytes the file now holds. A write REPLACES the file, so this is its whole length and not an amount appended, and 0 is a legitimate answer: a WriteIn with no Data truncates the file to nothing.
     /// </summary>
-    int32_t getBytes() const;
+    int64_t getBytes() const;
     bool bytesIsSet() const;
     void unsetBytes();
-    void setBytes(int32_t value);
+    void setBytes(int64_t value);
 
     /// <summary>
     /// Path is where the bytes actually landed: the caller&#39;s path resolved against the sandbox&#39;s working directory (Leased.Workdir), which is what a later read or a shell line inside the sandbox has to name.
@@ -70,7 +70,7 @@ public:
 
 
 protected:
-    int32_t m_Bytes;
+    int64_t m_Bytes;
     bool m_BytesIsSet;
 
     utility::string_t m_Path;

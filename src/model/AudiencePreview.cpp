@@ -20,16 +20,16 @@ AudiencePreview::AudiencePreview()
 {
     m_Available = false;
     m_AvailableIsSet = false;
-    m_Count = 0;
+    m_Count = 0L;
     m_CountIsSet = false;
-    m_Deliverable = 0;
+    m_Deliverable = 0L;
     m_DeliverableIsSet = false;
     m_Reason = utility::conversions::to_string_t("");
     m_ReasonIsSet = false;
     m_SampleIsSet = false;
     m_Source = utility::conversions::to_string_t("");
     m_SourceIsSet = false;
-    m_Unmatched = 0;
+    m_Unmatched = 0L;
     m_UnmatchedIsSet = false;
 }
 
@@ -103,7 +103,7 @@ bool AudiencePreview::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("count")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCount;
+            int64_t refVal_setCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCount);
             setCount(refVal_setCount);
             
@@ -114,7 +114,7 @@ bool AudiencePreview::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("deliverable")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDeliverable;
+            int64_t refVal_setDeliverable;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDeliverable);
             setDeliverable(refVal_setDeliverable);
             
@@ -158,7 +158,7 @@ bool AudiencePreview::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("unmatched")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUnmatched;
+            int64_t refVal_setUnmatched;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUnmatched);
             setUnmatched(refVal_setUnmatched);
             
@@ -221,13 +221,13 @@ bool AudiencePreview::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("count"))))
     {
-        int32_t refVal_setCount;
+        int64_t refVal_setCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("count"))), refVal_setCount );
         setCount(refVal_setCount);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("deliverable"))))
     {
-        int32_t refVal_setDeliverable;
+        int64_t refVal_setDeliverable;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("deliverable"))), refVal_setDeliverable );
         setDeliverable(refVal_setDeliverable);
     }
@@ -251,7 +251,7 @@ bool AudiencePreview::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("unmatched"))))
     {
-        int32_t refVal_setUnmatched;
+        int64_t refVal_setUnmatched;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("unmatched"))), refVal_setUnmatched );
         setUnmatched(refVal_setUnmatched);
     }
@@ -280,13 +280,13 @@ void AudiencePreview::unsetAvailable()
 {
     m_AvailableIsSet = false;
 }
-int32_t AudiencePreview::getCount() const
+int64_t AudiencePreview::getCount() const
 {
     return m_Count;
 }
 
 
-void AudiencePreview::setCount(int32_t value)
+void AudiencePreview::setCount(int64_t value)
 {
     m_Count = value;
     m_CountIsSet = true;
@@ -301,13 +301,13 @@ void AudiencePreview::unsetCount()
 {
     m_CountIsSet = false;
 }
-int32_t AudiencePreview::getDeliverable() const
+int64_t AudiencePreview::getDeliverable() const
 {
     return m_Deliverable;
 }
 
 
-void AudiencePreview::setDeliverable(int32_t value)
+void AudiencePreview::setDeliverable(int64_t value)
 {
     m_Deliverable = value;
     m_DeliverableIsSet = true;
@@ -385,13 +385,13 @@ void AudiencePreview::unsetSource()
 {
     m_SourceIsSet = false;
 }
-int32_t AudiencePreview::getUnmatched() const
+int64_t AudiencePreview::getUnmatched() const
 {
     return m_Unmatched;
 }
 
 
-void AudiencePreview::setUnmatched(int32_t value)
+void AudiencePreview::setUnmatched(int64_t value)
 {
     m_Unmatched = value;
     m_UnmatchedIsSet = true;

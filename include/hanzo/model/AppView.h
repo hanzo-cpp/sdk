@@ -70,10 +70,10 @@ public:
     /// <summary>
     /// CreatedAt is when the app was created, unix seconds.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// CurrentDeploymentID is the deployment that is live — the pointer a deploy advances monotonically by version, so it never regresses to an older one. Empty until the first deploy reaches the cluster.
@@ -182,10 +182,10 @@ public:
     /// <summary>
     /// Port is the container port traffic is sent to. 8080 when the create asked for none, or for one outside 1–65535.
     /// </summary>
-    int32_t getPort() const;
+    int64_t getPort() const;
     bool portIsSet() const;
     void unsetPort();
-    void setPort(int32_t value);
+    void setPort(int64_t value);
 
     /// <summary>
     /// ProjectID is the IAM project the app lives under, and it is that project&#39;s NAME — the (org,name) key IAM identifies it by, which is also what the &#x60;:project&#x60; path segment carries. There is no platform-minted project id.
@@ -198,10 +198,10 @@ public:
     /// <summary>
     /// Replicas is how many copies the CR declares. It is CLAMPED to the deployment&#39;s ceiling rather than refused, so it can be below what was asked.
     /// </summary>
-    int32_t getReplicas() const;
+    int64_t getReplicas() const;
     bool replicasIsSet() const;
     void unsetReplicas();
-    void setReplicas(int32_t value);
+    void setReplicas(int64_t value);
 
     /// <summary>
     /// Repo is the git origin a source &#x60;git&#x60; app builds from, and the repo+branch a landed push has to match to build it.
@@ -254,25 +254,25 @@ public:
     /// <summary>
     /// StorageGB is the persistent volume size in GiB. Absent means stateless — no volume at all — and it is clamped like Replicas.
     /// </summary>
-    int32_t getStorageGb() const;
+    int64_t getStorageGb() const;
     bool storageGbIsSet() const;
     void unsetStorageGb();
-    void setStorageGb(int32_t value);
+    void setStorageGb(int64_t value);
 
     /// <summary>
     /// UpdatedAt is when it last changed, unix seconds. Every lifecycle transition moves it, so it tracks deploys as well as edits.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
 
 protected:
     utility::string_t m_BuildType;
     bool m_BuildTypeIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_CurrentDeploymentId;
@@ -314,13 +314,13 @@ protected:
     utility::string_t m_Phase;
     bool m_PhaseIsSet;
 
-    int32_t m_Port;
+    int64_t m_Port;
     bool m_PortIsSet;
 
     utility::string_t m_ProjectId;
     bool m_ProjectIdIsSet;
 
-    int32_t m_Replicas;
+    int64_t m_Replicas;
     bool m_ReplicasIsSet;
 
     std::shared_ptr<GitSource> m_Repo;
@@ -341,10 +341,10 @@ protected:
     utility::string_t m_Status;
     bool m_StatusIsSet;
 
-    int32_t m_StorageGb;
+    int64_t m_StorageGb;
     bool m_StorageGbIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
 };

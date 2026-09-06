@@ -20,7 +20,7 @@ SeriesPoint::SeriesPoint()
 {
     m_t = utility::conversions::to_string_t("");
     m_tIsSet = false;
-    m_v = 0;
+    m_v = 0L;
     m_vIsSet = false;
 }
 
@@ -69,7 +69,7 @@ bool SeriesPoint::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("v")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setV;
+            int64_t refVal_setV;
             ok &= ModelBase::fromJson(fieldValue, refVal_setV);
             setV(refVal_setV);
             
@@ -112,7 +112,7 @@ bool SeriesPoint::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("v"))))
     {
-        int32_t refVal_setV;
+        int64_t refVal_setV;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("v"))), refVal_setV );
         setV(refVal_setV);
     }
@@ -141,13 +141,13 @@ void SeriesPoint::unsett()
 {
     m_tIsSet = false;
 }
-int32_t SeriesPoint::getV() const
+int64_t SeriesPoint::getV() const
 {
     return m_v;
 }
 
 
-void SeriesPoint::setV(int32_t value)
+void SeriesPoint::setV(int64_t value)
 {
     m_v = value;
     m_vIsSet = true;

@@ -22,9 +22,9 @@ PairingView::PairingView()
     m_ChannelIsSet = false;
     m_Code = utility::conversions::to_string_t("");
     m_CodeIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
-    m_LastSeen = 0;
+    m_LastSeen = 0L;
     m_LastSeenIsSet = false;
     m_Sender = utility::conversions::to_string_t("");
     m_SenderIsSet = false;
@@ -101,7 +101,7 @@ bool PairingView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -112,7 +112,7 @@ bool PairingView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("lastSeen")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLastSeen;
+            int64_t refVal_setLastSeen;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLastSeen);
             setLastSeen(refVal_setLastSeen);
             
@@ -184,13 +184,13 @@ bool PairingView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("lastSeen"))))
     {
-        int32_t refVal_setLastSeen;
+        int64_t refVal_setLastSeen;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("lastSeen"))), refVal_setLastSeen );
         setLastSeen(refVal_setLastSeen);
     }
@@ -246,13 +246,13 @@ void PairingView::unsetCode()
 {
     m_CodeIsSet = false;
 }
-int32_t PairingView::getCreatedAt() const
+int64_t PairingView::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void PairingView::setCreatedAt(int32_t value)
+void PairingView::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -267,13 +267,13 @@ void PairingView::unsetCreatedAt()
 {
     m_CreatedAtIsSet = false;
 }
-int32_t PairingView::getLastSeen() const
+int64_t PairingView::getLastSeen() const
 {
     return m_LastSeen;
 }
 
 
-void PairingView::setLastSeen(int32_t value)
+void PairingView::setLastSeen(int64_t value)
 {
     m_LastSeen = value;
     m_LastSeenIsSet = true;

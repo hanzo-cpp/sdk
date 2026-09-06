@@ -18,14 +18,14 @@ namespace model {
 
 RiskPolicyOut::RiskPolicyOut()
 {
-    m_Changes = 0;
+    m_Changes = 0L;
     m_ChangesIsSet = false;
-    m_Disposed = 0;
+    m_Disposed = 0L;
     m_DisposedIsSet = false;
     m_HistoryIsSet = false;
-    m_Retained = 0;
+    m_Retained = 0L;
     m_RetainedIsSet = false;
-    m_Version = 0;
+    m_Version = 0L;
     m_VersionIsSet = false;
     m_Window = utility::conversions::to_string_t("");
     m_WindowIsSet = false;
@@ -85,7 +85,7 @@ bool RiskPolicyOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("changes")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setChanges;
+            int64_t refVal_setChanges;
             ok &= ModelBase::fromJson(fieldValue, refVal_setChanges);
             setChanges(refVal_setChanges);
             
@@ -96,7 +96,7 @@ bool RiskPolicyOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("disposed")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDisposed;
+            int64_t refVal_setDisposed;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDisposed);
             setDisposed(refVal_setDisposed);
             
@@ -118,7 +118,7 @@ bool RiskPolicyOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("retained")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRetained;
+            int64_t refVal_setRetained;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRetained);
             setRetained(refVal_setRetained);
             
@@ -129,7 +129,7 @@ bool RiskPolicyOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("version")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVersion;
+            int64_t refVal_setVersion;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVersion);
             setVersion(refVal_setVersion);
             
@@ -193,13 +193,13 @@ bool RiskPolicyOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("changes"))))
     {
-        int32_t refVal_setChanges;
+        int64_t refVal_setChanges;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("changes"))), refVal_setChanges );
         setChanges(refVal_setChanges);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("disposed"))))
     {
-        int32_t refVal_setDisposed;
+        int64_t refVal_setDisposed;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("disposed"))), refVal_setDisposed );
         setDisposed(refVal_setDisposed);
     }
@@ -211,13 +211,13 @@ bool RiskPolicyOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("retained"))))
     {
-        int32_t refVal_setRetained;
+        int64_t refVal_setRetained;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("retained"))), refVal_setRetained );
         setRetained(refVal_setRetained);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("version"))))
     {
-        int32_t refVal_setVersion;
+        int64_t refVal_setVersion;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("version"))), refVal_setVersion );
         setVersion(refVal_setVersion);
     }
@@ -231,13 +231,13 @@ bool RiskPolicyOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 }
 
 
-int32_t RiskPolicyOut::getChanges() const
+int64_t RiskPolicyOut::getChanges() const
 {
     return m_Changes;
 }
 
 
-void RiskPolicyOut::setChanges(int32_t value)
+void RiskPolicyOut::setChanges(int64_t value)
 {
     m_Changes = value;
     m_ChangesIsSet = true;
@@ -252,13 +252,13 @@ void RiskPolicyOut::unsetChanges()
 {
     m_ChangesIsSet = false;
 }
-int32_t RiskPolicyOut::getDisposed() const
+int64_t RiskPolicyOut::getDisposed() const
 {
     return m_Disposed;
 }
 
 
-void RiskPolicyOut::setDisposed(int32_t value)
+void RiskPolicyOut::setDisposed(int64_t value)
 {
     m_Disposed = value;
     m_DisposedIsSet = true;
@@ -294,13 +294,13 @@ void RiskPolicyOut::unsetHistory()
 {
     m_HistoryIsSet = false;
 }
-int32_t RiskPolicyOut::getRetained() const
+int64_t RiskPolicyOut::getRetained() const
 {
     return m_Retained;
 }
 
 
-void RiskPolicyOut::setRetained(int32_t value)
+void RiskPolicyOut::setRetained(int64_t value)
 {
     m_Retained = value;
     m_RetainedIsSet = true;
@@ -315,13 +315,13 @@ void RiskPolicyOut::unsetRetained()
 {
     m_RetainedIsSet = false;
 }
-int32_t RiskPolicyOut::getVersion() const
+int64_t RiskPolicyOut::getVersion() const
 {
     return m_Version;
 }
 
 
-void RiskPolicyOut::setVersion(int32_t value)
+void RiskPolicyOut::setVersion(int64_t value)
 {
     m_Version = value;
     m_VersionIsSet = true;

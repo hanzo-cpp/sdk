@@ -18,7 +18,7 @@ namespace model {
 
 CaptableOption::CaptableOption()
 {
-    m_CliffYears = 0;
+    m_CliffYears = 0L;
     m_CliffYearsIsSet = false;
     m_EquityPlanId = utility::conversions::to_string_t("");
     m_EquityPlanIdIsSet = false;
@@ -34,7 +34,7 @@ CaptableOption::CaptableOption()
     m_IdIsSet = false;
     m_IssueDate = utility::conversions::to_string_t("");
     m_IssueDateIsSet = false;
-    m_Quantity = 0;
+    m_Quantity = 0L;
     m_QuantityIsSet = false;
     m_StakeholderId = utility::conversions::to_string_t("");
     m_StakeholderIdIsSet = false;
@@ -44,7 +44,7 @@ CaptableOption::CaptableOption()
     m_StatusIsSet = false;
     m_Type = utility::conversions::to_string_t("");
     m_TypeIsSet = false;
-    m_VestingYears = 0;
+    m_VestingYears = 0L;
     m_VestingYearsIsSet = false;
 }
 
@@ -142,7 +142,7 @@ bool CaptableOption::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cliffYears")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCliffYears;
+            int64_t refVal_setCliffYears;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCliffYears);
             setCliffYears(refVal_setCliffYears);
             
@@ -230,7 +230,7 @@ bool CaptableOption::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("quantity")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setQuantity;
+            int64_t refVal_setQuantity;
             ok &= ModelBase::fromJson(fieldValue, refVal_setQuantity);
             setQuantity(refVal_setQuantity);
             
@@ -285,7 +285,7 @@ bool CaptableOption::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("vestingYears")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVestingYears;
+            int64_t refVal_setVestingYears;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVestingYears);
             setVestingYears(refVal_setVestingYears);
             
@@ -370,7 +370,7 @@ bool CaptableOption::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cliffYears"))))
     {
-        int32_t refVal_setCliffYears;
+        int64_t refVal_setCliffYears;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cliffYears"))), refVal_setCliffYears );
         setCliffYears(refVal_setCliffYears);
     }
@@ -418,7 +418,7 @@ bool CaptableOption::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("quantity"))))
     {
-        int32_t refVal_setQuantity;
+        int64_t refVal_setQuantity;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("quantity"))), refVal_setQuantity );
         setQuantity(refVal_setQuantity);
     }
@@ -448,7 +448,7 @@ bool CaptableOption::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("vestingYears"))))
     {
-        int32_t refVal_setVestingYears;
+        int64_t refVal_setVestingYears;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("vestingYears"))), refVal_setVestingYears );
         setVestingYears(refVal_setVestingYears);
     }
@@ -456,13 +456,13 @@ bool CaptableOption::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 }
 
 
-int32_t CaptableOption::getCliffYears() const
+int64_t CaptableOption::getCliffYears() const
 {
     return m_CliffYears;
 }
 
 
-void CaptableOption::setCliffYears(int32_t value)
+void CaptableOption::setCliffYears(int64_t value)
 {
     m_CliffYears = value;
     m_CliffYearsIsSet = true;
@@ -624,13 +624,13 @@ void CaptableOption::unsetIssueDate()
 {
     m_IssueDateIsSet = false;
 }
-int32_t CaptableOption::getQuantity() const
+int64_t CaptableOption::getQuantity() const
 {
     return m_Quantity;
 }
 
 
-void CaptableOption::setQuantity(int32_t value)
+void CaptableOption::setQuantity(int64_t value)
 {
     m_Quantity = value;
     m_QuantityIsSet = true;
@@ -729,13 +729,13 @@ void CaptableOption::unsetType()
 {
     m_TypeIsSet = false;
 }
-int32_t CaptableOption::getVestingYears() const
+int64_t CaptableOption::getVestingYears() const
 {
     return m_VestingYears;
 }
 
 
-void CaptableOption::setVestingYears(int32_t value)
+void CaptableOption::setVestingYears(int64_t value)
 {
     m_VestingYears = value;
     m_VestingYearsIsSet = true;

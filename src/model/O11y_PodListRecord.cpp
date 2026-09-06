@@ -34,7 +34,7 @@ O11y_PodListRecord::O11y_PodListRecord()
     m_PodMemoryRequestIsSet = false;
     m_PodUID = utility::conversions::to_string_t("");
     m_PodUIDIsSet = false;
-    m_RestartCount = 0;
+    m_RestartCount = 0L;
     m_RestartCountIsSet = false;
 }
 
@@ -211,7 +211,7 @@ bool O11y_PodListRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("restartCount")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRestartCount;
+            int64_t refVal_setRestartCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRestartCount);
             setRestartCount(refVal_setRestartCount);
             
@@ -334,7 +334,7 @@ bool O11y_PodListRecord::fromMultiPart(std::shared_ptr<MultipartFormData> multip
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("restartCount"))))
     {
-        int32_t refVal_setRestartCount;
+        int64_t refVal_setRestartCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("restartCount"))), refVal_setRestartCount );
         setRestartCount(refVal_setRestartCount);
     }
@@ -531,13 +531,13 @@ void O11y_PodListRecord::unsetPodUID()
 {
     m_PodUIDIsSet = false;
 }
-int32_t O11y_PodListRecord::getRestartCount() const
+int64_t O11y_PodListRecord::getRestartCount() const
 {
     return m_RestartCount;
 }
 
 
-void O11y_PodListRecord::setRestartCount(int32_t value)
+void O11y_PodListRecord::setRestartCount(int64_t value)
 {
     m_RestartCount = value;
     m_RestartCountIsSet = true;

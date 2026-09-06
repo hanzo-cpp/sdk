@@ -22,7 +22,7 @@ ReferenceSource::ReferenceSource()
     m_AsOfIsSet = false;
     m_Basis = utility::conversions::to_string_t("");
     m_BasisIsSet = false;
-    m_Keys = 0;
+    m_Keys = 0L;
     m_KeysIsSet = false;
     m_Origin = utility::conversions::to_string_t("");
     m_OriginIsSet = false;
@@ -122,7 +122,7 @@ bool ReferenceSource::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("keys")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setKeys;
+            int64_t refVal_setKeys;
             ok &= ModelBase::fromJson(fieldValue, refVal_setKeys);
             setKeys(refVal_setKeys);
             
@@ -250,7 +250,7 @@ bool ReferenceSource::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("keys"))))
     {
-        int32_t refVal_setKeys;
+        int64_t refVal_setKeys;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("keys"))), refVal_setKeys );
         setKeys(refVal_setKeys);
     }
@@ -330,13 +330,13 @@ void ReferenceSource::unsetBasis()
 {
     m_BasisIsSet = false;
 }
-int32_t ReferenceSource::getKeys() const
+int64_t ReferenceSource::getKeys() const
 {
     return m_Keys;
 }
 
 
-void ReferenceSource::setKeys(int32_t value)
+void ReferenceSource::setKeys(int64_t value)
 {
     m_Keys = value;
     m_KeysIsSet = true;

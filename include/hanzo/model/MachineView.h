@@ -22,11 +22,13 @@
 
 #include "hanzo/ModelBase.h"
 
+#include "hanzo/model/AgentBinding.h"
 #include <cpprest/details/basic_types.h>
 
 namespace hanzo {
 namespace model {
 
+class AgentBinding;
 
 
 class  MachineView
@@ -53,6 +55,22 @@ public:
 
 
     /// <summary>
+    /// Agent is the cloud Agent this machine runs, lifted out of the binding so a list reads without following one. Empty means nothing is bound — for a kind&#x3D;bot machine that means it costs money and answers nothing.
+    /// </summary>
+    utility::string_t getAgent() const;
+    bool agentIsSet() const;
+    void unsetAgent();
+    void setAgent(const utility::string_t& value);
+
+    /// <summary>
+    /// Binding is the record joining this machine to that agent, carrying vm&#39;s own reconciled status and its reason. Absent means no runtime is bound, which is also what a stopped bot looks like: stopping unbinds and leaves the machine running.
+    /// </summary>
+    std::shared_ptr<AgentBinding> getBinding() const;
+    bool bindingIsSet() const;
+    void unsetBinding();
+    void setBinding(const std::shared_ptr<AgentBinding>& value);
+
+    /// <summary>
     /// CreatedTime is when the machine came into being: the provider&#39;s own creation timestamp for a Visor machine, passed through in whatever form it states it, and for a BYO machine the RFC 3339 moment it first dialed in.
     /// </summary>
     utility::string_t getCreatedTime() const;
@@ -69,7 +87,7 @@ public:
     void setGpu(const utility::string_t& value);
 
     /// <summary>
-    /// ID addresses this machine on the /v1/visor/machines/:id routes: the org-scoped NAME Visor keys a machine by, falling back to the provider id for a machine that has no name. A BYO machine&#39;s is the id it dialed in under.
+    /// ID addresses this machine on the /v1/compute/machines/:id routes: the org-scoped NAME Visor keys a machine by, falling back to the provider id for a machine that has no name. A BYO machine&#39;s is the id it dialed in under.
     /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
@@ -85,7 +103,7 @@ public:
     void setImage(const utility::string_t& value);
 
     /// <summary>
-    /// Mem is system RAM rendered for a human (\&quot;8 GB\&quot;), not a number to compute with. Empty when the provider&#39;s figure is ambiguous, or when the only figure available is a GPU slug&#39;s gb — that is VRAM, and reporting it as system RAM would be a fabrication. A BYO machine&#39;s RAM is on /v1/visor/fleet/workers.
+    /// Mem is system RAM rendered for a human (\&quot;8 GB\&quot;), not a number to compute with. Empty when the provider&#39;s figure is ambiguous, or when the only figure available is a GPU slug&#39;s gb — that is VRAM, and reporting it as system RAM would be a fabrication. A BYO machine&#39;s RAM is on /v1/compute/fleet/workers.
     /// </summary>
     utility::string_t getMem() const;
     bool memIsSet() const;
@@ -157,15 +175,21 @@ public:
     void setType(const utility::string_t& value);
 
     /// <summary>
-    /// Vcpu is logical cores — the provider&#39;s own cpuSize when that is a clean integer, else the count read out of the size slug (4 from \&quot;s-4vcpu-8gb\&quot;). ABSENT, never 0, when neither says. A BYO machine leaves it absent here; its real core count is on GET /v1/visor/fleet/workers.
+    /// Vcpu is logical cores — the provider&#39;s own cpuSize when that is a clean integer, else the count read out of the size slug (4 from \&quot;s-4vcpu-8gb\&quot;). ABSENT, never 0, when neither says. A BYO machine leaves it absent here; its real core count is on GET /v1/compute/fleet/workers.
     /// </summary>
-    int32_t getVcpu() const;
+    int64_t getVcpu() const;
     bool vcpuIsSet() const;
     void unsetVcpu();
-    void setVcpu(int32_t value);
+    void setVcpu(int64_t value);
 
 
 protected:
+    utility::string_t m_Agent;
+    bool m_AgentIsSet;
+
+    std::shared_ptr<AgentBinding> m_Binding;
+    bool m_BindingIsSet;
+
     utility::string_t m_CreatedTime;
     bool m_CreatedTimeIsSet;
 
@@ -205,7 +229,7 @@ protected:
     utility::string_t m_Type;
     bool m_TypeIsSet;
 
-    int32_t m_Vcpu;
+    int64_t m_Vcpu;
     bool m_VcpuIsSet;
 
 };

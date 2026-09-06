@@ -79,10 +79,10 @@ public:
     /// <summary>
     /// Size is the file&#39;s byte length in the repo.
     /// </summary>
-    int32_t getSize() const;
+    int64_t getSize() const;
     bool sizeIsSet() const;
     void unsetSize();
-    void setSize(int32_t value);
+    void setSize(int64_t value);
 
     /// <summary>
     /// Truncated marks a file past the read cap; no content is sent. A caller assembling a desired set must treat this as INCOMPLETE, never as empty.
@@ -103,7 +103,7 @@ protected:
     utility::string_t m_Path;
     bool m_PathIsSet;
 
-    int32_t m_Size;
+    int64_t m_Size;
     bool m_SizeIsSet;
 
     bool m_Truncated;

@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// AmountCents is what it costs each period.
     /// </summary>
-    int32_t getAmountCents() const;
+    int64_t getAmountCents() const;
     bool amountCentsIsSet() const;
     void unsetAmountCents();
-    void setAmountCents(int32_t value);
+    void setAmountCents(int64_t value);
 
     /// <summary>
     /// AsOf is when that amount was last checked against its source, RFC 3339 date.
@@ -126,7 +126,7 @@ public:
 
 
 protected:
-    int32_t m_AmountCents;
+    int64_t m_AmountCents;
     bool m_AmountCentsIsSet;
 
     utility::string_t m_AsOf;

@@ -20,13 +20,13 @@ PlanInfo::PlanInfo()
 {
     m_Active = false;
     m_ActiveIsSet = false;
-    m_GuestLimit = 0;
+    m_GuestLimit = 0L;
     m_GuestLimitIsSet = false;
-    m_Guests = 0;
+    m_Guests = 0L;
     m_GuestsIsSet = false;
     m_Plan = utility::conversions::to_string_t("");
     m_PlanIsSet = false;
-    m_Seats = 0;
+    m_Seats = 0L;
     m_SeatsIsSet = false;
     m_UpgradeUrl = utility::conversions::to_string_t("");
     m_UpgradeUrlIsSet = false;
@@ -97,7 +97,7 @@ bool PlanInfo::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("guestLimit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setGuestLimit;
+            int64_t refVal_setGuestLimit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setGuestLimit);
             setGuestLimit(refVal_setGuestLimit);
             
@@ -108,7 +108,7 @@ bool PlanInfo::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("guests")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setGuests;
+            int64_t refVal_setGuests;
             ok &= ModelBase::fromJson(fieldValue, refVal_setGuests);
             setGuests(refVal_setGuests);
             
@@ -130,7 +130,7 @@ bool PlanInfo::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("seats")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSeats;
+            int64_t refVal_setSeats;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSeats);
             setSeats(refVal_setSeats);
             
@@ -200,13 +200,13 @@ bool PlanInfo::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("guestLimit"))))
     {
-        int32_t refVal_setGuestLimit;
+        int64_t refVal_setGuestLimit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("guestLimit"))), refVal_setGuestLimit );
         setGuestLimit(refVal_setGuestLimit);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("guests"))))
     {
-        int32_t refVal_setGuests;
+        int64_t refVal_setGuests;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("guests"))), refVal_setGuests );
         setGuests(refVal_setGuests);
     }
@@ -218,7 +218,7 @@ bool PlanInfo::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("seats"))))
     {
-        int32_t refVal_setSeats;
+        int64_t refVal_setSeats;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("seats"))), refVal_setSeats );
         setSeats(refVal_setSeats);
     }
@@ -253,13 +253,13 @@ void PlanInfo::unsetActive()
 {
     m_ActiveIsSet = false;
 }
-int32_t PlanInfo::getGuestLimit() const
+int64_t PlanInfo::getGuestLimit() const
 {
     return m_GuestLimit;
 }
 
 
-void PlanInfo::setGuestLimit(int32_t value)
+void PlanInfo::setGuestLimit(int64_t value)
 {
     m_GuestLimit = value;
     m_GuestLimitIsSet = true;
@@ -274,13 +274,13 @@ void PlanInfo::unsetGuestLimit()
 {
     m_GuestLimitIsSet = false;
 }
-int32_t PlanInfo::getGuests() const
+int64_t PlanInfo::getGuests() const
 {
     return m_Guests;
 }
 
 
-void PlanInfo::setGuests(int32_t value)
+void PlanInfo::setGuests(int64_t value)
 {
     m_Guests = value;
     m_GuestsIsSet = true;
@@ -316,13 +316,13 @@ void PlanInfo::unsetPlan()
 {
     m_PlanIsSet = false;
 }
-int32_t PlanInfo::getSeats() const
+int64_t PlanInfo::getSeats() const
 {
     return m_Seats;
 }
 
 
-void PlanInfo::setSeats(int32_t value)
+void PlanInfo::setSeats(int64_t value)
 {
     m_Seats = value;
     m_SeatsIsSet = true;
