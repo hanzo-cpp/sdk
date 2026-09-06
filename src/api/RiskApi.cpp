@@ -283,7 +283,7 @@ pplx::task<std::shared_ptr<RiskModelState>> RiskApi::riskAdoptModel(std::shared_
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<RiskCatalog>> RiskApi::riskFeatures(boost::optional<int32_t> days) const
+pplx::task<std::shared_ptr<RiskCatalog>> RiskApi::riskFeatures(boost::optional<int64_t> days) const
 {
 
 

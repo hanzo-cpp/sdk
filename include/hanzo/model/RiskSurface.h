@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// Folded is how many buckets of the tenant&#39;s own feature surface were folded into the model when it became resident.
     /// </summary>
-    int32_t getFolded() const;
+    int64_t getFolded() const;
     bool foldedIsSet() const;
     void unsetFolded();
-    void setFolded(int32_t value);
+    void setFolded(int64_t value);
 
     /// <summary>
     /// Gap says why the fold did not happen or did not complete, when that is the case. An empty surface and an unreachable warehouse are different facts and a model must not report them as the same one.
@@ -71,26 +71,26 @@ public:
     /// <summary>
     /// Refused is how many buckets of this organisation&#39;s own surface the fold could not fold, because a subject on them is longer than this plane&#39;s own field bound. It is history the model does not have, said out loud.
     /// </summary>
-    int32_t getRefused() const;
+    int64_t getRefused() const;
     bool refusedIsSet() const;
     void unsetRefused();
-    void setRefused(int32_t value);
+    void setRefused(int64_t value);
 
     /// <summary>
     /// Replayed is how many of this organisation&#39;s own recorded observations rebuilt its sliding aggregates when the model became resident. It is what says a rollout was a rebuild rather than a blindness: the aggregates are a projection of a durable record, so a restart costs a replay and not a control.
     /// </summary>
-    int32_t getReplayed() const;
+    int64_t getReplayed() const;
     bool replayedIsSet() const;
     void unsetReplayed();
-    void setReplayed(int32_t value);
+    void setReplayed(int64_t value);
 
     /// <summary>
     /// Rolled is how many windows of this organisation&#39;s own source planes — product events, captured failures, metered inference — were rolled up into its feature surface before that fold. Zero with no gap means the surface was already current, which is a different fact from the rollup never running.
     /// </summary>
-    int32_t getRolled() const;
+    int64_t getRolled() const;
     bool rolledIsSet() const;
     void unsetRolled();
-    void setRolled(int32_t value);
+    void setRolled(int64_t value);
 
     /// <summary>
     /// Window is the lookback the fold covered.
@@ -102,19 +102,19 @@ public:
 
 
 protected:
-    int32_t m_Folded;
+    int64_t m_Folded;
     bool m_FoldedIsSet;
 
     utility::string_t m_Gap;
     bool m_GapIsSet;
 
-    int32_t m_Refused;
+    int64_t m_Refused;
     bool m_RefusedIsSet;
 
-    int32_t m_Replayed;
+    int64_t m_Replayed;
     bool m_ReplayedIsSet;
 
-    int32_t m_Rolled;
+    int64_t m_Rolled;
     bool m_RolledIsSet;
 
     utility::string_t m_Window;

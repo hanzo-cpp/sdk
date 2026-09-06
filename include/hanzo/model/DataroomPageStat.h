@@ -54,47 +54,47 @@ public:
     /// <summary>
     /// AvgDuration is totalDuration divided by views, rounded; 0 when unviewed.
     /// </summary>
-    int32_t getAvgDuration() const;
+    int64_t getAvgDuration() const;
     bool avgDurationIsSet() const;
     void unsetAvgDuration();
-    void setAvgDuration(int32_t value);
+    void setAvgDuration(int64_t value);
 
     /// <summary>
     /// PageNumber is the page these counts are for.
     /// </summary>
-    int32_t getPageNumber() const;
+    int64_t getPageNumber() const;
     bool pageNumberIsSet() const;
     void unsetPageNumber();
-    void setPageNumber(int32_t value);
+    void setPageNumber(int64_t value);
 
     /// <summary>
     /// TotalDuration is the summed dwell measure reported for the page.
     /// </summary>
-    int32_t getTotalDuration() const;
+    int64_t getTotalDuration() const;
     bool totalDurationIsSet() const;
     void unsetTotalDuration();
-    void setTotalDuration(int32_t value);
+    void setTotalDuration(int64_t value);
 
     /// <summary>
     /// Views is how many times the page was viewed.
     /// </summary>
-    int32_t getViews() const;
+    int64_t getViews() const;
     bool viewsIsSet() const;
     void unsetViews();
-    void setViews(int32_t value);
+    void setViews(int64_t value);
 
 
 protected:
-    int32_t m_AvgDuration;
+    int64_t m_AvgDuration;
     bool m_AvgDurationIsSet;
 
-    int32_t m_PageNumber;
+    int64_t m_PageNumber;
     bool m_PageNumberIsSet;
 
-    int32_t m_TotalDuration;
+    int64_t m_TotalDuration;
     bool m_TotalDurationIsSet;
 
-    int32_t m_Views;
+    int64_t m_Views;
     bool m_ViewsIsSet;
 
 };

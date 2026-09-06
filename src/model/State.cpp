@@ -20,7 +20,7 @@ State::State()
 {
     m_Bytes = 0;
     m_BytesIsSet = false;
-    m_Consumer_count = 0;
+    m_Consumer_count = 0L;
     m_Consumer_countIsSet = false;
     m_First_seq = 0;
     m_First_seqIsSet = false;
@@ -32,7 +32,7 @@ State::State()
     m_Last_tsIsSet = false;
     m_Messages = 0;
     m_MessagesIsSet = false;
-    m_Num_deleted = 0;
+    m_Num_deleted = 0L;
     m_Num_deletedIsSet = false;
     m_Num_subjects = 0;
     m_Num_subjectsIsSet = false;
@@ -118,7 +118,7 @@ bool State::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("consumer_count")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setConsumerCount;
+            int64_t refVal_setConsumerCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setConsumerCount);
             setConsumerCount(refVal_setConsumerCount);
             
@@ -184,7 +184,7 @@ bool State::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("num_deleted")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNumDeleted;
+            int64_t refVal_setNumDeleted;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNumDeleted);
             setNumDeleted(refVal_setNumDeleted);
             
@@ -266,7 +266,7 @@ bool State::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("consumer_count"))))
     {
-        int32_t refVal_setConsumerCount;
+        int64_t refVal_setConsumerCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("consumer_count"))), refVal_setConsumerCount );
         setConsumerCount(refVal_setConsumerCount);
     }
@@ -302,7 +302,7 @@ bool State::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("num_deleted"))))
     {
-        int32_t refVal_setNumDeleted;
+        int64_t refVal_setNumDeleted;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("num_deleted"))), refVal_setNumDeleted );
         setNumDeleted(refVal_setNumDeleted);
     }
@@ -337,13 +337,13 @@ void State::unsetBytes()
 {
     m_BytesIsSet = false;
 }
-int32_t State::getConsumerCount() const
+int64_t State::getConsumerCount() const
 {
     return m_Consumer_count;
 }
 
 
-void State::setConsumerCount(int32_t value)
+void State::setConsumerCount(int64_t value)
 {
     m_Consumer_count = value;
     m_Consumer_countIsSet = true;
@@ -463,13 +463,13 @@ void State::unsetMessages()
 {
     m_MessagesIsSet = false;
 }
-int32_t State::getNumDeleted() const
+int64_t State::getNumDeleted() const
 {
     return m_Num_deleted;
 }
 
 
-void State::setNumDeleted(int32_t value)
+void State::setNumDeleted(int64_t value)
 {
     m_Num_deleted = value;
     m_Num_deletedIsSet = true;

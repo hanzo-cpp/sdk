@@ -38,7 +38,7 @@ Iam_invitations_Input::Iam_invitations_Input()
     m_OwnerIsSet = false;
     m_Phone = utility::conversions::to_string_t("");
     m_PhoneIsSet = false;
-    m_Quota = 0;
+    m_Quota = 0L;
     m_QuotaIsSet = false;
     m_SignupGroup = utility::conversions::to_string_t("");
     m_SignupGroupIsSet = false;
@@ -46,7 +46,7 @@ Iam_invitations_Input::Iam_invitations_Input()
     m_StateIsSet = false;
     m_UpdatedTime = utility::conversions::to_string_t("");
     m_UpdatedTimeIsSet = false;
-    m_UsedCount = 0;
+    m_UsedCount = 0L;
     m_UsedCountIsSet = false;
     m_Username = utility::conversions::to_string_t("");
     m_UsernameIsSet = false;
@@ -266,7 +266,7 @@ bool Iam_invitations_Input::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("quota")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setQuota;
+            int64_t refVal_setQuota;
             ok &= ModelBase::fromJson(fieldValue, refVal_setQuota);
             setQuota(refVal_setQuota);
             
@@ -310,7 +310,7 @@ bool Iam_invitations_Input::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("usedCount")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUsedCount;
+            int64_t refVal_setUsedCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUsedCount);
             setUsedCount(refVal_setUsedCount);
             
@@ -474,7 +474,7 @@ bool Iam_invitations_Input::fromMultiPart(std::shared_ptr<MultipartFormData> mul
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("quota"))))
     {
-        int32_t refVal_setQuota;
+        int64_t refVal_setQuota;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("quota"))), refVal_setQuota );
         setQuota(refVal_setQuota);
     }
@@ -498,7 +498,7 @@ bool Iam_invitations_Input::fromMultiPart(std::shared_ptr<MultipartFormData> mul
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("usedCount"))))
     {
-        int32_t refVal_setUsedCount;
+        int64_t refVal_setUsedCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("usedCount"))), refVal_setUsedCount );
         setUsedCount(refVal_setUsedCount);
     }
@@ -722,13 +722,13 @@ void Iam_invitations_Input::unsetPhone()
 {
     m_PhoneIsSet = false;
 }
-int32_t Iam_invitations_Input::getQuota() const
+int64_t Iam_invitations_Input::getQuota() const
 {
     return m_Quota;
 }
 
 
-void Iam_invitations_Input::setQuota(int32_t value)
+void Iam_invitations_Input::setQuota(int64_t value)
 {
     m_Quota = value;
     m_QuotaIsSet = true;
@@ -806,13 +806,13 @@ void Iam_invitations_Input::unsetUpdatedTime()
 {
     m_UpdatedTimeIsSet = false;
 }
-int32_t Iam_invitations_Input::getUsedCount() const
+int64_t Iam_invitations_Input::getUsedCount() const
 {
     return m_UsedCount;
 }
 
 
-void Iam_invitations_Input::setUsedCount(int32_t value)
+void Iam_invitations_Input::setUsedCount(int64_t value)
 {
     m_UsedCount = value;
     m_UsedCountIsSet = true;

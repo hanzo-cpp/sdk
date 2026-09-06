@@ -58,18 +58,18 @@ public:
     /// <summary>
     /// Contested is how many matured events have two visible assertions that disagree. It is the number that says whether the precedence rule is load-bearing or decorative, and it is the one to watch after wiring a new source.
     /// </summary>
-    int32_t getContested() const;
+    int64_t getContested() const;
     bool contestedIsSet() const;
     void unsetContested();
-    void setContested(int32_t value);
+    void setContested(int64_t value);
 
     /// <summary>
     /// Events is how many DISTINCT judged events those assertions name, keyed on (kind, subject, at). It counts only events something was ASSERTED about: what share of the whole event stream carries a label is a question about the feature plane&#39;s denominator and is not answerable here. Matured + Unmatured is Events.
     /// </summary>
-    int32_t getEvents() const;
+    int64_t getEvents() const;
     bool eventsIsSet() const;
     void unsetEvents();
-    void setEvents(int32_t value);
+    void setEvents(int64_t value);
 
     /// <summary>
     /// Explore is the share of judged events whose winning assertion came from the below-the-line sample. A blocked transaction never produces a chargeback, so a training set with no exploration in it is a description of the incumbent block list rather than of the world — and a champion measured on it is measured on whether it agrees with the incumbent.
@@ -82,10 +82,10 @@ public:
     /// <summary>
     /// Facts is how many assertions the window holds; Events is how many distinct judged events they cover. The two differ by exactly the corroboration and the conflict in the plane.
     /// </summary>
-    int32_t getFacts() const;
+    int64_t getFacts() const;
     bool factsIsSet() const;
     void unsetFacts();
-    void setFacts(int32_t value);
+    void setFacts(int64_t value);
 
     /// <summary>
     /// From is the INCLUSIVE start of the EVENT window these counts were folded over, RFC 3339, echoed with the defaults filled in — the caller&#39;s, or 90 days before To. An assertion is in the window when its event time satisfies at &gt;&#x3D; From.
@@ -98,42 +98,42 @@ public:
     /// <summary>
     /// Horizon is the maturity horizon these counts were measured under, IN DAYS — the caller&#39;s, or 120. It decides Matured (an event is matured when its &#x60;at&#x60; plus this many days is not after now), it sets each event&#39;s own as-of and so which assertions were visible to it, and when the caller bounds nothing it also places the default window&#39;s end.
     /// </summary>
-    int32_t getHorizon() const;
+    int64_t getHorizon() const;
     bool horizonIsSet() const;
     void unsetHorizon();
-    void setHorizon(int32_t value);
+    void setHorizon(int64_t value);
 
     /// <summary>
     /// Judged is how many MATURED events resolve, at their own as-of, to something other than unjudged.
     /// </summary>
-    int32_t getJudged() const;
+    int64_t getJudged() const;
     bool judgedIsSet() const;
     void unsetJudged();
-    void setJudged(int32_t value);
+    void setJudged(int64_t value);
 
     /// <summary>
     /// Matured is how many of those events have aged past the horizon and may therefore be admitted to a supervised set at all. It counts every matured event, judged or not — it is the DENOMINATOR an operator divides Judged by, and a denominator that excluded the unjudged would read 1.0 on a plane with one label in it.
     /// </summary>
-    int32_t getMatured() const;
+    int64_t getMatured() const;
     bool maturedIsSet() const;
     void unsetMatured();
-    void setMatured(int32_t value);
+    void setMatured(int64_t value);
 
     /// <summary>
     /// Pending is how many of this tenant&#39;s assertions the DERIVED columnar copy is not known to hold yet. Every count above is folded from the record, so they are right regardless — but a materialiser that joins in the warehouse while this is non-zero is joining against an incomplete answer key, and a missing fraud label is indistinguishable from an honest customer. It is reported at the training gate because that is where somebody is deciding whether the ground truth is good enough to fit on. Counted under a cap, so it saturates rather than costing a full scan on every read.
     /// </summary>
-    int32_t getPending() const;
+    int64_t getPending() const;
     bool pendingIsSet() const;
     void unsetPending();
-    void setPending(int32_t value);
+    void setPending(int64_t value);
 
     /// <summary>
     /// Productive is how many matured events resolve, at their own as-of, to a WINNING assertion of &#x60;productive&#x60; — the event led somewhere: escalated, reported, charged back. It is the positive class a supervised fit would train on, and a near-zero count is the number that says the fit is not worth running.
     /// </summary>
-    int32_t getProductive() const;
+    int64_t getProductive() const;
     bool productiveIsSet() const;
     void unsetProductive();
-    void setProductive(int32_t value);
+    void setProductive(int64_t value);
 
     /// <summary>
     /// Sources breaks the judged events down by the source that WON, so a plane that looks labelled because one noisy source dominates is visible as such.
@@ -154,57 +154,57 @@ public:
     /// <summary>
     /// Unlabelled is how many MATURED events had no assertion knowable by their own as-of — including every assertion that arrived after that instant. It is the field that says WHY judged is low: a tenant whose ground truth was filed long after the events it judges reads matured&#x3D;n, judged&#x3D;0, unlabelled&#x3D;n, which is diagnosable, rather than a bare zero, which is not.
     /// </summary>
-    int32_t getUnlabelled() const;
+    int64_t getUnlabelled() const;
     bool unlabelledIsSet() const;
     void unsetUnlabelled();
-    void setUnlabelled(int32_t value);
+    void setUnlabelled(int64_t value);
 
     /// <summary>
     /// Unmatured is how many events in the window have NOT aged past the horizon. They are not unlabelled — they are not yet askable, and a supervised set must exclude them rather than treat them as negatives. Matured + Unmatured is Events.
     /// </summary>
-    int32_t getUnmatured() const;
+    int64_t getUnmatured() const;
     bool unmaturedIsSet() const;
     void unsetUnmatured();
-    void setUnmatured(int32_t value);
+    void setUnmatured(int64_t value);
 
     /// <summary>
     /// Unproductive is every OTHER judged event: the winner claimed &#x60;unproductive&#x60;, judged not suspicious. Productive + Unproductive is Judged exactly, because a winner of the explicit unjudged is counted in neither — it is a matured event somebody looked at and could not conclude about, and rolling it into the negatives would hand a model a claim nobody made.
     /// </summary>
-    int32_t getUnproductive() const;
+    int64_t getUnproductive() const;
     bool unproductiveIsSet() const;
     void unsetUnproductive();
-    void setUnproductive(int32_t value);
+    void setUnproductive(int64_t value);
 
 
 protected:
-    int32_t m_Contested;
+    int64_t m_Contested;
     bool m_ContestedIsSet;
 
-    int32_t m_Events;
+    int64_t m_Events;
     bool m_EventsIsSet;
 
     double m_Explore;
     bool m_ExploreIsSet;
 
-    int32_t m_Facts;
+    int64_t m_Facts;
     bool m_FactsIsSet;
 
     utility::string_t m_From;
     bool m_FromIsSet;
 
-    int32_t m_Horizon;
+    int64_t m_Horizon;
     bool m_HorizonIsSet;
 
-    int32_t m_Judged;
+    int64_t m_Judged;
     bool m_JudgedIsSet;
 
-    int32_t m_Matured;
+    int64_t m_Matured;
     bool m_MaturedIsSet;
 
-    int32_t m_Pending;
+    int64_t m_Pending;
     bool m_PendingIsSet;
 
-    int32_t m_Productive;
+    int64_t m_Productive;
     bool m_ProductiveIsSet;
 
     std::vector<std::shared_ptr<RiskSourceCoverage>> m_Sources;
@@ -213,13 +213,13 @@ protected:
     utility::string_t m_To;
     bool m_ToIsSet;
 
-    int32_t m_Unlabelled;
+    int64_t m_Unlabelled;
     bool m_UnlabelledIsSet;
 
-    int32_t m_Unmatured;
+    int64_t m_Unmatured;
     bool m_UnmaturedIsSet;
 
-    int32_t m_Unproductive;
+    int64_t m_Unproductive;
     bool m_UnproductiveIsSet;
 
 };

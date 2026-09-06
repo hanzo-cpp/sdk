@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// Overrides is how many your org still holds in this set.
     /// </summary>
-    int32_t getOverrides() const;
+    int64_t getOverrides() const;
     bool overridesIsSet() const;
     void unsetOverrides();
-    void setOverrides(int32_t value);
+    void setOverrides(int64_t value);
 
     /// <summary>
     /// Set is the set cleared in.
@@ -92,7 +92,7 @@ protected:
     utility::string_t m_Key;
     bool m_KeyIsSet;
 
-    int32_t m_Overrides;
+    int64_t m_Overrides;
     bool m_OverridesIsSet;
 
     utility::string_t m_set;

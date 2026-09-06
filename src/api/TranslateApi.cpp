@@ -33,7 +33,7 @@ TranslateApi::~TranslateApi()
 {
 }
 
-pplx::task<std::shared_ptr<MemoryPage>> TranslateApi::getTranslateMemory(boost::optional<utility::string_t> target, boost::optional<utility::string_t> state, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<MemoryPage>> TranslateApi::getTranslateMemory(boost::optional<utility::string_t> target, boost::optional<utility::string_t> state, boost::optional<int64_t> limit) const
 {
 
 

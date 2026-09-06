@@ -52,10 +52,10 @@ public:
     /// AutoRecharge members
 
 
-    int32_t getAmountCents() const;
+    int64_t getAmountCents() const;
     bool amountCentsIsSet() const;
     void unsetAmountCents();
-    void setAmountCents(int32_t value);
+    void setAmountCents(int64_t value);
 
     utility::string_t getCurrency() const;
     bool currencyIsSet() const;
@@ -82,14 +82,14 @@ public:
     void unsetSubject();
     void setSubject(const utility::string_t& value);
 
-    int32_t getThresholdCents() const;
+    int64_t getThresholdCents() const;
     bool thresholdCentsIsSet() const;
     void unsetThresholdCents();
-    void setThresholdCents(int32_t value);
+    void setThresholdCents(int64_t value);
 
 
 protected:
-    int32_t m_AmountCents;
+    int64_t m_AmountCents;
     bool m_AmountCentsIsSet;
 
     utility::string_t m_Currency;
@@ -107,7 +107,7 @@ protected:
     utility::string_t m_Subject;
     bool m_SubjectIsSet;
 
-    int32_t m_ThresholdCents;
+    int64_t m_ThresholdCents;
     bool m_ThresholdCentsIsSet;
 
 };

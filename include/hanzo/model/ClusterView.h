@@ -58,10 +58,10 @@ public:
     /// <summary>
     /// AmdGPU is the same count for &#x60;amd.com/gpu&#x60;: AMD accelerators across the BYO cluster&#39;s nodes, as of the attach.
     /// </summary>
-    int32_t getAmdGpu() const;
+    int64_t getAmdGpu() const;
     bool amdGpuIsSet() const;
     void unsetAmdGpu();
-    void setAmdGpu(int32_t value);
+    void setAmdGpu(int64_t value);
 
     /// <summary>
     /// CreatedAt is when the cluster started existing: the earliest creation time among its pools for a managed cluster, and for a BYO one the RFC 3339 moment it was attached. Empty when the source states none.
@@ -80,7 +80,7 @@ public:
     void setDoClusterId(const utility::string_t& value);
 
     /// <summary>
-    /// DoksClusterID is the provider&#39;s own id for the cluster, and the value the /v1/visor/k8s/clusters/:id routes take. Empty for a BYO cluster: an attached kubeconfig was never provisioned, so there is no provider id to state.
+    /// DoksClusterID is the provider&#39;s own id for the cluster, and the value the /v1/compute/k8s/clusters/:id routes take. Empty for a BYO cluster: an attached kubeconfig was never provisioned, so there is no provider id to state.
     /// </summary>
     utility::string_t getDoksClusterId() const;
     bool doksClusterIdIsSet() const;
@@ -106,13 +106,13 @@ public:
     /// <summary>
     /// NodeCount is how many worker nodes the cluster has — the sum over its pools for a managed cluster, and for a BYO one the node count read off the cluster when it was attached.
     /// </summary>
-    int32_t getNodeCount() const;
+    int64_t getNodeCount() const;
     bool nodeCountIsSet() const;
     void unsetNodeCount();
-    void setNodeCount(int32_t value);
+    void setNodeCount(int64_t value);
 
     /// <summary>
-    /// NodePools is the authoritative node inventory — every pool, each with its own size and count. It is empty in two cases that are not \&quot;no pools\&quot;: a row from the /v1/visor/k8s/clusters LIST, which is deliberately lightweight and whose :id detail carries them, and a BYO cluster, whose pools were never read.
+    /// NodePools is the authoritative node inventory — every pool, each with its own size and count. It is empty in two cases that are not \&quot;no pools\&quot;: a row from the /v1/compute/k8s/clusters LIST, which is deliberately lightweight and whose :id detail carries them, and a BYO cluster, whose pools were never read.
     /// </summary>
     std::vector<std::shared_ptr<NodePoolView>> getNodePools() const;
     bool nodePoolsIsSet() const;
@@ -130,10 +130,10 @@ public:
     /// <summary>
     /// NvidiaGPU is how many NVIDIA accelerators the cluster&#39;s nodes advertise, the sum of &#x60;nvidia.com/gpu&#x60; allocatable across them. BYO only, and counted ONCE when the cluster was attached — it is an inventory, not live capacity.
     /// </summary>
-    int32_t getNvidiaGpu() const;
+    int64_t getNvidiaGpu() const;
     bool nvidiaGpuIsSet() const;
     void unsetNvidiaGpu();
-    void setNvidiaGpu(int32_t value);
+    void setNvidiaGpu(int64_t value);
 
     /// <summary>
     /// Region is the provider region slug for a managed cluster. A BYO cluster has no region we can read, so it carries the free-form &#x60;provider&#x60; label the attach named it with (\&quot;gke\&quot;, \&quot;on-prem\&quot;) instead.
@@ -153,7 +153,7 @@ public:
 
 
 protected:
-    int32_t m_AmdGpu;
+    int64_t m_AmdGpu;
     bool m_AmdGpuIsSet;
 
     utility::string_t m_CreatedAt;
@@ -171,7 +171,7 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_NodeCount;
+    int64_t m_NodeCount;
     bool m_NodeCountIsSet;
 
     std::vector<std::shared_ptr<NodePoolView>> m_NodePools;
@@ -180,7 +180,7 @@ protected:
     utility::string_t m_NodeSize;
     bool m_NodeSizeIsSet;
 
-    int32_t m_NvidiaGpu;
+    int64_t m_NvidiaGpu;
     bool m_NvidiaGpuIsSet;
 
     utility::string_t m_Region;

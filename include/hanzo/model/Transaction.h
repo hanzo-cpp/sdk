@@ -53,10 +53,10 @@ public:
     /// Transaction members
 
 
-    int32_t getAmount() const;
+    int64_t getAmount() const;
     bool amountIsSet() const;
     void unsetAmount();
-    void setAmount(int32_t value);
+    void setAmount(int64_t value);
 
     utility::string_t getCreatedAt() const;
     bool createdAtIsSet() const;
@@ -100,7 +100,7 @@ public:
 
 
 protected:
-    int32_t m_Amount;
+    int64_t m_Amount;
     bool m_AmountIsSet;
 
     utility::string_t m_CreatedAt;

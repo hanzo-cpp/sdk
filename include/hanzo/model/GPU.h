@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// VRAM bytes, 0 &#x3D; unknown
     /// </summary>
-    int32_t getMemory() const;
+    int64_t getMemory() const;
     bool memoryIsSet() const;
     void unsetMemory();
-    void setMemory(int32_t value);
+    void setMemory(int64_t value);
 
     /// <summary>
     /// \&quot;GB10\&quot;, \&quot;8060S\&quot;, \&quot;RTX 4090\&quot;
@@ -78,7 +78,7 @@ public:
 
 
 protected:
-    int32_t m_Memory;
+    int64_t m_Memory;
     bool m_MemoryIsSet;
 
     utility::string_t m_Model;

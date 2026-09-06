@@ -18,28 +18,28 @@ namespace model {
 
 BillingInvoice::BillingInvoice()
 {
-    m_AmountDue = 0;
+    m_AmountDue = 0L;
     m_AmountDueIsSet = false;
-    m_AmountPaid = 0;
+    m_AmountPaid = 0L;
     m_AmountPaidIsSet = false;
-    m_AttemptCount = 0;
+    m_AttemptCount = 0L;
     m_AttemptCountIsSet = false;
     m_CreatedAt = utility::conversions::to_string_t("");
     m_CreatedAtIsSet = false;
-    m_CreditApplied = 0;
+    m_CreditApplied = 0L;
     m_CreditAppliedIsSet = false;
     m_Currency = utility::conversions::to_string_t("");
     m_CurrencyIsSet = false;
     m_CustomerEmail = utility::conversions::to_string_t("");
     m_CustomerEmailIsSet = false;
-    m_Discount = 0;
+    m_Discount = 0L;
     m_DiscountIsSet = false;
     m_DueDate = utility::conversions::to_string_t("");
     m_DueDateIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
     m_LineItemsIsSet = false;
-    m_number = 0;
+    m_number = 0L;
     m_numberIsSet = false;
     m_NumberStr = utility::conversions::to_string_t("");
     m_NumberStrIsSet = false;
@@ -57,9 +57,9 @@ BillingInvoice::BillingInvoice()
     m_StatusIsSet = false;
     m_SubscriptionId = utility::conversions::to_string_t("");
     m_SubscriptionIdIsSet = false;
-    m_Subtotal = 0;
+    m_Subtotal = 0L;
     m_SubtotalIsSet = false;
-    m_Tax = 0;
+    m_Tax = 0L;
     m_TaxIsSet = false;
     m_UpdatedAt = utility::conversions::to_string_t("");
     m_UpdatedAtIsSet = false;
@@ -218,7 +218,7 @@ bool BillingInvoice::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("amountDue")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAmountDue;
+            int64_t refVal_setAmountDue;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAmountDue);
             setAmountDue(refVal_setAmountDue);
             
@@ -229,7 +229,7 @@ bool BillingInvoice::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("amountPaid")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAmountPaid;
+            int64_t refVal_setAmountPaid;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAmountPaid);
             setAmountPaid(refVal_setAmountPaid);
             
@@ -240,7 +240,7 @@ bool BillingInvoice::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("attemptCount")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAttemptCount;
+            int64_t refVal_setAttemptCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAttemptCount);
             setAttemptCount(refVal_setAttemptCount);
             
@@ -262,7 +262,7 @@ bool BillingInvoice::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("creditApplied")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreditApplied;
+            int64_t refVal_setCreditApplied;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreditApplied);
             setCreditApplied(refVal_setCreditApplied);
             
@@ -295,7 +295,7 @@ bool BillingInvoice::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("discount")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDiscount;
+            int64_t refVal_setDiscount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDiscount);
             setDiscount(refVal_setDiscount);
             
@@ -339,7 +339,7 @@ bool BillingInvoice::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("number")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNumber;
+            int64_t refVal_setNumber;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNumber);
             setNumber(refVal_setNumber);
             
@@ -438,7 +438,7 @@ bool BillingInvoice::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("subtotal")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSubtotal;
+            int64_t refVal_setSubtotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSubtotal);
             setSubtotal(refVal_setSubtotal);
             
@@ -449,7 +449,7 @@ bool BillingInvoice::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tax")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTax;
+            int64_t refVal_setTax;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTax);
             setTax(refVal_setTax);
             
@@ -611,19 +611,19 @@ bool BillingInvoice::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("amountDue"))))
     {
-        int32_t refVal_setAmountDue;
+        int64_t refVal_setAmountDue;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("amountDue"))), refVal_setAmountDue );
         setAmountDue(refVal_setAmountDue);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("amountPaid"))))
     {
-        int32_t refVal_setAmountPaid;
+        int64_t refVal_setAmountPaid;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("amountPaid"))), refVal_setAmountPaid );
         setAmountPaid(refVal_setAmountPaid);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("attemptCount"))))
     {
-        int32_t refVal_setAttemptCount;
+        int64_t refVal_setAttemptCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("attemptCount"))), refVal_setAttemptCount );
         setAttemptCount(refVal_setAttemptCount);
     }
@@ -635,7 +635,7 @@ bool BillingInvoice::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("creditApplied"))))
     {
-        int32_t refVal_setCreditApplied;
+        int64_t refVal_setCreditApplied;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("creditApplied"))), refVal_setCreditApplied );
         setCreditApplied(refVal_setCreditApplied);
     }
@@ -653,7 +653,7 @@ bool BillingInvoice::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("discount"))))
     {
-        int32_t refVal_setDiscount;
+        int64_t refVal_setDiscount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("discount"))), refVal_setDiscount );
         setDiscount(refVal_setDiscount);
     }
@@ -677,7 +677,7 @@ bool BillingInvoice::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("number"))))
     {
-        int32_t refVal_setNumber;
+        int64_t refVal_setNumber;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("number"))), refVal_setNumber );
         setNumber(refVal_setNumber);
     }
@@ -731,13 +731,13 @@ bool BillingInvoice::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("subtotal"))))
     {
-        int32_t refVal_setSubtotal;
+        int64_t refVal_setSubtotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("subtotal"))), refVal_setSubtotal );
         setSubtotal(refVal_setSubtotal);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tax"))))
     {
-        int32_t refVal_setTax;
+        int64_t refVal_setTax;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("tax"))), refVal_setTax );
         setTax(refVal_setTax);
     }
@@ -763,13 +763,13 @@ bool BillingInvoice::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 }
 
 
-int32_t BillingInvoice::getAmountDue() const
+int64_t BillingInvoice::getAmountDue() const
 {
     return m_AmountDue;
 }
 
 
-void BillingInvoice::setAmountDue(int32_t value)
+void BillingInvoice::setAmountDue(int64_t value)
 {
     m_AmountDue = value;
     m_AmountDueIsSet = true;
@@ -784,13 +784,13 @@ void BillingInvoice::unsetAmountDue()
 {
     m_AmountDueIsSet = false;
 }
-int32_t BillingInvoice::getAmountPaid() const
+int64_t BillingInvoice::getAmountPaid() const
 {
     return m_AmountPaid;
 }
 
 
-void BillingInvoice::setAmountPaid(int32_t value)
+void BillingInvoice::setAmountPaid(int64_t value)
 {
     m_AmountPaid = value;
     m_AmountPaidIsSet = true;
@@ -805,13 +805,13 @@ void BillingInvoice::unsetAmountPaid()
 {
     m_AmountPaidIsSet = false;
 }
-int32_t BillingInvoice::getAttemptCount() const
+int64_t BillingInvoice::getAttemptCount() const
 {
     return m_AttemptCount;
 }
 
 
-void BillingInvoice::setAttemptCount(int32_t value)
+void BillingInvoice::setAttemptCount(int64_t value)
 {
     m_AttemptCount = value;
     m_AttemptCountIsSet = true;
@@ -847,13 +847,13 @@ void BillingInvoice::unsetCreatedAt()
 {
     m_CreatedAtIsSet = false;
 }
-int32_t BillingInvoice::getCreditApplied() const
+int64_t BillingInvoice::getCreditApplied() const
 {
     return m_CreditApplied;
 }
 
 
-void BillingInvoice::setCreditApplied(int32_t value)
+void BillingInvoice::setCreditApplied(int64_t value)
 {
     m_CreditApplied = value;
     m_CreditAppliedIsSet = true;
@@ -910,13 +910,13 @@ void BillingInvoice::unsetCustomerEmail()
 {
     m_CustomerEmailIsSet = false;
 }
-int32_t BillingInvoice::getDiscount() const
+int64_t BillingInvoice::getDiscount() const
 {
     return m_Discount;
 }
 
 
-void BillingInvoice::setDiscount(int32_t value)
+void BillingInvoice::setDiscount(int64_t value)
 {
     m_Discount = value;
     m_DiscountIsSet = true;
@@ -994,13 +994,13 @@ void BillingInvoice::unsetLineItems()
 {
     m_LineItemsIsSet = false;
 }
-int32_t BillingInvoice::getNumber() const
+int64_t BillingInvoice::getNumber() const
 {
     return m_number;
 }
 
 
-void BillingInvoice::setNumber(int32_t value)
+void BillingInvoice::setNumber(int64_t value)
 {
     m_number = value;
     m_numberIsSet = true;
@@ -1183,13 +1183,13 @@ void BillingInvoice::unsetSubscriptionId()
 {
     m_SubscriptionIdIsSet = false;
 }
-int32_t BillingInvoice::getSubtotal() const
+int64_t BillingInvoice::getSubtotal() const
 {
     return m_Subtotal;
 }
 
 
-void BillingInvoice::setSubtotal(int32_t value)
+void BillingInvoice::setSubtotal(int64_t value)
 {
     m_Subtotal = value;
     m_SubtotalIsSet = true;
@@ -1204,13 +1204,13 @@ void BillingInvoice::unsetSubtotal()
 {
     m_SubtotalIsSet = false;
 }
-int32_t BillingInvoice::getTax() const
+int64_t BillingInvoice::getTax() const
 {
     return m_Tax;
 }
 
 
-void BillingInvoice::setTax(int32_t value)
+void BillingInvoice::setTax(int64_t value)
 {
     m_Tax = value;
     m_TaxIsSet = true;

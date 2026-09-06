@@ -18,9 +18,9 @@ namespace model {
 
 O11y_LimitValue::O11y_LimitValue()
 {
-    m_Count = 0;
+    m_Count = 0L;
     m_CountIsSet = false;
-    m_Size = 0;
+    m_Size = 0L;
     m_SizeIsSet = false;
 }
 
@@ -58,7 +58,7 @@ bool O11y_LimitValue::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("count")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCount;
+            int64_t refVal_setCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCount);
             setCount(refVal_setCount);
             
@@ -69,7 +69,7 @@ bool O11y_LimitValue::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("size")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSize;
+            int64_t refVal_setSize;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSize);
             setSize(refVal_setSize);
             
@@ -106,13 +106,13 @@ bool O11y_LimitValue::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("count"))))
     {
-        int32_t refVal_setCount;
+        int64_t refVal_setCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("count"))), refVal_setCount );
         setCount(refVal_setCount);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("size"))))
     {
-        int32_t refVal_setSize;
+        int64_t refVal_setSize;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("size"))), refVal_setSize );
         setSize(refVal_setSize);
     }
@@ -120,13 +120,13 @@ bool O11y_LimitValue::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 }
 
 
-int32_t O11y_LimitValue::getCount() const
+int64_t O11y_LimitValue::getCount() const
 {
     return m_Count;
 }
 
 
-void O11y_LimitValue::setCount(int32_t value)
+void O11y_LimitValue::setCount(int64_t value)
 {
     m_Count = value;
     m_CountIsSet = true;
@@ -141,13 +141,13 @@ void O11y_LimitValue::unsetCount()
 {
     m_CountIsSet = false;
 }
-int32_t O11y_LimitValue::getSize() const
+int64_t O11y_LimitValue::getSize() const
 {
     return m_Size;
 }
 
 
-void O11y_LimitValue::setSize(int32_t value)
+void O11y_LimitValue::setSize(int64_t value)
 {
     m_Size = value;
     m_SizeIsSet = true;

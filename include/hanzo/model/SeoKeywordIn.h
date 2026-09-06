@@ -72,10 +72,10 @@ public:
     /// <summary>
     /// Location is the market, as the upstream&#39;s numeric code. Defaults to 2840, the United States.
     /// </summary>
-    int32_t getLocation() const;
+    int64_t getLocation() const;
     bool locationIsSet() const;
     void unsetLocation();
-    void setLocation(int32_t value);
+    void setLocation(int64_t value);
 
 
 protected:
@@ -85,7 +85,7 @@ protected:
     utility::string_t m_Language;
     bool m_LanguageIsSet;
 
-    int32_t m_Location;
+    int64_t m_Location;
     bool m_LocationIsSet;
 
 };

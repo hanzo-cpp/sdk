@@ -18,7 +18,7 @@ namespace model {
 
 Filing::Filing()
 {
-    m_At = 0;
+    m_At = 0L;
     m_AtIsSet = false;
     m_Note = utility::conversions::to_string_t("");
     m_NoteIsSet = false;
@@ -79,7 +79,7 @@ bool Filing::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("at")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAt;
+            int64_t refVal_setAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAt);
             setAt(refVal_setAt);
             
@@ -172,7 +172,7 @@ bool Filing::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("at"))))
     {
-        int32_t refVal_setAt;
+        int64_t refVal_setAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("at"))), refVal_setAt );
         setAt(refVal_setAt);
     }
@@ -204,13 +204,13 @@ bool Filing::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
 }
 
 
-int32_t Filing::getAt() const
+int64_t Filing::getAt() const
 {
     return m_At;
 }
 
 
-void Filing::setAt(int32_t value)
+void Filing::setAt(int64_t value)
 {
     m_At = value;
     m_AtIsSet = true;

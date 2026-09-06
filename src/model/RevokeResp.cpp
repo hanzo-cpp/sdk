@@ -19,9 +19,9 @@ namespace model {
 RevokeResp::RevokeResp()
 {
     m_LinksIsSet = false;
-    m_Revoked = 0;
+    m_Revoked = 0L;
     m_RevokedIsSet = false;
-    m_SessionsStopped = 0;
+    m_SessionsStopped = 0L;
     m_SessionsStoppedIsSet = false;
 }
 
@@ -75,7 +75,7 @@ bool RevokeResp::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("revoked")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRevoked;
+            int64_t refVal_setRevoked;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRevoked);
             setRevoked(refVal_setRevoked);
             
@@ -86,7 +86,7 @@ bool RevokeResp::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("sessionsStopped")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSessionsStopped;
+            int64_t refVal_setSessionsStopped;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSessionsStopped);
             setSessionsStopped(refVal_setSessionsStopped);
             
@@ -133,13 +133,13 @@ bool RevokeResp::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("revoked"))))
     {
-        int32_t refVal_setRevoked;
+        int64_t refVal_setRevoked;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("revoked"))), refVal_setRevoked );
         setRevoked(refVal_setRevoked);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("sessionsStopped"))))
     {
-        int32_t refVal_setSessionsStopped;
+        int64_t refVal_setSessionsStopped;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("sessionsStopped"))), refVal_setSessionsStopped );
         setSessionsStopped(refVal_setSessionsStopped);
     }
@@ -168,13 +168,13 @@ void RevokeResp::unsetLinks()
 {
     m_LinksIsSet = false;
 }
-int32_t RevokeResp::getRevoked() const
+int64_t RevokeResp::getRevoked() const
 {
     return m_Revoked;
 }
 
 
-void RevokeResp::setRevoked(int32_t value)
+void RevokeResp::setRevoked(int64_t value)
 {
     m_Revoked = value;
     m_RevokedIsSet = true;
@@ -189,13 +189,13 @@ void RevokeResp::unsetRevoked()
 {
     m_RevokedIsSet = false;
 }
-int32_t RevokeResp::getSessionsStopped() const
+int64_t RevokeResp::getSessionsStopped() const
 {
     return m_SessionsStopped;
 }
 
 
-void RevokeResp::setSessionsStopped(int32_t value)
+void RevokeResp::setSessionsStopped(int64_t value)
 {
     m_SessionsStopped = value;
     m_SessionsStoppedIsSet = true;

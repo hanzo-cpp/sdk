@@ -18,7 +18,7 @@ namespace model {
 
 O11y_StatefulSetListRecord::O11y_StatefulSetListRecord()
 {
-    m_AvailablePods = 0;
+    m_AvailablePods = 0L;
     m_AvailablePodsIsSet = false;
     m_CpuLimit = 0.0;
     m_CpuLimitIsSet = false;
@@ -26,7 +26,7 @@ O11y_StatefulSetListRecord::O11y_StatefulSetListRecord()
     m_CpuRequestIsSet = false;
     m_CpuUsage = 0.0;
     m_CpuUsageIsSet = false;
-    m_DesiredPods = 0;
+    m_DesiredPods = 0L;
     m_DesiredPodsIsSet = false;
     m_MemoryLimit = 0.0;
     m_MemoryLimitIsSet = false;
@@ -35,7 +35,7 @@ O11y_StatefulSetListRecord::O11y_StatefulSetListRecord()
     m_MemoryUsage = 0.0;
     m_MemoryUsageIsSet = false;
     m_MetaIsSet = false;
-    m_Restarts = 0;
+    m_Restarts = 0L;
     m_RestartsIsSet = false;
     m_StatefulSetName = utility::conversions::to_string_t("");
     m_StatefulSetNameIsSet = false;
@@ -120,7 +120,7 @@ bool O11y_StatefulSetListRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("availablePods")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAvailablePods;
+            int64_t refVal_setAvailablePods;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAvailablePods);
             setAvailablePods(refVal_setAvailablePods);
             
@@ -164,7 +164,7 @@ bool O11y_StatefulSetListRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("desiredPods")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDesiredPods;
+            int64_t refVal_setDesiredPods;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDesiredPods);
             setDesiredPods(refVal_setDesiredPods);
             
@@ -219,7 +219,7 @@ bool O11y_StatefulSetListRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("restarts")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRestarts;
+            int64_t refVal_setRestarts;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRestarts);
             setRestarts(refVal_setRestarts);
             
@@ -303,7 +303,7 @@ bool O11y_StatefulSetListRecord::fromMultiPart(std::shared_ptr<MultipartFormData
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("availablePods"))))
     {
-        int32_t refVal_setAvailablePods;
+        int64_t refVal_setAvailablePods;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("availablePods"))), refVal_setAvailablePods );
         setAvailablePods(refVal_setAvailablePods);
     }
@@ -327,7 +327,7 @@ bool O11y_StatefulSetListRecord::fromMultiPart(std::shared_ptr<MultipartFormData
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("desiredPods"))))
     {
-        int32_t refVal_setDesiredPods;
+        int64_t refVal_setDesiredPods;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("desiredPods"))), refVal_setDesiredPods );
         setDesiredPods(refVal_setDesiredPods);
     }
@@ -357,7 +357,7 @@ bool O11y_StatefulSetListRecord::fromMultiPart(std::shared_ptr<MultipartFormData
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("restarts"))))
     {
-        int32_t refVal_setRestarts;
+        int64_t refVal_setRestarts;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("restarts"))), refVal_setRestarts );
         setRestarts(refVal_setRestarts);
     }
@@ -371,13 +371,13 @@ bool O11y_StatefulSetListRecord::fromMultiPart(std::shared_ptr<MultipartFormData
 }
 
 
-int32_t O11y_StatefulSetListRecord::getAvailablePods() const
+int64_t O11y_StatefulSetListRecord::getAvailablePods() const
 {
     return m_AvailablePods;
 }
 
 
-void O11y_StatefulSetListRecord::setAvailablePods(int32_t value)
+void O11y_StatefulSetListRecord::setAvailablePods(int64_t value)
 {
     m_AvailablePods = value;
     m_AvailablePodsIsSet = true;
@@ -455,13 +455,13 @@ void O11y_StatefulSetListRecord::unsetCpuUsage()
 {
     m_CpuUsageIsSet = false;
 }
-int32_t O11y_StatefulSetListRecord::getDesiredPods() const
+int64_t O11y_StatefulSetListRecord::getDesiredPods() const
 {
     return m_DesiredPods;
 }
 
 
-void O11y_StatefulSetListRecord::setDesiredPods(int32_t value)
+void O11y_StatefulSetListRecord::setDesiredPods(int64_t value)
 {
     m_DesiredPods = value;
     m_DesiredPodsIsSet = true;
@@ -560,13 +560,13 @@ void O11y_StatefulSetListRecord::unsetMeta()
 {
     m_MetaIsSet = false;
 }
-int32_t O11y_StatefulSetListRecord::getRestarts() const
+int64_t O11y_StatefulSetListRecord::getRestarts() const
 {
     return m_Restarts;
 }
 
 
-void O11y_StatefulSetListRecord::setRestarts(int32_t value)
+void O11y_StatefulSetListRecord::setRestarts(int64_t value)
 {
     m_Restarts = value;
     m_RestartsIsSet = true;

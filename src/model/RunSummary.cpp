@@ -22,7 +22,7 @@ RunSummary::RunSummary()
     m_AvgScoreIsSet = false;
     m_Dataset = utility::conversions::to_string_t("");
     m_DatasetIsSet = false;
-    m_Items = 0;
+    m_Items = 0L;
     m_ItemsIsSet = false;
     m_JudgeModel = utility::conversions::to_string_t("");
     m_JudgeModelIsSet = false;
@@ -31,7 +31,7 @@ RunSummary::RunSummary()
     m_ResultsIsSet = false;
     m_RunName = utility::conversions::to_string_t("");
     m_RunNameIsSet = false;
-    m_Scored = 0;
+    m_Scored = 0L;
     m_ScoredIsSet = false;
 }
 
@@ -121,7 +121,7 @@ bool RunSummary::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("items")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setItems;
+            int64_t refVal_setItems;
             ok &= ModelBase::fromJson(fieldValue, refVal_setItems);
             setItems(refVal_setItems);
             
@@ -176,7 +176,7 @@ bool RunSummary::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("scored")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setScored;
+            int64_t refVal_setScored;
             ok &= ModelBase::fromJson(fieldValue, refVal_setScored);
             setScored(refVal_setScored);
             
@@ -249,7 +249,7 @@ bool RunSummary::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("items"))))
     {
-        int32_t refVal_setItems;
+        int64_t refVal_setItems;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("items"))), refVal_setItems );
         setItems(refVal_setItems);
     }
@@ -279,7 +279,7 @@ bool RunSummary::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("scored"))))
     {
-        int32_t refVal_setScored;
+        int64_t refVal_setScored;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("scored"))), refVal_setScored );
         setScored(refVal_setScored);
     }
@@ -329,13 +329,13 @@ void RunSummary::unsetDataset()
 {
     m_DatasetIsSet = false;
 }
-int32_t RunSummary::getItems() const
+int64_t RunSummary::getItems() const
 {
     return m_Items;
 }
 
 
-void RunSummary::setItems(int32_t value)
+void RunSummary::setItems(int64_t value)
 {
     m_Items = value;
     m_ItemsIsSet = true;
@@ -434,13 +434,13 @@ void RunSummary::unsetRunName()
 {
     m_RunNameIsSet = false;
 }
-int32_t RunSummary::getScored() const
+int64_t RunSummary::getScored() const
 {
     return m_Scored;
 }
 
 
-void RunSummary::setScored(int32_t value)
+void RunSummary::setScored(int64_t value)
 {
     m_Scored = value;
     m_ScoredIsSet = true;

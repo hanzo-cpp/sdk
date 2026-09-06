@@ -18,7 +18,7 @@ namespace model {
 
 Ruleset::Ruleset()
 {
-    m_Rules = 0;
+    m_Rules = 0L;
     m_RulesIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
@@ -58,7 +58,7 @@ bool Ruleset::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("rules")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRules;
+            int64_t refVal_setRules;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRules);
             setRules(refVal_setRules);
             
@@ -106,7 +106,7 @@ bool Ruleset::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("rules"))))
     {
-        int32_t refVal_setRules;
+        int64_t refVal_setRules;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("rules"))), refVal_setRules );
         setRules(refVal_setRules);
     }
@@ -120,13 +120,13 @@ bool Ruleset::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
 }
 
 
-int32_t Ruleset::getRules() const
+int64_t Ruleset::getRules() const
 {
     return m_Rules;
 }
 
 
-void Ruleset::setRules(int32_t value)
+void Ruleset::setRules(int64_t value)
 {
     m_Rules = value;
     m_RulesIsSet = true;

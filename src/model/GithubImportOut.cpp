@@ -18,7 +18,7 @@ namespace model {
 
 GithubImportOut::GithubImportOut()
 {
-    m_Queued = 0;
+    m_Queued = 0L;
     m_QueuedIsSet = false;
     m_ReposIsSet = false;
 }
@@ -57,7 +57,7 @@ bool GithubImportOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("queued")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setQueued;
+            int64_t refVal_setQueued;
             ok &= ModelBase::fromJson(fieldValue, refVal_setQueued);
             setQueued(refVal_setQueued);
             
@@ -105,7 +105,7 @@ bool GithubImportOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("queued"))))
     {
-        int32_t refVal_setQueued;
+        int64_t refVal_setQueued;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("queued"))), refVal_setQueued );
         setQueued(refVal_setQueued);
     }
@@ -119,13 +119,13 @@ bool GithubImportOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 }
 
 
-int32_t GithubImportOut::getQueued() const
+int64_t GithubImportOut::getQueued() const
 {
     return m_Queued;
 }
 
 
-void GithubImportOut::setQueued(int32_t value)
+void GithubImportOut::setQueued(int64_t value)
 {
     m_Queued = value;
     m_QueuedIsSet = true;

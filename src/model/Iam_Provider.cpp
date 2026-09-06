@@ -87,7 +87,7 @@ Iam_Provider::Iam_Provider()
     m_OwnerIsSet = false;
     m_PathPrefix = utility::conversions::to_string_t("");
     m_PathPrefixIsSet = false;
-    m_Port = 0;
+    m_Port = 0L;
     m_PortIsSet = false;
     m_ProviderUrl = utility::conversions::to_string_t("");
     m_ProviderUrlIsSet = false;
@@ -763,7 +763,7 @@ bool Iam_Provider::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("port")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPort;
+            int64_t refVal_setPort;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPort);
             setPort(refVal_setPort);
             
@@ -1326,7 +1326,7 @@ bool Iam_Provider::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("port"))))
     {
-        int32_t refVal_setPort;
+        int64_t refVal_setPort;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("port"))), refVal_setPort );
         setPort(refVal_setPort);
     }
@@ -2141,13 +2141,13 @@ void Iam_Provider::unsetPathPrefix()
 {
     m_PathPrefixIsSet = false;
 }
-int32_t Iam_Provider::getPort() const
+int64_t Iam_Provider::getPort() const
 {
     return m_Port;
 }
 
 
-void Iam_Provider::setPort(int32_t value)
+void Iam_Provider::setPort(int64_t value)
 {
     m_Port = value;
     m_PortIsSet = true;

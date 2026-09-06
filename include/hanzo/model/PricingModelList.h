@@ -65,10 +65,10 @@ public:
     /// <summary>
     /// Total is how many models this answer carries — recounted over the visible set, not the catalog&#39;s own total.
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
     /// <summary>
     /// Updated is when the catalog was last refreshed, as the pricing source recorded it.
@@ -83,7 +83,7 @@ protected:
     std::vector<std::map<utility::string_t, std::shared_ptr<Object>>> m_Models;
     bool m_ModelsIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
     std::shared_ptr<Object> m_Updated;

@@ -28,7 +28,7 @@ Suggestion::Suggestion()
     m_StepIdIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
-    m_Unlocks = 0;
+    m_Unlocks = 0L;
     m_UnlocksIsSet = false;
 }
 
@@ -141,7 +141,7 @@ bool Suggestion::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("unlocks")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUnlocks;
+            int64_t refVal_setUnlocks;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUnlocks);
             setUnlocks(refVal_setUnlocks);
             
@@ -224,7 +224,7 @@ bool Suggestion::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("unlocks"))))
     {
-        int32_t refVal_setUnlocks;
+        int64_t refVal_setUnlocks;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("unlocks"))), refVal_setUnlocks );
         setUnlocks(refVal_setUnlocks);
     }
@@ -337,13 +337,13 @@ void Suggestion::unsetTitle()
 {
     m_TitleIsSet = false;
 }
-int32_t Suggestion::getUnlocks() const
+int64_t Suggestion::getUnlocks() const
 {
     return m_Unlocks;
 }
 
 
-void Suggestion::setUnlocks(int32_t value)
+void Suggestion::setUnlocks(int64_t value)
 {
     m_Unlocks = value;
     m_UnlocksIsSet = true;

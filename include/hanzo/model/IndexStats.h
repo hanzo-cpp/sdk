@@ -57,10 +57,10 @@ public:
     /// <summary>
     /// DatabaseSize is the org&#39;s total document count across its indexes. It is a count, not bytes: the store is shared by every tenant, so a byte figure would either be the whole file (another tenant&#39;s size) or a fiction.
     /// </summary>
-    int32_t getDatabaseSize() const;
+    int64_t getDatabaseSize() const;
     bool databaseSizeIsSet() const;
     void unsetDatabaseSize();
-    void setDatabaseSize(int32_t value);
+    void setDatabaseSize(int64_t value);
 
     /// <summary>
     /// Indexes maps each index uid to its own count.
@@ -72,7 +72,7 @@ public:
 
 
 protected:
-    int32_t m_DatabaseSize;
+    int64_t m_DatabaseSize;
     bool m_DatabaseSizeIsSet;
 
     std::map<utility::string_t, std::shared_ptr<IndexCount>> m_Indexes;

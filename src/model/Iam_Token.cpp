@@ -30,7 +30,7 @@ Iam_Token::Iam_Token()
     m_CodeChallengeIsSet = false;
     m_CodeChallengeMethod = utility::conversions::to_string_t("");
     m_CodeChallengeMethodIsSet = false;
-    m_CodeExpireIn = 0;
+    m_CodeExpireIn = 0L;
     m_CodeExpireInIsSet = false;
     m_CodeIsUsed = false;
     m_CodeIsUsedIsSet = false;
@@ -40,7 +40,7 @@ Iam_Token::Iam_Token()
     m_CreatedTimeIsSet = false;
     m_Deleted = false;
     m_DeletedIsSet = false;
-    m_ExpiresIn = 0;
+    m_ExpiresIn = 0L;
     m_ExpiresInIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
@@ -58,7 +58,7 @@ Iam_Token::Iam_Token()
     m_RedirectUriIsSet = false;
     m_RefreshConsumed = false;
     m_RefreshConsumedIsSet = false;
-    m_RefreshExpireIn = 0;
+    m_RefreshExpireIn = 0L;
     m_RefreshExpireInIsSet = false;
     m_RefreshFamily = utility::conversions::to_string_t("");
     m_RefreshFamilyIsSet = false;
@@ -320,7 +320,7 @@ bool Iam_Token::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("codeExpireIn")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCodeExpireIn;
+            int64_t refVal_setCodeExpireIn;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCodeExpireIn);
             setCodeExpireIn(refVal_setCodeExpireIn);
             
@@ -375,7 +375,7 @@ bool Iam_Token::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("expiresIn")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExpiresIn;
+            int64_t refVal_setExpiresIn;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExpiresIn);
             setExpiresIn(refVal_setExpiresIn);
             
@@ -474,7 +474,7 @@ bool Iam_Token::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("refreshExpireIn")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRefreshExpireIn;
+            int64_t refVal_setRefreshExpireIn;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRefreshExpireIn);
             setRefreshExpireIn(refVal_setRefreshExpireIn);
             
@@ -758,7 +758,7 @@ bool Iam_Token::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("codeExpireIn"))))
     {
-        int32_t refVal_setCodeExpireIn;
+        int64_t refVal_setCodeExpireIn;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("codeExpireIn"))), refVal_setCodeExpireIn );
         setCodeExpireIn(refVal_setCodeExpireIn);
     }
@@ -788,7 +788,7 @@ bool Iam_Token::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("expiresIn"))))
     {
-        int32_t refVal_setExpiresIn;
+        int64_t refVal_setExpiresIn;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("expiresIn"))), refVal_setExpiresIn );
         setExpiresIn(refVal_setExpiresIn);
     }
@@ -842,7 +842,7 @@ bool Iam_Token::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("refreshExpireIn"))))
     {
-        int32_t refVal_setRefreshExpireIn;
+        int64_t refVal_setRefreshExpireIn;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("refreshExpireIn"))), refVal_setRefreshExpireIn );
         setRefreshExpireIn(refVal_setRefreshExpireIn);
     }
@@ -1030,13 +1030,13 @@ void Iam_Token::unsetCodeChallengeMethod()
 {
     m_CodeChallengeMethodIsSet = false;
 }
-int32_t Iam_Token::getCodeExpireIn() const
+int64_t Iam_Token::getCodeExpireIn() const
 {
     return m_CodeExpireIn;
 }
 
 
-void Iam_Token::setCodeExpireIn(int32_t value)
+void Iam_Token::setCodeExpireIn(int64_t value)
 {
     m_CodeExpireIn = value;
     m_CodeExpireInIsSet = true;
@@ -1135,13 +1135,13 @@ void Iam_Token::unsetDeleted()
 {
     m_DeletedIsSet = false;
 }
-int32_t Iam_Token::getExpiresIn() const
+int64_t Iam_Token::getExpiresIn() const
 {
     return m_ExpiresIn;
 }
 
 
-void Iam_Token::setExpiresIn(int32_t value)
+void Iam_Token::setExpiresIn(int64_t value)
 {
     m_ExpiresIn = value;
     m_ExpiresInIsSet = true;
@@ -1324,13 +1324,13 @@ void Iam_Token::unsetRefreshConsumed()
 {
     m_RefreshConsumedIsSet = false;
 }
-int32_t Iam_Token::getRefreshExpireIn() const
+int64_t Iam_Token::getRefreshExpireIn() const
 {
     return m_RefreshExpireIn;
 }
 
 
-void Iam_Token::setRefreshExpireIn(int32_t value)
+void Iam_Token::setRefreshExpireIn(int64_t value)
 {
     m_RefreshExpireIn = value;
     m_RefreshExpireInIsSet = true;

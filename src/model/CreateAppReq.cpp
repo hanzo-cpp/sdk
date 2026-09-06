@@ -31,18 +31,18 @@ CreateAppReq::CreateAppReq()
     m_ImageIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_Port = 0;
+    m_Port = 0L;
     m_PortIsSet = false;
     m_Project = utility::conversions::to_string_t("");
     m_ProjectIsSet = false;
-    m_Replicas = 0;
+    m_Replicas = 0L;
     m_ReplicasIsSet = false;
     m_RepoIsSet = false;
     m_Slug = utility::conversions::to_string_t("");
     m_SlugIsSet = false;
     m_Source = utility::conversions::to_string_t("");
     m_SourceIsSet = false;
-    m_StorageGb = 0;
+    m_StorageGb = 0L;
     m_StorageGbIsSet = false;
 }
 
@@ -233,7 +233,7 @@ bool CreateAppReq::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("port")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPort;
+            int64_t refVal_setPort;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPort);
             setPort(refVal_setPort);
             
@@ -255,7 +255,7 @@ bool CreateAppReq::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("replicas")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setReplicas;
+            int64_t refVal_setReplicas;
             ok &= ModelBase::fromJson(fieldValue, refVal_setReplicas);
             setReplicas(refVal_setReplicas);
             
@@ -299,7 +299,7 @@ bool CreateAppReq::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("storageGb")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStorageGb;
+            int64_t refVal_setStorageGb;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStorageGb);
             setStorageGb(refVal_setStorageGb);
             
@@ -436,7 +436,7 @@ bool CreateAppReq::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("port"))))
     {
-        int32_t refVal_setPort;
+        int64_t refVal_setPort;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("port"))), refVal_setPort );
         setPort(refVal_setPort);
     }
@@ -448,7 +448,7 @@ bool CreateAppReq::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("replicas"))))
     {
-        int32_t refVal_setReplicas;
+        int64_t refVal_setReplicas;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("replicas"))), refVal_setReplicas );
         setReplicas(refVal_setReplicas);
     }
@@ -472,7 +472,7 @@ bool CreateAppReq::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("storageGb"))))
     {
-        int32_t refVal_setStorageGb;
+        int64_t refVal_setStorageGb;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("storageGb"))), refVal_setStorageGb );
         setStorageGb(refVal_setStorageGb);
     }
@@ -648,13 +648,13 @@ void CreateAppReq::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t CreateAppReq::getPort() const
+int64_t CreateAppReq::getPort() const
 {
     return m_Port;
 }
 
 
-void CreateAppReq::setPort(int32_t value)
+void CreateAppReq::setPort(int64_t value)
 {
     m_Port = value;
     m_PortIsSet = true;
@@ -690,13 +690,13 @@ void CreateAppReq::unsetProject()
 {
     m_ProjectIsSet = false;
 }
-int32_t CreateAppReq::getReplicas() const
+int64_t CreateAppReq::getReplicas() const
 {
     return m_Replicas;
 }
 
 
-void CreateAppReq::setReplicas(int32_t value)
+void CreateAppReq::setReplicas(int64_t value)
 {
     m_Replicas = value;
     m_ReplicasIsSet = true;
@@ -774,13 +774,13 @@ void CreateAppReq::unsetSource()
 {
     m_SourceIsSet = false;
 }
-int32_t CreateAppReq::getStorageGb() const
+int64_t CreateAppReq::getStorageGb() const
 {
     return m_StorageGb;
 }
 
 
-void CreateAppReq::setStorageGb(int32_t value)
+void CreateAppReq::setStorageGb(int64_t value)
 {
     m_StorageGb = value;
     m_StorageGbIsSet = true;

@@ -20,7 +20,7 @@ ScheduleInput::ScheduleInput()
 {
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
-    m_ScheduledAt = 0;
+    m_ScheduledAt = 0L;
     m_ScheduledAtIsSet = false;
 }
 
@@ -69,7 +69,7 @@ bool ScheduleInput::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("scheduledAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setScheduledAt;
+            int64_t refVal_setScheduledAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setScheduledAt);
             setScheduledAt(refVal_setScheduledAt);
             
@@ -112,7 +112,7 @@ bool ScheduleInput::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("scheduledAt"))))
     {
-        int32_t refVal_setScheduledAt;
+        int64_t refVal_setScheduledAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("scheduledAt"))), refVal_setScheduledAt );
         setScheduledAt(refVal_setScheduledAt);
     }
@@ -141,13 +141,13 @@ void ScheduleInput::unsetId()
 {
     m_IdIsSet = false;
 }
-int32_t ScheduleInput::getScheduledAt() const
+int64_t ScheduleInput::getScheduledAt() const
 {
     return m_ScheduledAt;
 }
 
 
-void ScheduleInput::setScheduledAt(int32_t value)
+void ScheduleInput::setScheduledAt(int64_t value)
 {
     m_ScheduledAt = value;
     m_ScheduledAtIsSet = true;

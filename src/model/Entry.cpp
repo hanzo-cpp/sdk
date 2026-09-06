@@ -44,7 +44,7 @@ Entry::Entry()
     m_RepoIsSet = false;
     m_Scope = utility::conversions::to_string_t("");
     m_ScopeIsSet = false;
-    m_Stars = 0;
+    m_Stars = 0L;
     m_StarsIsSet = false;
     m_r_template = utility::conversions::to_string_t("");
     m_r_templateIsSet = false;
@@ -320,7 +320,7 @@ bool Entry::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("stars")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStars;
+            int64_t refVal_setStars;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStars);
             setStars(refVal_setStars);
             
@@ -558,7 +558,7 @@ bool Entry::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("stars"))))
     {
-        int32_t refVal_setStars;
+        int64_t refVal_setStars;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("stars"))), refVal_setStars );
         setStars(refVal_setStars);
     }
@@ -869,13 +869,13 @@ void Entry::unsetScope()
 {
     m_ScopeIsSet = false;
 }
-int32_t Entry::getStars() const
+int64_t Entry::getStars() const
 {
     return m_Stars;
 }
 
 
-void Entry::setStars(int32_t value)
+void Entry::setStars(int64_t value)
 {
     m_Stars = value;
     m_StarsIsSet = true;

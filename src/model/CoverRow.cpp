@@ -18,7 +18,7 @@ namespace model {
 
 CoverRow::CoverRow()
 {
-    m_Automated = 0;
+    m_Automated = 0L;
     m_AutomatedIsSet = false;
     m_Edition = utility::conversions::to_string_t("");
     m_EditionIsSet = false;
@@ -26,17 +26,17 @@ CoverRow::CoverRow()
     m_FrameworkIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_None = 0;
+    m_None = 0L;
     m_NoneIsSet = false;
     m_Note = utility::conversions::to_string_t("");
     m_NoteIsSet = false;
-    m_Partial = 0;
+    m_Partial = 0L;
     m_PartialIsSet = false;
     m_Publisher = utility::conversions::to_string_t("");
     m_PublisherIsSet = false;
     m_Statement = utility::conversions::to_string_t("");
     m_StatementIsSet = false;
-    m_Total = 0;
+    m_Total = 0L;
     m_TotalIsSet = false;
     m_Unit = utility::conversions::to_string_t("");
     m_UnitIsSet = false;
@@ -128,7 +128,7 @@ bool CoverRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("automated")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAutomated;
+            int64_t refVal_setAutomated;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAutomated);
             setAutomated(refVal_setAutomated);
             
@@ -172,7 +172,7 @@ bool CoverRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("none")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNone;
+            int64_t refVal_setNone;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNone);
             setNone(refVal_setNone);
             
@@ -194,7 +194,7 @@ bool CoverRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("partial")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPartial;
+            int64_t refVal_setPartial;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPartial);
             setPartial(refVal_setPartial);
             
@@ -227,7 +227,7 @@ bool CoverRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("total")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotal;
+            int64_t refVal_setTotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotal);
             setTotal(refVal_setTotal);
             
@@ -326,7 +326,7 @@ bool CoverRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("automated"))))
     {
-        int32_t refVal_setAutomated;
+        int64_t refVal_setAutomated;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("automated"))), refVal_setAutomated );
         setAutomated(refVal_setAutomated);
     }
@@ -350,7 +350,7 @@ bool CoverRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("none"))))
     {
-        int32_t refVal_setNone;
+        int64_t refVal_setNone;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("none"))), refVal_setNone );
         setNone(refVal_setNone);
     }
@@ -362,7 +362,7 @@ bool CoverRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("partial"))))
     {
-        int32_t refVal_setPartial;
+        int64_t refVal_setPartial;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("partial"))), refVal_setPartial );
         setPartial(refVal_setPartial);
     }
@@ -380,7 +380,7 @@ bool CoverRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("total"))))
     {
-        int32_t refVal_setTotal;
+        int64_t refVal_setTotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("total"))), refVal_setTotal );
         setTotal(refVal_setTotal);
     }
@@ -400,13 +400,13 @@ bool CoverRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 }
 
 
-int32_t CoverRow::getAutomated() const
+int64_t CoverRow::getAutomated() const
 {
     return m_Automated;
 }
 
 
-void CoverRow::setAutomated(int32_t value)
+void CoverRow::setAutomated(int64_t value)
 {
     m_Automated = value;
     m_AutomatedIsSet = true;
@@ -484,13 +484,13 @@ void CoverRow::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t CoverRow::getNone() const
+int64_t CoverRow::getNone() const
 {
     return m_None;
 }
 
 
-void CoverRow::setNone(int32_t value)
+void CoverRow::setNone(int64_t value)
 {
     m_None = value;
     m_NoneIsSet = true;
@@ -526,13 +526,13 @@ void CoverRow::unsetNote()
 {
     m_NoteIsSet = false;
 }
-int32_t CoverRow::getPartial() const
+int64_t CoverRow::getPartial() const
 {
     return m_Partial;
 }
 
 
-void CoverRow::setPartial(int32_t value)
+void CoverRow::setPartial(int64_t value)
 {
     m_Partial = value;
     m_PartialIsSet = true;
@@ -589,13 +589,13 @@ void CoverRow::unsetStatement()
 {
     m_StatementIsSet = false;
 }
-int32_t CoverRow::getTotal() const
+int64_t CoverRow::getTotal() const
 {
     return m_Total;
 }
 
 
-void CoverRow::setTotal(int32_t value)
+void CoverRow::setTotal(int64_t value)
 {
     m_Total = value;
     m_TotalIsSet = true;

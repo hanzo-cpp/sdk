@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// Overrides is how many your org now holds in this set.
     /// </summary>
-    int32_t getOverrides() const;
+    int64_t getOverrides() const;
     bool overridesIsSet() const;
     void unsetOverrides();
-    void setOverrides(int32_t value);
+    void setOverrides(int64_t value);
 
     /// <summary>
     /// Set is the set written in.
@@ -71,20 +71,20 @@ public:
     /// <summary>
     /// Written is how many entries this call wrote.
     /// </summary>
-    int32_t getWritten() const;
+    int64_t getWritten() const;
     bool writtenIsSet() const;
     void unsetWritten();
-    void setWritten(int32_t value);
+    void setWritten(int64_t value);
 
 
 protected:
-    int32_t m_Overrides;
+    int64_t m_Overrides;
     bool m_OverridesIsSet;
 
     utility::string_t m_set;
     bool m_setIsSet;
 
-    int32_t m_Written;
+    int64_t m_Written;
     bool m_WrittenIsSet;
 
 };

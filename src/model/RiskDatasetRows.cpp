@@ -23,12 +23,12 @@ RiskDatasetRows::RiskDatasetRows()
     m_Digest = utility::conversions::to_string_t("");
     m_DigestIsSet = false;
     m_DimsIsSet = false;
-    m_Limit = 0;
+    m_Limit = 0L;
     m_LimitIsSet = false;
-    m_Offset = 0;
+    m_Offset = 0L;
     m_OffsetIsSet = false;
     m_RowsIsSet = false;
-    m_Version = 0;
+    m_Version = 0L;
     m_VersionIsSet = false;
 }
 
@@ -124,7 +124,7 @@ bool RiskDatasetRows::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("limit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLimit;
+            int64_t refVal_setLimit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLimit);
             setLimit(refVal_setLimit);
             
@@ -135,7 +135,7 @@ bool RiskDatasetRows::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("offset")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOffset;
+            int64_t refVal_setOffset;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOffset);
             setOffset(refVal_setOffset);
             
@@ -157,7 +157,7 @@ bool RiskDatasetRows::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("version")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVersion;
+            int64_t refVal_setVersion;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVersion);
             setVersion(refVal_setVersion);
             
@@ -232,13 +232,13 @@ bool RiskDatasetRows::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("limit"))))
     {
-        int32_t refVal_setLimit;
+        int64_t refVal_setLimit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("limit"))), refVal_setLimit );
         setLimit(refVal_setLimit);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("offset"))))
     {
-        int32_t refVal_setOffset;
+        int64_t refVal_setOffset;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("offset"))), refVal_setOffset );
         setOffset(refVal_setOffset);
     }
@@ -250,7 +250,7 @@ bool RiskDatasetRows::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("version"))))
     {
-        int32_t refVal_setVersion;
+        int64_t refVal_setVersion;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("version"))), refVal_setVersion );
         setVersion(refVal_setVersion);
     }
@@ -321,13 +321,13 @@ void RiskDatasetRows::unsetDims()
 {
     m_DimsIsSet = false;
 }
-int32_t RiskDatasetRows::getLimit() const
+int64_t RiskDatasetRows::getLimit() const
 {
     return m_Limit;
 }
 
 
-void RiskDatasetRows::setLimit(int32_t value)
+void RiskDatasetRows::setLimit(int64_t value)
 {
     m_Limit = value;
     m_LimitIsSet = true;
@@ -342,13 +342,13 @@ void RiskDatasetRows::unsetLimit()
 {
     m_LimitIsSet = false;
 }
-int32_t RiskDatasetRows::getOffset() const
+int64_t RiskDatasetRows::getOffset() const
 {
     return m_Offset;
 }
 
 
-void RiskDatasetRows::setOffset(int32_t value)
+void RiskDatasetRows::setOffset(int64_t value)
 {
     m_Offset = value;
     m_OffsetIsSet = true;
@@ -384,13 +384,13 @@ void RiskDatasetRows::unsetRows()
 {
     m_RowsIsSet = false;
 }
-int32_t RiskDatasetRows::getVersion() const
+int64_t RiskDatasetRows::getVersion() const
 {
     return m_Version;
 }
 
 
-void RiskDatasetRows::setVersion(int32_t value)
+void RiskDatasetRows::setVersion(int64_t value)
 {
     m_Version = value;
     m_VersionIsSet = true;

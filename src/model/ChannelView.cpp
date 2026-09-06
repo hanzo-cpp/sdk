@@ -31,7 +31,7 @@ ChannelView::ChannelView()
     m_GroupPolicyIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
-    m_PendingPairing = 0;
+    m_PendingPairing = 0L;
     m_PendingPairingIsSet = false;
 }
 
@@ -176,7 +176,7 @@ bool ChannelView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("pendingPairing")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPendingPairing;
+            int64_t refVal_setPendingPairing;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPendingPairing);
             setPendingPairing(refVal_setPendingPairing);
             
@@ -279,7 +279,7 @@ bool ChannelView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("pendingPairing"))))
     {
-        int32_t refVal_setPendingPairing;
+        int64_t refVal_setPendingPairing;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("pendingPairing"))), refVal_setPendingPairing );
         setPendingPairing(refVal_setPendingPairing);
     }
@@ -434,13 +434,13 @@ void ChannelView::unsetId()
 {
     m_IdIsSet = false;
 }
-int32_t ChannelView::getPendingPairing() const
+int64_t ChannelView::getPendingPairing() const
 {
     return m_PendingPairing;
 }
 
 
-void ChannelView::setPendingPairing(int32_t value)
+void ChannelView::setPendingPairing(int64_t value)
 {
     m_PendingPairing = value;
     m_PendingPairingIsSet = true;

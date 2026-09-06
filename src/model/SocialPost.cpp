@@ -24,7 +24,7 @@ SocialPost::SocialPost()
     m_ChannelIsSet = false;
     m_Content = utility::conversions::to_string_t("");
     m_ContentIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_Error = utility::conversions::to_string_t("");
     m_ErrorIsSet = false;
@@ -33,11 +33,11 @@ SocialPost::SocialPost()
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
     m_MediaIsSet = false;
-    m_ScheduleAt = 0;
+    m_ScheduleAt = 0L;
     m_ScheduleAtIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
-    m_UpdatedAt = 0;
+    m_UpdatedAt = 0L;
     m_UpdatedAtIsSet = false;
 }
 
@@ -153,7 +153,7 @@ bool SocialPost::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -208,7 +208,7 @@ bool SocialPost::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("scheduleAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setScheduleAt;
+            int64_t refVal_setScheduleAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setScheduleAt);
             setScheduleAt(refVal_setScheduleAt);
             
@@ -230,7 +230,7 @@ bool SocialPost::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updatedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdatedAt;
+            int64_t refVal_setUpdatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdatedAt);
             setUpdatedAt(refVal_setUpdatedAt);
             
@@ -321,7 +321,7 @@ bool SocialPost::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -351,7 +351,7 @@ bool SocialPost::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("scheduleAt"))))
     {
-        int32_t refVal_setScheduleAt;
+        int64_t refVal_setScheduleAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("scheduleAt"))), refVal_setScheduleAt );
         setScheduleAt(refVal_setScheduleAt);
     }
@@ -363,7 +363,7 @@ bool SocialPost::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
-        int32_t refVal_setUpdatedAt;
+        int64_t refVal_setUpdatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))), refVal_setUpdatedAt );
         setUpdatedAt(refVal_setUpdatedAt);
     }
@@ -434,13 +434,13 @@ void SocialPost::unsetContent()
 {
     m_ContentIsSet = false;
 }
-int32_t SocialPost::getCreatedAt() const
+int64_t SocialPost::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void SocialPost::setCreatedAt(int32_t value)
+void SocialPost::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -539,13 +539,13 @@ void SocialPost::unsetMedia()
 {
     m_MediaIsSet = false;
 }
-int32_t SocialPost::getScheduleAt() const
+int64_t SocialPost::getScheduleAt() const
 {
     return m_ScheduleAt;
 }
 
 
-void SocialPost::setScheduleAt(int32_t value)
+void SocialPost::setScheduleAt(int64_t value)
 {
     m_ScheduleAt = value;
     m_ScheduleAtIsSet = true;
@@ -581,13 +581,13 @@ void SocialPost::unsetStatus()
 {
     m_StatusIsSet = false;
 }
-int32_t SocialPost::getUpdatedAt() const
+int64_t SocialPost::getUpdatedAt() const
 {
     return m_UpdatedAt;
 }
 
 
-void SocialPost::setUpdatedAt(int32_t value)
+void SocialPost::setUpdatedAt(int64_t value)
 {
     m_UpdatedAt = value;
     m_UpdatedAtIsSet = true;

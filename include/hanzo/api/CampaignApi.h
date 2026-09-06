@@ -76,10 +76,10 @@ public:
     /// Returns the org&#39;s campaigns, newest first, optionally narrowed to one status.  A campaign is the top-level go-to-market object: a value that SPANS channels (paid, organic, email) and fans out to the executor for each. The listing is org-scoped server-side, so one org can never see another&#39;s campaigns.
     /// </remarks>
     /// <param name="status">Status keeps only campaigns in that state: draft, live, paused or failed. Empty means any. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit bounds the page. 0 or less means the default of 200; anything above 1000 is clamped to 1000. (optional, default to 0)</param>
+    /// <param name="limit">Limit bounds the page. 0 or less means the default of 200; anything above 1000 is clamped to 1000. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<CampaignPage>> getCampaign(
         boost::optional<utility::string_t> status,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns one campaign of the caller&#39;s org — its name, audience, creatives, channels with their per-channel launch state, schedule, budget and status.

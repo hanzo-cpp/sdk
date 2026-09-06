@@ -22,7 +22,7 @@ GitOpsDeploy::GitOpsDeploy()
     m_AutomatedIsSet = false;
     m_DeployedAt = utility::conversions::to_string_t("");
     m_DeployedAtIsSet = false;
-    m_Id = 0;
+    m_Id = 0L;
     m_IdIsSet = false;
     m_Revision = utility::conversions::to_string_t("");
     m_RevisionIsSet = false;
@@ -101,7 +101,7 @@ bool GitOpsDeploy::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("id")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setId;
+            int64_t refVal_setId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setId);
             setId(refVal_setId);
             
@@ -184,7 +184,7 @@ bool GitOpsDeploy::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("id"))))
     {
-        int32_t refVal_setId;
+        int64_t refVal_setId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("id"))), refVal_setId );
         setId(refVal_setId);
     }
@@ -246,13 +246,13 @@ void GitOpsDeploy::unsetDeployedAt()
 {
     m_DeployedAtIsSet = false;
 }
-int32_t GitOpsDeploy::getId() const
+int64_t GitOpsDeploy::getId() const
 {
     return m_Id;
 }
 
 
-void GitOpsDeploy::setId(int32_t value)
+void GitOpsDeploy::setId(int64_t value)
 {
     m_Id = value;
     m_IdIsSet = true;

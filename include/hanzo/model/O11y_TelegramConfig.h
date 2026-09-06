@@ -67,10 +67,10 @@ public:
     void unsetApi_url();
     void setApiUrl(const std::shared_ptr<AnyType>& value);
 
-    int32_t getChat() const;
+    int64_t getChat() const;
     bool chatIsSet() const;
     void unsetChat();
-    void setChat(int32_t value);
+    void setChat(int64_t value);
 
     utility::string_t getChatFile() const;
     bool chatFileIsSet() const;
@@ -92,10 +92,10 @@ public:
     void unsetMessage();
     void setMessage(const utility::string_t& value);
 
-    int32_t getMessageThreadId() const;
+    int64_t getMessageThreadId() const;
     bool messageThreadIdIsSet() const;
     void unsetMessage_thread_id();
-    void setMessageThreadId(int32_t value);
+    void setMessageThreadId(int64_t value);
 
     utility::string_t getParseMode() const;
     bool parseModeIsSet() const;
@@ -119,7 +119,7 @@ protected:
 
     boost::optional<std::shared_ptr<AnyType>> m_Api_url;
 
-    int32_t m_Chat;
+    int64_t m_Chat;
     bool m_ChatIsSet;
 
     utility::string_t m_Chat_file;
@@ -134,7 +134,7 @@ protected:
     utility::string_t m_Message;
     bool m_MessageIsSet;
 
-    int32_t m_Message_thread_id;
+    int64_t m_Message_thread_id;
     bool m_Message_thread_idIsSet;
 
     utility::string_t m_Parse_mode;

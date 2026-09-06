@@ -181,10 +181,10 @@ public:
     /// <summary>
     /// OrderID is the processor&#39;s 1-based position in the pipeline.
     /// </summary>
-    int32_t getOrderId() const;
+    int64_t getOrderId() const;
     bool orderIdIsSet() const;
     void unsetOrderId();
-    void setOrderId(int32_t value);
+    void setOrderId(int64_t value);
 
     /// <summary>
     /// Output is the id of the processor that runs next.
@@ -345,7 +345,7 @@ protected:
     utility::string_t m_On_error;
     bool m_On_errorIsSet;
 
-    int32_t m_OrderId;
+    int64_t m_OrderId;
     bool m_OrderIdIsSet;
 
     utility::string_t m_Output;

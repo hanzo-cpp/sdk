@@ -18,7 +18,7 @@ namespace model {
 
 O11y_DaemonSetRecord::O11y_DaemonSetRecord()
 {
-    m_CurrentNodes = 0;
+    m_CurrentNodes = 0L;
     m_CurrentNodesIsSet = false;
     m_DaemonSetCPU = 0.0;
     m_DaemonSetCPUIsSet = false;
@@ -34,7 +34,7 @@ O11y_DaemonSetRecord::O11y_DaemonSetRecord()
     m_DaemonSetMemoryRequestIsSet = false;
     m_DaemonSetName = utility::conversions::to_string_t("");
     m_DaemonSetNameIsSet = false;
-    m_DesiredNodes = 0;
+    m_DesiredNodes = 0L;
     m_DesiredNodesIsSet = false;
     m_MetaIsSet = false;
     m_PodCountsByPhaseIsSet = false;
@@ -119,7 +119,7 @@ bool O11y_DaemonSetRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("currentNodes")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCurrentNodes;
+            int64_t refVal_setCurrentNodes;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCurrentNodes);
             setCurrentNodes(refVal_setCurrentNodes);
             
@@ -207,7 +207,7 @@ bool O11y_DaemonSetRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("desiredNodes")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDesiredNodes;
+            int64_t refVal_setDesiredNodes;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDesiredNodes);
             setDesiredNodes(refVal_setDesiredNodes);
             
@@ -302,7 +302,7 @@ bool O11y_DaemonSetRecord::fromMultiPart(std::shared_ptr<MultipartFormData> mult
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("currentNodes"))))
     {
-        int32_t refVal_setCurrentNodes;
+        int64_t refVal_setCurrentNodes;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("currentNodes"))), refVal_setCurrentNodes );
         setCurrentNodes(refVal_setCurrentNodes);
     }
@@ -350,7 +350,7 @@ bool O11y_DaemonSetRecord::fromMultiPart(std::shared_ptr<MultipartFormData> mult
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("desiredNodes"))))
     {
-        int32_t refVal_setDesiredNodes;
+        int64_t refVal_setDesiredNodes;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("desiredNodes"))), refVal_setDesiredNodes );
         setDesiredNodes(refVal_setDesiredNodes);
     }
@@ -370,13 +370,13 @@ bool O11y_DaemonSetRecord::fromMultiPart(std::shared_ptr<MultipartFormData> mult
 }
 
 
-int32_t O11y_DaemonSetRecord::getCurrentNodes() const
+int64_t O11y_DaemonSetRecord::getCurrentNodes() const
 {
     return m_CurrentNodes;
 }
 
 
-void O11y_DaemonSetRecord::setCurrentNodes(int32_t value)
+void O11y_DaemonSetRecord::setCurrentNodes(int64_t value)
 {
     m_CurrentNodes = value;
     m_CurrentNodesIsSet = true;
@@ -538,13 +538,13 @@ void O11y_DaemonSetRecord::unsetDaemonSetName()
 {
     m_DaemonSetNameIsSet = false;
 }
-int32_t O11y_DaemonSetRecord::getDesiredNodes() const
+int64_t O11y_DaemonSetRecord::getDesiredNodes() const
 {
     return m_DesiredNodes;
 }
 
 
-void O11y_DaemonSetRecord::setDesiredNodes(int32_t value)
+void O11y_DaemonSetRecord::setDesiredNodes(int64_t value)
 {
     m_DesiredNodes = value;
     m_DesiredNodesIsSet = true;

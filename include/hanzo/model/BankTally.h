@@ -54,69 +54,69 @@ public:
     /// <summary>
     /// transactions seen
     /// </summary>
-    int32_t getIngested() const;
+    int64_t getIngested() const;
     bool ingestedIsSet() const;
     void unsetIngested();
-    void setIngested(int32_t value);
+    void setIngested(int64_t value);
 
     /// <summary>
     /// vouchers newly posted (outflow + reconciled)
     /// </summary>
-    int32_t getPosted() const;
+    int64_t getPosted() const;
     bool postedIsSet() const;
     void unsetPosted();
-    void setPosted(int32_t value);
+    void setPosted(int64_t value);
 
     /// <summary>
     /// unmatched inflows that raised a question
     /// </summary>
-    int32_t getQuestions() const;
+    int64_t getQuestions() const;
     bool questionsIsSet() const;
     void unsetQuestions();
-    void setQuestions(int32_t value);
+    void setQuestions(int64_t value);
 
     /// <summary>
     /// inflows cleared against Square-clearing
     /// </summary>
-    int32_t getReconciled() const;
+    int64_t getReconciled() const;
     bool reconciledIsSet() const;
     void unsetReconciled();
-    void setReconciled(int32_t value);
+    void setReconciled(int64_t value);
 
     /// <summary>
     /// already-processed idempotent no-ops
     /// </summary>
-    int32_t getSkipped() const;
+    int64_t getSkipped() const;
     bool skippedIsSet() const;
     void unsetSkipped();
-    void setSkipped(int32_t value);
+    void setSkipped(int64_t value);
 
     /// <summary>
     /// own-account moves recorded (no P&amp;L)
     /// </summary>
-    int32_t getTransfers() const;
+    int64_t getTransfers() const;
     bool transfersIsSet() const;
     void unsetTransfers();
-    void setTransfers(int32_t value);
+    void setTransfers(int64_t value);
 
 
 protected:
-    int32_t m_Ingested;
+    int64_t m_Ingested;
     bool m_IngestedIsSet;
 
-    int32_t m_Posted;
+    int64_t m_Posted;
     bool m_PostedIsSet;
 
-    int32_t m_Questions;
+    int64_t m_Questions;
     bool m_QuestionsIsSet;
 
-    int32_t m_Reconciled;
+    int64_t m_Reconciled;
     bool m_ReconciledIsSet;
 
-    int32_t m_Skipped;
+    int64_t m_Skipped;
     bool m_SkippedIsSet;
 
-    int32_t m_Transfers;
+    int64_t m_Transfers;
     bool m_TransfersIsSet;
 
 };

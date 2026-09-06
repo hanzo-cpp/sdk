@@ -18,13 +18,13 @@ namespace model {
 
 RiskHoldOut::RiskHoldOut()
 {
-    m_Changed = 0;
+    m_Changed = 0L;
     m_ChangedIsSet = false;
-    m_Held = 0;
+    m_Held = 0L;
     m_HeldIsSet = false;
     m_Hold = false;
     m_HoldIsSet = false;
-    m_Missing = 0;
+    m_Missing = 0L;
     m_MissingIsSet = false;
 }
 
@@ -72,7 +72,7 @@ bool RiskHoldOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("changed")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setChanged;
+            int64_t refVal_setChanged;
             ok &= ModelBase::fromJson(fieldValue, refVal_setChanged);
             setChanged(refVal_setChanged);
             
@@ -83,7 +83,7 @@ bool RiskHoldOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("held")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setHeld;
+            int64_t refVal_setHeld;
             ok &= ModelBase::fromJson(fieldValue, refVal_setHeld);
             setHeld(refVal_setHeld);
             
@@ -105,7 +105,7 @@ bool RiskHoldOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("missing")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMissing;
+            int64_t refVal_setMissing;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMissing);
             setMissing(refVal_setMissing);
             
@@ -150,13 +150,13 @@ bool RiskHoldOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("changed"))))
     {
-        int32_t refVal_setChanged;
+        int64_t refVal_setChanged;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("changed"))), refVal_setChanged );
         setChanged(refVal_setChanged);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("held"))))
     {
-        int32_t refVal_setHeld;
+        int64_t refVal_setHeld;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("held"))), refVal_setHeld );
         setHeld(refVal_setHeld);
     }
@@ -168,7 +168,7 @@ bool RiskHoldOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("missing"))))
     {
-        int32_t refVal_setMissing;
+        int64_t refVal_setMissing;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("missing"))), refVal_setMissing );
         setMissing(refVal_setMissing);
     }
@@ -176,13 +176,13 @@ bool RiskHoldOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 }
 
 
-int32_t RiskHoldOut::getChanged() const
+int64_t RiskHoldOut::getChanged() const
 {
     return m_Changed;
 }
 
 
-void RiskHoldOut::setChanged(int32_t value)
+void RiskHoldOut::setChanged(int64_t value)
 {
     m_Changed = value;
     m_ChangedIsSet = true;
@@ -197,13 +197,13 @@ void RiskHoldOut::unsetChanged()
 {
     m_ChangedIsSet = false;
 }
-int32_t RiskHoldOut::getHeld() const
+int64_t RiskHoldOut::getHeld() const
 {
     return m_Held;
 }
 
 
-void RiskHoldOut::setHeld(int32_t value)
+void RiskHoldOut::setHeld(int64_t value)
 {
     m_Held = value;
     m_HeldIsSet = true;
@@ -239,13 +239,13 @@ void RiskHoldOut::unsetHold()
 {
     m_HoldIsSet = false;
 }
-int32_t RiskHoldOut::getMissing() const
+int64_t RiskHoldOut::getMissing() const
 {
     return m_Missing;
 }
 
 
-void RiskHoldOut::setMissing(int32_t value)
+void RiskHoldOut::setMissing(int64_t value)
 {
     m_Missing = value;
     m_MissingIsSet = true;

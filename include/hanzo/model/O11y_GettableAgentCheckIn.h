@@ -29,8 +29,8 @@
 namespace hanzo {
 namespace model {
 
-class O11y_IntegrationConfig;
 class O11y_ProviderIntegrationConfig;
+class O11y_IntegrationConfig;
 
 
 class  O11y_GettableAgentCheckIn
@@ -64,66 +64,66 @@ public:
     void unsetAccount_id();
     void setAccountId(const utility::string_t& value);
 
-    utility::string_t getCloudAccountId() const;
-    bool cloudAccountIdIsSet() const;
-    void unsetCloud_account_id();
-    void setCloudAccountId(const utility::string_t& value);
-
     utility::string_t getCloudIntegrationId() const;
     bool cloudIntegrationIdIsSet() const;
     void unsetCloudIntegrationId();
     void setCloudIntegrationId(const utility::string_t& value);
 
-    std::shared_ptr<O11y_IntegrationConfig> getIntegrationConfigLegacy() const;
-    bool integrationConfigLegacyIsSet() const;
-    void unsetintegration_config_legacy();
-    void setIntegrationConfigLegacy(const std::shared_ptr<O11y_IntegrationConfig>& value);
+    utility::string_t getCloudAccountId() const;
+    bool cloudAccountIdIsSet() const;
+    void unsetCloud_account_id();
+    void setCloudAccountId(const utility::string_t& value);
 
     std::shared_ptr<O11y_ProviderIntegrationConfig> getIntegrationConfig() const;
     bool integrationConfigIsSet() const;
     void unsetIntegrationConfig();
     void setIntegrationConfig(const std::shared_ptr<O11y_ProviderIntegrationConfig>& value);
 
+    std::shared_ptr<O11y_IntegrationConfig> getIntegrationConfigLegacy() const;
+    bool integrationConfigLegacyIsSet() const;
+    void unsetintegration_config_legacy();
+    void setIntegrationConfigLegacy(const std::shared_ptr<O11y_IntegrationConfig>& value);
+
     utility::string_t getProviderAccountId() const;
     bool providerAccountIdIsSet() const;
     void unsetProviderAccountId();
     void setProviderAccountId(const utility::string_t& value);
-
-    utility::datetime getRemovedAtLegacy() const;
-    bool removedAtLegacyIsSet() const;
-    void unsetremoved_at_legacy();
-    void setRemovedAtLegacy(const utility::datetime& value);
 
     utility::datetime getRemovedAt() const;
     bool removedAtIsSet() const;
     void unsetRemovedAt();
     void setRemovedAt(const utility::datetime& value);
 
+    utility::datetime getRemovedAtLegacy() const;
+    bool removedAtLegacyIsSet() const;
+    void unsetremoved_at_legacy();
+    void setRemovedAtLegacy(const utility::datetime& value);
+
 
 protected:
     utility::string_t m_Account_id;
     bool m_Account_idIsSet;
 
-    utility::string_t m_Cloud_account_id;
-    bool m_Cloud_account_idIsSet;
-
     utility::string_t m_CloudIntegrationId;
     bool m_CloudIntegrationIdIsSet;
 
-    std::shared_ptr<O11y_IntegrationConfig> m_integration_config_legacy;
-    bool m_integration_config_legacyIsSet;
+    utility::string_t m_Cloud_account_id;
+    bool m_Cloud_account_idIsSet;
 
     std::shared_ptr<O11y_ProviderIntegrationConfig> m_IntegrationConfig;
     bool m_IntegrationConfigIsSet;
 
+    std::shared_ptr<O11y_IntegrationConfig> m_integration_config_legacy;
+    bool m_integration_config_legacyIsSet;
+
     utility::string_t m_ProviderAccountId;
     bool m_ProviderAccountIdIsSet;
 
-    utility::datetime m_removed_at_legacy;
-    bool m_removed_at_legacyIsSet;
-
     utility::datetime m_RemovedAt;
     bool m_RemovedAtIsSet;
+
+    utility::datetime m_removed_at_legacy;
+    bool m_removed_at_legacyIsSet;
 
 };
 

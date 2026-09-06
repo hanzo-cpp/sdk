@@ -22,11 +22,11 @@ PoolCreate::PoolCreate()
     m_AutoScaleIsSet = false;
     m_ClusterId = utility::conversions::to_string_t("");
     m_ClusterIdIsSet = false;
-    m_Count = 0;
+    m_Count = 0L;
     m_CountIsSet = false;
-    m_MaxNodes = 0;
+    m_MaxNodes = 0L;
     m_MaxNodesIsSet = false;
-    m_MinNodes = 0;
+    m_MinNodes = 0L;
     m_MinNodesIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
@@ -122,7 +122,7 @@ bool PoolCreate::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("count")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCount;
+            int64_t refVal_setCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCount);
             setCount(refVal_setCount);
             
@@ -133,7 +133,7 @@ bool PoolCreate::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("maxNodes")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMaxNodes;
+            int64_t refVal_setMaxNodes;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMaxNodes);
             setMaxNodes(refVal_setMaxNodes);
             
@@ -144,7 +144,7 @@ bool PoolCreate::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("minNodes")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMinNodes;
+            int64_t refVal_setMinNodes;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMinNodes);
             setMinNodes(refVal_setMinNodes);
             
@@ -250,19 +250,19 @@ bool PoolCreate::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("count"))))
     {
-        int32_t refVal_setCount;
+        int64_t refVal_setCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("count"))), refVal_setCount );
         setCount(refVal_setCount);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("maxNodes"))))
     {
-        int32_t refVal_setMaxNodes;
+        int64_t refVal_setMaxNodes;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("maxNodes"))), refVal_setMaxNodes );
         setMaxNodes(refVal_setMaxNodes);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("minNodes"))))
     {
-        int32_t refVal_setMinNodes;
+        int64_t refVal_setMinNodes;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("minNodes"))), refVal_setMinNodes );
         setMinNodes(refVal_setMinNodes);
     }
@@ -330,13 +330,13 @@ void PoolCreate::unsetClusterId()
 {
     m_ClusterIdIsSet = false;
 }
-int32_t PoolCreate::getCount() const
+int64_t PoolCreate::getCount() const
 {
     return m_Count;
 }
 
 
-void PoolCreate::setCount(int32_t value)
+void PoolCreate::setCount(int64_t value)
 {
     m_Count = value;
     m_CountIsSet = true;
@@ -351,13 +351,13 @@ void PoolCreate::unsetCount()
 {
     m_CountIsSet = false;
 }
-int32_t PoolCreate::getMaxNodes() const
+int64_t PoolCreate::getMaxNodes() const
 {
     return m_MaxNodes;
 }
 
 
-void PoolCreate::setMaxNodes(int32_t value)
+void PoolCreate::setMaxNodes(int64_t value)
 {
     m_MaxNodes = value;
     m_MaxNodesIsSet = true;
@@ -372,13 +372,13 @@ void PoolCreate::unsetMaxNodes()
 {
     m_MaxNodesIsSet = false;
 }
-int32_t PoolCreate::getMinNodes() const
+int64_t PoolCreate::getMinNodes() const
 {
     return m_MinNodes;
 }
 
 
-void PoolCreate::setMinNodes(int32_t value)
+void PoolCreate::setMinNodes(int64_t value)
 {
     m_MinNodes = value;
     m_MinNodesIsSet = true;

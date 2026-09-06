@@ -55,18 +55,18 @@ public:
     /// <summary>
     /// Character is a 0-based UTF-16 code-unit offset within Line, per the LSP specification — not a byte offset and not a rune index.
     /// </summary>
-    int32_t getCharacter() const;
+    int64_t getCharacter() const;
     bool characterIsSet() const;
     void unsetCharacter();
-    void setCharacter(int32_t value);
+    void setCharacter(int64_t value);
 
     /// <summary>
     /// Line is 0-based, per the LSP specification.
     /// </summary>
-    int32_t getLine() const;
+    int64_t getLine() const;
     bool lineIsSet() const;
     void unsetLine();
-    void setLine(int32_t value);
+    void setLine(int64_t value);
 
     /// <summary>
     /// Path is the repo-relative file, e.g. \&quot;apps/lsp/lsp.go\&quot;.
@@ -102,10 +102,10 @@ public:
 
 
 protected:
-    int32_t m_Character;
+    int64_t m_Character;
     bool m_CharacterIsSet;
 
-    int32_t m_Line;
+    int64_t m_Line;
     bool m_LineIsSet;
 
     utility::string_t m_Path;

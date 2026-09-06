@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// MaxPayload is the broker&#39;s message-size ceiling in bytes.
     /// </summary>
-    int32_t getMaxPayload() const;
+    int64_t getMaxPayload() const;
     bool maxPayloadIsSet() const;
     void unsetMax_payload();
-    void setMaxPayload(int32_t value);
+    void setMaxPayload(int64_t value);
 
     /// <summary>
     /// Server is the broker&#39;s server id.
@@ -87,10 +87,10 @@ public:
     /// <summary>
     /// Streams is the org&#39;s stream count.
     /// </summary>
-    int32_t getStreams() const;
+    int64_t getStreams() const;
     bool streamsIsSet() const;
     void unsetStreams();
-    void setStreams(int32_t value);
+    void setStreams(int64_t value);
 
     /// <summary>
     /// Version is the broker&#39;s server version.
@@ -105,7 +105,7 @@ protected:
     bool m_Jetstream;
     bool m_JetstreamIsSet;
 
-    int32_t m_Max_payload;
+    int64_t m_Max_payload;
     bool m_Max_payloadIsSet;
 
     utility::string_t m_Server_id;
@@ -114,7 +114,7 @@ protected:
     utility::string_t m_Server_name;
     bool m_Server_nameIsSet;
 
-    int32_t m_Streams;
+    int64_t m_Streams;
     bool m_StreamsIsSet;
 
     utility::string_t m_Version;

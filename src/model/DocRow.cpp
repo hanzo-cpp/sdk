@@ -36,7 +36,7 @@ DocRow::DocRow()
     m_TierIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
-    m_Updated = 0;
+    m_Updated = 0L;
     m_UpdatedIsSet = false;
 }
 
@@ -213,7 +213,7 @@ bool DocRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updated")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdated;
+            int64_t refVal_setUpdated;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdated);
             setUpdated(refVal_setUpdated);
             
@@ -336,7 +336,7 @@ bool DocRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updated"))))
     {
-        int32_t refVal_setUpdated;
+        int64_t refVal_setUpdated;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updated"))), refVal_setUpdated );
         setUpdated(refVal_setUpdated);
     }
@@ -533,13 +533,13 @@ void DocRow::unsetTitle()
 {
     m_TitleIsSet = false;
 }
-int32_t DocRow::getUpdated() const
+int64_t DocRow::getUpdated() const
 {
     return m_Updated;
 }
 
 
-void DocRow::setUpdated(int32_t value)
+void DocRow::setUpdated(int64_t value)
 {
     m_Updated = value;
     m_UpdatedIsSet = true;

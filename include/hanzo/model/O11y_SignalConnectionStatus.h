@@ -63,17 +63,17 @@ public:
     /// <summary>
     /// epoch milliseconds
     /// </summary>
-    int32_t getLastReceivedTsMs() const;
+    int64_t getLastReceivedTsMs() const;
     bool lastReceivedTsMsIsSet() const;
     void unsetLast_received_ts_ms();
-    void setLastReceivedTsMs(int32_t value);
+    void setLastReceivedTsMs(int64_t value);
 
 
 protected:
     utility::string_t m_Last_received_from;
     bool m_Last_received_fromIsSet;
 
-    int32_t m_Last_received_ts_ms;
+    int64_t m_Last_received_ts_ms;
     bool m_Last_received_ts_msIsSet;
 
 };

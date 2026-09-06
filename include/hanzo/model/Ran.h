@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// ExitCode is the PROGRAM&#39;s own status — 0 succeeded, anything else is what it returned, and a Command runs under &#x60;sh -c&#x60; so its shell&#39;s conventions apply. A command that never reached an exit does not arrive here at all: a timeout or a stop cancels the channel, and that is an error on the call rather than a code of ours invented to fill this field.
     /// </summary>
-    int32_t getExitCode() const;
+    int64_t getExitCode() const;
     bool exitCodeIsSet() const;
     void unsetExitCode();
-    void setExitCode(int32_t value);
+    void setExitCode(int64_t value);
 
     /// <summary>
     /// Stderr is standard error, kept apart from Stdout so a caller reading a program&#39;s OUTPUT is not reading its diagnostics as data. Same 1 MiB cap, same redaction. A program that failed usually says why here and nowhere else.
@@ -78,7 +78,7 @@ public:
 
 
 protected:
-    int32_t m_ExitCode;
+    int64_t m_ExitCode;
     bool m_ExitCodeIsSet;
 
     utility::string_t m_Stderr;

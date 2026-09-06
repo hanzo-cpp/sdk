@@ -71,18 +71,18 @@ public:
     /// <summary>
     /// CurrentStep is the index of the step that sends next.
     /// </summary>
-    int32_t getCurrentStep() const;
+    int64_t getCurrentStep() const;
     bool currentStepIsSet() const;
     void unsetCurrentStep();
-    void setCurrentStep(int32_t value);
+    void setCurrentStep(int64_t value);
 
     /// <summary>
     /// EnrolledAt is unix seconds when the contact joined the walk, and orders the enrollment list (newest first).
     /// </summary>
-    int32_t getEnrolledAt() const;
+    int64_t getEnrolledAt() const;
     bool enrolledAtIsSet() const;
     void unsetEnrolledAt();
-    void setEnrolledAt(int32_t value);
+    void setEnrolledAt(int64_t value);
 
     /// <summary>
     /// ID is the server-assigned enrollment id (\&quot;enr_\&quot; + 128 random bits).
@@ -95,10 +95,10 @@ public:
     /// <summary>
     /// NextRunAt is the unix time the current step comes due; 0 once the walk has ended. It IS the schedule — durable in SQLite, so it survives restarts.
     /// </summary>
-    int32_t getNextRunAt() const;
+    int64_t getNextRunAt() const;
     bool nextRunAtIsSet() const;
     void unsetNextRunAt();
-    void setNextRunAt(int32_t value);
+    void setNextRunAt(int64_t value);
 
     /// <summary>
     /// SequenceID is the sequence being walked.
@@ -119,10 +119,10 @@ public:
     /// <summary>
     /// UpdatedAt is unix seconds of the last move: the drip engine writes it each time it advances the walk a step, completes it or cancels it. Together with Status it says when the walk last did anything, which is how a stalled enrollment is told from a finished one.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
 
 protected:
@@ -132,16 +132,16 @@ protected:
     utility::string_t m_Channel;
     bool m_ChannelIsSet;
 
-    int32_t m_CurrentStep;
+    int64_t m_CurrentStep;
     bool m_CurrentStepIsSet;
 
-    int32_t m_EnrolledAt;
+    int64_t m_EnrolledAt;
     bool m_EnrolledAtIsSet;
 
     utility::string_t m_Id;
     bool m_IdIsSet;
 
-    int32_t m_NextRunAt;
+    int64_t m_NextRunAt;
     bool m_NextRunAtIsSet;
 
     utility::string_t m_SequenceId;
@@ -150,7 +150,7 @@ protected:
     utility::string_t m_Status;
     bool m_StatusIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
 };

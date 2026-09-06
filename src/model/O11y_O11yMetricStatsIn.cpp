@@ -18,15 +18,15 @@ namespace model {
 
 O11y_O11yMetricStatsIn::O11y_O11yMetricStatsIn()
 {
-    m_End = 0;
+    m_End = 0L;
     m_EndIsSet = false;
     m_FilterIsSet = false;
-    m_Limit = 0;
+    m_Limit = 0L;
     m_LimitIsSet = false;
-    m_Offset = 0;
+    m_Offset = 0L;
     m_OffsetIsSet = false;
     m_OrderByIsSet = false;
-    m_Start = 0;
+    m_Start = 0L;
     m_StartIsSet = false;
 }
 
@@ -84,7 +84,7 @@ bool O11y_O11yMetricStatsIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("end")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setEnd;
+            int64_t refVal_setEnd;
             ok &= ModelBase::fromJson(fieldValue, refVal_setEnd);
             setEnd(refVal_setEnd);
             
@@ -106,7 +106,7 @@ bool O11y_O11yMetricStatsIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("limit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLimit;
+            int64_t refVal_setLimit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLimit);
             setLimit(refVal_setLimit);
             
@@ -117,7 +117,7 @@ bool O11y_O11yMetricStatsIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("offset")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOffset;
+            int64_t refVal_setOffset;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOffset);
             setOffset(refVal_setOffset);
             
@@ -139,7 +139,7 @@ bool O11y_O11yMetricStatsIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("start")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStart;
+            int64_t refVal_setStart;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStart);
             setStart(refVal_setStart);
             
@@ -192,7 +192,7 @@ bool O11y_O11yMetricStatsIn::fromMultiPart(std::shared_ptr<MultipartFormData> mu
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("end"))))
     {
-        int32_t refVal_setEnd;
+        int64_t refVal_setEnd;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("end"))), refVal_setEnd );
         setEnd(refVal_setEnd);
     }
@@ -204,13 +204,13 @@ bool O11y_O11yMetricStatsIn::fromMultiPart(std::shared_ptr<MultipartFormData> mu
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("limit"))))
     {
-        int32_t refVal_setLimit;
+        int64_t refVal_setLimit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("limit"))), refVal_setLimit );
         setLimit(refVal_setLimit);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("offset"))))
     {
-        int32_t refVal_setOffset;
+        int64_t refVal_setOffset;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("offset"))), refVal_setOffset );
         setOffset(refVal_setOffset);
     }
@@ -222,7 +222,7 @@ bool O11y_O11yMetricStatsIn::fromMultiPart(std::shared_ptr<MultipartFormData> mu
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("start"))))
     {
-        int32_t refVal_setStart;
+        int64_t refVal_setStart;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("start"))), refVal_setStart );
         setStart(refVal_setStart);
     }
@@ -230,13 +230,13 @@ bool O11y_O11yMetricStatsIn::fromMultiPart(std::shared_ptr<MultipartFormData> mu
 }
 
 
-int32_t O11y_O11yMetricStatsIn::getEnd() const
+int64_t O11y_O11yMetricStatsIn::getEnd() const
 {
     return m_End;
 }
 
 
-void O11y_O11yMetricStatsIn::setEnd(int32_t value)
+void O11y_O11yMetricStatsIn::setEnd(int64_t value)
 {
     m_End = value;
     m_EndIsSet = true;
@@ -272,13 +272,13 @@ void O11y_O11yMetricStatsIn::unsetFilter()
 {
     m_FilterIsSet = false;
 }
-int32_t O11y_O11yMetricStatsIn::getLimit() const
+int64_t O11y_O11yMetricStatsIn::getLimit() const
 {
     return m_Limit;
 }
 
 
-void O11y_O11yMetricStatsIn::setLimit(int32_t value)
+void O11y_O11yMetricStatsIn::setLimit(int64_t value)
 {
     m_Limit = value;
     m_LimitIsSet = true;
@@ -293,13 +293,13 @@ void O11y_O11yMetricStatsIn::unsetLimit()
 {
     m_LimitIsSet = false;
 }
-int32_t O11y_O11yMetricStatsIn::getOffset() const
+int64_t O11y_O11yMetricStatsIn::getOffset() const
 {
     return m_Offset;
 }
 
 
-void O11y_O11yMetricStatsIn::setOffset(int32_t value)
+void O11y_O11yMetricStatsIn::setOffset(int64_t value)
 {
     m_Offset = value;
     m_OffsetIsSet = true;
@@ -335,13 +335,13 @@ void O11y_O11yMetricStatsIn::unsetOrderBy()
 {
     m_OrderByIsSet = false;
 }
-int32_t O11y_O11yMetricStatsIn::getStart() const
+int64_t O11y_O11yMetricStatsIn::getStart() const
 {
     return m_Start;
 }
 
 
-void O11y_O11yMetricStatsIn::setStart(int32_t value)
+void O11y_O11yMetricStatsIn::setStart(int64_t value)
 {
     m_Start = value;
     m_StartIsSet = true;

@@ -59,41 +59,41 @@ public:
     void unsetResources();
     void setResources(const std::vector<std::shared_ptr<Object>>& value);
 
-    int32_t getItemsPerPage() const;
+    int64_t getItemsPerPage() const;
     bool itemsPerPageIsSet() const;
     void unsetItemsPerPage();
-    void setItemsPerPage(int32_t value);
+    void setItemsPerPage(int64_t value);
 
     std::vector<utility::string_t> getSchemas() const;
     bool schemasIsSet() const;
     void unsetSchemas();
     void setSchemas(const std::vector<utility::string_t>& value);
 
-    int32_t getStartIndex() const;
+    int64_t getStartIndex() const;
     bool startIndexIsSet() const;
     void unsetStartIndex();
-    void setStartIndex(int32_t value);
+    void setStartIndex(int64_t value);
 
-    int32_t getTotalResults() const;
+    int64_t getTotalResults() const;
     bool totalResultsIsSet() const;
     void unsetTotalResults();
-    void setTotalResults(int32_t value);
+    void setTotalResults(int64_t value);
 
 
 protected:
     std::vector<std::shared_ptr<Object>> m_Resources;
     bool m_ResourcesIsSet;
 
-    int32_t m_ItemsPerPage;
+    int64_t m_ItemsPerPage;
     bool m_ItemsPerPageIsSet;
 
     std::vector<utility::string_t> m_Schemas;
     bool m_SchemasIsSet;
 
-    int32_t m_StartIndex;
+    int64_t m_StartIndex;
     bool m_StartIndexIsSet;
 
-    int32_t m_TotalResults;
+    int64_t m_TotalResults;
     bool m_TotalResultsIsSet;
 
 };

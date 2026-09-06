@@ -80,10 +80,10 @@ public:
     /// <summary>
     /// Horizon is how many days a row must have aged before it may be admitted. It is what keeps a fact that was not yet knowable at scoring time out of a training set: a chargeback lands 30 to 120 days after the transaction it condemns, so 120 for the payment lane and 14 for signup abuse. Zero admits the whole window and is honest only where the outcome is immediate.
     /// </summary>
-    int32_t getHorizon() const;
+    int64_t getHorizon() const;
     bool horizonIsSet() const;
     void unsetHorizon();
-    void setHorizon(int32_t value);
+    void setHorizon(int64_t value);
 
     /// <summary>
     /// Kind narrows to one subject kind — person, session or account. Empty takes every kind.
@@ -104,10 +104,10 @@ public:
     /// <summary>
     /// Rows caps the materialisation. Zero takes the plane&#39;s own bound.
     /// </summary>
-    int32_t getRows() const;
+    int64_t getRows() const;
     bool rowsIsSet() const;
     void unsetRows();
-    void setRows(int32_t value);
+    void setRows(int64_t value);
 
     /// <summary>
     /// Seed decides WHICH subjects are admitted when the window holds more rows than the cap allows. It is recorded on the version, so a capped dataset is reproducible rather than being whichever rows the store returned first. Omit it to seed from the dataset&#39;s name.
@@ -136,7 +136,7 @@ protected:
     utility::string_t m_From;
     bool m_FromIsSet;
 
-    int32_t m_Horizon;
+    int64_t m_Horizon;
     bool m_HorizonIsSet;
 
     utility::string_t m_Kind;
@@ -145,7 +145,7 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_Rows;
+    int64_t m_Rows;
     bool m_RowsIsSet;
 
     utility::string_t m_Seed;

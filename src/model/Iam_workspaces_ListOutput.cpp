@@ -18,7 +18,7 @@ namespace model {
 
 Iam_workspaces_ListOutput::Iam_workspaces_ListOutput()
 {
-    m_Total = 0;
+    m_Total = 0L;
     m_TotalIsSet = false;
     m_WorkspacesIsSet = false;
 }
@@ -57,7 +57,7 @@ bool Iam_workspaces_ListOutput::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("total")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotal;
+            int64_t refVal_setTotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotal);
             setTotal(refVal_setTotal);
             
@@ -105,7 +105,7 @@ bool Iam_workspaces_ListOutput::fromMultiPart(std::shared_ptr<MultipartFormData>
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("total"))))
     {
-        int32_t refVal_setTotal;
+        int64_t refVal_setTotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("total"))), refVal_setTotal );
         setTotal(refVal_setTotal);
     }
@@ -119,13 +119,13 @@ bool Iam_workspaces_ListOutput::fromMultiPart(std::shared_ptr<MultipartFormData>
 }
 
 
-int32_t Iam_workspaces_ListOutput::getTotal() const
+int64_t Iam_workspaces_ListOutput::getTotal() const
 {
     return m_Total;
 }
 
 
-void Iam_workspaces_ListOutput::setTotal(int32_t value)
+void Iam_workspaces_ListOutput::setTotal(int64_t value)
 {
     m_Total = value;
     m_TotalIsSet = true;

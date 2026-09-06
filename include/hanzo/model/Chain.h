@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// ChainID is the EIP-155 id, so a caller can check it matches the wallet they are about to sign with.
     /// </summary>
-    int32_t getChainId() const;
+    int64_t getChainId() const;
     bool chainIdIsSet() const;
     void unsetChainId();
-    void setChainId(int32_t value);
+    void setChainId(int64_t value);
 
     /// <summary>
     /// ID is the URL name: the value of :chain.
@@ -78,7 +78,7 @@ public:
 
 
 protected:
-    int32_t m_ChainId;
+    int64_t m_ChainId;
     bool m_ChainIdIsSet;
 
     utility::string_t m_Id;

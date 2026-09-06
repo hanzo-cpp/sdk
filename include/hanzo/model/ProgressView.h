@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// Done counts steps that are FINISHED — done and skipped alike, since a step the org deliberately passed over is not still owed. It therefore rises when somebody skips, which is the intended reading of a checklist.
     /// </summary>
-    int32_t getDone() const;
+    int64_t getDone() const;
     bool doneIsSet() const;
     void unsetDone();
-    void setDone(int32_t value);
+    void setDone(int64_t value);
 
     /// <summary>
     /// Next is the id of the step to do next: the first available, unfinished step in authoring order. Empty when the journey is complete, and also empty when every remaining step is blocked by a dependency.
@@ -71,31 +71,31 @@ public:
     /// <summary>
     /// Percent is done/total as a whole number 0-100, rounded, so a caller renders a bar without recomputing it. Total zero reads as 0.
     /// </summary>
-    int32_t getPercent() const;
+    int64_t getPercent() const;
     bool percentIsSet() const;
     void unsetPercent();
-    void setPercent(int32_t value);
+    void setPercent(int64_t value);
 
     /// <summary>
     /// Total is how many steps this org&#39;s journey holds — the ENABLED steps of the playbook, so it shrinks when an operator disables one and does not match the authored step count.
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
 
 protected:
-    int32_t m_Done;
+    int64_t m_Done;
     bool m_DoneIsSet;
 
     utility::string_t m_Next;
     bool m_NextIsSet;
 
-    int32_t m_Percent;
+    int64_t m_Percent;
     bool m_PercentIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
 };

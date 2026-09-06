@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// Facts is how many assertions this source filed; Won is how many judged events it was the assertion in force for. A source with many facts and few wins is one that is being outranked, which is worth knowing before concluding it is wired correctly.
     /// </summary>
-    int32_t getFacts() const;
+    int64_t getFacts() const;
     bool factsIsSet() const;
     void unsetFacts();
-    void setFacts(int32_t value);
+    void setFacts(int64_t value);
 
     /// <summary>
     /// Source is the asserter these two counts are for — chargeoff, dispute, case, refund, review or sample. There is one entry per source that either filed in the window or won in it, in precedence order, strongest first. A source no longer in the vocabulary still has rows and is reported after the known ones rather than dropped out of a total that is supposed to add up.
@@ -71,20 +71,20 @@ public:
     /// <summary>
     /// Won is how many JUDGED events this source&#39;s assertion was the one IN FORCE for, at that event&#39;s own as-of — it beat every other visible claim under the precedence rule. Summed over the sources it is Judged. Read against Facts it is the ratio that matters: many filed and few won is a source being outranked, not a source that is broken, and one source winning nearly everything is a plane that looks labelled because one noisy filer dominates it.
     /// </summary>
-    int32_t getWon() const;
+    int64_t getWon() const;
     bool wonIsSet() const;
     void unsetWon();
-    void setWon(int32_t value);
+    void setWon(int64_t value);
 
 
 protected:
-    int32_t m_Facts;
+    int64_t m_Facts;
     bool m_FactsIsSet;
 
     utility::string_t m_Source;
     bool m_SourceIsSet;
 
-    int32_t m_Won;
+    int64_t m_Won;
     bool m_WonIsSet;
 
 };

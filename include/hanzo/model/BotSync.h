@@ -54,10 +54,10 @@ public:
     /// <summary>
     /// Projected is how many roster entries the reconcile touched.
     /// </summary>
-    int32_t getProjected() const;
+    int64_t getProjected() const;
     bool projectedIsSet() const;
     void unsetProjected();
-    void setProjected(int32_t value);
+    void setProjected(int64_t value);
 
     /// <summary>
     /// Synced is true when the reconcile ran.
@@ -69,7 +69,7 @@ public:
 
 
 protected:
-    int32_t m_Projected;
+    int64_t m_Projected;
     bool m_ProjectedIsSet;
 
     bool m_Synced;

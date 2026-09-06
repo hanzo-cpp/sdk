@@ -74,10 +74,10 @@ public:
     /// Shows where a version&#39;s rows came from and whether that can still be demonstrated.  The answer is MEASURED, not recalled: the plane asks the source the same bounded question again and compares it to the fingerprint taken when the version was built. Anything but exact agreement is reported as drift — the source is fed by a rollup that runs behind the events, so \&quot;it holds more now\&quot; is the ordinary case and it means re-running the spec would not reproduce this version. An admitted gap is actionable; an unfalsifiable claim is not.  IT IS A PRICED, BOUNDED READ, because it is the same statement a materialisation is charged for: an exact distinct-count over up to 400 days of this org&#39;s feature surface. It takes the org&#39;s ONE source-scan slot, so a tenant looping it spends one scan and not a thousand; it counts against the plane&#39;s ceiling, so the fleet&#39;s warehouse is bounded too; and it runs under this plane&#39;s own deadline rather than the caller&#39;s patience.
     /// </remarks>
     /// <param name="name">Name is the dataset, from the path.</param>
-    /// <param name="version">Version is the version to trace. Zero takes the newest published one. (optional, default to 0)</param>
+    /// <param name="version">Version is the version to trace. Zero takes the newest published one. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<RiskLineage>> riskDatasetLineage(
         utility::string_t name,
-        boost::optional<int32_t> version
+        boost::optional<int64_t> version
     ) const;
     /// <summary>
     /// List this org&#39;s datasets
@@ -104,16 +104,16 @@ public:
     /// Reads a published version&#39;s rows back, one bounded page at a time, in the version&#39;s own stable row order.  Only a published version can be exported. Rows written by an attempt that never completed are inert — no register row names them — and they are disposed of with the dataset.
     /// </remarks>
     /// <param name="name">Name is the dataset, from the path.</param>
-    /// <param name="version">Version is the version to read. Zero takes the newest published one. (optional, default to 0)</param>
+    /// <param name="version">Version is the version to read. Zero takes the newest published one. (optional, default to 0L)</param>
     /// <param name="split">Split narrows to train, val or test. Empty reads every split. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="offset">Offset is where the page starts, in the version&#39;s own row order (by id, which is derived from the row and therefore stable forever). (optional, default to 0)</param>
-    /// <param name="limit">Limit is how many rows to return. Zero and anything above the plane&#39;s bound take the bound. (optional, default to 0)</param>
+    /// <param name="offset">Offset is where the page starts, in the version&#39;s own row order (by id, which is derived from the row and therefore stable forever). (optional, default to 0L)</param>
+    /// <param name="limit">Limit is how many rows to return. Zero and anything above the plane&#39;s bound take the bound. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<RiskDatasetRows>> riskExportDataset(
         utility::string_t name,
-        boost::optional<int32_t> version,
+        boost::optional<int64_t> version,
         boost::optional<utility::string_t> split,
-        boost::optional<int32_t> offset,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> offset,
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Materialise the declared version into immutable rows

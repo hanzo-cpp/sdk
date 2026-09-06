@@ -19,9 +19,9 @@ namespace model {
 ImportCapTableOut::ImportCapTableOut()
 {
     m_FormationIsSet = false;
-    m_Rows = 0;
+    m_Rows = 0L;
     m_RowsIsSet = false;
-    m_StakeholdersImported = 0;
+    m_StakeholdersImported = 0L;
     m_StakeholdersImportedIsSet = false;
 }
 
@@ -75,7 +75,7 @@ bool ImportCapTableOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("rows")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRows;
+            int64_t refVal_setRows;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRows);
             setRows(refVal_setRows);
             
@@ -86,7 +86,7 @@ bool ImportCapTableOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("stakeholdersImported")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStakeholdersImported;
+            int64_t refVal_setStakeholdersImported;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStakeholdersImported);
             setStakeholdersImported(refVal_setStakeholdersImported);
             
@@ -133,13 +133,13 @@ bool ImportCapTableOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("rows"))))
     {
-        int32_t refVal_setRows;
+        int64_t refVal_setRows;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("rows"))), refVal_setRows );
         setRows(refVal_setRows);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("stakeholdersImported"))))
     {
-        int32_t refVal_setStakeholdersImported;
+        int64_t refVal_setStakeholdersImported;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("stakeholdersImported"))), refVal_setStakeholdersImported );
         setStakeholdersImported(refVal_setStakeholdersImported);
     }
@@ -168,13 +168,13 @@ void ImportCapTableOut::unsetFormation()
 {
     m_FormationIsSet = false;
 }
-int32_t ImportCapTableOut::getRows() const
+int64_t ImportCapTableOut::getRows() const
 {
     return m_Rows;
 }
 
 
-void ImportCapTableOut::setRows(int32_t value)
+void ImportCapTableOut::setRows(int64_t value)
 {
     m_Rows = value;
     m_RowsIsSet = true;
@@ -189,13 +189,13 @@ void ImportCapTableOut::unsetRows()
 {
     m_RowsIsSet = false;
 }
-int32_t ImportCapTableOut::getStakeholdersImported() const
+int64_t ImportCapTableOut::getStakeholdersImported() const
 {
     return m_StakeholdersImported;
 }
 
 
-void ImportCapTableOut::setStakeholdersImported(int32_t value)
+void ImportCapTableOut::setStakeholdersImported(int64_t value)
 {
     m_StakeholdersImported = value;
     m_StakeholdersImportedIsSet = true;

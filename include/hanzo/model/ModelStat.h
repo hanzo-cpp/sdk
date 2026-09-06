@@ -55,18 +55,18 @@ public:
     /// <summary>
     /// tokens it answered with
     /// </summary>
-    int32_t getCompletionTokens() const;
+    int64_t getCompletionTokens() const;
     bool completionTokensIsSet() const;
     void unsetCompletionTokens();
-    void setCompletionTokens(int32_t value);
+    void setCompletionTokens(int64_t value);
 
     /// <summary>
     /// what this model cost, in cents
     /// </summary>
-    int32_t getCostCents() const;
+    int64_t getCostCents() const;
     bool costCentsIsSet() const;
     void unsetCostCents();
-    void setCostCents(int32_t value);
+    void setCostCents(int64_t value);
 
     /// <summary>
     /// share of total spend, 0..100
@@ -87,10 +87,10 @@ public:
     /// <summary>
     /// calls to it that did not succeed
     /// </summary>
-    int32_t getErrors() const;
+    int64_t getErrors() const;
     bool errorsIsSet() const;
     void unsetErrors();
-    void setErrors(int32_t value);
+    void setErrors(int64_t value);
 
     /// <summary>
     /// the model this row is about, or \&quot;other\&quot; for the fold
@@ -103,10 +103,10 @@ public:
     /// <summary>
     /// &gt;0 only on the \&quot;other\&quot; fold
     /// </summary>
-    int32_t getModelCount() const;
+    int64_t getModelCount() const;
     bool modelCountIsSet() const;
     void unsetModelCount();
-    void setModelCount(int32_t value);
+    void setModelCount(int64_t value);
 
     /// <summary>
     /// median latency, null when no spans carry it
@@ -135,10 +135,10 @@ public:
     /// <summary>
     /// tokens sent to it
     /// </summary>
-    int32_t getPromptTokens() const;
+    int64_t getPromptTokens() const;
     bool promptTokensIsSet() const;
     void unsetPromptTokens();
-    void setPromptTokens(int32_t value);
+    void setPromptTokens(int64_t value);
 
     /// <summary>
     /// who serves it
@@ -151,25 +151,25 @@ public:
     /// <summary>
     /// calls to this model in the window
     /// </summary>
-    int32_t getRequests() const;
+    int64_t getRequests() const;
     bool requestsIsSet() const;
     void unsetRequests();
-    void setRequests(int32_t value);
+    void setRequests(int64_t value);
 
     /// <summary>
     /// prompt plus completion
     /// </summary>
-    int32_t getTotalTokens() const;
+    int64_t getTotalTokens() const;
     bool totalTokensIsSet() const;
     void unsetTotalTokens();
-    void setTotalTokens(int32_t value);
+    void setTotalTokens(int64_t value);
 
 
 protected:
-    int32_t m_CompletionTokens;
+    int64_t m_CompletionTokens;
     bool m_CompletionTokensIsSet;
 
-    int32_t m_CostCents;
+    int64_t m_CostCents;
     bool m_CostCentsIsSet;
 
     double m_CostPct;
@@ -178,13 +178,13 @@ protected:
     double m_ErrorRate;
     bool m_ErrorRateIsSet;
 
-    int32_t m_Errors;
+    int64_t m_Errors;
     bool m_ErrorsIsSet;
 
     utility::string_t m_Model;
     bool m_ModelIsSet;
 
-    int32_t m_ModelCount;
+    int64_t m_ModelCount;
     bool m_ModelCountIsSet;
 
     double m_P50Ms;
@@ -196,16 +196,16 @@ protected:
     double m_P99Ms;
     bool m_P99MsIsSet;
 
-    int32_t m_PromptTokens;
+    int64_t m_PromptTokens;
     bool m_PromptTokensIsSet;
 
     utility::string_t m_Provider;
     bool m_ProviderIsSet;
 
-    int32_t m_Requests;
+    int64_t m_Requests;
     bool m_RequestsIsSet;
 
-    int32_t m_TotalTokens;
+    int64_t m_TotalTokens;
     bool m_TotalTokensIsSet;
 
 };

@@ -18,9 +18,9 @@ namespace model {
 
 Recharged::Recharged()
 {
-    m_AmountCents = 0;
+    m_AmountCents = 0L;
     m_AmountCentsIsSet = false;
-    m_BalanceCents = 0;
+    m_BalanceCents = 0L;
     m_BalanceCentsIsSet = false;
     m_Charged = false;
     m_ChargedIsSet = false;
@@ -93,7 +93,7 @@ bool Recharged::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("amountCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAmountCents;
+            int64_t refVal_setAmountCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAmountCents);
             setAmountCents(refVal_setAmountCents);
             
@@ -104,7 +104,7 @@ bool Recharged::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("balanceCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBalanceCents;
+            int64_t refVal_setBalanceCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBalanceCents);
             setBalanceCents(refVal_setBalanceCents);
             
@@ -216,13 +216,13 @@ bool Recharged::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("amountCents"))))
     {
-        int32_t refVal_setAmountCents;
+        int64_t refVal_setAmountCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("amountCents"))), refVal_setAmountCents );
         setAmountCents(refVal_setAmountCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("balanceCents"))))
     {
-        int32_t refVal_setBalanceCents;
+        int64_t refVal_setBalanceCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("balanceCents"))), refVal_setBalanceCents );
         setBalanceCents(refVal_setBalanceCents);
     }
@@ -260,13 +260,13 @@ bool Recharged::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 }
 
 
-int32_t Recharged::getAmountCents() const
+int64_t Recharged::getAmountCents() const
 {
     return m_AmountCents;
 }
 
 
-void Recharged::setAmountCents(int32_t value)
+void Recharged::setAmountCents(int64_t value)
 {
     m_AmountCents = value;
     m_AmountCentsIsSet = true;
@@ -281,13 +281,13 @@ void Recharged::unsetAmountCents()
 {
     m_AmountCentsIsSet = false;
 }
-int32_t Recharged::getBalanceCents() const
+int64_t Recharged::getBalanceCents() const
 {
     return m_BalanceCents;
 }
 
 
-void Recharged::setBalanceCents(int32_t value)
+void Recharged::setBalanceCents(int64_t value)
 {
     m_BalanceCents = value;
     m_BalanceCentsIsSet = true;

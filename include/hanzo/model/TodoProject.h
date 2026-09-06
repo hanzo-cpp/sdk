@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// CreatedAt is when the board was created, in unix seconds. 0 on a forge board for the same reason Description is absent.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// Description is whatever an index board was created with. Absent on a forge board: this projection takes the repository&#39;s name and nothing else about the repository.
@@ -103,14 +103,14 @@ public:
     /// <summary>
     /// UpdatedAt is when the board record last changed, in unix seconds — the BOARD, not the work on it, so filing an issue does not move it. 0 on a forge board.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
 
 protected:
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_Description;
@@ -128,7 +128,7 @@ protected:
     utility::string_t m_Org;
     bool m_OrgIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
 };

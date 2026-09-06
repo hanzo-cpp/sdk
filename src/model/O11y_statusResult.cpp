@@ -21,7 +21,7 @@ O11y_statusResult::O11y_statusResult()
     m_CheckedAt = utility::conversions::to_string_t("");
     m_CheckedAtIsSet = false;
     m_DeploymentsIsSet = false;
-    m_LatencyMs = 0;
+    m_LatencyMs = 0L;
     m_LatencyMsIsSet = false;
     m_Product = utility::conversions::to_string_t("");
     m_ProductIsSet = false;
@@ -107,7 +107,7 @@ bool O11y_statusResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("latencyMs")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLatencyMs;
+            int64_t refVal_setLatencyMs;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLatencyMs);
             setLatencyMs(refVal_setLatencyMs);
             
@@ -205,7 +205,7 @@ bool O11y_statusResult::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("latencyMs"))))
     {
-        int32_t refVal_setLatencyMs;
+        int64_t refVal_setLatencyMs;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("latencyMs"))), refVal_setLatencyMs );
         setLatencyMs(refVal_setLatencyMs);
     }
@@ -273,13 +273,13 @@ void O11y_statusResult::unsetDeployments()
 {
     m_DeploymentsIsSet = false;
 }
-int32_t O11y_statusResult::getLatencyMs() const
+int64_t O11y_statusResult::getLatencyMs() const
 {
     return m_LatencyMs;
 }
 
 
-void O11y_statusResult::setLatencyMs(int32_t value)
+void O11y_statusResult::setLatencyMs(int64_t value)
 {
     m_LatencyMs = value;
     m_LatencyMsIsSet = true;

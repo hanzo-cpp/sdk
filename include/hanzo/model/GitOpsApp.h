@@ -140,10 +140,10 @@ public:
     /// <summary>
     /// Resources is how MANY objects CD manages for this Application (len(status.resources)) — a count, not the objects. Zero for an Application CD has not reconciled.
     /// </summary>
-    int32_t getResources() const;
+    int64_t getResources() const;
     bool resourcesIsSet() const;
     void unsetResources();
-    void setResources(int32_t value);
+    void setResources(int64_t value);
 
     /// <summary>
     /// Revision is the commit CD last APPLIED (status.sync.revision). Empty means it has applied none — never read that as the head of TargetRevision.
@@ -209,7 +209,7 @@ protected:
     utility::string_t m_RepoURL;
     bool m_RepoURLIsSet;
 
-    int32_t m_Resources;
+    int64_t m_Resources;
     bool m_ResourcesIsSet;
 
     utility::string_t m_Revision;

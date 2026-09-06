@@ -54,10 +54,10 @@ public:
     /// <summary>
     /// Accepted is how many samples passed validation. Every one of them was accepted, or the whole report was refused — there is no partial success.
     /// </summary>
-    int32_t getAccepted() const;
+    int64_t getAccepted() const;
     bool acceptedIsSet() const;
     void unsetAccepted();
-    void setAccepted(int32_t value);
+    void setAccepted(int64_t value);
 
     /// <summary>
     /// Stored is whether the warehouse actually persisted them. False means the datastore was unavailable and the poll of history was lost; the request still succeeded, so a device retries without being blocked.
@@ -69,7 +69,7 @@ public:
 
 
 protected:
-    int32_t m_Accepted;
+    int64_t m_Accepted;
     bool m_AcceptedIsSet;
 
     bool m_Stored;

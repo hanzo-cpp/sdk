@@ -20,7 +20,7 @@ KmsToken::KmsToken()
 {
     m_AccessToken = utility::conversions::to_string_t("");
     m_AccessTokenIsSet = false;
-    m_ExpiresIn = 0;
+    m_ExpiresIn = 0L;
     m_ExpiresInIsSet = false;
     m_TokenType = utility::conversions::to_string_t("");
     m_TokenTypeIsSet = false;
@@ -76,7 +76,7 @@ bool KmsToken::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("expiresIn")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExpiresIn;
+            int64_t refVal_setExpiresIn;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExpiresIn);
             setExpiresIn(refVal_setExpiresIn);
             
@@ -134,7 +134,7 @@ bool KmsToken::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("expiresIn"))))
     {
-        int32_t refVal_setExpiresIn;
+        int64_t refVal_setExpiresIn;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("expiresIn"))), refVal_setExpiresIn );
         setExpiresIn(refVal_setExpiresIn);
     }
@@ -169,13 +169,13 @@ void KmsToken::unsetAccessToken()
 {
     m_AccessTokenIsSet = false;
 }
-int32_t KmsToken::getExpiresIn() const
+int64_t KmsToken::getExpiresIn() const
 {
     return m_ExpiresIn;
 }
 
 
-void KmsToken::setExpiresIn(int32_t value)
+void KmsToken::setExpiresIn(int64_t value)
 {
     m_ExpiresIn = value;
     m_ExpiresInIsSet = true;

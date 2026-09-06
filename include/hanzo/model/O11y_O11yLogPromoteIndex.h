@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// Granularity is the index granularity in rows.
     /// </summary>
-    int32_t getGranularity() const;
+    int64_t getGranularity() const;
     bool granularityIsSet() const;
     void unsetGranularity();
-    void setGranularity(int32_t value);
+    void setGranularity(int64_t value);
 
     /// <summary>
     /// Type is the index type, e.g. minmax, set(N), bloom_filter(P).
@@ -81,7 +81,7 @@ protected:
     utility::string_t m_FieldDataType;
     bool m_FieldDataTypeIsSet;
 
-    int32_t m_Granularity;
+    int64_t m_Granularity;
     bool m_GranularityIsSet;
 
     utility::string_t m_Type;

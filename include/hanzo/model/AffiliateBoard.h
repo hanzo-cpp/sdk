@@ -65,10 +65,10 @@ public:
     /// <summary>
     /// Total is the approved population where it is known; omitted where the top page truncated and the caller has no rank to derive it from.
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
     /// <summary>
     /// You is the caller&#39;s own row with its exact global rank; only an approved affiliate has one.
@@ -83,7 +83,7 @@ protected:
     std::vector<std::shared_ptr<LeaderboardRow>> m_Leaders;
     bool m_LeadersIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
     std::shared_ptr<LeaderboardRow> m_You;

@@ -1152,11 +1152,11 @@ public:
     /// <remarks>
     /// Lists the workspace&#39;s ingestion keys, paginated. Editor gate.
     /// </remarks>
-    /// <param name="page">Page is the 1-based page number. (optional, default to 0)</param>
-    /// <param name="perPage">PerPage is the page size. (optional, default to 0)</param>
+    /// <param name="page">Page is the 1-based page number. (optional, default to 0L)</param>
+    /// <param name="perPage">PerPage is the page size. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yIngestionKeysOut>> getIngestionKeys(
-        boost::optional<int32_t> page,
-        boost::optional<int32_t> perPage
+        boost::optional<int64_t> page,
+        boost::optional<int64_t> perPage
     ) const;
     /// <summary>
     /// Returns one integration&#39;s full detail — its overview, configuration steps, collected data and assets — together with its installation record when the org has installed it.
@@ -1175,10 +1175,10 @@ public:
     /// Reports whether the integration&#39;s logs and metrics have been received over the lookback window, so the console can show a live connection state. An integration that is not installed answers with an empty status rather than an error. Viewer gate.
     /// </remarks>
     /// <param name="integrationId"></param>
-    /// <param name="lookbackSeconds">LookbackSeconds is how far back to look for received telemetry, in seconds. (optional, default to 0)</param>
+    /// <param name="lookbackSeconds">LookbackSeconds is how far back to look for received telemetry, in seconds. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yConnectionStatusOut>> getIntegrationConnectionStatus(
         utility::string_t integrationId,
-        boost::optional<int32_t> lookbackSeconds
+        boost::optional<int64_t> lookbackSeconds
     ) const;
     /// <summary>
     /// Returns a single LLM pricing rule by id.
@@ -1217,12 +1217,12 @@ public:
     /// Returns one metric&#39;s attribute keys, each with its unique values and their count.
     /// </remarks>
     /// <param name="metricName">MetricName is the metric&#39;s name; it may contain slashes. Required.</param>
-    /// <param name="start">Start is the start of the window as a Unix timestamp in milliseconds. (optional, default to 0)</param>
-    /// <param name="end">End is the end of the window as a Unix timestamp in milliseconds. (optional, default to 0)</param>
+    /// <param name="start">Start is the start of the window as a Unix timestamp in milliseconds. (optional, default to 0L)</param>
+    /// <param name="end">End is the end of the window as a Unix timestamp in milliseconds. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yMetricAttributesOut>> getMetricAttributes(
         utility::string_t metricName,
-        boost::optional<int32_t> start,
-        boost::optional<int32_t> end
+        boost::optional<int64_t> start,
+        boost::optional<int64_t> end
     ) const;
     /// <summary>
     /// Lists the dashboard panels that reference a metric.
@@ -1357,12 +1357,12 @@ public:
     /// <param name="dataSource">DataSource is the telemetry the attributes come from — traces, logs, metrics or meter. The runtime requires it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="aggregateOperator">AggregateOperator is the aggregation the attribute will be used under, e.g. count, avg, sum. The runtime requires it for non-metrics sources. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the attributes to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many attributes come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many attributes come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yAggregateAttributesOut>> getO11yAutocompleteAggregateAttributes(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
         boost::optional<utility::string_t> searchText,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists the attribute keys available for filtering the given telemetry, each with its data type and whether it is a materialized column.
@@ -1375,14 +1375,14 @@ public:
     /// <param name="aggregateAttribute">AggregateAttribute is the metric the keys must appear on. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the keys to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="tagType">TagType narrows the keys to one kind — tag or resource. Empty means all; an invalid value reads as empty. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many keys come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many keys come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yAttributeKeysOut>> getO11yAutocompleteAttributeKeys(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
         boost::optional<utility::string_t> aggregateAttribute,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> tagType,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists the values one attribute key has taken — string, number and bool values in their own lists — for completing a filter.
@@ -1397,7 +1397,7 @@ public:
     /// <param name="filterAttributeKeyDataType">FilterAttributeKeyDataType is the key&#39;s data type — string, int64, float64 or bool. Empty means unspecified. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the values to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="tagType">TagType narrows the search to one kind of key — tag or resource. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many values come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many values come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yAttributeValuesOut>> getO11yAutocompleteAttributeValues(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
@@ -1406,7 +1406,7 @@ public:
         boost::optional<utility::string_t> filterAttributeKeyDataType,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> tagType,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Reports how much of the Hanzo fleet is up — the current per-service inventory plus an up-versus-reporting trend across the window.
@@ -1414,11 +1414,11 @@ public:
     /// <remarks>
     /// Reports how much of the Hanzo fleet is up — the current per-service inventory plus an up-versus-reporting trend across the window. Both come from the fleet prober&#39;s own measurements: every service is asked its health URL every 30 seconds, so a service is listed as down because it did not answer, never because something failed to collect it. PLATFORM SUDO ONLY — this is the whole fleet&#39;s inventory, not tenant data, so every customer is 403. An unreachable telemetry store answers 503 rather than an empty trend, because a board of zeroes and a fleet that is down look identical.
     /// </remarks>
-    /// <param name="range">Range is the trend window in seconds. Default 3600, capped at 604800 (7d). (optional, default to 0)</param>
-    /// <param name="stepSec">StepSec is the bucket width in seconds, clamped to [30, 3600]. Absent picks ~60 buckets across the range. (optional, default to 0)</param>
+    /// <param name="range">Range is the trend window in seconds. Default 3600, capped at 604800 (7d). (optional, default to 0L)</param>
+    /// <param name="stepSec">StepSec is the bucket width in seconds, clamped to [30, 3600]. Absent picks ~60 buckets across the range. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_availabilityResponse>> getO11yAvailability(
-        boost::optional<int32_t> range,
-        boost::optional<int32_t> stepSec
+        boost::optional<int64_t> range,
+        boost::optional<int64_t> stepSec
     ) const;
     /// <summary>
     /// Lists the metric attribute keys Kubernetes clusters report, for building cluster filters.
@@ -1431,14 +1431,14 @@ public:
     /// <param name="aggregateAttribute">AggregateAttribute is the metric the keys must appear on. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the keys to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="tagType">TagType narrows the keys to one kind — tag or resource. Empty means all; an invalid value reads as empty. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many keys come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many keys come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> getO11yClustersAttributeKeys(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
         boost::optional<utility::string_t> aggregateAttribute,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> tagType,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists the values one cluster attribute key has taken, for building cluster filters.
@@ -1453,7 +1453,7 @@ public:
     /// <param name="filterAttributeKeyDataType">FilterAttributeKeyDataType is the key&#39;s data type — string, int64, float64 or bool. Empty means unspecified. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the values to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="tagType">TagType narrows the search to one kind of key — tag or resource. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many values come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many values come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> getO11yClustersAttributeValues(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
@@ -1462,7 +1462,7 @@ public:
         boost::optional<utility::string_t> filterAttributeKeyDataType,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> tagType,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Complete a Google sign-in
@@ -1491,14 +1491,14 @@ public:
     /// <param name="aggregateAttribute">AggregateAttribute is the metric the keys must appear on. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the keys to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="tagType">TagType narrows the keys to one kind — tag or resource. Empty means all; an invalid value reads as empty. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many keys come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many keys come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> getO11yDaemonsetsAttributeKeys(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
         boost::optional<utility::string_t> aggregateAttribute,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> tagType,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists the values one daemonset attribute key has taken, for building daemonset filters.
@@ -1513,7 +1513,7 @@ public:
     /// <param name="filterAttributeKeyDataType">FilterAttributeKeyDataType is the key&#39;s data type — string, int64, float64 or bool. Empty means unspecified. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the values to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="tagType">TagType narrows the search to one kind of key — tag or resource. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many values come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many values come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> getO11yDaemonsetsAttributeValues(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
@@ -1522,7 +1522,7 @@ public:
         boost::optional<utility::string_t> filterAttributeKeyDataType,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> tagType,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists the metric attribute keys Kubernetes deployments report, for building deployment filters.
@@ -1535,14 +1535,14 @@ public:
     /// <param name="aggregateAttribute">AggregateAttribute is the metric the keys must appear on. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the keys to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="tagType">TagType narrows the keys to one kind — tag or resource. Empty means all; an invalid value reads as empty. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many keys come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many keys come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> getO11yDeploymentsAttributeKeys(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
         boost::optional<utility::string_t> aggregateAttribute,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> tagType,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists the values one deployment attribute key has taken, for building deployment filters.
@@ -1557,7 +1557,7 @@ public:
     /// <param name="filterAttributeKeyDataType">FilterAttributeKeyDataType is the key&#39;s data type — string, int64, float64 or bool. Empty means unspecified. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the values to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="tagType">TagType narrows the search to one kind of key — tag or resource. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many values come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many values come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> getO11yDeploymentsAttributeValues(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
@@ -1566,7 +1566,7 @@ public:
         boost::optional<utility::string_t> filterAttributeKeyDataType,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> tagType,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists the storage disks the datastore reports, with their names and types.
@@ -1616,8 +1616,8 @@ public:
     /// <param name="serviceName">ServiceName narrows to one reporting service. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="query">Query narrows to issues whose text contains it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="sort">Sort orders the page, e.g. lastSeen, firstSeen, count. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="offset">Offset is how many issues to skip. Zero starts at the first. (optional, default to 0)</param>
-    /// <param name="limit">Limit caps how many issues come back. Zero means the default. (optional, default to 0)</param>
+    /// <param name="offset">Offset is how many issues to skip. Zero starts at the first. (optional, default to 0L)</param>
+    /// <param name="limit">Limit caps how many issues come back. Zero means the default. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yErrorIssuesOut>> getO11yErrortrackingIssues(
         boost::optional<utility::string_t> status,
         boost::optional<utility::string_t> level,
@@ -1625,8 +1625,8 @@ public:
         boost::optional<utility::string_t> serviceName,
         boost::optional<utility::string_t> query,
         boost::optional<utility::string_t> sort,
-        boost::optional<int32_t> offset,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> offset,
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns one grouped issue with its latest occurrence sample.
@@ -1678,9 +1678,9 @@ public:
     /// </remarks>
     /// <param name="signal">Signal is the telemetry to read the fields of — traces, logs or metrics. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="source">Source narrows the fields to one source within the signal. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many keys come back. (optional, default to 0)</param>
-    /// <param name="startUnixMilli">StartUnixMilli is the window start as a unix millisecond epoch. Zero reads as unset. (optional, default to 0)</param>
-    /// <param name="endUnixMilli">EndUnixMilli is the window end as a unix millisecond epoch. Zero reads as unset. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many keys come back. (optional, default to 0L)</param>
+    /// <param name="startUnixMilli">StartUnixMilli is the window start as a unix millisecond epoch. Zero reads as unset. (optional, default to 0L)</param>
+    /// <param name="endUnixMilli">EndUnixMilli is the window end as a unix millisecond epoch. Zero reads as unset. (optional, default to 0L)</param>
     /// <param name="fieldContext">FieldContext narrows the keys to one context — resource, scope, attribute, span, log or metric. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="fieldDataType">FieldDataType narrows the keys to one data type. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="metricName">MetricName narrows the keys to those on one metric. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
@@ -1689,9 +1689,9 @@ public:
     pplx::task<std::shared_ptr<O11y_O11yFieldKeysOut>> getO11yFieldsKeys(
         boost::optional<utility::string_t> signal,
         boost::optional<utility::string_t> source,
-        boost::optional<int32_t> limit,
-        boost::optional<int32_t> startUnixMilli,
-        boost::optional<int32_t> endUnixMilli,
+        boost::optional<int64_t> limit,
+        boost::optional<int64_t> startUnixMilli,
+        boost::optional<int64_t> endUnixMilli,
         boost::optional<utility::string_t> fieldContext,
         boost::optional<utility::string_t> fieldDataType,
         boost::optional<utility::string_t> metricName,
@@ -1706,9 +1706,9 @@ public:
     /// </remarks>
     /// <param name="signal">Signal is the telemetry to read the field of — traces, logs or metrics. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="source">Source narrows the field to one source within the signal. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many values come back. (optional, default to 0)</param>
-    /// <param name="startUnixMilli">StartUnixMilli is the window start as a unix millisecond epoch. Zero reads as unset. (optional, default to 0)</param>
-    /// <param name="endUnixMilli">EndUnixMilli is the window end as a unix millisecond epoch. Zero reads as unset. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many values come back. (optional, default to 0L)</param>
+    /// <param name="startUnixMilli">StartUnixMilli is the window start as a unix millisecond epoch. Zero reads as unset. (optional, default to 0L)</param>
+    /// <param name="endUnixMilli">EndUnixMilli is the window end as a unix millisecond epoch. Zero reads as unset. (optional, default to 0L)</param>
     /// <param name="fieldContext">FieldContext narrows the field to one context. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="fieldDataType">FieldDataType narrows the field to one data type. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="metricName">MetricName narrows the field to one metric. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
@@ -1719,9 +1719,9 @@ public:
     pplx::task<std::shared_ptr<O11y_O11yFieldValuesOut>> getO11yFieldsValues(
         boost::optional<utility::string_t> signal,
         boost::optional<utility::string_t> source,
-        boost::optional<int32_t> limit,
-        boost::optional<int32_t> startUnixMilli,
-        boost::optional<int32_t> endUnixMilli,
+        boost::optional<int64_t> limit,
+        boost::optional<int64_t> startUnixMilli,
+        boost::optional<int64_t> endUnixMilli,
         boost::optional<utility::string_t> fieldContext,
         boost::optional<utility::string_t> fieldDataType,
         boost::optional<utility::string_t> metricName,
@@ -1739,14 +1739,14 @@ public:
     /// <param name="dataSource">DataSource is the signal suggestions are drawn from; only logs is supported today. Required.</param>
     /// <param name="searchText">SearchText narrows attribute suggestions to keys containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="existingFilter">ExistingFilter is the current filter set, JSON base64url-encoded, so example queries build on it rather than repeat it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="attributesLimit">AttributesLimit caps how many attribute keys come back. (optional, default to 0)</param>
-    /// <param name="examplesLimit">ExamplesLimit caps how many example queries come back. (optional, default to 0)</param>
+    /// <param name="attributesLimit">AttributesLimit caps how many attribute keys come back. (optional, default to 0L)</param>
+    /// <param name="examplesLimit">ExamplesLimit caps how many example queries come back. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yFilterSuggestionsOut>> getO11yFilterSuggestions(
         utility::string_t dataSource,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> existingFilter,
-        boost::optional<int32_t> attributesLimit,
-        boost::optional<int32_t> examplesLimit
+        boost::optional<int64_t> attributesLimit,
+        boost::optional<int64_t> examplesLimit
     ) const;
     /// <summary>
     /// Returns the deployment&#39;s global configuration: its public endpoints and which identity providers are enabled.
@@ -1785,14 +1785,14 @@ public:
     /// <param name="aggregateAttribute">AggregateAttribute is the metric the keys must appear on. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the keys to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="tagType">TagType narrows the keys to one kind — tag or resource. Empty means all; an invalid value reads as empty. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many keys come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many keys come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> getO11yHostsAttributeKeys(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
         boost::optional<utility::string_t> aggregateAttribute,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> tagType,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists the values one host attribute key has taken, for building host filters — string, number and bool values in their own lists.
@@ -1807,7 +1807,7 @@ public:
     /// <param name="filterAttributeKeyDataType">FilterAttributeKeyDataType is the key&#39;s data type — string, int64, float64 or bool. Empty means unspecified. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the values to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="tagType">TagType narrows the search to one kind of key — tag or resource. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many values come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many values come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> getO11yHostsAttributeValues(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
@@ -1816,7 +1816,7 @@ public:
         boost::optional<utility::string_t> filterAttributeKeyDataType,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> tagType,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Reports whether the metrics and attributes an infra-monitoring section needs are being received — for each collector receiver or processor involved, what is present and what is missing, with a user-facing message and a docs link per missing piece.
@@ -1847,14 +1847,14 @@ public:
     /// <param name="aggregateAttribute">AggregateAttribute is the metric the keys must appear on. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the keys to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="tagType">TagType narrows the keys to one kind — tag or resource. Empty means all; an invalid value reads as empty. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many keys come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many keys come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> getO11yJobsAttributeKeys(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
         boost::optional<utility::string_t> aggregateAttribute,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> tagType,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists the values one job attribute key has taken, for building job filters.
@@ -1869,7 +1869,7 @@ public:
     /// <param name="filterAttributeKeyDataType">FilterAttributeKeyDataType is the key&#39;s data type — string, int64, float64 or bool. Empty means unspecified. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the values to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="tagType">TagType narrows the search to one kind of key — tag or resource. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many values come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many values come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> getO11yJobsAttributeValues(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
@@ -1878,7 +1878,7 @@ public:
         boost::optional<utility::string_t> filterAttributeKeyDataType,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> tagType,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists the org&#39;s licenses.
@@ -1918,13 +1918,13 @@ public:
     /// <remarks>
     /// Returns the most recent log records in the query window, newest first — each record an open object carrying its nanosecond timestamp and whatever fields the record was ingested with.  Callers need the viewer role; the runtime&#39;s own gate enforces it.
     /// </remarks>
-    /// <param name="limit">Limit caps how many records come back. Zero means the default of 100. (optional, default to 0)</param>
-    /// <param name="timestampStart">TimestampStart is the start of the window as a nanosecond epoch. Zero means fifteen minutes before the end. (optional, default to 0)</param>
-    /// <param name="timestampEnd">TimestampEnd is the end of the window as a nanosecond epoch. Zero means now. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many records come back. Zero means the default of 100. (optional, default to 0L)</param>
+    /// <param name="timestampStart">TimestampStart is the start of the window as a nanosecond epoch. Zero means fifteen minutes before the end. (optional, default to 0L)</param>
+    /// <param name="timestampEnd">TimestampEnd is the end of the window as a nanosecond epoch. Zero means now. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yLogRecordsOut>> getO11yLogs(
-        boost::optional<int32_t> limit,
-        boost::optional<int32_t> timestampStart,
-        boost::optional<int32_t> timestampEnd
+        boost::optional<int64_t> limit,
+        boost::optional<int64_t> timestampStart,
+        boost::optional<int64_t> timestampEnd
     ) const;
     /// <summary>
     /// Returns the logs aggregate buckets for the query window.
@@ -1991,14 +1991,14 @@ public:
     /// <param name="aggregateAttribute">AggregateAttribute is the metric the keys must appear on. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the keys to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="tagType">TagType narrows the keys to one kind — tag or resource. Empty means all; an invalid value reads as empty. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many keys come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many keys come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> getO11yNamespacesAttributeKeys(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
         boost::optional<utility::string_t> aggregateAttribute,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> tagType,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists the values one namespace attribute key has taken, for building namespace filters.
@@ -2013,7 +2013,7 @@ public:
     /// <param name="filterAttributeKeyDataType">FilterAttributeKeyDataType is the key&#39;s data type — string, int64, float64 or bool. Empty means unspecified. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the values to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="tagType">TagType narrows the search to one kind of key — tag or resource. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many values come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many values come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> getO11yNamespacesAttributeValues(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
@@ -2022,7 +2022,7 @@ public:
         boost::optional<utility::string_t> filterAttributeKeyDataType,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> tagType,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns the ids of the exception instances immediately after and before a given one within its group — the paging cursor the error detail view walks.
@@ -2049,14 +2049,14 @@ public:
     /// <param name="aggregateAttribute">AggregateAttribute is the metric the keys must appear on. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the keys to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="tagType">TagType narrows the keys to one kind — tag or resource. Empty means all; an invalid value reads as empty. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many keys come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many keys come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> getO11yNodesAttributeKeys(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
         boost::optional<utility::string_t> aggregateAttribute,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> tagType,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists the values one node attribute key has taken, for building node filters.
@@ -2071,7 +2071,7 @@ public:
     /// <param name="filterAttributeKeyDataType">FilterAttributeKeyDataType is the key&#39;s data type — string, int64, float64 or bool. Empty means unspecified. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the values to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="tagType">TagType narrows the search to one kind of key — tag or resource. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many values come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many values come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> getO11yNodesAttributeValues(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
@@ -2080,7 +2080,7 @@ public:
         boost::optional<utility::string_t> filterAttributeKeyDataType,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> tagType,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists the metric attribute keys Kubernetes pods report, for building pod filters.
@@ -2093,14 +2093,14 @@ public:
     /// <param name="aggregateAttribute">AggregateAttribute is the metric the keys must appear on. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the keys to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="tagType">TagType narrows the keys to one kind — tag or resource. Empty means all; an invalid value reads as empty. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many keys come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many keys come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> getO11yPodsAttributeKeys(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
         boost::optional<utility::string_t> aggregateAttribute,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> tagType,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists the values one pod attribute key has taken, for building pod filters.
@@ -2115,7 +2115,7 @@ public:
     /// <param name="filterAttributeKeyDataType">FilterAttributeKeyDataType is the key&#39;s data type — string, int64, float64 or bool. Empty means unspecified. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the values to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="tagType">TagType narrows the search to one kind of key — tag or resource. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many values come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many values come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> getO11yPodsAttributeValues(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
@@ -2124,7 +2124,7 @@ public:
         boost::optional<utility::string_t> filterAttributeKeyDataType,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> tagType,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists the metric attribute keys processes report, for building process filters.
@@ -2137,14 +2137,14 @@ public:
     /// <param name="aggregateAttribute">AggregateAttribute is the metric the keys must appear on. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the keys to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="tagType">TagType narrows the keys to one kind — tag or resource. Empty means all; an invalid value reads as empty. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many keys come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many keys come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> getO11yProcessesAttributeKeys(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
         boost::optional<utility::string_t> aggregateAttribute,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> tagType,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists the values one process attribute key has taken, for building process filters.
@@ -2159,7 +2159,7 @@ public:
     /// <param name="filterAttributeKeyDataType">FilterAttributeKeyDataType is the key&#39;s data type — string, int64, float64 or bool. Empty means unspecified. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the values to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="tagType">TagType narrows the search to one kind of key — tag or resource. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many values come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many values come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> getO11yProcessesAttributeValues(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
@@ -2168,7 +2168,7 @@ public:
         boost::optional<utility::string_t> filterAttributeKeyDataType,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> tagType,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns one product&#39;s RED series — request rate, errors, p50 and p95 latency — for the caller&#39;s org, plus that org&#39;s LLM usage rollup over the same window.
@@ -2177,12 +2177,12 @@ public:
     /// Returns one product&#39;s RED series — request rate, errors, p50 and p95 latency — for the caller&#39;s org, plus that org&#39;s LLM usage rollup over the same window. The series come from org-tagged request spans, so a tenant only ever aggregates its own traffic; a validated platform SuperAdmin sees the whole product&#39;s RED, while usage stays the caller&#39;s own org either way. A well-formed product with no backing workload answers empty series; a malformed slug is a 400.
     /// </remarks>
     /// <param name="product">Product is the console product slug to read, e.g. \&quot;kms\&quot;. Required. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="range">Range is the window in seconds. Default 3600, capped at 604800 (7d). (optional, default to 0)</param>
-    /// <param name="stepSec">StepSec is the bucket width in seconds, clamped to [30, 3600]. Absent picks ~60 buckets across the range. (optional, default to 0)</param>
+    /// <param name="range">Range is the window in seconds. Default 3600, capped at 604800 (7d). (optional, default to 0L)</param>
+    /// <param name="stepSec">StepSec is the bucket width in seconds, clamped to [30, 3600]. Absent picks ~60 buckets across the range. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_metricsResponse>> getO11yProductMetrics(
         boost::optional<utility::string_t> product,
-        boost::optional<int32_t> range,
-        boost::optional<int32_t> stepSec
+        boost::optional<int64_t> range,
+        boost::optional<int64_t> stepSec
     ) const;
     /// <summary>
     /// Lists the metric attribute keys persistent volume claims report, for building volume filters.
@@ -2195,14 +2195,14 @@ public:
     /// <param name="aggregateAttribute">AggregateAttribute is the metric the keys must appear on. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the keys to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="tagType">TagType narrows the keys to one kind — tag or resource. Empty means all; an invalid value reads as empty. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many keys come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many keys come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> getO11yPvcsAttributeKeys(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
         boost::optional<utility::string_t> aggregateAttribute,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> tagType,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists the values one persistent-volume-claim attribute key has taken, for building volume filters.
@@ -2217,7 +2217,7 @@ public:
     /// <param name="filterAttributeKeyDataType">FilterAttributeKeyDataType is the key&#39;s data type — string, int64, float64 or bool. Empty means unspecified. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the values to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="tagType">TagType narrows the search to one kind of key — tag or resource. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many values come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many values come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> getO11yPvcsAttributeValues(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
@@ -2226,7 +2226,7 @@ public:
         boost::optional<utility::string_t> filterAttributeKeyDataType,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> tagType,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Evaluates one instant PromQL query against the org&#39;s metrics and returns the result at a single point in time.
@@ -2286,11 +2286,11 @@ public:
     /// <remarks>
     /// Returns a page of the caller org&#39;s human-review queues, newest first, narrowed to the caller&#39;s project. Another org&#39;s queues are never visible.
     /// </remarks>
-    /// <param name="page">Page is the 1-based page to read. Default 1. (optional, default to 0)</param>
-    /// <param name="limit">Limit is how many rows to return. Default 20, capped at 100. (optional, default to 0)</param>
+    /// <param name="page">Page is the 1-based page to read. Default 1. (optional, default to 0L)</param>
+    /// <param name="limit">Limit is how many rows to return. Default 20, capped at 100. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_annQueueList>> getO11yReviews(
-        boost::optional<int32_t> page,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> page,
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns one review queue with its pending and completed counts and its first page of items.
@@ -2310,13 +2310,13 @@ public:
     /// </remarks>
     /// <param name="id">ID is the annotation queue whose items to list, from the path.</param>
     /// <param name="status">Status filters to PENDING or COMPLETED items. Absent returns both. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="page">Page is the 1-based page to read. Default 1. (optional, default to 0)</param>
-    /// <param name="limit">Limit is how many rows to return. Default 20, capped at 100. (optional, default to 0)</param>
+    /// <param name="page">Page is the 1-based page to read. Default 1. (optional, default to 0L)</param>
+    /// <param name="limit">Limit is how many rows to return. Default 20, capped at 100. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_annItemList>> getO11yReviewsByIdItems(
         utility::string_t id,
         boost::optional<utility::string_t> status,
-        boost::optional<int32_t> page,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> page,
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns one captured error event of a project, by its id.
@@ -2342,8 +2342,8 @@ public:
     /// <param name="serviceName">ServiceName narrows to one reporting service. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="query">Query narrows to issues whose text contains it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="sort">Sort orders the page, e.g. lastSeen, firstSeen, count. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="offset">Offset is how many issues to skip. Zero starts at the first. (optional, default to 0)</param>
-    /// <param name="limit">Limit caps how many issues come back. Zero means the default. (optional, default to 0)</param>
+    /// <param name="offset">Offset is how many issues to skip. Zero starts at the first. (optional, default to 0L)</param>
+    /// <param name="limit">Limit caps how many issues come back. Zero means the default. (optional, default to 0L)</param>
     /// <param name="project">Project narrows the org&#39;s issues to one project, by its id. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="period">Period is the window to read, relative to now — 1h, 24h, 7d, 14d, 30d. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<O11y_O11yErrorIssuesOut>> getO11ySentinelIssues(
@@ -2353,8 +2353,8 @@ public:
         boost::optional<utility::string_t> serviceName,
         boost::optional<utility::string_t> query,
         boost::optional<utility::string_t> sort,
-        boost::optional<int32_t> offset,
-        boost::optional<int32_t> limit,
+        boost::optional<int64_t> offset,
+        boost::optional<int64_t> limit,
         boost::optional<utility::string_t> project,
         boost::optional<utility::string_t> period
     ) const;
@@ -2376,11 +2376,11 @@ public:
     /// </remarks>
     /// <param name="id">ID is the issue id.</param>
     /// <param name="project">Project is the project whose occurrences to read, by its id. Required.</param>
-    /// <param name="limit">Limit caps how many occurrences come back. Zero means the default. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many occurrences come back. Zero means the default. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11ySentryIssueEventsOut>> getO11ySentinelIssuesByIdEvents(
         utility::string_t id,
         utility::string_t project,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists a project&#39;s captured error events, newest first, optionally narrowed to those whose message or exception text contains a search string.
@@ -2391,12 +2391,12 @@ public:
     /// <param name="project">Project is the project to read, as its id. Required.</param>
     /// <param name="query">Query narrows the page to events whose text contains it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="period">Period is the window to read, relative to now — 1h, 24h, 7d, 14d, 30d. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many events come back. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many events come back. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yLogsOut>> getO11ySentinelLogs(
         utility::string_t project,
         boost::optional<utility::string_t> query,
         boost::optional<utility::string_t> period,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists the caller&#39;s org&#39;s Sentry projects, each with its freshly-derived DSN.
@@ -2438,11 +2438,11 @@ public:
     /// </remarks>
     /// <param name="project">Project is the project to read, as its id. Required.</param>
     /// <param name="period">Period is the window to read, relative to now — 1h, 24h, 7d, 14d, 30d. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many traces come back. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many traces come back. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yTracesOut>> getO11ySentinelTraces(
         utility::string_t project,
         boost::optional<utility::string_t> period,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns one trace&#39;s captured errors for a project — every error event that carried the trace id, in the order the events plane holds them.
@@ -2501,14 +2501,14 @@ public:
     /// <param name="aggregateAttribute">AggregateAttribute is the metric the keys must appear on. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the keys to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="tagType">TagType narrows the keys to one kind — tag or resource. Empty means all; an invalid value reads as empty. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many keys come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many keys come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> getO11yStatefulsetsAttributeKeys(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
         boost::optional<utility::string_t> aggregateAttribute,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> tagType,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists the values one statefulset attribute key has taken, for building statefulset filters.
@@ -2523,7 +2523,7 @@ public:
     /// <param name="filterAttributeKeyDataType">FilterAttributeKeyDataType is the key&#39;s data type — string, int64, float64 or bool. Empty means unspecified. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">SearchText narrows the values to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="tagType">TagType narrows the search to one kind of key — tag or resource. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many values come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many values come back. Absent means 50. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> getO11yStatefulsetsAttributeValues(
         boost::optional<utility::string_t> dataSource,
         boost::optional<utility::string_t> aggregateOperator,
@@ -2532,7 +2532,7 @@ public:
         boost::optional<utility::string_t> filterAttributeKeyDataType,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> tagType,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns the collected usage statistics for the caller&#39;s org, as the stats reporter aggregates them — a map whose keys are the reporter&#39;s own counter names.
@@ -2566,13 +2566,13 @@ public:
     /// <remarks>
     /// Lists the caller org&#39;s recent traces — one row per trace with its span count and wall-clock duration, most recently active first. This is the trace SEARCH: it is where a trace id comes from, and the spans behind any row are then read from GET /v1/o11y/traces/{traceId}. Every row belongs to the caller&#39;s own org — the tenant is the validated principal, never an input, and there is no administrator widening, because a trace list is a tenant&#39;s records rather than a rollup over them. An unreachable telemetry store answers 503 rather than an empty page, because \&quot;no traces\&quot; and \&quot;cannot see the traces\&quot; are different facts and only one of them is about the caller&#39;s system.
     /// </remarks>
-    /// <param name="range">Range is the window in seconds, counted back from now over each trace&#39;s last activity. Default 3600, capped at 604800 (7d). (optional, default to 0)</param>
-    /// <param name="limit">Limit is how many traces to return. Default 50, capped at 500. (optional, default to 0)</param>
-    /// <param name="minDurationMs">MinDurationMs keeps only traces that lasted at least this many milliseconds. Zero or absent keeps every trace in the window. (optional, default to 0)</param>
+    /// <param name="range">Range is the window in seconds, counted back from now over each trace&#39;s last activity. Default 3600, capped at 604800 (7d). (optional, default to 0L)</param>
+    /// <param name="limit">Limit is how many traces to return. Default 50, capped at 500. (optional, default to 0L)</param>
+    /// <param name="minDurationMs">MinDurationMs keeps only traces that lasted at least this many milliseconds. Zero or absent keeps every trace in the window. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_tracesOut>> getO11yTraces(
-        boost::optional<int32_t> range,
-        boost::optional<int32_t> limit,
-        boost::optional<int32_t> minDurationMs
+        boost::optional<int64_t> range,
+        boost::optional<int64_t> limit,
+        boost::optional<int64_t> minDurationMs
     ) const;
     /// <summary>
     /// Returns ingestion usage counts bucketed over the requested window, optionally narrowed to one service.
@@ -2582,12 +2582,12 @@ public:
     /// </remarks>
     /// <param name="start">Start is the window start, as epoch nanoseconds. Required.</param>
     /// <param name="end">End is the window end, as epoch nanoseconds. Required.</param>
-    /// <param name="step">Step is the bucket width in seconds. The runtime requires it. (optional, default to 0)</param>
+    /// <param name="step">Step is the bucket width in seconds. The runtime requires it. (optional, default to 0L)</param>
     /// <param name="service">Service narrows usage to one service. Empty covers all. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::vector<std::shared_ptr<O11y_O11yUsageItem>>> getO11yUsage(
         utility::string_t start,
         utility::string_t end,
-        boost::optional<int32_t> step,
+        boost::optional<int64_t> step,
         boost::optional<utility::string_t> service
     ) const;
     /// <summary>
@@ -2731,16 +2731,16 @@ public:
     /// Returns the distinct label keys present in a rule&#39;s history entries over the selected range, for building history filters. Viewer gate.
     /// </remarks>
     /// <param name="id"></param>
-    /// <param name="startUnixMilli">StartUnixMilli is the window start, unix milliseconds. (optional, default to 0)</param>
-    /// <param name="endUnixMilli">EndUnixMilli is the window end, unix milliseconds. (optional, default to 0)</param>
+    /// <param name="startUnixMilli">StartUnixMilli is the window start, unix milliseconds. (optional, default to 0L)</param>
+    /// <param name="endUnixMilli">EndUnixMilli is the window end, unix milliseconds. (optional, default to 0L)</param>
     /// <param name="searchText">SearchText narrows the keys to those containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many keys come back. Absent means 50, capped at 200. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many keys come back. Absent means 50, capped at 200. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yRuleHistoryFilterKeysOut>> getRuleHistoryFilterKeys(
         utility::string_t id,
-        boost::optional<int32_t> startUnixMilli,
-        boost::optional<int32_t> endUnixMilli,
+        boost::optional<int64_t> startUnixMilli,
+        boost::optional<int64_t> endUnixMilli,
         boost::optional<utility::string_t> searchText,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns the distinct values a given label key has taken across a rule&#39;s history entries.
@@ -2750,18 +2750,18 @@ public:
     /// </remarks>
     /// <param name="id"></param>
     /// <param name="name">Name is the label key whose values to list. Required.</param>
-    /// <param name="startUnixMilli"> (optional, default to 0)</param>
-    /// <param name="endUnixMilli"> (optional, default to 0)</param>
+    /// <param name="startUnixMilli"> (optional, default to 0L)</param>
+    /// <param name="endUnixMilli"> (optional, default to 0L)</param>
     /// <param name="searchText"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit"> (optional, default to 0)</param>
+    /// <param name="limit"> (optional, default to 0L)</param>
     /// <param name="existingQuery">ExistingQuery is a filter expression scoping which values appear. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<O11y_O11yRuleHistoryFilterValuesOut>> getRuleHistoryFilterValues(
         utility::string_t id,
         utility::string_t name,
-        boost::optional<int32_t> startUnixMilli,
-        boost::optional<int32_t> endUnixMilli,
+        boost::optional<int64_t> startUnixMilli,
+        boost::optional<int64_t> endUnixMilli,
         boost::optional<utility::string_t> searchText,
-        boost::optional<int32_t> limit,
+        boost::optional<int64_t> limit,
         boost::optional<utility::string_t> existingQuery
     ) const;
     /// <summary>
@@ -2771,12 +2771,12 @@ public:
     /// Returns the overall firing/inactive intervals for a rule over the selected range. Viewer gate.
     /// </remarks>
     /// <param name="id"></param>
-    /// <param name="start">Start is the window start, unix milliseconds. Required by the runtime. (optional, default to 0)</param>
-    /// <param name="end">End is the window end, unix milliseconds. Required by the runtime. (optional, default to 0)</param>
+    /// <param name="start">Start is the window start, unix milliseconds. Required by the runtime. (optional, default to 0L)</param>
+    /// <param name="end">End is the window end, unix milliseconds. Required by the runtime. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yRuleHistoryOverallStatusOut>> getRuleHistoryOverallStatus(
         utility::string_t id,
-        boost::optional<int32_t> start,
-        boost::optional<int32_t> end
+        boost::optional<int64_t> start,
+        boost::optional<int64_t> end
     ) const;
     /// <summary>
     /// Returns trigger and resolution statistics for a rule over the selected time range, current window against the prior one.
@@ -2785,12 +2785,12 @@ public:
     /// Returns trigger and resolution statistics for a rule over the selected time range, current window against the prior one. Viewer gate.
     /// </remarks>
     /// <param name="id"></param>
-    /// <param name="start">Start is the window start, unix milliseconds. Required by the runtime. (optional, default to 0)</param>
-    /// <param name="end">End is the window end, unix milliseconds. Required by the runtime. (optional, default to 0)</param>
+    /// <param name="start">Start is the window start, unix milliseconds. Required by the runtime. (optional, default to 0L)</param>
+    /// <param name="end">End is the window end, unix milliseconds. Required by the runtime. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yRuleHistoryStatsOut>> getRuleHistoryStats(
         utility::string_t id,
-        boost::optional<int32_t> start,
-        boost::optional<int32_t> end
+        boost::optional<int64_t> start,
+        boost::optional<int64_t> end
     ) const;
     /// <summary>
     /// Returns paginated timeline entries for a rule&#39;s state transitions, filterable by state and a label expression, cursor-paginated.
@@ -2799,20 +2799,20 @@ public:
     /// Returns paginated timeline entries for a rule&#39;s state transitions, filterable by state and a label expression, cursor-paginated. Viewer gate.
     /// </remarks>
     /// <param name="id"></param>
-    /// <param name="start">Start is the window start, unix milliseconds. Required by the runtime. (optional, default to 0)</param>
-    /// <param name="end">End is the window end, unix milliseconds. Required by the runtime. (optional, default to 0)</param>
+    /// <param name="start">Start is the window start, unix milliseconds. Required by the runtime. (optional, default to 0L)</param>
+    /// <param name="end">End is the window end, unix milliseconds. Required by the runtime. (optional, default to 0L)</param>
     /// <param name="state">State keeps only entries in one alert state, e.g. firing or normal. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="filterExpression">FilterExpression narrows entries to those whose labels match it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many entries come back. Absent means 50. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many entries come back. Absent means 50. (optional, default to 0L)</param>
     /// <param name="order">Order sorts by time, asc or desc. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="cursor">Cursor resumes a previous page; opaque, returned as nextCursor. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<O11y_O11yRuleHistoryTimelineOut>> getRuleHistoryTimeline(
         utility::string_t id,
-        boost::optional<int32_t> start,
-        boost::optional<int32_t> end,
+        boost::optional<int64_t> start,
+        boost::optional<int64_t> end,
         boost::optional<utility::string_t> state,
         boost::optional<utility::string_t> filterExpression,
-        boost::optional<int32_t> limit,
+        boost::optional<int64_t> limit,
         boost::optional<utility::string_t> order,
         boost::optional<utility::string_t> cursor
     ) const;
@@ -2823,12 +2823,12 @@ public:
     /// Returns the label combinations that contributed most to a rule firing over the selected range. Viewer gate.
     /// </remarks>
     /// <param name="id"></param>
-    /// <param name="start">Start is the window start, unix milliseconds. Required by the runtime. (optional, default to 0)</param>
-    /// <param name="end">End is the window end, unix milliseconds. Required by the runtime. (optional, default to 0)</param>
+    /// <param name="start">Start is the window start, unix milliseconds. Required by the runtime. (optional, default to 0L)</param>
+    /// <param name="end">End is the window end, unix milliseconds. Required by the runtime. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yRuleHistoryContributorsOut>> getRuleHistoryTopContributors(
         utility::string_t id,
-        boost::optional<int32_t> start,
-        boost::optional<int32_t> end
+        boost::optional<int64_t> start,
+        boost::optional<int64_t> end
     ) const;
     /// <summary>
     /// Returns a rule&#39;s state-transition timeline for the posted query range, each entry carrying its related-logs or related-traces link.
@@ -3139,14 +3139,14 @@ public:
     /// <param name="query">Query is the filter DSL over dashboard columns and tags, e.g. &#x60;name:cpu source:user&#x60;. Empty lists everything. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="sort">Sort is the sort field: updated_at, created_at or name. Empty sorts by updated_at. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="order">Order is the sort direction: asc or desc. Empty orders desc. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many dashboards come back. Zero means the default of 20; the runtime caps it at 200. (optional, default to 0)</param>
-    /// <param name="offset">Offset is how many dashboards to skip for pagination. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many dashboards come back. Zero means the default of 20; the runtime caps it at 200. (optional, default to 0L)</param>
+    /// <param name="offset">Offset is how many dashboards to skip for pagination. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yDashboardListForUserOut>> listDashboardsForUserV2(
         boost::optional<utility::string_t> query,
         boost::optional<utility::string_t> sort,
         boost::optional<utility::string_t> order,
-        boost::optional<int32_t> limit,
-        boost::optional<int32_t> offset
+        boost::optional<int64_t> limit,
+        boost::optional<int64_t> offset
     ) const;
     /// <summary>
     /// Returns a page of v2-shape dashboards for the org.
@@ -3157,14 +3157,14 @@ public:
     /// <param name="query">Query is the filter DSL over dashboard columns and tags, e.g. &#x60;name:cpu source:user&#x60;. Empty lists everything. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="sort">Sort is the sort field: updated_at, created_at or name. Empty sorts by updated_at. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="order">Order is the sort direction: asc or desc. Empty orders desc. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many dashboards come back. Zero means the default of 20; the runtime caps it at 200. (optional, default to 0)</param>
-    /// <param name="offset">Offset is how many dashboards to skip for pagination. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many dashboards come back. Zero means the default of 20; the runtime caps it at 200. (optional, default to 0L)</param>
+    /// <param name="offset">Offset is how many dashboards to skip for pagination. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yDashboardListOut>> listDashboardsV2(
         boost::optional<utility::string_t> query,
         boost::optional<utility::string_t> sort,
         boost::optional<utility::string_t> order,
-        boost::optional<int32_t> limit,
-        boost::optional<int32_t> offset
+        boost::optional<int64_t> limit,
+        boost::optional<int64_t> offset
     ) const;
     /// <summary>
     /// Lists all planned maintenance windows, optionally narrowed to the active ones or the recurring ones.
@@ -3197,14 +3197,14 @@ public:
     /// <param name="traceId">TraceID narrows to annotations on one trace. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="queue">Queue narrows to one review queue. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="status">Status narrows to one review status, e.g. PENDING. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="offset">Offset is how many rows to skip, for paging. (optional, default to 0)</param>
-    /// <param name="limit">Limit caps how many rows come back. (optional, default to 0)</param>
+    /// <param name="offset">Offset is how many rows to skip, for paging. (optional, default to 0L)</param>
+    /// <param name="limit">Limit caps how many rows come back. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yLLMAnnotationsOut>> listLLMAnnotations(
         boost::optional<utility::string_t> traceId,
         boost::optional<utility::string_t> queue,
         boost::optional<utility::string_t> status,
-        boost::optional<int32_t> offset,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> offset,
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists gen_ai spans as LLM observations — each an LLM call with its model, token counts, cost and latency projected from gen_ai.* attributes, newest first, over the query window.
@@ -3212,25 +3212,25 @@ public:
     /// <remarks>
     /// Lists gen_ai spans as LLM observations — each an LLM call with its model, token counts, cost and latency projected from gen_ai.* attributes, newest first, over the query window.  Callers need the viewer role; the runtime&#39;s own gate enforces it, and scopes the read to the caller&#39;s validated tenant.
     /// </remarks>
-    /// <param name="start">Start is the start of the window as a unix-millisecond epoch. Zero means 24h before the end. (optional, default to 0)</param>
-    /// <param name="end">End is the end of the window as a unix-millisecond epoch. Zero means now. (optional, default to 0)</param>
+    /// <param name="start">Start is the start of the window as a unix-millisecond epoch. Zero means 24h before the end. (optional, default to 0L)</param>
+    /// <param name="end">End is the end of the window as a unix-millisecond epoch. Zero means now. (optional, default to 0L)</param>
     /// <param name="traceId">TraceID narrows the view to one trace. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="sessionId">SessionID narrows the view to one conversation. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="userId">UserID narrows the view to one end user. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="name">Name narrows the view to observations of one name. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="model">Model narrows the view to one model. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="offset">Offset is how many rows to skip, for paging. (optional, default to 0)</param>
-    /// <param name="limit">Limit caps how many rows come back. (optional, default to 0)</param>
+    /// <param name="offset">Offset is how many rows to skip, for paging. (optional, default to 0L)</param>
+    /// <param name="limit">Limit caps how many rows come back. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yLLMObservationsOut>> listLLMObservations(
-        boost::optional<int32_t> start,
-        boost::optional<int32_t> end,
+        boost::optional<int64_t> start,
+        boost::optional<int64_t> end,
         boost::optional<utility::string_t> traceId,
         boost::optional<utility::string_t> sessionId,
         boost::optional<utility::string_t> userId,
         boost::optional<utility::string_t> name,
         boost::optional<utility::string_t> model,
-        boost::optional<int32_t> offset,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> offset,
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns the LLM pricing rules for the caller&#39;s org, with pagination and an optional search and override filter.
@@ -3240,13 +3240,13 @@ public:
     /// </remarks>
     /// <param name="q">Search matches rules by model or provider. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="isOverride">IsOverride, when \&quot;true\&quot; or \&quot;false\&quot;, narrows to user-pinned rules or to synced ones; empty returns both. It is a string because a query param is a string on the wire, and the runtime reads absent as \&quot;no filter\&quot;. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="offset">Offset is how many rows to skip, for paging. (optional, default to 0)</param>
-    /// <param name="limit">Limit caps how many rows come back. (optional, default to 0)</param>
+    /// <param name="offset">Offset is how many rows to skip, for paging. (optional, default to 0L)</param>
+    /// <param name="limit">Limit caps how many rows come back. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yLLMPricingRulesOut>> listLLMPricingRules(
         boost::optional<utility::string_t> q,
         boost::optional<utility::string_t> isOverride,
-        boost::optional<int32_t> offset,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> offset,
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists eval scores and human-feedback signals attached to traces and observations, newest first.
@@ -3258,15 +3258,15 @@ public:
     /// <param name="observationId">ObservationID narrows to scores on one observation. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="name">Name narrows to scores of one name. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="source">Source narrows to scores from one source, e.g. API, EVAL. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="offset">Offset is how many rows to skip, for paging. (optional, default to 0)</param>
-    /// <param name="limit">Limit caps how many rows come back. (optional, default to 0)</param>
+    /// <param name="offset">Offset is how many rows to skip, for paging. (optional, default to 0L)</param>
+    /// <param name="limit">Limit caps how many rows come back. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yLLMScoresOut>> listLLMScores(
         boost::optional<utility::string_t> traceId,
         boost::optional<utility::string_t> observationId,
         boost::optional<utility::string_t> name,
         boost::optional<utility::string_t> source,
-        boost::optional<int32_t> offset,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> offset,
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists conversations — gen_ai spans grouped by session.id, with their trace and observation counts, tokens and cost.
@@ -3274,25 +3274,25 @@ public:
     /// <remarks>
     /// Lists conversations — gen_ai spans grouped by session.id, with their trace and observation counts, tokens and cost.  Callers need the viewer role; the runtime&#39;s own gate enforces it.
     /// </remarks>
-    /// <param name="start">Start is the start of the window as a unix-millisecond epoch. Zero means 24h before the end. (optional, default to 0)</param>
-    /// <param name="end">End is the end of the window as a unix-millisecond epoch. Zero means now. (optional, default to 0)</param>
+    /// <param name="start">Start is the start of the window as a unix-millisecond epoch. Zero means 24h before the end. (optional, default to 0L)</param>
+    /// <param name="end">End is the end of the window as a unix-millisecond epoch. Zero means now. (optional, default to 0L)</param>
     /// <param name="traceId">TraceID narrows the view to one trace. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="sessionId">SessionID narrows the view to one conversation. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="userId">UserID narrows the view to one end user. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="name">Name narrows the view to observations of one name. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="model">Model narrows the view to one model. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="offset">Offset is how many rows to skip, for paging. (optional, default to 0)</param>
-    /// <param name="limit">Limit caps how many rows come back. (optional, default to 0)</param>
+    /// <param name="offset">Offset is how many rows to skip, for paging. (optional, default to 0L)</param>
+    /// <param name="limit">Limit caps how many rows come back. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yLLMSessionsOut>> listLLMSessions(
-        boost::optional<int32_t> start,
-        boost::optional<int32_t> end,
+        boost::optional<int64_t> start,
+        boost::optional<int64_t> end,
         boost::optional<utility::string_t> traceId,
         boost::optional<utility::string_t> sessionId,
         boost::optional<utility::string_t> userId,
         boost::optional<utility::string_t> name,
         boost::optional<utility::string_t> model,
-        boost::optional<int32_t> offset,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> offset,
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists LLM traces — gen_ai spans grouped by trace_id, with cost, tokens and latency rolled up across each trace.
@@ -3300,25 +3300,25 @@ public:
     /// <remarks>
     /// Lists LLM traces — gen_ai spans grouped by trace_id, with cost, tokens and latency rolled up across each trace.  Callers need the viewer role; the runtime&#39;s own gate enforces it.
     /// </remarks>
-    /// <param name="start">Start is the start of the window as a unix-millisecond epoch. Zero means 24h before the end. (optional, default to 0)</param>
-    /// <param name="end">End is the end of the window as a unix-millisecond epoch. Zero means now. (optional, default to 0)</param>
+    /// <param name="start">Start is the start of the window as a unix-millisecond epoch. Zero means 24h before the end. (optional, default to 0L)</param>
+    /// <param name="end">End is the end of the window as a unix-millisecond epoch. Zero means now. (optional, default to 0L)</param>
     /// <param name="traceId">TraceID narrows the view to one trace. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="sessionId">SessionID narrows the view to one conversation. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="userId">UserID narrows the view to one end user. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="name">Name narrows the view to observations of one name. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="model">Model narrows the view to one model. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="offset">Offset is how many rows to skip, for paging. (optional, default to 0)</param>
-    /// <param name="limit">Limit caps how many rows come back. (optional, default to 0)</param>
+    /// <param name="offset">Offset is how many rows to skip, for paging. (optional, default to 0L)</param>
+    /// <param name="limit">Limit caps how many rows come back. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yLLMTracesOut>> listLLMTraces(
-        boost::optional<int32_t> start,
-        boost::optional<int32_t> end,
+        boost::optional<int64_t> start,
+        boost::optional<int64_t> end,
         boost::optional<utility::string_t> traceId,
         boost::optional<utility::string_t> sessionId,
         boost::optional<utility::string_t> userId,
         boost::optional<utility::string_t> name,
         boost::optional<utility::string_t> model,
-        boost::optional<int32_t> offset,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> offset,
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists end users — gen_ai spans grouped by user.id, with their session, trace and observation counts, tokens and cost.
@@ -3326,25 +3326,25 @@ public:
     /// <remarks>
     /// Lists end users — gen_ai spans grouped by user.id, with their session, trace and observation counts, tokens and cost.  Callers need the viewer role; the runtime&#39;s own gate enforces it.
     /// </remarks>
-    /// <param name="start">Start is the start of the window as a unix-millisecond epoch. Zero means 24h before the end. (optional, default to 0)</param>
-    /// <param name="end">End is the end of the window as a unix-millisecond epoch. Zero means now. (optional, default to 0)</param>
+    /// <param name="start">Start is the start of the window as a unix-millisecond epoch. Zero means 24h before the end. (optional, default to 0L)</param>
+    /// <param name="end">End is the end of the window as a unix-millisecond epoch. Zero means now. (optional, default to 0L)</param>
     /// <param name="traceId">TraceID narrows the view to one trace. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="sessionId">SessionID narrows the view to one conversation. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="userId">UserID narrows the view to one end user. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="name">Name narrows the view to observations of one name. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="model">Model narrows the view to one model. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="offset">Offset is how many rows to skip, for paging. (optional, default to 0)</param>
-    /// <param name="limit">Limit caps how many rows come back. (optional, default to 0)</param>
+    /// <param name="offset">Offset is how many rows to skip, for paging. (optional, default to 0L)</param>
+    /// <param name="limit">Limit caps how many rows come back. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yLLMUsersOut>> listLLMUsers(
-        boost::optional<int32_t> start,
-        boost::optional<int32_t> end,
+        boost::optional<int64_t> start,
+        boost::optional<int64_t> end,
         boost::optional<utility::string_t> traceId,
         boost::optional<utility::string_t> sessionId,
         boost::optional<utility::string_t> userId,
         boost::optional<utility::string_t> name,
         boost::optional<utility::string_t> model,
-        boost::optional<int32_t> offset,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> offset,
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists the org&#39;s metric volume-control (label reduction) rules, pageable and sortable by name, volume or recency.
@@ -3356,15 +3356,15 @@ public:
     /// <param name="order">Order is asc or desc. Unset means desc. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="search">Search narrows the page to rules whose metric name contains it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="metricName">MetricName narrows the page to one metric&#39;s rule. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="offset">Offset is how many rules to skip, for paging. (optional, default to 0)</param>
-    /// <param name="limit">Limit caps how many rules come back, at most 1000. Unset means 10. (optional, default to 0)</param>
+    /// <param name="offset">Offset is how many rules to skip, for paging. (optional, default to 0L)</param>
+    /// <param name="limit">Limit caps how many rules come back, at most 1000. Unset means 10. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yReductionRuleListOut>> listMetricReductionRules(
         boost::optional<utility::string_t> orderBy,
         boost::optional<utility::string_t> order,
         boost::optional<utility::string_t> search,
         boost::optional<utility::string_t> metricName,
-        boost::optional<int32_t> offset,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> offset,
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists the distinct metric names seen in a time range, each with its description, type, unit, temporality and monotonicity.
@@ -3372,15 +3372,15 @@ public:
     /// <remarks>
     /// Lists the distinct metric names seen in a time range, each with its description, type, unit, temporality and monotonicity.
     /// </remarks>
-    /// <param name="start">Start is the start of the window as a Unix timestamp in milliseconds. (optional, default to 0)</param>
-    /// <param name="end">End is the end of the window as a Unix timestamp in milliseconds. (optional, default to 0)</param>
-    /// <param name="limit">Limit caps how many metrics come back; unset means 100, at most 5000. (optional, default to 0)</param>
+    /// <param name="start">Start is the start of the window as a Unix timestamp in milliseconds. (optional, default to 0L)</param>
+    /// <param name="end">End is the end of the window as a Unix timestamp in milliseconds. (optional, default to 0L)</param>
+    /// <param name="limit">Limit caps how many metrics come back; unset means 100, at most 5000. (optional, default to 0L)</param>
     /// <param name="searchText">SearchText narrows the page to metric names containing it. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="source">Source narrows the page by ingestion source. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<O11y_O11yMetricListOut>> listMetrics(
-        boost::optional<int32_t> start,
-        boost::optional<int32_t> end,
-        boost::optional<int32_t> limit,
+        boost::optional<int64_t> start,
+        boost::optional<int64_t> end,
+        boost::optional<int64_t> limit,
         boost::optional<utility::string_t> searchText,
         boost::optional<utility::string_t> source
     ) const;
@@ -4385,12 +4385,12 @@ public:
     /// Lists the workspace&#39;s ingestion keys whose name matches the search, paginated. Editor gate.
     /// </remarks>
     /// <param name="name">Name is the substring to match ingestion-key names against. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="page">Page is the 1-based page number. (optional, default to 0)</param>
-    /// <param name="perPage">PerPage is the page size. (optional, default to 0)</param>
+    /// <param name="page">Page is the 1-based page number. (optional, default to 0L)</param>
+    /// <param name="perPage">PerPage is the page size. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<O11y_O11yIngestionKeysOut>> searchIngestionKeys(
         boost::optional<utility::string_t> name,
-        boost::optional<int32_t> page,
-        boost::optional<int32_t> perPage
+        boost::optional<int64_t> page,
+        boost::optional<int64_t> perPage
     ) const;
     /// <summary>
     /// Returns one trace&#39;s spans as a column/row table, optionally centred on a span and walked a fixed number of levels up and down from it — the read the trace explorer opens a trace with.
@@ -4400,15 +4400,15 @@ public:
     /// </remarks>
     /// <param name="traceId"></param>
     /// <param name="spanId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="levelUp"> (optional, default to 0)</param>
-    /// <param name="levelDown"> (optional, default to 0)</param>
-    /// <param name="spanRenderLimit"> (optional, default to 0)</param>
+    /// <param name="levelUp"> (optional, default to 0L)</param>
+    /// <param name="levelDown"> (optional, default to 0L)</param>
+    /// <param name="spanRenderLimit"> (optional, default to 0L)</param>
     pplx::task<std::vector<std::shared_ptr<O11y_O11yTraceSpanWindow>>> searchTraces(
         utility::string_t traceId,
         boost::optional<utility::string_t> spanId,
-        boost::optional<int32_t> levelUp,
-        boost::optional<int32_t> levelDown,
-        boost::optional<int32_t> spanRenderLimit
+        boost::optional<int64_t> levelUp,
+        boost::optional<int64_t> levelDown,
+        boost::optional<int64_t> spanRenderLimit
     ) const;
     /// <summary>
     /// Assigns a role, by role name, to one org member — someone else, never the caller.

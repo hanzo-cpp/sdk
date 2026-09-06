@@ -39,7 +39,7 @@ RepoView::RepoView()
     m_ProjectIsSet = false;
     m_r_public = false;
     m_r_publicIsSet = false;
-    m_SizeBytes = 0;
+    m_SizeBytes = 0L;
     m_SizeBytesIsSet = false;
     m_SshUrl = utility::conversions::to_string_t("");
     m_SshUrlIsSet = false;
@@ -262,7 +262,7 @@ bool RepoView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("sizeBytes")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSizeBytes;
+            int64_t refVal_setSizeBytes;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSizeBytes);
             setSizeBytes(refVal_setSizeBytes);
             
@@ -435,7 +435,7 @@ bool RepoView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("sizeBytes"))))
     {
-        int32_t refVal_setSizeBytes;
+        int64_t refVal_setSizeBytes;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("sizeBytes"))), refVal_setSizeBytes );
         setSizeBytes(refVal_setSizeBytes);
     }
@@ -686,13 +686,13 @@ void RepoView::unsetr_public()
 {
     m_r_publicIsSet = false;
 }
-int32_t RepoView::getSizeBytes() const
+int64_t RepoView::getSizeBytes() const
 {
     return m_SizeBytes;
 }
 
 
-void RepoView::setSizeBytes(int32_t value)
+void RepoView::setSizeBytes(int64_t value)
 {
     m_SizeBytes = value;
     m_SizeBytesIsSet = true;

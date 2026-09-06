@@ -63,18 +63,18 @@ public:
     /// <summary>
     /// GuestLimit is the plan&#39;s team.guests cap, when the plan carries one.
     /// </summary>
-    int32_t getGuestLimit() const;
+    int64_t getGuestLimit() const;
     bool guestLimitIsSet() const;
     void unsetGuestLimit();
-    void setGuestLimit(int32_t value);
+    void setGuestLimit(int64_t value);
 
     /// <summary>
     /// Guests is how many of those seats are guests.
     /// </summary>
-    int32_t getGuests() const;
+    int64_t getGuests() const;
     bool guestsIsSet() const;
     void unsetGuests();
-    void setGuests(int32_t value);
+    void setGuests(int64_t value);
 
     /// <summary>
     /// Plan is the licensed plan id, empty when it cannot be resolved here — an honest dash on the page, never a fabricated tier.
@@ -87,10 +87,10 @@ public:
     /// <summary>
     /// Seats is the org&#39;s distinct active human members.
     /// </summary>
-    int32_t getSeats() const;
+    int64_t getSeats() const;
     bool seatsIsSet() const;
     void unsetSeats();
-    void setSeats(int32_t value);
+    void setSeats(int64_t value);
 
     /// <summary>
     /// UpgradeURL is where the page sends a caller who wants a bigger plan.
@@ -105,16 +105,16 @@ protected:
     bool m_Active;
     bool m_ActiveIsSet;
 
-    int32_t m_GuestLimit;
+    int64_t m_GuestLimit;
     bool m_GuestLimitIsSet;
 
-    int32_t m_Guests;
+    int64_t m_Guests;
     bool m_GuestsIsSet;
 
     utility::string_t m_Plan;
     bool m_PlanIsSet;
 
-    int32_t m_Seats;
+    int64_t m_Seats;
     bool m_SeatsIsSet;
 
     utility::string_t m_UpgradeUrl;

@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// Attempt is which try this row is, starting at 1. The ladder waits 1s, then 5s, then 25s before the next one.
     /// </summary>
-    int32_t getAttempt() const;
+    int64_t getAttempt() const;
     bool attemptIsSet() const;
     void unsetAttempt();
-    void setAttempt(int32_t value);
+    void setAttempt(int64_t value);
 
     /// <summary>
     /// Created is when the attempt was made, RFC3339 in UTC.
@@ -79,10 +79,10 @@ public:
     /// <summary>
     /// DurationMs is how long this attempt took end to end, in MILLISECONDS.
     /// </summary>
-    int32_t getDurationMs() const;
+    int64_t getDurationMs() const;
     bool durationMsIsSet() const;
     void unsetDurationMs();
-    void setDurationMs(int32_t value);
+    void setDurationMs(int64_t value);
 
     /// <summary>
     /// EndpointID is which subscriber this attempt was for.
@@ -103,10 +103,10 @@ public:
     /// <summary>
     /// HTTPStatus is what the subscriber answered. ZERO means it never answered — a refused connection, a DNS failure or a timeout — which is why a zero here is not a 200.
     /// </summary>
-    int32_t getHttpStatus() const;
+    int64_t getHttpStatus() const;
     bool httpStatusIsSet() const;
     void unsetHttpStatus();
-    void setHttpStatus(int32_t value);
+    void setHttpStatus(int64_t value);
 
     /// <summary>
     /// Status is \&quot;ok\&quot; when the subscriber accepted it, \&quot;retrying\&quot; while a further attempt will follow, and \&quot;failed\&quot; when none will. Exactly one row of a delivery is terminal.
@@ -126,7 +126,7 @@ public:
 
 
 protected:
-    int32_t m_Attempt;
+    int64_t m_Attempt;
     bool m_AttemptIsSet;
 
     utility::string_t m_Created;
@@ -135,7 +135,7 @@ protected:
     utility::string_t m_Delivery;
     bool m_DeliveryIsSet;
 
-    int32_t m_DurationMs;
+    int64_t m_DurationMs;
     bool m_DurationMsIsSet;
 
     utility::string_t m_Endpoint;
@@ -144,7 +144,7 @@ protected:
     utility::string_t m_Error;
     bool m_ErrorIsSet;
 
-    int32_t m_HttpStatus;
+    int64_t m_HttpStatus;
     bool m_HttpStatusIsSet;
 
     utility::string_t m_Status;

@@ -56,10 +56,10 @@ public:
     /// <summary>
     /// what this renewal cost, in cents
     /// </summary>
-    int32_t getPaidCents() const;
+    int64_t getPaidCents() const;
     bool paidCentsIsSet() const;
     void unsetPaidCents();
-    void setPaidCents(int32_t value);
+    void setPaidCents(int64_t value);
 
     /// <summary>
     /// the ownership row with its new expiry
@@ -71,7 +71,7 @@ public:
 
 
 protected:
-    int32_t m_PaidCents;
+    int64_t m_PaidCents;
     bool m_PaidCentsIsSet;
 
     std::shared_ptr<Holding> m_Record;

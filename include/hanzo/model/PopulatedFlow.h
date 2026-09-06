@@ -58,10 +58,10 @@ public:
     /// <summary>
     /// Created and Updated are unix milliseconds.
     /// </summary>
-    int32_t getCreated() const;
+    int64_t getCreated() const;
     bool createdIsSet() const;
     void unsetCreated();
-    void setCreated(int32_t value);
+    void setCreated(int64_t value);
 
     /// <summary>
     /// ExternalID is the caller&#39;s own id for this flow, if it set one.
@@ -116,10 +116,10 @@ public:
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
-    int32_t getUpdated() const;
+    int64_t getUpdated() const;
     bool updatedIsSet() const;
     void unsetUpdated();
-    void setUpdated(int32_t value);
+    void setUpdated(int64_t value);
 
     /// <summary>
     /// Version is the flow&#39;s latest version — its display name and step tree.
@@ -131,7 +131,7 @@ public:
 
 
 protected:
-    int32_t m_Created;
+    int64_t m_Created;
     bool m_CreatedIsSet;
 
     utility::string_t m_ExternalId;
@@ -154,7 +154,7 @@ protected:
     utility::string_t m_Status;
     bool m_StatusIsSet;
 
-    int32_t m_Updated;
+    int64_t m_Updated;
     bool m_UpdatedIsSet;
 
     std::shared_ptr<FlowVersion> m_Version;

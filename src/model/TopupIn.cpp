@@ -18,7 +18,7 @@ namespace model {
 
 TopupIn::TopupIn()
 {
-    m_AmountCents = 0;
+    m_AmountCents = 0L;
     m_AmountCentsIsSet = false;
     m_Currency = utility::conversions::to_string_t("");
     m_CurrencyIsSet = false;
@@ -72,7 +72,7 @@ bool TopupIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("amountCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAmountCents;
+            int64_t refVal_setAmountCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAmountCents);
             setAmountCents(refVal_setAmountCents);
             
@@ -150,7 +150,7 @@ bool TopupIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("amountCents"))))
     {
-        int32_t refVal_setAmountCents;
+        int64_t refVal_setAmountCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("amountCents"))), refVal_setAmountCents );
         setAmountCents(refVal_setAmountCents);
     }
@@ -176,13 +176,13 @@ bool TopupIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
 }
 
 
-int32_t TopupIn::getAmountCents() const
+int64_t TopupIn::getAmountCents() const
 {
     return m_AmountCents;
 }
 
 
-void TopupIn::setAmountCents(int32_t value)
+void TopupIn::setAmountCents(int64_t value)
 {
     m_AmountCents = value;
     m_AmountCentsIsSet = true;

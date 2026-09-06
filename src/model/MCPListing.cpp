@@ -40,7 +40,7 @@ MCPListing::MCPListing()
     m_RepoIsSet = false;
     m_Site = utility::conversions::to_string_t("");
     m_SiteIsSet = false;
-    m_Synced = 0;
+    m_Synced = 0L;
     m_SyncedIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
@@ -292,7 +292,7 @@ bool MCPListing::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("synced")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSynced;
+            int64_t refVal_setSynced;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSynced);
             setSynced(refVal_setSynced);
             
@@ -505,7 +505,7 @@ bool MCPListing::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("synced"))))
     {
-        int32_t refVal_setSynced;
+        int64_t refVal_setSynced;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("synced"))), refVal_setSynced );
         setSynced(refVal_setSynced);
     }
@@ -789,13 +789,13 @@ void MCPListing::unsetSite()
 {
     m_SiteIsSet = false;
 }
-int32_t MCPListing::getSynced() const
+int64_t MCPListing::getSynced() const
 {
     return m_Synced;
 }
 
 
-void MCPListing::setSynced(int32_t value)
+void MCPListing::setSynced(int64_t value)
 {
     m_Synced = value;
     m_SyncedIsSet = true;

@@ -54,47 +54,47 @@ public:
     /// <summary>
     /// Active is how many of those campaigns are in the active state.
     /// </summary>
-    int32_t getActive() const;
+    int64_t getActive() const;
     bool activeIsSet() const;
     void unsetActive();
-    void setActive(int32_t value);
+    void setActive(int64_t value);
 
     /// <summary>
     /// Budget is the summed budget of every campaign in the org, in cents.
     /// </summary>
-    int32_t getBudget() const;
+    int64_t getBudget() const;
     bool budgetIsSet() const;
     void unsetBudget();
-    void setBudget(int32_t value);
+    void setBudget(int64_t value);
 
     /// <summary>
     /// Campaigns is how many campaigns the org has, in every state.
     /// </summary>
-    int32_t getCampaigns() const;
+    int64_t getCampaigns() const;
     bool campaignsIsSet() const;
     void unsetCampaigns();
-    void setCampaigns(int32_t value);
+    void setCampaigns(int64_t value);
 
     /// <summary>
     /// Spend is the summed spend of every campaign in the org, in cents.
     /// </summary>
-    int32_t getSpend() const;
+    int64_t getSpend() const;
     bool spendIsSet() const;
     void unsetSpend();
-    void setSpend(int32_t value);
+    void setSpend(int64_t value);
 
 
 protected:
-    int32_t m_Active;
+    int64_t m_Active;
     bool m_ActiveIsSet;
 
-    int32_t m_Budget;
+    int64_t m_Budget;
     bool m_BudgetIsSet;
 
-    int32_t m_Campaigns;
+    int64_t m_Campaigns;
     bool m_CampaignsIsSet;
 
-    int32_t m_Spend;
+    int64_t m_Spend;
     bool m_SpendIsSet;
 
 };

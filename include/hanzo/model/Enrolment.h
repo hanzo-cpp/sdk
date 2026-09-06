@@ -79,10 +79,10 @@ public:
     /// <summary>
     /// ShareBps is this author&#39;s royalty share in basis points of the spend their deployed work generates.
     /// </summary>
-    int32_t getShareBps() const;
+    int64_t getShareBps() const;
     bool shareBpsIsSet() const;
     void unsetShareBps();
-    void setShareBps(int32_t value);
+    void setShareBps(int64_t value);
 
     /// <summary>
     /// Status is connected, approved or suspended. Only an approved author earns.
@@ -135,7 +135,7 @@ protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
 
-    int32_t m_ShareBps;
+    int64_t m_ShareBps;
     bool m_ShareBpsIsSet;
 
     utility::string_t m_Status;

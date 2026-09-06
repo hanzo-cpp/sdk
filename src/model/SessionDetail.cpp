@@ -25,7 +25,7 @@ SessionDetail::SessionDetail()
     m_Agent = utility::conversions::to_string_t("");
     m_AgentIsSet = false;
     m_ChildSessionsIsSet = false;
-    m_Children = 0;
+    m_Children = 0L;
     m_ChildrenIsSet = false;
     m_CreatedAt = utility::conversions::to_string_t("");
     m_CreatedAtIsSet = false;
@@ -33,7 +33,7 @@ SessionDetail::SessionDetail()
     m_CwdIsSet = false;
     m_EndedAt = utility::conversions::to_string_t("");
     m_EndedAtIsSet = false;
-    m_Events = 0;
+    m_Events = 0L;
     m_EventsIsSet = false;
     m_Host = utility::conversions::to_string_t("");
     m_HostIsSet = false;
@@ -294,7 +294,7 @@ bool SessionDetail::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("children")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setChildren;
+            int64_t refVal_setChildren;
             ok &= ModelBase::fromJson(fieldValue, refVal_setChildren);
             setChildren(refVal_setChildren);
             
@@ -338,7 +338,7 @@ bool SessionDetail::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("events")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setEvents;
+            int64_t refVal_setEvents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setEvents);
             setEvents(refVal_setEvents);
             
@@ -742,7 +742,7 @@ bool SessionDetail::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("children"))))
     {
-        int32_t refVal_setChildren;
+        int64_t refVal_setChildren;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("children"))), refVal_setChildren );
         setChildren(refVal_setChildren);
     }
@@ -766,7 +766,7 @@ bool SessionDetail::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("events"))))
     {
-        int32_t refVal_setEvents;
+        int64_t refVal_setEvents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("events"))), refVal_setEvents );
         setEvents(refVal_setEvents);
     }
@@ -984,13 +984,13 @@ void SessionDetail::unsetChildSessions()
 {
     m_ChildSessionsIsSet = false;
 }
-int32_t SessionDetail::getChildren() const
+int64_t SessionDetail::getChildren() const
 {
     return m_Children;
 }
 
 
-void SessionDetail::setChildren(int32_t value)
+void SessionDetail::setChildren(int64_t value)
 {
     m_Children = value;
     m_ChildrenIsSet = true;
@@ -1068,13 +1068,13 @@ void SessionDetail::unsetEndedAt()
 {
     m_EndedAtIsSet = false;
 }
-int32_t SessionDetail::getEvents() const
+int64_t SessionDetail::getEvents() const
 {
     return m_Events;
 }
 
 
-void SessionDetail::setEvents(int32_t value)
+void SessionDetail::setEvents(int64_t value)
 {
     m_Events = value;
     m_EventsIsSet = true;

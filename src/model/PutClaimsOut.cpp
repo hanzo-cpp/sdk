@@ -18,7 +18,7 @@ namespace model {
 
 PutClaimsOut::PutClaimsOut()
 {
-    m_Recorded = 0;
+    m_Recorded = 0L;
     m_RecordedIsSet = false;
     m_RejectedIsSet = false;
 }
@@ -57,7 +57,7 @@ bool PutClaimsOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("recorded")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRecorded;
+            int64_t refVal_setRecorded;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRecorded);
             setRecorded(refVal_setRecorded);
             
@@ -105,7 +105,7 @@ bool PutClaimsOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("recorded"))))
     {
-        int32_t refVal_setRecorded;
+        int64_t refVal_setRecorded;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("recorded"))), refVal_setRecorded );
         setRecorded(refVal_setRecorded);
     }
@@ -119,13 +119,13 @@ bool PutClaimsOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
 }
 
 
-int32_t PutClaimsOut::getRecorded() const
+int64_t PutClaimsOut::getRecorded() const
 {
     return m_Recorded;
 }
 
 
-void PutClaimsOut::setRecorded(int32_t value)
+void PutClaimsOut::setRecorded(int64_t value)
 {
     m_Recorded = value;
     m_RecordedIsSet = true;

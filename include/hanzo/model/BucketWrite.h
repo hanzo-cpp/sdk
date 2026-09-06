@@ -63,39 +63,39 @@ public:
     /// <summary>
     /// History is how many revisions each key keeps, 1–64. 0 means 1.
     /// </summary>
-    int32_t getHistory() const;
+    int64_t getHistory() const;
     bool historyIsSet() const;
     void unsetHistory();
-    void setHistory(int32_t value);
+    void setHistory(int64_t value);
 
     /// <summary>
     /// MaxValue caps one value&#39;s size in bytes. 0 or less means the server&#39;s ceiling.
     /// </summary>
-    int32_t getMaxValue() const;
+    int64_t getMaxValue() const;
     bool maxValueIsSet() const;
     void unsetMaxValue();
-    void setMaxValue(int32_t value);
+    void setMaxValue(int64_t value);
 
     /// <summary>
     /// TTL expires entries after this many SECONDS. 0 means no expiry.
     /// </summary>
-    int32_t getTtl() const;
+    int64_t getTtl() const;
     bool ttlIsSet() const;
     void unsetTtl();
-    void setTtl(int32_t value);
+    void setTtl(int64_t value);
 
 
 protected:
     utility::string_t m_Bucket;
     bool m_BucketIsSet;
 
-    int32_t m_History;
+    int64_t m_History;
     bool m_HistoryIsSet;
 
-    int32_t m_MaxValue;
+    int64_t m_MaxValue;
     bool m_MaxValueIsSet;
 
-    int32_t m_Ttl;
+    int64_t m_Ttl;
     bool m_TtlIsSet;
 
 };

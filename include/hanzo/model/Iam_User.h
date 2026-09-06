@@ -255,6 +255,11 @@ public:
     void unsetCustom();
     void setCustom(const utility::string_t& value);
 
+    utility::string_t getCustom10() const;
+    bool custom10IsSet() const;
+    void unsetCustom10();
+    void setCustom10(const utility::string_t& value);
+
     utility::string_t getCustom2() const;
     bool custom2IsSet() const;
     void unsetCustom2();
@@ -294,11 +299,6 @@ public:
     bool custom9IsSet() const;
     void unsetCustom9();
     void setCustom9(const utility::string_t& value);
-
-    utility::string_t getCustom10() const;
-    bool custom10IsSet() const;
-    void unsetCustom10();
-    void setCustom10(const utility::string_t& value);
 
     utility::string_t getDailymotion() const;
     bool dailymotionIsSet() const;
@@ -542,10 +542,10 @@ public:
     void unsetKakao();
     void setKakao(const utility::string_t& value);
 
-    int32_t getKarma() const;
+    int64_t getKarma() const;
     bool karmaIsSet() const;
     void unsetKarma();
-    void setKarma(int32_t value);
+    void setKarma(int64_t value);
 
     utility::string_t getKwai() const;
     bool kwaiIsSet() const;
@@ -811,10 +811,10 @@ public:
     void unsetQq();
     void setQq(const utility::string_t& value);
 
-    int32_t getRanking() const;
+    int64_t getRanking() const;
     bool rankingIsSet() const;
     void unsetRanking();
-    void setRanking(int32_t value);
+    void setRanking(int64_t value);
 
     utility::string_t getRealName() const;
     bool realNameIsSet() const;
@@ -846,20 +846,20 @@ public:
     void unsetSalesforce();
     void setSalesforce(const utility::string_t& value);
 
-    int32_t getScore() const;
+    int64_t getScore() const;
     bool scoreIsSet() const;
     void unsetScore();
-    void setScore(int32_t value);
+    void setScore(int64_t value);
 
     utility::string_t getShopify() const;
     bool shopifyIsSet() const;
     void unsetShopify();
     void setShopify(const utility::string_t& value);
 
-    int32_t getSigninWrongTimes() const;
+    int64_t getSigninWrongTimes() const;
     bool signinWrongTimesIsSet() const;
     void unsetSigninWrongTimes();
-    void setSigninWrongTimes(int32_t value);
+    void setSigninWrongTimes(int64_t value);
 
     utility::string_t getSignupApplication() const;
     bool signupApplicationIsSet() const;
@@ -1131,6 +1131,9 @@ protected:
     utility::string_t m_Custom;
     bool m_CustomIsSet;
 
+    utility::string_t m_Custom10;
+    bool m_Custom10IsSet;
+
     utility::string_t m_Custom2;
     bool m_Custom2IsSet;
 
@@ -1154,9 +1157,6 @@ protected:
 
     utility::string_t m_Custom9;
     bool m_Custom9IsSet;
-
-    utility::string_t m_Custom10;
-    bool m_Custom10IsSet;
 
     utility::string_t m_Dailymotion;
     bool m_DailymotionIsSet;
@@ -1296,7 +1296,7 @@ protected:
     utility::string_t m_Kakao;
     bool m_KakaoIsSet;
 
-    int32_t m_Karma;
+    int64_t m_Karma;
     bool m_KarmaIsSet;
 
     utility::string_t m_Kwai;
@@ -1452,7 +1452,7 @@ protected:
     utility::string_t m_Qq;
     bool m_QqIsSet;
 
-    int32_t m_Ranking;
+    int64_t m_Ranking;
     bool m_RankingIsSet;
 
     utility::string_t m_RealName;
@@ -1473,13 +1473,13 @@ protected:
     utility::string_t m_Salesforce;
     bool m_SalesforceIsSet;
 
-    int32_t m_Score;
+    int64_t m_Score;
     bool m_ScoreIsSet;
 
     utility::string_t m_Shopify;
     bool m_ShopifyIsSet;
 
-    int32_t m_SigninWrongTimes;
+    int64_t m_SigninWrongTimes;
     bool m_SigninWrongTimesIsSet;
 
     utility::string_t m_SignupApplication;

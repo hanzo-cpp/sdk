@@ -65,10 +65,10 @@ public:
     /// <summary>
     /// Interval is the seconds to wait before the next poll. Present only while pending, and it may rise when the provider asks the client to slow down.
     /// </summary>
-    int32_t getInterval() const;
+    int64_t getInterval() const;
     bool intervalIsSet() const;
     void unsetInterval();
-    void setInterval(int32_t value);
+    void setInterval(int64_t value);
 
     /// <summary>
     /// Status is the flow&#39;s state. \&quot;pending\&quot; means poll again after Interval.
@@ -83,7 +83,7 @@ protected:
     std::shared_ptr<ConnView> m_Connector;
     bool m_ConnectorIsSet;
 
-    int32_t m_Interval;
+    int64_t m_Interval;
     bool m_IntervalIsSet;
 
     utility::string_t m_Status;

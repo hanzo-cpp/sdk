@@ -19,9 +19,9 @@ namespace model {
 O11y_O11yLLMSessionsPage::O11y_O11yLLMSessionsPage()
 {
     m_ItemsIsSet = false;
-    m_Limit = 0;
+    m_Limit = 0L;
     m_LimitIsSet = false;
-    m_Offset = 0;
+    m_Offset = 0L;
     m_OffsetIsSet = false;
 }
 
@@ -75,7 +75,7 @@ bool O11y_O11yLLMSessionsPage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("limit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLimit;
+            int64_t refVal_setLimit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLimit);
             setLimit(refVal_setLimit);
             
@@ -86,7 +86,7 @@ bool O11y_O11yLLMSessionsPage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("offset")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOffset;
+            int64_t refVal_setOffset;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOffset);
             setOffset(refVal_setOffset);
             
@@ -133,13 +133,13 @@ bool O11y_O11yLLMSessionsPage::fromMultiPart(std::shared_ptr<MultipartFormData> 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("limit"))))
     {
-        int32_t refVal_setLimit;
+        int64_t refVal_setLimit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("limit"))), refVal_setLimit );
         setLimit(refVal_setLimit);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("offset"))))
     {
-        int32_t refVal_setOffset;
+        int64_t refVal_setOffset;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("offset"))), refVal_setOffset );
         setOffset(refVal_setOffset);
     }
@@ -168,13 +168,13 @@ void O11y_O11yLLMSessionsPage::unsetItems()
 {
     m_ItemsIsSet = false;
 }
-int32_t O11y_O11yLLMSessionsPage::getLimit() const
+int64_t O11y_O11yLLMSessionsPage::getLimit() const
 {
     return m_Limit;
 }
 
 
-void O11y_O11yLLMSessionsPage::setLimit(int32_t value)
+void O11y_O11yLLMSessionsPage::setLimit(int64_t value)
 {
     m_Limit = value;
     m_LimitIsSet = true;
@@ -189,13 +189,13 @@ void O11y_O11yLLMSessionsPage::unsetLimit()
 {
     m_LimitIsSet = false;
 }
-int32_t O11y_O11yLLMSessionsPage::getOffset() const
+int64_t O11y_O11yLLMSessionsPage::getOffset() const
 {
     return m_Offset;
 }
 
 
-void O11y_O11yLLMSessionsPage::setOffset(int32_t value)
+void O11y_O11yLLMSessionsPage::setOffset(int64_t value)
 {
     m_Offset = value;
     m_OffsetIsSet = true;

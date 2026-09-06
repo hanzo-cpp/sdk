@@ -61,6 +61,14 @@ public:
     void setRClass(const utility::string_t& value);
 
     /// <summary>
+    /// Cluster is the attached cluster this sandbox runs on, when one was named. Empty is the home cluster.
+    /// </summary>
+    utility::string_t getCluster() const;
+    bool clusterIsSet() const;
+    void unsetCluster();
+    void setCluster(const utility::string_t& value);
+
+    /// <summary>
     /// ID names this computer for every later call — run, read, write, stop and end all take it, and a LeaseIn carrying it resumes THIS sandbox instead of leasing a second one. Minted here; a caller cannot choose it, and a resumed lease that had expired comes back under a new one.
     /// </summary>
     utility::string_t getId() const;
@@ -96,6 +104,9 @@ public:
 protected:
     utility::string_t m_r_class;
     bool m_r_classIsSet;
+
+    utility::string_t m_Cluster;
+    bool m_ClusterIsSet;
 
     utility::string_t m_Id;
     bool m_IdIsSet;

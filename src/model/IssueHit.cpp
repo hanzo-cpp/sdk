@@ -22,7 +22,7 @@ IssueHit::IssueHit()
     m_AssigneeIsSet = false;
     m_Kind = utility::conversions::to_string_t("");
     m_KindIsSet = false;
-    m_number = 0;
+    m_number = 0L;
     m_numberIsSet = false;
     m_Priority = utility::conversions::to_string_t("");
     m_PriorityIsSet = false;
@@ -143,7 +143,7 @@ bool IssueHit::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("number")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNumber;
+            int64_t refVal_setNumber;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNumber);
             setNumber(refVal_setNumber);
             
@@ -316,7 +316,7 @@ bool IssueHit::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("number"))))
     {
-        int32_t refVal_setNumber;
+        int64_t refVal_setNumber;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("number"))), refVal_setNumber );
         setNumber(refVal_setNumber);
     }
@@ -414,13 +414,13 @@ void IssueHit::unsetKind()
 {
     m_KindIsSet = false;
 }
-int32_t IssueHit::getNumber() const
+int64_t IssueHit::getNumber() const
 {
     return m_number;
 }
 
 
-void IssueHit::setNumber(int32_t value)
+void IssueHit::setNumber(int64_t value)
 {
     m_number = value;
     m_numberIsSet = true;

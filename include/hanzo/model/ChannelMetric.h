@@ -79,10 +79,10 @@ public:
     /// <summary>
     /// SpendCents is what the provider itself reports this channel spent, in CENTS. 0 when the channel never launched, when no executor is wired for it, or when the read failed — SpendError tells the last case apart from a genuine zero.
     /// </summary>
-    int32_t getSpendCents() const;
+    int64_t getSpendCents() const;
     bool spendCentsIsSet() const;
     void unsetSpendCents();
-    void setSpendCents(int32_t value);
+    void setSpendCents(int64_t value);
 
     /// <summary>
     /// SpendError is why this channel&#39;s spend could not be read (connector not connected, provider error), as one secret-free line. Present only on failure; the campaign total then simply omits this channel rather than failing.
@@ -111,7 +111,7 @@ protected:
     utility::string_t m_Platform;
     bool m_PlatformIsSet;
 
-    int32_t m_SpendCents;
+    int64_t m_SpendCents;
     bool m_SpendCentsIsSet;
 
     utility::string_t m_SpendError;

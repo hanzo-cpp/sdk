@@ -22,7 +22,7 @@ O11y_traceRow::O11y_traceRow()
     m_DurationMsIsSet = false;
     m_End = utility::conversions::to_string_t("");
     m_EndIsSet = false;
-    m_NumSpans = 0;
+    m_NumSpans = 0L;
     m_NumSpansIsSet = false;
     m_Start = utility::conversions::to_string_t("");
     m_StartIsSet = false;
@@ -101,7 +101,7 @@ bool O11y_traceRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("numSpans")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNumSpans;
+            int64_t refVal_setNumSpans;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNumSpans);
             setNumSpans(refVal_setNumSpans);
             
@@ -184,7 +184,7 @@ bool O11y_traceRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("numSpans"))))
     {
-        int32_t refVal_setNumSpans;
+        int64_t refVal_setNumSpans;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("numSpans"))), refVal_setNumSpans );
         setNumSpans(refVal_setNumSpans);
     }
@@ -246,13 +246,13 @@ void O11y_traceRow::unsetEnd()
 {
     m_EndIsSet = false;
 }
-int32_t O11y_traceRow::getNumSpans() const
+int64_t O11y_traceRow::getNumSpans() const
 {
     return m_NumSpans;
 }
 
 
-void O11y_traceRow::setNumSpans(int32_t value)
+void O11y_traceRow::setNumSpans(int64_t value)
 {
     m_NumSpans = value;
     m_NumSpansIsSet = true;

@@ -51,10 +51,10 @@ public:
     /// Iam_filter members
 
 
-    int32_t getMaxResults() const;
+    int64_t getMaxResults() const;
     bool maxResultsIsSet() const;
     void unsetMaxResults();
-    void setMaxResults(int32_t value);
+    void setMaxResults(int64_t value);
 
     bool isSupported() const;
     bool supportedIsSet() const;
@@ -63,7 +63,7 @@ public:
 
 
 protected:
-    int32_t m_MaxResults;
+    int64_t m_MaxResults;
     bool m_MaxResultsIsSet;
 
     bool m_Supported;

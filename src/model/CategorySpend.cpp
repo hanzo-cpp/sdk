@@ -20,9 +20,9 @@ CategorySpend::CategorySpend()
 {
     m_Category = utility::conversions::to_string_t("");
     m_CategoryIsSet = false;
-    m_Cents = 0;
+    m_Cents = 0L;
     m_CentsIsSet = false;
-    m_Count = 0;
+    m_Count = 0L;
     m_CountIsSet = false;
 }
 
@@ -76,7 +76,7 @@ bool CategorySpend::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCents;
+            int64_t refVal_setCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCents);
             setCents(refVal_setCents);
             
@@ -87,7 +87,7 @@ bool CategorySpend::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("count")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCount;
+            int64_t refVal_setCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCount);
             setCount(refVal_setCount);
             
@@ -134,13 +134,13 @@ bool CategorySpend::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cents"))))
     {
-        int32_t refVal_setCents;
+        int64_t refVal_setCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cents"))), refVal_setCents );
         setCents(refVal_setCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("count"))))
     {
-        int32_t refVal_setCount;
+        int64_t refVal_setCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("count"))), refVal_setCount );
         setCount(refVal_setCount);
     }
@@ -169,13 +169,13 @@ void CategorySpend::unsetCategory()
 {
     m_CategoryIsSet = false;
 }
-int32_t CategorySpend::getCents() const
+int64_t CategorySpend::getCents() const
 {
     return m_Cents;
 }
 
 
-void CategorySpend::setCents(int32_t value)
+void CategorySpend::setCents(int64_t value)
 {
     m_Cents = value;
     m_CentsIsSet = true;
@@ -190,13 +190,13 @@ void CategorySpend::unsetCents()
 {
     m_CentsIsSet = false;
 }
-int32_t CategorySpend::getCount() const
+int64_t CategorySpend::getCount() const
 {
     return m_Count;
 }
 
 
-void CategorySpend::setCount(int32_t value)
+void CategorySpend::setCount(int64_t value)
 {
     m_Count = value;
     m_CountIsSet = true;

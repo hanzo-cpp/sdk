@@ -20,7 +20,7 @@ AnalyzeQuery::AnalyzeQuery()
 {
     m_Alpha = 0.0;
     m_AlphaIsSet = false;
-    m_Days = 0;
+    m_Days = 0L;
     m_DaysIsSet = false;
     m_End = utility::conversions::to_string_t("");
     m_EndIsSet = false;
@@ -90,7 +90,7 @@ bool AnalyzeQuery::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("days")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDays;
+            int64_t refVal_setDays;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDays);
             setDays(refVal_setDays);
             
@@ -178,7 +178,7 @@ bool AnalyzeQuery::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("days"))))
     {
-        int32_t refVal_setDays;
+        int64_t refVal_setDays;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("days"))), refVal_setDays );
         setDays(refVal_setDays);
     }
@@ -225,13 +225,13 @@ void AnalyzeQuery::unsetAlpha()
 {
     m_AlphaIsSet = false;
 }
-int32_t AnalyzeQuery::getDays() const
+int64_t AnalyzeQuery::getDays() const
 {
     return m_Days;
 }
 
 
-void AnalyzeQuery::setDays(int32_t value)
+void AnalyzeQuery::setDays(int64_t value)
 {
     m_Days = value;
     m_DaysIsSet = true;

@@ -18,19 +18,19 @@ namespace model {
 
 O11y_O11yLLMSession::O11y_O11yLLMSession()
 {
-    m_CompletionTokens = 0;
+    m_CompletionTokens = 0L;
     m_CompletionTokensIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
-    m_Observations = 0;
+    m_Observations = 0L;
     m_ObservationsIsSet = false;
-    m_PromptTokens = 0;
+    m_PromptTokens = 0L;
     m_PromptTokensIsSet = false;
     m_TotalCost = 0.0;
     m_TotalCostIsSet = false;
-    m_TotalTokens = 0;
+    m_TotalTokens = 0L;
     m_TotalTokensIsSet = false;
-    m_Traces = 0;
+    m_Traces = 0L;
     m_TracesIsSet = false;
     m_UserId = utility::conversions::to_string_t("");
     m_UserIdIsSet = false;
@@ -100,7 +100,7 @@ bool O11y_O11yLLMSession::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("completionTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCompletionTokens;
+            int64_t refVal_setCompletionTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCompletionTokens);
             setCompletionTokens(refVal_setCompletionTokens);
             
@@ -122,7 +122,7 @@ bool O11y_O11yLLMSession::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("observations")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setObservations;
+            int64_t refVal_setObservations;
             ok &= ModelBase::fromJson(fieldValue, refVal_setObservations);
             setObservations(refVal_setObservations);
             
@@ -133,7 +133,7 @@ bool O11y_O11yLLMSession::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("promptTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPromptTokens;
+            int64_t refVal_setPromptTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPromptTokens);
             setPromptTokens(refVal_setPromptTokens);
             
@@ -155,7 +155,7 @@ bool O11y_O11yLLMSession::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("totalTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotalTokens;
+            int64_t refVal_setTotalTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalTokens);
             setTotalTokens(refVal_setTotalTokens);
             
@@ -166,7 +166,7 @@ bool O11y_O11yLLMSession::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("traces")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTraces;
+            int64_t refVal_setTraces;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTraces);
             setTraces(refVal_setTraces);
             
@@ -238,7 +238,7 @@ bool O11y_O11yLLMSession::fromMultiPart(std::shared_ptr<MultipartFormData> multi
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("completionTokens"))))
     {
-        int32_t refVal_setCompletionTokens;
+        int64_t refVal_setCompletionTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("completionTokens"))), refVal_setCompletionTokens );
         setCompletionTokens(refVal_setCompletionTokens);
     }
@@ -250,13 +250,13 @@ bool O11y_O11yLLMSession::fromMultiPart(std::shared_ptr<MultipartFormData> multi
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("observations"))))
     {
-        int32_t refVal_setObservations;
+        int64_t refVal_setObservations;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("observations"))), refVal_setObservations );
         setObservations(refVal_setObservations);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("promptTokens"))))
     {
-        int32_t refVal_setPromptTokens;
+        int64_t refVal_setPromptTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("promptTokens"))), refVal_setPromptTokens );
         setPromptTokens(refVal_setPromptTokens);
     }
@@ -268,13 +268,13 @@ bool O11y_O11yLLMSession::fromMultiPart(std::shared_ptr<MultipartFormData> multi
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("totalTokens"))))
     {
-        int32_t refVal_setTotalTokens;
+        int64_t refVal_setTotalTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("totalTokens"))), refVal_setTotalTokens );
         setTotalTokens(refVal_setTotalTokens);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("traces"))))
     {
-        int32_t refVal_setTraces;
+        int64_t refVal_setTraces;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("traces"))), refVal_setTraces );
         setTraces(refVal_setTraces);
     }
@@ -288,13 +288,13 @@ bool O11y_O11yLLMSession::fromMultiPart(std::shared_ptr<MultipartFormData> multi
 }
 
 
-int32_t O11y_O11yLLMSession::getCompletionTokens() const
+int64_t O11y_O11yLLMSession::getCompletionTokens() const
 {
     return m_CompletionTokens;
 }
 
 
-void O11y_O11yLLMSession::setCompletionTokens(int32_t value)
+void O11y_O11yLLMSession::setCompletionTokens(int64_t value)
 {
     m_CompletionTokens = value;
     m_CompletionTokensIsSet = true;
@@ -330,13 +330,13 @@ void O11y_O11yLLMSession::unsetId()
 {
     m_IdIsSet = false;
 }
-int32_t O11y_O11yLLMSession::getObservations() const
+int64_t O11y_O11yLLMSession::getObservations() const
 {
     return m_Observations;
 }
 
 
-void O11y_O11yLLMSession::setObservations(int32_t value)
+void O11y_O11yLLMSession::setObservations(int64_t value)
 {
     m_Observations = value;
     m_ObservationsIsSet = true;
@@ -351,13 +351,13 @@ void O11y_O11yLLMSession::unsetObservations()
 {
     m_ObservationsIsSet = false;
 }
-int32_t O11y_O11yLLMSession::getPromptTokens() const
+int64_t O11y_O11yLLMSession::getPromptTokens() const
 {
     return m_PromptTokens;
 }
 
 
-void O11y_O11yLLMSession::setPromptTokens(int32_t value)
+void O11y_O11yLLMSession::setPromptTokens(int64_t value)
 {
     m_PromptTokens = value;
     m_PromptTokensIsSet = true;
@@ -393,13 +393,13 @@ void O11y_O11yLLMSession::unsetTotalCost()
 {
     m_TotalCostIsSet = false;
 }
-int32_t O11y_O11yLLMSession::getTotalTokens() const
+int64_t O11y_O11yLLMSession::getTotalTokens() const
 {
     return m_TotalTokens;
 }
 
 
-void O11y_O11yLLMSession::setTotalTokens(int32_t value)
+void O11y_O11yLLMSession::setTotalTokens(int64_t value)
 {
     m_TotalTokens = value;
     m_TotalTokensIsSet = true;
@@ -414,13 +414,13 @@ void O11y_O11yLLMSession::unsetTotalTokens()
 {
     m_TotalTokensIsSet = false;
 }
-int32_t O11y_O11yLLMSession::getTraces() const
+int64_t O11y_O11yLLMSession::getTraces() const
 {
     return m_Traces;
 }
 
 
-void O11y_O11yLLMSession::setTraces(int32_t value)
+void O11y_O11yLLMSession::setTraces(int64_t value)
 {
     m_Traces = value;
     m_TracesIsSet = true;

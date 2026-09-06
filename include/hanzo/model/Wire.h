@@ -191,10 +191,10 @@ public:
     /// <summary>
     /// Status is the HTTP status the caller received. It is the outcome as the client saw it, so a 200 carrying a domain refusal still reads 200 here.
     /// </summary>
-    int32_t getStatus() const;
+    int64_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
-    void setStatus(int32_t value);
+    void setStatus(int64_t value);
 
     /// <summary>
     /// Sub is the acting user (the IAM subject). Empty for a machine principal or an anonymous request, which is how a service action is told from a person&#39;s.
@@ -273,7 +273,7 @@ protected:
     utility::string_t m_SourceIp;
     bool m_SourceIpIsSet;
 
-    int32_t m_Status;
+    int64_t m_Status;
     bool m_StatusIsSet;
 
     utility::string_t m_Sub;

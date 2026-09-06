@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// CreatedAt is when the plan was recorded, in unix milliseconds.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// DefaultCancellatonBehavior is what happens to cancelled grants, RETIRE or RETURN_TO_POOL. The key is spelled as the cap-table wire spells it.
@@ -95,10 +95,10 @@ public:
     /// <summary>
     /// InitialSharesReserved is how many shares the plan reserves.
     /// </summary>
-    int32_t getInitialSharesReserved() const;
+    int64_t getInitialSharesReserved() const;
     bool initialSharesReservedIsSet() const;
     void unsetInitialSharesReserved();
-    void setInitialSharesReserved(int32_t value);
+    void setInitialSharesReserved(int64_t value);
 
     /// <summary>
     /// Name is the plan name, e.g. \&quot;2026 Stock Option Plan\&quot;.
@@ -132,7 +132,7 @@ protected:
     utility::string_t m_Comments;
     bool m_CommentsIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_DefaultCancellatonBehavior;
@@ -141,7 +141,7 @@ protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
 
-    int32_t m_InitialSharesReserved;
+    int64_t m_InitialSharesReserved;
     bool m_InitialSharesReservedIsSet;
 
     utility::string_t m_Name;

@@ -54,22 +54,22 @@ public:
     /// O11y_metricsResponse_range members
 
 
-    int32_t getSinceSec() const;
+    int64_t getSinceSec() const;
     bool sinceSecIsSet() const;
     void unsetSinceSec();
-    void setSinceSec(int32_t value);
+    void setSinceSec(int64_t value);
 
-    int32_t getStepSec() const;
+    int64_t getStepSec() const;
     bool stepSecIsSet() const;
     void unsetStepSec();
-    void setStepSec(int32_t value);
+    void setStepSec(int64_t value);
 
 
 protected:
-    int32_t m_SinceSec;
+    int64_t m_SinceSec;
     bool m_SinceSecIsSet;
 
-    int32_t m_StepSec;
+    int64_t m_StepSec;
     bool m_StepSecIsSet;
 
 };

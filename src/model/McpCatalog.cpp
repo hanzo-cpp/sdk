@@ -19,11 +19,11 @@ namespace model {
 McpCatalog::McpCatalog()
 {
     m_CatalogIsSet = false;
-    m_Limit = 0;
+    m_Limit = 0L;
     m_LimitIsSet = false;
-    m_Offset = 0;
+    m_Offset = 0L;
     m_OffsetIsSet = false;
-    m_Total = 0;
+    m_Total = 0L;
     m_TotalIsSet = false;
 }
 
@@ -82,7 +82,7 @@ bool McpCatalog::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("limit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLimit;
+            int64_t refVal_setLimit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLimit);
             setLimit(refVal_setLimit);
             
@@ -93,7 +93,7 @@ bool McpCatalog::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("offset")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOffset;
+            int64_t refVal_setOffset;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOffset);
             setOffset(refVal_setOffset);
             
@@ -104,7 +104,7 @@ bool McpCatalog::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("total")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotal;
+            int64_t refVal_setTotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotal);
             setTotal(refVal_setTotal);
             
@@ -155,19 +155,19 @@ bool McpCatalog::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("limit"))))
     {
-        int32_t refVal_setLimit;
+        int64_t refVal_setLimit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("limit"))), refVal_setLimit );
         setLimit(refVal_setLimit);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("offset"))))
     {
-        int32_t refVal_setOffset;
+        int64_t refVal_setOffset;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("offset"))), refVal_setOffset );
         setOffset(refVal_setOffset);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("total"))))
     {
-        int32_t refVal_setTotal;
+        int64_t refVal_setTotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("total"))), refVal_setTotal );
         setTotal(refVal_setTotal);
     }
@@ -196,13 +196,13 @@ void McpCatalog::unsetCatalog()
 {
     m_CatalogIsSet = false;
 }
-int32_t McpCatalog::getLimit() const
+int64_t McpCatalog::getLimit() const
 {
     return m_Limit;
 }
 
 
-void McpCatalog::setLimit(int32_t value)
+void McpCatalog::setLimit(int64_t value)
 {
     m_Limit = value;
     m_LimitIsSet = true;
@@ -217,13 +217,13 @@ void McpCatalog::unsetLimit()
 {
     m_LimitIsSet = false;
 }
-int32_t McpCatalog::getOffset() const
+int64_t McpCatalog::getOffset() const
 {
     return m_Offset;
 }
 
 
-void McpCatalog::setOffset(int32_t value)
+void McpCatalog::setOffset(int64_t value)
 {
     m_Offset = value;
     m_OffsetIsSet = true;
@@ -238,13 +238,13 @@ void McpCatalog::unsetOffset()
 {
     m_OffsetIsSet = false;
 }
-int32_t McpCatalog::getTotal() const
+int64_t McpCatalog::getTotal() const
 {
     return m_Total;
 }
 
 
-void McpCatalog::setTotal(int32_t value)
+void McpCatalog::setTotal(int64_t value)
 {
     m_Total = value;
     m_TotalIsSet = true;

@@ -58,18 +58,18 @@ public:
     /// <summary>
     /// AmountDueCents is what remains collectible.
     /// </summary>
-    int32_t getAmountDueCents() const;
+    int64_t getAmountDueCents() const;
     bool amountDueCentsIsSet() const;
     void unsetAmountDueCents();
-    void setAmountDueCents(int32_t value);
+    void setAmountDueCents(int64_t value);
 
     /// <summary>
     /// AmountPaidCents is what has been collected so far.
     /// </summary>
-    int32_t getAmountPaidCents() const;
+    int64_t getAmountPaidCents() const;
     bool amountPaidCentsIsSet() const;
     void unsetAmountPaidCents();
-    void setAmountPaidCents(int32_t value);
+    void setAmountPaidCents(int64_t value);
 
     /// <summary>
     /// CreatedAt is when the draft was raised, RFC3339.
@@ -138,10 +138,10 @@ public:
     /// <summary>
     /// SubtotalCents is the sum of the lines.
     /// </summary>
-    int32_t getSubtotalCents() const;
+    int64_t getSubtotalCents() const;
     bool subtotalCentsIsSet() const;
     void unsetSubtotalCents();
-    void setSubtotalCents(int32_t value);
+    void setSubtotalCents(int64_t value);
 
     /// <summary>
     /// UserID is the customer billed.
@@ -153,10 +153,10 @@ public:
 
 
 protected:
-    int32_t m_AmountDueCents;
+    int64_t m_AmountDueCents;
     bool m_AmountDueCentsIsSet;
 
-    int32_t m_AmountPaidCents;
+    int64_t m_AmountPaidCents;
     bool m_AmountPaidCentsIsSet;
 
     utility::string_t m_CreatedAt;
@@ -183,7 +183,7 @@ protected:
     utility::string_t m_Status;
     bool m_StatusIsSet;
 
-    int32_t m_SubtotalCents;
+    int64_t m_SubtotalCents;
     bool m_SubtotalCentsIsSet;
 
     utility::string_t m_UserId;

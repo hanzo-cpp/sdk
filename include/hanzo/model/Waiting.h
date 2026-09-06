@@ -103,10 +103,10 @@ public:
     /// <summary>
     /// Since is when the formation was last touched, as a unix second.
     /// </summary>
-    int32_t getSince() const;
+    int64_t getSince() const;
     bool sinceIsSet() const;
     void unsetSince();
-    void setSince(int32_t value);
+    void setSince(int64_t value);
 
 
 protected:
@@ -128,7 +128,7 @@ protected:
     utility::string_t m_Org;
     bool m_OrgIsSet;
 
-    int32_t m_Since;
+    int64_t m_Since;
     bool m_SinceIsSet;
 
 };

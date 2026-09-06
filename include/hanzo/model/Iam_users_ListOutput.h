@@ -54,10 +54,10 @@ public:
     /// Iam_users_ListOutput members
 
 
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
     std::vector<std::shared_ptr<Iam_User>> getUsers() const;
     bool usersIsSet() const;
@@ -66,7 +66,7 @@ public:
 
 
 protected:
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
     std::vector<std::shared_ptr<Iam_User>> m_Users;

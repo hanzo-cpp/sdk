@@ -18,9 +18,9 @@ namespace model {
 
 SummaryView::SummaryView()
 {
-    m_Doctypes = 0;
+    m_Doctypes = 0L;
     m_DoctypesIsSet = false;
-    m_Documents = 0;
+    m_Documents = 0L;
     m_DocumentsIsSet = false;
 }
 
@@ -58,7 +58,7 @@ bool SummaryView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("doctypes")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDoctypes;
+            int64_t refVal_setDoctypes;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDoctypes);
             setDoctypes(refVal_setDoctypes);
             
@@ -69,7 +69,7 @@ bool SummaryView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("documents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDocuments;
+            int64_t refVal_setDocuments;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDocuments);
             setDocuments(refVal_setDocuments);
             
@@ -106,13 +106,13 @@ bool SummaryView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("doctypes"))))
     {
-        int32_t refVal_setDoctypes;
+        int64_t refVal_setDoctypes;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("doctypes"))), refVal_setDoctypes );
         setDoctypes(refVal_setDoctypes);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("documents"))))
     {
-        int32_t refVal_setDocuments;
+        int64_t refVal_setDocuments;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("documents"))), refVal_setDocuments );
         setDocuments(refVal_setDocuments);
     }
@@ -120,13 +120,13 @@ bool SummaryView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 }
 
 
-int32_t SummaryView::getDoctypes() const
+int64_t SummaryView::getDoctypes() const
 {
     return m_Doctypes;
 }
 
 
-void SummaryView::setDoctypes(int32_t value)
+void SummaryView::setDoctypes(int64_t value)
 {
     m_Doctypes = value;
     m_DoctypesIsSet = true;
@@ -141,13 +141,13 @@ void SummaryView::unsetDoctypes()
 {
     m_DoctypesIsSet = false;
 }
-int32_t SummaryView::getDocuments() const
+int64_t SummaryView::getDocuments() const
 {
     return m_Documents;
 }
 
 
-void SummaryView::setDocuments(int32_t value)
+void SummaryView::setDocuments(int64_t value)
 {
     m_Documents = value;
     m_DocumentsIsSet = true;

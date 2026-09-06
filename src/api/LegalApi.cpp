@@ -33,7 +33,7 @@ LegalApi::~LegalApi()
 {
 }
 
-pplx::task<std::shared_ptr<DocumentPage>> LegalApi::getLegalDocuments(boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<DocumentPage>> LegalApi::getLegalDocuments(boost::optional<int64_t> limit) const
 {
 
 
@@ -284,7 +284,7 @@ pplx::task<std::shared_ptr<DocumentReply>> LegalApi::getLegalDocumentsById(utili
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<FilingPage>> LegalApi::getLegalFilings(boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<FilingPage>> LegalApi::getLegalFilings(boost::optional<int64_t> limit) const
 {
 
 

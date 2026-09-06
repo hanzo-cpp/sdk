@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// Attempt is which try this is, counting from 1. Above 1 means the job was retried after a failed or abandoned run.
     /// </summary>
-    int32_t getAttempt() const;
+    int64_t getAttempt() const;
     bool attemptIsSet() const;
     void unsetAttempt();
-    void setAttempt(int32_t value);
+    void setAttempt(int64_t value);
 
     /// <summary>
     /// CloseTime is when the job reached a terminal state, RFC 3339. Empty means it is still live — queued, running or stalled.
@@ -158,7 +158,7 @@ public:
 
 
 protected:
-    int32_t m_Attempt;
+    int64_t m_Attempt;
     bool m_AttemptIsSet;
 
     utility::string_t m_CloseTime;

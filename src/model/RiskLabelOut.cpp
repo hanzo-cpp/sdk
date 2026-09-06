@@ -18,15 +18,15 @@ namespace model {
 
 RiskLabelOut::RiskLabelOut()
 {
-    m_Duplicate = 0;
+    m_Duplicate = 0L;
     m_DuplicateIsSet = false;
     m_Mirror = utility::conversions::to_string_t("");
     m_MirrorIsSet = false;
-    m_Pending = 0;
+    m_Pending = 0L;
     m_PendingIsSet = false;
-    m_Recorded = 0;
+    m_Recorded = 0L;
     m_RecordedIsSet = false;
-    m_Refused = 0;
+    m_Refused = 0L;
     m_RefusedIsSet = false;
     m_ResultsIsSet = false;
 }
@@ -85,7 +85,7 @@ bool RiskLabelOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("duplicate")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDuplicate;
+            int64_t refVal_setDuplicate;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDuplicate);
             setDuplicate(refVal_setDuplicate);
             
@@ -107,7 +107,7 @@ bool RiskLabelOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("pending")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPending;
+            int64_t refVal_setPending;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPending);
             setPending(refVal_setPending);
             
@@ -118,7 +118,7 @@ bool RiskLabelOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("recorded")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRecorded;
+            int64_t refVal_setRecorded;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRecorded);
             setRecorded(refVal_setRecorded);
             
@@ -129,7 +129,7 @@ bool RiskLabelOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("refused")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRefused;
+            int64_t refVal_setRefused;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRefused);
             setRefused(refVal_setRefused);
             
@@ -193,7 +193,7 @@ bool RiskLabelOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("duplicate"))))
     {
-        int32_t refVal_setDuplicate;
+        int64_t refVal_setDuplicate;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("duplicate"))), refVal_setDuplicate );
         setDuplicate(refVal_setDuplicate);
     }
@@ -205,19 +205,19 @@ bool RiskLabelOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("pending"))))
     {
-        int32_t refVal_setPending;
+        int64_t refVal_setPending;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("pending"))), refVal_setPending );
         setPending(refVal_setPending);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("recorded"))))
     {
-        int32_t refVal_setRecorded;
+        int64_t refVal_setRecorded;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("recorded"))), refVal_setRecorded );
         setRecorded(refVal_setRecorded);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("refused"))))
     {
-        int32_t refVal_setRefused;
+        int64_t refVal_setRefused;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("refused"))), refVal_setRefused );
         setRefused(refVal_setRefused);
     }
@@ -231,13 +231,13 @@ bool RiskLabelOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
 }
 
 
-int32_t RiskLabelOut::getDuplicate() const
+int64_t RiskLabelOut::getDuplicate() const
 {
     return m_Duplicate;
 }
 
 
-void RiskLabelOut::setDuplicate(int32_t value)
+void RiskLabelOut::setDuplicate(int64_t value)
 {
     m_Duplicate = value;
     m_DuplicateIsSet = true;
@@ -273,13 +273,13 @@ void RiskLabelOut::unsetMirror()
 {
     m_MirrorIsSet = false;
 }
-int32_t RiskLabelOut::getPending() const
+int64_t RiskLabelOut::getPending() const
 {
     return m_Pending;
 }
 
 
-void RiskLabelOut::setPending(int32_t value)
+void RiskLabelOut::setPending(int64_t value)
 {
     m_Pending = value;
     m_PendingIsSet = true;
@@ -294,13 +294,13 @@ void RiskLabelOut::unsetPending()
 {
     m_PendingIsSet = false;
 }
-int32_t RiskLabelOut::getRecorded() const
+int64_t RiskLabelOut::getRecorded() const
 {
     return m_Recorded;
 }
 
 
-void RiskLabelOut::setRecorded(int32_t value)
+void RiskLabelOut::setRecorded(int64_t value)
 {
     m_Recorded = value;
     m_RecordedIsSet = true;
@@ -315,13 +315,13 @@ void RiskLabelOut::unsetRecorded()
 {
     m_RecordedIsSet = false;
 }
-int32_t RiskLabelOut::getRefused() const
+int64_t RiskLabelOut::getRefused() const
 {
     return m_Refused;
 }
 
 
-void RiskLabelOut::setRefused(int32_t value)
+void RiskLabelOut::setRefused(int64_t value)
 {
     m_Refused = value;
     m_RefusedIsSet = true;

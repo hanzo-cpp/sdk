@@ -56,10 +56,10 @@ public:
     /// <summary>
     /// End is the window&#39;s end, epoch nanoseconds.
     /// </summary>
-    int32_t getEnd() const;
+    int64_t getEnd() const;
     bool endIsSet() const;
     void unsetEnd();
-    void setEnd(int32_t value);
+    void setEnd(int64_t value);
 
     /// <summary>
     /// Filters narrow the rows by span attribute; null means all rows.
@@ -72,31 +72,31 @@ public:
     /// <summary>
     /// Limit caps how many rows come back.
     /// </summary>
-    int32_t getLimit() const;
+    int64_t getLimit() const;
     bool limitIsSet() const;
     void unsetLimit();
-    void setLimit(int32_t value);
+    void setLimit(int64_t value);
 
     /// <summary>
     /// Start is the window&#39;s start, epoch nanoseconds.
     /// </summary>
-    int32_t getStart() const;
+    int64_t getStart() const;
     bool startIsSet() const;
     void unsetStart();
-    void setStart(int32_t value);
+    void setStart(int64_t value);
 
 
 protected:
-    int32_t m_End;
+    int64_t m_End;
     bool m_EndIsSet;
 
     std::shared_ptr<O11y_O11yQueueFilterSet> m_Filters;
     bool m_FiltersIsSet;
 
-    int32_t m_Limit;
+    int64_t m_Limit;
     bool m_LimitIsSet;
 
-    int32_t m_Start;
+    int64_t m_Start;
     bool m_StartIsSet;
 
 };

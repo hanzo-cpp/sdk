@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// Rules is how many detection rules the engine holds.
     /// </summary>
-    int32_t getRules() const;
+    int64_t getRules() const;
     bool rulesIsSet() const;
     void unsetRules();
-    void setRules(int32_t value);
+    void setRules(int64_t value);
 
     /// <summary>
     /// Status is \&quot;ok\&quot; whenever the findings store opened.
@@ -70,7 +70,7 @@ public:
 
 
 protected:
-    int32_t m_Rules;
+    int64_t m_Rules;
     bool m_RulesIsSet;
 
     utility::string_t m_Status;

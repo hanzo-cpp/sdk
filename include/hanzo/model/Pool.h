@@ -62,18 +62,18 @@ public:
     void unsetAt();
     void setAt(const utility::string_t& value);
 
-    int32_t getCount() const;
+    int64_t getCount() const;
     bool countIsSet() const;
     void unsetCount();
-    void setCount(int32_t value);
+    void setCount(int64_t value);
 
     /// <summary>
     /// Fee is the pool&#39;s tier in hundredths of a basis point — 3000 is 0.3%. It is the integer the contract stores, unconverted, so nothing here rounds a rate.
     /// </summary>
-    int32_t getFee() const;
+    int64_t getFee() const;
     bool feeIsSet() const;
     void unsetFee();
-    void setFee(int32_t value);
+    void setFee(int64_t value);
 
     utility::string_t getLocked() const;
     bool lockedIsSet() const;
@@ -113,10 +113,10 @@ protected:
     utility::string_t m_At;
     bool m_AtIsSet;
 
-    int32_t m_Count;
+    int64_t m_Count;
     bool m_CountIsSet;
 
-    int32_t m_Fee;
+    int64_t m_Fee;
     bool m_FeeIsSet;
 
     utility::string_t m_Locked;

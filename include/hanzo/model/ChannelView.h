@@ -95,7 +95,7 @@ public:
     void setDmPolicy(const utility::string_t& value);
 
     /// <summary>
-    /// GroupPolicy is how this org admits group and thread rooms here: \&quot;open\&quot;, \&quot;allowlist\&quot; or \&quot;disabled\&quot;, defaulting to \&quot;open\&quot;. Both policy fields come back EMPTY — rather than the listing failing — when the policy cannot be read; GET /v1/channels/allowlist carries the same two with the entries they consult.
+    /// GroupPolicy is how this org admits group and thread rooms here: \&quot;open\&quot;, \&quot;allowlist\&quot; or \&quot;disabled\&quot;, defaulting to \&quot;open\&quot;. Both policy fields come back EMPTY — rather than the listing failing — when the policy cannot be read; GET /v1/channel/allowlist carries the same two with the entries they consult.
     /// </summary>
     utility::string_t getGroupPolicy() const;
     bool groupPolicyIsSet() const;
@@ -111,12 +111,12 @@ public:
     void setId(const utility::string_t& value);
 
     /// <summary>
-    /// PendingPairing counts the org&#39;s UNEXPIRED pairing requests on this channel: exactly the rows GET /v1/channels/pairing returns for it, one per person waiting on an admin. It never exceeds three — the pending cap per (org, channel) — and expired requests are not counted.
+    /// PendingPairing counts the org&#39;s UNEXPIRED pairing requests on this channel: exactly the rows GET /v1/channel/pairing returns for it, one per person waiting on an admin. It never exceeds three — the pending cap per (org, channel) — and expired requests are not counted.
     /// </summary>
-    int32_t getPendingPairing() const;
+    int64_t getPendingPairing() const;
     bool pendingPairingIsSet() const;
     void unsetPendingPairing();
-    void setPendingPairing(int32_t value);
+    void setPendingPairing(int64_t value);
 
 
 protected:
@@ -141,7 +141,7 @@ protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
 
-    int32_t m_PendingPairing;
+    int64_t m_PendingPairing;
     bool m_PendingPairingIsSet;
 
 };

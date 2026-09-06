@@ -56,18 +56,18 @@ public:
     /// <summary>
     /// Budget is the sum of every campaign&#39;s budget, in CENTS.
     /// </summary>
-    int32_t getBudget() const;
+    int64_t getBudget() const;
     bool budgetIsSet() const;
     void unsetBudget();
-    void setBudget(int32_t value);
+    void setBudget(int64_t value);
 
     /// <summary>
     /// Campaigns is how many campaigns the org has, in any state.
     /// </summary>
-    int32_t getCampaigns() const;
+    int64_t getCampaigns() const;
     bool campaignsIsSet() const;
     void unsetCampaigns();
-    void setCampaigns(int32_t value);
+    void setCampaigns(int64_t value);
 
     /// <summary>
     /// Channels are the channel kinds this deployment has an executor wired for. A kind absent here is a kind a launch will honestly record as unavailable.
@@ -80,23 +80,23 @@ public:
     /// <summary>
     /// Live is how many of them are currently live.
     /// </summary>
-    int32_t getLive() const;
+    int64_t getLive() const;
     bool liveIsSet() const;
     void unsetLive();
-    void setLive(int32_t value);
+    void setLive(int64_t value);
 
 
 protected:
-    int32_t m_Budget;
+    int64_t m_Budget;
     bool m_BudgetIsSet;
 
-    int32_t m_Campaigns;
+    int64_t m_Campaigns;
     bool m_CampaignsIsSet;
 
     std::vector<utility::string_t> m_Channels;
     bool m_ChannelsIsSet;
 
-    int32_t m_Live;
+    int64_t m_Live;
     bool m_LiveIsSet;
 
 };

@@ -74,10 +74,10 @@ public:
     /// <summary>
     /// Total is how many models Data holds.
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
 
 protected:
@@ -87,7 +87,7 @@ protected:
     std::vector<std::shared_ptr<ModelHistory>> m_Data;
     bool m_DataIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
 };

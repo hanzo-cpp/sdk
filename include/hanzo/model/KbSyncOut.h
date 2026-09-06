@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// Ingested is how many documents landed in the org&#39;s knowledge store.
     /// </summary>
-    int32_t getIngested() const;
+    int64_t getIngested() const;
     bool ingestedIsSet() const;
     void unsetIngested();
-    void setIngested(int32_t value);
+    void setIngested(int64_t value);
 
     /// <summary>
     /// Provider is the connector that was pulled.
@@ -70,7 +70,7 @@ public:
 
 
 protected:
-    int32_t m_Ingested;
+    int64_t m_Ingested;
     bool m_IngestedIsSet;
 
     utility::string_t m_Provider;

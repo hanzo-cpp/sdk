@@ -32,7 +32,7 @@ ProvisionResult::ProvisionResult()
     m_NameIsSet = false;
     m_Password = utility::conversions::to_string_t("");
     m_PasswordIsSet = false;
-    m_Port = 0;
+    m_Port = 0L;
     m_PortIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
@@ -191,7 +191,7 @@ bool ProvisionResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("port")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPort;
+            int64_t refVal_setPort;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPort);
             setPort(refVal_setPort);
             
@@ -324,7 +324,7 @@ bool ProvisionResult::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("port"))))
     {
-        int32_t refVal_setPort;
+        int64_t refVal_setPort;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("port"))), refVal_setPort );
         setPort(refVal_setPort);
     }
@@ -491,13 +491,13 @@ void ProvisionResult::unsetPassword()
 {
     m_PasswordIsSet = false;
 }
-int32_t ProvisionResult::getPort() const
+int64_t ProvisionResult::getPort() const
 {
     return m_Port;
 }
 
 
-void ProvisionResult::setPort(int32_t value)
+void ProvisionResult::setPort(int64_t value)
 {
     m_Port = value;
     m_PortIsSet = true;

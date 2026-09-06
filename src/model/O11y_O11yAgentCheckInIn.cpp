@@ -44,15 +44,15 @@ web::json::value O11y_O11yAgentCheckInIn::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("account_id"))] = ModelBase::toJson(m_Account_id);
     }
-    if(m_Cloud_account_idIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("cloud_account_id"))] = ModelBase::toJson(m_Cloud_account_id);
-    }
     if(m_CloudIntegrationId.has_value())
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("cloudIntegrationId"))] = ModelBase::toJson(m_CloudIntegrationId.get());
+    }
+    if(m_Cloud_account_idIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("cloud_account_id"))] = ModelBase::toJson(m_Cloud_account_id);
     }
     if(m_DataIsSet)
     {
@@ -82,17 +82,6 @@ bool O11y_O11yAgentCheckInIn::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("cloud_account_id"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cloud_account_id")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setCloudAccountId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setCloudAccountId);
-            setCloudAccountId(refVal_setCloudAccountId);
-            
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("cloudIntegrationId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cloudIntegrationId")));
@@ -101,6 +90,17 @@ bool O11y_O11yAgentCheckInIn::fromJson(const web::json::value& val)
             std::shared_ptr<AnyType> refVal_setCloudIntegrationId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCloudIntegrationId);
             setCloudIntegrationId(refVal_setCloudIntegrationId);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("cloud_account_id"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cloud_account_id")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setCloudAccountId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setCloudAccountId);
+            setCloudAccountId(refVal_setCloudAccountId);
             
         }
     }
@@ -140,13 +140,13 @@ void O11y_O11yAgentCheckInIn::toMultipart(std::shared_ptr<MultipartFormData> mul
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("account_id")), m_Account_id));
     }
-    if(m_Cloud_account_idIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("cloud_account_id")), m_Cloud_account_id));
-    }
     if(m_CloudIntegrationId.has_value())
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("cloudIntegrationId")), m_CloudIntegrationId.get()));
+    }
+    if(m_Cloud_account_idIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("cloud_account_id")), m_Cloud_account_id));
     }
     if(m_DataIsSet)
     {
@@ -173,17 +173,17 @@ bool O11y_O11yAgentCheckInIn::fromMultiPart(std::shared_ptr<MultipartFormData> m
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("account_id"))), refVal_setAccountId );
         setAccountId(refVal_setAccountId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cloud_account_id"))))
-    {
-        utility::string_t refVal_setCloudAccountId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cloud_account_id"))), refVal_setCloudAccountId );
-        setCloudAccountId(refVal_setCloudAccountId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cloudIntegrationId"))))
     {
         std::shared_ptr<AnyType> refVal_setCloudIntegrationId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cloudIntegrationId"))), refVal_setCloudIntegrationId );
         setCloudIntegrationId(refVal_setCloudIntegrationId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cloud_account_id"))))
+    {
+        utility::string_t refVal_setCloudAccountId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cloud_account_id"))), refVal_setCloudAccountId );
+        setCloudAccountId(refVal_setCloudAccountId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("data"))))
     {
@@ -222,6 +222,26 @@ void O11y_O11yAgentCheckInIn::unsetAccount_id()
 {
     m_Account_idIsSet = false;
 }
+std::shared_ptr<AnyType> O11y_O11yAgentCheckInIn::getCloudIntegrationId() const
+{
+    return m_CloudIntegrationId.get();
+}
+
+
+void O11y_O11yAgentCheckInIn::setCloudIntegrationId(const std::shared_ptr<AnyType>& value)
+{
+    m_CloudIntegrationId = value;
+}
+
+bool O11y_O11yAgentCheckInIn::cloudIntegrationIdIsSet() const
+{
+    return m_CloudIntegrationId.has_value();
+}
+
+void O11y_O11yAgentCheckInIn::unsetCloudIntegrationId()
+{
+    m_CloudIntegrationId.reset();
+}
 utility::string_t O11y_O11yAgentCheckInIn::getCloudAccountId() const
 {
     return m_Cloud_account_id;
@@ -242,26 +262,6 @@ bool O11y_O11yAgentCheckInIn::cloudAccountIdIsSet() const
 void O11y_O11yAgentCheckInIn::unsetCloud_account_id()
 {
     m_Cloud_account_idIsSet = false;
-}
-std::shared_ptr<AnyType> O11y_O11yAgentCheckInIn::getCloudIntegrationId() const
-{
-    return m_CloudIntegrationId.get();
-}
-
-
-void O11y_O11yAgentCheckInIn::setCloudIntegrationId(const std::shared_ptr<AnyType>& value)
-{
-    m_CloudIntegrationId = value;
-}
-
-bool O11y_O11yAgentCheckInIn::cloudIntegrationIdIsSet() const
-{
-    return m_CloudIntegrationId.has_value();
-}
-
-void O11y_O11yAgentCheckInIn::unsetCloudIntegrationId()
-{
-    m_CloudIntegrationId.reset();
 }
 std::map<utility::string_t, std::shared_ptr<Object>> O11y_O11yAgentCheckInIn::getData() const
 {

@@ -20,7 +20,7 @@ CsrfResp::CsrfResp()
 {
     m_CsrfToken = utility::conversions::to_string_t("");
     m_CsrfTokenIsSet = false;
-    m_ExpiresIn = 0;
+    m_ExpiresIn = 0L;
     m_ExpiresInIsSet = false;
 }
 
@@ -69,7 +69,7 @@ bool CsrfResp::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("expiresIn")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExpiresIn;
+            int64_t refVal_setExpiresIn;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExpiresIn);
             setExpiresIn(refVal_setExpiresIn);
             
@@ -112,7 +112,7 @@ bool CsrfResp::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("expiresIn"))))
     {
-        int32_t refVal_setExpiresIn;
+        int64_t refVal_setExpiresIn;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("expiresIn"))), refVal_setExpiresIn );
         setExpiresIn(refVal_setExpiresIn);
     }
@@ -141,13 +141,13 @@ void CsrfResp::unsetCsrfToken()
 {
     m_CsrfTokenIsSet = false;
 }
-int32_t CsrfResp::getExpiresIn() const
+int64_t CsrfResp::getExpiresIn() const
 {
     return m_ExpiresIn;
 }
 
 
-void CsrfResp::setExpiresIn(int32_t value)
+void CsrfResp::setExpiresIn(int64_t value)
 {
     m_ExpiresIn = value;
     m_ExpiresInIsSet = true;

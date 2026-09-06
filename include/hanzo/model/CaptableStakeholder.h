@@ -79,10 +79,10 @@ public:
     /// <summary>
     /// CreatedAt is when the stakeholder was added, in unix milliseconds.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// CurrentRelationship is how the stakeholder relates to the company, e.g. FOUNDER, INVESTOR or EMPLOYEE.
@@ -175,7 +175,7 @@ protected:
     utility::string_t m_Country;
     bool m_CountryIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_CurrentRelationship;

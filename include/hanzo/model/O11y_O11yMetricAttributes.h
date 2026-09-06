@@ -65,17 +65,17 @@ public:
     /// <summary>
     /// TotalKeys is how many keys the metric has.
     /// </summary>
-    int32_t getTotalKeys() const;
+    int64_t getTotalKeys() const;
     bool totalKeysIsSet() const;
     void unsetTotalKeys();
-    void setTotalKeys(int32_t value);
+    void setTotalKeys(int64_t value);
 
 
 protected:
     std::vector<std::shared_ptr<O11y_O11yMetricAttribute>> m_Attributes;
     bool m_AttributesIsSet;
 
-    int32_t m_TotalKeys;
+    int64_t m_TotalKeys;
     bool m_TotalKeysIsSet;
 
 };

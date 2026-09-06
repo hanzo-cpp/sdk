@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// how long it took
     /// </summary>
-    int32_t getDurationMs() const;
+    int64_t getDurationMs() const;
     bool durationMsIsSet() const;
     void unsetDurationMs();
-    void setDurationMs(int32_t value);
+    void setDurationMs(int64_t value);
 
     /// <summary>
     /// the invocation&#39;s handle
@@ -87,10 +87,10 @@ public:
     /// <summary>
     /// Code is the status the function&#39;s OWN code answered with, which is not the status of the reply — a program can answer 500 through a healthy sandbox.
     /// </summary>
-    int32_t getStatusCode() const;
+    int64_t getStatusCode() const;
     bool statusCodeIsSet() const;
     void unsetStatusCode();
-    void setStatusCode(int32_t value);
+    void setStatusCode(int64_t value);
 
     /// <summary>
     /// when it ran, RFC3339
@@ -102,7 +102,7 @@ public:
 
 
 protected:
-    int32_t m_DurationMs;
+    int64_t m_DurationMs;
     bool m_DurationMsIsSet;
 
     utility::string_t m_Id;
@@ -114,7 +114,7 @@ protected:
     utility::string_t m_Status;
     bool m_StatusIsSet;
 
-    int32_t m_StatusCode;
+    int64_t m_StatusCode;
     bool m_StatusCodeIsSet;
 
     utility::string_t m_Time;

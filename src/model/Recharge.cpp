@@ -18,9 +18,9 @@ namespace model {
 
 Recharge::Recharge()
 {
-    m_Charged = 0;
+    m_Charged = 0L;
     m_ChargedIsSet = false;
-    m_Orgs = 0;
+    m_Orgs = 0L;
     m_OrgsIsSet = false;
     m_ResultsIsSet = false;
 }
@@ -64,7 +64,7 @@ bool Recharge::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("charged")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCharged;
+            int64_t refVal_setCharged;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCharged);
             setCharged(refVal_setCharged);
             
@@ -75,7 +75,7 @@ bool Recharge::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("orgs")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOrgs;
+            int64_t refVal_setOrgs;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOrgs);
             setOrgs(refVal_setOrgs);
             
@@ -127,13 +127,13 @@ bool Recharge::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("charged"))))
     {
-        int32_t refVal_setCharged;
+        int64_t refVal_setCharged;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("charged"))), refVal_setCharged );
         setCharged(refVal_setCharged);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("orgs"))))
     {
-        int32_t refVal_setOrgs;
+        int64_t refVal_setOrgs;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("orgs"))), refVal_setOrgs );
         setOrgs(refVal_setOrgs);
     }
@@ -147,13 +147,13 @@ bool Recharge::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 }
 
 
-int32_t Recharge::getCharged() const
+int64_t Recharge::getCharged() const
 {
     return m_Charged;
 }
 
 
-void Recharge::setCharged(int32_t value)
+void Recharge::setCharged(int64_t value)
 {
     m_Charged = value;
     m_ChargedIsSet = true;
@@ -168,13 +168,13 @@ void Recharge::unsetCharged()
 {
     m_ChargedIsSet = false;
 }
-int32_t Recharge::getOrgs() const
+int64_t Recharge::getOrgs() const
 {
     return m_Orgs;
 }
 
 
-void Recharge::setOrgs(int32_t value)
+void Recharge::setOrgs(int64_t value)
 {
     m_Orgs = value;
     m_OrgsIsSet = true;

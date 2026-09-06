@@ -36,7 +36,7 @@ BuildSummary::BuildSummary()
     m_StatusIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
-    m_Turns = 0;
+    m_Turns = 0L;
     m_TurnsIsSet = false;
 }
 
@@ -213,7 +213,7 @@ bool BuildSummary::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("turns")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTurns;
+            int64_t refVal_setTurns;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTurns);
             setTurns(refVal_setTurns);
             
@@ -336,7 +336,7 @@ bool BuildSummary::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("turns"))))
     {
-        int32_t refVal_setTurns;
+        int64_t refVal_setTurns;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("turns"))), refVal_setTurns );
         setTurns(refVal_setTurns);
     }
@@ -533,13 +533,13 @@ void BuildSummary::unsetTitle()
 {
     m_TitleIsSet = false;
 }
-int32_t BuildSummary::getTurns() const
+int64_t BuildSummary::getTurns() const
 {
     return m_Turns;
 }
 
 
-void BuildSummary::setTurns(int32_t value)
+void BuildSummary::setTurns(int64_t value)
 {
     m_Turns = value;
     m_TurnsIsSet = true;

@@ -24,7 +24,7 @@ Iam_MfaProps::Iam_MfaProps()
     m_EnabledIsSet = false;
     m_IsPreferred = false;
     m_IsPreferredIsSet = false;
-    m_MfaRememberInHours = 0;
+    m_MfaRememberInHours = 0L;
     m_MfaRememberInHoursIsSet = false;
     m_MfaType = utility::conversions::to_string_t("");
     m_MfaTypeIsSet = false;
@@ -119,7 +119,7 @@ bool Iam_MfaProps::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("mfaRememberInHours")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMfaRememberInHours;
+            int64_t refVal_setMfaRememberInHours;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMfaRememberInHours);
             setMfaRememberInHours(refVal_setMfaRememberInHours);
             
@@ -212,7 +212,7 @@ bool Iam_MfaProps::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("mfaRememberInHours"))))
     {
-        int32_t refVal_setMfaRememberInHours;
+        int64_t refVal_setMfaRememberInHours;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("mfaRememberInHours"))), refVal_setMfaRememberInHours );
         setMfaRememberInHours(refVal_setMfaRememberInHours);
     }
@@ -295,13 +295,13 @@ void Iam_MfaProps::unsetIsPreferred()
 {
     m_IsPreferredIsSet = false;
 }
-int32_t Iam_MfaProps::getMfaRememberInHours() const
+int64_t Iam_MfaProps::getMfaRememberInHours() const
 {
     return m_MfaRememberInHours;
 }
 
 
-void Iam_MfaProps::setMfaRememberInHours(int32_t value)
+void Iam_MfaProps::setMfaRememberInHours(int64_t value)
 {
     m_MfaRememberInHours = value;
     m_MfaRememberInHoursIsSet = true;

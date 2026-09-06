@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// Quantity is how many of that item the cart should hold AFTER this call — it is the resulting count, not a delta, so sending 3 twice leaves 3 and not 6. ZERO REMOVES the line, which is the only way to take an item out.
     /// </summary>
-    int32_t getQuantity() const;
+    int64_t getQuantity() const;
     bool quantityIsSet() const;
     void unsetQuantity();
-    void setQuantity(int32_t value);
+    void setQuantity(int64_t value);
 
     /// <summary>
     /// Variant names the specific sellable variant to set, by its id or its SKU. Prefer it over Product for anything sold in sizes, colours or tiers — the price and the stock are the variant&#39;s, not the product&#39;s.
@@ -92,7 +92,7 @@ protected:
     utility::string_t m_Product;
     bool m_ProductIsSet;
 
-    int32_t m_Quantity;
+    int64_t m_Quantity;
     bool m_QuantityIsSet;
 
     utility::string_t m_Variant;

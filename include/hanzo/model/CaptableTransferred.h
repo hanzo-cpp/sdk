@@ -79,10 +79,10 @@ public:
     /// <summary>
     /// Transferred is how many shares moved.
     /// </summary>
-    int32_t getTransferred() const;
+    int64_t getTransferred() const;
     bool transferredIsSet() const;
     void unsetTransferred();
-    void setTransferred(int32_t value);
+    void setTransferred(int64_t value);
 
 
 protected:
@@ -95,7 +95,7 @@ protected:
     bool m_Success;
     bool m_SuccessIsSet;
 
-    int32_t m_Transferred;
+    int64_t m_Transferred;
     bool m_TransferredIsSet;
 
 };

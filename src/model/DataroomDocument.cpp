@@ -20,21 +20,21 @@ DataroomDocument::DataroomDocument()
 {
     m_ContentType = utility::conversions::to_string_t("");
     m_ContentTypeIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_FileKey = utility::conversions::to_string_t("");
     m_FileKeyIsSet = false;
-    m_FileSize = 0;
+    m_FileSize = 0L;
     m_FileSizeIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_NumPages = 0;
+    m_NumPages = 0L;
     m_NumPagesIsSet = false;
     m_Type = utility::conversions::to_string_t("");
     m_TypeIsSet = false;
-    m_UpdatedAt = 0;
+    m_UpdatedAt = 0L;
     m_UpdatedAtIsSet = false;
 }
 
@@ -118,7 +118,7 @@ bool DataroomDocument::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -140,7 +140,7 @@ bool DataroomDocument::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("fileSize")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFileSize;
+            int64_t refVal_setFileSize;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFileSize);
             setFileSize(refVal_setFileSize);
             
@@ -173,7 +173,7 @@ bool DataroomDocument::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("numPages")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNumPages;
+            int64_t refVal_setNumPages;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNumPages);
             setNumPages(refVal_setNumPages);
             
@@ -195,7 +195,7 @@ bool DataroomDocument::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updatedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdatedAt;
+            int64_t refVal_setUpdatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdatedAt);
             setUpdatedAt(refVal_setUpdatedAt);
             
@@ -266,7 +266,7 @@ bool DataroomDocument::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -278,7 +278,7 @@ bool DataroomDocument::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("fileSize"))))
     {
-        int32_t refVal_setFileSize;
+        int64_t refVal_setFileSize;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("fileSize"))), refVal_setFileSize );
         setFileSize(refVal_setFileSize);
     }
@@ -296,7 +296,7 @@ bool DataroomDocument::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("numPages"))))
     {
-        int32_t refVal_setNumPages;
+        int64_t refVal_setNumPages;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("numPages"))), refVal_setNumPages );
         setNumPages(refVal_setNumPages);
     }
@@ -308,7 +308,7 @@ bool DataroomDocument::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
-        int32_t refVal_setUpdatedAt;
+        int64_t refVal_setUpdatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))), refVal_setUpdatedAt );
         setUpdatedAt(refVal_setUpdatedAt);
     }
@@ -337,13 +337,13 @@ void DataroomDocument::unsetContentType()
 {
     m_ContentTypeIsSet = false;
 }
-int32_t DataroomDocument::getCreatedAt() const
+int64_t DataroomDocument::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void DataroomDocument::setCreatedAt(int32_t value)
+void DataroomDocument::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -379,13 +379,13 @@ void DataroomDocument::unsetFileKey()
 {
     m_FileKeyIsSet = false;
 }
-int32_t DataroomDocument::getFileSize() const
+int64_t DataroomDocument::getFileSize() const
 {
     return m_FileSize;
 }
 
 
-void DataroomDocument::setFileSize(int32_t value)
+void DataroomDocument::setFileSize(int64_t value)
 {
     m_FileSize = value;
     m_FileSizeIsSet = true;
@@ -442,13 +442,13 @@ void DataroomDocument::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t DataroomDocument::getNumPages() const
+int64_t DataroomDocument::getNumPages() const
 {
     return m_NumPages;
 }
 
 
-void DataroomDocument::setNumPages(int32_t value)
+void DataroomDocument::setNumPages(int64_t value)
 {
     m_NumPages = value;
     m_NumPagesIsSet = true;
@@ -484,13 +484,13 @@ void DataroomDocument::unsetType()
 {
     m_TypeIsSet = false;
 }
-int32_t DataroomDocument::getUpdatedAt() const
+int64_t DataroomDocument::getUpdatedAt() const
 {
     return m_UpdatedAt;
 }
 
 
-void DataroomDocument::setUpdatedAt(int32_t value)
+void DataroomDocument::setUpdatedAt(int64_t value)
 {
     m_UpdatedAt = value;
     m_UpdatedAtIsSet = true;

@@ -63,28 +63,28 @@ public:
     /// <summary>
     /// UpdatedAt is when this revision was written, as Unix seconds — the \&quot;who changed the playbook, and when\&quot; half of the audit trail.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
     /// <summary>
     /// Version is the store&#39;s own revision counter for that brand, starting at 1 for the seeded playbook and incrementing on every edit. Nothing is overwritten, so the highest number is the live one and every lower number is still readable. It is not the playbook&#39;s authored &#x60;version&#x60; string.
     /// </summary>
-    int32_t getVersion() const;
+    int64_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();
-    void setVersion(int32_t value);
+    void setVersion(int64_t value);
 
 
 protected:
     utility::string_t m_Brand;
     bool m_BrandIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
-    int32_t m_Version;
+    int64_t m_Version;
     bool m_VersionIsSet;
 
 };

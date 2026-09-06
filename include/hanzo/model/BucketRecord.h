@@ -63,18 +63,18 @@ public:
     /// <summary>
     /// History is how many revisions each key keeps.
     /// </summary>
-    int32_t getHistory() const;
+    int64_t getHistory() const;
     bool historyIsSet() const;
     void unsetHistory();
-    void setHistory(int32_t value);
+    void setHistory(int64_t value);
 
     /// <summary>
     /// TTL is the entry expiry in seconds; 0 means none.
     /// </summary>
-    int32_t getTtl() const;
+    int64_t getTtl() const;
     bool ttlIsSet() const;
     void unsetTtl();
-    void setTtl(int32_t value);
+    void setTtl(int64_t value);
 
     /// <summary>
     /// Values is how many values the bucket holds right now.
@@ -89,10 +89,10 @@ protected:
     utility::string_t m_Bucket;
     bool m_BucketIsSet;
 
-    int32_t m_History;
+    int64_t m_History;
     bool m_HistoryIsSet;
 
-    int32_t m_Ttl;
+    int64_t m_Ttl;
     bool m_TtlIsSet;
 
     int32_t m_Values;

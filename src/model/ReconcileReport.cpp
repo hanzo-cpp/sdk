@@ -18,21 +18,21 @@ namespace model {
 
 ReconcileReport::ReconcileReport()
 {
-    m_Declared = 0;
+    m_Declared = 0L;
     m_DeclaredIsSet = false;
-    m_Failed = 0;
+    m_Failed = 0L;
     m_FailedIsSet = false;
     m_Instance = utility::conversions::to_string_t("");
     m_InstanceIsSet = false;
     m_Prune = false;
     m_PruneIsSet = false;
-    m_Pruned = 0;
+    m_Pruned = 0L;
     m_PrunedIsSet = false;
     m_ResultsIsSet = false;
     m_Revision = utility::conversions::to_string_t("");
     m_RevisionIsSet = false;
     m_SourceIsSet = false;
-    m_Synced = 0;
+    m_Synced = 0L;
     m_SyncedIsSet = false;
 }
 
@@ -105,7 +105,7 @@ bool ReconcileReport::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("declared")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDeclared;
+            int64_t refVal_setDeclared;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDeclared);
             setDeclared(refVal_setDeclared);
             
@@ -116,7 +116,7 @@ bool ReconcileReport::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("failed")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFailed;
+            int64_t refVal_setFailed;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFailed);
             setFailed(refVal_setFailed);
             
@@ -149,7 +149,7 @@ bool ReconcileReport::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("pruned")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPruned;
+            int64_t refVal_setPruned;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPruned);
             setPruned(refVal_setPruned);
             
@@ -193,7 +193,7 @@ bool ReconcileReport::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("synced")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSynced;
+            int64_t refVal_setSynced;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSynced);
             setSynced(refVal_setSynced);
             
@@ -258,13 +258,13 @@ bool ReconcileReport::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("declared"))))
     {
-        int32_t refVal_setDeclared;
+        int64_t refVal_setDeclared;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("declared"))), refVal_setDeclared );
         setDeclared(refVal_setDeclared);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("failed"))))
     {
-        int32_t refVal_setFailed;
+        int64_t refVal_setFailed;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("failed"))), refVal_setFailed );
         setFailed(refVal_setFailed);
     }
@@ -282,7 +282,7 @@ bool ReconcileReport::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("pruned"))))
     {
-        int32_t refVal_setPruned;
+        int64_t refVal_setPruned;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("pruned"))), refVal_setPruned );
         setPruned(refVal_setPruned);
     }
@@ -306,7 +306,7 @@ bool ReconcileReport::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("synced"))))
     {
-        int32_t refVal_setSynced;
+        int64_t refVal_setSynced;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("synced"))), refVal_setSynced );
         setSynced(refVal_setSynced);
     }
@@ -314,13 +314,13 @@ bool ReconcileReport::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 }
 
 
-int32_t ReconcileReport::getDeclared() const
+int64_t ReconcileReport::getDeclared() const
 {
     return m_Declared;
 }
 
 
-void ReconcileReport::setDeclared(int32_t value)
+void ReconcileReport::setDeclared(int64_t value)
 {
     m_Declared = value;
     m_DeclaredIsSet = true;
@@ -335,13 +335,13 @@ void ReconcileReport::unsetDeclared()
 {
     m_DeclaredIsSet = false;
 }
-int32_t ReconcileReport::getFailed() const
+int64_t ReconcileReport::getFailed() const
 {
     return m_Failed;
 }
 
 
-void ReconcileReport::setFailed(int32_t value)
+void ReconcileReport::setFailed(int64_t value)
 {
     m_Failed = value;
     m_FailedIsSet = true;
@@ -398,13 +398,13 @@ void ReconcileReport::unsetPrune()
 {
     m_PruneIsSet = false;
 }
-int32_t ReconcileReport::getPruned() const
+int64_t ReconcileReport::getPruned() const
 {
     return m_Pruned;
 }
 
 
-void ReconcileReport::setPruned(int32_t value)
+void ReconcileReport::setPruned(int64_t value)
 {
     m_Pruned = value;
     m_PrunedIsSet = true;
@@ -482,13 +482,13 @@ void ReconcileReport::unsetSource()
 {
     m_SourceIsSet = false;
 }
-int32_t ReconcileReport::getSynced() const
+int64_t ReconcileReport::getSynced() const
 {
     return m_Synced;
 }
 
 
-void ReconcileReport::setSynced(int32_t value)
+void ReconcileReport::setSynced(int64_t value)
 {
     m_Synced = value;
     m_SyncedIsSet = true;

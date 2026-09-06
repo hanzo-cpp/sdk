@@ -19,7 +19,7 @@ namespace model {
 WebSearchResults::WebSearchResults()
 {
     m_EnginesIsSet = false;
-    m_Number_of_results = 0;
+    m_Number_of_results = 0L;
     m_Number_of_resultsIsSet = false;
     m_Query = utility::conversions::to_string_t("");
     m_QueryIsSet = false;
@@ -81,7 +81,7 @@ bool WebSearchResults::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("number_of_results")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNumberOfResults;
+            int64_t refVal_setNumberOfResults;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNumberOfResults);
             setNumberOfResults(refVal_setNumberOfResults);
             
@@ -154,7 +154,7 @@ bool WebSearchResults::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("number_of_results"))))
     {
-        int32_t refVal_setNumberOfResults;
+        int64_t refVal_setNumberOfResults;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("number_of_results"))), refVal_setNumberOfResults );
         setNumberOfResults(refVal_setNumberOfResults);
     }
@@ -195,13 +195,13 @@ void WebSearchResults::unsetEngines()
 {
     m_EnginesIsSet = false;
 }
-int32_t WebSearchResults::getNumberOfResults() const
+int64_t WebSearchResults::getNumberOfResults() const
 {
     return m_Number_of_results;
 }
 
 
-void WebSearchResults::setNumberOfResults(int32_t value)
+void WebSearchResults::setNumberOfResults(int64_t value)
 {
     m_Number_of_results = value;
     m_Number_of_resultsIsSet = true;

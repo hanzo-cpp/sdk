@@ -55,7 +55,7 @@ O11y_SlackConfig::O11y_SlackConfig()
     m_TextIsSet = false;
     m_Thumb_url = utility::conversions::to_string_t("");
     m_Thumb_urlIsSet = false;
-    m_Timeout = 0;
+    m_Timeout = 0L;
     m_TimeoutIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
@@ -493,7 +493,7 @@ bool O11y_SlackConfig::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("timeout")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTimeout;
+            int64_t refVal_setTimeout;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTimeout);
             setTimeout(refVal_setTimeout);
             
@@ -811,7 +811,7 @@ bool O11y_SlackConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("timeout"))))
     {
-        int32_t refVal_setTimeout;
+        int64_t refVal_setTimeout;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("timeout"))), refVal_setTimeout );
         setTimeout(refVal_setTimeout);
     }
@@ -1338,13 +1338,13 @@ void O11y_SlackConfig::unsetThumb_url()
 {
     m_Thumb_urlIsSet = false;
 }
-int32_t O11y_SlackConfig::getTimeout() const
+int64_t O11y_SlackConfig::getTimeout() const
 {
     return m_Timeout;
 }
 
 
-void O11y_SlackConfig::setTimeout(int32_t value)
+void O11y_SlackConfig::setTimeout(int64_t value)
 {
     m_Timeout = value;
     m_TimeoutIsSet = true;

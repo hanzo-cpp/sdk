@@ -20,9 +20,9 @@ O11y_availabilityPoint::O11y_availabilityPoint()
 {
     m_t = utility::conversions::to_string_t("");
     m_tIsSet = false;
-    m_Total = 0;
+    m_Total = 0L;
     m_TotalIsSet = false;
-    m_Up = 0;
+    m_Up = 0L;
     m_UpIsSet = false;
 }
 
@@ -76,7 +76,7 @@ bool O11y_availabilityPoint::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("total")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotal;
+            int64_t refVal_setTotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotal);
             setTotal(refVal_setTotal);
             
@@ -87,7 +87,7 @@ bool O11y_availabilityPoint::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("up")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUp;
+            int64_t refVal_setUp;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUp);
             setUp(refVal_setUp);
             
@@ -134,13 +134,13 @@ bool O11y_availabilityPoint::fromMultiPart(std::shared_ptr<MultipartFormData> mu
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("total"))))
     {
-        int32_t refVal_setTotal;
+        int64_t refVal_setTotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("total"))), refVal_setTotal );
         setTotal(refVal_setTotal);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("up"))))
     {
-        int32_t refVal_setUp;
+        int64_t refVal_setUp;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("up"))), refVal_setUp );
         setUp(refVal_setUp);
     }
@@ -169,13 +169,13 @@ void O11y_availabilityPoint::unsett()
 {
     m_tIsSet = false;
 }
-int32_t O11y_availabilityPoint::getTotal() const
+int64_t O11y_availabilityPoint::getTotal() const
 {
     return m_Total;
 }
 
 
-void O11y_availabilityPoint::setTotal(int32_t value)
+void O11y_availabilityPoint::setTotal(int64_t value)
 {
     m_Total = value;
     m_TotalIsSet = true;
@@ -190,13 +190,13 @@ void O11y_availabilityPoint::unsetTotal()
 {
     m_TotalIsSet = false;
 }
-int32_t O11y_availabilityPoint::getUp() const
+int64_t O11y_availabilityPoint::getUp() const
 {
     return m_Up;
 }
 
 
-void O11y_availabilityPoint::setUp(int32_t value)
+void O11y_availabilityPoint::setUp(int64_t value)
 {
     m_Up = value;
     m_UpIsSet = true;

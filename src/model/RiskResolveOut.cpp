@@ -18,14 +18,14 @@ namespace model {
 
 RiskResolveOut::RiskResolveOut()
 {
-    m_Horizon = 0;
+    m_Horizon = 0L;
     m_HorizonIsSet = false;
     m_LabelsIsSet = false;
     m_Now = utility::conversions::to_string_t("");
     m_NowIsSet = false;
-    m_Unlabelled = 0;
+    m_Unlabelled = 0L;
     m_UnlabelledIsSet = false;
-    m_Unmatured = 0;
+    m_Unmatured = 0L;
     m_UnmaturedIsSet = false;
 }
 
@@ -78,7 +78,7 @@ bool RiskResolveOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("horizon")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setHorizon;
+            int64_t refVal_setHorizon;
             ok &= ModelBase::fromJson(fieldValue, refVal_setHorizon);
             setHorizon(refVal_setHorizon);
             
@@ -111,7 +111,7 @@ bool RiskResolveOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("unlabelled")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUnlabelled;
+            int64_t refVal_setUnlabelled;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUnlabelled);
             setUnlabelled(refVal_setUnlabelled);
             
@@ -122,7 +122,7 @@ bool RiskResolveOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("unmatured")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUnmatured;
+            int64_t refVal_setUnmatured;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUnmatured);
             setUnmatured(refVal_setUnmatured);
             
@@ -171,7 +171,7 @@ bool RiskResolveOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("horizon"))))
     {
-        int32_t refVal_setHorizon;
+        int64_t refVal_setHorizon;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("horizon"))), refVal_setHorizon );
         setHorizon(refVal_setHorizon);
     }
@@ -189,13 +189,13 @@ bool RiskResolveOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("unlabelled"))))
     {
-        int32_t refVal_setUnlabelled;
+        int64_t refVal_setUnlabelled;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("unlabelled"))), refVal_setUnlabelled );
         setUnlabelled(refVal_setUnlabelled);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("unmatured"))))
     {
-        int32_t refVal_setUnmatured;
+        int64_t refVal_setUnmatured;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("unmatured"))), refVal_setUnmatured );
         setUnmatured(refVal_setUnmatured);
     }
@@ -203,13 +203,13 @@ bool RiskResolveOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 }
 
 
-int32_t RiskResolveOut::getHorizon() const
+int64_t RiskResolveOut::getHorizon() const
 {
     return m_Horizon;
 }
 
 
-void RiskResolveOut::setHorizon(int32_t value)
+void RiskResolveOut::setHorizon(int64_t value)
 {
     m_Horizon = value;
     m_HorizonIsSet = true;
@@ -266,13 +266,13 @@ void RiskResolveOut::unsetNow()
 {
     m_NowIsSet = false;
 }
-int32_t RiskResolveOut::getUnlabelled() const
+int64_t RiskResolveOut::getUnlabelled() const
 {
     return m_Unlabelled;
 }
 
 
-void RiskResolveOut::setUnlabelled(int32_t value)
+void RiskResolveOut::setUnlabelled(int64_t value)
 {
     m_Unlabelled = value;
     m_UnlabelledIsSet = true;
@@ -287,13 +287,13 @@ void RiskResolveOut::unsetUnlabelled()
 {
     m_UnlabelledIsSet = false;
 }
-int32_t RiskResolveOut::getUnmatured() const
+int64_t RiskResolveOut::getUnmatured() const
 {
     return m_Unmatured;
 }
 
 
-void RiskResolveOut::setUnmatured(int32_t value)
+void RiskResolveOut::setUnmatured(int64_t value)
 {
     m_Unmatured = value;
     m_UnmaturedIsSet = true;

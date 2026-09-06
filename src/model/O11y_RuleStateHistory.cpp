@@ -32,7 +32,7 @@ O11y_RuleStateHistory::O11y_RuleStateHistory()
     m_RuleNameIsSet = false;
     m_StateChanged = false;
     m_StateChangedIsSet = false;
-    m_UnixMilli = 0;
+    m_UnixMilli = 0L;
     m_UnixMilliIsSet = false;
     m_Value = 0.0;
     m_ValueIsSet = false;
@@ -232,7 +232,7 @@ bool O11y_RuleStateHistory::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("unixMilli")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUnixMilli;
+            int64_t refVal_setUnixMilli;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUnixMilli);
             setUnixMilli(refVal_setUnixMilli);
             
@@ -380,7 +380,7 @@ bool O11y_RuleStateHistory::fromMultiPart(std::shared_ptr<MultipartFormData> mul
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("unixMilli"))))
     {
-        int32_t refVal_setUnixMilli;
+        int64_t refVal_setUnixMilli;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("unixMilli"))), refVal_setUnixMilli );
         setUnixMilli(refVal_setUnixMilli);
     }
@@ -601,13 +601,13 @@ void O11y_RuleStateHistory::unsetStateChanged()
 {
     m_StateChangedIsSet = false;
 }
-int32_t O11y_RuleStateHistory::getUnixMilli() const
+int64_t O11y_RuleStateHistory::getUnixMilli() const
 {
     return m_UnixMilli;
 }
 
 
-void O11y_RuleStateHistory::setUnixMilli(int32_t value)
+void O11y_RuleStateHistory::setUnixMilli(int64_t value)
 {
     m_UnixMilli = value;
     m_UnixMilliIsSet = true;

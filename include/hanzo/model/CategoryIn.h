@@ -80,10 +80,10 @@ public:
     /// <summary>
     /// Order is where the category sits among its siblings, ascending.
     /// </summary>
-    int32_t getOrder() const;
+    int64_t getOrder() const;
     bool orderIsSet() const;
     void unsetOrder();
-    void setOrder(int32_t value);
+    void setOrder(int64_t value);
 
     /// <summary>
     /// Summary is the one line describing what the category groups.
@@ -104,7 +104,7 @@ protected:
     utility::string_t m_Label;
     bool m_LabelIsSet;
 
-    int32_t m_Order;
+    int64_t m_Order;
     bool m_OrderIsSet;
 
     utility::string_t m_Summary;

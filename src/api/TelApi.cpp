@@ -33,7 +33,7 @@ TelApi::~TelApi()
 {
 }
 
-pplx::task<std::shared_ptr<Object>> TelApi::deleteTelCallsById(utility::string_t id) const
+pplx::task<void> TelApi::deleteTelCallsById(utility::string_t id) const
 {
 
 
@@ -47,7 +47,6 @@ pplx::task<std::shared_ptr<Object>> TelApi::deleteTelCallsById(utility::string_t
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -136,28 +135,10 @@ pplx::task<std::shared_ptr<Object>> TelApi::deleteTelCallsById(utility::string_t
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<Object> localVarResult(new Object());
-
-        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value localVarJson = web::json::value::parse(localVarResponse);
-
-            ModelBase::fromJson(localVarJson, localVarResult);
-        }
-        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling deleteTelCallsById: unsupported response type"));
-        }
-
-        return localVarResult;
+        return void();
     });
 }
-pplx::task<std::shared_ptr<Object>> TelApi::deleteTelNumbersById(utility::string_t id) const
+pplx::task<void> TelApi::deleteTelNumbersById(utility::string_t id) const
 {
 
 
@@ -171,7 +152,6 @@ pplx::task<std::shared_ptr<Object>> TelApi::deleteTelNumbersById(utility::string
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -260,25 +240,7 @@ pplx::task<std::shared_ptr<Object>> TelApi::deleteTelNumbersById(utility::string
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<Object> localVarResult(new Object());
-
-        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value localVarJson = web::json::value::parse(localVarResponse);
-
-            ModelBase::fromJson(localVarJson, localVarResult);
-        }
-        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling deleteTelNumbersById: unsupported response type"));
-        }
-
-        return localVarResult;
+        return void();
     });
 }
 pplx::task<std::shared_ptr<CallList>> TelApi::getTelCalls() const
@@ -650,7 +612,7 @@ pplx::task<std::shared_ptr<NumberList>> TelApi::getTelNumbers() const
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<NumberList>> TelApi::getTelNumbersAvailable(boost::optional<utility::string_t> country, boost::optional<utility::string_t> area, boost::optional<utility::string_t> type, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<NumberList>> TelApi::getTelNumbersAvailable(boost::optional<utility::string_t> country, boost::optional<utility::string_t> area, boost::optional<utility::string_t> type, boost::optional<int64_t> limit) const
 {
 
 

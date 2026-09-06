@@ -20,13 +20,13 @@ FleetSpec::FleetSpec()
 {
     m_Arch = utility::conversions::to_string_t("");
     m_ArchIsSet = false;
-    m_Cpus = 0;
+    m_Cpus = 0L;
     m_CpusIsSet = false;
     m_GpuModel = utility::conversions::to_string_t("");
     m_GpuModelIsSet = false;
-    m_Gpus = 0;
+    m_Gpus = 0L;
     m_GpusIsSet = false;
-    m_Memory = 0;
+    m_Memory = 0L;
     m_MemoryIsSet = false;
     m_Os = utility::conversions::to_string_t("");
     m_OsIsSet = false;
@@ -97,7 +97,7 @@ bool FleetSpec::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cpus")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCpus;
+            int64_t refVal_setCpus;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCpus);
             setCpus(refVal_setCpus);
             
@@ -119,7 +119,7 @@ bool FleetSpec::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("gpus")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setGpus;
+            int64_t refVal_setGpus;
             ok &= ModelBase::fromJson(fieldValue, refVal_setGpus);
             setGpus(refVal_setGpus);
             
@@ -130,7 +130,7 @@ bool FleetSpec::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("memory")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMemory;
+            int64_t refVal_setMemory;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMemory);
             setMemory(refVal_setMemory);
             
@@ -200,7 +200,7 @@ bool FleetSpec::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cpus"))))
     {
-        int32_t refVal_setCpus;
+        int64_t refVal_setCpus;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cpus"))), refVal_setCpus );
         setCpus(refVal_setCpus);
     }
@@ -212,13 +212,13 @@ bool FleetSpec::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("gpus"))))
     {
-        int32_t refVal_setGpus;
+        int64_t refVal_setGpus;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("gpus"))), refVal_setGpus );
         setGpus(refVal_setGpus);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("memory"))))
     {
-        int32_t refVal_setMemory;
+        int64_t refVal_setMemory;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("memory"))), refVal_setMemory );
         setMemory(refVal_setMemory);
     }
@@ -253,13 +253,13 @@ void FleetSpec::unsetArch()
 {
     m_ArchIsSet = false;
 }
-int32_t FleetSpec::getCpus() const
+int64_t FleetSpec::getCpus() const
 {
     return m_Cpus;
 }
 
 
-void FleetSpec::setCpus(int32_t value)
+void FleetSpec::setCpus(int64_t value)
 {
     m_Cpus = value;
     m_CpusIsSet = true;
@@ -295,13 +295,13 @@ void FleetSpec::unsetGpuModel()
 {
     m_GpuModelIsSet = false;
 }
-int32_t FleetSpec::getGpus() const
+int64_t FleetSpec::getGpus() const
 {
     return m_Gpus;
 }
 
 
-void FleetSpec::setGpus(int32_t value)
+void FleetSpec::setGpus(int64_t value)
 {
     m_Gpus = value;
     m_GpusIsSet = true;
@@ -316,13 +316,13 @@ void FleetSpec::unsetGpus()
 {
     m_GpusIsSet = false;
 }
-int32_t FleetSpec::getMemory() const
+int64_t FleetSpec::getMemory() const
 {
     return m_Memory;
 }
 
 
-void FleetSpec::setMemory(int32_t value)
+void FleetSpec::setMemory(int64_t value)
 {
     m_Memory = value;
     m_MemoryIsSet = true;

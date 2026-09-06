@@ -71,26 +71,26 @@ public:
     /// <summary>
     /// Failures is how many ended 401 or 403.
     /// </summary>
-    int32_t getFailures() const;
+    int64_t getFailures() const;
     bool failuresIsSet() const;
     void unsetFailures();
-    void setFailures(int32_t value);
+    void setFailures(int64_t value);
 
     /// <summary>
     /// HeldUntil is when the held verdict lapses, unix seconds.
     /// </summary>
-    int32_t getHeldUntil() const;
+    int64_t getHeldUntil() const;
     bool heldUntilIsSet() const;
     void unsetHeld_until();
-    void setHeldUntil(int32_t value);
+    void setHeldUntil(int64_t value);
 
     /// <summary>
     /// Paths is the approximate number of distinct paths it touched (max 64).
     /// </summary>
-    int32_t getPaths() const;
+    int64_t getPaths() const;
     bool pathsIsSet() const;
     void unsetPaths();
-    void setPaths(int32_t value);
+    void setPaths(int64_t value);
 
     /// <summary>
     /// Reason is why that verdict was reached.
@@ -103,10 +103,10 @@ public:
     /// <summary>
     /// Requests is its request count in the window.
     /// </summary>
-    int32_t getRequests() const;
+    int64_t getRequests() const;
     bool requestsIsSet() const;
     void unsetRequests();
-    void setRequests(int32_t value);
+    void setRequests(int64_t value);
 
 
 protected:
@@ -116,19 +116,19 @@ protected:
     utility::string_t m_Cred;
     bool m_CredIsSet;
 
-    int32_t m_Failures;
+    int64_t m_Failures;
     bool m_FailuresIsSet;
 
-    int32_t m_Held_until;
+    int64_t m_Held_until;
     bool m_Held_untilIsSet;
 
-    int32_t m_Paths;
+    int64_t m_Paths;
     bool m_PathsIsSet;
 
     utility::string_t m_Reason;
     bool m_ReasonIsSet;
 
-    int32_t m_Requests;
+    int64_t m_Requests;
     bool m_RequestsIsSet;
 
 };

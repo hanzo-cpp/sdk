@@ -22,7 +22,7 @@ ReferenceSet::ReferenceSet()
     m_AgeIsSet = false;
     m_AsOf = utility::conversions::to_string_t("");
     m_AsOfIsSet = false;
-    m_Keys = 0;
+    m_Keys = 0L;
     m_KeysIsSet = false;
     m_Kind = utility::conversions::to_string_t("");
     m_KindIsSet = false;
@@ -30,7 +30,7 @@ ReferenceSet::ReferenceSet()
     m_MatchIsSet = false;
     m_MaxAge = utility::conversions::to_string_t("");
     m_MaxAgeIsSet = false;
-    m_Overrides = 0;
+    m_Overrides = 0L;
     m_OverridesIsSet = false;
     m_Refusal = utility::conversions::to_string_t("");
     m_RefusalIsSet = false;
@@ -156,7 +156,7 @@ bool ReferenceSet::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("keys")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setKeys;
+            int64_t refVal_setKeys;
             ok &= ModelBase::fromJson(fieldValue, refVal_setKeys);
             setKeys(refVal_setKeys);
             
@@ -200,7 +200,7 @@ bool ReferenceSet::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("overrides")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOverrides;
+            int64_t refVal_setOverrides;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOverrides);
             setOverrides(refVal_setOverrides);
             
@@ -359,7 +359,7 @@ bool ReferenceSet::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("keys"))))
     {
-        int32_t refVal_setKeys;
+        int64_t refVal_setKeys;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("keys"))), refVal_setKeys );
         setKeys(refVal_setKeys);
     }
@@ -383,7 +383,7 @@ bool ReferenceSet::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("overrides"))))
     {
-        int32_t refVal_setOverrides;
+        int64_t refVal_setOverrides;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("overrides"))), refVal_setOverrides );
         setOverrides(refVal_setOverrides);
     }
@@ -469,13 +469,13 @@ void ReferenceSet::unsetAsOf()
 {
     m_AsOfIsSet = false;
 }
-int32_t ReferenceSet::getKeys() const
+int64_t ReferenceSet::getKeys() const
 {
     return m_Keys;
 }
 
 
-void ReferenceSet::setKeys(int32_t value)
+void ReferenceSet::setKeys(int64_t value)
 {
     m_Keys = value;
     m_KeysIsSet = true;
@@ -553,13 +553,13 @@ void ReferenceSet::unsetMaxAge()
 {
     m_MaxAgeIsSet = false;
 }
-int32_t ReferenceSet::getOverrides() const
+int64_t ReferenceSet::getOverrides() const
 {
     return m_Overrides;
 }
 
 
-void ReferenceSet::setOverrides(int32_t value)
+void ReferenceSet::setOverrides(int64_t value)
 {
     m_Overrides = value;
     m_OverridesIsSet = true;

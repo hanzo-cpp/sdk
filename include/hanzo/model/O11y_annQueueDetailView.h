@@ -58,10 +58,10 @@ public:
     /// <summary>
     /// CompletedCount is how many have been reviewed.
     /// </summary>
-    int32_t getCompletedCount() const;
+    int64_t getCompletedCount() const;
     bool completedCountIsSet() const;
     void unsetCompletedCount();
-    void setCompletedCount(int32_t value);
+    void setCompletedCount(int64_t value);
 
     /// <summary>
     /// CreatedAt is when it was created, RFC3339 in UTC.
@@ -106,10 +106,10 @@ public:
     /// <summary>
     /// PendingCount is how many of its items are still awaiting review.
     /// </summary>
-    int32_t getPendingCount() const;
+    int64_t getPendingCount() const;
     bool pendingCountIsSet() const;
     void unsetPendingCount();
-    void setPendingCount(int32_t value);
+    void setPendingCount(int64_t value);
 
     /// <summary>
     /// ScoreConfigIDs are the eval score-configs reviewers grade against.
@@ -129,7 +129,7 @@ public:
 
 
 protected:
-    int32_t m_CompletedCount;
+    int64_t m_CompletedCount;
     bool m_CompletedCountIsSet;
 
     utility::string_t m_CreatedAt;
@@ -147,7 +147,7 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_PendingCount;
+    int64_t m_PendingCount;
     bool m_PendingCountIsSet;
 
     std::vector<utility::string_t> m_ScoreConfigIds;

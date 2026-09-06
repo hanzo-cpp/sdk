@@ -20,9 +20,9 @@ ProfileMetrics::ProfileMetrics()
 {
     m_FunnelIsSet = false;
     m_LaunchProgressIsSet = false;
-    m_Records = 0;
+    m_Records = 0L;
     m_RecordsIsSet = false;
-    m_RevenueCents = 0;
+    m_RevenueCents = 0L;
     m_RevenueCentsIsSet = false;
 }
 
@@ -92,7 +92,7 @@ bool ProfileMetrics::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("records")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRecords;
+            int64_t refVal_setRecords;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRecords);
             setRecords(refVal_setRecords);
             
@@ -103,7 +103,7 @@ bool ProfileMetrics::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("revenueCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRevenueCents;
+            int64_t refVal_setRevenueCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRevenueCents);
             setRevenueCents(refVal_setRevenueCents);
             
@@ -160,13 +160,13 @@ bool ProfileMetrics::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("records"))))
     {
-        int32_t refVal_setRecords;
+        int64_t refVal_setRecords;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("records"))), refVal_setRecords );
         setRecords(refVal_setRecords);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("revenueCents"))))
     {
-        int32_t refVal_setRevenueCents;
+        int64_t refVal_setRevenueCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("revenueCents"))), refVal_setRevenueCents );
         setRevenueCents(refVal_setRevenueCents);
     }
@@ -216,13 +216,13 @@ void ProfileMetrics::unsetLaunchProgress()
 {
     m_LaunchProgressIsSet = false;
 }
-int32_t ProfileMetrics::getRecords() const
+int64_t ProfileMetrics::getRecords() const
 {
     return m_Records;
 }
 
 
-void ProfileMetrics::setRecords(int32_t value)
+void ProfileMetrics::setRecords(int64_t value)
 {
     m_Records = value;
     m_RecordsIsSet = true;
@@ -237,13 +237,13 @@ void ProfileMetrics::unsetRecords()
 {
     m_RecordsIsSet = false;
 }
-int32_t ProfileMetrics::getRevenueCents() const
+int64_t ProfileMetrics::getRevenueCents() const
 {
     return m_RevenueCents;
 }
 
 
-void ProfileMetrics::setRevenueCents(int32_t value)
+void ProfileMetrics::setRevenueCents(int64_t value)
 {
     m_RevenueCents = value;
     m_RevenueCentsIsSet = true;

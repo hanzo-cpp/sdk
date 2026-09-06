@@ -56,10 +56,10 @@ public:
     /// <summary>
     /// Bytes is the size of the bundled CommonJS the runtime will execute.
     /// </summary>
-    int32_t getBytes() const;
+    int64_t getBytes() const;
     bool bytesIsSet() const;
     void unsetBytes();
-    void setBytes(int32_t value);
+    void setBytes(int64_t value);
 
     /// <summary>
     /// Generated is whether a model wrote the source from a spec, rather than the caller posting the source itself.
@@ -79,7 +79,7 @@ public:
 
 
 protected:
-    int32_t m_Bytes;
+    int64_t m_Bytes;
     bool m_BytesIsSet;
 
     bool m_Generated;

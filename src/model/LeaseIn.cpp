@@ -20,13 +20,15 @@ LeaseIn::LeaseIn()
 {
     m_r_class = utility::conversions::to_string_t("");
     m_r_classIsSet = false;
+    m_Cluster = utility::conversions::to_string_t("");
+    m_ClusterIsSet = false;
     m_Image = utility::conversions::to_string_t("");
     m_ImageIsSet = false;
     m_Project = utility::conversions::to_string_t("");
     m_ProjectIsSet = false;
     m_Runtime = utility::conversions::to_string_t("");
     m_RuntimeIsSet = false;
-    m_TtlSec = 0;
+    m_TtlSec = 0L;
     m_TtlSecIsSet = false;
 }
 
@@ -46,6 +48,11 @@ web::json::value LeaseIn::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("class"))] = ModelBase::toJson(m_r_class);
+    }
+    if(m_ClusterIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("cluster"))] = ModelBase::toJson(m_Cluster);
     }
     if(m_ImageIsSet)
     {
@@ -82,6 +89,17 @@ bool LeaseIn::fromJson(const web::json::value& val)
             utility::string_t refVal_setRClass;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRClass);
             setRClass(refVal_setRClass);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("cluster"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cluster")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setCluster;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setCluster);
+            setCluster(refVal_setCluster);
             
         }
     }
@@ -123,7 +141,7 @@ bool LeaseIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("ttlSec")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTtlSec;
+            int64_t refVal_setTtlSec;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTtlSec);
             setTtlSec(refVal_setTtlSec);
             
@@ -142,6 +160,10 @@ void LeaseIn::toMultipart(std::shared_ptr<MultipartFormData> multipart, const ut
     if(m_r_classIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("class")), m_r_class));
+    }
+    if(m_ClusterIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("cluster")), m_Cluster));
     }
     if(m_ImageIsSet)
     {
@@ -176,6 +198,12 @@ bool LeaseIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("class"))), refVal_setRClass );
         setRClass(refVal_setRClass);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cluster"))))
+    {
+        utility::string_t refVal_setCluster;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cluster"))), refVal_setCluster );
+        setCluster(refVal_setCluster);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("image"))))
     {
         utility::string_t refVal_setImage;
@@ -196,7 +224,7 @@ bool LeaseIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("ttlSec"))))
     {
-        int32_t refVal_setTtlSec;
+        int64_t refVal_setTtlSec;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ttlSec"))), refVal_setTtlSec );
         setTtlSec(refVal_setTtlSec);
     }
@@ -224,6 +252,27 @@ bool LeaseIn::rClassIsSet() const
 void LeaseIn::unsetr_class()
 {
     m_r_classIsSet = false;
+}
+utility::string_t LeaseIn::getCluster() const
+{
+    return m_Cluster;
+}
+
+
+void LeaseIn::setCluster(const utility::string_t& value)
+{
+    m_Cluster = value;
+    m_ClusterIsSet = true;
+}
+
+bool LeaseIn::clusterIsSet() const
+{
+    return m_ClusterIsSet;
+}
+
+void LeaseIn::unsetCluster()
+{
+    m_ClusterIsSet = false;
 }
 utility::string_t LeaseIn::getImage() const
 {
@@ -288,13 +337,13 @@ void LeaseIn::unsetRuntime()
 {
     m_RuntimeIsSet = false;
 }
-int32_t LeaseIn::getTtlSec() const
+int64_t LeaseIn::getTtlSec() const
 {
     return m_TtlSec;
 }
 
 
-void LeaseIn::setTtlSec(int32_t value)
+void LeaseIn::setTtlSec(int64_t value)
 {
     m_TtlSec = value;
     m_TtlSecIsSet = true;

@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// ExpiresIn is the token&#39;s lifetime in seconds, as IAM reported it.
     /// </summary>
-    int32_t getExpiresIn() const;
+    int64_t getExpiresIn() const;
     bool expiresInIsSet() const;
     void unsetExpiresIn();
-    void setExpiresIn(int32_t value);
+    void setExpiresIn(int64_t value);
 
     /// <summary>
     /// TokenType is &#x60;Bearer&#x60;.
@@ -81,7 +81,7 @@ protected:
     utility::string_t m_AccessToken;
     bool m_AccessTokenIsSet;
 
-    int32_t m_ExpiresIn;
+    int64_t m_ExpiresIn;
     bool m_ExpiresInIsSet;
 
     utility::string_t m_TokenType;

@@ -79,10 +79,10 @@ public:
     /// <summary>
     /// CreatedAt is when the attempt was recorded, unix seconds.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// ID is the deployment&#39;s id (&#x60;dep_…&#x60;), minted when the attempt is recorded. The app&#39;s currentDeploymentId points at one of these.
@@ -135,18 +135,18 @@ public:
     /// <summary>
     /// UpdatedAt is its last transition, unix seconds — so for a terminal deployment it is when it reached that state.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
     /// <summary>
     /// Version counts this app&#39;s deployments, from 1 and monotonically. It is what ORDERS them: a deploy only goes live if no higher version already is, so a build that finishes late is superseded instead of overwriting a newer one.
     /// </summary>
-    int32_t getVersion() const;
+    int64_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();
-    void setVersion(int32_t value);
+    void setVersion(int64_t value);
 
 
 protected:
@@ -159,7 +159,7 @@ protected:
     utility::string_t m_Commit;
     bool m_CommitIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_Id;
@@ -180,10 +180,10 @@ protected:
     utility::string_t m_Status;
     bool m_StatusIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
-    int32_t m_Version;
+    int64_t m_Version;
     bool m_VersionIsSet;
 
 };

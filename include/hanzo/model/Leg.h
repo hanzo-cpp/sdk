@@ -63,28 +63,28 @@ public:
     /// <summary>
     /// Credit is the leg&#39;s credit in exact cents. Set this or Debit, not both.
     /// </summary>
-    int32_t getCredit() const;
+    int64_t getCredit() const;
     bool creditIsSet() const;
     void unsetCredit();
-    void setCredit(int32_t value);
+    void setCredit(int64_t value);
 
     /// <summary>
     /// Debit is the leg&#39;s debit in exact cents. Set this or Credit, not both.
     /// </summary>
-    int32_t getDebit() const;
+    int64_t getDebit() const;
     bool debitIsSet() const;
     void unsetDebit();
-    void setDebit(int32_t value);
+    void setDebit(int64_t value);
 
 
 protected:
     utility::string_t m_Account;
     bool m_AccountIsSet;
 
-    int32_t m_Credit;
+    int64_t m_Credit;
     bool m_CreditIsSet;
 
-    int32_t m_Debit;
+    int64_t m_Debit;
     bool m_DebitIsSet;
 
 };

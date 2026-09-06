@@ -18,6 +18,9 @@ namespace model {
 
 MachineView::MachineView()
 {
+    m_Agent = utility::conversions::to_string_t("");
+    m_AgentIsSet = false;
+    m_BindingIsSet = false;
     m_CreatedTime = utility::conversions::to_string_t("");
     m_CreatedTimeIsSet = false;
     m_Gpu = utility::conversions::to_string_t("");
@@ -44,7 +47,7 @@ MachineView::MachineView()
     m_StatusIsSet = false;
     m_Type = utility::conversions::to_string_t("");
     m_TypeIsSet = false;
-    m_Vcpu = 0;
+    m_Vcpu = 0L;
     m_VcpuIsSet = false;
 }
 
@@ -60,6 +63,16 @@ void MachineView::validate()
 web::json::value MachineView::toJson() const
 {
     web::json::value val = web::json::value::object();
+    if(m_AgentIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("agent"))] = ModelBase::toJson(m_Agent);
+    }
+    if(m_BindingIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("binding"))] = ModelBase::toJson(m_Binding);
+    }
     if(m_CreatedTimeIsSet)
     {
         
@@ -137,6 +150,28 @@ web::json::value MachineView::toJson() const
 bool MachineView::fromJson(const web::json::value& val)
 {
     bool ok = true;
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("agent"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("agent")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setAgent;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setAgent);
+            setAgent(refVal_setAgent);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("binding"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("binding")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<AgentBinding> refVal_setBinding;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setBinding);
+            setBinding(refVal_setBinding);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("createdTime"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdTime")));
@@ -285,7 +320,7 @@ bool MachineView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("vcpu")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVcpu;
+            int64_t refVal_setVcpu;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVcpu);
             setVcpu(refVal_setVcpu);
             
@@ -300,6 +335,14 @@ void MachineView::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     if(namePrefix.size() > 0 && namePrefix.substr(namePrefix.size() - 1) != utility::conversions::to_string_t(_XPLATSTR(".")))
     {
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
+    }
+    if(m_AgentIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("agent")), m_Agent));
+    }
+    if(m_BindingIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("binding")), m_Binding));
     }
     if(m_CreatedTimeIsSet)
     {
@@ -368,6 +411,18 @@ bool MachineView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
 
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("agent"))))
+    {
+        utility::string_t refVal_setAgent;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("agent"))), refVal_setAgent );
+        setAgent(refVal_setAgent);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("binding"))))
+    {
+        std::shared_ptr<AgentBinding> refVal_setBinding;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("binding"))), refVal_setBinding );
+        setBinding(refVal_setBinding);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdTime"))))
     {
         utility::string_t refVal_setCreatedTime;
@@ -448,7 +503,7 @@ bool MachineView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("vcpu"))))
     {
-        int32_t refVal_setVcpu;
+        int64_t refVal_setVcpu;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("vcpu"))), refVal_setVcpu );
         setVcpu(refVal_setVcpu);
     }
@@ -456,6 +511,48 @@ bool MachineView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 }
 
 
+utility::string_t MachineView::getAgent() const
+{
+    return m_Agent;
+}
+
+
+void MachineView::setAgent(const utility::string_t& value)
+{
+    m_Agent = value;
+    m_AgentIsSet = true;
+}
+
+bool MachineView::agentIsSet() const
+{
+    return m_AgentIsSet;
+}
+
+void MachineView::unsetAgent()
+{
+    m_AgentIsSet = false;
+}
+std::shared_ptr<AgentBinding> MachineView::getBinding() const
+{
+    return m_Binding;
+}
+
+
+void MachineView::setBinding(const std::shared_ptr<AgentBinding>& value)
+{
+    m_Binding = value;
+    m_BindingIsSet = true;
+}
+
+bool MachineView::bindingIsSet() const
+{
+    return m_BindingIsSet;
+}
+
+void MachineView::unsetBinding()
+{
+    m_BindingIsSet = false;
+}
 utility::string_t MachineView::getCreatedTime() const
 {
     return m_CreatedTime;
@@ -729,13 +826,13 @@ void MachineView::unsetType()
 {
     m_TypeIsSet = false;
 }
-int32_t MachineView::getVcpu() const
+int64_t MachineView::getVcpu() const
 {
     return m_Vcpu;
 }
 
 
-void MachineView::setVcpu(int32_t value)
+void MachineView::setVcpu(int64_t value)
 {
     m_Vcpu = value;
     m_VcpuIsSet = true;

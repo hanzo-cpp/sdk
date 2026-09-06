@@ -54,26 +54,26 @@ public:
     /// <summary>
     /// APIRateLimit is requests per minute allowed against the REST /v1/world surface. -1 means unlimited.
     /// </summary>
-    int32_t getApiRateLimit() const;
+    int64_t getApiRateLimit() const;
     bool apiRateLimitIsSet() const;
     void unsetApiRateLimit();
-    void setApiRateLimit(int32_t value);
+    void setApiRateLimit(int64_t value);
 
     /// <summary>
     /// MaxAlerts is how many saved OSINT alert rules the plan allows. -1 means unlimited.
     /// </summary>
-    int32_t getMaxAlerts() const;
+    int64_t getMaxAlerts() const;
     bool maxAlertsIsSet() const;
     void unsetMaxAlerts();
-    void setMaxAlerts(int32_t value);
+    void setMaxAlerts(int64_t value);
 
     /// <summary>
     /// MCPRateLimit is requests per minute allowed against the MCP surface. -1 means unlimited.
     /// </summary>
-    int32_t getMcpRateLimit() const;
+    int64_t getMcpRateLimit() const;
     bool mcpRateLimitIsSet() const;
     void unsetMcpRateLimit();
-    void setMcpRateLimit(int32_t value);
+    void setMcpRateLimit(int64_t value);
 
     /// <summary>
     /// ModelAPI is whether the plan reaches the World model endpoint and the SSE stream. The free floor is false, and that is what a catalog outage resolves to.
@@ -85,13 +85,13 @@ public:
 
 
 protected:
-    int32_t m_ApiRateLimit;
+    int64_t m_ApiRateLimit;
     bool m_ApiRateLimitIsSet;
 
-    int32_t m_MaxAlerts;
+    int64_t m_MaxAlerts;
     bool m_MaxAlertsIsSet;
 
-    int32_t m_McpRateLimit;
+    int64_t m_McpRateLimit;
     bool m_McpRateLimitIsSet;
 
     bool m_ModelApi;

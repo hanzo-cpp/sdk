@@ -64,10 +64,10 @@ public:
     /// <summary>
     /// Deliveries7d is how many deliveries SETTLED in the trailing 7 days — the attempts that ended ok or failed, so a delivery still retrying is in neither counter yet. It is counted from the log at read time rather than stored, and it is filled only on a list or a get; a create answers 0 because there is no history, which is why it is never omitted.
     /// </summary>
-    int32_t getDeliveries7d() const;
+    int64_t getDeliveries7d() const;
     bool deliveries7dIsSet() const;
     void unsetDeliveries7d();
-    void setDeliveries7d(int32_t value);
+    void setDeliveries7d(int64_t value);
 
     /// <summary>
     /// Description is the operator&#39;s own label for the endpoint. Never sent anywhere.
@@ -88,10 +88,10 @@ public:
     /// <summary>
     /// Failures7d is how many of those settled as failed — the subscriber never accepted it and no further attempt will be made. It is the numerator to Deliveries7d, over the same window.
     /// </summary>
-    int32_t getFailures7d() const;
+    int64_t getFailures7d() const;
     bool failures7dIsSet() const;
     void unsetFailures7d();
-    void setFailures7d(int32_t value);
+    void setFailures7d(int64_t value);
 
     /// <summary>
     /// ID is the endpoint&#39;s handle, server-minted and stable for its life. It is what every other route here addresses.
@@ -146,7 +146,7 @@ protected:
     utility::string_t m_Created;
     bool m_CreatedIsSet;
 
-    int32_t m_Deliveries7d;
+    int64_t m_Deliveries7d;
     bool m_Deliveries7dIsSet;
 
     utility::string_t m_Description;
@@ -155,7 +155,7 @@ protected:
     std::vector<utility::string_t> m_Events;
     bool m_EventsIsSet;
 
-    int32_t m_Failures7d;
+    int64_t m_Failures7d;
     bool m_Failures7dIsSet;
 
     utility::string_t m_Id;

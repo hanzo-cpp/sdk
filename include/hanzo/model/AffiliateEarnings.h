@@ -59,10 +59,10 @@ public:
     /// <summary>
     /// AccruedCents is lifetime commission accrued, in cents.
     /// </summary>
-    int32_t getAccruedCents() const;
+    int64_t getAccruedCents() const;
     bool accruedCentsIsSet() const;
     void unsetAccruedCents();
-    void setAccruedCents(int32_t value);
+    void setAccruedCents(int64_t value);
 
     /// <summary>
     /// ByPeriod is the per-period ledger: the margin earned against and the commission taken from it.
@@ -91,30 +91,30 @@ public:
     /// <summary>
     /// MarginBps is the platform gross-margin fraction commission is a rate OF.
     /// </summary>
-    int32_t getMarginBps() const;
+    int64_t getMarginBps() const;
     bool marginBpsIsSet() const;
     void unsetMarginBps();
-    void setMarginBps(int32_t value);
+    void setMarginBps(int64_t value);
 
     /// <summary>
     /// PaidCents is lifetime commission already paid out, in cents.
     /// </summary>
-    int32_t getPaidCents() const;
+    int64_t getPaidCents() const;
     bool paidCentsIsSet() const;
     void unsetPaidCents();
-    void setPaidCents(int32_t value);
+    void setPaidCents(int64_t value);
 
     /// <summary>
     /// PendingCents is accrued minus paid — what the platform still owes.
     /// </summary>
-    int32_t getPendingCents() const;
+    int64_t getPendingCents() const;
     bool pendingCentsIsSet() const;
     void unsetPendingCents();
-    void setPendingCents(int32_t value);
+    void setPendingCents(int64_t value);
 
 
 protected:
-    int32_t m_AccruedCents;
+    int64_t m_AccruedCents;
     bool m_AccruedCentsIsSet;
 
     std::vector<std::shared_ptr<PeriodEarningView>> m_ByPeriod;
@@ -126,13 +126,13 @@ protected:
     bool m_IsAffiliate;
     bool m_IsAffiliateIsSet;
 
-    int32_t m_MarginBps;
+    int64_t m_MarginBps;
     bool m_MarginBpsIsSet;
 
-    int32_t m_PaidCents;
+    int64_t m_PaidCents;
     bool m_PaidCentsIsSet;
 
-    int32_t m_PendingCents;
+    int64_t m_PendingCents;
     bool m_PendingCentsIsSet;
 
 };

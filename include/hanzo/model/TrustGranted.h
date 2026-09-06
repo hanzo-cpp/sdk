@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// ExpiresAt is when the grant closes, in unix milliseconds.
     /// </summary>
-    int32_t getExpiresAt() const;
+    int64_t getExpiresAt() const;
     bool expiresAtIsSet() const;
     void unsetExpiresAt();
-    void setExpiresAt(int32_t value);
+    void setExpiresAt(int64_t value);
 
     /// <summary>
     /// Link is the share link&#39;s id. The link admits only the address that asked.
@@ -89,7 +89,7 @@ protected:
     utility::string_t m_Delivery;
     bool m_DeliveryIsSet;
 
-    int32_t m_ExpiresAt;
+    int64_t m_ExpiresAt;
     bool m_ExpiresAtIsSet;
 
     utility::string_t m_Link;

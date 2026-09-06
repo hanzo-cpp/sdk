@@ -79,10 +79,10 @@ public:
     /// <summary>
     /// UpdatedAt is when the project last changed, as Unix seconds.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
     /// <summary>
     /// URL is the pretty address readers use, not the object-store path behind it.
@@ -103,7 +103,7 @@ protected:
     utility::string_t m_Status;
     bool m_StatusIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
     utility::string_t m_Url;

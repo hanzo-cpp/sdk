@@ -18,7 +18,7 @@ namespace model {
 
 Wrote::Wrote()
 {
-    m_Bytes = 0;
+    m_Bytes = 0L;
     m_BytesIsSet = false;
     m_Path = utility::conversions::to_string_t("");
     m_PathIsSet = false;
@@ -58,7 +58,7 @@ bool Wrote::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("bytes")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBytes;
+            int64_t refVal_setBytes;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBytes);
             setBytes(refVal_setBytes);
             
@@ -106,7 +106,7 @@ bool Wrote::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("bytes"))))
     {
-        int32_t refVal_setBytes;
+        int64_t refVal_setBytes;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("bytes"))), refVal_setBytes );
         setBytes(refVal_setBytes);
     }
@@ -120,13 +120,13 @@ bool Wrote::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
 }
 
 
-int32_t Wrote::getBytes() const
+int64_t Wrote::getBytes() const
 {
     return m_Bytes;
 }
 
 
-void Wrote::setBytes(int32_t value)
+void Wrote::setBytes(int64_t value)
 {
     m_Bytes = value;
     m_BytesIsSet = true;

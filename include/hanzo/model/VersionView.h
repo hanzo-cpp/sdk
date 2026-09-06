@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// Version is this revision&#39;s number, 1 for the first. Numbers are dense and never reused: deleting the prompt drops the whole history with it.
     /// </summary>
-    int32_t getVersion() const;
+    int64_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();
-    void setVersion(int32_t value);
+    void setVersion(int64_t value);
 
 
 protected:
@@ -84,7 +84,7 @@ protected:
     utility::string_t m_Type;
     bool m_TypeIsSet;
 
-    int32_t m_Version;
+    int64_t m_Version;
     bool m_VersionIsSet;
 
 };

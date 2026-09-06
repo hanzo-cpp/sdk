@@ -60,18 +60,18 @@ public:
     /// <summary>
     /// Count is transactions in the day, where the table keeps one.
     /// </summary>
-    int32_t getCount() const;
+    int64_t getCount() const;
     bool countIsSet() const;
     void unsetCount();
-    void setCount(int32_t value);
+    void setCount(int64_t value);
 
     /// <summary>
     /// Date is the day&#39;s start, unix seconds.
     /// </summary>
-    int32_t getDate() const;
+    int64_t getDate() const;
     bool dateIsSet() const;
     void unsetdate();
-    void setDate(int32_t value);
+    void setDate(int64_t value);
 
     utility::string_t getHigh() const;
     bool highIsSet() const;
@@ -108,10 +108,10 @@ protected:
     utility::string_t m_Close;
     bool m_CloseIsSet;
 
-    int32_t m_Count;
+    int64_t m_Count;
     bool m_CountIsSet;
 
-    int32_t m_date;
+    int64_t m_date;
     bool m_dateIsSet;
 
     utility::string_t m_High;

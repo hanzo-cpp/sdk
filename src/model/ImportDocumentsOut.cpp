@@ -19,7 +19,7 @@ namespace model {
 ImportDocumentsOut::ImportDocumentsOut()
 {
     m_FormationIsSet = false;
-    m_Ingested = 0;
+    m_Ingested = 0L;
     m_IngestedIsSet = false;
 }
 
@@ -68,7 +68,7 @@ bool ImportDocumentsOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("ingested")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setIngested;
+            int64_t refVal_setIngested;
             ok &= ModelBase::fromJson(fieldValue, refVal_setIngested);
             setIngested(refVal_setIngested);
             
@@ -111,7 +111,7 @@ bool ImportDocumentsOut::fromMultiPart(std::shared_ptr<MultipartFormData> multip
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("ingested"))))
     {
-        int32_t refVal_setIngested;
+        int64_t refVal_setIngested;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ingested"))), refVal_setIngested );
         setIngested(refVal_setIngested);
     }
@@ -140,13 +140,13 @@ void ImportDocumentsOut::unsetFormation()
 {
     m_FormationIsSet = false;
 }
-int32_t ImportDocumentsOut::getIngested() const
+int64_t ImportDocumentsOut::getIngested() const
 {
     return m_Ingested;
 }
 
 
-void ImportDocumentsOut::setIngested(int32_t value)
+void ImportDocumentsOut::setIngested(int64_t value)
 {
     m_Ingested = value;
     m_IngestedIsSet = true;

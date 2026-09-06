@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// Years is the term to buy on transfer, defaulting to 1.
     /// </summary>
-    int32_t getYears() const;
+    int64_t getYears() const;
     bool yearsIsSet() const;
     void unsetYears();
-    void setYears(int32_t value);
+    void setYears(int64_t value);
 
 
 protected:
@@ -84,7 +84,7 @@ protected:
     utility::string_t m_Domain;
     bool m_DomainIsSet;
 
-    int32_t m_Years;
+    int64_t m_Years;
     bool m_YearsIsSet;
 
 };

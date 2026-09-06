@@ -57,34 +57,34 @@ public:
     /// <summary>
     /// EndTime is the end of the window, as a millisecond epoch.
     /// </summary>
-    int32_t getEndTime() const;
+    int64_t getEndTime() const;
     bool endTimeIsSet() const;
     void unsetEnd_time();
-    void setEndTime(int32_t value);
+    void setEndTime(int64_t value);
 
     /// <summary>
     /// StartTime is the start of the window, as a millisecond epoch.
     /// </summary>
-    int32_t getStartTime() const;
+    int64_t getStartTime() const;
     bool startTimeIsSet() const;
     void unsetStart_time();
-    void setStartTime(int32_t value);
+    void setStartTime(int64_t value);
 
     /// <summary>
     /// StepEnd is the step the transition runs to, 1-based.
     /// </summary>
-    int32_t getStepEnd() const;
+    int64_t getStepEnd() const;
     bool stepEndIsSet() const;
     void unsetStep_end();
-    void setStepEnd(int32_t value);
+    void setStepEnd(int64_t value);
 
     /// <summary>
     /// StepStart is the step the transition runs from, 1-based. Ignored by the reads that span the whole funnel.
     /// </summary>
-    int32_t getStepStart() const;
+    int64_t getStepStart() const;
     bool stepStartIsSet() const;
     void unsetStep_start();
-    void setStepStart(int32_t value);
+    void setStepStart(int64_t value);
 
     /// <summary>
     /// Steps are the funnel&#39;s steps, in order. At least two are needed.
@@ -96,16 +96,16 @@ public:
 
 
 protected:
-    int32_t m_End_time;
+    int64_t m_End_time;
     bool m_End_timeIsSet;
 
-    int32_t m_Start_time;
+    int64_t m_Start_time;
     bool m_Start_timeIsSet;
 
-    int32_t m_Step_end;
+    int64_t m_Step_end;
     bool m_Step_endIsSet;
 
-    int32_t m_Step_start;
+    int64_t m_Step_start;
     bool m_Step_startIsSet;
 
     std::vector<std::shared_ptr<O11y_FunnelStep>> m_Steps;

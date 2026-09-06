@@ -61,6 +61,14 @@ public:
     void setRClass(const utility::string_t& value);
 
     /// <summary>
+    /// Cluster names one of the org&#39;s attached clusters to run the sandbox on — the fleet-local name it was registered under. Empty runs on the home cluster. The named cluster must carry the sandbox namespace and the gvisor runtime class; a name the org has not attached is 404.
+    /// </summary>
+    utility::string_t getCluster() const;
+    bool clusterIsSet() const;
+    void unsetCluster();
+    void setCluster(const utility::string_t& value);
+
+    /// <summary>
     /// Image overrides the image the class would pick. Honoured only for a caller the policy admits, and the sandbox that comes back names the image it GOT.
     /// </summary>
     utility::string_t getImage() const;
@@ -87,15 +95,18 @@ public:
     /// <summary>
     /// TTLSec is how long the lease runs before the reaper may take it, in seconds. Zero takes the class&#39;s own default.
     /// </summary>
-    int32_t getTtlSec() const;
+    int64_t getTtlSec() const;
     bool ttlSecIsSet() const;
     void unsetTtlSec();
-    void setTtlSec(int32_t value);
+    void setTtlSec(int64_t value);
 
 
 protected:
     utility::string_t m_r_class;
     bool m_r_classIsSet;
+
+    utility::string_t m_Cluster;
+    bool m_ClusterIsSet;
 
     utility::string_t m_Image;
     bool m_ImageIsSet;
@@ -106,7 +117,7 @@ protected:
     utility::string_t m_Runtime;
     bool m_RuntimeIsSet;
 
-    int32_t m_TtlSec;
+    int64_t m_TtlSec;
     bool m_TtlSecIsSet;
 
 };

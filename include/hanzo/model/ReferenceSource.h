@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// Keys is how many members this publisher contributed.
     /// </summary>
-    int32_t getKeys() const;
+    int64_t getKeys() const;
     bool keysIsSet() const;
     void unsetKeys();
-    void setKeys(int32_t value);
+    void setKeys(int64_t value);
 
     /// <summary>
     /// Origin is exactly where it was taken from, so it can be taken again.
@@ -124,7 +124,7 @@ protected:
     utility::string_t m_Basis;
     bool m_BasisIsSet;
 
-    int32_t m_Keys;
+    int64_t m_Keys;
     bool m_KeysIsSet;
 
     utility::string_t m_Origin;

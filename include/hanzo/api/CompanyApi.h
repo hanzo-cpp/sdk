@@ -83,13 +83,13 @@ public:
     /// </remarks>
     /// <param name="stage">Stage keeps only formations at that stage. Empty means any. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="structure">Structure keeps only formations of that entity kind. Empty means any. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit bounds the page; 0 or less means the default of 200. (optional, default to 0)</param>
-    /// <param name="offset">Offset skips that many rows. (optional, default to 0)</param>
+    /// <param name="limit">Limit bounds the page; 0 or less means the default of 200. (optional, default to 0L)</param>
+    /// <param name="offset">Offset skips that many rows. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<RegisterPage>> getCompanyRegister(
         boost::optional<utility::string_t> stage,
         boost::optional<utility::string_t> structure,
-        boost::optional<int32_t> limit,
-        boost::optional<int32_t> offset
+        boost::optional<int64_t> limit,
+        boost::optional<int64_t> offset
     ) const;
     /// <summary>
     /// Counts the platform&#39;s formations by stage — the register&#39;s shape in one read, so a queue that is growing is visible as a number rather than inferred by paging the list.
@@ -105,9 +105,9 @@ public:
     /// <remarks>
     /// Reports the founders whose KYC is not yet settled, oldest formation first, so the queue drains in the order founders have been waiting. A Hanzo platform operation: a caller who is not a platform reviewer gets 403.  It only says who is waiting; the decision itself is POST /v1/company/kyc/decision.
     /// </remarks>
-    /// <param name="limit">Limit bounds how many formations are scanned; 0 or less means the default of 200. (optional, default to 0)</param>
+    /// <param name="limit">Limit bounds how many formations are scanned; 0 or less means the default of 200. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<ReviewQueue>> getCompanyReview(
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Begin starts the org&#39;s one formation and returns it with the stages reachable from it.

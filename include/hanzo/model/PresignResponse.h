@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// seconds until the URL expires
     /// </summary>
-    int32_t getExpiresIn() const;
+    int64_t getExpiresIn() const;
     bool expiresInIsSet() const;
     void unsetExpiresIn();
-    void setExpiresIn(int32_t value);
+    void setExpiresIn(int64_t value);
 
     /// <summary>
     /// Key is the object key the URL was signed for, relative to the bucket root and path-cleaned — so it is what the store will actually read or write, which is not always the string the caller sent. The signature covers this one bucket and this one key: a URL minted here reaches nothing else.
@@ -86,7 +86,7 @@ public:
 
 
 protected:
-    int32_t m_ExpiresIn;
+    int64_t m_ExpiresIn;
     bool m_ExpiresInIsSet;
 
     utility::string_t m_Key;

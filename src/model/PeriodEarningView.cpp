@@ -18,9 +18,9 @@ namespace model {
 
 PeriodEarningView::PeriodEarningView()
 {
-    m_CommissionCents = 0;
+    m_CommissionCents = 0L;
     m_CommissionCentsIsSet = false;
-    m_MarginCents = 0;
+    m_MarginCents = 0L;
     m_MarginCentsIsSet = false;
     m_Period = utility::conversions::to_string_t("");
     m_PeriodIsSet = false;
@@ -65,7 +65,7 @@ bool PeriodEarningView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("commissionCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCommissionCents;
+            int64_t refVal_setCommissionCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCommissionCents);
             setCommissionCents(refVal_setCommissionCents);
             
@@ -76,7 +76,7 @@ bool PeriodEarningView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("marginCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMarginCents;
+            int64_t refVal_setMarginCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMarginCents);
             setMarginCents(refVal_setMarginCents);
             
@@ -128,13 +128,13 @@ bool PeriodEarningView::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("commissionCents"))))
     {
-        int32_t refVal_setCommissionCents;
+        int64_t refVal_setCommissionCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("commissionCents"))), refVal_setCommissionCents );
         setCommissionCents(refVal_setCommissionCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("marginCents"))))
     {
-        int32_t refVal_setMarginCents;
+        int64_t refVal_setMarginCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("marginCents"))), refVal_setMarginCents );
         setMarginCents(refVal_setMarginCents);
     }
@@ -148,13 +148,13 @@ bool PeriodEarningView::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
 }
 
 
-int32_t PeriodEarningView::getCommissionCents() const
+int64_t PeriodEarningView::getCommissionCents() const
 {
     return m_CommissionCents;
 }
 
 
-void PeriodEarningView::setCommissionCents(int32_t value)
+void PeriodEarningView::setCommissionCents(int64_t value)
 {
     m_CommissionCents = value;
     m_CommissionCentsIsSet = true;
@@ -169,13 +169,13 @@ void PeriodEarningView::unsetCommissionCents()
 {
     m_CommissionCentsIsSet = false;
 }
-int32_t PeriodEarningView::getMarginCents() const
+int64_t PeriodEarningView::getMarginCents() const
 {
     return m_MarginCents;
 }
 
 
-void PeriodEarningView::setMarginCents(int32_t value)
+void PeriodEarningView::setMarginCents(int64_t value)
 {
     m_MarginCents = value;
     m_MarginCentsIsSet = true;

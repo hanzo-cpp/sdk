@@ -111,10 +111,10 @@ public:
     /// <summary>
     /// TimeoutSeconds bounds the run on the machine; 0 means the machine&#39;s own default.
     /// </summary>
-    int32_t getTimeoutSeconds() const;
+    int64_t getTimeoutSeconds() const;
     bool timeoutSecondsIsSet() const;
     void unsetTimeoutSeconds();
-    void setTimeoutSeconds(int32_t value);
+    void setTimeoutSeconds(int64_t value);
 
 
 protected:
@@ -139,7 +139,7 @@ protected:
     utility::string_t m_SessionId;
     bool m_SessionIdIsSet;
 
-    int32_t m_TimeoutSeconds;
+    int64_t m_TimeoutSeconds;
     bool m_TimeoutSecondsIsSet;
 
 };

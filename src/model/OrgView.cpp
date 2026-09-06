@@ -20,7 +20,7 @@ OrgView::OrgView()
 {
     m_BadgeMarkdown = utility::conversions::to_string_t("");
     m_BadgeMarkdownIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_Method = utility::conversions::to_string_t("");
     m_MethodIsSet = false;
@@ -28,7 +28,7 @@ OrgView::OrgView()
     m_OwnerUrlIsSet = false;
     m_Verified = false;
     m_VerifiedIsSet = false;
-    m_VerifiedAt = 0;
+    m_VerifiedAt = 0L;
     m_VerifiedAtIsSet = false;
 }
 
@@ -97,7 +97,7 @@ bool OrgView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -141,7 +141,7 @@ bool OrgView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("verifiedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVerifiedAt;
+            int64_t refVal_setVerifiedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVerifiedAt);
             setVerifiedAt(refVal_setVerifiedAt);
             
@@ -200,7 +200,7 @@ bool OrgView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -224,7 +224,7 @@ bool OrgView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("verifiedAt"))))
     {
-        int32_t refVal_setVerifiedAt;
+        int64_t refVal_setVerifiedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("verifiedAt"))), refVal_setVerifiedAt );
         setVerifiedAt(refVal_setVerifiedAt);
     }
@@ -253,13 +253,13 @@ void OrgView::unsetBadgeMarkdown()
 {
     m_BadgeMarkdownIsSet = false;
 }
-int32_t OrgView::getCreatedAt() const
+int64_t OrgView::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void OrgView::setCreatedAt(int32_t value)
+void OrgView::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -337,13 +337,13 @@ void OrgView::unsetVerified()
 {
     m_VerifiedIsSet = false;
 }
-int32_t OrgView::getVerifiedAt() const
+int64_t OrgView::getVerifiedAt() const
 {
     return m_VerifiedAt;
 }
 
 
-void OrgView::setVerifiedAt(int32_t value)
+void OrgView::setVerifiedAt(int64_t value)
 {
     m_VerifiedAt = value;
     m_VerifiedAtIsSet = true;

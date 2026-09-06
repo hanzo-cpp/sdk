@@ -18,7 +18,7 @@ namespace model {
 
 CryptoAsset::CryptoAsset()
 {
-    m_AmountCents = 0;
+    m_AmountCents = 0L;
     m_AmountCentsIsSet = false;
     m_Chain = utility::conversions::to_string_t("");
     m_ChainIsSet = false;
@@ -65,7 +65,7 @@ bool CryptoAsset::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("amountCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAmountCents;
+            int64_t refVal_setAmountCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAmountCents);
             setAmountCents(refVal_setAmountCents);
             
@@ -128,7 +128,7 @@ bool CryptoAsset::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("amountCents"))))
     {
-        int32_t refVal_setAmountCents;
+        int64_t refVal_setAmountCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("amountCents"))), refVal_setAmountCents );
         setAmountCents(refVal_setAmountCents);
     }
@@ -148,13 +148,13 @@ bool CryptoAsset::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 }
 
 
-int32_t CryptoAsset::getAmountCents() const
+int64_t CryptoAsset::getAmountCents() const
 {
     return m_AmountCents;
 }
 
 
-void CryptoAsset::setAmountCents(int32_t value)
+void CryptoAsset::setAmountCents(int64_t value)
 {
     m_AmountCents = value;
     m_AmountCentsIsSet = true;

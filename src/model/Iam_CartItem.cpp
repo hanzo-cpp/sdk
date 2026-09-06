@@ -26,7 +26,7 @@ Iam_CartItem::Iam_CartItem()
     m_OwnerIsSet = false;
     m_Price = 0.0;
     m_PriceIsSet = false;
-    m_Quantity = 0;
+    m_Quantity = 0L;
     m_QuantityIsSet = false;
 }
 
@@ -123,7 +123,7 @@ bool Iam_CartItem::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("quantity")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setQuantity;
+            int64_t refVal_setQuantity;
             ok &= ModelBase::fromJson(fieldValue, refVal_setQuantity);
             setQuantity(refVal_setQuantity);
             
@@ -196,7 +196,7 @@ bool Iam_CartItem::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("quantity"))))
     {
-        int32_t refVal_setQuantity;
+        int64_t refVal_setQuantity;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("quantity"))), refVal_setQuantity );
         setQuantity(refVal_setQuantity);
     }
@@ -288,13 +288,13 @@ void Iam_CartItem::unsetPrice()
 {
     m_PriceIsSet = false;
 }
-int32_t Iam_CartItem::getQuantity() const
+int64_t Iam_CartItem::getQuantity() const
 {
     return m_Quantity;
 }
 
 
-void Iam_CartItem::setQuantity(int32_t value)
+void Iam_CartItem::setQuantity(int64_t value)
 {
     m_Quantity = value;
     m_QuantityIsSet = true;

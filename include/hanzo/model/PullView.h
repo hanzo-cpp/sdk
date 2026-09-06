@@ -103,10 +103,10 @@ public:
     /// <summary>
     /// Number is the proposal&#39;s per-repo handle, dense from 1.
     /// </summary>
-    int32_t getNumber() const;
+    int64_t getNumber() const;
     bool numberIsSet() const;
     void unsetnumber();
-    void setNumber(int32_t value);
+    void setNumber(int64_t value);
 
     /// <summary>
     /// Repo is the repository the proposal belongs to.
@@ -160,7 +160,7 @@ protected:
     utility::string_t m_MergedRev;
     bool m_MergedRevIsSet;
 
-    int32_t m_number;
+    int64_t m_number;
     bool m_numberIsSet;
 
     utility::string_t m_Repo;

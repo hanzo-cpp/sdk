@@ -30,19 +30,19 @@ Alert::Alert()
     m_OverIsSet = false;
     m_Period = utility::conversions::to_string_t("");
     m_PeriodIsSet = false;
-    m_PeriodSpentCents = 0;
+    m_PeriodSpentCents = 0L;
     m_PeriodSpentCentsIsSet = false;
     m_Project = utility::conversions::to_string_t("");
     m_ProjectIsSet = false;
-    m_RateLimitRpm = 0;
+    m_RateLimitRpm = 0L;
     m_RateLimitRpmIsSet = false;
     m_ResetsAt = utility::conversions::to_string_t("");
     m_ResetsAtIsSet = false;
     m_Service = utility::conversions::to_string_t("");
     m_ServiceIsSet = false;
-    m_SoftPct = 0;
+    m_SoftPct = 0L;
     m_SoftPctIsSet = false;
-    m_Threshold = 0;
+    m_Threshold = 0L;
     m_ThresholdIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
@@ -236,7 +236,7 @@ bool Alert::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("periodSpentCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPeriodSpentCents;
+            int64_t refVal_setPeriodSpentCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPeriodSpentCents);
             setPeriodSpentCents(refVal_setPeriodSpentCents);
             
@@ -258,7 +258,7 @@ bool Alert::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("rateLimitRpm")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRateLimitRpm;
+            int64_t refVal_setRateLimitRpm;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRateLimitRpm);
             setRateLimitRpm(refVal_setRateLimitRpm);
             
@@ -291,7 +291,7 @@ bool Alert::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("softPct")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSoftPct;
+            int64_t refVal_setSoftPct;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSoftPct);
             setSoftPct(refVal_setSoftPct);
             
@@ -302,7 +302,7 @@ bool Alert::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("threshold")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setThreshold;
+            int64_t refVal_setThreshold;
             ok &= ModelBase::fromJson(fieldValue, refVal_setThreshold);
             setThreshold(refVal_setThreshold);
             
@@ -494,7 +494,7 @@ bool Alert::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("periodSpentCents"))))
     {
-        int32_t refVal_setPeriodSpentCents;
+        int64_t refVal_setPeriodSpentCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("periodSpentCents"))), refVal_setPeriodSpentCents );
         setPeriodSpentCents(refVal_setPeriodSpentCents);
     }
@@ -506,7 +506,7 @@ bool Alert::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("rateLimitRpm"))))
     {
-        int32_t refVal_setRateLimitRpm;
+        int64_t refVal_setRateLimitRpm;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("rateLimitRpm"))), refVal_setRateLimitRpm );
         setRateLimitRpm(refVal_setRateLimitRpm);
     }
@@ -524,13 +524,13 @@ bool Alert::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("softPct"))))
     {
-        int32_t refVal_setSoftPct;
+        int64_t refVal_setSoftPct;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("softPct"))), refVal_setSoftPct );
         setSoftPct(refVal_setSoftPct);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("threshold"))))
     {
-        int32_t refVal_setThreshold;
+        int64_t refVal_setThreshold;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("threshold"))), refVal_setThreshold );
         setThreshold(refVal_setThreshold);
     }
@@ -694,13 +694,13 @@ void Alert::unsetPeriod()
 {
     m_PeriodIsSet = false;
 }
-int32_t Alert::getPeriodSpentCents() const
+int64_t Alert::getPeriodSpentCents() const
 {
     return m_PeriodSpentCents;
 }
 
 
-void Alert::setPeriodSpentCents(int32_t value)
+void Alert::setPeriodSpentCents(int64_t value)
 {
     m_PeriodSpentCents = value;
     m_PeriodSpentCentsIsSet = true;
@@ -736,13 +736,13 @@ void Alert::unsetProject()
 {
     m_ProjectIsSet = false;
 }
-int32_t Alert::getRateLimitRpm() const
+int64_t Alert::getRateLimitRpm() const
 {
     return m_RateLimitRpm;
 }
 
 
-void Alert::setRateLimitRpm(int32_t value)
+void Alert::setRateLimitRpm(int64_t value)
 {
     m_RateLimitRpm = value;
     m_RateLimitRpmIsSet = true;
@@ -799,13 +799,13 @@ void Alert::unsetService()
 {
     m_ServiceIsSet = false;
 }
-int32_t Alert::getSoftPct() const
+int64_t Alert::getSoftPct() const
 {
     return m_SoftPct;
 }
 
 
-void Alert::setSoftPct(int32_t value)
+void Alert::setSoftPct(int64_t value)
 {
     m_SoftPct = value;
     m_SoftPctIsSet = true;
@@ -820,13 +820,13 @@ void Alert::unsetSoftPct()
 {
     m_SoftPctIsSet = false;
 }
-int32_t Alert::getThreshold() const
+int64_t Alert::getThreshold() const
 {
     return m_Threshold;
 }
 
 
-void Alert::setThreshold(int32_t value)
+void Alert::setThreshold(int64_t value)
 {
     m_Threshold = value;
     m_ThresholdIsSet = true;

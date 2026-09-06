@@ -55,25 +55,25 @@ public:
     /// <summary>
     /// ByStatus tallies the org&#39;s verifications by provider-reported status.
     /// </summary>
-    std::map<utility::string_t, int32_t> getByStatus() const;
+    std::map<utility::string_t, int64_t> getByStatus() const;
     bool byStatusIsSet() const;
     void unsetByStatus();
-    void setByStatus(std::map<utility::string_t, int32_t> value);
+    void setByStatus(std::map<utility::string_t, int64_t> value);
 
     /// <summary>
     /// Total is the sum over every status.
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
 
 protected:
-    std::map<utility::string_t, int32_t> m_ByStatus;
+    std::map<utility::string_t, int64_t> m_ByStatus;
     bool m_ByStatusIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
 };

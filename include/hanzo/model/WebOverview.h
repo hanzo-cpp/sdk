@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// Pageviews is how many $pageview events landed in the window.
     /// </summary>
-    int32_t getPageviews() const;
+    int64_t getPageviews() const;
     bool pageviewsIsSet() const;
     void unsetPageviews();
-    void setPageviews(int32_t value);
+    void setPageviews(int64_t value);
 
     /// <summary>
     /// Reason says why the lens is unavailable. Omitted when it is available.
@@ -79,10 +79,10 @@ public:
     /// <summary>
     /// Sessions is how many distinct visits they span.
     /// </summary>
-    int32_t getSessions() const;
+    int64_t getSessions() const;
     bool sessionsIsSet() const;
     void unsetSessions();
-    void setSessions(int32_t value);
+    void setSessions(int64_t value);
 
     /// <summary>
     /// Source is the warehouse table the lens read.
@@ -95,29 +95,29 @@ public:
     /// <summary>
     /// Visitors is how many distinct people those pageviews came from.
     /// </summary>
-    int32_t getVisitors() const;
+    int64_t getVisitors() const;
     bool visitorsIsSet() const;
     void unsetVisitors();
-    void setVisitors(int32_t value);
+    void setVisitors(int64_t value);
 
 
 protected:
     bool m_Available;
     bool m_AvailableIsSet;
 
-    int32_t m_Pageviews;
+    int64_t m_Pageviews;
     bool m_PageviewsIsSet;
 
     utility::string_t m_Reason;
     bool m_ReasonIsSet;
 
-    int32_t m_Sessions;
+    int64_t m_Sessions;
     bool m_SessionsIsSet;
 
     utility::string_t m_Source;
     bool m_SourceIsSet;
 
-    int32_t m_Visitors;
+    int64_t m_Visitors;
     bool m_VisitorsIsSet;
 
 };

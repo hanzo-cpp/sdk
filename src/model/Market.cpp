@@ -27,7 +27,7 @@ Market::Market()
     m_FiguresIsSet = false;
     m_Graph = utility::conversions::to_string_t("");
     m_GraphIsSet = false;
-    m_Id = 0;
+    m_Id = 0L;
     m_IdIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
@@ -183,7 +183,7 @@ bool Market::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("id")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setId;
+            int64_t refVal_setId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setId);
             setId(refVal_setId);
             
@@ -336,7 +336,7 @@ bool Market::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("id"))))
     {
-        int32_t refVal_setId;
+        int64_t refVal_setId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("id"))), refVal_setId );
         setId(refVal_setId);
     }
@@ -494,13 +494,13 @@ void Market::unsetGraph()
 {
     m_GraphIsSet = false;
 }
-int32_t Market::getId() const
+int64_t Market::getId() const
 {
     return m_Id;
 }
 
 
-void Market::setId(int32_t value)
+void Market::setId(int64_t value)
 {
     m_Id = value;
     m_IdIsSet = true;

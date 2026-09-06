@@ -61,10 +61,10 @@ public:
     void unsetMeta();
     void setMeta(const std::map<utility::string_t, utility::string_t>& value);
 
-    int32_t getPodAge() const;
+    int64_t getPodAge() const;
     bool podAgeIsSet() const;
     void unsetPodAge();
-    void setPodAge(int32_t value);
+    void setPodAge(int64_t value);
 
     double getPodCPU() const;
     bool podCPUIsSet() const;
@@ -116,7 +116,7 @@ protected:
     std::map<utility::string_t, utility::string_t> m_Meta;
     bool m_MetaIsSet;
 
-    int32_t m_PodAge;
+    int64_t m_PodAge;
     bool m_PodAgeIsSet;
 
     double m_PodCPU;

@@ -20,7 +20,7 @@ WebQuestion::WebQuestion()
 {
     m_Language = utility::conversions::to_string_t("");
     m_LanguageIsSet = false;
-    m_Max_sources = 0;
+    m_Max_sources = 0L;
     m_Max_sourcesIsSet = false;
     m_Mode = utility::conversions::to_string_t("");
     m_ModeIsSet = false;
@@ -89,7 +89,7 @@ bool WebQuestion::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("max_sources")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMaxSources;
+            int64_t refVal_setMaxSources;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMaxSources);
             setMaxSources(refVal_setMaxSources);
             
@@ -177,7 +177,7 @@ bool WebQuestion::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("max_sources"))))
     {
-        int32_t refVal_setMaxSources;
+        int64_t refVal_setMaxSources;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("max_sources"))), refVal_setMaxSources );
         setMaxSources(refVal_setMaxSources);
     }
@@ -224,13 +224,13 @@ void WebQuestion::unsetLanguage()
 {
     m_LanguageIsSet = false;
 }
-int32_t WebQuestion::getMaxSources() const
+int64_t WebQuestion::getMaxSources() const
 {
     return m_Max_sources;
 }
 
 
-void WebQuestion::setMaxSources(int32_t value)
+void WebQuestion::setMaxSources(int64_t value)
 {
     m_Max_sources = value;
     m_Max_sourcesIsSet = true;

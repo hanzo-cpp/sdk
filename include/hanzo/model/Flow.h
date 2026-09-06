@@ -53,10 +53,10 @@ public:
     /// Flow members
 
 
-    int32_t getCreated() const;
+    int64_t getCreated() const;
     bool createdIsSet() const;
     void unsetCreated();
-    void setCreated(int32_t value);
+    void setCreated(int64_t value);
 
     utility::string_t getExternalId() const;
     bool externalIdIsSet() const;
@@ -96,14 +96,14 @@ public:
     void unsetStatus();
     void setStatus(const utility::string_t& value);
 
-    int32_t getUpdated() const;
+    int64_t getUpdated() const;
     bool updatedIsSet() const;
     void unsetUpdated();
-    void setUpdated(int32_t value);
+    void setUpdated(int64_t value);
 
 
 protected:
-    int32_t m_Created;
+    int64_t m_Created;
     bool m_CreatedIsSet;
 
     utility::string_t m_ExternalId;
@@ -126,7 +126,7 @@ protected:
     utility::string_t m_Status;
     bool m_StatusIsSet;
 
-    int32_t m_Updated;
+    int64_t m_Updated;
     bool m_UpdatedIsSet;
 
 };

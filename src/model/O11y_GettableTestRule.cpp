@@ -18,7 +18,7 @@ namespace model {
 
 O11y_GettableTestRule::O11y_GettableTestRule()
 {
-    m_AlertCount = 0;
+    m_AlertCount = 0L;
     m_AlertCountIsSet = false;
     m_Message = utility::conversions::to_string_t("");
     m_MessageIsSet = false;
@@ -58,7 +58,7 @@ bool O11y_GettableTestRule::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("alertCount")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAlertCount;
+            int64_t refVal_setAlertCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAlertCount);
             setAlertCount(refVal_setAlertCount);
             
@@ -106,7 +106,7 @@ bool O11y_GettableTestRule::fromMultiPart(std::shared_ptr<MultipartFormData> mul
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("alertCount"))))
     {
-        int32_t refVal_setAlertCount;
+        int64_t refVal_setAlertCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("alertCount"))), refVal_setAlertCount );
         setAlertCount(refVal_setAlertCount);
     }
@@ -120,13 +120,13 @@ bool O11y_GettableTestRule::fromMultiPart(std::shared_ptr<MultipartFormData> mul
 }
 
 
-int32_t O11y_GettableTestRule::getAlertCount() const
+int64_t O11y_GettableTestRule::getAlertCount() const
 {
     return m_AlertCount;
 }
 
 
-void O11y_GettableTestRule::setAlertCount(int32_t value)
+void O11y_GettableTestRule::setAlertCount(int64_t value)
 {
     m_AlertCount = value;
     m_AlertCountIsSet = true;

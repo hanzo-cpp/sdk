@@ -91,29 +91,29 @@ public:
     /// <summary>
     /// Queued is how many renders are waiting on THIS GPU&#39;s own lane in the org&#39;s gpu-jobs queue. BYO units only — an agent run-target dispatches, it does not queue — and omitted when nothing is waiting.
     /// </summary>
-    int32_t getQueued() const;
+    int64_t getQueued() const;
     bool queuedIsSet() const;
     void unsetQueued();
-    void setQueued(int32_t value);
+    void setQueued(int64_t value);
 
     /// <summary>
     /// Running is what the unit is executing right now: agent sessions in flight for a run-target, claimed renders for a BYO GPU.
     /// </summary>
-    int32_t getRunning() const;
+    int64_t getRunning() const;
     bool runningIsSet() const;
     void unsetRunning();
-    void setRunning(int32_t value);
+    void setRunning(int64_t value);
 
     /// <summary>
     /// Sessions is how many agent sessions are open on this unit. Always present, and 0 for a source that cannot host agent sessions at all — a fact about that plane, not a gap in the reading.
     /// </summary>
-    int32_t getSessions() const;
+    int64_t getSessions() const;
     bool sessionsIsSet() const;
     void unsetSessions();
-    void setSessions(int32_t value);
+    void setSessions(int64_t value);
 
     /// <summary>
-    /// Source is the plane this row came from: \&quot;agent\&quot; (a linked run-target), \&quot;byo\&quot; (a worker or cluster the org dialed in) or \&quot;visor\&quot; (a machine Hanzo provisioned). It is half the row&#39;s identity, and it says which face owns the unit — /v1/agents/targets, /v1/visor/fleet/workers, /v1/visor/machines.
+    /// Source is the plane this row came from: \&quot;agent\&quot; (a linked run-target), \&quot;byo\&quot; (a worker or cluster the org dialed in) or \&quot;visor\&quot; (a machine Hanzo provisioned). It is half the row&#39;s identity, and it says which face owns the unit — /v1/agent/targets, /v1/compute/fleet/workers, /v1/compute/machines.
     /// </summary>
     utility::string_t getSource() const;
     bool sourceIsSet() const;
@@ -158,13 +158,13 @@ protected:
     std::shared_ptr<FleetMetrics> m_Metrics;
     bool m_MetricsIsSet;
 
-    int32_t m_Queued;
+    int64_t m_Queued;
     bool m_QueuedIsSet;
 
-    int32_t m_Running;
+    int64_t m_Running;
     bool m_RunningIsSet;
 
-    int32_t m_Sessions;
+    int64_t m_Sessions;
     bool m_SessionsIsSet;
 
     utility::string_t m_Source;

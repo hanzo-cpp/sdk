@@ -24,7 +24,7 @@ Iam_Cert::Iam_Cert()
     m_AccessSecretIsSet = false;
     m_Account = utility::conversions::to_string_t("");
     m_AccountIsSet = false;
-    m_BitSize = 0;
+    m_BitSize = 0L;
     m_BitSizeIsSet = false;
     m_Certificate = utility::conversions::to_string_t("");
     m_CertificateIsSet = false;
@@ -40,7 +40,7 @@ Iam_Cert::Iam_Cert()
     m_DisplayNameIsSet = false;
     m_DomainExpireTime = utility::conversions::to_string_t("");
     m_DomainExpireTimeIsSet = false;
-    m_ExpireInYears = 0;
+    m_ExpireInYears = 0L;
     m_ExpireInYearsIsSet = false;
     m_ExpireTime = utility::conversions::to_string_t("");
     m_ExpireTimeIsSet = false;
@@ -217,7 +217,7 @@ bool Iam_Cert::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("bitSize")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBitSize;
+            int64_t refVal_setBitSize;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBitSize);
             setBitSize(refVal_setBitSize);
             
@@ -305,7 +305,7 @@ bool Iam_Cert::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("expireInYears")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExpireInYears;
+            int64_t refVal_setExpireInYears;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExpireInYears);
             setExpireInYears(refVal_setExpireInYears);
             
@@ -520,7 +520,7 @@ bool Iam_Cert::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("bitSize"))))
     {
-        int32_t refVal_setBitSize;
+        int64_t refVal_setBitSize;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("bitSize"))), refVal_setBitSize );
         setBitSize(refVal_setBitSize);
     }
@@ -568,7 +568,7 @@ bool Iam_Cert::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("expireInYears"))))
     {
-        int32_t refVal_setExpireInYears;
+        int64_t refVal_setExpireInYears;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("expireInYears"))), refVal_setExpireInYears );
         setExpireInYears(refVal_setExpireInYears);
     }
@@ -687,13 +687,13 @@ void Iam_Cert::unsetAccount()
 {
     m_AccountIsSet = false;
 }
-int32_t Iam_Cert::getBitSize() const
+int64_t Iam_Cert::getBitSize() const
 {
     return m_BitSize;
 }
 
 
-void Iam_Cert::setBitSize(int32_t value)
+void Iam_Cert::setBitSize(int64_t value)
 {
     m_BitSize = value;
     m_BitSizeIsSet = true;
@@ -855,13 +855,13 @@ void Iam_Cert::unsetDomainExpireTime()
 {
     m_DomainExpireTimeIsSet = false;
 }
-int32_t Iam_Cert::getExpireInYears() const
+int64_t Iam_Cert::getExpireInYears() const
 {
     return m_ExpireInYears;
 }
 
 
-void Iam_Cert::setExpireInYears(int32_t value)
+void Iam_Cert::setExpireInYears(int64_t value)
 {
     m_ExpireInYears = value;
     m_ExpireInYearsIsSet = true;

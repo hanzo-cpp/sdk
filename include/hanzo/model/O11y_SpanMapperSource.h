@@ -68,10 +68,10 @@ public:
     void unsetOperation();
     void setOperation(const std::shared_ptr<AnyType>& value);
 
-    int32_t getPriority() const;
+    int64_t getPriority() const;
     bool priorityIsSet() const;
     void unsetPriority();
-    void setPriority(int32_t value);
+    void setPriority(int64_t value);
 
 
 protected:
@@ -82,7 +82,7 @@ protected:
 
     boost::optional<std::shared_ptr<AnyType>> m_Operation;
 
-    int32_t m_Priority;
+    int64_t m_Priority;
     bool m_PriorityIsSet;
 
 };

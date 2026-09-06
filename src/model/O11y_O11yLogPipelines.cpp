@@ -28,7 +28,7 @@ O11y_O11yLogPipelines::O11y_O11yLogPipelines()
     m_CreatedByNameIsSet = false;
     m_DeployResult = utility::conversions::to_string_t("");
     m_DeployResultIsSet = false;
-    m_DeploySequence = 0;
+    m_DeploySequence = 0L;
     m_DeploySequenceIsSet = false;
     m_DeployStatus = utility::conversions::to_string_t("");
     m_DeployStatusIsSet = false;
@@ -46,7 +46,7 @@ O11y_O11yLogPipelines::O11y_O11yLogPipelines()
     m_UpdatedAtIsSet = false;
     m_UpdatedBy = utility::conversions::to_string_t("");
     m_UpdatedByIsSet = false;
-    m_Version = 0;
+    m_Version = 0L;
     m_VersionIsSet = false;
 }
 
@@ -209,7 +209,7 @@ bool O11y_O11yLogPipelines::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("deploySequence")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDeploySequence;
+            int64_t refVal_setDeploySequence;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDeploySequence);
             setDeploySequence(refVal_setDeploySequence);
             
@@ -319,7 +319,7 @@ bool O11y_O11yLogPipelines::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("version")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVersion;
+            int64_t refVal_setVersion;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVersion);
             setVersion(refVal_setVersion);
             
@@ -442,7 +442,7 @@ bool O11y_O11yLogPipelines::fromMultiPart(std::shared_ptr<MultipartFormData> mul
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("deploySequence"))))
     {
-        int32_t refVal_setDeploySequence;
+        int64_t refVal_setDeploySequence;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("deploySequence"))), refVal_setDeploySequence );
         setDeploySequence(refVal_setDeploySequence);
     }
@@ -502,7 +502,7 @@ bool O11y_O11yLogPipelines::fromMultiPart(std::shared_ptr<MultipartFormData> mul
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("version"))))
     {
-        int32_t refVal_setVersion;
+        int64_t refVal_setVersion;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("version"))), refVal_setVersion );
         setVersion(refVal_setVersion);
     }
@@ -615,13 +615,13 @@ void O11y_O11yLogPipelines::unsetDeployResult()
 {
     m_DeployResultIsSet = false;
 }
-int32_t O11y_O11yLogPipelines::getDeploySequence() const
+int64_t O11y_O11yLogPipelines::getDeploySequence() const
 {
     return m_DeploySequence;
 }
 
 
-void O11y_O11yLogPipelines::setDeploySequence(int32_t value)
+void O11y_O11yLogPipelines::setDeploySequence(int64_t value)
 {
     m_DeploySequence = value;
     m_DeploySequenceIsSet = true;
@@ -825,13 +825,13 @@ void O11y_O11yLogPipelines::unsetUpdatedBy()
 {
     m_UpdatedByIsSet = false;
 }
-int32_t O11y_O11yLogPipelines::getVersion() const
+int64_t O11y_O11yLogPipelines::getVersion() const
 {
     return m_Version;
 }
 
 
-void O11y_O11yLogPipelines::setVersion(int32_t value)
+void O11y_O11yLogPipelines::setVersion(int64_t value)
 {
     m_Version = value;
     m_VersionIsSet = true;

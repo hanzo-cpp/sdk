@@ -112,10 +112,10 @@ public:
     /// <summary>
     /// Order is where the taxon sits within its category, ascending.
     /// </summary>
-    int32_t getOrder() const;
+    int64_t getOrder() const;
     bool orderIsSet() const;
     void unsetOrder();
-    void setOrder(int32_t value);
+    void setOrder(int64_t value);
 
     /// <summary>
     /// Owner is the org this product belongs to: the platform&#39;s own org for one every tenant sees, or your org for one you added. Where two rows share an id, yours is the one served.
@@ -172,7 +172,7 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_Order;
+    int64_t m_Order;
     bool m_OrderIsSet;
 
     utility::string_t m_Owner;

@@ -55,15 +55,15 @@ public:
     /// O11y_StatefulSetRecord members
 
 
-    int32_t getCurrentPods() const;
+    int64_t getCurrentPods() const;
     bool currentPodsIsSet() const;
     void unsetCurrentPods();
-    void setCurrentPods(int32_t value);
+    void setCurrentPods(int64_t value);
 
-    int32_t getDesiredPods() const;
+    int64_t getDesiredPods() const;
     bool desiredPodsIsSet() const;
     void unsetDesiredPods();
-    void setDesiredPods(int32_t value);
+    void setDesiredPods(int64_t value);
 
     std::map<utility::string_t, utility::string_t> getMeta() const;
     bool metaIsSet() const;
@@ -112,10 +112,10 @@ public:
 
 
 protected:
-    int32_t m_CurrentPods;
+    int64_t m_CurrentPods;
     bool m_CurrentPodsIsSet;
 
-    int32_t m_DesiredPods;
+    int64_t m_DesiredPods;
     bool m_DesiredPodsIsSet;
 
     std::map<utility::string_t, utility::string_t> m_Meta;

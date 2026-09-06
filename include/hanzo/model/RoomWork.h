@@ -56,10 +56,10 @@ public:
     /// <summary>
     /// Open is how many items are still work: everything whose status does not end it. It is the number a channel header shows.
     /// </summary>
-    int32_t getOpen() const;
+    int64_t getOpen() const;
     bool openIsSet() const;
     void unsetOpen();
-    void setOpen(int32_t value);
+    void setOpen(int64_t value);
 
     /// <summary>
     /// Room is the room these counts are for, echoed back as it was resolved.
@@ -72,42 +72,42 @@ public:
     /// <summary>
     /// Status is the count per board column, carrying EVERY column this surface knows — an empty column reads 0 rather than being absent, so a caller can render the board without inventing the vocabulary. The keys are the same closed set every other operation here validates against.
     /// </summary>
-    std::map<utility::string_t, int32_t> getStatus() const;
+    std::map<utility::string_t, int64_t> getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
-    void setStatus(std::map<utility::string_t, int32_t> value);
+    void setStatus(std::map<utility::string_t, int64_t> value);
 
     /// <summary>
     /// Total is every item bound to this room, settled ones included, so Total minus Open is what the room has finished.
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
     /// <summary>
     /// Updated is when anything in this room&#39;s work last moved, in unix seconds. ABSENT when the room has no work at all: zero would read as the epoch, and a room nobody has filed anything in has no last activity rather than an infinitely old one. Total is 0 in exactly that case.
     /// </summary>
-    int32_t getUpdated() const;
+    int64_t getUpdated() const;
     bool updatedIsSet() const;
     void unsetUpdated();
-    void setUpdated(int32_t value);
+    void setUpdated(int64_t value);
 
 
 protected:
-    int32_t m_Open;
+    int64_t m_Open;
     bool m_OpenIsSet;
 
     utility::string_t m_Room;
     bool m_RoomIsSet;
 
-    std::map<utility::string_t, int32_t> m_Status;
+    std::map<utility::string_t, int64_t> m_Status;
     bool m_StatusIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
-    int32_t m_Updated;
+    int64_t m_Updated;
     bool m_UpdatedIsSet;
 
 };

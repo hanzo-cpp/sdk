@@ -18,11 +18,11 @@ namespace model {
 
 LevelView::LevelView()
 {
-    m_DownlineCount = 0;
+    m_DownlineCount = 0L;
     m_DownlineCountIsSet = false;
-    m_Level = 0;
+    m_Level = 0L;
     m_LevelIsSet = false;
-    m_RateBps = 0;
+    m_RateBps = 0L;
     m_RateBpsIsSet = false;
 }
 
@@ -65,7 +65,7 @@ bool LevelView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("downlineCount")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDownlineCount;
+            int64_t refVal_setDownlineCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDownlineCount);
             setDownlineCount(refVal_setDownlineCount);
             
@@ -76,7 +76,7 @@ bool LevelView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("level")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLevel;
+            int64_t refVal_setLevel;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLevel);
             setLevel(refVal_setLevel);
             
@@ -87,7 +87,7 @@ bool LevelView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("rateBps")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRateBps;
+            int64_t refVal_setRateBps;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRateBps);
             setRateBps(refVal_setRateBps);
             
@@ -128,19 +128,19 @@ bool LevelView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("downlineCount"))))
     {
-        int32_t refVal_setDownlineCount;
+        int64_t refVal_setDownlineCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("downlineCount"))), refVal_setDownlineCount );
         setDownlineCount(refVal_setDownlineCount);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("level"))))
     {
-        int32_t refVal_setLevel;
+        int64_t refVal_setLevel;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("level"))), refVal_setLevel );
         setLevel(refVal_setLevel);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("rateBps"))))
     {
-        int32_t refVal_setRateBps;
+        int64_t refVal_setRateBps;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("rateBps"))), refVal_setRateBps );
         setRateBps(refVal_setRateBps);
     }
@@ -148,13 +148,13 @@ bool LevelView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 }
 
 
-int32_t LevelView::getDownlineCount() const
+int64_t LevelView::getDownlineCount() const
 {
     return m_DownlineCount;
 }
 
 
-void LevelView::setDownlineCount(int32_t value)
+void LevelView::setDownlineCount(int64_t value)
 {
     m_DownlineCount = value;
     m_DownlineCountIsSet = true;
@@ -169,13 +169,13 @@ void LevelView::unsetDownlineCount()
 {
     m_DownlineCountIsSet = false;
 }
-int32_t LevelView::getLevel() const
+int64_t LevelView::getLevel() const
 {
     return m_Level;
 }
 
 
-void LevelView::setLevel(int32_t value)
+void LevelView::setLevel(int64_t value)
 {
     m_Level = value;
     m_LevelIsSet = true;
@@ -190,13 +190,13 @@ void LevelView::unsetLevel()
 {
     m_LevelIsSet = false;
 }
-int32_t LevelView::getRateBps() const
+int64_t LevelView::getRateBps() const
 {
     return m_RateBps;
 }
 
 
-void LevelView::setRateBps(int32_t value)
+void LevelView::setRateBps(int64_t value)
 {
     m_RateBps = value;
     m_RateBpsIsSet = true;

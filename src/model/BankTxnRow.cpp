@@ -18,7 +18,7 @@ namespace model {
 
 BankTxnRow::BankTxnRow()
 {
-    m_AmountCents = 0;
+    m_AmountCents = 0L;
     m_AmountCentsIsSet = false;
     m_Connector = utility::conversions::to_string_t("");
     m_ConnectorIsSet = false;
@@ -114,7 +114,7 @@ bool BankTxnRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("amountCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAmountCents;
+            int64_t refVal_setAmountCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAmountCents);
             setAmountCents(refVal_setAmountCents);
             
@@ -282,7 +282,7 @@ bool BankTxnRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("amountCents"))))
     {
-        int32_t refVal_setAmountCents;
+        int64_t refVal_setAmountCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("amountCents"))), refVal_setAmountCents );
         setAmountCents(refVal_setAmountCents);
     }
@@ -344,13 +344,13 @@ bool BankTxnRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 }
 
 
-int32_t BankTxnRow::getAmountCents() const
+int64_t BankTxnRow::getAmountCents() const
 {
     return m_AmountCents;
 }
 
 
-void BankTxnRow::setAmountCents(int32_t value)
+void BankTxnRow::setAmountCents(int64_t value)
 {
     m_AmountCents = value;
     m_AmountCentsIsSet = true;

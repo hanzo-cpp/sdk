@@ -54,14 +54,14 @@ public:
     /// <summary>
     /// Days is how much of the organisation&#39;s own history to replay, 1 to 400. Zero takes thirty.
     /// </summary>
-    int32_t getDays() const;
+    int64_t getDays() const;
     bool daysIsSet() const;
     void unsetDays();
-    void setDays(int32_t value);
+    void setDays(int64_t value);
 
 
 protected:
-    int32_t m_Days;
+    int64_t m_Days;
     bool m_DaysIsSet;
 
 };

@@ -18,7 +18,7 @@ namespace model {
 
 Charged::Charged()
 {
-    m_BalanceCents = 0;
+    m_BalanceCents = 0L;
     m_BalanceCentsIsSet = false;
     m_ProcessorRef = utility::conversions::to_string_t("");
     m_ProcessorRefIsSet = false;
@@ -79,7 +79,7 @@ bool Charged::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("balanceCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBalanceCents;
+            int64_t refVal_setBalanceCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBalanceCents);
             setBalanceCents(refVal_setBalanceCents);
             
@@ -172,7 +172,7 @@ bool Charged::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("balanceCents"))))
     {
-        int32_t refVal_setBalanceCents;
+        int64_t refVal_setBalanceCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("balanceCents"))), refVal_setBalanceCents );
         setBalanceCents(refVal_setBalanceCents);
     }
@@ -204,13 +204,13 @@ bool Charged::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
 }
 
 
-int32_t Charged::getBalanceCents() const
+int64_t Charged::getBalanceCents() const
 {
     return m_BalanceCents;
 }
 
 
-void Charged::setBalanceCents(int32_t value)
+void Charged::setBalanceCents(int64_t value)
 {
     m_BalanceCents = value;
     m_BalanceCentsIsSet = true;

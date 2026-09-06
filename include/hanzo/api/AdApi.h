@@ -62,10 +62,10 @@ public:
     /// Returns the caller org&#39;s ad campaigns, most recently updated first, optionally narrowed to one lifecycle status. The listing is bounded by the org: another tenant&#39;s campaigns are not reachable from here at all.
     /// </remarks>
     /// <param name="status">Status filters to one lifecycle state (draft, active, paused, completed). Empty returns every campaign the org has. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many campaigns come back: default 200, maximum 1000. A value that is not a positive integer reads as the default. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many campaigns come back: default 200, maximum 1000. A value that is not a positive integer reads as the default. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<CampaignList>> getAdCampaigns(
         boost::optional<utility::string_t> status,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns one of the caller org&#39;s campaigns.

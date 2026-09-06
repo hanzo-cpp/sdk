@@ -144,10 +144,10 @@ public:
     /// <summary>
     /// SizeBytes is the repo&#39;s measured on-disk size, re-measured on create, after each push, and after a gc. This is the number billing meters.
     /// </summary>
-    int32_t getSizeBytes() const;
+    int64_t getSizeBytes() const;
     bool sizeBytesIsSet() const;
     void unsetSizeBytes();
-    void setSizeBytes(int32_t value);
+    void setSizeBytes(int64_t value);
 
     /// <summary>
     /// SSHURL is the scp-style SSH remote (git@host:org/repo.git).
@@ -200,7 +200,7 @@ protected:
     bool m_r_public;
     bool m_r_publicIsSet;
 
-    int32_t m_SizeBytes;
+    int64_t m_SizeBytes;
     bool m_SizeBytesIsSet;
 
     utility::string_t m_SshUrl;

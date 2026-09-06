@@ -95,10 +95,10 @@ public:
     /// <summary>
     /// Port is the port a client connects to on Host.
     /// </summary>
-    int32_t getPort() const;
+    int64_t getPort() const;
     bool portIsSet() const;
     void unsetPort();
-    void setPort(int32_t value);
+    void setPort(int64_t value);
 
     /// <summary>
     /// Status is \&quot;ready\&quot;, or \&quot;provisioning\&quot; while a dedicated instance is still being materialized. A dedicated resource&#39;s status is reconciled from the operator&#39;s live CR before this is answered, so it is never a stale ready.
@@ -133,7 +133,7 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_Port;
+    int64_t m_Port;
     bool m_PortIsSet;
 
     utility::string_t m_Status;

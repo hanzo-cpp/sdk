@@ -58,10 +58,10 @@ public:
     /// <summary>
     /// BudgetTokens is the ceiling the caller asked for. Packing stops under it, so this is a bound and not a target.
     /// </summary>
-    int32_t getBudgetTokens() const;
+    int64_t getBudgetTokens() const;
     bool budgetTokensIsSet() const;
     void unsetBudgetTokens();
-    void setBudgetTokens(int32_t value);
+    void setBudgetTokens(int64_t value);
 
     /// <summary>
     /// Query is the ask this bundle was packed for, echoed back so a cached or forwarded bundle still says what it answers.
@@ -90,14 +90,14 @@ public:
     /// <summary>
     /// UsedTokens is what the returned spans actually cost, by the same estimate the packer used (roughly one token per four characters — an estimate, not a tokenizer&#39;s count, so size a real window with headroom).
     /// </summary>
-    int32_t getUsedTokens() const;
+    int64_t getUsedTokens() const;
     bool usedTokensIsSet() const;
     void unsetUsedTokens();
-    void setUsedTokens(int32_t value);
+    void setUsedTokens(int64_t value);
 
 
 protected:
-    int32_t m_BudgetTokens;
+    int64_t m_BudgetTokens;
     bool m_BudgetTokensIsSet;
 
     utility::string_t m_Query;
@@ -109,7 +109,7 @@ protected:
     std::vector<std::shared_ptr<Span>> m_Spans;
     bool m_SpansIsSet;
 
-    int32_t m_UsedTokens;
+    int64_t m_UsedTokens;
     bool m_UsedTokensIsSet;
 
 };

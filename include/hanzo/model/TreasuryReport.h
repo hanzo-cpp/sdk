@@ -57,26 +57,26 @@ public:
     /// <summary>
     /// lifetime revenue-share into the fund
     /// </summary>
-    int32_t getAccruedCents() const;
+    int64_t getAccruedCents() const;
     bool accruedCentsIsSet() const;
     void unsetAccruedCents();
-    void setAccruedCents(int32_t value);
+    void setAccruedCents(int64_t value);
 
     /// <summary>
     /// program → lifetime paid
     /// </summary>
-    std::map<utility::string_t, int32_t> getByProgramCents() const;
+    std::map<utility::string_t, int64_t> getByProgramCents() const;
     bool byProgramCentsIsSet() const;
     void unsetByProgramCents();
-    void setByProgramCents(std::map<utility::string_t, int32_t> value);
+    void setByProgramCents(std::map<utility::string_t, int64_t> value);
 
     /// <summary>
     /// lifetime backed payouts out of the fund
     /// </summary>
-    int32_t getPaidCents() const;
+    int64_t getPaidCents() const;
     bool paidCentsIsSet() const;
     void unsetPaidCents();
-    void setPaidCents(int32_t value);
+    void setPaidCents(int64_t value);
 
     /// <summary>
     /// current revenue-share policy
@@ -89,10 +89,10 @@ public:
     /// <summary>
     /// fund:reserve balance (available now)
     /// </summary>
-    int32_t getReserveCents() const;
+    int64_t getReserveCents() const;
     bool reserveCentsIsSet() const;
     void unsetReserveCents();
-    void setReserveCents(int32_t value);
+    void setReserveCents(int64_t value);
 
     /// <summary>
     /// reserve &gt; 0: at least some payout is backable
@@ -104,19 +104,19 @@ public:
 
 
 protected:
-    int32_t m_AccruedCents;
+    int64_t m_AccruedCents;
     bool m_AccruedCentsIsSet;
 
-    std::map<utility::string_t, int32_t> m_ByProgramCents;
+    std::map<utility::string_t, int64_t> m_ByProgramCents;
     bool m_ByProgramCentsIsSet;
 
-    int32_t m_PaidCents;
+    int64_t m_PaidCents;
     bool m_PaidCentsIsSet;
 
     std::shared_ptr<SharePolicy> m_Policy;
     bool m_PolicyIsSet;
 
-    int32_t m_ReserveCents;
+    int64_t m_ReserveCents;
     bool m_ReserveCentsIsSet;
 
     bool m_SolventForPayout;

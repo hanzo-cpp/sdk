@@ -56,10 +56,10 @@ public:
     /// <summary>
     /// Bytes is their total size in bytes.
     /// </summary>
-    int32_t getBytes() const;
+    int64_t getBytes() const;
     bool bytesIsSet() const;
     void unsetBytes();
-    void setBytes(int32_t value);
+    void setBytes(int64_t value);
 
     /// <summary>
     /// Commit is the revision that was built, recorded on the deployment.
@@ -72,10 +72,10 @@ public:
     /// <summary>
     /// Files is how many objects CI published.
     /// </summary>
-    int32_t getFiles() const;
+    int64_t getFiles() const;
     bool filesIsSet() const;
     void unsetFiles();
-    void setFiles(int32_t value);
+    void setFiles(int64_t value);
 
     /// <summary>
     /// ID is the queued deployment to complete, from the path.
@@ -127,13 +127,13 @@ public:
 
 
 protected:
-    int32_t m_Bytes;
+    int64_t m_Bytes;
     bool m_BytesIsSet;
 
     utility::string_t m_Commit;
     bool m_CommitIsSet;
 
-    int32_t m_Files;
+    int64_t m_Files;
     bool m_FilesIsSet;
 
     utility::string_t m_Id;

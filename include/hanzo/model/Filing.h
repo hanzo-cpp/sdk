@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// At is the unix second the filing record was written.
     /// </summary>
-    int32_t getAt() const;
+    int64_t getAt() const;
     bool atIsSet() const;
     void unsetAt();
-    void setAt(int32_t value);
+    void setAt(int64_t value);
 
     /// <summary>
     /// Note explains a filing Hanzo did not perform itself: what remains to be done and by whom.
@@ -94,7 +94,7 @@ public:
 
 
 protected:
-    int32_t m_At;
+    int64_t m_At;
     bool m_AtIsSet;
 
     utility::string_t m_Note;

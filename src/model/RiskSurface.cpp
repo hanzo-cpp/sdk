@@ -18,15 +18,15 @@ namespace model {
 
 RiskSurface::RiskSurface()
 {
-    m_Folded = 0;
+    m_Folded = 0L;
     m_FoldedIsSet = false;
     m_Gap = utility::conversions::to_string_t("");
     m_GapIsSet = false;
-    m_Refused = 0;
+    m_Refused = 0L;
     m_RefusedIsSet = false;
-    m_Replayed = 0;
+    m_Replayed = 0L;
     m_ReplayedIsSet = false;
-    m_Rolled = 0;
+    m_Rolled = 0L;
     m_RolledIsSet = false;
     m_Window = utility::conversions::to_string_t("");
     m_WindowIsSet = false;
@@ -86,7 +86,7 @@ bool RiskSurface::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("folded")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFolded;
+            int64_t refVal_setFolded;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFolded);
             setFolded(refVal_setFolded);
             
@@ -108,7 +108,7 @@ bool RiskSurface::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("refused")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRefused;
+            int64_t refVal_setRefused;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRefused);
             setRefused(refVal_setRefused);
             
@@ -119,7 +119,7 @@ bool RiskSurface::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("replayed")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setReplayed;
+            int64_t refVal_setReplayed;
             ok &= ModelBase::fromJson(fieldValue, refVal_setReplayed);
             setReplayed(refVal_setReplayed);
             
@@ -130,7 +130,7 @@ bool RiskSurface::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("rolled")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRolled;
+            int64_t refVal_setRolled;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRolled);
             setRolled(refVal_setRolled);
             
@@ -194,7 +194,7 @@ bool RiskSurface::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("folded"))))
     {
-        int32_t refVal_setFolded;
+        int64_t refVal_setFolded;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("folded"))), refVal_setFolded );
         setFolded(refVal_setFolded);
     }
@@ -206,19 +206,19 @@ bool RiskSurface::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("refused"))))
     {
-        int32_t refVal_setRefused;
+        int64_t refVal_setRefused;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("refused"))), refVal_setRefused );
         setRefused(refVal_setRefused);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("replayed"))))
     {
-        int32_t refVal_setReplayed;
+        int64_t refVal_setReplayed;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("replayed"))), refVal_setReplayed );
         setReplayed(refVal_setReplayed);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("rolled"))))
     {
-        int32_t refVal_setRolled;
+        int64_t refVal_setRolled;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("rolled"))), refVal_setRolled );
         setRolled(refVal_setRolled);
     }
@@ -232,13 +232,13 @@ bool RiskSurface::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 }
 
 
-int32_t RiskSurface::getFolded() const
+int64_t RiskSurface::getFolded() const
 {
     return m_Folded;
 }
 
 
-void RiskSurface::setFolded(int32_t value)
+void RiskSurface::setFolded(int64_t value)
 {
     m_Folded = value;
     m_FoldedIsSet = true;
@@ -274,13 +274,13 @@ void RiskSurface::unsetGap()
 {
     m_GapIsSet = false;
 }
-int32_t RiskSurface::getRefused() const
+int64_t RiskSurface::getRefused() const
 {
     return m_Refused;
 }
 
 
-void RiskSurface::setRefused(int32_t value)
+void RiskSurface::setRefused(int64_t value)
 {
     m_Refused = value;
     m_RefusedIsSet = true;
@@ -295,13 +295,13 @@ void RiskSurface::unsetRefused()
 {
     m_RefusedIsSet = false;
 }
-int32_t RiskSurface::getReplayed() const
+int64_t RiskSurface::getReplayed() const
 {
     return m_Replayed;
 }
 
 
-void RiskSurface::setReplayed(int32_t value)
+void RiskSurface::setReplayed(int64_t value)
 {
     m_Replayed = value;
     m_ReplayedIsSet = true;
@@ -316,13 +316,13 @@ void RiskSurface::unsetReplayed()
 {
     m_ReplayedIsSet = false;
 }
-int32_t RiskSurface::getRolled() const
+int64_t RiskSurface::getRolled() const
 {
     return m_Rolled;
 }
 
 
-void RiskSurface::setRolled(int32_t value)
+void RiskSurface::setRolled(int64_t value)
 {
     m_Rolled = value;
     m_RolledIsSet = true;

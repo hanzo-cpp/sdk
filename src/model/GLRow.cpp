@@ -22,11 +22,11 @@ GLRow::GLRow()
     m_AccountIsSet = false;
     m_Against = utility::conversions::to_string_t("");
     m_AgainstIsSet = false;
-    m_Credit = 0;
+    m_Credit = 0L;
     m_CreditIsSet = false;
-    m_Debit = 0;
+    m_Debit = 0L;
     m_DebitIsSet = false;
-    m_Id = 0;
+    m_Id = 0L;
     m_IdIsSet = false;
     m_PostingAt = utility::conversions::to_string_t("");
     m_PostingAtIsSet = false;
@@ -129,7 +129,7 @@ bool GLRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("credit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCredit;
+            int64_t refVal_setCredit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCredit);
             setCredit(refVal_setCredit);
             
@@ -140,7 +140,7 @@ bool GLRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("debit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDebit;
+            int64_t refVal_setDebit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDebit);
             setDebit(refVal_setDebit);
             
@@ -151,7 +151,7 @@ bool GLRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("id")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setId;
+            int64_t refVal_setId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setId);
             setId(refVal_setId);
             
@@ -272,19 +272,19 @@ bool GLRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("credit"))))
     {
-        int32_t refVal_setCredit;
+        int64_t refVal_setCredit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("credit"))), refVal_setCredit );
         setCredit(refVal_setCredit);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("debit"))))
     {
-        int32_t refVal_setDebit;
+        int64_t refVal_setDebit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("debit"))), refVal_setDebit );
         setDebit(refVal_setDebit);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("id"))))
     {
-        int32_t refVal_setId;
+        int64_t refVal_setId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("id"))), refVal_setId );
         setId(refVal_setId);
     }
@@ -358,13 +358,13 @@ void GLRow::unsetAgainst()
 {
     m_AgainstIsSet = false;
 }
-int32_t GLRow::getCredit() const
+int64_t GLRow::getCredit() const
 {
     return m_Credit;
 }
 
 
-void GLRow::setCredit(int32_t value)
+void GLRow::setCredit(int64_t value)
 {
     m_Credit = value;
     m_CreditIsSet = true;
@@ -379,13 +379,13 @@ void GLRow::unsetCredit()
 {
     m_CreditIsSet = false;
 }
-int32_t GLRow::getDebit() const
+int64_t GLRow::getDebit() const
 {
     return m_Debit;
 }
 
 
-void GLRow::setDebit(int32_t value)
+void GLRow::setDebit(int64_t value)
 {
     m_Debit = value;
     m_DebitIsSet = true;
@@ -400,13 +400,13 @@ void GLRow::unsetDebit()
 {
     m_DebitIsSet = false;
 }
-int32_t GLRow::getId() const
+int64_t GLRow::getId() const
 {
     return m_Id;
 }
 
 
-void GLRow::setId(int32_t value)
+void GLRow::setId(int64_t value)
 {
     m_Id = value;
     m_IdIsSet = true;

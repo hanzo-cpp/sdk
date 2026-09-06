@@ -60,10 +60,10 @@ public:
     void unsetAt();
     void setAt(const utility::string_t& value);
 
-    int32_t getDecimals() const;
+    int64_t getDecimals() const;
     bool decimalsIsSet() const;
     void unsetDecimals();
-    void setDecimals(int32_t value);
+    void setDecimals(int64_t value);
 
     utility::string_t getName() const;
     bool nameIsSet() const;
@@ -80,7 +80,7 @@ protected:
     utility::string_t m_At;
     bool m_AtIsSet;
 
-    int32_t m_Decimals;
+    int64_t m_Decimals;
     bool m_DecimalsIsSet;
 
     utility::string_t m_Name;

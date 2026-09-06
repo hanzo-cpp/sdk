@@ -82,10 +82,10 @@ public:
     /// <summary>
     /// Total is how many events match the filter, across all pages — what a pager needs to size itself.
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
 
 protected:
@@ -98,7 +98,7 @@ protected:
     utility::string_t m_Status;
     bool m_StatusIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
 };

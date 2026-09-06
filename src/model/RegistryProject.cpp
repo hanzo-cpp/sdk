@@ -18,9 +18,9 @@ namespace model {
 
 RegistryProject::RegistryProject()
 {
-    m_Images = 0;
+    m_Images = 0L;
     m_ImagesIsSet = false;
-    m_Packages = 0;
+    m_Packages = 0L;
     m_PackagesIsSet = false;
     m_Project = utility::conversions::to_string_t("");
     m_ProjectIsSet = false;
@@ -65,7 +65,7 @@ bool RegistryProject::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("images")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setImages;
+            int64_t refVal_setImages;
             ok &= ModelBase::fromJson(fieldValue, refVal_setImages);
             setImages(refVal_setImages);
             
@@ -76,7 +76,7 @@ bool RegistryProject::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("packages")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPackages;
+            int64_t refVal_setPackages;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPackages);
             setPackages(refVal_setPackages);
             
@@ -128,13 +128,13 @@ bool RegistryProject::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("images"))))
     {
-        int32_t refVal_setImages;
+        int64_t refVal_setImages;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("images"))), refVal_setImages );
         setImages(refVal_setImages);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("packages"))))
     {
-        int32_t refVal_setPackages;
+        int64_t refVal_setPackages;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("packages"))), refVal_setPackages );
         setPackages(refVal_setPackages);
     }
@@ -148,13 +148,13 @@ bool RegistryProject::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 }
 
 
-int32_t RegistryProject::getImages() const
+int64_t RegistryProject::getImages() const
 {
     return m_Images;
 }
 
 
-void RegistryProject::setImages(int32_t value)
+void RegistryProject::setImages(int64_t value)
 {
     m_Images = value;
     m_ImagesIsSet = true;
@@ -169,13 +169,13 @@ void RegistryProject::unsetImages()
 {
     m_ImagesIsSet = false;
 }
-int32_t RegistryProject::getPackages() const
+int64_t RegistryProject::getPackages() const
 {
     return m_Packages;
 }
 
 
-void RegistryProject::setPackages(int32_t value)
+void RegistryProject::setPackages(int64_t value)
 {
     m_Packages = value;
     m_PackagesIsSet = true;

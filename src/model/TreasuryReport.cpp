@@ -18,13 +18,13 @@ namespace model {
 
 TreasuryReport::TreasuryReport()
 {
-    m_AccruedCents = 0;
+    m_AccruedCents = 0L;
     m_AccruedCentsIsSet = false;
     m_ByProgramCentsIsSet = false;
-    m_PaidCents = 0;
+    m_PaidCents = 0L;
     m_PaidCentsIsSet = false;
     m_PolicyIsSet = false;
-    m_ReserveCents = 0;
+    m_ReserveCents = 0L;
     m_ReserveCentsIsSet = false;
     m_SolventForPayout = false;
     m_SolventForPayoutIsSet = false;
@@ -84,7 +84,7 @@ bool TreasuryReport::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("accruedCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAccruedCents;
+            int64_t refVal_setAccruedCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAccruedCents);
             setAccruedCents(refVal_setAccruedCents);
             
@@ -95,7 +95,7 @@ bool TreasuryReport::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("byProgramCents")));
         if(!fieldValue.is_null())
         {
-            std::map<utility::string_t, int32_t> refVal_setByProgramCents;
+            std::map<utility::string_t, int64_t> refVal_setByProgramCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setByProgramCents);
             setByProgramCents(refVal_setByProgramCents);
             
@@ -106,7 +106,7 @@ bool TreasuryReport::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("paidCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPaidCents;
+            int64_t refVal_setPaidCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPaidCents);
             setPaidCents(refVal_setPaidCents);
             
@@ -128,7 +128,7 @@ bool TreasuryReport::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("reserveCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setReserveCents;
+            int64_t refVal_setReserveCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setReserveCents);
             setReserveCents(refVal_setReserveCents);
             
@@ -192,19 +192,19 @@ bool TreasuryReport::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("accruedCents"))))
     {
-        int32_t refVal_setAccruedCents;
+        int64_t refVal_setAccruedCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("accruedCents"))), refVal_setAccruedCents );
         setAccruedCents(refVal_setAccruedCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("byProgramCents"))))
     {
-        std::map<utility::string_t, int32_t> refVal_setByProgramCents;
+        std::map<utility::string_t, int64_t> refVal_setByProgramCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("byProgramCents"))), refVal_setByProgramCents );
         setByProgramCents(refVal_setByProgramCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("paidCents"))))
     {
-        int32_t refVal_setPaidCents;
+        int64_t refVal_setPaidCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("paidCents"))), refVal_setPaidCents );
         setPaidCents(refVal_setPaidCents);
     }
@@ -216,7 +216,7 @@ bool TreasuryReport::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("reserveCents"))))
     {
-        int32_t refVal_setReserveCents;
+        int64_t refVal_setReserveCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("reserveCents"))), refVal_setReserveCents );
         setReserveCents(refVal_setReserveCents);
     }
@@ -230,13 +230,13 @@ bool TreasuryReport::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 }
 
 
-int32_t TreasuryReport::getAccruedCents() const
+int64_t TreasuryReport::getAccruedCents() const
 {
     return m_AccruedCents;
 }
 
 
-void TreasuryReport::setAccruedCents(int32_t value)
+void TreasuryReport::setAccruedCents(int64_t value)
 {
     m_AccruedCents = value;
     m_AccruedCentsIsSet = true;
@@ -251,13 +251,13 @@ void TreasuryReport::unsetAccruedCents()
 {
     m_AccruedCentsIsSet = false;
 }
-std::map<utility::string_t, int32_t> TreasuryReport::getByProgramCents() const
+std::map<utility::string_t, int64_t> TreasuryReport::getByProgramCents() const
 {
     return m_ByProgramCents;
 }
 
 
-void TreasuryReport::setByProgramCents(std::map<utility::string_t, int32_t> value)
+void TreasuryReport::setByProgramCents(std::map<utility::string_t, int64_t> value)
 {
     m_ByProgramCents = value;
     m_ByProgramCentsIsSet = true;
@@ -272,13 +272,13 @@ void TreasuryReport::unsetByProgramCents()
 {
     m_ByProgramCentsIsSet = false;
 }
-int32_t TreasuryReport::getPaidCents() const
+int64_t TreasuryReport::getPaidCents() const
 {
     return m_PaidCents;
 }
 
 
-void TreasuryReport::setPaidCents(int32_t value)
+void TreasuryReport::setPaidCents(int64_t value)
 {
     m_PaidCents = value;
     m_PaidCentsIsSet = true;
@@ -314,13 +314,13 @@ void TreasuryReport::unsetPolicy()
 {
     m_PolicyIsSet = false;
 }
-int32_t TreasuryReport::getReserveCents() const
+int64_t TreasuryReport::getReserveCents() const
 {
     return m_ReserveCents;
 }
 
 
-void TreasuryReport::setReserveCents(int32_t value)
+void TreasuryReport::setReserveCents(int64_t value)
 {
     m_ReserveCents = value;
     m_ReserveCentsIsSet = true;

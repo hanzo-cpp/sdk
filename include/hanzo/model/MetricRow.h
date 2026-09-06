@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// CurrentVer is the version number served as current. It always equals &#x60;versions&#x60;: numbering is dense from 1, and deleting a prompt takes its whole history with it rather than leaving a gap.
     /// </summary>
-    int32_t getCurrentVersion() const;
+    int64_t getCurrentVersion() const;
     bool currentVersionIsSet() const;
     void unsetCurrentVersion();
-    void setCurrentVersion(int32_t value);
+    void setCurrentVersion(int64_t value);
 
     /// <summary>
     /// LastUpdatedAt is when the newest version was appended, RFC 3339 UTC — the age of the template you would get today.
@@ -95,17 +95,17 @@ public:
     /// <summary>
     /// Versions is how many revisions the prompt has, COUNTED in the store and uncapped — so it can exceed the 100 entries a list row or a detail response carries. Note the type: here &#x60;versions&#x60; is a number, while on a list row it is the list of version numbers.
     /// </summary>
-    int32_t getVersions() const;
+    int64_t getVersions() const;
     bool versionsIsSet() const;
     void unsetVersions();
-    void setVersions(int32_t value);
+    void setVersions(int64_t value);
 
 
 protected:
     utility::string_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
-    int32_t m_CurrentVersion;
+    int64_t m_CurrentVersion;
     bool m_CurrentVersionIsSet;
 
     utility::string_t m_LastUpdatedAt;
@@ -117,7 +117,7 @@ protected:
     utility::string_t m_Type;
     bool m_TypeIsSet;
 
-    int32_t m_Versions;
+    int64_t m_Versions;
     bool m_VersionsIsSet;
 
 };

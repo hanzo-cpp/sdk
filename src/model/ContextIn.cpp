@@ -18,7 +18,7 @@ namespace model {
 
 ContextIn::ContextIn()
 {
-    m_BudgetTokens = 0;
+    m_BudgetTokens = 0L;
     m_BudgetTokensIsSet = false;
     m_Query = utility::conversions::to_string_t("");
     m_QueryIsSet = false;
@@ -65,7 +65,7 @@ bool ContextIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("budgetTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBudgetTokens;
+            int64_t refVal_setBudgetTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBudgetTokens);
             setBudgetTokens(refVal_setBudgetTokens);
             
@@ -128,7 +128,7 @@ bool ContextIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("budgetTokens"))))
     {
-        int32_t refVal_setBudgetTokens;
+        int64_t refVal_setBudgetTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("budgetTokens"))), refVal_setBudgetTokens );
         setBudgetTokens(refVal_setBudgetTokens);
     }
@@ -148,13 +148,13 @@ bool ContextIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 }
 
 
-int32_t ContextIn::getBudgetTokens() const
+int64_t ContextIn::getBudgetTokens() const
 {
     return m_BudgetTokens;
 }
 
 
-void ContextIn::setBudgetTokens(int32_t value)
+void ContextIn::setBudgetTokens(int64_t value)
 {
     m_BudgetTokens = value;
     m_BudgetTokensIsSet = true;

@@ -18,7 +18,7 @@ namespace model {
 
 InvocationView::InvocationView()
 {
-    m_DurationMs = 0;
+    m_DurationMs = 0L;
     m_DurationMsIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
@@ -26,7 +26,7 @@ InvocationView::InvocationView()
     m_MethodIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
-    m_StatusCode = 0;
+    m_StatusCode = 0L;
     m_StatusCodeIsSet = false;
     m_Time = utility::conversions::to_string_t("");
     m_TimeIsSet = false;
@@ -86,7 +86,7 @@ bool InvocationView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("durationMs")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDurationMs;
+            int64_t refVal_setDurationMs;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDurationMs);
             setDurationMs(refVal_setDurationMs);
             
@@ -130,7 +130,7 @@ bool InvocationView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("statusCode")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStatusCode;
+            int64_t refVal_setStatusCode;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStatusCode);
             setStatusCode(refVal_setStatusCode);
             
@@ -194,7 +194,7 @@ bool InvocationView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("durationMs"))))
     {
-        int32_t refVal_setDurationMs;
+        int64_t refVal_setDurationMs;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("durationMs"))), refVal_setDurationMs );
         setDurationMs(refVal_setDurationMs);
     }
@@ -218,7 +218,7 @@ bool InvocationView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("statusCode"))))
     {
-        int32_t refVal_setStatusCode;
+        int64_t refVal_setStatusCode;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("statusCode"))), refVal_setStatusCode );
         setStatusCode(refVal_setStatusCode);
     }
@@ -232,13 +232,13 @@ bool InvocationView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 }
 
 
-int32_t InvocationView::getDurationMs() const
+int64_t InvocationView::getDurationMs() const
 {
     return m_DurationMs;
 }
 
 
-void InvocationView::setDurationMs(int32_t value)
+void InvocationView::setDurationMs(int64_t value)
 {
     m_DurationMs = value;
     m_DurationMsIsSet = true;
@@ -316,13 +316,13 @@ void InvocationView::unsetStatus()
 {
     m_StatusIsSet = false;
 }
-int32_t InvocationView::getStatusCode() const
+int64_t InvocationView::getStatusCode() const
 {
     return m_StatusCode;
 }
 
 
-void InvocationView::setStatusCode(int32_t value)
+void InvocationView::setStatusCode(int64_t value)
 {
     m_StatusCode = value;
     m_StatusCodeIsSet = true;

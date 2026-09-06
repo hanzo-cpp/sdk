@@ -22,28 +22,28 @@ Cart::Cart()
     m_CreatedAtIsSet = false;
     m_Currency = utility::conversions::to_string_t("");
     m_CurrencyIsSet = false;
-    m_DiscountCents = 0;
+    m_DiscountCents = 0L;
     m_DiscountCentsIsSet = false;
     m_Email = utility::conversions::to_string_t("");
     m_EmailIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
     m_ItemsIsSet = false;
-    m_LineTotalCents = 0;
+    m_LineTotalCents = 0L;
     m_LineTotalCentsIsSet = false;
     m_Order = utility::conversions::to_string_t("");
     m_OrderIsSet = false;
-    m_ShippingCents = 0;
+    m_ShippingCents = 0L;
     m_ShippingCentsIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
     m_Store = utility::conversions::to_string_t("");
     m_StoreIsSet = false;
-    m_SubtotalCents = 0;
+    m_SubtotalCents = 0L;
     m_SubtotalCentsIsSet = false;
-    m_TaxCents = 0;
+    m_TaxCents = 0L;
     m_TaxCentsIsSet = false;
-    m_TotalCents = 0;
+    m_TotalCents = 0L;
     m_TotalCentsIsSet = false;
     m_UpdatedAt = utility::conversions::to_string_t("");
     m_UpdatedAtIsSet = false;
@@ -177,7 +177,7 @@ bool Cart::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("discountCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDiscountCents;
+            int64_t refVal_setDiscountCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDiscountCents);
             setDiscountCents(refVal_setDiscountCents);
             
@@ -221,7 +221,7 @@ bool Cart::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("lineTotalCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLineTotalCents;
+            int64_t refVal_setLineTotalCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLineTotalCents);
             setLineTotalCents(refVal_setLineTotalCents);
             
@@ -243,7 +243,7 @@ bool Cart::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("shippingCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setShippingCents;
+            int64_t refVal_setShippingCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setShippingCents);
             setShippingCents(refVal_setShippingCents);
             
@@ -276,7 +276,7 @@ bool Cart::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("subtotalCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSubtotalCents;
+            int64_t refVal_setSubtotalCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSubtotalCents);
             setSubtotalCents(refVal_setSubtotalCents);
             
@@ -287,7 +287,7 @@ bool Cart::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("taxCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTaxCents;
+            int64_t refVal_setTaxCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTaxCents);
             setTaxCents(refVal_setTaxCents);
             
@@ -298,7 +298,7 @@ bool Cart::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("totalCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotalCents;
+            int64_t refVal_setTotalCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalCents);
             setTotalCents(refVal_setTotalCents);
             
@@ -425,7 +425,7 @@ bool Cart::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("discountCents"))))
     {
-        int32_t refVal_setDiscountCents;
+        int64_t refVal_setDiscountCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("discountCents"))), refVal_setDiscountCents );
         setDiscountCents(refVal_setDiscountCents);
     }
@@ -449,7 +449,7 @@ bool Cart::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("lineTotalCents"))))
     {
-        int32_t refVal_setLineTotalCents;
+        int64_t refVal_setLineTotalCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("lineTotalCents"))), refVal_setLineTotalCents );
         setLineTotalCents(refVal_setLineTotalCents);
     }
@@ -461,7 +461,7 @@ bool Cart::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("shippingCents"))))
     {
-        int32_t refVal_setShippingCents;
+        int64_t refVal_setShippingCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("shippingCents"))), refVal_setShippingCents );
         setShippingCents(refVal_setShippingCents);
     }
@@ -479,19 +479,19 @@ bool Cart::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("subtotalCents"))))
     {
-        int32_t refVal_setSubtotalCents;
+        int64_t refVal_setSubtotalCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("subtotalCents"))), refVal_setSubtotalCents );
         setSubtotalCents(refVal_setSubtotalCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("taxCents"))))
     {
-        int32_t refVal_setTaxCents;
+        int64_t refVal_setTaxCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("taxCents"))), refVal_setTaxCents );
         setTaxCents(refVal_setTaxCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("totalCents"))))
     {
-        int32_t refVal_setTotalCents;
+        int64_t refVal_setTotalCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("totalCents"))), refVal_setTotalCents );
         setTotalCents(refVal_setTotalCents);
     }
@@ -553,13 +553,13 @@ void Cart::unsetCurrency()
 {
     m_CurrencyIsSet = false;
 }
-int32_t Cart::getDiscountCents() const
+int64_t Cart::getDiscountCents() const
 {
     return m_DiscountCents;
 }
 
 
-void Cart::setDiscountCents(int32_t value)
+void Cart::setDiscountCents(int64_t value)
 {
     m_DiscountCents = value;
     m_DiscountCentsIsSet = true;
@@ -637,13 +637,13 @@ void Cart::unsetItems()
 {
     m_ItemsIsSet = false;
 }
-int32_t Cart::getLineTotalCents() const
+int64_t Cart::getLineTotalCents() const
 {
     return m_LineTotalCents;
 }
 
 
-void Cart::setLineTotalCents(int32_t value)
+void Cart::setLineTotalCents(int64_t value)
 {
     m_LineTotalCents = value;
     m_LineTotalCentsIsSet = true;
@@ -679,13 +679,13 @@ void Cart::unsetOrder()
 {
     m_OrderIsSet = false;
 }
-int32_t Cart::getShippingCents() const
+int64_t Cart::getShippingCents() const
 {
     return m_ShippingCents;
 }
 
 
-void Cart::setShippingCents(int32_t value)
+void Cart::setShippingCents(int64_t value)
 {
     m_ShippingCents = value;
     m_ShippingCentsIsSet = true;
@@ -742,13 +742,13 @@ void Cart::unsetStore()
 {
     m_StoreIsSet = false;
 }
-int32_t Cart::getSubtotalCents() const
+int64_t Cart::getSubtotalCents() const
 {
     return m_SubtotalCents;
 }
 
 
-void Cart::setSubtotalCents(int32_t value)
+void Cart::setSubtotalCents(int64_t value)
 {
     m_SubtotalCents = value;
     m_SubtotalCentsIsSet = true;
@@ -763,13 +763,13 @@ void Cart::unsetSubtotalCents()
 {
     m_SubtotalCentsIsSet = false;
 }
-int32_t Cart::getTaxCents() const
+int64_t Cart::getTaxCents() const
 {
     return m_TaxCents;
 }
 
 
-void Cart::setTaxCents(int32_t value)
+void Cart::setTaxCents(int64_t value)
 {
     m_TaxCents = value;
     m_TaxCentsIsSet = true;
@@ -784,13 +784,13 @@ void Cart::unsetTaxCents()
 {
     m_TaxCentsIsSet = false;
 }
-int32_t Cart::getTotalCents() const
+int64_t Cart::getTotalCents() const
 {
     return m_TotalCents;
 }
 
 
-void Cart::setTotalCents(int32_t value)
+void Cart::setTotalCents(int64_t value)
 {
     m_TotalCents = value;
     m_TotalCentsIsSet = true;

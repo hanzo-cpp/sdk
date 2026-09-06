@@ -18,13 +18,13 @@ namespace model {
 
 O11y_listMeta::O11y_listMeta()
 {
-    m_Limit = 0;
+    m_Limit = 0L;
     m_LimitIsSet = false;
-    m_Page = 0;
+    m_Page = 0L;
     m_PageIsSet = false;
-    m_TotalItems = 0;
+    m_TotalItems = 0L;
     m_TotalItemsIsSet = false;
-    m_TotalPages = 0;
+    m_TotalPages = 0L;
     m_TotalPagesIsSet = false;
 }
 
@@ -72,7 +72,7 @@ bool O11y_listMeta::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("limit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLimit;
+            int64_t refVal_setLimit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLimit);
             setLimit(refVal_setLimit);
             
@@ -83,7 +83,7 @@ bool O11y_listMeta::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("page")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPage;
+            int64_t refVal_setPage;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPage);
             setPage(refVal_setPage);
             
@@ -94,7 +94,7 @@ bool O11y_listMeta::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("totalItems")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotalItems;
+            int64_t refVal_setTotalItems;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalItems);
             setTotalItems(refVal_setTotalItems);
             
@@ -105,7 +105,7 @@ bool O11y_listMeta::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("totalPages")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotalPages;
+            int64_t refVal_setTotalPages;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalPages);
             setTotalPages(refVal_setTotalPages);
             
@@ -150,25 +150,25 @@ bool O11y_listMeta::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("limit"))))
     {
-        int32_t refVal_setLimit;
+        int64_t refVal_setLimit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("limit"))), refVal_setLimit );
         setLimit(refVal_setLimit);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("page"))))
     {
-        int32_t refVal_setPage;
+        int64_t refVal_setPage;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("page"))), refVal_setPage );
         setPage(refVal_setPage);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("totalItems"))))
     {
-        int32_t refVal_setTotalItems;
+        int64_t refVal_setTotalItems;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("totalItems"))), refVal_setTotalItems );
         setTotalItems(refVal_setTotalItems);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("totalPages"))))
     {
-        int32_t refVal_setTotalPages;
+        int64_t refVal_setTotalPages;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("totalPages"))), refVal_setTotalPages );
         setTotalPages(refVal_setTotalPages);
     }
@@ -176,13 +176,13 @@ bool O11y_listMeta::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 }
 
 
-int32_t O11y_listMeta::getLimit() const
+int64_t O11y_listMeta::getLimit() const
 {
     return m_Limit;
 }
 
 
-void O11y_listMeta::setLimit(int32_t value)
+void O11y_listMeta::setLimit(int64_t value)
 {
     m_Limit = value;
     m_LimitIsSet = true;
@@ -197,13 +197,13 @@ void O11y_listMeta::unsetLimit()
 {
     m_LimitIsSet = false;
 }
-int32_t O11y_listMeta::getPage() const
+int64_t O11y_listMeta::getPage() const
 {
     return m_Page;
 }
 
 
-void O11y_listMeta::setPage(int32_t value)
+void O11y_listMeta::setPage(int64_t value)
 {
     m_Page = value;
     m_PageIsSet = true;
@@ -218,13 +218,13 @@ void O11y_listMeta::unsetPage()
 {
     m_PageIsSet = false;
 }
-int32_t O11y_listMeta::getTotalItems() const
+int64_t O11y_listMeta::getTotalItems() const
 {
     return m_TotalItems;
 }
 
 
-void O11y_listMeta::setTotalItems(int32_t value)
+void O11y_listMeta::setTotalItems(int64_t value)
 {
     m_TotalItems = value;
     m_TotalItemsIsSet = true;
@@ -239,13 +239,13 @@ void O11y_listMeta::unsetTotalItems()
 {
     m_TotalItemsIsSet = false;
 }
-int32_t O11y_listMeta::getTotalPages() const
+int64_t O11y_listMeta::getTotalPages() const
 {
     return m_TotalPages;
 }
 
 
-void O11y_listMeta::setTotalPages(int32_t value)
+void O11y_listMeta::setTotalPages(int64_t value)
 {
     m_TotalPages = value;
     m_TotalPagesIsSet = true;

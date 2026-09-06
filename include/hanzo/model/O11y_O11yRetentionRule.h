@@ -65,17 +65,17 @@ public:
     /// <summary>
     /// TTLDays is the retention applied when it does, in days.
     /// </summary>
-    int32_t getTtlDays() const;
+    int64_t getTtlDays() const;
     bool ttlDaysIsSet() const;
     void unsetTtlDays();
-    void setTtlDays(int32_t value);
+    void setTtlDays(int64_t value);
 
 
 protected:
     std::vector<std::shared_ptr<O11y_O11yRetentionMatch>> m_Conditions;
     bool m_ConditionsIsSet;
 
-    int32_t m_TtlDays;
+    int64_t m_TtlDays;
     bool m_TtlDaysIsSet;
 
 };

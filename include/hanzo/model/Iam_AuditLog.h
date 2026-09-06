@@ -127,10 +127,10 @@ public:
     void unsetResponse();
     void setResponse(const utility::string_t& value);
 
-    int32_t getStatusCode() const;
+    int64_t getStatusCode() const;
     bool statusCodeIsSet() const;
     void unsetStatusCode();
-    void setStatusCode(int32_t value);
+    void setStatusCode(int64_t value);
 
     utility::datetime getUpdatedAt() const;
     bool updatedAtIsSet() const;
@@ -189,7 +189,7 @@ protected:
     utility::string_t m_Response;
     bool m_ResponseIsSet;
 
-    int32_t m_StatusCode;
+    int64_t m_StatusCode;
     bool m_StatusCodeIsSet;
 
     utility::datetime m_UpdatedAt;

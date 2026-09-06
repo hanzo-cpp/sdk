@@ -95,10 +95,10 @@ public:
     /// <summary>
     /// UID echoes the task id that was asked about.
     /// </summary>
-    int32_t getUid() const;
+    int64_t getUid() const;
     bool uidIsSet() const;
     void unsetUid();
-    void setUid(int32_t value);
+    void setUid(int64_t value);
 
 
 protected:
@@ -117,7 +117,7 @@ protected:
     utility::string_t m_Type;
     bool m_TypeIsSet;
 
-    int32_t m_Uid;
+    int64_t m_Uid;
     bool m_UidIsSet;
 
 };

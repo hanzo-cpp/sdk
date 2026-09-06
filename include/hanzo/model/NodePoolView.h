@@ -63,26 +63,26 @@ public:
     /// <summary>
     /// Count is how many nodes the pool has right now. Always present, so 0 means a pool that is genuinely empty rather than a figure the provider withheld.
     /// </summary>
-    int32_t getCount() const;
+    int64_t getCount() const;
     bool countIsSet() const;
     void unsetCount();
-    void setCount(int32_t value);
+    void setCount(int64_t value);
 
     /// <summary>
     /// MaxNodes is the ceiling the autoscaler will not grow the pool past, and so the bound on what this pool can cost. Read it only with AutoScale set.
     /// </summary>
-    int32_t getMaxNodes() const;
+    int64_t getMaxNodes() const;
     bool maxNodesIsSet() const;
     void unsetMaxNodes();
-    void setMaxNodes(int32_t value);
+    void setMaxNodes(int64_t value);
 
     /// <summary>
     /// MinNodes is the floor the autoscaler will not shrink the pool below. Read it only with AutoScale set — the provider ignores it otherwise.
     /// </summary>
-    int32_t getMinNodes() const;
+    int64_t getMinNodes() const;
     bool minNodesIsSet() const;
     void unsetMinNodes();
-    void setMinNodes(int32_t value);
+    void setMinNodes(int64_t value);
 
     /// <summary>
     /// Name is the pool&#39;s name as the provider knows it.
@@ -113,13 +113,13 @@ protected:
     bool m_AutoScale;
     bool m_AutoScaleIsSet;
 
-    int32_t m_Count;
+    int64_t m_Count;
     bool m_CountIsSet;
 
-    int32_t m_MaxNodes;
+    int64_t m_MaxNodes;
     bool m_MaxNodesIsSet;
 
-    int32_t m_MinNodes;
+    int64_t m_MinNodes;
     bool m_MinNodesIsSet;
 
     utility::string_t m_Name;

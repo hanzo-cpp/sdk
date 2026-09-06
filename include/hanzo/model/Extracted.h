@@ -106,18 +106,18 @@ public:
     /// <summary>
     /// TaxCents is how much of that total is tax, in cents. It is part of totalCents, not additional to it.
     /// </summary>
-    int32_t getTaxCents() const;
+    int64_t getTaxCents() const;
     bool taxCentsIsSet() const;
     void unsetTaxCents();
-    void setTaxCents(int32_t value);
+    void setTaxCents(int64_t value);
 
     /// <summary>
     /// TotalCents is the document total in whole cents, tax INCLUDED.
     /// </summary>
-    int32_t getTotalCents() const;
+    int64_t getTotalCents() const;
     bool totalCentsIsSet() const;
     void unsetTotalCents();
-    void setTotalCents(int32_t value);
+    void setTotalCents(int64_t value);
 
 
 protected:
@@ -139,10 +139,10 @@ protected:
     utility::string_t m_Note;
     bool m_NoteIsSet;
 
-    int32_t m_TaxCents;
+    int64_t m_TaxCents;
     bool m_TaxCentsIsSet;
 
-    int32_t m_TotalCents;
+    int64_t m_TotalCents;
     bool m_TotalCentsIsSet;
 
 };

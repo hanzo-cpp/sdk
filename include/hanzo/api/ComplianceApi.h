@@ -61,9 +61,9 @@ public:
     /// <remarks>
     /// Returns the org&#39;s tracked accreditation-state records, newest first — evidence entries the org keeps, never a platform certification.
     /// </remarks>
-    /// <param name="limit">Limit caps the rows returned; non-positive means the server default. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the rows returned; non-positive means the server default. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<AccList>> getComplianceAccreditation(
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns one tracked accreditation record.
@@ -99,9 +99,9 @@ public:
     /// <remarks>
     /// ListRecords is the unified compliance-record view for the org: its verifications and accreditation records together, each provider-reported or tracked, never platform-asserted. PII stays in the subject store; records carry only opaque ids and statuses.
     /// </remarks>
-    /// <param name="limit">Limit caps the rows returned; non-positive means the server default. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the rows returned; non-positive means the server default. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<RecordList>> getComplianceRecords(
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Status is the org&#39;s honest posture read: the wired provider and the per-status tally of its verifications.
@@ -117,9 +117,9 @@ public:
     /// <remarks>
     /// Returns the org&#39;s subjects as PII-MINIMIZED summaries — no name or email, only whether an email is on file. The full record is returned only by the explicit single-subject read.
     /// </remarks>
-    /// <param name="limit">Limit caps the rows returned; non-positive means the server default. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the rows returned; non-positive means the server default. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<SubjectList>> getComplianceSubjects(
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns one subject WITH its contact PII — the only surface that returns it, and only to the owning org.
@@ -137,9 +137,9 @@ public:
     /// <remarks>
     /// Returns the org&#39;s KYC/KYB verifications, newest first — opaque subject references and provider-reported statuses only, no subject PII.
     /// </remarks>
-    /// <param name="limit">Limit caps the rows returned; non-positive means the server default. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the rows returned; non-positive means the server default. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<CheckList>> getComplianceVerifications(
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns one verification — its opaque subject reference and provider-reported status, no subject PII.

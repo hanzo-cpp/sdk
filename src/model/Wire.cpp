@@ -52,7 +52,7 @@ Wire::Wire()
     m_SeqIsSet = false;
     m_SourceIp = utility::conversions::to_string_t("");
     m_SourceIpIsSet = false;
-    m_Status = 0;
+    m_Status = 0L;
     m_StatusIsSet = false;
     m_Sub = utility::conversions::to_string_t("");
     m_SubIsSet = false;
@@ -378,7 +378,7 @@ bool Wire::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("status")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStatus;
+            int64_t refVal_setStatus;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStatus);
             setStatus(refVal_setStatus);
             
@@ -626,7 +626,7 @@ bool Wire::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("status"))))
     {
-        int32_t refVal_setStatus;
+        int64_t refVal_setStatus;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("status"))), refVal_setStatus );
         setStatus(refVal_setStatus);
     }
@@ -1009,13 +1009,13 @@ void Wire::unsetSourceIp()
 {
     m_SourceIpIsSet = false;
 }
-int32_t Wire::getStatus() const
+int64_t Wire::getStatus() const
 {
     return m_Status;
 }
 
 
-void Wire::setStatus(int32_t value)
+void Wire::setStatus(int64_t value)
 {
     m_Status = value;
     m_StatusIsSet = true;

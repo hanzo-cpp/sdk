@@ -56,10 +56,10 @@ public:
     /// <summary>
     /// CreatedAt is when it happened, in unix milliseconds.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     std::shared_ptr<AnyType> getData() const;
     bool dataIsSet() const;
@@ -100,7 +100,7 @@ public:
 
 
 protected:
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     boost::optional<std::shared_ptr<AnyType>> m_Data;

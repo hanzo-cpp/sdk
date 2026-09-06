@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// CreatedAt is unix seconds, server-assigned.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// Reason is a free-text note, capped at 1024 bytes. The public one-click endpoint records \&quot;one-click unsubscribe\&quot;.
@@ -92,7 +92,7 @@ protected:
     utility::string_t m_Channel;
     bool m_ChannelIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_Reason;

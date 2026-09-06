@@ -52,10 +52,10 @@ public:
     /// InvoiceLineItem members
 
 
-    int32_t getAmount() const;
+    int64_t getAmount() const;
     bool amountIsSet() const;
     void unsetAmount();
-    void setAmount(int32_t value);
+    void setAmount(int64_t value);
 
     utility::string_t getCurrency() const;
     bool currencyIsSet() const;
@@ -100,24 +100,24 @@ public:
     void unsetPlanName();
     void setPlanName(const utility::string_t& value);
 
-    int32_t getQuantity() const;
+    int64_t getQuantity() const;
     bool quantityIsSet() const;
     void unsetQuantity();
-    void setQuantity(int32_t value);
+    void setQuantity(int64_t value);
 
     utility::string_t getType() const;
     bool typeIsSet() const;
     void unsetType();
     void setType(const utility::string_t& value);
 
-    int32_t getUnitPrice() const;
+    int64_t getUnitPrice() const;
     bool unitPriceIsSet() const;
     void unsetUnitPrice();
-    void setUnitPrice(int32_t value);
+    void setUnitPrice(int64_t value);
 
 
 protected:
-    int32_t m_Amount;
+    int64_t m_Amount;
     bool m_AmountIsSet;
 
     utility::string_t m_Currency;
@@ -144,13 +144,13 @@ protected:
     utility::string_t m_PlanName;
     bool m_PlanNameIsSet;
 
-    int32_t m_Quantity;
+    int64_t m_Quantity;
     bool m_QuantityIsSet;
 
     utility::string_t m_Type;
     bool m_TypeIsSet;
 
-    int32_t m_UnitPrice;
+    int64_t m_UnitPrice;
     bool m_UnitPriceIsSet;
 
 };

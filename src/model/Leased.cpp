@@ -20,6 +20,8 @@ Leased::Leased()
 {
     m_r_class = utility::conversions::to_string_t("");
     m_r_classIsSet = false;
+    m_Cluster = utility::conversions::to_string_t("");
+    m_ClusterIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
     m_Runtime = utility::conversions::to_string_t("");
@@ -46,6 +48,11 @@ web::json::value Leased::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("class"))] = ModelBase::toJson(m_r_class);
+    }
+    if(m_ClusterIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("cluster"))] = ModelBase::toJson(m_Cluster);
     }
     if(m_IdIsSet)
     {
@@ -82,6 +89,17 @@ bool Leased::fromJson(const web::json::value& val)
             utility::string_t refVal_setRClass;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRClass);
             setRClass(refVal_setRClass);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("cluster"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cluster")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setCluster;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setCluster);
+            setCluster(refVal_setCluster);
             
         }
     }
@@ -143,6 +161,10 @@ void Leased::toMultipart(std::shared_ptr<MultipartFormData> multipart, const uti
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("class")), m_r_class));
     }
+    if(m_ClusterIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("cluster")), m_Cluster));
+    }
     if(m_IdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("id")), m_Id));
@@ -175,6 +197,12 @@ bool Leased::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
         utility::string_t refVal_setRClass;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("class"))), refVal_setRClass );
         setRClass(refVal_setRClass);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cluster"))))
+    {
+        utility::string_t refVal_setCluster;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cluster"))), refVal_setCluster );
+        setCluster(refVal_setCluster);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("id"))))
     {
@@ -224,6 +252,27 @@ bool Leased::rClassIsSet() const
 void Leased::unsetr_class()
 {
     m_r_classIsSet = false;
+}
+utility::string_t Leased::getCluster() const
+{
+    return m_Cluster;
+}
+
+
+void Leased::setCluster(const utility::string_t& value)
+{
+    m_Cluster = value;
+    m_ClusterIsSet = true;
+}
+
+bool Leased::clusterIsSet() const
+{
+    return m_ClusterIsSet;
+}
+
+void Leased::unsetCluster()
+{
+    m_ClusterIsSet = false;
 }
 utility::string_t Leased::getId() const
 {

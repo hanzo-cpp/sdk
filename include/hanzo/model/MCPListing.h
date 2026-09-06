@@ -156,10 +156,10 @@ public:
     /// <summary>
     /// Synced is when this row was last confirmed against upstream, Unix seconds.
     /// </summary>
-    int32_t getSynced() const;
+    int64_t getSynced() const;
     bool syncedIsSet() const;
     void unsetSynced();
-    void setSynced(int32_t value);
+    void setSynced(int64_t value);
 
     /// <summary>
     /// Title is the human-readable display name, when the entry carries one.
@@ -231,7 +231,7 @@ protected:
     utility::string_t m_Site;
     bool m_SiteIsSet;
 
-    int32_t m_Synced;
+    int64_t m_Synced;
     bool m_SyncedIsSet;
 
     utility::string_t m_Title;

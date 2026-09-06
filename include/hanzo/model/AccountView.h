@@ -63,17 +63,17 @@ public:
     /// <summary>
     /// BalanceCents is that account&#39;s signed balance in minor units.
     /// </summary>
-    int32_t getBalanceCents() const;
+    int64_t getBalanceCents() const;
     bool balanceCentsIsSet() const;
     void unsetBalanceCents();
-    void setBalanceCents(int32_t value);
+    void setBalanceCents(int64_t value);
 
 
 protected:
     utility::string_t m_Address;
     bool m_AddressIsSet;
 
-    int32_t m_BalanceCents;
+    int64_t m_BalanceCents;
     bool m_BalanceCentsIsSet;
 
 };

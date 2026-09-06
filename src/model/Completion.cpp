@@ -20,7 +20,7 @@ Completion::Completion()
 {
     m_Detail = utility::conversions::to_string_t("");
     m_DetailIsSet = false;
-    m_Kind = 0;
+    m_Kind = 0L;
     m_KindIsSet = false;
     m_Label = utility::conversions::to_string_t("");
     m_LabelIsSet = false;
@@ -76,7 +76,7 @@ bool Completion::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("kind")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setKind;
+            int64_t refVal_setKind;
             ok &= ModelBase::fromJson(fieldValue, refVal_setKind);
             setKind(refVal_setKind);
             
@@ -134,7 +134,7 @@ bool Completion::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("kind"))))
     {
-        int32_t refVal_setKind;
+        int64_t refVal_setKind;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("kind"))), refVal_setKind );
         setKind(refVal_setKind);
     }
@@ -169,13 +169,13 @@ void Completion::unsetDetail()
 {
     m_DetailIsSet = false;
 }
-int32_t Completion::getKind() const
+int64_t Completion::getKind() const
 {
     return m_Kind;
 }
 
 
-void Completion::setKind(int32_t value)
+void Completion::setKind(int64_t value)
 {
     m_Kind = value;
     m_KindIsSet = true;

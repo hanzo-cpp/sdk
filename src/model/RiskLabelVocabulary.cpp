@@ -21,7 +21,7 @@ RiskLabelVocabulary::RiskLabelVocabulary()
     m_DispositionsIsSet = false;
     m_KindsIsSet = false;
     m_PrecedenceIsSet = false;
-    m_Retention = 0;
+    m_Retention = 0L;
     m_RetentionIsSet = false;
     m_RuleIsSet = false;
 }
@@ -108,7 +108,7 @@ bool RiskLabelVocabulary::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("retention")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRetention;
+            int64_t refVal_setRetention;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRetention);
             setRetention(refVal_setRetention);
             
@@ -186,7 +186,7 @@ bool RiskLabelVocabulary::fromMultiPart(std::shared_ptr<MultipartFormData> multi
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("retention"))))
     {
-        int32_t refVal_setRetention;
+        int64_t refVal_setRetention;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("retention"))), refVal_setRetention );
         setRetention(refVal_setRetention);
     }
@@ -263,13 +263,13 @@ void RiskLabelVocabulary::unsetPrecedence()
 {
     m_PrecedenceIsSet = false;
 }
-int32_t RiskLabelVocabulary::getRetention() const
+int64_t RiskLabelVocabulary::getRetention() const
 {
     return m_Retention;
 }
 
 
-void RiskLabelVocabulary::setRetention(int32_t value)
+void RiskLabelVocabulary::setRetention(int64_t value)
 {
     m_Retention = value;
     m_RetentionIsSet = true;

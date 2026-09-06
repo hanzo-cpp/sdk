@@ -261,7 +261,7 @@ pplx::task<std::shared_ptr<Catalog>> AutoApi::getAutoConnectors() const
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<FlowPage>> AutoApi::getAutoFlows(boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<FlowPage>> AutoApi::getAutoFlows(boost::optional<int64_t> limit) const
 {
 
 
@@ -512,7 +512,7 @@ pplx::task<std::shared_ptr<PopulatedFlow>> AutoApi::getAutoFlowsById(utility::st
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<VersionPage>> AutoApi::getAutoFlowsByIdVersions(utility::string_t id, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<VersionPage>> AutoApi::getAutoFlowsByIdVersions(utility::string_t id, boost::optional<int64_t> limit) const
 {
 
 
@@ -640,7 +640,7 @@ pplx::task<std::shared_ptr<VersionPage>> AutoApi::getAutoFlowsByIdVersions(utili
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<RunPage>> AutoApi::getAutoRuns(boost::optional<utility::string_t> flowId, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<RunPage>> AutoApi::getAutoRuns(boost::optional<utility::string_t> flowId, boost::optional<int64_t> limit) const
 {
 
 

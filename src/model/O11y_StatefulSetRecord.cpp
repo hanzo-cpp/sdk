@@ -18,9 +18,9 @@ namespace model {
 
 O11y_StatefulSetRecord::O11y_StatefulSetRecord()
 {
-    m_CurrentPods = 0;
+    m_CurrentPods = 0L;
     m_CurrentPodsIsSet = false;
-    m_DesiredPods = 0;
+    m_DesiredPods = 0L;
     m_DesiredPodsIsSet = false;
     m_MetaIsSet = false;
     m_PodCountsByPhaseIsSet = false;
@@ -119,7 +119,7 @@ bool O11y_StatefulSetRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("currentPods")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCurrentPods;
+            int64_t refVal_setCurrentPods;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCurrentPods);
             setCurrentPods(refVal_setCurrentPods);
             
@@ -130,7 +130,7 @@ bool O11y_StatefulSetRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("desiredPods")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDesiredPods;
+            int64_t refVal_setDesiredPods;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDesiredPods);
             setDesiredPods(refVal_setDesiredPods);
             
@@ -302,13 +302,13 @@ bool O11y_StatefulSetRecord::fromMultiPart(std::shared_ptr<MultipartFormData> mu
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("currentPods"))))
     {
-        int32_t refVal_setCurrentPods;
+        int64_t refVal_setCurrentPods;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("currentPods"))), refVal_setCurrentPods );
         setCurrentPods(refVal_setCurrentPods);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("desiredPods"))))
     {
-        int32_t refVal_setDesiredPods;
+        int64_t refVal_setDesiredPods;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("desiredPods"))), refVal_setDesiredPods );
         setDesiredPods(refVal_setDesiredPods);
     }
@@ -370,13 +370,13 @@ bool O11y_StatefulSetRecord::fromMultiPart(std::shared_ptr<MultipartFormData> mu
 }
 
 
-int32_t O11y_StatefulSetRecord::getCurrentPods() const
+int64_t O11y_StatefulSetRecord::getCurrentPods() const
 {
     return m_CurrentPods;
 }
 
 
-void O11y_StatefulSetRecord::setCurrentPods(int32_t value)
+void O11y_StatefulSetRecord::setCurrentPods(int64_t value)
 {
     m_CurrentPods = value;
     m_CurrentPodsIsSet = true;
@@ -391,13 +391,13 @@ void O11y_StatefulSetRecord::unsetCurrentPods()
 {
     m_CurrentPodsIsSet = false;
 }
-int32_t O11y_StatefulSetRecord::getDesiredPods() const
+int64_t O11y_StatefulSetRecord::getDesiredPods() const
 {
     return m_DesiredPods;
 }
 
 
-void O11y_StatefulSetRecord::setDesiredPods(int32_t value)
+void O11y_StatefulSetRecord::setDesiredPods(int64_t value)
 {
     m_DesiredPods = value;
     m_DesiredPodsIsSet = true;

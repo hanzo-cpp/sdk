@@ -26,9 +26,9 @@ CartItem::CartItem()
     m_KindIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_PriceCents = 0;
+    m_PriceCents = 0L;
     m_PriceCentsIsSet = false;
-    m_Quantity = 0;
+    m_Quantity = 0L;
     m_QuantityIsSet = false;
     m_Sku = utility::conversions::to_string_t("");
     m_SkuIsSet = false;
@@ -137,7 +137,7 @@ bool CartItem::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("priceCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPriceCents;
+            int64_t refVal_setPriceCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPriceCents);
             setPriceCents(refVal_setPriceCents);
             
@@ -148,7 +148,7 @@ bool CartItem::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("quantity")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setQuantity;
+            int64_t refVal_setQuantity;
             ok &= ModelBase::fromJson(fieldValue, refVal_setQuantity);
             setQuantity(refVal_setQuantity);
             
@@ -240,13 +240,13 @@ bool CartItem::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("priceCents"))))
     {
-        int32_t refVal_setPriceCents;
+        int64_t refVal_setPriceCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("priceCents"))), refVal_setPriceCents );
         setPriceCents(refVal_setPriceCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("quantity"))))
     {
-        int32_t refVal_setQuantity;
+        int64_t refVal_setQuantity;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("quantity"))), refVal_setQuantity );
         setQuantity(refVal_setQuantity);
     }
@@ -344,13 +344,13 @@ void CartItem::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t CartItem::getPriceCents() const
+int64_t CartItem::getPriceCents() const
 {
     return m_PriceCents;
 }
 
 
-void CartItem::setPriceCents(int32_t value)
+void CartItem::setPriceCents(int64_t value)
 {
     m_PriceCents = value;
     m_PriceCentsIsSet = true;
@@ -365,13 +365,13 @@ void CartItem::unsetPriceCents()
 {
     m_PriceCentsIsSet = false;
 }
-int32_t CartItem::getQuantity() const
+int64_t CartItem::getQuantity() const
 {
     return m_Quantity;
 }
 
 
-void CartItem::setQuantity(int32_t value)
+void CartItem::setQuantity(int64_t value)
 {
     m_Quantity = value;
     m_QuantityIsSet = true;

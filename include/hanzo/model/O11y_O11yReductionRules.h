@@ -65,17 +65,17 @@ public:
     /// <summary>
     /// Total is how many rules matched, across all pages.
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
 
 protected:
     std::vector<std::shared_ptr<O11y_O11yReductionRule>> m_Rules;
     bool m_RulesIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
 };

@@ -87,10 +87,10 @@ public:
     /// <summary>
     /// Seq is that event&#39;s position in the session&#39;s log — monotonic from 1, per session. A reader holding it can ask the detail or stream reads for everything after it, so this doubles as the list&#39;s resume cursor.
     /// </summary>
-    int32_t getSeq() const;
+    int64_t getSeq() const;
     bool seqIsSet() const;
     void unsetSeq();
-    void setSeq(int32_t value);
+    void setSeq(int64_t value);
 
 
 protected:
@@ -106,7 +106,7 @@ protected:
     utility::string_t m_Preview;
     bool m_PreviewIsSet;
 
-    int32_t m_Seq;
+    int64_t m_Seq;
     bool m_SeqIsSet;
 
 };

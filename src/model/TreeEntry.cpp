@@ -22,7 +22,7 @@ TreeEntry::TreeEntry()
     m_LangIsSet = false;
     m_Path = utility::conversions::to_string_t("");
     m_PathIsSet = false;
-    m_Symbols = 0;
+    m_Symbols = 0L;
     m_SymbolsIsSet = false;
 }
 
@@ -87,7 +87,7 @@ bool TreeEntry::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("symbols")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSymbols;
+            int64_t refVal_setSymbols;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSymbols);
             setSymbols(refVal_setSymbols);
             
@@ -140,7 +140,7 @@ bool TreeEntry::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("symbols"))))
     {
-        int32_t refVal_setSymbols;
+        int64_t refVal_setSymbols;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("symbols"))), refVal_setSymbols );
         setSymbols(refVal_setSymbols);
     }
@@ -190,13 +190,13 @@ void TreeEntry::unsetPath()
 {
     m_PathIsSet = false;
 }
-int32_t TreeEntry::getSymbols() const
+int64_t TreeEntry::getSymbols() const
 {
     return m_Symbols;
 }
 
 
-void TreeEntry::setSymbols(int32_t value)
+void TreeEntry::setSymbols(int64_t value)
 {
     m_Symbols = value;
     m_SymbolsIsSet = true;

@@ -58,7 +58,7 @@ public:
 
 
     /// <summary>
-    /// Arch/CPUs/Memory are the connecting host&#39;s static CPU spec, mirrored from the registration: Arch is runtime.GOARCH (amd64 | arm64), Memory is total RAM in BYTES — the same fields a code-linked run-target carries, so the /v1/visor/fleet board renders a linked node&#39;s arch + cores + RAM like any other unit.
+    /// Arch/CPUs/Memory are the connecting host&#39;s static CPU spec, mirrored from the registration: Arch is runtime.GOARCH (amd64 | arm64), Memory is total RAM in BYTES — the same fields a code-linked run-target carries, so the /v1/compute/fleet board renders a linked node&#39;s arch + cores + RAM like any other unit.
     /// </summary>
     utility::string_t getArch() const;
     bool archIsSet() const;
@@ -84,10 +84,10 @@ public:
     /// <summary>
     /// CPUs is the host&#39;s logical core count.
     /// </summary>
-    int32_t getCpus() const;
+    int64_t getCpus() const;
     bool cpusIsSet() const;
     void unsetCpus();
-    void setCpus(int32_t value);
+    void setCpus(int64_t value);
 
     /// <summary>
     /// Cuda is the host&#39;s CUDA toolkit version. NVIDIA hosts report it.
@@ -180,10 +180,10 @@ public:
     /// <summary>
     /// Memory is the host&#39;s total RAM in BYTES.
     /// </summary>
-    int32_t getMemory() const;
+    int64_t getMemory() const;
     bool memoryIsSet() const;
     void unsetMemory();
-    void setMemory(int32_t value);
+    void setMemory(int64_t value);
 
     /// <summary>
     /// Os is the host&#39;s operating system: linux, darwin or windows.
@@ -236,7 +236,7 @@ protected:
     utility::string_t m_CpuModel;
     bool m_CpuModelIsSet;
 
-    int32_t m_Cpus;
+    int64_t m_Cpus;
     bool m_CpusIsSet;
 
     utility::string_t m_Cuda;
@@ -272,7 +272,7 @@ protected:
     utility::string_t m_Location;
     bool m_LocationIsSet;
 
-    int32_t m_Memory;
+    int64_t m_Memory;
     bool m_MemoryIsSet;
 
     utility::string_t m_Os;

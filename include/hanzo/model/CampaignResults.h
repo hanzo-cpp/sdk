@@ -96,18 +96,18 @@ public:
     /// <summary>
     /// Clicks is the campaign&#39;s click events over the window.
     /// </summary>
-    int32_t getClicks() const;
+    int64_t getClicks() const;
     bool clicksIsSet() const;
     void unsetClicks();
-    void setClicks(int32_t value);
+    void setClicks(int64_t value);
 
     /// <summary>
     /// Conversions is the terminal funnel events attributed to the campaign — orders completed, signups completed, explicit conversion events.
     /// </summary>
-    int32_t getConversions() const;
+    int64_t getConversions() const;
     bool conversionsIsSet() const;
     void unsetConversions();
-    void setConversions(int32_t value);
+    void setConversions(int64_t value);
 
     /// <summary>
     /// CTR is clicks per impression, a fraction rounded to 4 places (0.0123 &#x3D; 1.23%), not a percentage. 0 when there were no impressions to divide by.
@@ -136,10 +136,10 @@ public:
     /// <summary>
     /// Impressions is how many times the campaign&#39;s creatives were shown, counted from its utm_campaign-tagged impression events.
     /// </summary>
-    int32_t getImpressions() const;
+    int64_t getImpressions() const;
     bool impressionsIsSet() const;
     void unsetImpressions();
-    void setImpressions(int32_t value);
+    void setImpressions(int64_t value);
 
     /// <summary>
     /// Name is the campaign&#39;s display name at read time, so a result can be labelled without a second fetch.
@@ -184,10 +184,10 @@ public:
     /// <summary>
     /// SpendCents is the campaign&#39;s total spend in CENTS: the sum of what each live channel&#39;s provider reports. A channel whose spend could not be read contributes 0 and says so on its own row.
     /// </summary>
-    int32_t getSpendCents() const;
+    int64_t getSpendCents() const;
     bool spendCentsIsSet() const;
     void unsetSpendCents();
-    void setSpendCents(int32_t value);
+    void setSpendCents(int64_t value);
 
     /// <summary>
     /// Start is the window&#39;s inclusive start, RFC3339 UTC.
@@ -208,10 +208,10 @@ public:
     /// <summary>
     /// Visitors is how many distinct people the campaign reached, counted by event identity across ALL its events in the window — not a subset of Impressions, so it can exceed them for a campaign whose provider reports clicks but not views.
     /// </summary>
-    int32_t getVisitors() const;
+    int64_t getVisitors() const;
     bool visitorsIsSet() const;
     void unsetVisitors();
-    void setVisitors(int32_t value);
+    void setVisitors(int64_t value);
 
 
 protected:
@@ -229,10 +229,10 @@ protected:
     std::vector<std::shared_ptr<ChannelMetric>> m_Channels;
     bool m_ChannelsIsSet;
 
-    int32_t m_Clicks;
+    int64_t m_Clicks;
     bool m_ClicksIsSet;
 
-    int32_t m_Conversions;
+    int64_t m_Conversions;
     bool m_ConversionsIsSet;
 
     double m_Ctr;
@@ -244,7 +244,7 @@ protected:
     utility::string_t m_End;
     bool m_EndIsSet;
 
-    int32_t m_Impressions;
+    int64_t m_Impressions;
     bool m_ImpressionsIsSet;
 
     utility::string_t m_Name;
@@ -262,7 +262,7 @@ protected:
     utility::string_t m_Source;
     bool m_SourceIsSet;
 
-    int32_t m_SpendCents;
+    int64_t m_SpendCents;
     bool m_SpendCentsIsSet;
 
     utility::string_t m_Start;
@@ -271,7 +271,7 @@ protected:
     utility::string_t m_Status;
     bool m_StatusIsSet;
 
-    int32_t m_Visitors;
+    int64_t m_Visitors;
     bool m_VisitorsIsSet;
 
 };

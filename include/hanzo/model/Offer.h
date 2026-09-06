@@ -87,18 +87,18 @@ public:
     /// <summary>
     /// sell (first-term registration)
     /// </summary>
-    int32_t getPriceCents() const;
+    int64_t getPriceCents() const;
     bool priceCentsIsSet() const;
     void unsetPriceCents();
-    void setPriceCents(int32_t value);
+    void setPriceCents(int64_t value);
 
     /// <summary>
     /// sell (renewal)
     /// </summary>
-    int32_t getRenewalPriceCents() const;
+    int64_t getRenewalPriceCents() const;
     bool renewalPriceCentsIsSet() const;
     void unsetRenewalPriceCents();
-    void setRenewalPriceCents(int32_t value);
+    void setRenewalPriceCents(int64_t value);
 
     /// <summary>
     /// the top-level domain the name sits under
@@ -122,10 +122,10 @@ protected:
     bool m_Premium;
     bool m_PremiumIsSet;
 
-    int32_t m_PriceCents;
+    int64_t m_PriceCents;
     bool m_PriceCentsIsSet;
 
-    int32_t m_RenewalPriceCents;
+    int64_t m_RenewalPriceCents;
     bool m_RenewalPriceCentsIsSet;
 
     utility::string_t m_Tld;

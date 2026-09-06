@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// CompletionTokens is the output half of Tokens.
     /// </summary>
-    int32_t getCompletionTokens() const;
+    int64_t getCompletionTokens() const;
     bool completionTokensIsSet() const;
     void unsetCompletionTokens();
-    void setCompletionTokens(int32_t value);
+    void setCompletionTokens(int64_t value);
 
     /// <summary>
     /// ErrorRate is Errors/Requests, 0..1, rounded to three places. Zero when there were no requests.
@@ -79,42 +79,42 @@ public:
     /// <summary>
     /// Errors is how many of Requests failed.
     /// </summary>
-    int32_t getErrors() const;
+    int64_t getErrors() const;
     bool errorsIsSet() const;
     void unsetErrors();
-    void setErrors(int32_t value);
+    void setErrors(int64_t value);
 
     /// <summary>
     /// Models is how many distinct models the org called.
     /// </summary>
-    int32_t getModels() const;
+    int64_t getModels() const;
     bool modelsIsSet() const;
     void unsetModels();
-    void setModels(int32_t value);
+    void setModels(int64_t value);
 
     /// <summary>
     /// PromptTokens is the input half of Tokens.
     /// </summary>
-    int32_t getPromptTokens() const;
+    int64_t getPromptTokens() const;
     bool promptTokensIsSet() const;
     void unsetPromptTokens();
-    void setPromptTokens(int32_t value);
+    void setPromptTokens(int64_t value);
 
     /// <summary>
     /// Providers is how many distinct providers served them.
     /// </summary>
-    int32_t getProviders() const;
+    int64_t getProviders() const;
     bool providersIsSet() const;
     void unsetProviders();
-    void setProviders(int32_t value);
+    void setProviders(int64_t value);
 
     /// <summary>
     /// Requests is how many LLM calls the org made in the window.
     /// </summary>
-    int32_t getRequests() const;
+    int64_t getRequests() const;
     bool requestsIsSet() const;
     void unsetRequests();
-    void setRequests(int32_t value);
+    void setRequests(int64_t value);
 
     /// <summary>
     /// Source is the warehouse table the lens read.
@@ -127,52 +127,52 @@ public:
     /// <summary>
     /// SpendCents is what those calls cost, in cents.
     /// </summary>
-    int32_t getSpendCents() const;
+    int64_t getSpendCents() const;
     bool spendCentsIsSet() const;
     void unsetSpendCents();
-    void setSpendCents(int32_t value);
+    void setSpendCents(int64_t value);
 
     /// <summary>
     /// Tokens is prompt plus completion tokens over those calls.
     /// </summary>
-    int32_t getTokens() const;
+    int64_t getTokens() const;
     bool tokensIsSet() const;
     void unsetTokens();
-    void setTokens(int32_t value);
+    void setTokens(int64_t value);
 
 
 protected:
     bool m_Available;
     bool m_AvailableIsSet;
 
-    int32_t m_CompletionTokens;
+    int64_t m_CompletionTokens;
     bool m_CompletionTokensIsSet;
 
     double m_ErrorRate;
     bool m_ErrorRateIsSet;
 
-    int32_t m_Errors;
+    int64_t m_Errors;
     bool m_ErrorsIsSet;
 
-    int32_t m_Models;
+    int64_t m_Models;
     bool m_ModelsIsSet;
 
-    int32_t m_PromptTokens;
+    int64_t m_PromptTokens;
     bool m_PromptTokensIsSet;
 
-    int32_t m_Providers;
+    int64_t m_Providers;
     bool m_ProvidersIsSet;
 
-    int32_t m_Requests;
+    int64_t m_Requests;
     bool m_RequestsIsSet;
 
     utility::string_t m_Source;
     bool m_SourceIsSet;
 
-    int32_t m_SpendCents;
+    int64_t m_SpendCents;
     bool m_SpendCentsIsSet;
 
-    int32_t m_Tokens;
+    int64_t m_Tokens;
     bool m_TokensIsSet;
 
 };

@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// Depth is how deep each tree is. With Trees it sets how finely the space is partitioned, and therefore how much history it takes to fill.
     /// </summary>
-    int32_t getDepth() const;
+    int64_t getDepth() const;
     bool depthIsSet() const;
     void unsetDepth();
-    void setDepth(int32_t value);
+    void setDepth(int64_t value);
 
     /// <summary>
     /// Family is the KIND of model this candidate is: &#x60;halfspace&#x60; is an ensemble of half-space trees whose masses are counters, and it is the family this search grid ranks. The parameters below are that family&#39;s own — a family that does not partition space with trees has different ones — so read them against this.
@@ -87,25 +87,25 @@ public:
     /// <summary>
     /// Trees is how many half-space trees the ensemble holds.
     /// </summary>
-    int32_t getTrees() const;
+    int64_t getTrees() const;
     bool treesIsSet() const;
     void unsetTrees();
-    void setTrees(int32_t value);
+    void setTrees(int64_t value);
 
     /// <summary>
     /// Window is how many events make one reference window.
     /// </summary>
-    int32_t getWindow() const;
+    int64_t getWindow() const;
     bool windowIsSet() const;
     void unsetWindow();
-    void setWindow(int32_t value);
+    void setWindow(int64_t value);
 
 
 protected:
     double m_Blend;
     bool m_BlendIsSet;
 
-    int32_t m_Depth;
+    int64_t m_Depth;
     bool m_DepthIsSet;
 
     utility::string_t m_Family;
@@ -114,10 +114,10 @@ protected:
     double m_Review;
     bool m_ReviewIsSet;
 
-    int32_t m_Trees;
+    int64_t m_Trees;
     bool m_TreesIsSet;
 
-    int32_t m_Window;
+    int64_t m_Window;
     bool m_WindowIsSet;
 
 };

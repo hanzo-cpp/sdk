@@ -24,7 +24,7 @@ FileJSON::FileJSON()
     m_EncodingIsSet = false;
     m_Path = utility::conversions::to_string_t("");
     m_PathIsSet = false;
-    m_Size = 0;
+    m_Size = 0L;
     m_SizeIsSet = false;
     m_Truncated = false;
     m_TruncatedIsSet = false;
@@ -112,7 +112,7 @@ bool FileJSON::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("size")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSize;
+            int64_t refVal_setSize;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSize);
             setSize(refVal_setSize);
             
@@ -190,7 +190,7 @@ bool FileJSON::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("size"))))
     {
-        int32_t refVal_setSize;
+        int64_t refVal_setSize;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("size"))), refVal_setSize );
         setSize(refVal_setSize);
     }
@@ -267,13 +267,13 @@ void FileJSON::unsetPath()
 {
     m_PathIsSet = false;
 }
-int32_t FileJSON::getSize() const
+int64_t FileJSON::getSize() const
 {
     return m_Size;
 }
 
 
-void FileJSON::setSize(int32_t value)
+void FileJSON::setSize(int64_t value)
 {
     m_Size = value;
     m_SizeIsSet = true;

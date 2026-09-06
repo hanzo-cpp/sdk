@@ -21,7 +21,7 @@ AffiliateLinks::AffiliateLinks()
     m_IsAffiliate = false;
     m_IsAffiliateIsSet = false;
     m_LinksIsSet = false;
-    m_MaxLinks = 0;
+    m_MaxLinks = 0L;
     m_MaxLinksIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
@@ -93,7 +93,7 @@ bool AffiliateLinks::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("maxLinks")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMaxLinks;
+            int64_t refVal_setMaxLinks;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMaxLinks);
             setMaxLinks(refVal_setMaxLinks);
             
@@ -161,7 +161,7 @@ bool AffiliateLinks::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("maxLinks"))))
     {
-        int32_t refVal_setMaxLinks;
+        int64_t refVal_setMaxLinks;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("maxLinks"))), refVal_setMaxLinks );
         setMaxLinks(refVal_setMaxLinks);
     }
@@ -217,13 +217,13 @@ void AffiliateLinks::unsetLinks()
 {
     m_LinksIsSet = false;
 }
-int32_t AffiliateLinks::getMaxLinks() const
+int64_t AffiliateLinks::getMaxLinks() const
 {
     return m_MaxLinks;
 }
 
 
-void AffiliateLinks::setMaxLinks(int32_t value)
+void AffiliateLinks::setMaxLinks(int64_t value)
 {
     m_MaxLinks = value;
     m_MaxLinksIsSet = true;

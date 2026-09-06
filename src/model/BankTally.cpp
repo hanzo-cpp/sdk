@@ -18,17 +18,17 @@ namespace model {
 
 BankTally::BankTally()
 {
-    m_Ingested = 0;
+    m_Ingested = 0L;
     m_IngestedIsSet = false;
-    m_Posted = 0;
+    m_Posted = 0L;
     m_PostedIsSet = false;
-    m_Questions = 0;
+    m_Questions = 0L;
     m_QuestionsIsSet = false;
-    m_Reconciled = 0;
+    m_Reconciled = 0L;
     m_ReconciledIsSet = false;
-    m_Skipped = 0;
+    m_Skipped = 0L;
     m_SkippedIsSet = false;
-    m_Transfers = 0;
+    m_Transfers = 0L;
     m_TransfersIsSet = false;
 }
 
@@ -86,7 +86,7 @@ bool BankTally::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("ingested")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setIngested;
+            int64_t refVal_setIngested;
             ok &= ModelBase::fromJson(fieldValue, refVal_setIngested);
             setIngested(refVal_setIngested);
             
@@ -97,7 +97,7 @@ bool BankTally::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("posted")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPosted;
+            int64_t refVal_setPosted;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPosted);
             setPosted(refVal_setPosted);
             
@@ -108,7 +108,7 @@ bool BankTally::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("questions")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setQuestions;
+            int64_t refVal_setQuestions;
             ok &= ModelBase::fromJson(fieldValue, refVal_setQuestions);
             setQuestions(refVal_setQuestions);
             
@@ -119,7 +119,7 @@ bool BankTally::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("reconciled")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setReconciled;
+            int64_t refVal_setReconciled;
             ok &= ModelBase::fromJson(fieldValue, refVal_setReconciled);
             setReconciled(refVal_setReconciled);
             
@@ -130,7 +130,7 @@ bool BankTally::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("skipped")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSkipped;
+            int64_t refVal_setSkipped;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSkipped);
             setSkipped(refVal_setSkipped);
             
@@ -141,7 +141,7 @@ bool BankTally::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("transfers")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTransfers;
+            int64_t refVal_setTransfers;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTransfers);
             setTransfers(refVal_setTransfers);
             
@@ -194,37 +194,37 @@ bool BankTally::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("ingested"))))
     {
-        int32_t refVal_setIngested;
+        int64_t refVal_setIngested;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ingested"))), refVal_setIngested );
         setIngested(refVal_setIngested);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("posted"))))
     {
-        int32_t refVal_setPosted;
+        int64_t refVal_setPosted;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("posted"))), refVal_setPosted );
         setPosted(refVal_setPosted);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("questions"))))
     {
-        int32_t refVal_setQuestions;
+        int64_t refVal_setQuestions;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("questions"))), refVal_setQuestions );
         setQuestions(refVal_setQuestions);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("reconciled"))))
     {
-        int32_t refVal_setReconciled;
+        int64_t refVal_setReconciled;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("reconciled"))), refVal_setReconciled );
         setReconciled(refVal_setReconciled);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("skipped"))))
     {
-        int32_t refVal_setSkipped;
+        int64_t refVal_setSkipped;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("skipped"))), refVal_setSkipped );
         setSkipped(refVal_setSkipped);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("transfers"))))
     {
-        int32_t refVal_setTransfers;
+        int64_t refVal_setTransfers;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("transfers"))), refVal_setTransfers );
         setTransfers(refVal_setTransfers);
     }
@@ -232,13 +232,13 @@ bool BankTally::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 }
 
 
-int32_t BankTally::getIngested() const
+int64_t BankTally::getIngested() const
 {
     return m_Ingested;
 }
 
 
-void BankTally::setIngested(int32_t value)
+void BankTally::setIngested(int64_t value)
 {
     m_Ingested = value;
     m_IngestedIsSet = true;
@@ -253,13 +253,13 @@ void BankTally::unsetIngested()
 {
     m_IngestedIsSet = false;
 }
-int32_t BankTally::getPosted() const
+int64_t BankTally::getPosted() const
 {
     return m_Posted;
 }
 
 
-void BankTally::setPosted(int32_t value)
+void BankTally::setPosted(int64_t value)
 {
     m_Posted = value;
     m_PostedIsSet = true;
@@ -274,13 +274,13 @@ void BankTally::unsetPosted()
 {
     m_PostedIsSet = false;
 }
-int32_t BankTally::getQuestions() const
+int64_t BankTally::getQuestions() const
 {
     return m_Questions;
 }
 
 
-void BankTally::setQuestions(int32_t value)
+void BankTally::setQuestions(int64_t value)
 {
     m_Questions = value;
     m_QuestionsIsSet = true;
@@ -295,13 +295,13 @@ void BankTally::unsetQuestions()
 {
     m_QuestionsIsSet = false;
 }
-int32_t BankTally::getReconciled() const
+int64_t BankTally::getReconciled() const
 {
     return m_Reconciled;
 }
 
 
-void BankTally::setReconciled(int32_t value)
+void BankTally::setReconciled(int64_t value)
 {
     m_Reconciled = value;
     m_ReconciledIsSet = true;
@@ -316,13 +316,13 @@ void BankTally::unsetReconciled()
 {
     m_ReconciledIsSet = false;
 }
-int32_t BankTally::getSkipped() const
+int64_t BankTally::getSkipped() const
 {
     return m_Skipped;
 }
 
 
-void BankTally::setSkipped(int32_t value)
+void BankTally::setSkipped(int64_t value)
 {
     m_Skipped = value;
     m_SkippedIsSet = true;
@@ -337,13 +337,13 @@ void BankTally::unsetSkipped()
 {
     m_SkippedIsSet = false;
 }
-int32_t BankTally::getTransfers() const
+int64_t BankTally::getTransfers() const
 {
     return m_Transfers;
 }
 
 
-void BankTally::setTransfers(int32_t value)
+void BankTally::setTransfers(int64_t value)
 {
     m_Transfers = value;
     m_TransfersIsSet = true;

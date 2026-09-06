@@ -106,12 +106,12 @@ public:
     /// <param name="channel">Channel is the surface opted out of: email, sms, social, meta, google or tiktok. Empty means email. Opting out of one leaves the others reachable. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="address">Address is the recipient, normalized (lower-cased, trimmed) so an opt-out cannot be slipped past on a case or whitespace difference. Required. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="reason">Reason is a free-text note, capped at 1024 bytes. The public one-click endpoint records \&quot;one-click unsubscribe\&quot;. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="createdAt">CreatedAt is unix seconds, server-assigned. (optional, default to 0)</param>
+    /// <param name="createdAt">CreatedAt is unix seconds, server-assigned. (optional, default to 0L)</param>
     pplx::task<void> deleteMarketingSuppressions(
         boost::optional<utility::string_t> channel,
         boost::optional<utility::string_t> address,
         boost::optional<utility::string_t> reason,
-        boost::optional<int32_t> createdAt
+        boost::optional<int64_t> createdAt
     ) const;
     /// <summary>
     /// Returns the org&#39;s saved audiences, most recently updated first.
@@ -119,9 +119,9 @@ public:
     /// <remarks>
     /// Returns the org&#39;s saved audiences, most recently updated first.
     /// </remarks>
-    /// <param name="limit">Limit caps the rows returned; 0 means 200 and nothing above 1000 is honoured. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the rows returned; 0 means 200 and nothing above 1000 is honoured. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<AudienceList>> getMarketingAudiences(
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns one of the caller org&#39;s saved audiences.
@@ -150,10 +150,10 @@ public:
     /// Returns the org&#39;s calendar, latest scheduled first, optionally narrowed to one status.
     /// </remarks>
     /// <param name="status">Status keeps only posts in that state (draft, scheduled, published, failed, canceled). Empty means every post. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps the rows returned; 0 means 200 and nothing above 1000 is honoured. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the rows returned; 0 means 200 and nothing above 1000 is honoured. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<PostList>> getMarketingCalendar(
         boost::optional<utility::string_t> status,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns one of the caller org&#39;s posts, including the exact error behind a failed publish.
@@ -172,10 +172,10 @@ public:
     /// Returns the org&#39;s campaigns, most recently updated first, optionally narrowed to one lifecycle status.
     /// </remarks>
     /// <param name="status">Status keeps only campaigns in that lifecycle state (draft, scheduled, active, paused, completed). Empty means every campaign. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps the rows returned; 0 means 200 and nothing above 1000 is honoured. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the rows returned; 0 means 200 and nothing above 1000 is honoured. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<CampaignList>> getMarketingCampaigns(
         boost::optional<utility::string_t> status,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns one of the caller org&#39;s campaigns.
@@ -203,11 +203,11 @@ public:
     /// </remarks>
     /// <param name="code">Code is the promo code from the path.</param>
     /// <param name="plan">Plan is the plan being priced: pro, max or team. Anything else (including the free Developer plan) has no list price and so nothing to discount. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="seats">Seats is the Team seat count; 0 means 1, and it is ignored for the single-seat plans. (optional, default to 0)</param>
+    /// <param name="seats">Seats is the Team seat count; 0 means 1, and it is ignored for the single-seat plans. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<Quote>> getMarketingPromosByCodeEligibility(
         utility::string_t code,
         boost::optional<utility::string_t> plan,
-        boost::optional<int32_t> seats
+        boost::optional<int64_t> seats
     ) const;
     /// <summary>
     /// Returns the caller org&#39;s OWN redemption of a promo — an org-scoped read, so it can never surface another tenant&#39;s.
@@ -225,9 +225,9 @@ public:
     /// <remarks>
     /// Returns the org&#39;s drip sequences, most recently updated first.
     /// </remarks>
-    /// <param name="limit">Limit caps the rows returned; 0 means 200 and nothing above 1000 is honoured. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the rows returned; 0 means 200 and nothing above 1000 is honoured. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<SequenceList>> getMarketingSequences(
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns one of the caller org&#39;s sequences together with its steps in send order.
@@ -246,10 +246,10 @@ public:
     /// Returns who is walking one sequence, most recently enrolled first, with each walk&#39;s current step and next due time.
     /// </remarks>
     /// <param name="id">ID is the sequence id from the path.</param>
-    /// <param name="limit">Limit caps the rows returned; 0 means 200 and nothing above 1000 is honoured. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the rows returned; 0 means 200 and nothing above 1000 is honoured. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<EnrollmentList>> getMarketingSequencesByIdEnrollments(
         utility::string_t id,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns one sequence&#39;s steps in send order.
@@ -275,9 +275,9 @@ public:
     /// <remarks>
     /// Returns the org&#39;s opt-out list, newest first — everyone the send gate will refuse to deliver to.
     /// </remarks>
-    /// <param name="limit">Limit caps the rows returned; 0 means 200 and nothing above 1000 is honoured. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the rows returned; 0 means 200 and nothing above 1000 is honoured. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<SuppressionList>> getMarketingSuppressions(
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Is the PUBLIC one-click endpoint (no principal): a recipient clicks the signed link in an email footer.

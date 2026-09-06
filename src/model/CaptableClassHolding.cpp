@@ -18,11 +18,11 @@ namespace model {
 
 CaptableClassHolding::CaptableClassHolding()
 {
-    m_Authorized = 0;
+    m_Authorized = 0L;
     m_AuthorizedIsSet = false;
     m_ClassType = utility::conversions::to_string_t("");
     m_ClassTypeIsSet = false;
-    m_Issued = 0;
+    m_Issued = 0L;
     m_IssuedIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
@@ -79,7 +79,7 @@ bool CaptableClassHolding::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("authorized")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAuthorized;
+            int64_t refVal_setAuthorized;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAuthorized);
             setAuthorized(refVal_setAuthorized);
             
@@ -101,7 +101,7 @@ bool CaptableClassHolding::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("issued")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setIssued;
+            int64_t refVal_setIssued;
             ok &= ModelBase::fromJson(fieldValue, refVal_setIssued);
             setIssued(refVal_setIssued);
             
@@ -172,7 +172,7 @@ bool CaptableClassHolding::fromMultiPart(std::shared_ptr<MultipartFormData> mult
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("authorized"))))
     {
-        int32_t refVal_setAuthorized;
+        int64_t refVal_setAuthorized;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("authorized"))), refVal_setAuthorized );
         setAuthorized(refVal_setAuthorized);
     }
@@ -184,7 +184,7 @@ bool CaptableClassHolding::fromMultiPart(std::shared_ptr<MultipartFormData> mult
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("issued"))))
     {
-        int32_t refVal_setIssued;
+        int64_t refVal_setIssued;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("issued"))), refVal_setIssued );
         setIssued(refVal_setIssued);
     }
@@ -204,13 +204,13 @@ bool CaptableClassHolding::fromMultiPart(std::shared_ptr<MultipartFormData> mult
 }
 
 
-int32_t CaptableClassHolding::getAuthorized() const
+int64_t CaptableClassHolding::getAuthorized() const
 {
     return m_Authorized;
 }
 
 
-void CaptableClassHolding::setAuthorized(int32_t value)
+void CaptableClassHolding::setAuthorized(int64_t value)
 {
     m_Authorized = value;
     m_AuthorizedIsSet = true;
@@ -246,13 +246,13 @@ void CaptableClassHolding::unsetClassType()
 {
     m_ClassTypeIsSet = false;
 }
-int32_t CaptableClassHolding::getIssued() const
+int64_t CaptableClassHolding::getIssued() const
 {
     return m_Issued;
 }
 
 
-void CaptableClassHolding::setIssued(int32_t value)
+void CaptableClassHolding::setIssued(int64_t value)
 {
     m_Issued = value;
     m_IssuedIsSet = true;

@@ -18,9 +18,9 @@ namespace model {
 
 Invoice::Invoice()
 {
-    m_AmountDueCents = 0;
+    m_AmountDueCents = 0L;
     m_AmountDueCentsIsSet = false;
-    m_AmountPaidCents = 0;
+    m_AmountPaidCents = 0L;
     m_AmountPaidCentsIsSet = false;
     m_CreatedAt = utility::conversions::to_string_t("");
     m_CreatedAtIsSet = false;
@@ -37,7 +37,7 @@ Invoice::Invoice()
     m_PaymentRefIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
-    m_SubtotalCents = 0;
+    m_SubtotalCents = 0L;
     m_SubtotalCentsIsSet = false;
     m_UserId = utility::conversions::to_string_t("");
     m_UserIdIsSet = false;
@@ -127,7 +127,7 @@ bool Invoice::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("amountDueCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAmountDueCents;
+            int64_t refVal_setAmountDueCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAmountDueCents);
             setAmountDueCents(refVal_setAmountDueCents);
             
@@ -138,7 +138,7 @@ bool Invoice::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("amountPaidCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAmountPaidCents;
+            int64_t refVal_setAmountPaidCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAmountPaidCents);
             setAmountPaidCents(refVal_setAmountPaidCents);
             
@@ -237,7 +237,7 @@ bool Invoice::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("subtotalCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSubtotalCents;
+            int64_t refVal_setSubtotalCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSubtotalCents);
             setSubtotalCents(refVal_setSubtotalCents);
             
@@ -325,13 +325,13 @@ bool Invoice::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("amountDueCents"))))
     {
-        int32_t refVal_setAmountDueCents;
+        int64_t refVal_setAmountDueCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("amountDueCents"))), refVal_setAmountDueCents );
         setAmountDueCents(refVal_setAmountDueCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("amountPaidCents"))))
     {
-        int32_t refVal_setAmountPaidCents;
+        int64_t refVal_setAmountPaidCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("amountPaidCents"))), refVal_setAmountPaidCents );
         setAmountPaidCents(refVal_setAmountPaidCents);
     }
@@ -385,7 +385,7 @@ bool Invoice::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("subtotalCents"))))
     {
-        int32_t refVal_setSubtotalCents;
+        int64_t refVal_setSubtotalCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("subtotalCents"))), refVal_setSubtotalCents );
         setSubtotalCents(refVal_setSubtotalCents);
     }
@@ -399,13 +399,13 @@ bool Invoice::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
 }
 
 
-int32_t Invoice::getAmountDueCents() const
+int64_t Invoice::getAmountDueCents() const
 {
     return m_AmountDueCents;
 }
 
 
-void Invoice::setAmountDueCents(int32_t value)
+void Invoice::setAmountDueCents(int64_t value)
 {
     m_AmountDueCents = value;
     m_AmountDueCentsIsSet = true;
@@ -420,13 +420,13 @@ void Invoice::unsetAmountDueCents()
 {
     m_AmountDueCentsIsSet = false;
 }
-int32_t Invoice::getAmountPaidCents() const
+int64_t Invoice::getAmountPaidCents() const
 {
     return m_AmountPaidCents;
 }
 
 
-void Invoice::setAmountPaidCents(int32_t value)
+void Invoice::setAmountPaidCents(int64_t value)
 {
     m_AmountPaidCents = value;
     m_AmountPaidCentsIsSet = true;
@@ -609,13 +609,13 @@ void Invoice::unsetStatus()
 {
     m_StatusIsSet = false;
 }
-int32_t Invoice::getSubtotalCents() const
+int64_t Invoice::getSubtotalCents() const
 {
     return m_SubtotalCents;
 }
 
 
-void Invoice::setSubtotalCents(int32_t value)
+void Invoice::setSubtotalCents(int64_t value)
 {
     m_SubtotalCents = value;
     m_SubtotalCentsIsSet = true;

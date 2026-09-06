@@ -72,10 +72,10 @@ public:
     /// <summary>
     /// AttributesInt are the record&#39;s integer attributes.
     /// </summary>
-    std::map<utility::string_t, int32_t> getAttributesInt() const;
+    std::map<utility::string_t, int64_t> getAttributesInt() const;
     bool attributesIntIsSet() const;
     void unsetAttributes_int();
-    void setAttributesInt(std::map<utility::string_t, int32_t> value);
+    void setAttributesInt(std::map<utility::string_t, int64_t> value);
 
     /// <summary>
     /// AttributesString are the record&#39;s string attributes.
@@ -165,7 +165,7 @@ protected:
     std::map<utility::string_t, double> m_Attributes_float;
     bool m_Attributes_floatIsSet;
 
-    std::map<utility::string_t, int32_t> m_Attributes_int;
+    std::map<utility::string_t, int64_t> m_Attributes_int;
     bool m_Attributes_intIsSet;
 
     std::map<utility::string_t, utility::string_t> m_Attributes_string;

@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// CostCents is the day&#39;s spend in whole US cents. A series is only ever returned for a subject the caller is authorized to see, so this is never withheld: 0 means no spend that day.
     /// </summary>
-    int32_t getCostCents() const;
+    int64_t getCostCents() const;
     bool costCentsIsSet() const;
     void unsetCostCents();
-    void setCostCents(int32_t value);
+    void setCostCents(int64_t value);
 
     /// <summary>
     /// Day is the UTC calendar day this point covers, \&quot;2006-01-02\&quot;.
@@ -71,31 +71,31 @@ public:
     /// <summary>
     /// Requests is the subject&#39;s request count on this day. 0 is a real, quiet day: the series is gap-filled, so every day in the range is present whether or not anything happened.
     /// </summary>
-    int32_t getRequests() const;
+    int64_t getRequests() const;
     bool requestsIsSet() const;
     void unsetRequests();
-    void setRequests(int32_t value);
+    void setRequests(int64_t value);
 
     /// <summary>
     /// Tokens is prompt+completion tokens on this day — normally the heatmap&#39;s intensity, scaled against ActivityTotals.MaxTokens.
     /// </summary>
-    int32_t getTokens() const;
+    int64_t getTokens() const;
     bool tokensIsSet() const;
     void unsetTokens();
-    void setTokens(int32_t value);
+    void setTokens(int64_t value);
 
 
 protected:
-    int32_t m_CostCents;
+    int64_t m_CostCents;
     bool m_CostCentsIsSet;
 
     utility::string_t m_Day;
     bool m_DayIsSet;
 
-    int32_t m_Requests;
+    int64_t m_Requests;
     bool m_RequestsIsSet;
 
-    int32_t m_Tokens;
+    int64_t m_Tokens;
     bool m_TokensIsSet;
 
 };

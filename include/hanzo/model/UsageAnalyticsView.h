@@ -99,10 +99,10 @@ public:
     /// <summary>
     /// RetentionDays is how far back the resolved plan allows reading.
     /// </summary>
-    int32_t getRetentionDays() const;
+    int64_t getRetentionDays() const;
     bool retentionDaysIsSet() const;
     void unsetRetentionDays();
-    void setRetentionDays(int32_t value);
+    void setRetentionDays(int64_t value);
 
     /// <summary>
     /// Scope is the tenant the rows were read under — the validated principal&#39;s org.
@@ -137,7 +137,7 @@ protected:
     utility::string_t m_Range;
     bool m_RangeIsSet;
 
-    int32_t m_RetentionDays;
+    int64_t m_RetentionDays;
     bool m_RetentionDaysIsSet;
 
     std::shared_ptr<UsageScope> m_Scope;

@@ -74,10 +74,10 @@ public:
     /// <summary>
     /// DiscountCents is what coupons and promotions took off, in whole cents.
     /// </summary>
-    int32_t getDiscountCents() const;
+    int64_t getDiscountCents() const;
     bool discountCentsIsSet() const;
     void unsetDiscountCents();
-    void setDiscountCents(int32_t value);
+    void setDiscountCents(int64_t value);
 
     /// <summary>
     /// Email is the shopper&#39;s address, when the cart carries one.
@@ -106,10 +106,10 @@ public:
     /// <summary>
     /// LineTotalCents is the sum of the lines before any discount, in whole cents.
     /// </summary>
-    int32_t getLineTotalCents() const;
+    int64_t getLineTotalCents() const;
     bool lineTotalCentsIsSet() const;
     void unsetLineTotalCents();
-    void setLineTotalCents(int32_t value);
+    void setLineTotalCents(int64_t value);
 
     /// <summary>
     /// Order is the order this cart became, once checkout completed it. Empty until then, and its presence is what makes a cart final.
@@ -122,10 +122,10 @@ public:
     /// <summary>
     /// ShippingCents is the shipping charge, in whole cents. It stays zero until a shipping option is priced at checkout.
     /// </summary>
-    int32_t getShippingCents() const;
+    int64_t getShippingCents() const;
     bool shippingCentsIsSet() const;
     void unsetShippingCents();
-    void setShippingCents(int32_t value);
+    void setShippingCents(int64_t value);
 
     /// <summary>
     /// Status is \&quot;active\&quot; for a cart still being filled, \&quot;ordered\&quot; once checkout turned it into an order, and \&quot;discarded\&quot; when the shopper abandoned it.
@@ -146,26 +146,26 @@ public:
     /// <summary>
     /// SubtotalCents is LineTotalCents less DiscountCents, in whole cents.
     /// </summary>
-    int32_t getSubtotalCents() const;
+    int64_t getSubtotalCents() const;
     bool subtotalCentsIsSet() const;
     void unsetSubtotalCents();
-    void setSubtotalCents(int32_t value);
+    void setSubtotalCents(int64_t value);
 
     /// <summary>
     /// TaxCents is the sales tax, in whole cents. It stays zero until checkout resolves the shopper&#39;s tax region.
     /// </summary>
-    int32_t getTaxCents() const;
+    int64_t getTaxCents() const;
     bool taxCentsIsSet() const;
     void unsetTaxCents();
-    void setTaxCents(int32_t value);
+    void setTaxCents(int64_t value);
 
     /// <summary>
     /// TotalCents is what the shopper pays: subtotal plus shipping plus tax, in whole cents.
     /// </summary>
-    int32_t getTotalCents() const;
+    int64_t getTotalCents() const;
     bool totalCentsIsSet() const;
     void unsetTotalCents();
-    void setTotalCents(int32_t value);
+    void setTotalCents(int64_t value);
 
     /// <summary>
     /// UpdatedAt is when the cart was last amended, RFC3339.
@@ -191,7 +191,7 @@ protected:
     utility::string_t m_Currency;
     bool m_CurrencyIsSet;
 
-    int32_t m_DiscountCents;
+    int64_t m_DiscountCents;
     bool m_DiscountCentsIsSet;
 
     utility::string_t m_Email;
@@ -203,13 +203,13 @@ protected:
     std::vector<std::shared_ptr<CartItem>> m_Items;
     bool m_ItemsIsSet;
 
-    int32_t m_LineTotalCents;
+    int64_t m_LineTotalCents;
     bool m_LineTotalCentsIsSet;
 
     utility::string_t m_Order;
     bool m_OrderIsSet;
 
-    int32_t m_ShippingCents;
+    int64_t m_ShippingCents;
     bool m_ShippingCentsIsSet;
 
     utility::string_t m_Status;
@@ -218,13 +218,13 @@ protected:
     utility::string_t m_Store;
     bool m_StoreIsSet;
 
-    int32_t m_SubtotalCents;
+    int64_t m_SubtotalCents;
     bool m_SubtotalCentsIsSet;
 
-    int32_t m_TaxCents;
+    int64_t m_TaxCents;
     bool m_TaxCentsIsSet;
 
-    int32_t m_TotalCents;
+    int64_t m_TotalCents;
     bool m_TotalCentsIsSet;
 
     utility::string_t m_UpdatedAt;

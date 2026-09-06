@@ -70,7 +70,7 @@ bool Post_event_request::fromJson(const web::json::value& json)
         }
     }
     {
-        Event target;
+        CaptureEvent target;
         if (ModelBase::fromJson(json, target))
         {
             m_variantValue = target;
@@ -86,7 +86,7 @@ bool Post_event_request::fromJson(const web::json::value& json)
         }
     }
     {
-        std::vector<std::shared_ptr<Event>> target;
+        std::vector<std::shared_ptr<CaptureEvent>> target;
         if (ModelBase::fromJson(json, target))
         {
             m_variantValue = target;
@@ -107,7 +107,7 @@ bool Post_event_request::fromMultiPart(std::shared_ptr<MultipartFormData> multip
         }
     }
     {
-        Event target;
+        CaptureEvent target;
         if (ModelBase::fromHttpContent(multipart->getContent(namePrefix), target))
         {
             m_variantValue = target;
@@ -123,7 +123,7 @@ bool Post_event_request::fromMultiPart(std::shared_ptr<MultipartFormData> multip
         }
     }
     {
-        std::vector<std::shared_ptr<Event>> target;
+        std::vector<std::shared_ptr<CaptureEvent>> target;
         if (ModelBase::fromHttpContent(multipart->getContent(namePrefix), target))
         {
             m_variantValue = target;
@@ -135,12 +135,12 @@ bool Post_event_request::fromMultiPart(std::shared_ptr<MultipartFormData> multip
 
 template bool Post_event_request::fromJson<CaptureBatch>(const web::json::value& json);
 template bool Post_event_request::fromMultiPart<CaptureBatch>(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix);
-template bool Post_event_request::fromJson<Event>(const web::json::value& json);
-template bool Post_event_request::fromMultiPart<Event>(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix);
+template bool Post_event_request::fromJson<CaptureEvent>(const web::json::value& json);
+template bool Post_event_request::fromMultiPart<CaptureEvent>(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix);
 template bool Post_event_request::fromJson<InsightsBody>(const web::json::value& json);
 template bool Post_event_request::fromMultiPart<InsightsBody>(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix);
-template bool Post_event_request::fromJson<std::vector<std::shared_ptr<Event>>>(const web::json::value& json);
-template bool Post_event_request::fromMultiPart<std::vector<std::shared_ptr<Event>>>(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix);
+template bool Post_event_request::fromJson<std::vector<std::shared_ptr<CaptureEvent>>>(const web::json::value& json);
+template bool Post_event_request::fromMultiPart<std::vector<std::shared_ptr<CaptureEvent>>>(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix);
 
 }
 }

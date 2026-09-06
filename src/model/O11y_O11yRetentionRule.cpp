@@ -19,7 +19,7 @@ namespace model {
 O11y_O11yRetentionRule::O11y_O11yRetentionRule()
 {
     m_ConditionsIsSet = false;
-    m_TtlDays = 0;
+    m_TtlDays = 0L;
     m_TtlDaysIsSet = false;
 }
 
@@ -68,7 +68,7 @@ bool O11y_O11yRetentionRule::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("ttlDays")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTtlDays;
+            int64_t refVal_setTtlDays;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTtlDays);
             setTtlDays(refVal_setTtlDays);
             
@@ -111,7 +111,7 @@ bool O11y_O11yRetentionRule::fromMultiPart(std::shared_ptr<MultipartFormData> mu
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("ttlDays"))))
     {
-        int32_t refVal_setTtlDays;
+        int64_t refVal_setTtlDays;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ttlDays"))), refVal_setTtlDays );
         setTtlDays(refVal_setTtlDays);
     }
@@ -140,13 +140,13 @@ void O11y_O11yRetentionRule::unsetConditions()
 {
     m_ConditionsIsSet = false;
 }
-int32_t O11y_O11yRetentionRule::getTtlDays() const
+int64_t O11y_O11yRetentionRule::getTtlDays() const
 {
     return m_TtlDays;
 }
 
 
-void O11y_O11yRetentionRule::setTtlDays(int32_t value)
+void O11y_O11yRetentionRule::setTtlDays(int64_t value)
 {
     m_TtlDays = value;
     m_TtlDaysIsSet = true;

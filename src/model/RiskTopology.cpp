@@ -20,15 +20,15 @@ RiskTopology::RiskTopology()
 {
     m_Blend = 0.0;
     m_BlendIsSet = false;
-    m_Depth = 0;
+    m_Depth = 0L;
     m_DepthIsSet = false;
     m_Family = utility::conversions::to_string_t("");
     m_FamilyIsSet = false;
     m_Review = 0.0;
     m_ReviewIsSet = false;
-    m_Trees = 0;
+    m_Trees = 0L;
     m_TreesIsSet = false;
-    m_Window = 0;
+    m_Window = 0L;
     m_WindowIsSet = false;
 }
 
@@ -97,7 +97,7 @@ bool RiskTopology::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("depth")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDepth;
+            int64_t refVal_setDepth;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDepth);
             setDepth(refVal_setDepth);
             
@@ -130,7 +130,7 @@ bool RiskTopology::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("trees")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTrees;
+            int64_t refVal_setTrees;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTrees);
             setTrees(refVal_setTrees);
             
@@ -141,7 +141,7 @@ bool RiskTopology::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("window")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setWindow;
+            int64_t refVal_setWindow;
             ok &= ModelBase::fromJson(fieldValue, refVal_setWindow);
             setWindow(refVal_setWindow);
             
@@ -200,7 +200,7 @@ bool RiskTopology::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("depth"))))
     {
-        int32_t refVal_setDepth;
+        int64_t refVal_setDepth;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("depth"))), refVal_setDepth );
         setDepth(refVal_setDepth);
     }
@@ -218,13 +218,13 @@ bool RiskTopology::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("trees"))))
     {
-        int32_t refVal_setTrees;
+        int64_t refVal_setTrees;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("trees"))), refVal_setTrees );
         setTrees(refVal_setTrees);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("window"))))
     {
-        int32_t refVal_setWindow;
+        int64_t refVal_setWindow;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("window"))), refVal_setWindow );
         setWindow(refVal_setWindow);
     }
@@ -253,13 +253,13 @@ void RiskTopology::unsetBlend()
 {
     m_BlendIsSet = false;
 }
-int32_t RiskTopology::getDepth() const
+int64_t RiskTopology::getDepth() const
 {
     return m_Depth;
 }
 
 
-void RiskTopology::setDepth(int32_t value)
+void RiskTopology::setDepth(int64_t value)
 {
     m_Depth = value;
     m_DepthIsSet = true;
@@ -316,13 +316,13 @@ void RiskTopology::unsetReview()
 {
     m_ReviewIsSet = false;
 }
-int32_t RiskTopology::getTrees() const
+int64_t RiskTopology::getTrees() const
 {
     return m_Trees;
 }
 
 
-void RiskTopology::setTrees(int32_t value)
+void RiskTopology::setTrees(int64_t value)
 {
     m_Trees = value;
     m_TreesIsSet = true;
@@ -337,13 +337,13 @@ void RiskTopology::unsetTrees()
 {
     m_TreesIsSet = false;
 }
-int32_t RiskTopology::getWindow() const
+int64_t RiskTopology::getWindow() const
 {
     return m_Window;
 }
 
 
-void RiskTopology::setWindow(int32_t value)
+void RiskTopology::setWindow(int64_t value)
 {
     m_Window = value;
     m_WindowIsSet = true;

@@ -18,13 +18,13 @@ namespace model {
 
 O11y_usageBucket::O11y_usageBucket()
 {
-    m_Calls = 0;
+    m_Calls = 0L;
     m_CallsIsSet = false;
-    m_CostCents = 0;
+    m_CostCents = 0L;
     m_CostCentsIsSet = false;
     m_t = utility::conversions::to_string_t("");
     m_tIsSet = false;
-    m_Tokens = 0;
+    m_Tokens = 0L;
     m_TokensIsSet = false;
 }
 
@@ -72,7 +72,7 @@ bool O11y_usageBucket::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("calls")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCalls;
+            int64_t refVal_setCalls;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCalls);
             setCalls(refVal_setCalls);
             
@@ -83,7 +83,7 @@ bool O11y_usageBucket::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("costCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCostCents;
+            int64_t refVal_setCostCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCostCents);
             setCostCents(refVal_setCostCents);
             
@@ -105,7 +105,7 @@ bool O11y_usageBucket::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTokens;
+            int64_t refVal_setTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTokens);
             setTokens(refVal_setTokens);
             
@@ -150,13 +150,13 @@ bool O11y_usageBucket::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("calls"))))
     {
-        int32_t refVal_setCalls;
+        int64_t refVal_setCalls;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("calls"))), refVal_setCalls );
         setCalls(refVal_setCalls);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))))
     {
-        int32_t refVal_setCostCents;
+        int64_t refVal_setCostCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))), refVal_setCostCents );
         setCostCents(refVal_setCostCents);
     }
@@ -168,7 +168,7 @@ bool O11y_usageBucket::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tokens"))))
     {
-        int32_t refVal_setTokens;
+        int64_t refVal_setTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("tokens"))), refVal_setTokens );
         setTokens(refVal_setTokens);
     }
@@ -176,13 +176,13 @@ bool O11y_usageBucket::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
 }
 
 
-int32_t O11y_usageBucket::getCalls() const
+int64_t O11y_usageBucket::getCalls() const
 {
     return m_Calls;
 }
 
 
-void O11y_usageBucket::setCalls(int32_t value)
+void O11y_usageBucket::setCalls(int64_t value)
 {
     m_Calls = value;
     m_CallsIsSet = true;
@@ -197,13 +197,13 @@ void O11y_usageBucket::unsetCalls()
 {
     m_CallsIsSet = false;
 }
-int32_t O11y_usageBucket::getCostCents() const
+int64_t O11y_usageBucket::getCostCents() const
 {
     return m_CostCents;
 }
 
 
-void O11y_usageBucket::setCostCents(int32_t value)
+void O11y_usageBucket::setCostCents(int64_t value)
 {
     m_CostCents = value;
     m_CostCentsIsSet = true;
@@ -239,13 +239,13 @@ void O11y_usageBucket::unsett()
 {
     m_tIsSet = false;
 }
-int32_t O11y_usageBucket::getTokens() const
+int64_t O11y_usageBucket::getTokens() const
 {
     return m_Tokens;
 }
 
 
-void O11y_usageBucket::setTokens(int32_t value)
+void O11y_usageBucket::setTokens(int64_t value)
 {
     m_Tokens = value;
     m_TokensIsSet = true;

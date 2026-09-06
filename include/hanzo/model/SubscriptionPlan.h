@@ -72,10 +72,10 @@ public:
     void unsetName();
     void setName(const utility::string_t& value);
 
-    int32_t getPrice() const;
+    int64_t getPrice() const;
     bool priceIsSet() const;
     void unsetPrice();
-    void setPrice(int32_t value);
+    void setPrice(int64_t value);
 
 
 protected:
@@ -91,7 +91,7 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_Price;
+    int64_t m_Price;
     bool m_PriceIsSet;
 
 };

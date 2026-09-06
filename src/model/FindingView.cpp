@@ -18,13 +18,13 @@ namespace model {
 
 FindingView::FindingView()
 {
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_Fingerprint = utility::conversions::to_string_t("");
     m_FingerprintIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
-    m_Line = 0;
+    m_Line = 0L;
     m_LineIsSet = false;
     m_Path = utility::conversions::to_string_t("");
     m_PathIsSet = false;
@@ -114,7 +114,7 @@ bool FindingView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -147,7 +147,7 @@ bool FindingView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("line")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLine;
+            int64_t refVal_setLine;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLine);
             setLine(refVal_setLine);
             
@@ -282,7 +282,7 @@ bool FindingView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -300,7 +300,7 @@ bool FindingView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("line"))))
     {
-        int32_t refVal_setLine;
+        int64_t refVal_setLine;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("line"))), refVal_setLine );
         setLine(refVal_setLine);
     }
@@ -344,13 +344,13 @@ bool FindingView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 }
 
 
-int32_t FindingView::getCreatedAt() const
+int64_t FindingView::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void FindingView::setCreatedAt(int32_t value)
+void FindingView::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -407,13 +407,13 @@ void FindingView::unsetId()
 {
     m_IdIsSet = false;
 }
-int32_t FindingView::getLine() const
+int64_t FindingView::getLine() const
 {
     return m_Line;
 }
 
 
-void FindingView::setLine(int32_t value)
+void FindingView::setLine(int64_t value)
 {
     m_Line = value;
     m_LineIsSet = true;

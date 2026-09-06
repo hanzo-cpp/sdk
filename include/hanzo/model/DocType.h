@@ -62,10 +62,10 @@ public:
     void unsetAutoname();
     void setAutoname(const utility::string_t& value);
 
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     std::vector<std::shared_ptr<DocField>> getFields() const;
     bool fieldsIsSet() const;
@@ -102,17 +102,17 @@ public:
     void unsetTitleField();
     void setTitleField(const utility::string_t& value);
 
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
 
 protected:
     utility::string_t m_Autoname;
     bool m_AutonameIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     std::vector<std::shared_ptr<DocField>> m_Fields;
@@ -136,7 +136,7 @@ protected:
     utility::string_t m_TitleField;
     bool m_TitleFieldIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
 };

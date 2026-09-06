@@ -18,13 +18,13 @@ namespace model {
 
 RiskAggregates::RiskAggregates()
 {
-    m_Bound = 0;
+    m_Bound = 0L;
     m_BoundIsSet = false;
-    m_Forgotten = 0;
+    m_Forgotten = 0L;
     m_ForgottenIsSet = false;
     m_Saturated = false;
     m_SaturatedIsSet = false;
-    m_Subjects = 0;
+    m_Subjects = 0L;
     m_SubjectsIsSet = false;
 }
 
@@ -72,7 +72,7 @@ bool RiskAggregates::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("bound")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBound;
+            int64_t refVal_setBound;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBound);
             setBound(refVal_setBound);
             
@@ -83,7 +83,7 @@ bool RiskAggregates::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("forgotten")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setForgotten;
+            int64_t refVal_setForgotten;
             ok &= ModelBase::fromJson(fieldValue, refVal_setForgotten);
             setForgotten(refVal_setForgotten);
             
@@ -105,7 +105,7 @@ bool RiskAggregates::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("subjects")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSubjects;
+            int64_t refVal_setSubjects;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSubjects);
             setSubjects(refVal_setSubjects);
             
@@ -150,13 +150,13 @@ bool RiskAggregates::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("bound"))))
     {
-        int32_t refVal_setBound;
+        int64_t refVal_setBound;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("bound"))), refVal_setBound );
         setBound(refVal_setBound);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("forgotten"))))
     {
-        int32_t refVal_setForgotten;
+        int64_t refVal_setForgotten;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("forgotten"))), refVal_setForgotten );
         setForgotten(refVal_setForgotten);
     }
@@ -168,7 +168,7 @@ bool RiskAggregates::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("subjects"))))
     {
-        int32_t refVal_setSubjects;
+        int64_t refVal_setSubjects;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("subjects"))), refVal_setSubjects );
         setSubjects(refVal_setSubjects);
     }
@@ -176,13 +176,13 @@ bool RiskAggregates::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 }
 
 
-int32_t RiskAggregates::getBound() const
+int64_t RiskAggregates::getBound() const
 {
     return m_Bound;
 }
 
 
-void RiskAggregates::setBound(int32_t value)
+void RiskAggregates::setBound(int64_t value)
 {
     m_Bound = value;
     m_BoundIsSet = true;
@@ -197,13 +197,13 @@ void RiskAggregates::unsetBound()
 {
     m_BoundIsSet = false;
 }
-int32_t RiskAggregates::getForgotten() const
+int64_t RiskAggregates::getForgotten() const
 {
     return m_Forgotten;
 }
 
 
-void RiskAggregates::setForgotten(int32_t value)
+void RiskAggregates::setForgotten(int64_t value)
 {
     m_Forgotten = value;
     m_ForgottenIsSet = true;
@@ -239,13 +239,13 @@ void RiskAggregates::unsetSaturated()
 {
     m_SaturatedIsSet = false;
 }
-int32_t RiskAggregates::getSubjects() const
+int64_t RiskAggregates::getSubjects() const
 {
     return m_Subjects;
 }
 
 
-void RiskAggregates::setSubjects(int32_t value)
+void RiskAggregates::setSubjects(int64_t value)
 {
     m_Subjects = value;
     m_SubjectsIsSet = true;

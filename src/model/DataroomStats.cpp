@@ -21,9 +21,9 @@ DataroomStats::DataroomStats()
     m_DataroomId = utility::conversions::to_string_t("");
     m_DataroomIdIsSet = false;
     m_LinksIsSet = false;
-    m_TotalPageViews = 0;
+    m_TotalPageViews = 0L;
     m_TotalPageViewsIsSet = false;
-    m_TotalViews = 0;
+    m_TotalViews = 0L;
     m_TotalViewsIsSet = false;
 }
 
@@ -93,7 +93,7 @@ bool DataroomStats::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("totalPageViews")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotalPageViews;
+            int64_t refVal_setTotalPageViews;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalPageViews);
             setTotalPageViews(refVal_setTotalPageViews);
             
@@ -104,7 +104,7 @@ bool DataroomStats::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("totalViews")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotalViews;
+            int64_t refVal_setTotalViews;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalViews);
             setTotalViews(refVal_setTotalViews);
             
@@ -161,13 +161,13 @@ bool DataroomStats::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("totalPageViews"))))
     {
-        int32_t refVal_setTotalPageViews;
+        int64_t refVal_setTotalPageViews;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("totalPageViews"))), refVal_setTotalPageViews );
         setTotalPageViews(refVal_setTotalPageViews);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("totalViews"))))
     {
-        int32_t refVal_setTotalViews;
+        int64_t refVal_setTotalViews;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("totalViews"))), refVal_setTotalViews );
         setTotalViews(refVal_setTotalViews);
     }
@@ -217,13 +217,13 @@ void DataroomStats::unsetLinks()
 {
     m_LinksIsSet = false;
 }
-int32_t DataroomStats::getTotalPageViews() const
+int64_t DataroomStats::getTotalPageViews() const
 {
     return m_TotalPageViews;
 }
 
 
-void DataroomStats::setTotalPageViews(int32_t value)
+void DataroomStats::setTotalPageViews(int64_t value)
 {
     m_TotalPageViews = value;
     m_TotalPageViewsIsSet = true;
@@ -238,13 +238,13 @@ void DataroomStats::unsetTotalPageViews()
 {
     m_TotalPageViewsIsSet = false;
 }
-int32_t DataroomStats::getTotalViews() const
+int64_t DataroomStats::getTotalViews() const
 {
     return m_TotalViews;
 }
 
 
-void DataroomStats::setTotalViews(int32_t value)
+void DataroomStats::setTotalViews(int64_t value)
 {
     m_TotalViews = value;
     m_TotalViewsIsSet = true;

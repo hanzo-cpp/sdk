@@ -18,12 +18,12 @@ namespace model {
 
 RegisterPage::RegisterPage()
 {
-    m_Count = 0;
+    m_Count = 0L;
     m_CountIsSet = false;
     m_FormationsIsSet = false;
-    m_Limit = 0;
+    m_Limit = 0L;
     m_LimitIsSet = false;
-    m_Offset = 0;
+    m_Offset = 0L;
     m_OffsetIsSet = false;
 }
 
@@ -71,7 +71,7 @@ bool RegisterPage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("count")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCount;
+            int64_t refVal_setCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCount);
             setCount(refVal_setCount);
             
@@ -93,7 +93,7 @@ bool RegisterPage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("limit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLimit;
+            int64_t refVal_setLimit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLimit);
             setLimit(refVal_setLimit);
             
@@ -104,7 +104,7 @@ bool RegisterPage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("offset")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOffset;
+            int64_t refVal_setOffset;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOffset);
             setOffset(refVal_setOffset);
             
@@ -149,7 +149,7 @@ bool RegisterPage::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("count"))))
     {
-        int32_t refVal_setCount;
+        int64_t refVal_setCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("count"))), refVal_setCount );
         setCount(refVal_setCount);
     }
@@ -161,13 +161,13 @@ bool RegisterPage::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("limit"))))
     {
-        int32_t refVal_setLimit;
+        int64_t refVal_setLimit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("limit"))), refVal_setLimit );
         setLimit(refVal_setLimit);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("offset"))))
     {
-        int32_t refVal_setOffset;
+        int64_t refVal_setOffset;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("offset"))), refVal_setOffset );
         setOffset(refVal_setOffset);
     }
@@ -175,13 +175,13 @@ bool RegisterPage::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
 }
 
 
-int32_t RegisterPage::getCount() const
+int64_t RegisterPage::getCount() const
 {
     return m_Count;
 }
 
 
-void RegisterPage::setCount(int32_t value)
+void RegisterPage::setCount(int64_t value)
 {
     m_Count = value;
     m_CountIsSet = true;
@@ -217,13 +217,13 @@ void RegisterPage::unsetFormations()
 {
     m_FormationsIsSet = false;
 }
-int32_t RegisterPage::getLimit() const
+int64_t RegisterPage::getLimit() const
 {
     return m_Limit;
 }
 
 
-void RegisterPage::setLimit(int32_t value)
+void RegisterPage::setLimit(int64_t value)
 {
     m_Limit = value;
     m_LimitIsSet = true;
@@ -238,13 +238,13 @@ void RegisterPage::unsetLimit()
 {
     m_LimitIsSet = false;
 }
-int32_t RegisterPage::getOffset() const
+int64_t RegisterPage::getOffset() const
 {
     return m_Offset;
 }
 
 
-void RegisterPage::setOffset(int32_t value)
+void RegisterPage::setOffset(int64_t value)
 {
     m_Offset = value;
     m_OffsetIsSet = true;

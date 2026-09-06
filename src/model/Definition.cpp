@@ -37,7 +37,7 @@ Definition::Definition()
     m_RuntimeIsSet = false;
     m_Target = utility::conversions::to_string_t("");
     m_TargetIsSet = false;
-    m_TimeoutSec = 0;
+    m_TimeoutSec = 0L;
     m_TimeoutSecIsSet = false;
 }
 
@@ -230,7 +230,7 @@ bool Definition::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("timeoutSec")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTimeoutSec;
+            int64_t refVal_setTimeoutSec;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTimeoutSec);
             setTimeoutSec(refVal_setTimeoutSec);
             
@@ -363,7 +363,7 @@ bool Definition::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("timeoutSec"))))
     {
-        int32_t refVal_setTimeoutSec;
+        int64_t refVal_setTimeoutSec;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("timeoutSec"))), refVal_setTimeoutSec );
         setTimeoutSec(refVal_setTimeoutSec);
     }
@@ -581,13 +581,13 @@ void Definition::unsetTarget()
 {
     m_TargetIsSet = false;
 }
-int32_t Definition::getTimeoutSec() const
+int64_t Definition::getTimeoutSec() const
 {
     return m_TimeoutSec;
 }
 
 
-void Definition::setTimeoutSec(int32_t value)
+void Definition::setTimeoutSec(int64_t value)
 {
     m_TimeoutSec = value;
     m_TimeoutSecIsSet = true;

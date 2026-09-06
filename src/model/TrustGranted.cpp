@@ -20,7 +20,7 @@ TrustGranted::TrustGranted()
 {
     m_Delivery = utility::conversions::to_string_t("");
     m_DeliveryIsSet = false;
-    m_ExpiresAt = 0;
+    m_ExpiresAt = 0L;
     m_ExpiresAtIsSet = false;
     m_Link = utility::conversions::to_string_t("");
     m_LinkIsSet = false;
@@ -83,7 +83,7 @@ bool TrustGranted::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("expiresAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExpiresAt;
+            int64_t refVal_setExpiresAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExpiresAt);
             setExpiresAt(refVal_setExpiresAt);
             
@@ -156,7 +156,7 @@ bool TrustGranted::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("expiresAt"))))
     {
-        int32_t refVal_setExpiresAt;
+        int64_t refVal_setExpiresAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("expiresAt"))), refVal_setExpiresAt );
         setExpiresAt(refVal_setExpiresAt);
     }
@@ -197,13 +197,13 @@ void TrustGranted::unsetDelivery()
 {
     m_DeliveryIsSet = false;
 }
-int32_t TrustGranted::getExpiresAt() const
+int64_t TrustGranted::getExpiresAt() const
 {
     return m_ExpiresAt;
 }
 
 
-void TrustGranted::setExpiresAt(int32_t value)
+void TrustGranted::setExpiresAt(int64_t value)
 {
     m_ExpiresAt = value;
     m_ExpiresAtIsSet = true;

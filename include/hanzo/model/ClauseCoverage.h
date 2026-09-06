@@ -58,10 +58,10 @@ public:
     /// <summary>
     /// Automated is how many clauses have an automated control behind them that something can fail on behalf of.
     /// </summary>
-    int32_t getAutomated() const;
+    int64_t getAutomated() const;
     bool automatedIsSet() const;
     void unsetAutomated();
-    void setAutomated(int32_t value);
+    void setAutomated(int64_t value);
 
     /// <summary>
     /// Clauses is every clause the standard publishes, with what stands behind it.
@@ -90,10 +90,10 @@ public:
     /// <summary>
     /// Generated is when this was computed, unix milliseconds.
     /// </summary>
-    int32_t getGenerated() const;
+    int64_t getGenerated() const;
     bool generatedIsSet() const;
     void unsetGenerated();
-    void setGenerated(int32_t value);
+    void setGenerated(int64_t value);
 
     /// <summary>
     /// Name is the published standard&#39;s name.
@@ -106,10 +106,10 @@ public:
     /// <summary>
     /// None is how many have nothing behind them.
     /// </summary>
-    int32_t getNone() const;
+    int64_t getNone() const;
     bool noneIsSet() const;
     void unsetNone();
-    void setNone(int32_t value);
+    void setNone(int64_t value);
 
     /// <summary>
     /// Note is what this clause list is scoped to, when a count alone would misrepresent it.
@@ -122,10 +122,10 @@ public:
     /// <summary>
     /// Partial is how many are answered in part.
     /// </summary>
-    int32_t getPartial() const;
+    int64_t getPartial() const;
     bool partialIsSet() const;
     void unsetPartial();
-    void setPartial(int32_t value);
+    void setPartial(int64_t value);
 
     /// <summary>
     /// Publisher is who publishes it — AICPA, ISO/IEC, NIST.
@@ -146,10 +146,10 @@ public:
     /// <summary>
     /// Total is the framework&#39;s WHOLE published clause list — the denominator.
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
     /// <summary>
     /// Unit is what ONE clause is — \&quot;criterion\&quot;, \&quot;control\&quot;, \&quot;family\&quot;.
@@ -177,7 +177,7 @@ public:
 
 
 protected:
-    int32_t m_Automated;
+    int64_t m_Automated;
     bool m_AutomatedIsSet;
 
     std::vector<std::shared_ptr<ClauseRow>> m_Clauses;
@@ -189,19 +189,19 @@ protected:
     utility::string_t m_Framework;
     bool m_FrameworkIsSet;
 
-    int32_t m_Generated;
+    int64_t m_Generated;
     bool m_GeneratedIsSet;
 
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_None;
+    int64_t m_None;
     bool m_NoneIsSet;
 
     utility::string_t m_Note;
     bool m_NoteIsSet;
 
-    int32_t m_Partial;
+    int64_t m_Partial;
     bool m_PartialIsSet;
 
     utility::string_t m_Publisher;
@@ -210,7 +210,7 @@ protected:
     utility::string_t m_Statement;
     bool m_StatementIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
     utility::string_t m_Unit;

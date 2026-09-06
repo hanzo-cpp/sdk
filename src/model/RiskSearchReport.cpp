@@ -22,7 +22,7 @@ RiskSearchReport::RiskSearchReport()
     m_DoneIsSet = false;
     m_Ended = utility::conversions::to_string_t("");
     m_EndedIsSet = false;
-    m_Events = 0;
+    m_Events = 0L;
     m_EventsIsSet = false;
     m_FittedIsSet = false;
     m_Gap = utility::conversions::to_string_t("");
@@ -133,7 +133,7 @@ bool RiskSearchReport::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("events")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setEvents;
+            int64_t refVal_setEvents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setEvents);
             setEvents(refVal_setEvents);
             
@@ -291,7 +291,7 @@ bool RiskSearchReport::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("events"))))
     {
-        int32_t refVal_setEvents;
+        int64_t refVal_setEvents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("events"))), refVal_setEvents );
         setEvents(refVal_setEvents);
     }
@@ -383,13 +383,13 @@ void RiskSearchReport::unsetEnded()
 {
     m_EndedIsSet = false;
 }
-int32_t RiskSearchReport::getEvents() const
+int64_t RiskSearchReport::getEvents() const
 {
     return m_Events;
 }
 
 
-void RiskSearchReport::setEvents(int32_t value)
+void RiskSearchReport::setEvents(int64_t value)
 {
     m_Events = value;
     m_EventsIsSet = true;

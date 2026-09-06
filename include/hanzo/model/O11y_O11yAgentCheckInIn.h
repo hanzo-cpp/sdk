@@ -60,15 +60,15 @@ public:
     void unsetAccount_id();
     void setAccountId(const utility::string_t& value);
 
-    utility::string_t getCloudAccountId() const;
-    bool cloudAccountIdIsSet() const;
-    void unsetCloud_account_id();
-    void setCloudAccountId(const utility::string_t& value);
-
     std::shared_ptr<AnyType> getCloudIntegrationId() const;
     bool cloudIntegrationIdIsSet() const;
     void unsetCloudIntegrationId();
     void setCloudIntegrationId(const std::shared_ptr<AnyType>& value);
+
+    utility::string_t getCloudAccountId() const;
+    bool cloudAccountIdIsSet() const;
+    void unsetCloud_account_id();
+    void setCloudAccountId(const utility::string_t& value);
 
     std::map<utility::string_t, std::shared_ptr<Object>> getData() const;
     bool dataIsSet() const;
@@ -85,10 +85,10 @@ protected:
     utility::string_t m_Account_id;
     bool m_Account_idIsSet;
 
+    boost::optional<std::shared_ptr<AnyType>> m_CloudIntegrationId;
+
     utility::string_t m_Cloud_account_id;
     bool m_Cloud_account_idIsSet;
-
-    boost::optional<std::shared_ptr<AnyType>> m_CloudIntegrationId;
 
     std::map<utility::string_t, std::shared_ptr<Object>> m_Data;
     bool m_DataIsSet;

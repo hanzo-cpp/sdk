@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// At is the unix second the genesis root was computed.
     /// </summary>
-    int32_t getAt() const;
+    int64_t getAt() const;
     bool atIsSet() const;
     void unsetAt();
-    void setAt(int32_t value);
+    void setAt(int64_t value);
 
     /// <summary>
     /// Block is the L1 block the anchoring transaction landed in. Set only once the receipt has been read; absent otherwise.
@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// ChainID is the EVM chain the root is committed to — the Hanzo L1 by default.
     /// </summary>
-    int32_t getChainId() const;
+    int64_t getChainId() const;
     bool chainIdIsSet() const;
     void unsetChainId();
-    void setChainId(int32_t value);
+    void setChainId(int64_t value);
 
     /// <summary>
     /// Note explains an unanchored genesis honestly — anchor wiring absent, or the submit error — rather than reporting a commit that did not happen.
@@ -110,13 +110,13 @@ public:
 
 
 protected:
-    int32_t m_At;
+    int64_t m_At;
     bool m_AtIsSet;
 
     int32_t m_Block;
     bool m_BlockIsSet;
 
-    int32_t m_ChainId;
+    int64_t m_ChainId;
     bool m_ChainIdIsSet;
 
     utility::string_t m_Note;

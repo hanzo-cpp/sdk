@@ -95,10 +95,10 @@ public:
     /// <summary>
     /// Unlocks is how many downstream steps completing this one immediately makes available (its leverage) — the primary ranking key.
     /// </summary>
-    int32_t getUnlocks() const;
+    int64_t getUnlocks() const;
     bool unlocksIsSet() const;
     void unsetUnlocks();
-    void setUnlocks(int32_t value);
+    void setUnlocks(int64_t value);
 
 
 protected:
@@ -117,7 +117,7 @@ protected:
     utility::string_t m_Title;
     bool m_TitleIsSet;
 
-    int32_t m_Unlocks;
+    int64_t m_Unlocks;
     bool m_UnlocksIsSet;
 
 };

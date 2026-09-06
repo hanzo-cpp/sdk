@@ -20,7 +20,7 @@ O11y_O11yLogPromoteIndex::O11y_O11yLogPromoteIndex()
 {
     m_FieldDataType = utility::conversions::to_string_t("");
     m_FieldDataTypeIsSet = false;
-    m_Granularity = 0;
+    m_Granularity = 0L;
     m_GranularityIsSet = false;
     m_Type = utility::conversions::to_string_t("");
     m_TypeIsSet = false;
@@ -76,7 +76,7 @@ bool O11y_O11yLogPromoteIndex::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("granularity")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setGranularity;
+            int64_t refVal_setGranularity;
             ok &= ModelBase::fromJson(fieldValue, refVal_setGranularity);
             setGranularity(refVal_setGranularity);
             
@@ -134,7 +134,7 @@ bool O11y_O11yLogPromoteIndex::fromMultiPart(std::shared_ptr<MultipartFormData> 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("granularity"))))
     {
-        int32_t refVal_setGranularity;
+        int64_t refVal_setGranularity;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("granularity"))), refVal_setGranularity );
         setGranularity(refVal_setGranularity);
     }
@@ -169,13 +169,13 @@ void O11y_O11yLogPromoteIndex::unsetFieldDataType()
 {
     m_FieldDataTypeIsSet = false;
 }
-int32_t O11y_O11yLogPromoteIndex::getGranularity() const
+int64_t O11y_O11yLogPromoteIndex::getGranularity() const
 {
     return m_Granularity;
 }
 
 
-void O11y_O11yLogPromoteIndex::setGranularity(int32_t value)
+void O11y_O11yLogPromoteIndex::setGranularity(int64_t value)
 {
     m_Granularity = value;
     m_GranularityIsSet = true;

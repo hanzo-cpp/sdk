@@ -24,7 +24,7 @@ Section::Section()
     m_EnabledIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
-    m_Order = 0;
+    m_Order = 0L;
     m_OrderIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
@@ -112,7 +112,7 @@ bool Section::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("order")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOrder;
+            int64_t refVal_setOrder;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOrder);
             setOrder(refVal_setOrder);
             
@@ -190,7 +190,7 @@ bool Section::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("order"))))
     {
-        int32_t refVal_setOrder;
+        int64_t refVal_setOrder;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("order"))), refVal_setOrder );
         setOrder(refVal_setOrder);
     }
@@ -267,13 +267,13 @@ void Section::unsetId()
 {
     m_IdIsSet = false;
 }
-int32_t Section::getOrder() const
+int64_t Section::getOrder() const
 {
     return m_Order;
 }
 
 
-void Section::setOrder(int32_t value)
+void Section::setOrder(int64_t value)
 {
     m_Order = value;
     m_OrderIsSet = true;

@@ -57,26 +57,26 @@ public:
     /// <summary>
     /// BalanceUsedCents is how much was covered by prepaid balance.
     /// </summary>
-    int32_t getBalanceUsedCents() const;
+    int64_t getBalanceUsedCents() const;
     bool balanceUsedCentsIsSet() const;
     void unsetBalanceUsedCents();
-    void setBalanceUsedCents(int32_t value);
+    void setBalanceUsedCents(int64_t value);
 
     /// <summary>
     /// CardChargedCents is how much was charged to the card on file.
     /// </summary>
-    int32_t getCardChargedCents() const;
+    int64_t getCardChargedCents() const;
     bool cardChargedCentsIsSet() const;
     void unsetCardChargedCents();
-    void setCardChargedCents(int32_t value);
+    void setCardChargedCents(int64_t value);
 
     /// <summary>
     /// CreditUsedCents is how much was covered by credit grants.
     /// </summary>
-    int32_t getCreditUsedCents() const;
+    int64_t getCreditUsedCents() const;
     bool creditUsedCentsIsSet() const;
     void unsetCreditUsedCents();
-    void setCreditUsedCents(int32_t value);
+    void setCreditUsedCents(int64_t value);
 
     /// <summary>
     /// Invoice is the invoice AFTER the attempt — its status is the authority on what happened, not this struct&#39;s other fields.
@@ -112,13 +112,13 @@ public:
 
 
 protected:
-    int32_t m_BalanceUsedCents;
+    int64_t m_BalanceUsedCents;
     bool m_BalanceUsedCentsIsSet;
 
-    int32_t m_CardChargedCents;
+    int64_t m_CardChargedCents;
     bool m_CardChargedCentsIsSet;
 
-    int32_t m_CreditUsedCents;
+    int64_t m_CreditUsedCents;
     bool m_CreditUsedCentsIsSet;
 
     std::shared_ptr<Invoice> m_Invoice;

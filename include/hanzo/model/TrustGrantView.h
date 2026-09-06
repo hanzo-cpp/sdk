@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// ExpiresAt is when the grant closes, in unix milliseconds.
     /// </summary>
-    int32_t getExpiresAt() const;
+    int64_t getExpiresAt() const;
     bool expiresAtIsSet() const;
     void unsetExpiresAt();
-    void setExpiresAt(int32_t value);
+    void setExpiresAt(int64_t value);
 
     /// <summary>
     /// Item is the item granted, empty when the whole released tier was granted.
@@ -97,7 +97,7 @@ protected:
     utility::string_t m_Email;
     bool m_EmailIsSet;
 
-    int32_t m_ExpiresAt;
+    int64_t m_ExpiresAt;
     bool m_ExpiresAtIsSet;
 
     utility::string_t m_Item;

@@ -27,7 +27,7 @@ Licensing_IssueRequest::Licensing_IssueRequest()
     m_Release = utility::conversions::to_string_t("");
     m_ReleaseIsSet = false;
     m_SignalsIsSet = false;
-    m_Ttl_seconds = 0;
+    m_Ttl_seconds = 0L;
     m_Ttl_secondsIsSet = false;
 }
 
@@ -140,7 +140,7 @@ bool Licensing_IssueRequest::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("ttl_seconds")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTtlSeconds;
+            int64_t refVal_setTtlSeconds;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTtlSeconds);
             setTtlSeconds(refVal_setTtlSeconds);
             
@@ -223,7 +223,7 @@ bool Licensing_IssueRequest::fromMultiPart(std::shared_ptr<MultipartFormData> mu
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("ttl_seconds"))))
     {
-        int32_t refVal_setTtlSeconds;
+        int64_t refVal_setTtlSeconds;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ttl_seconds"))), refVal_setTtlSeconds );
         setTtlSeconds(refVal_setTtlSeconds);
     }
@@ -336,13 +336,13 @@ void Licensing_IssueRequest::unsetSignals()
 {
     m_SignalsIsSet = false;
 }
-int32_t Licensing_IssueRequest::getTtlSeconds() const
+int64_t Licensing_IssueRequest::getTtlSeconds() const
 {
     return m_Ttl_seconds;
 }
 
 
-void Licensing_IssueRequest::setTtlSeconds(int32_t value)
+void Licensing_IssueRequest::setTtlSeconds(int64_t value)
 {
     m_Ttl_seconds = value;
     m_Ttl_secondsIsSet = true;

@@ -20,7 +20,7 @@ Token::Token()
 {
     m_At = utility::conversions::to_string_t("");
     m_AtIsSet = false;
-    m_Decimals = 0;
+    m_Decimals = 0L;
     m_DecimalsIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
@@ -83,7 +83,7 @@ bool Token::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("decimals")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDecimals;
+            int64_t refVal_setDecimals;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDecimals);
             setDecimals(refVal_setDecimals);
             
@@ -156,7 +156,7 @@ bool Token::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("decimals"))))
     {
-        int32_t refVal_setDecimals;
+        int64_t refVal_setDecimals;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("decimals"))), refVal_setDecimals );
         setDecimals(refVal_setDecimals);
     }
@@ -197,13 +197,13 @@ void Token::unsetAt()
 {
     m_AtIsSet = false;
 }
-int32_t Token::getDecimals() const
+int64_t Token::getDecimals() const
 {
     return m_Decimals;
 }
 
 
-void Token::setDecimals(int32_t value)
+void Token::setDecimals(int64_t value)
 {
     m_Decimals = value;
     m_DecimalsIsSet = true;

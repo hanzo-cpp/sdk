@@ -20,19 +20,19 @@ LLM::LLM()
 {
     m_Available = false;
     m_AvailableIsSet = false;
-    m_CompletionTokens = 0;
+    m_CompletionTokens = 0L;
     m_CompletionTokensIsSet = false;
-    m_CostCents = 0;
+    m_CostCents = 0L;
     m_CostCentsIsSet = false;
-    m_Models = 0;
+    m_Models = 0L;
     m_ModelsIsSet = false;
-    m_PromptTokens = 0;
+    m_PromptTokens = 0L;
     m_PromptTokensIsSet = false;
-    m_Requests = 0;
+    m_Requests = 0L;
     m_RequestsIsSet = false;
     m_Source = utility::conversions::to_string_t("");
     m_SourceIsSet = false;
-    m_Tokens = 0;
+    m_Tokens = 0L;
     m_TokensIsSet = false;
 }
 
@@ -111,7 +111,7 @@ bool LLM::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("completionTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCompletionTokens;
+            int64_t refVal_setCompletionTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCompletionTokens);
             setCompletionTokens(refVal_setCompletionTokens);
             
@@ -122,7 +122,7 @@ bool LLM::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("costCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCostCents;
+            int64_t refVal_setCostCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCostCents);
             setCostCents(refVal_setCostCents);
             
@@ -133,7 +133,7 @@ bool LLM::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("models")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setModels;
+            int64_t refVal_setModels;
             ok &= ModelBase::fromJson(fieldValue, refVal_setModels);
             setModels(refVal_setModels);
             
@@ -144,7 +144,7 @@ bool LLM::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("promptTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPromptTokens;
+            int64_t refVal_setPromptTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPromptTokens);
             setPromptTokens(refVal_setPromptTokens);
             
@@ -155,7 +155,7 @@ bool LLM::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("requests")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRequests;
+            int64_t refVal_setRequests;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRequests);
             setRequests(refVal_setRequests);
             
@@ -177,7 +177,7 @@ bool LLM::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTokens;
+            int64_t refVal_setTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTokens);
             setTokens(refVal_setTokens);
             
@@ -244,31 +244,31 @@ bool LLM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const util
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("completionTokens"))))
     {
-        int32_t refVal_setCompletionTokens;
+        int64_t refVal_setCompletionTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("completionTokens"))), refVal_setCompletionTokens );
         setCompletionTokens(refVal_setCompletionTokens);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))))
     {
-        int32_t refVal_setCostCents;
+        int64_t refVal_setCostCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))), refVal_setCostCents );
         setCostCents(refVal_setCostCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("models"))))
     {
-        int32_t refVal_setModels;
+        int64_t refVal_setModels;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("models"))), refVal_setModels );
         setModels(refVal_setModels);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("promptTokens"))))
     {
-        int32_t refVal_setPromptTokens;
+        int64_t refVal_setPromptTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("promptTokens"))), refVal_setPromptTokens );
         setPromptTokens(refVal_setPromptTokens);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("requests"))))
     {
-        int32_t refVal_setRequests;
+        int64_t refVal_setRequests;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("requests"))), refVal_setRequests );
         setRequests(refVal_setRequests);
     }
@@ -280,7 +280,7 @@ bool LLM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const util
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tokens"))))
     {
-        int32_t refVal_setTokens;
+        int64_t refVal_setTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("tokens"))), refVal_setTokens );
         setTokens(refVal_setTokens);
     }
@@ -309,13 +309,13 @@ void LLM::unsetAvailable()
 {
     m_AvailableIsSet = false;
 }
-int32_t LLM::getCompletionTokens() const
+int64_t LLM::getCompletionTokens() const
 {
     return m_CompletionTokens;
 }
 
 
-void LLM::setCompletionTokens(int32_t value)
+void LLM::setCompletionTokens(int64_t value)
 {
     m_CompletionTokens = value;
     m_CompletionTokensIsSet = true;
@@ -330,13 +330,13 @@ void LLM::unsetCompletionTokens()
 {
     m_CompletionTokensIsSet = false;
 }
-int32_t LLM::getCostCents() const
+int64_t LLM::getCostCents() const
 {
     return m_CostCents;
 }
 
 
-void LLM::setCostCents(int32_t value)
+void LLM::setCostCents(int64_t value)
 {
     m_CostCents = value;
     m_CostCentsIsSet = true;
@@ -351,13 +351,13 @@ void LLM::unsetCostCents()
 {
     m_CostCentsIsSet = false;
 }
-int32_t LLM::getModels() const
+int64_t LLM::getModels() const
 {
     return m_Models;
 }
 
 
-void LLM::setModels(int32_t value)
+void LLM::setModels(int64_t value)
 {
     m_Models = value;
     m_ModelsIsSet = true;
@@ -372,13 +372,13 @@ void LLM::unsetModels()
 {
     m_ModelsIsSet = false;
 }
-int32_t LLM::getPromptTokens() const
+int64_t LLM::getPromptTokens() const
 {
     return m_PromptTokens;
 }
 
 
-void LLM::setPromptTokens(int32_t value)
+void LLM::setPromptTokens(int64_t value)
 {
     m_PromptTokens = value;
     m_PromptTokensIsSet = true;
@@ -393,13 +393,13 @@ void LLM::unsetPromptTokens()
 {
     m_PromptTokensIsSet = false;
 }
-int32_t LLM::getRequests() const
+int64_t LLM::getRequests() const
 {
     return m_Requests;
 }
 
 
-void LLM::setRequests(int32_t value)
+void LLM::setRequests(int64_t value)
 {
     m_Requests = value;
     m_RequestsIsSet = true;
@@ -435,13 +435,13 @@ void LLM::unsetSource()
 {
     m_SourceIsSet = false;
 }
-int32_t LLM::getTokens() const
+int64_t LLM::getTokens() const
 {
     return m_Tokens;
 }
 
 
-void LLM::setTokens(int32_t value)
+void LLM::setTokens(int64_t value)
 {
     m_Tokens = value;
     m_TokensIsSet = true;

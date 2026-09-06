@@ -61,20 +61,28 @@ public:
     void setRClass(const utility::string_t& value);
 
     /// <summary>
+    /// Cluster is the attached cluster this sandbox runs on — the fleet-local name the lease named — or empty for the home cluster. Immutable for the life of the lease, like the pod it locates: every later call into the sandbox reads it to reach the right apiserver.
+    /// </summary>
+    utility::string_t getCluster() const;
+    bool clusterIsSet() const;
+    void unsetCluster();
+    void setCluster(const utility::string_t& value);
+
+    /// <summary>
     /// ConnectedAt is when somebody was last known to have this sandbox&#39;s project OPEN, Unix seconds. It is a fact with an EXPIRY rather than a flag: a watcher restamps it every beat of its stream, and it goes stale on its own when the stream dies, so nothing has to be turned off by a process that may not be there any more. The reaper reads it to choose WHICH idle allowance applies — see lifecycle.go.  Zero means nobody has said so, which puts the sandbox on the short clock.
     /// </summary>
-    int32_t getConnectedAt() const;
+    int64_t getConnectedAt() const;
     bool connectedAtIsSet() const;
     void unsetConnectedAt();
-    void setConnectedAt(int32_t value);
+    void setConnectedAt(int64_t value);
 
     /// <summary>
     /// CreatedAt is when the lease was first taken, Unix seconds.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// Error is why the sandbox could not come up, in plain words. Present only with status \&quot;error\&quot;, and it is the field to read rather than inferring a cause from the absence of a pod.
@@ -87,10 +95,10 @@ public:
     /// <summary>
     /// ExpiresAt is when the lease ends, Unix seconds. Past it the reaper may take the sandbox at any time; it is a deadline, not a guarantee of survival until then, since an idle sandbox goes sooner.
     /// </summary>
-    int32_t getExpiresAt() const;
+    int64_t getExpiresAt() const;
     bool expiresAtIsSet() const;
     void unsetExpiresAt();
-    void setExpiresAt(int32_t value);
+    void setExpiresAt(int64_t value);
 
     /// <summary>
     /// ID is the sandbox&#39;s server-minted handle and what every operation addresses it by. The caller does not choose it.
@@ -119,10 +127,10 @@ public:
     /// <summary>
     /// LastUsedAt is when the sandbox last did work, Unix seconds. The reaper reads it: a sandbox idle past the idle window is reclaimed even inside its TTL, because an idle lease is capacity nobody is using.
     /// </summary>
-    int32_t getLastUsedAt() const;
+    int64_t getLastUsedAt() const;
     bool lastUsedAtIsSet() const;
     void unsetLastUsedAt();
-    void setLastUsedAt(int32_t value);
+    void setLastUsedAt(int64_t value);
 
     /// <summary>
     /// Org is the org that holds the lease — the validated caller&#39;s, never a value a request supplied. It is also the store&#39;s key, so a sandbox is not merely filtered out of another org&#39;s answers; it is unreachable from them.
@@ -169,16 +177,19 @@ protected:
     utility::string_t m_r_class;
     bool m_r_classIsSet;
 
-    int32_t m_ConnectedAt;
+    utility::string_t m_Cluster;
+    bool m_ClusterIsSet;
+
+    int64_t m_ConnectedAt;
     bool m_ConnectedAtIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_Error;
     bool m_ErrorIsSet;
 
-    int32_t m_ExpiresAt;
+    int64_t m_ExpiresAt;
     bool m_ExpiresAtIsSet;
 
     utility::string_t m_Id;
@@ -190,7 +201,7 @@ protected:
     utility::string_t m_Kind;
     bool m_KindIsSet;
 
-    int32_t m_LastUsedAt;
+    int64_t m_LastUsedAt;
     bool m_LastUsedAtIsSet;
 
     utility::string_t m_Org;

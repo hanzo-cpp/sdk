@@ -20,19 +20,19 @@ TrialBalanceRow::TrialBalanceRow()
 {
     m_Account = utility::conversions::to_string_t("");
     m_AccountIsSet = false;
-    m_ClosingCredit = 0;
+    m_ClosingCredit = 0L;
     m_ClosingCreditIsSet = false;
-    m_ClosingDebit = 0;
+    m_ClosingDebit = 0L;
     m_ClosingDebitIsSet = false;
-    m_Credit = 0;
+    m_Credit = 0L;
     m_CreditIsSet = false;
-    m_Debit = 0;
+    m_Debit = 0L;
     m_DebitIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_OpeningCredit = 0;
+    m_OpeningCredit = 0L;
     m_OpeningCreditIsSet = false;
-    m_OpeningDebit = 0;
+    m_OpeningDebit = 0L;
     m_OpeningDebitIsSet = false;
     m_Type = utility::conversions::to_string_t("");
     m_TypeIsSet = false;
@@ -118,7 +118,7 @@ bool TrialBalanceRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("closingCredit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setClosingCredit;
+            int64_t refVal_setClosingCredit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setClosingCredit);
             setClosingCredit(refVal_setClosingCredit);
             
@@ -129,7 +129,7 @@ bool TrialBalanceRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("closingDebit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setClosingDebit;
+            int64_t refVal_setClosingDebit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setClosingDebit);
             setClosingDebit(refVal_setClosingDebit);
             
@@ -140,7 +140,7 @@ bool TrialBalanceRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("credit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCredit;
+            int64_t refVal_setCredit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCredit);
             setCredit(refVal_setCredit);
             
@@ -151,7 +151,7 @@ bool TrialBalanceRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("debit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDebit;
+            int64_t refVal_setDebit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDebit);
             setDebit(refVal_setDebit);
             
@@ -173,7 +173,7 @@ bool TrialBalanceRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("openingCredit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOpeningCredit;
+            int64_t refVal_setOpeningCredit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOpeningCredit);
             setOpeningCredit(refVal_setOpeningCredit);
             
@@ -184,7 +184,7 @@ bool TrialBalanceRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("openingDebit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOpeningDebit;
+            int64_t refVal_setOpeningDebit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOpeningDebit);
             setOpeningDebit(refVal_setOpeningDebit);
             
@@ -266,25 +266,25 @@ bool TrialBalanceRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("closingCredit"))))
     {
-        int32_t refVal_setClosingCredit;
+        int64_t refVal_setClosingCredit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("closingCredit"))), refVal_setClosingCredit );
         setClosingCredit(refVal_setClosingCredit);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("closingDebit"))))
     {
-        int32_t refVal_setClosingDebit;
+        int64_t refVal_setClosingDebit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("closingDebit"))), refVal_setClosingDebit );
         setClosingDebit(refVal_setClosingDebit);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("credit"))))
     {
-        int32_t refVal_setCredit;
+        int64_t refVal_setCredit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("credit"))), refVal_setCredit );
         setCredit(refVal_setCredit);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("debit"))))
     {
-        int32_t refVal_setDebit;
+        int64_t refVal_setDebit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("debit"))), refVal_setDebit );
         setDebit(refVal_setDebit);
     }
@@ -296,13 +296,13 @@ bool TrialBalanceRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("openingCredit"))))
     {
-        int32_t refVal_setOpeningCredit;
+        int64_t refVal_setOpeningCredit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("openingCredit"))), refVal_setOpeningCredit );
         setOpeningCredit(refVal_setOpeningCredit);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("openingDebit"))))
     {
-        int32_t refVal_setOpeningDebit;
+        int64_t refVal_setOpeningDebit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("openingDebit"))), refVal_setOpeningDebit );
         setOpeningDebit(refVal_setOpeningDebit);
     }
@@ -337,13 +337,13 @@ void TrialBalanceRow::unsetAccount()
 {
     m_AccountIsSet = false;
 }
-int32_t TrialBalanceRow::getClosingCredit() const
+int64_t TrialBalanceRow::getClosingCredit() const
 {
     return m_ClosingCredit;
 }
 
 
-void TrialBalanceRow::setClosingCredit(int32_t value)
+void TrialBalanceRow::setClosingCredit(int64_t value)
 {
     m_ClosingCredit = value;
     m_ClosingCreditIsSet = true;
@@ -358,13 +358,13 @@ void TrialBalanceRow::unsetClosingCredit()
 {
     m_ClosingCreditIsSet = false;
 }
-int32_t TrialBalanceRow::getClosingDebit() const
+int64_t TrialBalanceRow::getClosingDebit() const
 {
     return m_ClosingDebit;
 }
 
 
-void TrialBalanceRow::setClosingDebit(int32_t value)
+void TrialBalanceRow::setClosingDebit(int64_t value)
 {
     m_ClosingDebit = value;
     m_ClosingDebitIsSet = true;
@@ -379,13 +379,13 @@ void TrialBalanceRow::unsetClosingDebit()
 {
     m_ClosingDebitIsSet = false;
 }
-int32_t TrialBalanceRow::getCredit() const
+int64_t TrialBalanceRow::getCredit() const
 {
     return m_Credit;
 }
 
 
-void TrialBalanceRow::setCredit(int32_t value)
+void TrialBalanceRow::setCredit(int64_t value)
 {
     m_Credit = value;
     m_CreditIsSet = true;
@@ -400,13 +400,13 @@ void TrialBalanceRow::unsetCredit()
 {
     m_CreditIsSet = false;
 }
-int32_t TrialBalanceRow::getDebit() const
+int64_t TrialBalanceRow::getDebit() const
 {
     return m_Debit;
 }
 
 
-void TrialBalanceRow::setDebit(int32_t value)
+void TrialBalanceRow::setDebit(int64_t value)
 {
     m_Debit = value;
     m_DebitIsSet = true;
@@ -442,13 +442,13 @@ void TrialBalanceRow::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t TrialBalanceRow::getOpeningCredit() const
+int64_t TrialBalanceRow::getOpeningCredit() const
 {
     return m_OpeningCredit;
 }
 
 
-void TrialBalanceRow::setOpeningCredit(int32_t value)
+void TrialBalanceRow::setOpeningCredit(int64_t value)
 {
     m_OpeningCredit = value;
     m_OpeningCreditIsSet = true;
@@ -463,13 +463,13 @@ void TrialBalanceRow::unsetOpeningCredit()
 {
     m_OpeningCreditIsSet = false;
 }
-int32_t TrialBalanceRow::getOpeningDebit() const
+int64_t TrialBalanceRow::getOpeningDebit() const
 {
     return m_OpeningDebit;
 }
 
 
-void TrialBalanceRow::setOpeningDebit(int32_t value)
+void TrialBalanceRow::setOpeningDebit(int64_t value)
 {
     m_OpeningDebit = value;
     m_OpeningDebitIsSet = true;

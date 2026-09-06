@@ -19,7 +19,7 @@ namespace model {
 O11y_TelegramConfig::O11y_TelegramConfig()
 {
     m_NotifierConfigIsSet = false;
-    m_Chat = 0;
+    m_Chat = 0L;
     m_ChatIsSet = false;
     m_Chat_file = utility::conversions::to_string_t("");
     m_Chat_fileIsSet = false;
@@ -28,7 +28,7 @@ O11y_TelegramConfig::O11y_TelegramConfig()
     m_Http_configIsSet = false;
     m_Message = utility::conversions::to_string_t("");
     m_MessageIsSet = false;
-    m_Message_thread_id = 0;
+    m_Message_thread_id = 0L;
     m_Message_thread_idIsSet = false;
     m_Parse_mode = utility::conversions::to_string_t("");
     m_Parse_modeIsSet = false;
@@ -137,7 +137,7 @@ bool O11y_TelegramConfig::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("chat")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setChat;
+            int64_t refVal_setChat;
             ok &= ModelBase::fromJson(fieldValue, refVal_setChat);
             setChat(refVal_setChat);
             
@@ -192,7 +192,7 @@ bool O11y_TelegramConfig::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("message_thread_id")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMessageThreadId;
+            int64_t refVal_setMessageThreadId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMessageThreadId);
             setMessageThreadId(refVal_setMessageThreadId);
             
@@ -310,7 +310,7 @@ bool O11y_TelegramConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multi
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("chat"))))
     {
-        int32_t refVal_setChat;
+        int64_t refVal_setChat;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("chat"))), refVal_setChat );
         setChat(refVal_setChat);
     }
@@ -340,7 +340,7 @@ bool O11y_TelegramConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multi
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("message_thread_id"))))
     {
-        int32_t refVal_setMessageThreadId;
+        int64_t refVal_setMessageThreadId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("message_thread_id"))), refVal_setMessageThreadId );
         setMessageThreadId(refVal_setMessageThreadId);
     }
@@ -407,13 +407,13 @@ void O11y_TelegramConfig::unsetApi_url()
 {
     m_Api_url.reset();
 }
-int32_t O11y_TelegramConfig::getChat() const
+int64_t O11y_TelegramConfig::getChat() const
 {
     return m_Chat;
 }
 
 
-void O11y_TelegramConfig::setChat(int32_t value)
+void O11y_TelegramConfig::setChat(int64_t value)
 {
     m_Chat = value;
     m_ChatIsSet = true;
@@ -512,13 +512,13 @@ void O11y_TelegramConfig::unsetMessage()
 {
     m_MessageIsSet = false;
 }
-int32_t O11y_TelegramConfig::getMessageThreadId() const
+int64_t O11y_TelegramConfig::getMessageThreadId() const
 {
     return m_Message_thread_id;
 }
 
 
-void O11y_TelegramConfig::setMessageThreadId(int32_t value)
+void O11y_TelegramConfig::setMessageThreadId(int64_t value)
 {
     m_Message_thread_id = value;
     m_Message_thread_idIsSet = true;

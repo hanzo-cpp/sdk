@@ -32,7 +32,7 @@ GithubSearchHit::GithubSearchHit()
     m_LanguageIsSet = false;
     m_r_private = false;
     m_r_privateIsSet = false;
-    m_Stars = 0;
+    m_Stars = 0L;
     m_StarsIsSet = false;
 }
 
@@ -177,7 +177,7 @@ bool GithubSearchHit::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("stars")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStars;
+            int64_t refVal_setStars;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStars);
             setStars(refVal_setStars);
             
@@ -280,7 +280,7 @@ bool GithubSearchHit::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("stars"))))
     {
-        int32_t refVal_setStars;
+        int64_t refVal_setStars;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("stars"))), refVal_setStars );
         setStars(refVal_setStars);
     }
@@ -435,13 +435,13 @@ void GithubSearchHit::unsetr_private()
 {
     m_r_privateIsSet = false;
 }
-int32_t GithubSearchHit::getStars() const
+int64_t GithubSearchHit::getStars() const
 {
     return m_Stars;
 }
 
 
-void GithubSearchHit::setStars(int32_t value)
+void GithubSearchHit::setStars(int64_t value)
 {
     m_Stars = value;
     m_StarsIsSet = true;

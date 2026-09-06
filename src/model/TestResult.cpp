@@ -20,11 +20,11 @@ TestResult::TestResult()
 {
     m_Delivered = false;
     m_DeliveredIsSet = false;
-    m_DurationMs = 0;
+    m_DurationMs = 0L;
     m_DurationMsIsSet = false;
     m_Error = utility::conversions::to_string_t("");
     m_ErrorIsSet = false;
-    m_HttpStatus = 0;
+    m_HttpStatus = 0L;
     m_HttpStatusIsSet = false;
 }
 
@@ -83,7 +83,7 @@ bool TestResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("durationMs")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDurationMs;
+            int64_t refVal_setDurationMs;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDurationMs);
             setDurationMs(refVal_setDurationMs);
             
@@ -105,7 +105,7 @@ bool TestResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("httpStatus")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setHttpStatus;
+            int64_t refVal_setHttpStatus;
             ok &= ModelBase::fromJson(fieldValue, refVal_setHttpStatus);
             setHttpStatus(refVal_setHttpStatus);
             
@@ -156,7 +156,7 @@ bool TestResult::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("durationMs"))))
     {
-        int32_t refVal_setDurationMs;
+        int64_t refVal_setDurationMs;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("durationMs"))), refVal_setDurationMs );
         setDurationMs(refVal_setDurationMs);
     }
@@ -168,7 +168,7 @@ bool TestResult::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("httpStatus"))))
     {
-        int32_t refVal_setHttpStatus;
+        int64_t refVal_setHttpStatus;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("httpStatus"))), refVal_setHttpStatus );
         setHttpStatus(refVal_setHttpStatus);
     }
@@ -197,13 +197,13 @@ void TestResult::unsetDelivered()
 {
     m_DeliveredIsSet = false;
 }
-int32_t TestResult::getDurationMs() const
+int64_t TestResult::getDurationMs() const
 {
     return m_DurationMs;
 }
 
 
-void TestResult::setDurationMs(int32_t value)
+void TestResult::setDurationMs(int64_t value)
 {
     m_DurationMs = value;
     m_DurationMsIsSet = true;
@@ -239,13 +239,13 @@ void TestResult::unsetError()
 {
     m_ErrorIsSet = false;
 }
-int32_t TestResult::getHttpStatus() const
+int64_t TestResult::getHttpStatus() const
 {
     return m_HttpStatus;
 }
 
 
-void TestResult::setHttpStatus(int32_t value)
+void TestResult::setHttpStatus(int64_t value)
 {
     m_HttpStatus = value;
     m_HttpStatusIsSet = true;

@@ -164,7 +164,7 @@ pplx::task<std::vector<std::shared_ptr<Account>>> BooksApi::getBooksAccounts(boo
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<BankTxnRow>>> BooksApi::getBooksBankTransactions(boost::optional<utility::string_t> sandbox, boost::optional<int32_t> limit) const
+pplx::task<std::vector<std::shared_ptr<BankTxnRow>>> BooksApi::getBooksBankTransactions(boost::optional<utility::string_t> sandbox, boost::optional<int64_t> limit) const
 {
 
 
@@ -426,7 +426,7 @@ pplx::task<std::shared_ptr<UnreconciledOut>> BooksApi::getBooksBankUnreconciled(
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<FinancialPackage>> BooksApi::getBooksExport(boost::optional<utility::string_t> sandbox, boost::optional<utility::string_t> from, boost::optional<utility::string_t> to, boost::optional<utility::string_t> format, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<FinancialPackage>> BooksApi::getBooksExport(boost::optional<utility::string_t> sandbox, boost::optional<utility::string_t> from, boost::optional<utility::string_t> to, boost::optional<utility::string_t> format, boost::optional<int64_t> limit) const
 {
 
 
@@ -569,7 +569,7 @@ pplx::task<std::shared_ptr<FinancialPackage>> BooksApi::getBooksExport(boost::op
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<GLRow>>> BooksApi::getBooksGl(boost::optional<utility::string_t> sandbox, boost::optional<int32_t> limit) const
+pplx::task<std::vector<std::shared_ptr<GLRow>>> BooksApi::getBooksGl(boost::optional<utility::string_t> sandbox, boost::optional<int64_t> limit) const
 {
 
 
@@ -1486,7 +1486,7 @@ pplx::task<std::shared_ptr<RulesOut>> BooksApi::getBooksRules(boost::optional<ut
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<TransactionsOut>> BooksApi::getBooksTransactions(boost::optional<utility::string_t> sandbox, boost::optional<utility::string_t> from, boost::optional<utility::string_t> to, boost::optional<utility::string_t> category, boost::optional<utility::string_t> vendor, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<TransactionsOut>> BooksApi::getBooksTransactions(boost::optional<utility::string_t> sandbox, boost::optional<utility::string_t> from, boost::optional<utility::string_t> to, boost::optional<utility::string_t> category, boost::optional<utility::string_t> vendor, boost::optional<int64_t> limit) const
 {
 
 

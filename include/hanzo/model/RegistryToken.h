@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// Expires is the token&#39;s lifetime in seconds.
     /// </summary>
-    int32_t getExpires() const;
+    int64_t getExpires() const;
     bool expiresIsSet() const;
     void unsetExpires();
-    void setExpires(int32_t value);
+    void setExpires(int64_t value);
 
     /// <summary>
     /// Ref is the one repository reference the token can pull.
@@ -78,7 +78,7 @@ public:
 
 
 protected:
-    int32_t m_Expires;
+    int64_t m_Expires;
     bool m_ExpiresIsSet;
 
     utility::string_t m_Ref;

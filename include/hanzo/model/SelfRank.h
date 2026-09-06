@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// CostCents is the caller&#39;s own spend in whole US cents. Always populated — your own spend is never withheld from you — so here 0 really does mean zero.
     /// </summary>
-    int32_t getCostCents() const;
+    int64_t getCostCents() const;
     bool costCentsIsSet() const;
     void unsetCostCents();
-    void setCostCents(int32_t value);
+    void setCostCents(int64_t value);
 
     /// <summary>
     /// Handle is how the caller appears on this board: their chosen handle, falling back to their username, on a user board; their org id on the global board. Present even when unlisted — this is the caller looking at themselves.
@@ -79,26 +79,26 @@ public:
     /// <summary>
     /// Metric is whichever of the three values above the board was ranked by, so a client can compare the caller against the rows without re-reading the request. Metric &lt;&#x3D; 0 is exactly the case that leaves Ranked false.
     /// </summary>
-    int32_t getMetric() const;
+    int64_t getMetric() const;
     bool metricIsSet() const;
     void unsetMetric();
-    void setMetric(int32_t value);
+    void setMetric(int64_t value);
 
     /// <summary>
     /// OfTotal is the size of the universe Rank is out of — \&quot;rank N of OfTotal\&quot;. On a user board that is the org&#39;s users with any usage in the window; on the global board it is every active org for a platform admin, and the count of opted-in orgs for everyone else.
     /// </summary>
-    int32_t getOfTotal() const;
+    int64_t getOfTotal() const;
     bool ofTotalIsSet() const;
     void unsetOfTotal();
-    void setOfTotal(int32_t value);
+    void setOfTotal(int64_t value);
 
     /// <summary>
     /// Rank is the caller&#39;s 1-based standing, computed as (subjects whose windowed metric strictly exceeds the caller&#39;s) + 1. It is exact against the whole ranked universe, not just the returned page, so it can far exceed len(rows). Read it only when Ranked.
     /// </summary>
-    int32_t getRank() const;
+    int64_t getRank() const;
     bool rankIsSet() const;
     void unsetRank();
-    void setRank(int32_t value);
+    void setRank(int64_t value);
 
     /// <summary>
     /// Ranked is false when the caller holds no position: they had no usage in the window, or (on the global board) their org has not opted into public listing and so is not ranked against a set it never joined. Rank is then 0 and means nothing.
@@ -111,22 +111,22 @@ public:
     /// <summary>
     /// Requests is the caller&#39;s own request count in the window, 0 if they were idle.
     /// </summary>
-    int32_t getRequests() const;
+    int64_t getRequests() const;
     bool requestsIsSet() const;
     void unsetRequests();
-    void setRequests(int32_t value);
+    void setRequests(int64_t value);
 
     /// <summary>
     /// Tokens is the caller&#39;s own prompt+completion tokens in the window.
     /// </summary>
-    int32_t getTokens() const;
+    int64_t getTokens() const;
     bool tokensIsSet() const;
     void unsetTokens();
-    void setTokens(int32_t value);
+    void setTokens(int64_t value);
 
 
 protected:
-    int32_t m_CostCents;
+    int64_t m_CostCents;
     bool m_CostCentsIsSet;
 
     utility::string_t m_Handle;
@@ -135,22 +135,22 @@ protected:
     bool m_Listed;
     bool m_ListedIsSet;
 
-    int32_t m_Metric;
+    int64_t m_Metric;
     bool m_MetricIsSet;
 
-    int32_t m_OfTotal;
+    int64_t m_OfTotal;
     bool m_OfTotalIsSet;
 
-    int32_t m_Rank;
+    int64_t m_Rank;
     bool m_RankIsSet;
 
     bool m_Ranked;
     bool m_RankedIsSet;
 
-    int32_t m_Requests;
+    int64_t m_Requests;
     bool m_RequestsIsSet;
 
-    int32_t m_Tokens;
+    int64_t m_Tokens;
     bool m_TokensIsSet;
 
 };

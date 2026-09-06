@@ -80,10 +80,10 @@ public:
     /// <summary>
     /// TimeoutMs bounds the wait for a reply. 0 or less means the default of 5000; anything above 30000 is clamped to 30000.
     /// </summary>
-    int32_t getTimeoutMs() const;
+    int64_t getTimeoutMs() const;
     bool timeoutMsIsSet() const;
     void unsetTimeoutMs();
-    void setTimeoutMs(int32_t value);
+    void setTimeoutMs(int64_t value);
 
 
 protected:
@@ -96,7 +96,7 @@ protected:
     utility::string_t m_Subject;
     bool m_SubjectIsSet;
 
-    int32_t m_TimeoutMs;
+    int64_t m_TimeoutMs;
     bool m_TimeoutMsIsSet;
 
 };

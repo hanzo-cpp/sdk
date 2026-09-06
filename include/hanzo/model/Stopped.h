@@ -54,14 +54,14 @@ public:
     /// <summary>
     /// Stopped counts the commands that were still running and were interrupted. Zero says the sandbox was idle, not that the stop failed — see above.
     /// </summary>
-    int32_t getStopped() const;
+    int64_t getStopped() const;
     bool stoppedIsSet() const;
     void unsetStopped();
-    void setStopped(int32_t value);
+    void setStopped(int64_t value);
 
 
 protected:
-    int32_t m_Stopped;
+    int64_t m_Stopped;
     bool m_StoppedIsSet;
 
 };

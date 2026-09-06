@@ -66,28 +66,28 @@ public:
     /// <summary>
     /// Facets counts the whole matching set along every browse axis, so a rail a client renders is a rail that has results behind it. Keyed axis → value → count.
     /// </summary>
-    std::map<utility::string_t, std::map<utility::string_t, int32_t>> getFacets() const;
+    std::map<utility::string_t, std::map<utility::string_t, int64_t>> getFacets() const;
     bool facetsIsSet() const;
     void unsetFacets();
-    void setFacets(const std::map<utility::string_t, std::map<utility::string_t, int32_t>>& value);
+    void setFacets(const std::map<utility::string_t, std::map<utility::string_t, int64_t>>& value);
 
     /// <summary>
     /// Total is how many entries matched BEFORE paging — what a pager sizes itself on.
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
 
 protected:
     std::vector<std::shared_ptr<Entry>> m_Data;
     bool m_DataIsSet;
 
-    std::map<utility::string_t, std::map<utility::string_t, int32_t>> m_Facets;
+    std::map<utility::string_t, std::map<utility::string_t, int64_t>> m_Facets;
     bool m_FacetsIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
 };

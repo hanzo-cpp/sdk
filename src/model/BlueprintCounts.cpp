@@ -18,15 +18,15 @@ namespace model {
 
 BlueprintCounts::BlueprintCounts()
 {
-    m_Principles = 0;
+    m_Principles = 0L;
     m_PrinciplesIsSet = false;
-    m_Sections = 0;
+    m_Sections = 0L;
     m_SectionsIsSet = false;
-    m_Steps = 0;
+    m_Steps = 0L;
     m_StepsIsSet = false;
-    m_Strategies = 0;
+    m_Strategies = 0L;
     m_StrategiesIsSet = false;
-    m_Templates = 0;
+    m_Templates = 0L;
     m_TemplatesIsSet = false;
 }
 
@@ -79,7 +79,7 @@ bool BlueprintCounts::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("principles")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPrinciples;
+            int64_t refVal_setPrinciples;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPrinciples);
             setPrinciples(refVal_setPrinciples);
             
@@ -90,7 +90,7 @@ bool BlueprintCounts::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("sections")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSections;
+            int64_t refVal_setSections;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSections);
             setSections(refVal_setSections);
             
@@ -101,7 +101,7 @@ bool BlueprintCounts::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("steps")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSteps;
+            int64_t refVal_setSteps;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSteps);
             setSteps(refVal_setSteps);
             
@@ -112,7 +112,7 @@ bool BlueprintCounts::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("strategies")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStrategies;
+            int64_t refVal_setStrategies;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStrategies);
             setStrategies(refVal_setStrategies);
             
@@ -123,7 +123,7 @@ bool BlueprintCounts::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("templates")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTemplates;
+            int64_t refVal_setTemplates;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTemplates);
             setTemplates(refVal_setTemplates);
             
@@ -172,31 +172,31 @@ bool BlueprintCounts::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("principles"))))
     {
-        int32_t refVal_setPrinciples;
+        int64_t refVal_setPrinciples;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("principles"))), refVal_setPrinciples );
         setPrinciples(refVal_setPrinciples);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("sections"))))
     {
-        int32_t refVal_setSections;
+        int64_t refVal_setSections;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("sections"))), refVal_setSections );
         setSections(refVal_setSections);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("steps"))))
     {
-        int32_t refVal_setSteps;
+        int64_t refVal_setSteps;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("steps"))), refVal_setSteps );
         setSteps(refVal_setSteps);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("strategies"))))
     {
-        int32_t refVal_setStrategies;
+        int64_t refVal_setStrategies;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("strategies"))), refVal_setStrategies );
         setStrategies(refVal_setStrategies);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("templates"))))
     {
-        int32_t refVal_setTemplates;
+        int64_t refVal_setTemplates;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("templates"))), refVal_setTemplates );
         setTemplates(refVal_setTemplates);
     }
@@ -204,13 +204,13 @@ bool BlueprintCounts::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 }
 
 
-int32_t BlueprintCounts::getPrinciples() const
+int64_t BlueprintCounts::getPrinciples() const
 {
     return m_Principles;
 }
 
 
-void BlueprintCounts::setPrinciples(int32_t value)
+void BlueprintCounts::setPrinciples(int64_t value)
 {
     m_Principles = value;
     m_PrinciplesIsSet = true;
@@ -225,13 +225,13 @@ void BlueprintCounts::unsetPrinciples()
 {
     m_PrinciplesIsSet = false;
 }
-int32_t BlueprintCounts::getSections() const
+int64_t BlueprintCounts::getSections() const
 {
     return m_Sections;
 }
 
 
-void BlueprintCounts::setSections(int32_t value)
+void BlueprintCounts::setSections(int64_t value)
 {
     m_Sections = value;
     m_SectionsIsSet = true;
@@ -246,13 +246,13 @@ void BlueprintCounts::unsetSections()
 {
     m_SectionsIsSet = false;
 }
-int32_t BlueprintCounts::getSteps() const
+int64_t BlueprintCounts::getSteps() const
 {
     return m_Steps;
 }
 
 
-void BlueprintCounts::setSteps(int32_t value)
+void BlueprintCounts::setSteps(int64_t value)
 {
     m_Steps = value;
     m_StepsIsSet = true;
@@ -267,13 +267,13 @@ void BlueprintCounts::unsetSteps()
 {
     m_StepsIsSet = false;
 }
-int32_t BlueprintCounts::getStrategies() const
+int64_t BlueprintCounts::getStrategies() const
 {
     return m_Strategies;
 }
 
 
-void BlueprintCounts::setStrategies(int32_t value)
+void BlueprintCounts::setStrategies(int64_t value)
 {
     m_Strategies = value;
     m_StrategiesIsSet = true;
@@ -288,13 +288,13 @@ void BlueprintCounts::unsetStrategies()
 {
     m_StrategiesIsSet = false;
 }
-int32_t BlueprintCounts::getTemplates() const
+int64_t BlueprintCounts::getTemplates() const
 {
     return m_Templates;
 }
 
 
-void BlueprintCounts::setTemplates(int32_t value)
+void BlueprintCounts::setTemplates(int64_t value)
 {
     m_Templates = value;
     m_TemplatesIsSet = true;

@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// EndLine is its last line, inclusive.
     /// </summary>
-    int32_t getEndLine() const;
+    int64_t getEndLine() const;
     bool endLineIsSet() const;
     void unsetEndLine();
-    void setEndLine(int32_t value);
+    void setEndLine(int64_t value);
 
     /// <summary>
     /// File is the path inside the repo, relative to its root.
@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// Line is the first line of the cited region, 1-based.
     /// </summary>
-    int32_t getLine() const;
+    int64_t getLine() const;
     bool lineIsSet() const;
     void unsetLine();
-    void setLine(int32_t value);
+    void setLine(int64_t value);
 
     /// <summary>
     /// Repo is the repository the cited code lives in (\&quot;owner/name\&quot;), absent when the ask was already scoped to one.
@@ -94,13 +94,13 @@ public:
 
 
 protected:
-    int32_t m_EndLine;
+    int64_t m_EndLine;
     bool m_EndLineIsSet;
 
     utility::string_t m_file;
     bool m_fileIsSet;
 
-    int32_t m_Line;
+    int64_t m_Line;
     bool m_LineIsSet;
 
     utility::string_t m_Repo;

@@ -88,10 +88,10 @@ public:
     /// <summary>
     /// fan-out width (&gt;&#x3D;1)
     /// </summary>
-    int32_t getPanel() const;
+    int64_t getPanel() const;
     bool panelIsSet() const;
     void unsetPanel();
-    void setPanel(int32_t value);
+    void setPanel(int64_t value);
 
     /// <summary>
     /// escalation order over arms
@@ -115,7 +115,7 @@ protected:
     utility::string_t m_Owner;
     bool m_OwnerIsSet;
 
-    int32_t m_Panel;
+    int64_t m_Panel;
     bool m_PanelIsSet;
 
     std::vector<utility::string_t> m_Rank;

@@ -87,10 +87,10 @@ public:
     /// <summary>
     /// Size is the file&#39;s byte length in the repo, whatever was returned below.
     /// </summary>
-    int32_t getSize() const;
+    int64_t getSize() const;
     bool sizeIsSet() const;
     void unsetSize();
-    void setSize(int32_t value);
+    void setSize(int64_t value);
 
     /// <summary>
     /// Truncated marks a file past the 1 MiB view cap. No content is sent — clone the repo for it.
@@ -114,7 +114,7 @@ protected:
     utility::string_t m_Path;
     bool m_PathIsSet;
 
-    int32_t m_Size;
+    int64_t m_Size;
     bool m_SizeIsSet;
 
     bool m_Truncated;

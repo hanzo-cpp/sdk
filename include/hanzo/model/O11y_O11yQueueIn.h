@@ -56,26 +56,26 @@ public:
     /// <summary>
     /// End is the window&#39;s end, epoch nanoseconds.
     /// </summary>
-    int32_t getEnd() const;
+    int64_t getEnd() const;
     bool endIsSet() const;
     void unsetEnd();
-    void setEnd(int32_t value);
+    void setEnd(int64_t value);
 
     /// <summary>
     /// EvalTime bounds the span-evaluation scan, nanoseconds; only the span/evaluation view reads it.
     /// </summary>
-    int32_t getEvalTime() const;
+    int64_t getEvalTime() const;
     bool evalTimeIsSet() const;
     void unsetEval_time();
-    void setEvalTime(int32_t value);
+    void setEvalTime(int64_t value);
 
     /// <summary>
     /// Start is the window&#39;s start, epoch nanoseconds.
     /// </summary>
-    int32_t getStart() const;
+    int64_t getStart() const;
     bool startIsSet() const;
     void unsetStart();
-    void setStart(int32_t value);
+    void setStart(int64_t value);
 
     /// <summary>
     /// Variables name what the view drills into — topic, partition, service, consumer_group — keyed by the name the view expects.
@@ -87,13 +87,13 @@ public:
 
 
 protected:
-    int32_t m_End;
+    int64_t m_End;
     bool m_EndIsSet;
 
-    int32_t m_Eval_time;
+    int64_t m_Eval_time;
     bool m_Eval_timeIsSet;
 
-    int32_t m_Start;
+    int64_t m_Start;
     bool m_StartIsSet;
 
     std::map<utility::string_t, utility::string_t> m_Variables;

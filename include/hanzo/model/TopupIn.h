@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// AmountCents is how much to charge, in cents of Currency. Required.
     /// </summary>
-    int32_t getAmountCents() const;
+    int64_t getAmountCents() const;
     bool amountCentsIsSet() const;
     void unsetAmountCents();
-    void setAmountCents(int32_t value);
+    void setAmountCents(int64_t value);
 
     /// <summary>
     /// Currency is the ISO-4217 code to charge in. Empty takes the deployment&#39;s own default.
@@ -86,7 +86,7 @@ public:
 
 
 protected:
-    int32_t m_AmountCents;
+    int64_t m_AmountCents;
     bool m_AmountCentsIsSet;
 
     utility::string_t m_Currency;

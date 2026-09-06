@@ -31,7 +31,7 @@ TaxonIn::TaxonIn()
     m_IdIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_Order = 0;
+    m_Order = 0L;
     m_OrderIsSet = false;
     m_Published = false;
     m_PublishedIsSet = false;
@@ -196,7 +196,7 @@ bool TaxonIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("order")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOrder;
+            int64_t refVal_setOrder;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOrder);
             setOrder(refVal_setOrder);
             
@@ -344,7 +344,7 @@ bool TaxonIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("order"))))
     {
-        int32_t refVal_setOrder;
+        int64_t refVal_setOrder;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("order"))), refVal_setOrder );
         setOrder(refVal_setOrder);
     }
@@ -517,13 +517,13 @@ void TaxonIn::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t TaxonIn::getOrder() const
+int64_t TaxonIn::getOrder() const
 {
     return m_Order;
 }
 
 
-void TaxonIn::setOrder(int32_t value)
+void TaxonIn::setOrder(int64_t value)
 {
     m_Order = value;
     m_OrderIsSet = true;

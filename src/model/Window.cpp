@@ -18,15 +18,15 @@ namespace model {
 
 Window::Window()
 {
-    m_Limit = 0;
+    m_Limit = 0L;
     m_LimitIsSet = false;
-    m_Remaining = 0;
+    m_Remaining = 0L;
     m_RemainingIsSet = false;
     m_Resets = utility::conversions::to_string_t("");
     m_ResetsIsSet = false;
     m_Span = utility::conversions::to_string_t("");
     m_SpanIsSet = false;
-    m_Used = 0;
+    m_Used = 0L;
     m_UsedIsSet = false;
 }
 
@@ -79,7 +79,7 @@ bool Window::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("limit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLimit;
+            int64_t refVal_setLimit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLimit);
             setLimit(refVal_setLimit);
             
@@ -90,7 +90,7 @@ bool Window::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("remaining")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRemaining;
+            int64_t refVal_setRemaining;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRemaining);
             setRemaining(refVal_setRemaining);
             
@@ -123,7 +123,7 @@ bool Window::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("used")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUsed;
+            int64_t refVal_setUsed;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUsed);
             setUsed(refVal_setUsed);
             
@@ -172,13 +172,13 @@ bool Window::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("limit"))))
     {
-        int32_t refVal_setLimit;
+        int64_t refVal_setLimit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("limit"))), refVal_setLimit );
         setLimit(refVal_setLimit);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("remaining"))))
     {
-        int32_t refVal_setRemaining;
+        int64_t refVal_setRemaining;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("remaining"))), refVal_setRemaining );
         setRemaining(refVal_setRemaining);
     }
@@ -196,7 +196,7 @@ bool Window::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("used"))))
     {
-        int32_t refVal_setUsed;
+        int64_t refVal_setUsed;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("used"))), refVal_setUsed );
         setUsed(refVal_setUsed);
     }
@@ -204,13 +204,13 @@ bool Window::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
 }
 
 
-int32_t Window::getLimit() const
+int64_t Window::getLimit() const
 {
     return m_Limit;
 }
 
 
-void Window::setLimit(int32_t value)
+void Window::setLimit(int64_t value)
 {
     m_Limit = value;
     m_LimitIsSet = true;
@@ -225,13 +225,13 @@ void Window::unsetLimit()
 {
     m_LimitIsSet = false;
 }
-int32_t Window::getRemaining() const
+int64_t Window::getRemaining() const
 {
     return m_Remaining;
 }
 
 
-void Window::setRemaining(int32_t value)
+void Window::setRemaining(int64_t value)
 {
     m_Remaining = value;
     m_RemainingIsSet = true;
@@ -288,13 +288,13 @@ void Window::unsetSpan()
 {
     m_SpanIsSet = false;
 }
-int32_t Window::getUsed() const
+int64_t Window::getUsed() const
 {
     return m_Used;
 }
 
 
-void Window::setUsed(int32_t value)
+void Window::setUsed(int64_t value)
 {
     m_Used = value;
     m_UsedIsSet = true;

@@ -24,7 +24,7 @@ IndexEnqueued::IndexEnqueued()
     m_IndexUidIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
-    m_TaskUid = 0;
+    m_TaskUid = 0L;
     m_TaskUidIsSet = false;
     m_Type = utility::conversions::to_string_t("");
     m_TypeIsSet = false;
@@ -112,7 +112,7 @@ bool IndexEnqueued::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("taskUid")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTaskUid;
+            int64_t refVal_setTaskUid;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTaskUid);
             setTaskUid(refVal_setTaskUid);
             
@@ -190,7 +190,7 @@ bool IndexEnqueued::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("taskUid"))))
     {
-        int32_t refVal_setTaskUid;
+        int64_t refVal_setTaskUid;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("taskUid"))), refVal_setTaskUid );
         setTaskUid(refVal_setTaskUid);
     }
@@ -267,13 +267,13 @@ void IndexEnqueued::unsetStatus()
 {
     m_StatusIsSet = false;
 }
-int32_t IndexEnqueued::getTaskUid() const
+int64_t IndexEnqueued::getTaskUid() const
 {
     return m_TaskUid;
 }
 
 
-void IndexEnqueued::setTaskUid(int32_t value)
+void IndexEnqueued::setTaskUid(int64_t value)
 {
     m_TaskUid = value;
     m_TaskUidIsSet = true;

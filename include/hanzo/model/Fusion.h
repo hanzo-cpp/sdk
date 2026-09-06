@@ -92,10 +92,10 @@ public:
     /// <summary>
     /// TookMS is the whole query&#39;s wall time in milliseconds — every leg it consulted, plus fusion and paging. Each leg&#39;s own share is in Backends[].TookMS; the legs run in sequence, so this is at least their sum.
     /// </summary>
-    int32_t getTookMs() const;
+    int64_t getTookMs() const;
     bool tookMsIsSet() const;
     void unsetTook_ms();
-    void setTookMs(int32_t value);
+    void setTookMs(int64_t value);
 
 
 protected:
@@ -111,7 +111,7 @@ protected:
     utility::string_t m_Status;
     bool m_StatusIsSet;
 
-    int32_t m_Took_ms;
+    int64_t m_Took_ms;
     bool m_Took_msIsSet;
 
 };

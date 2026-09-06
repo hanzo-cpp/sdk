@@ -18,9 +18,9 @@ namespace model {
 
 Position::Position()
 {
-    m_Character = 0;
+    m_Character = 0L;
     m_CharacterIsSet = false;
-    m_Line = 0;
+    m_Line = 0L;
     m_LineIsSet = false;
 }
 
@@ -58,7 +58,7 @@ bool Position::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("character")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCharacter;
+            int64_t refVal_setCharacter;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCharacter);
             setCharacter(refVal_setCharacter);
             
@@ -69,7 +69,7 @@ bool Position::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("line")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLine;
+            int64_t refVal_setLine;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLine);
             setLine(refVal_setLine);
             
@@ -106,13 +106,13 @@ bool Position::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("character"))))
     {
-        int32_t refVal_setCharacter;
+        int64_t refVal_setCharacter;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("character"))), refVal_setCharacter );
         setCharacter(refVal_setCharacter);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("line"))))
     {
-        int32_t refVal_setLine;
+        int64_t refVal_setLine;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("line"))), refVal_setLine );
         setLine(refVal_setLine);
     }
@@ -120,13 +120,13 @@ bool Position::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 }
 
 
-int32_t Position::getCharacter() const
+int64_t Position::getCharacter() const
 {
     return m_Character;
 }
 
 
-void Position::setCharacter(int32_t value)
+void Position::setCharacter(int64_t value)
 {
     m_Character = value;
     m_CharacterIsSet = true;
@@ -141,13 +141,13 @@ void Position::unsetCharacter()
 {
     m_CharacterIsSet = false;
 }
-int32_t Position::getLine() const
+int64_t Position::getLine() const
 {
     return m_Line;
 }
 
 
-void Position::setLine(int32_t value)
+void Position::setLine(int64_t value)
 {
     m_Line = value;
     m_LineIsSet = true;

@@ -33,9 +33,9 @@ Iam_Application::Iam_Application()
     m_ClientIdIsSet = false;
     m_ClientSecret = utility::conversions::to_string_t("");
     m_ClientSecretIsSet = false;
-    m_CodeResendTimeout = 0;
+    m_CodeResendTimeout = 0L;
     m_CodeResendTimeoutIsSet = false;
-    m_CookieExpireInHours = 0;
+    m_CookieExpireInHours = 0L;
     m_CookieExpireInHoursIsSet = false;
     m_CreatedAt = utility::datetime();
     m_CreatedAtIsSet = false;
@@ -84,9 +84,9 @@ Iam_Application::Iam_Application()
     m_EnvironmentIsSet = false;
     m_ExpireInHours = 0.0;
     m_ExpireInHoursIsSet = false;
-    m_FailedSigninFrozenTime = 0;
+    m_FailedSigninFrozenTime = 0L;
     m_FailedSigninFrozenTimeIsSet = false;
-    m_FailedSigninLimit = 0;
+    m_FailedSigninLimit = 0L;
     m_FailedSigninLimitIsSet = false;
     m_Favicon = utility::conversions::to_string_t("");
     m_FaviconIsSet = false;
@@ -104,7 +104,7 @@ Iam_Application::Iam_Application()
     m_FormCssIsSet = false;
     m_FormCssMobile = utility::conversions::to_string_t("");
     m_FormCssMobileIsSet = false;
-    m_FormOffset = 0;
+    m_FormOffset = 0L;
     m_FormOffsetIsSet = false;
     m_FormSideHtml = utility::conversions::to_string_t("");
     m_FormSideHtmlIsSet = false;
@@ -125,7 +125,7 @@ Iam_Application::Iam_Application()
     m_LogoIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_Order = 0;
+    m_Order = 0L;
     m_OrderIsSet = false;
     m_OrgChoiceMode = utility::conversions::to_string_t("");
     m_OrgChoiceModeIsSet = false;
@@ -746,7 +746,7 @@ bool Iam_Application::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("codeResendTimeout")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCodeResendTimeout;
+            int64_t refVal_setCodeResendTimeout;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCodeResendTimeout);
             setCodeResendTimeout(refVal_setCodeResendTimeout);
             
@@ -757,7 +757,7 @@ bool Iam_Application::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cookieExpireInHours")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCookieExpireInHours;
+            int64_t refVal_setCookieExpireInHours;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCookieExpireInHours);
             setCookieExpireInHours(refVal_setCookieExpireInHours);
             
@@ -1032,7 +1032,7 @@ bool Iam_Application::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("failedSigninFrozenTime")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFailedSigninFrozenTime;
+            int64_t refVal_setFailedSigninFrozenTime;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFailedSigninFrozenTime);
             setFailedSigninFrozenTime(refVal_setFailedSigninFrozenTime);
             
@@ -1043,7 +1043,7 @@ bool Iam_Application::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("failedSigninLimit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFailedSigninLimit;
+            int64_t refVal_setFailedSigninLimit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFailedSigninLimit);
             setFailedSigninLimit(refVal_setFailedSigninLimit);
             
@@ -1142,7 +1142,7 @@ bool Iam_Application::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("formOffset")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFormOffset;
+            int64_t refVal_setFormOffset;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFormOffset);
             setFormOffset(refVal_setFormOffset);
             
@@ -1263,7 +1263,7 @@ bool Iam_Application::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("order")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOrder;
+            int64_t refVal_setOrder;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOrder);
             setOrder(refVal_setOrder);
             
@@ -2074,13 +2074,13 @@ bool Iam_Application::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("codeResendTimeout"))))
     {
-        int32_t refVal_setCodeResendTimeout;
+        int64_t refVal_setCodeResendTimeout;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("codeResendTimeout"))), refVal_setCodeResendTimeout );
         setCodeResendTimeout(refVal_setCodeResendTimeout);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cookieExpireInHours"))))
     {
-        int32_t refVal_setCookieExpireInHours;
+        int64_t refVal_setCookieExpireInHours;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cookieExpireInHours"))), refVal_setCookieExpireInHours );
         setCookieExpireInHours(refVal_setCookieExpireInHours);
     }
@@ -2230,13 +2230,13 @@ bool Iam_Application::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("failedSigninFrozenTime"))))
     {
-        int32_t refVal_setFailedSigninFrozenTime;
+        int64_t refVal_setFailedSigninFrozenTime;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("failedSigninFrozenTime"))), refVal_setFailedSigninFrozenTime );
         setFailedSigninFrozenTime(refVal_setFailedSigninFrozenTime);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("failedSigninLimit"))))
     {
-        int32_t refVal_setFailedSigninLimit;
+        int64_t refVal_setFailedSigninLimit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("failedSigninLimit"))), refVal_setFailedSigninLimit );
         setFailedSigninLimit(refVal_setFailedSigninLimit);
     }
@@ -2290,7 +2290,7 @@ bool Iam_Application::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("formOffset"))))
     {
-        int32_t refVal_setFormOffset;
+        int64_t refVal_setFormOffset;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("formOffset"))), refVal_setFormOffset );
         setFormOffset(refVal_setFormOffset);
     }
@@ -2356,7 +2356,7 @@ bool Iam_Application::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("order"))))
     {
-        int32_t refVal_setOrder;
+        int64_t refVal_setOrder;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("order"))), refVal_setOrder );
         setOrder(refVal_setOrder);
     }
@@ -2736,13 +2736,13 @@ void Iam_Application::unsetClientSecret()
 {
     m_ClientSecretIsSet = false;
 }
-int32_t Iam_Application::getCodeResendTimeout() const
+int64_t Iam_Application::getCodeResendTimeout() const
 {
     return m_CodeResendTimeout;
 }
 
 
-void Iam_Application::setCodeResendTimeout(int32_t value)
+void Iam_Application::setCodeResendTimeout(int64_t value)
 {
     m_CodeResendTimeout = value;
     m_CodeResendTimeoutIsSet = true;
@@ -2757,13 +2757,13 @@ void Iam_Application::unsetCodeResendTimeout()
 {
     m_CodeResendTimeoutIsSet = false;
 }
-int32_t Iam_Application::getCookieExpireInHours() const
+int64_t Iam_Application::getCookieExpireInHours() const
 {
     return m_CookieExpireInHours;
 }
 
 
-void Iam_Application::setCookieExpireInHours(int32_t value)
+void Iam_Application::setCookieExpireInHours(int64_t value)
 {
     m_CookieExpireInHours = value;
     m_CookieExpireInHoursIsSet = true;
@@ -3282,13 +3282,13 @@ void Iam_Application::unsetExpireInHours()
 {
     m_ExpireInHoursIsSet = false;
 }
-int32_t Iam_Application::getFailedSigninFrozenTime() const
+int64_t Iam_Application::getFailedSigninFrozenTime() const
 {
     return m_FailedSigninFrozenTime;
 }
 
 
-void Iam_Application::setFailedSigninFrozenTime(int32_t value)
+void Iam_Application::setFailedSigninFrozenTime(int64_t value)
 {
     m_FailedSigninFrozenTime = value;
     m_FailedSigninFrozenTimeIsSet = true;
@@ -3303,13 +3303,13 @@ void Iam_Application::unsetFailedSigninFrozenTime()
 {
     m_FailedSigninFrozenTimeIsSet = false;
 }
-int32_t Iam_Application::getFailedSigninLimit() const
+int64_t Iam_Application::getFailedSigninLimit() const
 {
     return m_FailedSigninLimit;
 }
 
 
-void Iam_Application::setFailedSigninLimit(int32_t value)
+void Iam_Application::setFailedSigninLimit(int64_t value)
 {
     m_FailedSigninLimit = value;
     m_FailedSigninLimitIsSet = true;
@@ -3492,13 +3492,13 @@ void Iam_Application::unsetFormCssMobile()
 {
     m_FormCssMobileIsSet = false;
 }
-int32_t Iam_Application::getFormOffset() const
+int64_t Iam_Application::getFormOffset() const
 {
     return m_FormOffset;
 }
 
 
-void Iam_Application::setFormOffset(int32_t value)
+void Iam_Application::setFormOffset(int64_t value)
 {
     m_FormOffset = value;
     m_FormOffsetIsSet = true;
@@ -3723,13 +3723,13 @@ void Iam_Application::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t Iam_Application::getOrder() const
+int64_t Iam_Application::getOrder() const
 {
     return m_Order;
 }
 
 
-void Iam_Application::setOrder(int32_t value)
+void Iam_Application::setOrder(int64_t value)
 {
     m_Order = value;
     m_OrderIsSet = true;

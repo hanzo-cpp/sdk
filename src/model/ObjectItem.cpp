@@ -24,9 +24,9 @@ ObjectItem::ObjectItem()
     m_IsDirIsSet = false;
     m_Key = utility::conversions::to_string_t("");
     m_KeyIsSet = false;
-    m_LastModified = 0;
+    m_LastModified = 0L;
     m_LastModifiedIsSet = false;
-    m_Size = 0;
+    m_Size = 0L;
     m_SizeIsSet = false;
 }
 
@@ -112,7 +112,7 @@ bool ObjectItem::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("lastModified")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLastModified;
+            int64_t refVal_setLastModified;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLastModified);
             setLastModified(refVal_setLastModified);
             
@@ -123,7 +123,7 @@ bool ObjectItem::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("size")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSize;
+            int64_t refVal_setSize;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSize);
             setSize(refVal_setSize);
             
@@ -190,13 +190,13 @@ bool ObjectItem::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("lastModified"))))
     {
-        int32_t refVal_setLastModified;
+        int64_t refVal_setLastModified;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("lastModified"))), refVal_setLastModified );
         setLastModified(refVal_setLastModified);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("size"))))
     {
-        int32_t refVal_setSize;
+        int64_t refVal_setSize;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("size"))), refVal_setSize );
         setSize(refVal_setSize);
     }
@@ -267,13 +267,13 @@ void ObjectItem::unsetKey()
 {
     m_KeyIsSet = false;
 }
-int32_t ObjectItem::getLastModified() const
+int64_t ObjectItem::getLastModified() const
 {
     return m_LastModified;
 }
 
 
-void ObjectItem::setLastModified(int32_t value)
+void ObjectItem::setLastModified(int64_t value)
 {
     m_LastModified = value;
     m_LastModifiedIsSet = true;
@@ -288,13 +288,13 @@ void ObjectItem::unsetLastModified()
 {
     m_LastModifiedIsSet = false;
 }
-int32_t ObjectItem::getSize() const
+int64_t ObjectItem::getSize() const
 {
     return m_Size;
 }
 
 
-void ObjectItem::setSize(int32_t value)
+void ObjectItem::setSize(int64_t value)
 {
     m_Size = value;
     m_SizeIsSet = true;

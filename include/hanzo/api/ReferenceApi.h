@@ -69,11 +69,11 @@ public:
     /// </remarks>
     /// <param name="set"></param>
     /// <param name="after">After pages the override listing: the last key of the previous page. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps the override listing: default 200, maximum 1000. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the override listing: default 200, maximum 1000. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<ReferenceOut>> riskReference(
         utility::string_t set,
         boost::optional<utility::string_t> after,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists every set this plane publishes, with its version and how fresh it is.

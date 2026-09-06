@@ -33,7 +33,7 @@ ComplianceApi::~ComplianceApi()
 {
 }
 
-pplx::task<std::shared_ptr<AccList>> ComplianceApi::getComplianceAccreditation(boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<AccList>> ComplianceApi::getComplianceAccreditation(boost::optional<int64_t> limit) const
 {
 
 
@@ -534,7 +534,7 @@ pplx::task<std::shared_ptr<HealthView>> ComplianceApi::getComplianceHealth() con
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<RecordList>> ComplianceApi::getComplianceRecords(boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<RecordList>> ComplianceApi::getComplianceRecords(boost::optional<int64_t> limit) const
 {
 
 
@@ -784,7 +784,7 @@ pplx::task<std::shared_ptr<StatusView>> ComplianceApi::getComplianceStatus() con
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<SubjectList>> ComplianceApi::getComplianceSubjects(boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<SubjectList>> ComplianceApi::getComplianceSubjects(boost::optional<int64_t> limit) const
 {
 
 
@@ -1035,7 +1035,7 @@ pplx::task<std::shared_ptr<Subject>> ComplianceApi::getComplianceSubjectsById(ut
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<CheckList>> ComplianceApi::getComplianceVerifications(boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<CheckList>> ComplianceApi::getComplianceVerifications(boost::optional<int64_t> limit) const
 {
 
 

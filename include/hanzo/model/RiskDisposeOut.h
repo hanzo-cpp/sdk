@@ -63,18 +63,18 @@ public:
     /// <summary>
     /// Disposed is how many whole records were removed. Records are disposed of whole, never redacted: a partially-erased compliance record is one nobody can attest to.
     /// </summary>
-    int32_t getDisposed() const;
+    int64_t getDisposed() const;
     bool disposedIsSet() const;
     void unsetDisposed();
-    void setDisposed(int32_t value);
+    void setDisposed(int64_t value);
 
     /// <summary>
     /// Held is how many records inside the boundary were kept under litigation hold.
     /// </summary>
-    int32_t getHeld() const;
+    int64_t getHeld() const;
     bool heldIsSet() const;
     void unsetHeld();
-    void setHeld(int32_t value);
+    void setHeld(int64_t value);
 
     /// <summary>
     /// Oldest is the WRITE time of the oldest assertion this tenant still holds after the sweep, RFC 3339, and it is omitted exactly when nothing remains at all. Still older than Before means records survived on purpose and says which mechanism kept them: a litigation hold (Held), or the per-call bound with more to sweep on the next call (Remaining).
@@ -87,48 +87,48 @@ public:
     /// <summary>
     /// Remaining is how many disposable records are still older than the boundary. A sweep is bounded per call, so a non-zero value here means call again rather than that something failed.
     /// </summary>
-    int32_t getRemaining() const;
+    int64_t getRemaining() const;
     bool remainingIsSet() const;
     void unsetRemaining();
-    void setRemaining(int32_t value);
+    void setRemaining(int64_t value);
 
     /// <summary>
     /// Restored is how many records this sweep had already removed from the derived columnar copy and then did NOT dispose of, because a litigation hold arrived between the identify and the delete — and which were therefore written back to the derived copy before this answered.  It is a NAMED state and not a silent repair. The copy is swept before the record so nothing is orphaned in the warehouse, which means a record the delete declines to remove is one the warehouse has already lost, with its seq behind the delivery cursor and no retry that can reach it. Non-zero here says the collision happened and was repaired; a non-zero that keeps recurring says retention and hold are racing on the same records, which is worth an operator&#39;s attention rather than a debug line.
     /// </summary>
-    int32_t getRestored() const;
+    int64_t getRestored() const;
     bool restoredIsSet() const;
     void unsetRestored();
-    void setRestored(int32_t value);
+    void setRestored(int64_t value);
 
     /// <summary>
     /// Total and Oldest describe what the tenant still holds afterwards, so a disposal that removed nothing is distinguishable from a tenant that had nothing.
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
 
 protected:
     utility::string_t m_Before;
     bool m_BeforeIsSet;
 
-    int32_t m_Disposed;
+    int64_t m_Disposed;
     bool m_DisposedIsSet;
 
-    int32_t m_Held;
+    int64_t m_Held;
     bool m_HeldIsSet;
 
     utility::string_t m_Oldest;
     bool m_OldestIsSet;
 
-    int32_t m_Remaining;
+    int64_t m_Remaining;
     bool m_RemainingIsSet;
 
-    int32_t m_Restored;
+    int64_t m_Restored;
     bool m_RestoredIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
 };

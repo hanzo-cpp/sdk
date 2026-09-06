@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// Blind counts, per feature, how often it took its neutral value for want of data. A feature blind on most traffic is not contributing whatever the inventory claims for it.
     /// </summary>
-    std::map<utility::string_t, int32_t> getBlind() const;
+    std::map<utility::string_t, int64_t> getBlind() const;
     bool blindIsSet() const;
     void unsetBlind();
-    void setBlind(std::map<utility::string_t, int32_t> value);
+    void setBlind(std::map<utility::string_t, int64_t> value);
 
     /// <summary>
     /// Cut is the threshold in force, derived from Stated as a quantile of the scores actually observed.
@@ -95,18 +95,18 @@ public:
     /// <summary>
     /// Disposed is how many published values retention has taken. It is DERIVED from the lowest surviving sequence, so it cannot drift from what it describes, and it is reported because a retention that binds is a fact an operator must be able to read rather than a silence.
     /// </summary>
-    int32_t getDisposed() const;
+    int64_t getDisposed() const;
     bool disposedIsSet() const;
     void unsetDisposed();
-    void setDisposed(int32_t value);
+    void setDisposed(int64_t value);
 
     /// <summary>
     /// Learned is how many events the model has learned from.
     /// </summary>
-    int32_t getLearned() const;
+    int64_t getLearned() const;
     bool learnedIsSet() const;
     void unsetLearned();
-    void setLearned(int32_t value);
+    void setLearned(int64_t value);
 
     /// <summary>
     /// Live is false while the model is in shadow — scoring, learning and recording what it WOULD have alerted on, and changing no outcome. Shadow is the default for a new tenant.
@@ -119,10 +119,10 @@ public:
     /// <summary>
     /// Policy is the version of the decision regime this model is deciding under, from your organisation&#39;s own policy history (GET /v1/risk/policy). Every score cites it, so it is the join between a past decision and the appetite that produced its threshold. Zero means no regime has ever been stated and the default posture — shadow — is in force.
     /// </summary>
-    int32_t getPolicy() const;
+    int64_t getPolicy() const;
     bool policyIsSet() const;
     void unsetPolicy();
-    void setPolicy(int32_t value);
+    void setPolicy(int64_t value);
 
     /// <summary>
     /// Realised is the share that actually was. Reading it beside Stated is what makes the appetite a measured commitment rather than an intention.
@@ -135,10 +135,10 @@ public:
     /// <summary>
     /// Refused counts events the model would not score, by reason. None of them was examined; a refusal is counted, never silent.
     /// </summary>
-    std::map<utility::string_t, int32_t> getRefused() const;
+    std::map<utility::string_t, int64_t> getRefused() const;
     bool refusedIsSet() const;
     void unsetRefused();
-    void setRefused(std::map<utility::string_t, int32_t> value);
+    void setRefused(std::map<utility::string_t, int64_t> value);
 
     /// <summary>
     /// Sample is the share of below-the-line events retained for review, which is how the miss rate is measured rather than assumed.
@@ -209,7 +209,7 @@ protected:
     std::shared_ptr<RiskAggregates> m_Aggregates;
     bool m_AggregatesIsSet;
 
-    std::map<utility::string_t, int32_t> m_Blind;
+    std::map<utility::string_t, int64_t> m_Blind;
     bool m_BlindIsSet;
 
     double m_Cut;
@@ -218,22 +218,22 @@ protected:
     utility::string_t m_Descends;
     bool m_DescendsIsSet;
 
-    int32_t m_Disposed;
+    int64_t m_Disposed;
     bool m_DisposedIsSet;
 
-    int32_t m_Learned;
+    int64_t m_Learned;
     bool m_LearnedIsSet;
 
     bool m_Live;
     bool m_LiveIsSet;
 
-    int32_t m_Policy;
+    int64_t m_Policy;
     bool m_PolicyIsSet;
 
     double m_Realised;
     bool m_RealisedIsSet;
 
-    std::map<utility::string_t, int32_t> m_Refused;
+    std::map<utility::string_t, int64_t> m_Refused;
     bool m_RefusedIsSet;
 
     double m_Sample;

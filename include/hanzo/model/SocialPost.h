@@ -80,10 +80,10 @@ public:
     /// <summary>
     /// CreatedAt is when the post was created, as a unix timestamp in seconds.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// Error is why the last publish attempt failed, verbatim and bounded. Absent when no attempt has failed; cleared by a later success.
@@ -120,10 +120,10 @@ public:
     /// <summary>
     /// ScheduleAt is when the post is due, as a unix timestamp in SECONDS. 0 means unscheduled. It is meaningful only while the status is scheduled — a scheduled post whose time has arrived is published by the scheduler.
     /// </summary>
-    int32_t getScheduleAt() const;
+    int64_t getScheduleAt() const;
     bool scheduleAtIsSet() const;
     void unsetScheduleAt();
-    void setScheduleAt(int32_t value);
+    void setScheduleAt(int64_t value);
 
     /// <summary>
     /// Status is the post&#39;s lifecycle state: draft, scheduled, published or failed. A fifth, transient publishing state exists while a publish attempt holds the claim; it is never settable from a request and a caller sees it only if it reads a post mid-attempt.
@@ -136,10 +136,10 @@ public:
     /// <summary>
     /// UpdatedAt is when the post row last changed, as a unix timestamp in seconds. The listing is ordered by it, newest first.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
 
 protected:
@@ -152,7 +152,7 @@ protected:
     utility::string_t m_Content;
     bool m_ContentIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_Error;
@@ -167,13 +167,13 @@ protected:
     std::vector<utility::string_t> m_Media;
     bool m_MediaIsSet;
 
-    int32_t m_ScheduleAt;
+    int64_t m_ScheduleAt;
     bool m_ScheduleAtIsSet;
 
     utility::string_t m_Status;
     bool m_StatusIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
 };

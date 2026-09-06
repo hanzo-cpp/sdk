@@ -63,17 +63,17 @@ public:
     /// <summary>
     /// Timestamp is when the funnel was created, as a millisecond epoch. Zero takes the runtime&#39;s own clock.
     /// </summary>
-    int32_t getTimestamp() const;
+    int64_t getTimestamp() const;
     bool timestampIsSet() const;
     void unsetTimestamp();
-    void setTimestamp(int32_t value);
+    void setTimestamp(int64_t value);
 
 
 protected:
     utility::string_t m_Funnel_name;
     bool m_Funnel_nameIsSet;
 
-    int32_t m_Timestamp;
+    int64_t m_Timestamp;
     bool m_TimestampIsSet;
 
 };

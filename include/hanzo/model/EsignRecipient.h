@@ -111,10 +111,10 @@ public:
     /// <summary>
     /// SignedAt is when they finished or declined, in unix milliseconds; null while neither has happened.
     /// </summary>
-    int32_t getSignedAt() const;
+    int64_t getSignedAt() const;
     bool signedAtIsSet() const;
     void unsetSignedAt();
-    void setSignedAt(int32_t value);
+    void setSignedAt(int64_t value);
 
     /// <summary>
     /// SigningOrder is their position in a SEQUENTIAL document, null when they were added without one. A PARALLEL document ignores it.
@@ -155,7 +155,7 @@ protected:
     utility::string_t m_SendStatus;
     bool m_SendStatusIsSet;
 
-    int32_t m_SignedAt;
+    int64_t m_SignedAt;
     bool m_SignedAtIsSet;
 
     double m_SigningOrder;

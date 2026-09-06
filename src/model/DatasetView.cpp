@@ -22,7 +22,7 @@ DatasetView::DatasetView()
     m_CreatedAtIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
-    m_Items = 0;
+    m_Items = 0L;
     m_ItemsIsSet = false;
     m_MetadataIsSet = false;
     m_Name = utility::conversions::to_string_t("");
@@ -107,7 +107,7 @@ bool DatasetView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("items")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setItems;
+            int64_t refVal_setItems;
             ok &= ModelBase::fromJson(fieldValue, refVal_setItems);
             setItems(refVal_setItems);
             
@@ -205,7 +205,7 @@ bool DatasetView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("items"))))
     {
-        int32_t refVal_setItems;
+        int64_t refVal_setItems;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("items"))), refVal_setItems );
         setItems(refVal_setItems);
     }
@@ -273,13 +273,13 @@ void DatasetView::unsetDescription()
 {
     m_DescriptionIsSet = false;
 }
-int32_t DatasetView::getItems() const
+int64_t DatasetView::getItems() const
 {
     return m_Items;
 }
 
 
-void DatasetView::setItems(int32_t value)
+void DatasetView::setItems(int64_t value)
 {
     m_Items = value;
     m_ItemsIsSet = true;

@@ -18,7 +18,7 @@ namespace model {
 
 Usage::Usage()
 {
-    m_CostCents = 0;
+    m_CostCents = 0L;
     m_CostCentsIsSet = false;
     m_SeriesIsSet = false;
     m_StatusIsSet = false;
@@ -63,7 +63,7 @@ bool Usage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("costCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCostCents;
+            int64_t refVal_setCostCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCostCents);
             setCostCents(refVal_setCostCents);
             
@@ -126,7 +126,7 @@ bool Usage::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))))
     {
-        int32_t refVal_setCostCents;
+        int64_t refVal_setCostCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))), refVal_setCostCents );
         setCostCents(refVal_setCostCents);
     }
@@ -146,13 +146,13 @@ bool Usage::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
 }
 
 
-int32_t Usage::getCostCents() const
+int64_t Usage::getCostCents() const
 {
     return m_CostCents;
 }
 
 
-void Usage::setCostCents(int32_t value)
+void Usage::setCostCents(int64_t value)
 {
     m_CostCents = value;
     m_CostCentsIsSet = true;

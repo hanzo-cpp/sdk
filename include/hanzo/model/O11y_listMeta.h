@@ -54,47 +54,47 @@ public:
     /// <summary>
     /// Limit is how many rows one page holds.
     /// </summary>
-    int32_t getLimit() const;
+    int64_t getLimit() const;
     bool limitIsSet() const;
     void unsetLimit();
-    void setLimit(int32_t value);
+    void setLimit(int64_t value);
 
     /// <summary>
     /// Page is the 1-based page this response is.
     /// </summary>
-    int32_t getPage() const;
+    int64_t getPage() const;
     bool pageIsSet() const;
     void unsetPage();
-    void setPage(int32_t value);
+    void setPage(int64_t value);
 
     /// <summary>
     /// TotalItems is how many rows match in total.
     /// </summary>
-    int32_t getTotalItems() const;
+    int64_t getTotalItems() const;
     bool totalItemsIsSet() const;
     void unsetTotalItems();
-    void setTotalItems(int32_t value);
+    void setTotalItems(int64_t value);
 
     /// <summary>
     /// TotalPages is ceil(totalItems/limit), at least 1.
     /// </summary>
-    int32_t getTotalPages() const;
+    int64_t getTotalPages() const;
     bool totalPagesIsSet() const;
     void unsetTotalPages();
-    void setTotalPages(int32_t value);
+    void setTotalPages(int64_t value);
 
 
 protected:
-    int32_t m_Limit;
+    int64_t m_Limit;
     bool m_LimitIsSet;
 
-    int32_t m_Page;
+    int64_t m_Page;
     bool m_PageIsSet;
 
-    int32_t m_TotalItems;
+    int64_t m_TotalItems;
     bool m_TotalItemsIsSet;
 
-    int32_t m_TotalPages;
+    int64_t m_TotalPages;
     bool m_TotalPagesIsSet;
 
 };

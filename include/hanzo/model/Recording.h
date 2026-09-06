@@ -95,10 +95,10 @@ public:
     /// <summary>
     /// Started is when the recording began, as the media server reports it: its own &#x60;started_at&#x60;, verbatim and unconverted. LiveKit&#39;s egress service sets that field from UnixNano, and a conversion this side cannot check against the running server would be a number that looks right and is wrong by a factor of a billion. 0 means it has not started.
     /// </summary>
-    int32_t getStarted() const;
+    int64_t getStarted() const;
     bool startedIsSet() const;
     void unsetStarted();
-    void setStarted(int32_t value);
+    void setStarted(int64_t value);
 
     /// <summary>
     /// Status is the media server&#39;s own state name: EGRESS_STARTING, EGRESS_ACTIVE, EGRESS_ENDING, EGRESS_COMPLETE, EGRESS_FAILED, EGRESS_ABORTED or EGRESS_LIMIT_REACHED. It is passed through rather than folded into a vocabulary of ours, so the answer cannot mean something the media server did not say.
@@ -125,7 +125,7 @@ protected:
     utility::string_t m_Room;
     bool m_RoomIsSet;
 
-    int32_t m_Started;
+    int64_t m_Started;
     bool m_StartedIsSet;
 
     utility::string_t m_Status;

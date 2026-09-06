@@ -20,9 +20,9 @@ RedeemResult::RedeemResult()
 {
     m_AlreadyRedeemed = false;
     m_AlreadyRedeemedIsSet = false;
-    m_ChargeCents = 0;
+    m_ChargeCents = 0L;
     m_ChargeCentsIsSet = false;
-    m_DiscountCents = 0;
+    m_DiscountCents = 0L;
     m_DiscountCentsIsSet = false;
     m_RedemptionIsSet = false;
 }
@@ -82,7 +82,7 @@ bool RedeemResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("chargeCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setChargeCents;
+            int64_t refVal_setChargeCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setChargeCents);
             setChargeCents(refVal_setChargeCents);
             
@@ -93,7 +93,7 @@ bool RedeemResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("discountCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDiscountCents;
+            int64_t refVal_setDiscountCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDiscountCents);
             setDiscountCents(refVal_setDiscountCents);
             
@@ -155,13 +155,13 @@ bool RedeemResult::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("chargeCents"))))
     {
-        int32_t refVal_setChargeCents;
+        int64_t refVal_setChargeCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("chargeCents"))), refVal_setChargeCents );
         setChargeCents(refVal_setChargeCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("discountCents"))))
     {
-        int32_t refVal_setDiscountCents;
+        int64_t refVal_setDiscountCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("discountCents"))), refVal_setDiscountCents );
         setDiscountCents(refVal_setDiscountCents);
     }
@@ -196,13 +196,13 @@ void RedeemResult::unsetAlreadyRedeemed()
 {
     m_AlreadyRedeemedIsSet = false;
 }
-int32_t RedeemResult::getChargeCents() const
+int64_t RedeemResult::getChargeCents() const
 {
     return m_ChargeCents;
 }
 
 
-void RedeemResult::setChargeCents(int32_t value)
+void RedeemResult::setChargeCents(int64_t value)
 {
     m_ChargeCents = value;
     m_ChargeCentsIsSet = true;
@@ -217,13 +217,13 @@ void RedeemResult::unsetChargeCents()
 {
     m_ChargeCentsIsSet = false;
 }
-int32_t RedeemResult::getDiscountCents() const
+int64_t RedeemResult::getDiscountCents() const
 {
     return m_DiscountCents;
 }
 
 
-void RedeemResult::setDiscountCents(int32_t value)
+void RedeemResult::setDiscountCents(int64_t value)
 {
     m_DiscountCents = value;
     m_DiscountCentsIsSet = true;

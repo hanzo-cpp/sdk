@@ -58,10 +58,10 @@ public:
     /// <summary>
     /// ColdStorageDurationDays is how old data must be before it moves, in days.
     /// </summary>
-    int32_t getColdStorageDurationDays() const;
+    int64_t getColdStorageDurationDays() const;
     bool coldStorageDurationDaysIsSet() const;
     void unsetColdStorageDurationDays();
-    void setColdStorageDurationDays(int32_t value);
+    void setColdStorageDurationDays(int64_t value);
 
     /// <summary>
     /// ColdStorageVolume names the volume aged data moves to, when set.
@@ -74,10 +74,10 @@ public:
     /// <summary>
     /// DefaultTTLDays is the retention for data no rule matches, in days.
     /// </summary>
-    int32_t getDefaultTTLDays() const;
+    int64_t getDefaultTTLDays() const;
     bool defaultTTLDaysIsSet() const;
     void unsetDefaultTTLDays();
-    void setDefaultTTLDays(int32_t value);
+    void setDefaultTTLDays(int64_t value);
 
     /// <summary>
     /// TTLConditions are ordered per-label rules; the first matching rule wins.
@@ -97,13 +97,13 @@ public:
 
 
 protected:
-    int32_t m_ColdStorageDurationDays;
+    int64_t m_ColdStorageDurationDays;
     bool m_ColdStorageDurationDaysIsSet;
 
     utility::string_t m_ColdStorageVolume;
     bool m_ColdStorageVolumeIsSet;
 
-    int32_t m_DefaultTTLDays;
+    int64_t m_DefaultTTLDays;
     bool m_DefaultTTLDaysIsSet;
 
     std::vector<std::shared_ptr<O11y_O11yRetentionRule>> m_TtlConditions;

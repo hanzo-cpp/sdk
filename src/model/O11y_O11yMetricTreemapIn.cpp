@@ -18,14 +18,14 @@ namespace model {
 
 O11y_O11yMetricTreemapIn::O11y_O11yMetricTreemapIn()
 {
-    m_End = 0;
+    m_End = 0L;
     m_EndIsSet = false;
     m_FilterIsSet = false;
-    m_Limit = 0;
+    m_Limit = 0L;
     m_LimitIsSet = false;
     m_Mode = utility::conversions::to_string_t("");
     m_ModeIsSet = false;
-    m_Start = 0;
+    m_Start = 0L;
     m_StartIsSet = false;
 }
 
@@ -78,7 +78,7 @@ bool O11y_O11yMetricTreemapIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("end")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setEnd;
+            int64_t refVal_setEnd;
             ok &= ModelBase::fromJson(fieldValue, refVal_setEnd);
             setEnd(refVal_setEnd);
             
@@ -100,7 +100,7 @@ bool O11y_O11yMetricTreemapIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("limit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLimit;
+            int64_t refVal_setLimit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLimit);
             setLimit(refVal_setLimit);
             
@@ -122,7 +122,7 @@ bool O11y_O11yMetricTreemapIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("start")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStart;
+            int64_t refVal_setStart;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStart);
             setStart(refVal_setStart);
             
@@ -171,7 +171,7 @@ bool O11y_O11yMetricTreemapIn::fromMultiPart(std::shared_ptr<MultipartFormData> 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("end"))))
     {
-        int32_t refVal_setEnd;
+        int64_t refVal_setEnd;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("end"))), refVal_setEnd );
         setEnd(refVal_setEnd);
     }
@@ -183,7 +183,7 @@ bool O11y_O11yMetricTreemapIn::fromMultiPart(std::shared_ptr<MultipartFormData> 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("limit"))))
     {
-        int32_t refVal_setLimit;
+        int64_t refVal_setLimit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("limit"))), refVal_setLimit );
         setLimit(refVal_setLimit);
     }
@@ -195,7 +195,7 @@ bool O11y_O11yMetricTreemapIn::fromMultiPart(std::shared_ptr<MultipartFormData> 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("start"))))
     {
-        int32_t refVal_setStart;
+        int64_t refVal_setStart;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("start"))), refVal_setStart );
         setStart(refVal_setStart);
     }
@@ -203,13 +203,13 @@ bool O11y_O11yMetricTreemapIn::fromMultiPart(std::shared_ptr<MultipartFormData> 
 }
 
 
-int32_t O11y_O11yMetricTreemapIn::getEnd() const
+int64_t O11y_O11yMetricTreemapIn::getEnd() const
 {
     return m_End;
 }
 
 
-void O11y_O11yMetricTreemapIn::setEnd(int32_t value)
+void O11y_O11yMetricTreemapIn::setEnd(int64_t value)
 {
     m_End = value;
     m_EndIsSet = true;
@@ -245,13 +245,13 @@ void O11y_O11yMetricTreemapIn::unsetFilter()
 {
     m_FilterIsSet = false;
 }
-int32_t O11y_O11yMetricTreemapIn::getLimit() const
+int64_t O11y_O11yMetricTreemapIn::getLimit() const
 {
     return m_Limit;
 }
 
 
-void O11y_O11yMetricTreemapIn::setLimit(int32_t value)
+void O11y_O11yMetricTreemapIn::setLimit(int64_t value)
 {
     m_Limit = value;
     m_LimitIsSet = true;
@@ -287,13 +287,13 @@ void O11y_O11yMetricTreemapIn::unsetMode()
 {
     m_ModeIsSet = false;
 }
-int32_t O11y_O11yMetricTreemapIn::getStart() const
+int64_t O11y_O11yMetricTreemapIn::getStart() const
 {
     return m_Start;
 }
 
 
-void O11y_O11yMetricTreemapIn::setStart(int32_t value)
+void O11y_O11yMetricTreemapIn::setStart(int64_t value)
 {
     m_Start = value;
     m_StartIsSet = true;

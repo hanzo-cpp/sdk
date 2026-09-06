@@ -111,10 +111,10 @@ public:
     /// <summary>
     /// UpdatedAt is the unix second the entry last changed.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdated_at();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
 
 protected:
@@ -139,7 +139,7 @@ protected:
     utility::string_t m_Tier;
     bool m_TierIsSet;
 
-    int32_t m_Updated_at;
+    int64_t m_Updated_at;
     bool m_Updated_atIsSet;
 
 };

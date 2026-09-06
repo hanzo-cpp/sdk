@@ -71,18 +71,18 @@ public:
     /// <summary>
     /// CreatedAt is Unix SECONDS, stamped by the ingest goroutine when the message was accepted — not the transport&#39;s own send time. Rows are dropped 30 days after it.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// ID is the store&#39;s row id, assigned on insert — SERVER-SET, and the cursor: pass a page&#39;s last id back as &#x60;since&#x60;. It rises with arrival order but is not contiguous, because one sequence is shared by every org in the store and a caller reads only its own rows.
     /// </summary>
-    int32_t getId() const;
+    int64_t getId() const;
     bool idIsSet() const;
     void unsetId();
-    void setId(int32_t value);
+    void setId(int64_t value);
 
     /// <summary>
     /// ReplyTo is the transport&#39;s reply target for this message: Slack&#39;s thread_ts, or the Telegram message id it arrived as. Send it back as the body&#39;s &#x60;replyTo&#x60; to answer in the SAME thread. Empty means the transport reported none — a top-level Slack message, and every Discord and Teams message, since neither carries one — and a reply then lands at the top level of the room.
@@ -140,10 +140,10 @@ protected:
     utility::string_t m_Channel;
     bool m_ChannelIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
-    int32_t m_Id;
+    int64_t m_Id;
     bool m_IdIsSet;
 
     utility::string_t m_ReplyTo;

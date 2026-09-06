@@ -65,28 +65,28 @@ public:
     /// <summary>
     /// Limit is the page cap the read ran with.
     /// </summary>
-    int32_t getLimit() const;
+    int64_t getLimit() const;
     bool limitIsSet() const;
     void unsetLimit();
-    void setLimit(int32_t value);
+    void setLimit(int64_t value);
 
     /// <summary>
     /// Offset is the row offset this page started at.
     /// </summary>
-    int32_t getOffset() const;
+    int64_t getOffset() const;
     bool offsetIsSet() const;
     void unsetOffset();
-    void setOffset(int32_t value);
+    void setOffset(int64_t value);
 
 
 protected:
     std::vector<std::shared_ptr<O11y_O11yLLMUser>> m_Items;
     bool m_ItemsIsSet;
 
-    int32_t m_Limit;
+    int64_t m_Limit;
     bool m_LimitIsSet;
 
-    int32_t m_Offset;
+    int64_t m_Offset;
     bool m_OffsetIsSet;
 
 };

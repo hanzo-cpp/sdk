@@ -53,10 +53,10 @@ public:
     /// O11y_JobListRecord members
 
 
-    int32_t getActivePods() const;
+    int64_t getActivePods() const;
     bool activePodsIsSet() const;
     void unsetActivePods();
-    void setActivePods(int32_t value);
+    void setActivePods(int64_t value);
 
     double getCpuLimit() const;
     bool cpuLimitIsSet() const;
@@ -73,15 +73,15 @@ public:
     void unsetCpuUsage();
     void setCpuUsage(double value);
 
-    int32_t getDesiredSuccessfulPods() const;
+    int64_t getDesiredSuccessfulPods() const;
     bool desiredSuccessfulPodsIsSet() const;
     void unsetDesiredSuccessfulPods();
-    void setDesiredSuccessfulPods(int32_t value);
+    void setDesiredSuccessfulPods(int64_t value);
 
-    int32_t getFailedPods() const;
+    int64_t getFailedPods() const;
     bool failedPodsIsSet() const;
     void unsetFailedPods();
-    void setFailedPods(int32_t value);
+    void setFailedPods(int64_t value);
 
     utility::string_t getJobName() const;
     bool jobNameIsSet() const;
@@ -108,19 +108,19 @@ public:
     void unsetMeta();
     void setMeta(const std::map<utility::string_t, utility::string_t>& value);
 
-    int32_t getRestarts() const;
+    int64_t getRestarts() const;
     bool restartsIsSet() const;
     void unsetRestarts();
-    void setRestarts(int32_t value);
+    void setRestarts(int64_t value);
 
-    int32_t getSuccessfulPods() const;
+    int64_t getSuccessfulPods() const;
     bool successfulPodsIsSet() const;
     void unsetSuccessfulPods();
-    void setSuccessfulPods(int32_t value);
+    void setSuccessfulPods(int64_t value);
 
 
 protected:
-    int32_t m_ActivePods;
+    int64_t m_ActivePods;
     bool m_ActivePodsIsSet;
 
     double m_CpuLimit;
@@ -132,10 +132,10 @@ protected:
     double m_CpuUsage;
     bool m_CpuUsageIsSet;
 
-    int32_t m_DesiredSuccessfulPods;
+    int64_t m_DesiredSuccessfulPods;
     bool m_DesiredSuccessfulPodsIsSet;
 
-    int32_t m_FailedPods;
+    int64_t m_FailedPods;
     bool m_FailedPodsIsSet;
 
     utility::string_t m_JobName;
@@ -153,10 +153,10 @@ protected:
     std::map<utility::string_t, utility::string_t> m_Meta;
     bool m_MetaIsSet;
 
-    int32_t m_Restarts;
+    int64_t m_Restarts;
     bool m_RestartsIsSet;
 
-    int32_t m_SuccessfulPods;
+    int64_t m_SuccessfulPods;
     bool m_SuccessfulPodsIsSet;
 
 };

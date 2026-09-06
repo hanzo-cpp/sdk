@@ -18,15 +18,15 @@ namespace model {
 
 CaptableHolding::CaptableHolding()
 {
-    m_FullyDiluted = 0;
+    m_FullyDiluted = 0L;
     m_FullyDilutedIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_Options = 0;
+    m_Options = 0L;
     m_OptionsIsSet = false;
     m_OwnershipPct = 0.0;
     m_OwnershipPctIsSet = false;
-    m_Shares = 0;
+    m_Shares = 0L;
     m_SharesIsSet = false;
     m_StakeholderId = utility::conversions::to_string_t("");
     m_StakeholderIdIsSet = false;
@@ -86,7 +86,7 @@ bool CaptableHolding::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("fullyDiluted")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFullyDiluted;
+            int64_t refVal_setFullyDiluted;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFullyDiluted);
             setFullyDiluted(refVal_setFullyDiluted);
             
@@ -108,7 +108,7 @@ bool CaptableHolding::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("options")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOptions;
+            int64_t refVal_setOptions;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOptions);
             setOptions(refVal_setOptions);
             
@@ -130,7 +130,7 @@ bool CaptableHolding::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("shares")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setShares;
+            int64_t refVal_setShares;
             ok &= ModelBase::fromJson(fieldValue, refVal_setShares);
             setShares(refVal_setShares);
             
@@ -194,7 +194,7 @@ bool CaptableHolding::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("fullyDiluted"))))
     {
-        int32_t refVal_setFullyDiluted;
+        int64_t refVal_setFullyDiluted;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("fullyDiluted"))), refVal_setFullyDiluted );
         setFullyDiluted(refVal_setFullyDiluted);
     }
@@ -206,7 +206,7 @@ bool CaptableHolding::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("options"))))
     {
-        int32_t refVal_setOptions;
+        int64_t refVal_setOptions;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("options"))), refVal_setOptions );
         setOptions(refVal_setOptions);
     }
@@ -218,7 +218,7 @@ bool CaptableHolding::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("shares"))))
     {
-        int32_t refVal_setShares;
+        int64_t refVal_setShares;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("shares"))), refVal_setShares );
         setShares(refVal_setShares);
     }
@@ -232,13 +232,13 @@ bool CaptableHolding::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 }
 
 
-int32_t CaptableHolding::getFullyDiluted() const
+int64_t CaptableHolding::getFullyDiluted() const
 {
     return m_FullyDiluted;
 }
 
 
-void CaptableHolding::setFullyDiluted(int32_t value)
+void CaptableHolding::setFullyDiluted(int64_t value)
 {
     m_FullyDiluted = value;
     m_FullyDilutedIsSet = true;
@@ -274,13 +274,13 @@ void CaptableHolding::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t CaptableHolding::getOptions() const
+int64_t CaptableHolding::getOptions() const
 {
     return m_Options;
 }
 
 
-void CaptableHolding::setOptions(int32_t value)
+void CaptableHolding::setOptions(int64_t value)
 {
     m_Options = value;
     m_OptionsIsSet = true;
@@ -316,13 +316,13 @@ void CaptableHolding::unsetOwnershipPct()
 {
     m_OwnershipPctIsSet = false;
 }
-int32_t CaptableHolding::getShares() const
+int64_t CaptableHolding::getShares() const
 {
     return m_Shares;
 }
 
 
-void CaptableHolding::setShares(int32_t value)
+void CaptableHolding::setShares(int64_t value)
 {
     m_Shares = value;
     m_SharesIsSet = true;

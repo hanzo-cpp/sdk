@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// CreatedAt is the unix second the record was created.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// EvidenceDocID references an evidence document in the org&#39;s sealed data room.
@@ -79,10 +79,10 @@ public:
     /// <summary>
     /// ExpiresAt is the unix second a confirmation ages out; 0 means none.
     /// </summary>
-    int32_t getExpiresAt() const;
+    int64_t getExpiresAt() const;
     bool expiresAtIsSet() const;
     void unsetExpiresAt();
-    void setExpiresAt(int32_t value);
+    void setExpiresAt(int64_t value);
 
     /// <summary>
     /// ID is the accreditation record&#39;s opaque id.
@@ -135,23 +135,23 @@ public:
     /// <summary>
     /// UpdatedAt is the unix second the record last changed.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
 
 protected:
     utility::string_t m_Basis;
     bool m_BasisIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_EvidenceDocId;
     bool m_EvidenceDocIdIsSet;
 
-    int32_t m_ExpiresAt;
+    int64_t m_ExpiresAt;
     bool m_ExpiresAtIsSet;
 
     utility::string_t m_Id;
@@ -172,7 +172,7 @@ protected:
     utility::string_t m_SubjectId;
     bool m_SubjectIdIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
 };

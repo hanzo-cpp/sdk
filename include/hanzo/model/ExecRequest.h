@@ -96,10 +96,10 @@ public:
     /// <summary>
     /// TimeoutSec bounds the run in seconds. Zero takes the default.
     /// </summary>
-    int32_t getTimeoutSec() const;
+    int64_t getTimeoutSec() const;
     bool timeoutSecIsSet() const;
     void unsetTimeoutSec();
-    void setTimeoutSec(int32_t value);
+    void setTimeoutSec(int64_t value);
 
 
 protected:
@@ -118,7 +118,7 @@ protected:
     utility::string_t m_Stdin;
     bool m_StdinIsSet;
 
-    int32_t m_TimeoutSec;
+    int64_t m_TimeoutSec;
     bool m_TimeoutSecIsSet;
 
 };

@@ -25,7 +25,7 @@ O11y_O11ySpanPercentileIn::O11y_O11ySpanPercentileIn()
     m_ResourceAttributesIsSet = false;
     m_ServiceName = utility::conversions::to_string_t("");
     m_ServiceNameIsSet = false;
-    m_SpanDuration = 0;
+    m_SpanDuration = 0L;
     m_SpanDurationIsSet = false;
     m_Start = 0;
     m_StartIsSet = false;
@@ -129,7 +129,7 @@ bool O11y_O11ySpanPercentileIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("spanDuration")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSpanDuration;
+            int64_t refVal_setSpanDuration;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSpanDuration);
             setSpanDuration(refVal_setSpanDuration);
             
@@ -217,7 +217,7 @@ bool O11y_O11ySpanPercentileIn::fromMultiPart(std::shared_ptr<MultipartFormData>
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("spanDuration"))))
     {
-        int32_t refVal_setSpanDuration;
+        int64_t refVal_setSpanDuration;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("spanDuration"))), refVal_setSpanDuration );
         setSpanDuration(refVal_setSpanDuration);
     }
@@ -315,13 +315,13 @@ void O11y_O11ySpanPercentileIn::unsetServiceName()
 {
     m_ServiceNameIsSet = false;
 }
-int32_t O11y_O11ySpanPercentileIn::getSpanDuration() const
+int64_t O11y_O11ySpanPercentileIn::getSpanDuration() const
 {
     return m_SpanDuration;
 }
 
 
-void O11y_O11ySpanPercentileIn::setSpanDuration(int32_t value)
+void O11y_O11ySpanPercentileIn::setSpanDuration(int64_t value)
 {
     m_SpanDuration = value;
     m_SpanDurationIsSet = true;

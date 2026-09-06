@@ -24,15 +24,15 @@ FunctionView::FunctionView()
     m_CreatedAtIsSet = false;
     m_Endpoint = utility::conversions::to_string_t("");
     m_EndpointIsSet = false;
-    m_EnvCount = 0;
+    m_EnvCount = 0L;
     m_EnvCountIsSet = false;
     m_Environment = utility::conversions::to_string_t("");
     m_EnvironmentIsSet = false;
-    m_Errors7d = 0;
+    m_Errors7d = 0L;
     m_Errors7dIsSet = false;
     m_Image = utility::conversions::to_string_t("");
     m_ImageIsSet = false;
-    m_Invocations7d = 0;
+    m_Invocations7d = 0L;
     m_Invocations7dIsSet = false;
     m_LastDeployedAt = utility::conversions::to_string_t("");
     m_LastDeployedAtIsSet = false;
@@ -48,7 +48,7 @@ FunctionView::FunctionView()
     m_SuccessRateIsSet = false;
     m_Target = utility::conversions::to_string_t("");
     m_TargetIsSet = false;
-    m_TimeoutSec = 0;
+    m_TimeoutSec = 0L;
     m_TimeoutSecIsSet = false;
 }
 
@@ -189,7 +189,7 @@ bool FunctionView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("envCount")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setEnvCount;
+            int64_t refVal_setEnvCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setEnvCount);
             setEnvCount(refVal_setEnvCount);
             
@@ -211,7 +211,7 @@ bool FunctionView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("errors7d")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setErrors7d;
+            int64_t refVal_setErrors7d;
             ok &= ModelBase::fromJson(fieldValue, refVal_setErrors7d);
             setErrors7d(refVal_setErrors7d);
             
@@ -233,7 +233,7 @@ bool FunctionView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("invocations7d")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setInvocations7d;
+            int64_t refVal_setInvocations7d;
             ok &= ModelBase::fromJson(fieldValue, refVal_setInvocations7d);
             setInvocations7d(refVal_setInvocations7d);
             
@@ -321,7 +321,7 @@ bool FunctionView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("timeoutSec")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTimeoutSec;
+            int64_t refVal_setTimeoutSec;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTimeoutSec);
             setTimeoutSec(refVal_setTimeoutSec);
             
@@ -432,7 +432,7 @@ bool FunctionView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("envCount"))))
     {
-        int32_t refVal_setEnvCount;
+        int64_t refVal_setEnvCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("envCount"))), refVal_setEnvCount );
         setEnvCount(refVal_setEnvCount);
     }
@@ -444,7 +444,7 @@ bool FunctionView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("errors7d"))))
     {
-        int32_t refVal_setErrors7d;
+        int64_t refVal_setErrors7d;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("errors7d"))), refVal_setErrors7d );
         setErrors7d(refVal_setErrors7d);
     }
@@ -456,7 +456,7 @@ bool FunctionView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("invocations7d"))))
     {
-        int32_t refVal_setInvocations7d;
+        int64_t refVal_setInvocations7d;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("invocations7d"))), refVal_setInvocations7d );
         setInvocations7d(refVal_setInvocations7d);
     }
@@ -504,7 +504,7 @@ bool FunctionView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("timeoutSec"))))
     {
-        int32_t refVal_setTimeoutSec;
+        int64_t refVal_setTimeoutSec;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("timeoutSec"))), refVal_setTimeoutSec );
         setTimeoutSec(refVal_setTimeoutSec);
     }
@@ -575,13 +575,13 @@ void FunctionView::unsetEndpoint()
 {
     m_EndpointIsSet = false;
 }
-int32_t FunctionView::getEnvCount() const
+int64_t FunctionView::getEnvCount() const
 {
     return m_EnvCount;
 }
 
 
-void FunctionView::setEnvCount(int32_t value)
+void FunctionView::setEnvCount(int64_t value)
 {
     m_EnvCount = value;
     m_EnvCountIsSet = true;
@@ -617,13 +617,13 @@ void FunctionView::unsetEnvironment()
 {
     m_EnvironmentIsSet = false;
 }
-int32_t FunctionView::getErrors7d() const
+int64_t FunctionView::getErrors7d() const
 {
     return m_Errors7d;
 }
 
 
-void FunctionView::setErrors7d(int32_t value)
+void FunctionView::setErrors7d(int64_t value)
 {
     m_Errors7d = value;
     m_Errors7dIsSet = true;
@@ -659,13 +659,13 @@ void FunctionView::unsetImage()
 {
     m_ImageIsSet = false;
 }
-int32_t FunctionView::getInvocations7d() const
+int64_t FunctionView::getInvocations7d() const
 {
     return m_Invocations7d;
 }
 
 
-void FunctionView::setInvocations7d(int32_t value)
+void FunctionView::setInvocations7d(int64_t value)
 {
     m_Invocations7d = value;
     m_Invocations7dIsSet = true;
@@ -827,13 +827,13 @@ void FunctionView::unsetTarget()
 {
     m_TargetIsSet = false;
 }
-int32_t FunctionView::getTimeoutSec() const
+int64_t FunctionView::getTimeoutSec() const
 {
     return m_TimeoutSec;
 }
 
 
-void FunctionView::setTimeoutSec(int32_t value)
+void FunctionView::setTimeoutSec(int64_t value)
 {
     m_TimeoutSec = value;
     m_TimeoutSecIsSet = true;

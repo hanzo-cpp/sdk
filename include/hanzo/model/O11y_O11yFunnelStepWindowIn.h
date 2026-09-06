@@ -51,38 +51,38 @@ public:
     /// O11y_O11yFunnelStepWindowIn members
 
 
-    int32_t getEndTime() const;
+    int64_t getEndTime() const;
     bool endTimeIsSet() const;
     void unsetEnd_time();
-    void setEndTime(int32_t value);
+    void setEndTime(int64_t value);
 
-    int32_t getStartTime() const;
+    int64_t getStartTime() const;
     bool startTimeIsSet() const;
     void unsetStart_time();
-    void setStartTime(int32_t value);
+    void setStartTime(int64_t value);
 
-    int32_t getStepEnd() const;
+    int64_t getStepEnd() const;
     bool stepEndIsSet() const;
     void unsetStep_end();
-    void setStepEnd(int32_t value);
+    void setStepEnd(int64_t value);
 
-    int32_t getStepStart() const;
+    int64_t getStepStart() const;
     bool stepStartIsSet() const;
     void unsetStep_start();
-    void setStepStart(int32_t value);
+    void setStepStart(int64_t value);
 
 
 protected:
-    int32_t m_End_time;
+    int64_t m_End_time;
     bool m_End_timeIsSet;
 
-    int32_t m_Start_time;
+    int64_t m_Start_time;
     bool m_Start_timeIsSet;
 
-    int32_t m_Step_end;
+    int64_t m_Step_end;
     bool m_Step_endIsSet;
 
-    int32_t m_Step_start;
+    int64_t m_Step_start;
     bool m_Step_startIsSet;
 
 };

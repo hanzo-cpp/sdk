@@ -57,10 +57,10 @@ public:
     void unsetActive();
     void setActive(bool value);
 
-    int32_t getAmountCents() const;
+    int64_t getAmountCents() const;
     bool amountCentsIsSet() const;
     void unsetAmountCents();
-    void setAmountCents(int32_t value);
+    void setAmountCents(int64_t value);
 
     utility::string_t getCreatedAt() const;
     bool createdAtIsSet() const;
@@ -92,15 +92,15 @@ public:
     void unsetName();
     void setName(const utility::string_t& value);
 
-    int32_t getPriority() const;
+    int64_t getPriority() const;
     bool priorityIsSet() const;
     void unsetPriority();
-    void setPriority(int32_t value);
+    void setPriority(int64_t value);
 
-    int32_t getRemainingCents() const;
+    int64_t getRemainingCents() const;
     bool remainingCentsIsSet() const;
     void unsetRemainingCents();
-    void setRemainingCents(int32_t value);
+    void setRemainingCents(int64_t value);
 
     utility::string_t getTags() const;
     bool tagsIsSet() const;
@@ -122,7 +122,7 @@ protected:
     bool m_Active;
     bool m_ActiveIsSet;
 
-    int32_t m_AmountCents;
+    int64_t m_AmountCents;
     bool m_AmountCentsIsSet;
 
     utility::string_t m_CreatedAt;
@@ -143,10 +143,10 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_Priority;
+    int64_t m_Priority;
     bool m_PriorityIsSet;
 
-    int32_t m_RemainingCents;
+    int64_t m_RemainingCents;
     bool m_RemainingCentsIsSet;
 
     utility::string_t m_Tags;

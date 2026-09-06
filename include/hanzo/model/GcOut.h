@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// SizeBytes is the size measured AFTER the repack — usually smaller, since repacking drops the packs it supersedes.
     /// </summary>
-    int32_t getSizeBytes() const;
+    int64_t getSizeBytes() const;
     bool sizeBytesIsSet() const;
     void unsetSizeBytes();
-    void setSizeBytes(int32_t value);
+    void setSizeBytes(int64_t value);
 
 
 protected:
@@ -84,7 +84,7 @@ protected:
     utility::string_t m_Repo;
     bool m_RepoIsSet;
 
-    int32_t m_SizeBytes;
+    int64_t m_SizeBytes;
     bool m_SizeBytesIsSet;
 
 };

@@ -20,7 +20,7 @@ O11y_O11yOccurrenceFrame::O11y_O11yOccurrenceFrame()
 {
     m_AbsPath = utility::conversions::to_string_t("");
     m_AbsPathIsSet = false;
-    m_Colno = 0;
+    m_Colno = 0L;
     m_ColnoIsSet = false;
     m_Filename = utility::conversions::to_string_t("");
     m_FilenameIsSet = false;
@@ -28,7 +28,7 @@ O11y_O11yOccurrenceFrame::O11y_O11yOccurrenceFrame()
     m_FunctionIsSet = false;
     m_InApp = false;
     m_InAppIsSet = false;
-    m_Lineno = 0;
+    m_Lineno = 0L;
     m_LinenoIsSet = false;
     m_Module = utility::conversions::to_string_t("");
     m_ModuleIsSet = false;
@@ -104,7 +104,7 @@ bool O11y_O11yOccurrenceFrame::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("colno")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setColno;
+            int64_t refVal_setColno;
             ok &= ModelBase::fromJson(fieldValue, refVal_setColno);
             setColno(refVal_setColno);
             
@@ -148,7 +148,7 @@ bool O11y_O11yOccurrenceFrame::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("lineno")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLineno;
+            int64_t refVal_setLineno;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLineno);
             setLineno(refVal_setLineno);
             
@@ -222,7 +222,7 @@ bool O11y_O11yOccurrenceFrame::fromMultiPart(std::shared_ptr<MultipartFormData> 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("colno"))))
     {
-        int32_t refVal_setColno;
+        int64_t refVal_setColno;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("colno"))), refVal_setColno );
         setColno(refVal_setColno);
     }
@@ -246,7 +246,7 @@ bool O11y_O11yOccurrenceFrame::fromMultiPart(std::shared_ptr<MultipartFormData> 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("lineno"))))
     {
-        int32_t refVal_setLineno;
+        int64_t refVal_setLineno;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("lineno"))), refVal_setLineno );
         setLineno(refVal_setLineno);
     }
@@ -281,13 +281,13 @@ void O11y_O11yOccurrenceFrame::unsetAbsPath()
 {
     m_AbsPathIsSet = false;
 }
-int32_t O11y_O11yOccurrenceFrame::getColno() const
+int64_t O11y_O11yOccurrenceFrame::getColno() const
 {
     return m_Colno;
 }
 
 
-void O11y_O11yOccurrenceFrame::setColno(int32_t value)
+void O11y_O11yOccurrenceFrame::setColno(int64_t value)
 {
     m_Colno = value;
     m_ColnoIsSet = true;
@@ -365,13 +365,13 @@ void O11y_O11yOccurrenceFrame::unsetInApp()
 {
     m_InAppIsSet = false;
 }
-int32_t O11y_O11yOccurrenceFrame::getLineno() const
+int64_t O11y_O11yOccurrenceFrame::getLineno() const
 {
     return m_Lineno;
 }
 
 
-void O11y_O11yOccurrenceFrame::setLineno(int32_t value)
+void O11y_O11yOccurrenceFrame::setLineno(int64_t value)
 {
     m_Lineno = value;
     m_LinenoIsSet = true;

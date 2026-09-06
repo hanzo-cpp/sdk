@@ -52,18 +52,18 @@ public:
     /// ChainStatus members
 
 
-    int32_t getChainId() const;
+    int64_t getChainId() const;
     bool chainIdIsSet() const;
     void unsetChainId();
-    void setChainId(int32_t value);
+    void setChainId(int64_t value);
 
     /// <summary>
     /// Height is the latest block, omitted when the chain did not answer rather than reported as zero — a zero height is a real value on a fresh chain.
     /// </summary>
-    int32_t getHeight() const;
+    int64_t getHeight() const;
     bool heightIsSet() const;
     void unsetHeight();
-    void setHeight(int32_t value);
+    void setHeight(int64_t value);
 
     utility::string_t getId() const;
     bool idIsSet() const;
@@ -85,10 +85,10 @@ public:
 
 
 protected:
-    int32_t m_ChainId;
+    int64_t m_ChainId;
     bool m_ChainIdIsSet;
 
-    int32_t m_Height;
+    int64_t m_Height;
     bool m_HeightIsSet;
 
     utility::string_t m_Id;

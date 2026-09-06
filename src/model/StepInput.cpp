@@ -20,7 +20,7 @@ StepInput::StepInput()
 {
     m_Body = utility::conversions::to_string_t("");
     m_BodyIsSet = false;
-    m_DelaySeconds = 0;
+    m_DelaySeconds = 0L;
     m_DelaySecondsIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
@@ -83,7 +83,7 @@ bool StepInput::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("delaySeconds")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDelaySeconds;
+            int64_t refVal_setDelaySeconds;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDelaySeconds);
             setDelaySeconds(refVal_setDelaySeconds);
             
@@ -156,7 +156,7 @@ bool StepInput::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("delaySeconds"))))
     {
-        int32_t refVal_setDelaySeconds;
+        int64_t refVal_setDelaySeconds;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("delaySeconds"))), refVal_setDelaySeconds );
         setDelaySeconds(refVal_setDelaySeconds);
     }
@@ -197,13 +197,13 @@ void StepInput::unsetBody()
 {
     m_BodyIsSet = false;
 }
-int32_t StepInput::getDelaySeconds() const
+int64_t StepInput::getDelaySeconds() const
 {
     return m_DelaySeconds;
 }
 
 
-void StepInput::setDelaySeconds(int32_t value)
+void StepInput::setDelaySeconds(int64_t value)
 {
     m_DelaySeconds = value;
     m_DelaySecondsIsSet = true;

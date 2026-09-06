@@ -471,7 +471,7 @@ pplx::task<std::shared_ptr<RiskLabelOut>> LabelApi::riskLabel(std::shared_ptr<Ri
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<RiskLabelCoverage>> LabelApi::riskLabelCoverage(boost::optional<utility::string_t> from, boost::optional<utility::string_t> to, boost::optional<int32_t> horizon) const
+pplx::task<std::shared_ptr<RiskLabelCoverage>> LabelApi::riskLabelCoverage(boost::optional<utility::string_t> from, boost::optional<utility::string_t> to, boost::optional<int64_t> horizon) const
 {
 
 
@@ -729,7 +729,7 @@ pplx::task<std::shared_ptr<RiskLabelVocabulary>> LabelApi::riskLabelVocabulary()
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<RiskLabelsOut>> LabelApi::riskLabels(boost::optional<utility::string_t> kind, boost::optional<utility::string_t> subject, boost::optional<utility::string_t> source, boost::optional<utility::string_t> from, boost::optional<utility::string_t> to, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<RiskLabelsOut>> LabelApi::riskLabels(boost::optional<utility::string_t> kind, boost::optional<utility::string_t> subject, boost::optional<utility::string_t> source, boost::optional<utility::string_t> from, boost::optional<utility::string_t> to, boost::optional<int64_t> limit) const
 {
 
 

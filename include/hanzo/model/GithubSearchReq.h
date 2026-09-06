@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// Limit caps the answer; 0 takes the default and anything above the ceiling is clamped rather than refused.
     /// </summary>
-    int32_t getLimit() const;
+    int64_t getLimit() const;
     bool limitIsSet() const;
     void unsetLimit();
-    void setLimit(int32_t value);
+    void setLimit(int64_t value);
 
     /// <summary>
     /// Q is GitHub&#39;s own search syntax, passed through: \&quot;tetris language:go\&quot;, \&quot;org:hanzoai stars:&gt;10\&quot;. Passing it through rather than inventing a vocabulary means one thing to learn, and it is theirs.
@@ -70,7 +70,7 @@ public:
 
 
 protected:
-    int32_t m_Limit;
+    int64_t m_Limit;
     bool m_LimitIsSet;
 
     utility::string_t m_q;

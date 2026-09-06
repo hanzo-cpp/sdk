@@ -155,7 +155,7 @@ public:
     /// </remarks>
     /// <param name="uid"></param>
     pplx::task<std::shared_ptr<IndexTask>> getIndexTasksByUid(
-        int32_t uid
+        int64_t uid
     ) const;
     /// <summary>
     /// Identifies the search implementation answering.

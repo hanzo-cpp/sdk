@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// Days is how far back to read when no start is given: 1 to 365, 30 by default. A value outside that range leaves the default in place.
     /// </summary>
-    int32_t getDays() const;
+    int64_t getDays() const;
     bool daysIsSet() const;
     void unsetDays();
-    void setDays(int32_t value);
+    void setDays(int64_t value);
 
     /// <summary>
     /// End is the window&#39;s exclusive end in RFC3339, defaulting to now.
@@ -97,7 +97,7 @@ protected:
     double m_Alpha;
     bool m_AlphaIsSet;
 
-    int32_t m_Days;
+    int64_t m_Days;
     bool m_DaysIsSet;
 
     utility::string_t m_End;

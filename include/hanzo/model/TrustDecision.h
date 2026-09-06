@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// Days is how long the grant stays open, from now. Optional; 14 by default and 365 at most — a longer release is describing a customer relationship rather than a document.
     /// </summary>
-    int32_t getDays() const;
+    int64_t getDays() const;
     bool daysIsSet() const;
     void unsetDays();
-    void setDays(int32_t value);
+    void setDays(int64_t value);
 
     /// <summary>
     /// ID is the request to answer, taken from the path.
@@ -78,7 +78,7 @@ public:
 
 
 protected:
-    int32_t m_Days;
+    int64_t m_Days;
     bool m_DaysIsSet;
 
     utility::string_t m_Id;

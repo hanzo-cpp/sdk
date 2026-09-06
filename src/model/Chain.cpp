@@ -18,7 +18,7 @@ namespace model {
 
 Chain::Chain()
 {
-    m_ChainId = 0;
+    m_ChainId = 0L;
     m_ChainIdIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
@@ -65,7 +65,7 @@ bool Chain::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("chainId")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setChainId;
+            int64_t refVal_setChainId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setChainId);
             setChainId(refVal_setChainId);
             
@@ -128,7 +128,7 @@ bool Chain::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("chainId"))))
     {
-        int32_t refVal_setChainId;
+        int64_t refVal_setChainId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("chainId"))), refVal_setChainId );
         setChainId(refVal_setChainId);
     }
@@ -148,13 +148,13 @@ bool Chain::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
 }
 
 
-int32_t Chain::getChainId() const
+int64_t Chain::getChainId() const
 {
     return m_ChainId;
 }
 
 
-void Chain::setChainId(int32_t value)
+void Chain::setChainId(int64_t value)
 {
     m_ChainId = value;
     m_ChainIdIsSet = true;

@@ -161,7 +161,7 @@ pplx::task<std::shared_ptr<ClearReferenceOut>> ReferenceApi::riskClearReference(
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ReferenceOut>> ReferenceApi::riskReference(utility::string_t set, boost::optional<utility::string_t> after, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<ReferenceOut>> ReferenceApi::riskReference(utility::string_t set, boost::optional<utility::string_t> after, boost::optional<int64_t> limit) const
 {
 
 

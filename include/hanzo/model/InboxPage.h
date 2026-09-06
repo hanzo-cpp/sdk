@@ -57,10 +57,10 @@ public:
     /// <summary>
     /// Cursor is the row id to pass back as &#x60;since&#x60; for the next page. It is the last message&#39;s id, or the requested cursor when the page is empty.
     /// </summary>
-    int32_t getCursor() const;
+    int64_t getCursor() const;
     bool cursorIsSet() const;
     void unsetCursor();
-    void setCursor(int32_t value);
+    void setCursor(int64_t value);
 
     /// <summary>
     /// Messages are the inbound messages, oldest first.
@@ -72,7 +72,7 @@ public:
 
 
 protected:
-    int32_t m_Cursor;
+    int64_t m_Cursor;
     bool m_CursorIsSet;
 
     std::vector<std::shared_ptr<InboxView>> m_Messages;

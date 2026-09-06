@@ -22,7 +22,7 @@ TransferReq::TransferReq()
     m_AuthCodeIsSet = false;
     m_Domain = utility::conversions::to_string_t("");
     m_DomainIsSet = false;
-    m_Years = 0;
+    m_Years = 0L;
     m_YearsIsSet = false;
 }
 
@@ -87,7 +87,7 @@ bool TransferReq::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("years")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setYears;
+            int64_t refVal_setYears;
             ok &= ModelBase::fromJson(fieldValue, refVal_setYears);
             setYears(refVal_setYears);
             
@@ -140,7 +140,7 @@ bool TransferReq::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("years"))))
     {
-        int32_t refVal_setYears;
+        int64_t refVal_setYears;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("years"))), refVal_setYears );
         setYears(refVal_setYears);
     }
@@ -190,13 +190,13 @@ void TransferReq::unsetDomain()
 {
     m_DomainIsSet = false;
 }
-int32_t TransferReq::getYears() const
+int64_t TransferReq::getYears() const
 {
     return m_Years;
 }
 
 
-void TransferReq::setYears(int32_t value)
+void TransferReq::setYears(int64_t value)
 {
     m_Years = value;
     m_YearsIsSet = true;

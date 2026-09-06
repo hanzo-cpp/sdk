@@ -24,7 +24,7 @@ O11y_FilterAttributeValueRequest::O11y_FilterAttributeValueRequest()
     m_AggregateOperatorIsSet = false;
     m_DataSource = utility::conversions::to_string_t("");
     m_DataSourceIsSet = false;
-    m_EndTimeMillis = 0;
+    m_EndTimeMillis = 0L;
     m_EndTimeMillisIsSet = false;
     m_ExistingFilterItemsIsSet = false;
     m_FilterAttributeKey = utility::conversions::to_string_t("");
@@ -33,12 +33,12 @@ O11y_FilterAttributeValueRequest::O11y_FilterAttributeValueRequest()
     m_FilterAttributeKeyDataTypeIsSet = false;
     m_IncludeRelated = false;
     m_IncludeRelatedIsSet = false;
-    m_Limit = 0;
+    m_Limit = 0L;
     m_LimitIsSet = false;
     m_MetricNamesIsSet = false;
     m_SearchText = utility::conversions::to_string_t("");
     m_SearchTextIsSet = false;
-    m_StartTimeMillis = 0;
+    m_StartTimeMillis = 0L;
     m_StartTimeMillisIsSet = false;
     m_TagType = utility::conversions::to_string_t("");
     m_TagTypeIsSet = false;
@@ -166,7 +166,7 @@ bool O11y_FilterAttributeValueRequest::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("endTimeMillis")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setEndTimeMillis;
+            int64_t refVal_setEndTimeMillis;
             ok &= ModelBase::fromJson(fieldValue, refVal_setEndTimeMillis);
             setEndTimeMillis(refVal_setEndTimeMillis);
             
@@ -221,7 +221,7 @@ bool O11y_FilterAttributeValueRequest::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("limit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLimit;
+            int64_t refVal_setLimit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLimit);
             setLimit(refVal_setLimit);
             
@@ -254,7 +254,7 @@ bool O11y_FilterAttributeValueRequest::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("startTimeMillis")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStartTimeMillis;
+            int64_t refVal_setStartTimeMillis;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStartTimeMillis);
             setStartTimeMillis(refVal_setStartTimeMillis);
             
@@ -364,7 +364,7 @@ bool O11y_FilterAttributeValueRequest::fromMultiPart(std::shared_ptr<MultipartFo
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("endTimeMillis"))))
     {
-        int32_t refVal_setEndTimeMillis;
+        int64_t refVal_setEndTimeMillis;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("endTimeMillis"))), refVal_setEndTimeMillis );
         setEndTimeMillis(refVal_setEndTimeMillis);
     }
@@ -394,7 +394,7 @@ bool O11y_FilterAttributeValueRequest::fromMultiPart(std::shared_ptr<MultipartFo
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("limit"))))
     {
-        int32_t refVal_setLimit;
+        int64_t refVal_setLimit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("limit"))), refVal_setLimit );
         setLimit(refVal_setLimit);
     }
@@ -412,7 +412,7 @@ bool O11y_FilterAttributeValueRequest::fromMultiPart(std::shared_ptr<MultipartFo
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("startTimeMillis"))))
     {
-        int32_t refVal_setStartTimeMillis;
+        int64_t refVal_setStartTimeMillis;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("startTimeMillis"))), refVal_setStartTimeMillis );
         setStartTimeMillis(refVal_setStartTimeMillis);
     }
@@ -489,13 +489,13 @@ void O11y_FilterAttributeValueRequest::unsetDataSource()
 {
     m_DataSourceIsSet = false;
 }
-int32_t O11y_FilterAttributeValueRequest::getEndTimeMillis() const
+int64_t O11y_FilterAttributeValueRequest::getEndTimeMillis() const
 {
     return m_EndTimeMillis;
 }
 
 
-void O11y_FilterAttributeValueRequest::setEndTimeMillis(int32_t value)
+void O11y_FilterAttributeValueRequest::setEndTimeMillis(int64_t value)
 {
     m_EndTimeMillis = value;
     m_EndTimeMillisIsSet = true;
@@ -594,13 +594,13 @@ void O11y_FilterAttributeValueRequest::unsetIncludeRelated()
 {
     m_IncludeRelatedIsSet = false;
 }
-int32_t O11y_FilterAttributeValueRequest::getLimit() const
+int64_t O11y_FilterAttributeValueRequest::getLimit() const
 {
     return m_Limit;
 }
 
 
-void O11y_FilterAttributeValueRequest::setLimit(int32_t value)
+void O11y_FilterAttributeValueRequest::setLimit(int64_t value)
 {
     m_Limit = value;
     m_LimitIsSet = true;
@@ -657,13 +657,13 @@ void O11y_FilterAttributeValueRequest::unsetSearchText()
 {
     m_SearchTextIsSet = false;
 }
-int32_t O11y_FilterAttributeValueRequest::getStartTimeMillis() const
+int64_t O11y_FilterAttributeValueRequest::getStartTimeMillis() const
 {
     return m_StartTimeMillis;
 }
 
 
-void O11y_FilterAttributeValueRequest::setStartTimeMillis(int32_t value)
+void O11y_FilterAttributeValueRequest::setStartTimeMillis(int64_t value)
 {
     m_StartTimeMillis = value;
     m_StartTimeMillisIsSet = true;

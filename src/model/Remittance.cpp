@@ -18,9 +18,9 @@ namespace model {
 
 Remittance::Remittance()
 {
-    m_AmountCents = 0;
+    m_AmountCents = 0L;
     m_AmountCentsIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
@@ -86,7 +86,7 @@ bool Remittance::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("amountCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAmountCents;
+            int64_t refVal_setAmountCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAmountCents);
             setAmountCents(refVal_setAmountCents);
             
@@ -97,7 +97,7 @@ bool Remittance::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -194,13 +194,13 @@ bool Remittance::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("amountCents"))))
     {
-        int32_t refVal_setAmountCents;
+        int64_t refVal_setAmountCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("amountCents"))), refVal_setAmountCents );
         setAmountCents(refVal_setAmountCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -232,13 +232,13 @@ bool Remittance::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 }
 
 
-int32_t Remittance::getAmountCents() const
+int64_t Remittance::getAmountCents() const
 {
     return m_AmountCents;
 }
 
 
-void Remittance::setAmountCents(int32_t value)
+void Remittance::setAmountCents(int64_t value)
 {
     m_AmountCents = value;
     m_AmountCentsIsSet = true;
@@ -253,13 +253,13 @@ void Remittance::unsetAmountCents()
 {
     m_AmountCentsIsSet = false;
 }
-int32_t Remittance::getCreatedAt() const
+int64_t Remittance::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void Remittance::setCreatedAt(int32_t value)
+void Remittance::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;

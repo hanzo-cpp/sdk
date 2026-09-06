@@ -9512,7 +9512,7 @@ pplx::task<std::shared_ptr<O11y_O11yGettableHostOut>> O11yApi::getHosts() const
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yIngestionKeysOut>> O11yApi::getIngestionKeys(boost::optional<int32_t> page, boost::optional<int32_t> perPage) const
+pplx::task<std::shared_ptr<O11y_O11yIngestionKeysOut>> O11yApi::getIngestionKeys(boost::optional<int64_t> page, boost::optional<int64_t> perPage) const
 {
 
 
@@ -9767,7 +9767,7 @@ pplx::task<std::shared_ptr<O11y_O11yIntegrationOut>> O11yApi::getIntegration(uti
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yConnectionStatusOut>> O11yApi::getIntegrationConnectionStatus(utility::string_t integrationId, boost::optional<int32_t> lookbackSeconds) const
+pplx::task<std::shared_ptr<O11y_O11yConnectionStatusOut>> O11yApi::getIntegrationConnectionStatus(utility::string_t integrationId, boost::optional<int64_t> lookbackSeconds) const
 {
 
 
@@ -10269,7 +10269,7 @@ pplx::task<std::shared_ptr<O11y_O11yMetricAlertsOut>> O11yApi::getMetricAlerts(u
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yMetricAttributesOut>> O11yApi::getMetricAttributes(utility::string_t metricName, boost::optional<int32_t> start, boost::optional<int32_t> end) const
+pplx::task<std::shared_ptr<O11y_O11yMetricAttributesOut>> O11yApi::getMetricAttributes(utility::string_t metricName, boost::optional<int64_t> start, boost::optional<int64_t> end) const
 {
 
 
@@ -12162,7 +12162,7 @@ pplx::task<void> O11yApi::getO11yAlertsLast() const
         return void();
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yAggregateAttributesOut>> O11yApi::getO11yAutocompleteAggregateAttributes(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> searchText, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yAggregateAttributesOut>> O11yApi::getO11yAutocompleteAggregateAttributes(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> searchText, boost::optional<int64_t> limit) const
 {
 
 
@@ -12301,7 +12301,7 @@ pplx::task<std::shared_ptr<O11y_O11yAggregateAttributesOut>> O11yApi::getO11yAut
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yAttributeKeysOut>> O11yApi::getO11yAutocompleteAttributeKeys(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yAttributeKeysOut>> O11yApi::getO11yAutocompleteAttributeKeys(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int64_t> limit) const
 {
 
 
@@ -12448,7 +12448,7 @@ pplx::task<std::shared_ptr<O11y_O11yAttributeKeysOut>> O11yApi::getO11yAutocompl
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yAttributeValuesOut>> O11yApi::getO11yAutocompleteAttributeValues(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> attributeKey, boost::optional<utility::string_t> filterAttributeKeyDataType, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yAttributeValuesOut>> O11yApi::getO11yAutocompleteAttributeValues(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> attributeKey, boost::optional<utility::string_t> filterAttributeKeyDataType, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int64_t> limit) const
 {
 
 
@@ -12603,7 +12603,7 @@ pplx::task<std::shared_ptr<O11y_O11yAttributeValuesOut>> O11yApi::getO11yAutocom
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_availabilityResponse>> O11yApi::getO11yAvailability(boost::optional<int32_t> range, boost::optional<int32_t> stepSec) const
+pplx::task<std::shared_ptr<O11y_availabilityResponse>> O11yApi::getO11yAvailability(boost::optional<int64_t> range, boost::optional<int64_t> stepSec) const
 {
 
 
@@ -12734,7 +12734,7 @@ pplx::task<std::shared_ptr<O11y_availabilityResponse>> O11yApi::getO11yAvailabil
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yClustersAttributeKeys(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yClustersAttributeKeys(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int64_t> limit) const
 {
 
 
@@ -12881,7 +12881,7 @@ pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yClus
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yClustersAttributeValues(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> attributeKey, boost::optional<utility::string_t> filterAttributeKeyDataType, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yClustersAttributeValues(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> attributeKey, boost::optional<utility::string_t> filterAttributeKeyDataType, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int64_t> limit) const
 {
 
 
@@ -13244,7 +13244,7 @@ pplx::task<void> O11yApi::getO11yCompleteOidc() const
         return void();
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yDaemonsetsAttributeKeys(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yDaemonsetsAttributeKeys(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int64_t> limit) const
 {
 
 
@@ -13391,7 +13391,7 @@ pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yDaem
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yDaemonsetsAttributeValues(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> attributeKey, boost::optional<utility::string_t> filterAttributeKeyDataType, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yDaemonsetsAttributeValues(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> attributeKey, boost::optional<utility::string_t> filterAttributeKeyDataType, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int64_t> limit) const
 {
 
 
@@ -13546,7 +13546,7 @@ pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yDa
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yDeploymentsAttributeKeys(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yDeploymentsAttributeKeys(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int64_t> limit) const
 {
 
 
@@ -13693,7 +13693,7 @@ pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yDepl
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yDeploymentsAttributeValues(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> attributeKey, boost::optional<utility::string_t> filterAttributeKeyDataType, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yDeploymentsAttributeValues(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> attributeKey, boost::optional<utility::string_t> filterAttributeKeyDataType, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int64_t> limit) const
 {
 
 
@@ -14241,7 +14241,7 @@ pplx::task<std::shared_ptr<O11y_O11yErrorWithSpan>> O11yApi::getO11yErrorfromgro
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yErrorIssuesOut>> O11yApi::getO11yErrortrackingIssues(boost::optional<utility::string_t> status, boost::optional<utility::string_t> level, boost::optional<utility::string_t> environment, boost::optional<utility::string_t> serviceName, boost::optional<utility::string_t> query, boost::optional<utility::string_t> sort, boost::optional<int32_t> offset, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yErrorIssuesOut>> O11yApi::getO11yErrortrackingIssues(boost::optional<utility::string_t> status, boost::optional<utility::string_t> level, boost::optional<utility::string_t> environment, boost::optional<utility::string_t> serviceName, boost::optional<utility::string_t> query, boost::optional<utility::string_t> sort, boost::optional<int64_t> offset, boost::optional<int64_t> limit) const
 {
 
 
@@ -14902,7 +14902,7 @@ pplx::task<std::shared_ptr<O11y_O11yFeaturesOut>> O11yApi::getO11yFeatures() con
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yFieldKeysOut>> O11yApi::getO11yFieldsKeys(boost::optional<utility::string_t> signal, boost::optional<utility::string_t> source, boost::optional<int32_t> limit, boost::optional<int32_t> startUnixMilli, boost::optional<int32_t> endUnixMilli, boost::optional<utility::string_t> fieldContext, boost::optional<utility::string_t> fieldDataType, boost::optional<utility::string_t> metricName, boost::optional<utility::string_t> metricNamespace, boost::optional<utility::string_t> searchText) const
+pplx::task<std::shared_ptr<O11y_O11yFieldKeysOut>> O11yApi::getO11yFieldsKeys(boost::optional<utility::string_t> signal, boost::optional<utility::string_t> source, boost::optional<int64_t> limit, boost::optional<int64_t> startUnixMilli, boost::optional<int64_t> endUnixMilli, boost::optional<utility::string_t> fieldContext, boost::optional<utility::string_t> fieldDataType, boost::optional<utility::string_t> metricName, boost::optional<utility::string_t> metricNamespace, boost::optional<utility::string_t> searchText) const
 {
 
 
@@ -15065,7 +15065,7 @@ pplx::task<std::shared_ptr<O11y_O11yFieldKeysOut>> O11yApi::getO11yFieldsKeys(bo
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yFieldValuesOut>> O11yApi::getO11yFieldsValues(boost::optional<utility::string_t> signal, boost::optional<utility::string_t> source, boost::optional<int32_t> limit, boost::optional<int32_t> startUnixMilli, boost::optional<int32_t> endUnixMilli, boost::optional<utility::string_t> fieldContext, boost::optional<utility::string_t> fieldDataType, boost::optional<utility::string_t> metricName, boost::optional<utility::string_t> metricNamespace, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> name, boost::optional<utility::string_t> existingQuery) const
+pplx::task<std::shared_ptr<O11y_O11yFieldValuesOut>> O11yApi::getO11yFieldsValues(boost::optional<utility::string_t> signal, boost::optional<utility::string_t> source, boost::optional<int64_t> limit, boost::optional<int64_t> startUnixMilli, boost::optional<int64_t> endUnixMilli, boost::optional<utility::string_t> fieldContext, boost::optional<utility::string_t> fieldDataType, boost::optional<utility::string_t> metricName, boost::optional<utility::string_t> metricNamespace, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> name, boost::optional<utility::string_t> existingQuery) const
 {
 
 
@@ -15236,7 +15236,7 @@ pplx::task<std::shared_ptr<O11y_O11yFieldValuesOut>> O11yApi::getO11yFieldsValue
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yFilterSuggestionsOut>> O11yApi::getO11yFilterSuggestions(utility::string_t dataSource, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> existingFilter, boost::optional<int32_t> attributesLimit, boost::optional<int32_t> examplesLimit) const
+pplx::task<std::shared_ptr<O11y_O11yFilterSuggestionsOut>> O11yApi::getO11yFilterSuggestions(utility::string_t dataSource, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> existingFilter, boost::optional<int64_t> attributesLimit, boost::optional<int64_t> examplesLimit) const
 {
 
 
@@ -15732,7 +15732,7 @@ pplx::task<void> O11yApi::getO11yHealthz() const
         return void();
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yHostsAttributeKeys(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yHostsAttributeKeys(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int64_t> limit) const
 {
 
 
@@ -15879,7 +15879,7 @@ pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yHost
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yHostsAttributeValues(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> attributeKey, boost::optional<utility::string_t> filterAttributeKeyDataType, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yHostsAttributeValues(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> attributeKey, boost::optional<utility::string_t> filterAttributeKeyDataType, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int64_t> limit) const
 {
 
 
@@ -16283,7 +16283,7 @@ pplx::task<std::shared_ptr<O11y_O11yOnboardingOut>> O11yApi::getO11yInfraOnboard
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yJobsAttributeKeys(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yJobsAttributeKeys(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int64_t> limit) const
 {
 
 
@@ -16430,7 +16430,7 @@ pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yJobs
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yJobsAttributeValues(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> attributeKey, boost::optional<utility::string_t> filterAttributeKeyDataType, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yJobsAttributeValues(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> attributeKey, boost::optional<utility::string_t> filterAttributeKeyDataType, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int64_t> limit) const
 {
 
 
@@ -17039,7 +17039,7 @@ pplx::task<void> O11yApi::getO11yLogin() const
         return void();
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yLogRecordsOut>> O11yApi::getO11yLogs(boost::optional<int32_t> limit, boost::optional<int32_t> timestampStart, boost::optional<int32_t> timestampEnd) const
+pplx::task<std::shared_ptr<O11y_O11yLogRecordsOut>> O11yApi::getO11yLogs(boost::optional<int64_t> limit, boost::optional<int64_t> timestampStart, boost::optional<int64_t> timestampEnd) const
 {
 
 
@@ -17902,7 +17902,7 @@ pplx::task<std::shared_ptr<O11y_O11yMetricMetadataOut>> O11yApi::getO11yMetricMe
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yNamespacesAttributeKeys(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yNamespacesAttributeKeys(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int64_t> limit) const
 {
 
 
@@ -18049,7 +18049,7 @@ pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yName
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yNamespacesAttributeValues(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> attributeKey, boost::optional<utility::string_t> filterAttributeKeyDataType, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yNamespacesAttributeValues(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> attributeKey, boost::optional<utility::string_t> filterAttributeKeyDataType, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int64_t> limit) const
 {
 
 
@@ -18337,7 +18337,7 @@ pplx::task<std::shared_ptr<O11y_O11yNextPrevErrorIDs>> O11yApi::getO11yNextpreve
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yNodesAttributeKeys(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yNodesAttributeKeys(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int64_t> limit) const
 {
 
 
@@ -18484,7 +18484,7 @@ pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yNode
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yNodesAttributeValues(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> attributeKey, boost::optional<utility::string_t> filterAttributeKeyDataType, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yNodesAttributeValues(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> attributeKey, boost::optional<utility::string_t> filterAttributeKeyDataType, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int64_t> limit) const
 {
 
 
@@ -18639,7 +18639,7 @@ pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yNo
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yPodsAttributeKeys(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yPodsAttributeKeys(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int64_t> limit) const
 {
 
 
@@ -18786,7 +18786,7 @@ pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yPods
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yPodsAttributeValues(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> attributeKey, boost::optional<utility::string_t> filterAttributeKeyDataType, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yPodsAttributeValues(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> attributeKey, boost::optional<utility::string_t> filterAttributeKeyDataType, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int64_t> limit) const
 {
 
 
@@ -18941,7 +18941,7 @@ pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yPo
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yProcessesAttributeKeys(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yProcessesAttributeKeys(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int64_t> limit) const
 {
 
 
@@ -19088,7 +19088,7 @@ pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yProc
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yProcessesAttributeValues(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> attributeKey, boost::optional<utility::string_t> filterAttributeKeyDataType, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yProcessesAttributeValues(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> attributeKey, boost::optional<utility::string_t> filterAttributeKeyDataType, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int64_t> limit) const
 {
 
 
@@ -19243,7 +19243,7 @@ pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yPr
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_metricsResponse>> O11yApi::getO11yProductMetrics(boost::optional<utility::string_t> product, boost::optional<int32_t> range, boost::optional<int32_t> stepSec) const
+pplx::task<std::shared_ptr<O11y_metricsResponse>> O11yApi::getO11yProductMetrics(boost::optional<utility::string_t> product, boost::optional<int64_t> range, boost::optional<int64_t> stepSec) const
 {
 
 
@@ -19378,7 +19378,7 @@ pplx::task<std::shared_ptr<O11y_metricsResponse>> O11yApi::getO11yProductMetrics
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yPvcsAttributeKeys(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yPvcsAttributeKeys(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int64_t> limit) const
 {
 
 
@@ -19525,7 +19525,7 @@ pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yPvcs
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yPvcsAttributeValues(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> attributeKey, boost::optional<utility::string_t> filterAttributeKeyDataType, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yPvcsAttributeValues(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> attributeKey, boost::optional<utility::string_t> filterAttributeKeyDataType, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int64_t> limit) const
 {
 
 
@@ -20169,7 +20169,7 @@ pplx::task<void> O11yApi::getO11yReadyz() const
         return void();
     });
 }
-pplx::task<std::shared_ptr<O11y_annQueueList>> O11yApi::getO11yReviews(boost::optional<int32_t> page, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_annQueueList>> O11yApi::getO11yReviews(boost::optional<int64_t> page, boost::optional<int64_t> limit) const
 {
 
 
@@ -20424,7 +20424,7 @@ pplx::task<std::shared_ptr<O11y_annQueueDetailView>> O11yApi::getO11yReviewsById
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_annItemList>> O11yApi::getO11yReviewsByIdItems(utility::string_t id, boost::optional<utility::string_t> status, boost::optional<int32_t> page, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_annItemList>> O11yApi::getO11yReviewsByIdItems(utility::string_t id, boost::optional<utility::string_t> status, boost::optional<int64_t> page, boost::optional<int64_t> limit) const
 {
 
 
@@ -20687,7 +20687,7 @@ pplx::task<std::shared_ptr<O11y_O11ySentryEventOut>> O11yApi::getO11ySentinelEve
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yErrorIssuesOut>> O11yApi::getO11ySentinelIssues(boost::optional<utility::string_t> status, boost::optional<utility::string_t> level, boost::optional<utility::string_t> environment, boost::optional<utility::string_t> serviceName, boost::optional<utility::string_t> query, boost::optional<utility::string_t> sort, boost::optional<int32_t> offset, boost::optional<int32_t> limit, boost::optional<utility::string_t> project, boost::optional<utility::string_t> period) const
+pplx::task<std::shared_ptr<O11y_O11yErrorIssuesOut>> O11yApi::getO11ySentinelIssues(boost::optional<utility::string_t> status, boost::optional<utility::string_t> level, boost::optional<utility::string_t> environment, boost::optional<utility::string_t> serviceName, boost::optional<utility::string_t> query, boost::optional<utility::string_t> sort, boost::optional<int64_t> offset, boost::optional<int64_t> limit, boost::optional<utility::string_t> project, boost::optional<utility::string_t> period) const
 {
 
 
@@ -20974,7 +20974,7 @@ pplx::task<std::shared_ptr<O11y_O11yErrorGettableIssueOut>> O11yApi::getO11ySent
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11ySentryIssueEventsOut>> O11yApi::getO11ySentinelIssuesByIdEvents(utility::string_t id, utility::string_t project, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11ySentryIssueEventsOut>> O11yApi::getO11ySentinelIssuesByIdEvents(utility::string_t id, utility::string_t project, boost::optional<int64_t> limit) const
 {
 
 
@@ -21105,7 +21105,7 @@ pplx::task<std::shared_ptr<O11y_O11ySentryIssueEventsOut>> O11yApi::getO11ySenti
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yLogsOut>> O11yApi::getO11ySentinelLogs(utility::string_t project, boost::optional<utility::string_t> query, boost::optional<utility::string_t> period, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yLogsOut>> O11yApi::getO11ySentinelLogs(utility::string_t project, boost::optional<utility::string_t> query, boost::optional<utility::string_t> period, boost::optional<int64_t> limit) const
 {
 
 
@@ -21624,7 +21624,7 @@ pplx::task<std::shared_ptr<O11y_O11yStatsOut>> O11yApi::getO11ySentinelStats(uti
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yTracesOut>> O11yApi::getO11ySentinelTraces(utility::string_t project, boost::optional<utility::string_t> period, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yTracesOut>> O11yApi::getO11ySentinelTraces(utility::string_t project, boost::optional<utility::string_t> period, boost::optional<int64_t> limit) const
 {
 
 
@@ -22366,7 +22366,7 @@ pplx::task<std::shared_ptr<O11y_O11yRetentionOut>> O11yApi::getO11ySettingsTtl()
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yStatefulsetsAttributeKeys(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yStatefulsetsAttributeKeys(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int64_t> limit) const
 {
 
 
@@ -22513,7 +22513,7 @@ pplx::task<std::shared_ptr<O11y_O11yInfraAttributeKeysOut>> O11yApi::getO11yStat
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yStatefulsetsAttributeValues(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> attributeKey, boost::optional<utility::string_t> filterAttributeKeyDataType, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yInfraAttributeValuesOut>> O11yApi::getO11yStatefulsetsAttributeValues(boost::optional<utility::string_t> dataSource, boost::optional<utility::string_t> aggregateOperator, boost::optional<utility::string_t> aggregateAttribute, boost::optional<utility::string_t> attributeKey, boost::optional<utility::string_t> filterAttributeKeyDataType, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> tagType, boost::optional<int64_t> limit) const
 {
 
 
@@ -23041,7 +23041,7 @@ pplx::task<std::shared_ptr<O11y_StatusSummary>> O11yApi::getO11ySummary() const
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_tracesOut>> O11yApi::getO11yTraces(boost::optional<int32_t> range, boost::optional<int32_t> limit, boost::optional<int32_t> minDurationMs) const
+pplx::task<std::shared_ptr<O11y_tracesOut>> O11yApi::getO11yTraces(boost::optional<int64_t> range, boost::optional<int64_t> limit, boost::optional<int64_t> minDurationMs) const
 {
 
 
@@ -23176,7 +23176,7 @@ pplx::task<std::shared_ptr<O11y_tracesOut>> O11yApi::getO11yTraces(boost::option
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<O11y_O11yUsageItem>>> O11yApi::getO11yUsage(utility::string_t start, utility::string_t end, boost::optional<int32_t> step, boost::optional<utility::string_t> service) const
+pplx::task<std::vector<std::shared_ptr<O11y_O11yUsageItem>>> O11yApi::getO11yUsage(utility::string_t start, utility::string_t end, boost::optional<int64_t> step, boost::optional<utility::string_t> service) const
 {
 
 
@@ -24959,7 +24959,7 @@ pplx::task<std::shared_ptr<O11y_O11yRuleOut>> O11yApi::getRuleByID(utility::stri
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yRuleHistoryFilterKeysOut>> O11yApi::getRuleHistoryFilterKeys(utility::string_t id, boost::optional<int32_t> startUnixMilli, boost::optional<int32_t> endUnixMilli, boost::optional<utility::string_t> searchText, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yRuleHistoryFilterKeysOut>> O11yApi::getRuleHistoryFilterKeys(utility::string_t id, boost::optional<int64_t> startUnixMilli, boost::optional<int64_t> endUnixMilli, boost::optional<utility::string_t> searchText, boost::optional<int64_t> limit) const
 {
 
 
@@ -25099,7 +25099,7 @@ pplx::task<std::shared_ptr<O11y_O11yRuleHistoryFilterKeysOut>> O11yApi::getRuleH
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yRuleHistoryFilterValuesOut>> O11yApi::getRuleHistoryFilterValues(utility::string_t id, utility::string_t name, boost::optional<int32_t> startUnixMilli, boost::optional<int32_t> endUnixMilli, boost::optional<utility::string_t> searchText, boost::optional<int32_t> limit, boost::optional<utility::string_t> existingQuery) const
+pplx::task<std::shared_ptr<O11y_O11yRuleHistoryFilterValuesOut>> O11yApi::getRuleHistoryFilterValues(utility::string_t id, utility::string_t name, boost::optional<int64_t> startUnixMilli, boost::optional<int64_t> endUnixMilli, boost::optional<utility::string_t> searchText, boost::optional<int64_t> limit, boost::optional<utility::string_t> existingQuery) const
 {
 
 
@@ -25246,7 +25246,7 @@ pplx::task<std::shared_ptr<O11y_O11yRuleHistoryFilterValuesOut>> O11yApi::getRul
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yRuleHistoryOverallStatusOut>> O11yApi::getRuleHistoryOverallStatus(utility::string_t id, boost::optional<int32_t> start, boost::optional<int32_t> end) const
+pplx::task<std::shared_ptr<O11y_O11yRuleHistoryOverallStatusOut>> O11yApi::getRuleHistoryOverallStatus(utility::string_t id, boost::optional<int64_t> start, boost::optional<int64_t> end) const
 {
 
 
@@ -25378,7 +25378,7 @@ pplx::task<std::shared_ptr<O11y_O11yRuleHistoryOverallStatusOut>> O11yApi::getRu
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yRuleHistoryStatsOut>> O11yApi::getRuleHistoryStats(utility::string_t id, boost::optional<int32_t> start, boost::optional<int32_t> end) const
+pplx::task<std::shared_ptr<O11y_O11yRuleHistoryStatsOut>> O11yApi::getRuleHistoryStats(utility::string_t id, boost::optional<int64_t> start, boost::optional<int64_t> end) const
 {
 
 
@@ -25510,7 +25510,7 @@ pplx::task<std::shared_ptr<O11y_O11yRuleHistoryStatsOut>> O11yApi::getRuleHistor
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yRuleHistoryTimelineOut>> O11yApi::getRuleHistoryTimeline(utility::string_t id, boost::optional<int32_t> start, boost::optional<int32_t> end, boost::optional<utility::string_t> state, boost::optional<utility::string_t> filterExpression, boost::optional<int32_t> limit, boost::optional<utility::string_t> order, boost::optional<utility::string_t> cursor) const
+pplx::task<std::shared_ptr<O11y_O11yRuleHistoryTimelineOut>> O11yApi::getRuleHistoryTimeline(utility::string_t id, boost::optional<int64_t> start, boost::optional<int64_t> end, boost::optional<utility::string_t> state, boost::optional<utility::string_t> filterExpression, boost::optional<int64_t> limit, boost::optional<utility::string_t> order, boost::optional<utility::string_t> cursor) const
 {
 
 
@@ -25662,7 +25662,7 @@ pplx::task<std::shared_ptr<O11y_O11yRuleHistoryTimelineOut>> O11yApi::getRuleHis
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yRuleHistoryContributorsOut>> O11yApi::getRuleHistoryTopContributors(utility::string_t id, boost::optional<int32_t> start, boost::optional<int32_t> end) const
+pplx::task<std::shared_ptr<O11y_O11yRuleHistoryContributorsOut>> O11yApi::getRuleHistoryTopContributors(utility::string_t id, boost::optional<int64_t> start, boost::optional<int64_t> end) const
 {
 
 
@@ -29549,7 +29549,7 @@ pplx::task<std::shared_ptr<O11y_O11yDashboardViewListOut>> O11yApi::listDashboar
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yDashboardListForUserOut>> O11yApi::listDashboardsForUserV2(boost::optional<utility::string_t> query, boost::optional<utility::string_t> sort, boost::optional<utility::string_t> order, boost::optional<int32_t> limit, boost::optional<int32_t> offset) const
+pplx::task<std::shared_ptr<O11y_O11yDashboardListForUserOut>> O11yApi::listDashboardsForUserV2(boost::optional<utility::string_t> query, boost::optional<utility::string_t> sort, boost::optional<utility::string_t> order, boost::optional<int64_t> limit, boost::optional<int64_t> offset) const
 {
 
 
@@ -29692,7 +29692,7 @@ pplx::task<std::shared_ptr<O11y_O11yDashboardListForUserOut>> O11yApi::listDashb
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yDashboardListOut>> O11yApi::listDashboardsV2(boost::optional<utility::string_t> query, boost::optional<utility::string_t> sort, boost::optional<utility::string_t> order, boost::optional<int32_t> limit, boost::optional<int32_t> offset) const
+pplx::task<std::shared_ptr<O11y_O11yDashboardListOut>> O11yApi::listDashboardsV2(boost::optional<utility::string_t> query, boost::optional<utility::string_t> sort, boost::optional<utility::string_t> order, boost::optional<int64_t> limit, boost::optional<int64_t> offset) const
 {
 
 
@@ -30093,7 +30093,7 @@ pplx::task<std::shared_ptr<O11y_O11yIntegrationsListOut>> O11yApi::listIntegrati
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yLLMAnnotationsOut>> O11yApi::listLLMAnnotations(boost::optional<utility::string_t> traceId, boost::optional<utility::string_t> queue, boost::optional<utility::string_t> status, boost::optional<int32_t> offset, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yLLMAnnotationsOut>> O11yApi::listLLMAnnotations(boost::optional<utility::string_t> traceId, boost::optional<utility::string_t> queue, boost::optional<utility::string_t> status, boost::optional<int64_t> offset, boost::optional<int64_t> limit) const
 {
 
 
@@ -30236,7 +30236,7 @@ pplx::task<std::shared_ptr<O11y_O11yLLMAnnotationsOut>> O11yApi::listLLMAnnotati
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yLLMObservationsOut>> O11yApi::listLLMObservations(boost::optional<int32_t> start, boost::optional<int32_t> end, boost::optional<utility::string_t> traceId, boost::optional<utility::string_t> sessionId, boost::optional<utility::string_t> userId, boost::optional<utility::string_t> name, boost::optional<utility::string_t> model, boost::optional<int32_t> offset, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yLLMObservationsOut>> O11yApi::listLLMObservations(boost::optional<int64_t> start, boost::optional<int64_t> end, boost::optional<utility::string_t> traceId, boost::optional<utility::string_t> sessionId, boost::optional<utility::string_t> userId, boost::optional<utility::string_t> name, boost::optional<utility::string_t> model, boost::optional<int64_t> offset, boost::optional<int64_t> limit) const
 {
 
 
@@ -30395,7 +30395,7 @@ pplx::task<std::shared_ptr<O11y_O11yLLMObservationsOut>> O11yApi::listLLMObserva
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yLLMPricingRulesOut>> O11yApi::listLLMPricingRules(boost::optional<utility::string_t> q, boost::optional<utility::string_t> isOverride, boost::optional<int32_t> offset, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yLLMPricingRulesOut>> O11yApi::listLLMPricingRules(boost::optional<utility::string_t> q, boost::optional<utility::string_t> isOverride, boost::optional<int64_t> offset, boost::optional<int64_t> limit) const
 {
 
 
@@ -30534,7 +30534,7 @@ pplx::task<std::shared_ptr<O11y_O11yLLMPricingRulesOut>> O11yApi::listLLMPricing
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yLLMScoresOut>> O11yApi::listLLMScores(boost::optional<utility::string_t> traceId, boost::optional<utility::string_t> observationId, boost::optional<utility::string_t> name, boost::optional<utility::string_t> source, boost::optional<int32_t> offset, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yLLMScoresOut>> O11yApi::listLLMScores(boost::optional<utility::string_t> traceId, boost::optional<utility::string_t> observationId, boost::optional<utility::string_t> name, boost::optional<utility::string_t> source, boost::optional<int64_t> offset, boost::optional<int64_t> limit) const
 {
 
 
@@ -30681,7 +30681,7 @@ pplx::task<std::shared_ptr<O11y_O11yLLMScoresOut>> O11yApi::listLLMScores(boost:
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yLLMSessionsOut>> O11yApi::listLLMSessions(boost::optional<int32_t> start, boost::optional<int32_t> end, boost::optional<utility::string_t> traceId, boost::optional<utility::string_t> sessionId, boost::optional<utility::string_t> userId, boost::optional<utility::string_t> name, boost::optional<utility::string_t> model, boost::optional<int32_t> offset, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yLLMSessionsOut>> O11yApi::listLLMSessions(boost::optional<int64_t> start, boost::optional<int64_t> end, boost::optional<utility::string_t> traceId, boost::optional<utility::string_t> sessionId, boost::optional<utility::string_t> userId, boost::optional<utility::string_t> name, boost::optional<utility::string_t> model, boost::optional<int64_t> offset, boost::optional<int64_t> limit) const
 {
 
 
@@ -30840,7 +30840,7 @@ pplx::task<std::shared_ptr<O11y_O11yLLMSessionsOut>> O11yApi::listLLMSessions(bo
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yLLMTracesOut>> O11yApi::listLLMTraces(boost::optional<int32_t> start, boost::optional<int32_t> end, boost::optional<utility::string_t> traceId, boost::optional<utility::string_t> sessionId, boost::optional<utility::string_t> userId, boost::optional<utility::string_t> name, boost::optional<utility::string_t> model, boost::optional<int32_t> offset, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yLLMTracesOut>> O11yApi::listLLMTraces(boost::optional<int64_t> start, boost::optional<int64_t> end, boost::optional<utility::string_t> traceId, boost::optional<utility::string_t> sessionId, boost::optional<utility::string_t> userId, boost::optional<utility::string_t> name, boost::optional<utility::string_t> model, boost::optional<int64_t> offset, boost::optional<int64_t> limit) const
 {
 
 
@@ -30999,7 +30999,7 @@ pplx::task<std::shared_ptr<O11y_O11yLLMTracesOut>> O11yApi::listLLMTraces(boost:
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yLLMUsersOut>> O11yApi::listLLMUsers(boost::optional<int32_t> start, boost::optional<int32_t> end, boost::optional<utility::string_t> traceId, boost::optional<utility::string_t> sessionId, boost::optional<utility::string_t> userId, boost::optional<utility::string_t> name, boost::optional<utility::string_t> model, boost::optional<int32_t> offset, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yLLMUsersOut>> O11yApi::listLLMUsers(boost::optional<int64_t> start, boost::optional<int64_t> end, boost::optional<utility::string_t> traceId, boost::optional<utility::string_t> sessionId, boost::optional<utility::string_t> userId, boost::optional<utility::string_t> name, boost::optional<utility::string_t> model, boost::optional<int64_t> offset, boost::optional<int64_t> limit) const
 {
 
 
@@ -31158,7 +31158,7 @@ pplx::task<std::shared_ptr<O11y_O11yLLMUsersOut>> O11yApi::listLLMUsers(boost::o
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yReductionRuleListOut>> O11yApi::listMetricReductionRules(boost::optional<utility::string_t> orderBy, boost::optional<utility::string_t> order, boost::optional<utility::string_t> search, boost::optional<utility::string_t> metricName, boost::optional<int32_t> offset, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<O11y_O11yReductionRuleListOut>> O11yApi::listMetricReductionRules(boost::optional<utility::string_t> orderBy, boost::optional<utility::string_t> order, boost::optional<utility::string_t> search, boost::optional<utility::string_t> metricName, boost::optional<int64_t> offset, boost::optional<int64_t> limit) const
 {
 
 
@@ -31305,7 +31305,7 @@ pplx::task<std::shared_ptr<O11y_O11yReductionRuleListOut>> O11yApi::listMetricRe
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yMetricListOut>> O11yApi::listMetrics(boost::optional<int32_t> start, boost::optional<int32_t> end, boost::optional<int32_t> limit, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> source) const
+pplx::task<std::shared_ptr<O11y_O11yMetricListOut>> O11yApi::listMetrics(boost::optional<int64_t> start, boost::optional<int64_t> end, boost::optional<int64_t> limit, boost::optional<utility::string_t> searchText, boost::optional<utility::string_t> source) const
 {
 
 
@@ -45205,7 +45205,7 @@ pplx::task<std::shared_ptr<O11y_O11yTokenOut>> O11yApi::rotateSession(std::share
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<O11y_O11yIngestionKeysOut>> O11yApi::searchIngestionKeys(boost::optional<utility::string_t> name, boost::optional<int32_t> page, boost::optional<int32_t> perPage) const
+pplx::task<std::shared_ptr<O11y_O11yIngestionKeysOut>> O11yApi::searchIngestionKeys(boost::optional<utility::string_t> name, boost::optional<int64_t> page, boost::optional<int64_t> perPage) const
 {
 
 
@@ -45340,7 +45340,7 @@ pplx::task<std::shared_ptr<O11y_O11yIngestionKeysOut>> O11yApi::searchIngestionK
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<O11y_O11yTraceSpanWindow>>> O11yApi::searchTraces(utility::string_t traceId, boost::optional<utility::string_t> spanId, boost::optional<int32_t> levelUp, boost::optional<int32_t> levelDown, boost::optional<int32_t> spanRenderLimit) const
+pplx::task<std::vector<std::shared_ptr<O11y_O11yTraceSpanWindow>>> O11yApi::searchTraces(utility::string_t traceId, boost::optional<utility::string_t> spanId, boost::optional<int64_t> levelUp, boost::optional<int64_t> levelDown, boost::optional<int64_t> spanRenderLimit) const
 {
 
 

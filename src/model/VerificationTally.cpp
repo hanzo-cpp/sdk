@@ -19,7 +19,7 @@ namespace model {
 VerificationTally::VerificationTally()
 {
     m_ByStatusIsSet = false;
-    m_Total = 0;
+    m_Total = 0L;
     m_TotalIsSet = false;
 }
 
@@ -57,7 +57,7 @@ bool VerificationTally::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("byStatus")));
         if(!fieldValue.is_null())
         {
-            std::map<utility::string_t, int32_t> refVal_setByStatus;
+            std::map<utility::string_t, int64_t> refVal_setByStatus;
             ok &= ModelBase::fromJson(fieldValue, refVal_setByStatus);
             setByStatus(refVal_setByStatus);
             
@@ -68,7 +68,7 @@ bool VerificationTally::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("total")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotal;
+            int64_t refVal_setTotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotal);
             setTotal(refVal_setTotal);
             
@@ -105,13 +105,13 @@ bool VerificationTally::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("byStatus"))))
     {
-        std::map<utility::string_t, int32_t> refVal_setByStatus;
+        std::map<utility::string_t, int64_t> refVal_setByStatus;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("byStatus"))), refVal_setByStatus );
         setByStatus(refVal_setByStatus);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("total"))))
     {
-        int32_t refVal_setTotal;
+        int64_t refVal_setTotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("total"))), refVal_setTotal );
         setTotal(refVal_setTotal);
     }
@@ -119,13 +119,13 @@ bool VerificationTally::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
 }
 
 
-std::map<utility::string_t, int32_t> VerificationTally::getByStatus() const
+std::map<utility::string_t, int64_t> VerificationTally::getByStatus() const
 {
     return m_ByStatus;
 }
 
 
-void VerificationTally::setByStatus(std::map<utility::string_t, int32_t> value)
+void VerificationTally::setByStatus(std::map<utility::string_t, int64_t> value)
 {
     m_ByStatus = value;
     m_ByStatusIsSet = true;
@@ -140,13 +140,13 @@ void VerificationTally::unsetByStatus()
 {
     m_ByStatusIsSet = false;
 }
-int32_t VerificationTally::getTotal() const
+int64_t VerificationTally::getTotal() const
 {
     return m_Total;
 }
 
 
-void VerificationTally::setTotal(int32_t value)
+void VerificationTally::setTotal(int64_t value)
 {
     m_Total = value;
     m_TotalIsSet = true;

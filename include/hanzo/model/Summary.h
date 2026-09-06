@@ -54,36 +54,36 @@ public:
     /// <summary>
     /// Calls is how many calls this org has placed or received, over its whole history — a running total, not a window.
     /// </summary>
-    int32_t getCalls() const;
+    int64_t getCalls() const;
     bool callsIsSet() const;
     void unsetCalls();
-    void setCalls(int32_t value);
+    void setCalls(int64_t value);
 
     /// <summary>
     /// Messages is the same running total for messages.
     /// </summary>
-    int32_t getMessages() const;
+    int64_t getMessages() const;
     bool messagesIsSet() const;
     void unsetMessages();
-    void setMessages(int32_t value);
+    void setMessages(int64_t value);
 
     /// <summary>
     /// Numbers is how many numbers this org holds right now.
     /// </summary>
-    int32_t getNumbers() const;
+    int64_t getNumbers() const;
     bool numbersIsSet() const;
     void unsetNumbers();
-    void setNumbers(int32_t value);
+    void setNumbers(int64_t value);
 
 
 protected:
-    int32_t m_Calls;
+    int64_t m_Calls;
     bool m_CallsIsSet;
 
-    int32_t m_Messages;
+    int64_t m_Messages;
     bool m_MessagesIsSet;
 
-    int32_t m_Numbers;
+    int64_t m_Numbers;
     bool m_NumbersIsSet;
 
 };

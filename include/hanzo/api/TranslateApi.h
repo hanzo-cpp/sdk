@@ -51,11 +51,11 @@ public:
     /// </remarks>
     /// <param name="target">Target narrows to one target language tag (BCP-47, e.g. \&quot;es\&quot; or \&quot;pt-BR\&quot;). (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="state">State narrows to one position on the review ladder: machine, suggested, approved or published. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps the rows returned. Non-positive or unparseable means the server default (200); the ceiling is 1000. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the rows returned. Non-positive or unparseable means the server default (200); the ceiling is 1000. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<MemoryPage>> getTranslateMemory(
         boost::optional<utility::string_t> target,
         boost::optional<utility::string_t> state,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Translate a string or a batch into one target language

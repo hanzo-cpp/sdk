@@ -57,9 +57,9 @@ public:
     /// <remarks>
     /// Errors returns the caller org&#39;s most recently captured errors, newest first. The error-tracking read view over event.error — the plane table the write core&#39;s error facts land in (errors are DELIBERATELY not on event.event) — each with its captured exception surfaced from the attributes map as a first-class field.  The org is the validated principal&#39;s — never a parameter — and this read requires a real bearer, NEVER the write-only publishable key: pk- can attribute a write and can read nothing. 403 without a validated bearer, 503 when the warehouse is unreachable.
     /// </remarks>
-    /// <param name="limit">Limit is how many rows to return, newest first. Default 50, maximum 200; a value at or below zero, or one that is not a number, takes the default. (optional, default to 0)</param>
+    /// <param name="limit">Limit is how many rows to return, newest first. Default 50, maximum 200; a value at or below zero, or one that is not a number, takes the default. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<ErrorList>> getEventErrors(
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Health reports whether the event plane can take a write and the warehouse can answer a read.
@@ -75,9 +75,9 @@ public:
     /// <remarks>
     /// Returns the caller org&#39;s most recent product events, newest first. The console&#39;s raw-event view over event.event — the same table the capture endpoints fill — one row per stored event, with the row&#39;s attributes returned as the properties object.  The org is the validated principal&#39;s — never a parameter — and a read requires a real bearer, never the write-only publishable key. 403 without a validated bearer, 503 when the warehouse is unreachable.
     /// </remarks>
-    /// <param name="limit">Limit is how many rows to return, newest first. Default 50, maximum 200; a value at or below zero, or one that is not a number, takes the default. (optional, default to 0)</param>
+    /// <param name="limit">Limit is how many rows to return, newest first. Default 50, maximum 200; a value at or below zero, or one that is not a number, takes the default. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<EventList>> getEventInsightsEvents(
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Reports that the unified insights surface is serving.
@@ -132,12 +132,12 @@ public:
     /// <param name="range">Range is a relative window: a count and a unit — 24h, 7d, 90d, any &lt;N&gt;h or &lt;N&gt;d — or day, week, month, all. Default 24h. Ignored when both start and end are given. An unknown value, or one past the 730-day horizon, is a 400. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="start">Start is the inclusive lower bound of a custom window, RFC3339. Requires end. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="end">End is the exclusive upper bound of a custom window, RFC3339. Requires start. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit bounds every ranked lens in the response. Default 10, maximum 100; a value at or below zero, or one that is not a number, takes the default. (optional, default to 0)</param>
+    /// <param name="limit">Limit bounds every ranked lens in the response. Default 10, maximum 100; a value at or below zero, or one that is not a number, takes the default. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<Top>> getEventTop(
         boost::optional<utility::string_t> range,
         boost::optional<utility::string_t> start,
         boost::optional<utility::string_t> end,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Capture product events into your org&#39;s warehouse

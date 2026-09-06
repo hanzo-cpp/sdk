@@ -107,10 +107,10 @@ public:
     void unsetProject();
     void setProject(const utility::string_t& value);
 
-    int32_t getReplicas() const;
+    int64_t getReplicas() const;
     bool replicasIsSet() const;
     void unsetReplicas();
-    void setReplicas(int32_t value);
+    void setReplicas(int64_t value);
 
     utility::string_t getRepository() const;
     bool repositoryIsSet() const;
@@ -154,7 +154,7 @@ protected:
     utility::string_t m_Project;
     bool m_ProjectIsSet;
 
-    int32_t m_Replicas;
+    int64_t m_Replicas;
     bool m_ReplicasIsSet;
 
     utility::string_t m_Repository;

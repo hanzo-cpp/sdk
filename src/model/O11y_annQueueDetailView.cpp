@@ -18,7 +18,7 @@ namespace model {
 
 O11y_annQueueDetailView::O11y_annQueueDetailView()
 {
-    m_CompletedCount = 0;
+    m_CompletedCount = 0L;
     m_CompletedCountIsSet = false;
     m_CreatedAt = utility::conversions::to_string_t("");
     m_CreatedAtIsSet = false;
@@ -29,7 +29,7 @@ O11y_annQueueDetailView::O11y_annQueueDetailView()
     m_ItemsIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_PendingCount = 0;
+    m_PendingCount = 0L;
     m_PendingCountIsSet = false;
     m_ScoreConfigIdsIsSet = false;
     m_UpdatedAt = utility::conversions::to_string_t("");
@@ -105,7 +105,7 @@ bool O11y_annQueueDetailView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("completedCount")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCompletedCount;
+            int64_t refVal_setCompletedCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCompletedCount);
             setCompletedCount(refVal_setCompletedCount);
             
@@ -171,7 +171,7 @@ bool O11y_annQueueDetailView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("pendingCount")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPendingCount;
+            int64_t refVal_setPendingCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPendingCount);
             setPendingCount(refVal_setPendingCount);
             
@@ -258,7 +258,7 @@ bool O11y_annQueueDetailView::fromMultiPart(std::shared_ptr<MultipartFormData> m
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("completedCount"))))
     {
-        int32_t refVal_setCompletedCount;
+        int64_t refVal_setCompletedCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("completedCount"))), refVal_setCompletedCount );
         setCompletedCount(refVal_setCompletedCount);
     }
@@ -294,7 +294,7 @@ bool O11y_annQueueDetailView::fromMultiPart(std::shared_ptr<MultipartFormData> m
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("pendingCount"))))
     {
-        int32_t refVal_setPendingCount;
+        int64_t refVal_setPendingCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("pendingCount"))), refVal_setPendingCount );
         setPendingCount(refVal_setPendingCount);
     }
@@ -314,13 +314,13 @@ bool O11y_annQueueDetailView::fromMultiPart(std::shared_ptr<MultipartFormData> m
 }
 
 
-int32_t O11y_annQueueDetailView::getCompletedCount() const
+int64_t O11y_annQueueDetailView::getCompletedCount() const
 {
     return m_CompletedCount;
 }
 
 
-void O11y_annQueueDetailView::setCompletedCount(int32_t value)
+void O11y_annQueueDetailView::setCompletedCount(int64_t value)
 {
     m_CompletedCount = value;
     m_CompletedCountIsSet = true;
@@ -440,13 +440,13 @@ void O11y_annQueueDetailView::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t O11y_annQueueDetailView::getPendingCount() const
+int64_t O11y_annQueueDetailView::getPendingCount() const
 {
     return m_PendingCount;
 }
 
 
-void O11y_annQueueDetailView::setPendingCount(int32_t value)
+void O11y_annQueueDetailView::setPendingCount(int64_t value)
 {
     m_PendingCount = value;
     m_PendingCountIsSet = true;

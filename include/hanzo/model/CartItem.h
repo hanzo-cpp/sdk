@@ -87,18 +87,18 @@ public:
     /// <summary>
     /// PriceCents is the unit price in whole cents, cached at the moment the line was added. The line&#39;s contribution to the cart is this times Quantity.
     /// </summary>
-    int32_t getPriceCents() const;
+    int64_t getPriceCents() const;
     bool priceCentsIsSet() const;
     void unsetPriceCents();
-    void setPriceCents(int32_t value);
+    void setPriceCents(int64_t value);
 
     /// <summary>
     /// Quantity is how many units of this item the cart holds.
     /// </summary>
-    int32_t getQuantity() const;
+    int64_t getQuantity() const;
     bool quantityIsSet() const;
     void unsetQuantity();
-    void setQuantity(int32_t value);
+    void setQuantity(int64_t value);
 
     /// <summary>
     /// SKU is the line&#39;s stock-keeping unit — the variant&#39;s when it has one, otherwise the product&#39;s. Empty when neither carries one.
@@ -122,10 +122,10 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_PriceCents;
+    int64_t m_PriceCents;
     bool m_PriceCentsIsSet;
 
-    int32_t m_Quantity;
+    int64_t m_Quantity;
     bool m_QuantityIsSet;
 
     utility::string_t m_Sku;

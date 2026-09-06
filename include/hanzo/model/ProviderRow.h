@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// CostCents is what they cost the org, in US cents.
     /// </summary>
-    int32_t getCostCents() const;
+    int64_t getCostCents() const;
     bool costCentsIsSet() const;
     void unsetCostCents();
-    void setCostCents(int32_t value);
+    void setCostCents(int64_t value);
 
     /// <summary>
     /// Provider is the upstream the requests were routed to, e.g. anthropic.
@@ -71,31 +71,31 @@ public:
     /// <summary>
     /// Requests is how many completions the org made against that provider.
     /// </summary>
-    int32_t getRequests() const;
+    int64_t getRequests() const;
     bool requestsIsSet() const;
     void unsetRequests();
-    void setRequests(int32_t value);
+    void setRequests(int64_t value);
 
     /// <summary>
     /// Tokens is the total tokens those completions consumed, prompt plus completion.
     /// </summary>
-    int32_t getTokens() const;
+    int64_t getTokens() const;
     bool tokensIsSet() const;
     void unsetTokens();
-    void setTokens(int32_t value);
+    void setTokens(int64_t value);
 
 
 protected:
-    int32_t m_CostCents;
+    int64_t m_CostCents;
     bool m_CostCentsIsSet;
 
     utility::string_t m_Provider;
     bool m_ProviderIsSet;
 
-    int32_t m_Requests;
+    int64_t m_Requests;
     bool m_RequestsIsSet;
 
-    int32_t m_Tokens;
+    int64_t m_Tokens;
     bool m_TokensIsSet;
 
 };

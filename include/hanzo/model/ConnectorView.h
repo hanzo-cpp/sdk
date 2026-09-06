@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// DocCount is the live count of this provider&#39;s documents in the org&#39;s store.
     /// </summary>
-    int32_t getDocCount() const;
+    int64_t getDocCount() const;
     bool docCountIsSet() const;
     void unsetDocCount();
-    void setDocCount(int32_t value);
+    void setDocCount(int64_t value);
 
     /// <summary>
     /// Error is the last sync failure, if any. Absent until the org connects.
@@ -124,7 +124,7 @@ protected:
     bool m_Configured;
     bool m_ConfiguredIsSet;
 
-    int32_t m_DocCount;
+    int64_t m_DocCount;
     bool m_DocCountIsSet;
 
     utility::string_t m_Error;

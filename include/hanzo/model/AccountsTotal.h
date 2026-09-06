@@ -54,69 +54,69 @@ public:
     /// <summary>
     /// Accounts is how many linked accounts the total folds.
     /// </summary>
-    int32_t getAccounts() const;
+    int64_t getAccounts() const;
     bool accountsIsSet() const;
     void unsetAccounts();
-    void setAccounts(int32_t value);
+    void setAccounts(int64_t value);
 
     /// <summary>
     /// CompletionTokens is the total completion-token count.
     /// </summary>
-    int32_t getCompletionTokens() const;
+    int64_t getCompletionTokens() const;
     bool completionTokensIsSet() const;
     void unsetCompletionTokens();
-    void setCompletionTokens(int32_t value);
+    void setCompletionTokens(int64_t value);
 
     /// <summary>
     /// CostCents is the total cost in cents.
     /// </summary>
-    int32_t getCostCents() const;
+    int64_t getCostCents() const;
     bool costCentsIsSet() const;
     void unsetCostCents();
-    void setCostCents(int32_t value);
+    void setCostCents(int64_t value);
 
     /// <summary>
     /// PromptTokens is the total prompt-token count.
     /// </summary>
-    int32_t getPromptTokens() const;
+    int64_t getPromptTokens() const;
     bool promptTokensIsSet() const;
     void unsetPromptTokens();
-    void setPromptTokens(int32_t value);
+    void setPromptTokens(int64_t value);
 
     /// <summary>
     /// Requests is the total request count the gateway routed.
     /// </summary>
-    int32_t getRequests() const;
+    int64_t getRequests() const;
     bool requestsIsSet() const;
     void unsetRequests();
-    void setRequests(int32_t value);
+    void setRequests(int64_t value);
 
     /// <summary>
     /// TotalTokens is the total token count.
     /// </summary>
-    int32_t getTotalTokens() const;
+    int64_t getTotalTokens() const;
     bool totalTokensIsSet() const;
     void unsetTotalTokens();
-    void setTotalTokens(int32_t value);
+    void setTotalTokens(int64_t value);
 
 
 protected:
-    int32_t m_Accounts;
+    int64_t m_Accounts;
     bool m_AccountsIsSet;
 
-    int32_t m_CompletionTokens;
+    int64_t m_CompletionTokens;
     bool m_CompletionTokensIsSet;
 
-    int32_t m_CostCents;
+    int64_t m_CostCents;
     bool m_CostCentsIsSet;
 
-    int32_t m_PromptTokens;
+    int64_t m_PromptTokens;
     bool m_PromptTokensIsSet;
 
-    int32_t m_Requests;
+    int64_t m_Requests;
     bool m_RequestsIsSet;
 
-    int32_t m_TotalTokens;
+    int64_t m_TotalTokens;
     bool m_TotalTokensIsSet;
 
 };

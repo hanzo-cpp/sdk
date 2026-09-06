@@ -596,7 +596,7 @@ pplx::task<std::shared_ptr<InfoOut>> MqApi::getMqInfo() const
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Streams>> MqApi::getMqStream(boost::optional<int32_t> limit, boost::optional<int32_t> offset) const
+pplx::task<std::shared_ptr<Streams>> MqApi::getMqStream(boost::optional<int64_t> limit, boost::optional<int64_t> offset) const
 {
 
 
@@ -851,7 +851,7 @@ pplx::task<std::shared_ptr<Stream>> MqApi::getMqStreamByName(utility::string_t n
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ReadOut>> MqApi::getMqStreamByNameMessage(utility::string_t name, boost::optional<int32_t> seq, boost::optional<utility::string_t> lastBySubject, boost::optional<utility::string_t> nextBySubject, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<ReadOut>> MqApi::getMqStreamByNameMessage(utility::string_t name, boost::optional<int32_t> seq, boost::optional<utility::string_t> lastBySubject, boost::optional<utility::string_t> nextBySubject, boost::optional<int64_t> limit) const
 {
 
 
@@ -991,7 +991,7 @@ pplx::task<std::shared_ptr<ReadOut>> MqApi::getMqStreamByNameMessage(utility::st
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<PickOut>> MqApi::getMqStreamByStreamConsumer(utility::string_t stream, boost::optional<int32_t> limit, boost::optional<int32_t> offset) const
+pplx::task<std::shared_ptr<PickOut>> MqApi::getMqStreamByStreamConsumer(utility::string_t stream, boost::optional<int64_t> limit, boost::optional<int64_t> offset) const
 {
 
 

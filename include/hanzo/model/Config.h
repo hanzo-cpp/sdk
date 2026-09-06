@@ -64,10 +64,10 @@ public:
     /// <summary>
     /// MaxBytes caps the stream&#39;s total stored bytes; -1 (default) is unlimited.
     /// </summary>
-    int32_t getMaxBytes() const;
+    int64_t getMaxBytes() const;
     bool maxBytesIsSet() const;
     void unsetMax_bytes();
-    void setMaxBytes(int32_t value);
+    void setMaxBytes(int64_t value);
 
     /// <summary>
     /// MaxMsgSize caps one message&#39;s size in bytes; -1 (default) is the broker&#39;s limit.
@@ -80,10 +80,10 @@ public:
     /// <summary>
     /// MaxMsgs caps the number of stored messages; -1 (default) is unlimited.
     /// </summary>
-    int32_t getMaxMsgs() const;
+    int64_t getMaxMsgs() const;
     bool maxMsgsIsSet() const;
     void unsetMax_msgs();
-    void setMaxMsgs(int32_t value);
+    void setMaxMsgs(int64_t value);
 
     /// <summary>
     /// Name is the stream name, unique within the org (alphanumeric, hyphens, underscores).
@@ -96,10 +96,10 @@ public:
     /// <summary>
     /// Replicas is the number of stream replicas (1–5); this plane runs 1.
     /// </summary>
-    int32_t getNumReplicas() const;
+    int64_t getNumReplicas() const;
     bool numReplicasIsSet() const;
     void unsetNum_replicas();
-    void setNumReplicas(int32_t value);
+    void setNumReplicas(int64_t value);
 
     /// <summary>
     /// Retention is the retention policy: limits (default), interest, or workqueue.
@@ -130,19 +130,19 @@ protected:
     utility::string_t m_Max_age;
     bool m_Max_ageIsSet;
 
-    int32_t m_Max_bytes;
+    int64_t m_Max_bytes;
     bool m_Max_bytesIsSet;
 
     int32_t m_Max_msg_size;
     bool m_Max_msg_sizeIsSet;
 
-    int32_t m_Max_msgs;
+    int64_t m_Max_msgs;
     bool m_Max_msgsIsSet;
 
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_Num_replicas;
+    int64_t m_Num_replicas;
     bool m_Num_replicasIsSet;
 
     utility::string_t m_Retention;

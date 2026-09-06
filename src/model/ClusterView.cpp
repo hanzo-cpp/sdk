@@ -18,7 +18,7 @@ namespace model {
 
 ClusterView::ClusterView()
 {
-    m_AmdGpu = 0;
+    m_AmdGpu = 0L;
     m_AmdGpuIsSet = false;
     m_CreatedAt = utility::conversions::to_string_t("");
     m_CreatedAtIsSet = false;
@@ -30,12 +30,12 @@ ClusterView::ClusterView()
     m_KindIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_NodeCount = 0;
+    m_NodeCount = 0L;
     m_NodeCountIsSet = false;
     m_NodePoolsIsSet = false;
     m_NodeSize = utility::conversions::to_string_t("");
     m_NodeSizeIsSet = false;
-    m_NvidiaGpu = 0;
+    m_NvidiaGpu = 0L;
     m_NvidiaGpuIsSet = false;
     m_Region = utility::conversions::to_string_t("");
     m_RegionIsSet = false;
@@ -127,7 +127,7 @@ bool ClusterView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("amdGpu")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAmdGpu;
+            int64_t refVal_setAmdGpu;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAmdGpu);
             setAmdGpu(refVal_setAmdGpu);
             
@@ -193,7 +193,7 @@ bool ClusterView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("nodeCount")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNodeCount;
+            int64_t refVal_setNodeCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNodeCount);
             setNodeCount(refVal_setNodeCount);
             
@@ -226,7 +226,7 @@ bool ClusterView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("nvidiaGpu")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNvidiaGpu;
+            int64_t refVal_setNvidiaGpu;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNvidiaGpu);
             setNvidiaGpu(refVal_setNvidiaGpu);
             
@@ -325,7 +325,7 @@ bool ClusterView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("amdGpu"))))
     {
-        int32_t refVal_setAmdGpu;
+        int64_t refVal_setAmdGpu;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("amdGpu"))), refVal_setAmdGpu );
         setAmdGpu(refVal_setAmdGpu);
     }
@@ -361,7 +361,7 @@ bool ClusterView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("nodeCount"))))
     {
-        int32_t refVal_setNodeCount;
+        int64_t refVal_setNodeCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("nodeCount"))), refVal_setNodeCount );
         setNodeCount(refVal_setNodeCount);
     }
@@ -379,7 +379,7 @@ bool ClusterView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("nvidiaGpu"))))
     {
-        int32_t refVal_setNvidiaGpu;
+        int64_t refVal_setNvidiaGpu;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("nvidiaGpu"))), refVal_setNvidiaGpu );
         setNvidiaGpu(refVal_setNvidiaGpu);
     }
@@ -399,13 +399,13 @@ bool ClusterView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 }
 
 
-int32_t ClusterView::getAmdGpu() const
+int64_t ClusterView::getAmdGpu() const
 {
     return m_AmdGpu;
 }
 
 
-void ClusterView::setAmdGpu(int32_t value)
+void ClusterView::setAmdGpu(int64_t value)
 {
     m_AmdGpu = value;
     m_AmdGpuIsSet = true;
@@ -525,13 +525,13 @@ void ClusterView::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t ClusterView::getNodeCount() const
+int64_t ClusterView::getNodeCount() const
 {
     return m_NodeCount;
 }
 
 
-void ClusterView::setNodeCount(int32_t value)
+void ClusterView::setNodeCount(int64_t value)
 {
     m_NodeCount = value;
     m_NodeCountIsSet = true;
@@ -588,13 +588,13 @@ void ClusterView::unsetNodeSize()
 {
     m_NodeSizeIsSet = false;
 }
-int32_t ClusterView::getNvidiaGpu() const
+int64_t ClusterView::getNvidiaGpu() const
 {
     return m_NvidiaGpu;
 }
 
 
-void ClusterView::setNvidiaGpu(int32_t value)
+void ClusterView::setNvidiaGpu(int64_t value)
 {
     m_NvidiaGpu = value;
     m_NvidiaGpuIsSet = true;

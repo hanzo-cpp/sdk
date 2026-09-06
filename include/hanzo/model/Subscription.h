@@ -97,10 +97,10 @@ public:
     /// <summary>
     /// MRRCents is what this subscription contributes per month — commerce&#39;s own figure, interval-normalized and multiplied by its seats, so no reader re-derives it from price and interval.
     /// </summary>
-    int32_t getMrrCents() const;
+    int64_t getMrrCents() const;
     bool mrrCentsIsSet() const;
     void unsetMrrCents();
-    void setMrrCents(int32_t value);
+    void setMrrCents(int64_t value);
 
     std::shared_ptr<SubscriptionPlan> getPlan() const;
     bool planIsSet() const;
@@ -117,10 +117,10 @@ public:
     void unsetProviderType();
     void setProviderType(const utility::string_t& value);
 
-    int32_t getQuantity() const;
+    int64_t getQuantity() const;
     bool quantityIsSet() const;
     void unsetQuantity();
-    void setQuantity(int32_t value);
+    void setQuantity(int64_t value);
 
     utility::string_t getStatus() const;
     bool statusIsSet() const;
@@ -173,7 +173,7 @@ protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
 
-    int32_t m_MrrCents;
+    int64_t m_MrrCents;
     bool m_MrrCentsIsSet;
 
     std::shared_ptr<SubscriptionPlan> m_Plan;
@@ -185,7 +185,7 @@ protected:
     utility::string_t m_ProviderType;
     bool m_ProviderTypeIsSet;
 
-    int32_t m_Quantity;
+    int64_t m_Quantity;
     bool m_QuantityIsSet;
 
     utility::string_t m_Status;

@@ -51,46 +51,46 @@ public:
     /// O11y_PodCountByPhase members
 
 
-    int32_t getFailed() const;
+    int64_t getFailed() const;
     bool failedIsSet() const;
     void unsetFailed();
-    void setFailed(int32_t value);
+    void setFailed(int64_t value);
 
-    int32_t getPending() const;
+    int64_t getPending() const;
     bool pendingIsSet() const;
     void unsetPending();
-    void setPending(int32_t value);
+    void setPending(int64_t value);
 
-    int32_t getRunning() const;
+    int64_t getRunning() const;
     bool runningIsSet() const;
     void unsetRunning();
-    void setRunning(int32_t value);
+    void setRunning(int64_t value);
 
-    int32_t getSucceeded() const;
+    int64_t getSucceeded() const;
     bool succeededIsSet() const;
     void unsetSucceeded();
-    void setSucceeded(int32_t value);
+    void setSucceeded(int64_t value);
 
-    int32_t getUnknown() const;
+    int64_t getUnknown() const;
     bool unknownIsSet() const;
     void unsetUnknown();
-    void setUnknown(int32_t value);
+    void setUnknown(int64_t value);
 
 
 protected:
-    int32_t m_Failed;
+    int64_t m_Failed;
     bool m_FailedIsSet;
 
-    int32_t m_Pending;
+    int64_t m_Pending;
     bool m_PendingIsSet;
 
-    int32_t m_Running;
+    int64_t m_Running;
     bool m_RunningIsSet;
 
-    int32_t m_Succeeded;
+    int64_t m_Succeeded;
     bool m_SucceededIsSet;
 
-    int32_t m_Unknown;
+    int64_t m_Unknown;
     bool m_UnknownIsSet;
 
 };

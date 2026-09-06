@@ -20,7 +20,7 @@ AppView::AppView()
 {
     m_BuildType = utility::conversions::to_string_t("");
     m_BuildTypeIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_CurrentDeploymentId = utility::conversions::to_string_t("");
     m_CurrentDeploymentIdIsSet = false;
@@ -45,11 +45,11 @@ AppView::AppView()
     m_OrgIsSet = false;
     m_Phase = utility::conversions::to_string_t("");
     m_PhaseIsSet = false;
-    m_Port = 0;
+    m_Port = 0L;
     m_PortIsSet = false;
     m_ProjectId = utility::conversions::to_string_t("");
     m_ProjectIdIsSet = false;
-    m_Replicas = 0;
+    m_Replicas = 0L;
     m_ReplicasIsSet = false;
     m_RepoIsSet = false;
     m_SecretSync = utility::conversions::to_string_t("");
@@ -62,9 +62,9 @@ AppView::AppView()
     m_SourceIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
-    m_StorageGb = 0;
+    m_StorageGb = 0L;
     m_StorageGbIsSet = false;
-    m_UpdatedAt = 0;
+    m_UpdatedAt = 0L;
     m_UpdatedAtIsSet = false;
 }
 
@@ -233,7 +233,7 @@ bool AppView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -387,7 +387,7 @@ bool AppView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("port")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPort;
+            int64_t refVal_setPort;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPort);
             setPort(refVal_setPort);
             
@@ -409,7 +409,7 @@ bool AppView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("replicas")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setReplicas;
+            int64_t refVal_setReplicas;
             ok &= ModelBase::fromJson(fieldValue, refVal_setReplicas);
             setReplicas(refVal_setReplicas);
             
@@ -486,7 +486,7 @@ bool AppView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("storageGb")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStorageGb;
+            int64_t refVal_setStorageGb;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStorageGb);
             setStorageGb(refVal_setStorageGb);
             
@@ -497,7 +497,7 @@ bool AppView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updatedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdatedAt;
+            int64_t refVal_setUpdatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdatedAt);
             setUpdatedAt(refVal_setUpdatedAt);
             
@@ -636,7 +636,7 @@ bool AppView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -720,7 +720,7 @@ bool AppView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("port"))))
     {
-        int32_t refVal_setPort;
+        int64_t refVal_setPort;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("port"))), refVal_setPort );
         setPort(refVal_setPort);
     }
@@ -732,7 +732,7 @@ bool AppView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("replicas"))))
     {
-        int32_t refVal_setReplicas;
+        int64_t refVal_setReplicas;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("replicas"))), refVal_setReplicas );
         setReplicas(refVal_setReplicas);
     }
@@ -774,13 +774,13 @@ bool AppView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("storageGb"))))
     {
-        int32_t refVal_setStorageGb;
+        int64_t refVal_setStorageGb;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("storageGb"))), refVal_setStorageGb );
         setStorageGb(refVal_setStorageGb);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
-        int32_t refVal_setUpdatedAt;
+        int64_t refVal_setUpdatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))), refVal_setUpdatedAt );
         setUpdatedAt(refVal_setUpdatedAt);
     }
@@ -809,13 +809,13 @@ void AppView::unsetBuildType()
 {
     m_BuildTypeIsSet = false;
 }
-int32_t AppView::getCreatedAt() const
+int64_t AppView::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void AppView::setCreatedAt(int32_t value)
+void AppView::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -1103,13 +1103,13 @@ void AppView::unsetPhase()
 {
     m_PhaseIsSet = false;
 }
-int32_t AppView::getPort() const
+int64_t AppView::getPort() const
 {
     return m_Port;
 }
 
 
-void AppView::setPort(int32_t value)
+void AppView::setPort(int64_t value)
 {
     m_Port = value;
     m_PortIsSet = true;
@@ -1145,13 +1145,13 @@ void AppView::unsetProjectId()
 {
     m_ProjectIdIsSet = false;
 }
-int32_t AppView::getReplicas() const
+int64_t AppView::getReplicas() const
 {
     return m_Replicas;
 }
 
 
-void AppView::setReplicas(int32_t value)
+void AppView::setReplicas(int64_t value)
 {
     m_Replicas = value;
     m_ReplicasIsSet = true;
@@ -1292,13 +1292,13 @@ void AppView::unsetStatus()
 {
     m_StatusIsSet = false;
 }
-int32_t AppView::getStorageGb() const
+int64_t AppView::getStorageGb() const
 {
     return m_StorageGb;
 }
 
 
-void AppView::setStorageGb(int32_t value)
+void AppView::setStorageGb(int64_t value)
 {
     m_StorageGb = value;
     m_StorageGbIsSet = true;
@@ -1313,13 +1313,13 @@ void AppView::unsetStorageGb()
 {
     m_StorageGbIsSet = false;
 }
-int32_t AppView::getUpdatedAt() const
+int64_t AppView::getUpdatedAt() const
 {
     return m_UpdatedAt;
 }
 
 
-void AppView::setUpdatedAt(int32_t value)
+void AppView::setUpdatedAt(int64_t value)
 {
     m_UpdatedAt = value;
     m_UpdatedAtIsSet = true;

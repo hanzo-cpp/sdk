@@ -21,7 +21,7 @@ O11y_PushoverConfig::O11y_PushoverConfig()
     m_NotifierConfigIsSet = false;
     m_Device = utility::conversions::to_string_t("");
     m_DeviceIsSet = false;
-    m_Expire = 0;
+    m_Expire = 0L;
     m_ExpireIsSet = false;
     m_Html = false;
     m_HtmlIsSet = false;
@@ -32,7 +32,7 @@ O11y_PushoverConfig::O11y_PushoverConfig()
     m_MonospaceIsSet = false;
     m_Priority = utility::conversions::to_string_t("");
     m_PriorityIsSet = false;
-    m_Retry = 0;
+    m_Retry = 0L;
     m_RetryIsSet = false;
     m_Sound = utility::conversions::to_string_t("");
     m_SoundIsSet = false;
@@ -40,7 +40,7 @@ O11y_PushoverConfig::O11y_PushoverConfig()
     m_TitleIsSet = false;
     m_Token_file = utility::conversions::to_string_t("");
     m_Token_fileIsSet = false;
-    m_Ttl = 0;
+    m_Ttl = 0L;
     m_TtlIsSet = false;
     m_Url = utility::conversions::to_string_t("");
     m_UrlIsSet = false;
@@ -186,7 +186,7 @@ bool O11y_PushoverConfig::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("expire")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExpire;
+            int64_t refVal_setExpire;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExpire);
             setExpire(refVal_setExpire);
             
@@ -252,7 +252,7 @@ bool O11y_PushoverConfig::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("retry")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRetry;
+            int64_t refVal_setRetry;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRetry);
             setRetry(refVal_setRetry);
             
@@ -307,7 +307,7 @@ bool O11y_PushoverConfig::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("ttl")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTtl;
+            int64_t refVal_setTtl;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTtl);
             setTtl(refVal_setTtl);
             
@@ -464,7 +464,7 @@ bool O11y_PushoverConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multi
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("expire"))))
     {
-        int32_t refVal_setExpire;
+        int64_t refVal_setExpire;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("expire"))), refVal_setExpire );
         setExpire(refVal_setExpire);
     }
@@ -500,7 +500,7 @@ bool O11y_PushoverConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multi
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("retry"))))
     {
-        int32_t refVal_setRetry;
+        int64_t refVal_setRetry;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("retry"))), refVal_setRetry );
         setRetry(refVal_setRetry);
     }
@@ -530,7 +530,7 @@ bool O11y_PushoverConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multi
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("ttl"))))
     {
-        int32_t refVal_setTtl;
+        int64_t refVal_setTtl;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ttl"))), refVal_setTtl );
         setTtl(refVal_setTtl);
     }
@@ -604,13 +604,13 @@ void O11y_PushoverConfig::unsetDevice()
 {
     m_DeviceIsSet = false;
 }
-int32_t O11y_PushoverConfig::getExpire() const
+int64_t O11y_PushoverConfig::getExpire() const
 {
     return m_Expire;
 }
 
 
-void O11y_PushoverConfig::setExpire(int32_t value)
+void O11y_PushoverConfig::setExpire(int64_t value)
 {
     m_Expire = value;
     m_ExpireIsSet = true;
@@ -730,13 +730,13 @@ void O11y_PushoverConfig::unsetPriority()
 {
     m_PriorityIsSet = false;
 }
-int32_t O11y_PushoverConfig::getRetry() const
+int64_t O11y_PushoverConfig::getRetry() const
 {
     return m_Retry;
 }
 
 
-void O11y_PushoverConfig::setRetry(int32_t value)
+void O11y_PushoverConfig::setRetry(int64_t value)
 {
     m_Retry = value;
     m_RetryIsSet = true;
@@ -834,13 +834,13 @@ void O11y_PushoverConfig::unsetToken_file()
 {
     m_Token_fileIsSet = false;
 }
-int32_t O11y_PushoverConfig::getTtl() const
+int64_t O11y_PushoverConfig::getTtl() const
 {
     return m_Ttl;
 }
 
 
-void O11y_PushoverConfig::setTtl(int32_t value)
+void O11y_PushoverConfig::setTtl(int64_t value)
 {
     m_Ttl = value;
     m_TtlIsSet = true;

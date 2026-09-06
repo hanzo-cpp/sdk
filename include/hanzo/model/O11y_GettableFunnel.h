@@ -57,10 +57,10 @@ public:
     /// O11y_GettableFunnel members
 
 
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreated_at();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     utility::string_t getCreatedBy() const;
     bool createdByIsSet() const;
@@ -97,10 +97,10 @@ public:
     void unsetSteps();
     void setSteps(const std::vector<std::shared_ptr<O11y_FunnelStep>>& value);
 
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdated_at();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
     utility::string_t getUpdatedBy() const;
     bool updatedByIsSet() const;
@@ -114,7 +114,7 @@ public:
 
 
 protected:
-    int32_t m_Created_at;
+    int64_t m_Created_at;
     bool m_Created_atIsSet;
 
     utility::string_t m_Created_by;
@@ -138,7 +138,7 @@ protected:
     std::vector<std::shared_ptr<O11y_FunnelStep>> m_Steps;
     bool m_StepsIsSet;
 
-    int32_t m_Updated_at;
+    int64_t m_Updated_at;
     bool m_Updated_atIsSet;
 
     utility::string_t m_Updated_by;

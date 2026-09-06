@@ -22,8 +22,10 @@
 
 #include "hanzo/ApiClient.h"
 
+#include "hanzo/model/BotRoster.h"
 #include "hanzo/model/BotRuns.h"
 #include "hanzo/model/BotStopped.h"
+#include "hanzo/model/BotSync.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -43,12 +45,28 @@ public:
     virtual ~BotApi();
 
     /// <summary>
+    /// Returns the caller org&#39;s bots as space members — each with the member account uuid and the Person reference the roster addresses it by.
+    /// </summary>
+    /// <remarks>
+    /// Returns the caller org&#39;s bots as space members — each with the member account uuid and the Person reference the roster addresses it by.  A deployment that runs no team subsystem has no spaces and therefore no roster, which is an empty list rather than an error: ErrNoPeer is the ONE error that means \&quot;this deployment does not run that app\&quot;, and every other failure is an outage and says so.
+    /// </remarks>
+    pplx::task<std::shared_ptr<BotRoster>> getBotMembers(
+    ) const;
+    /// <summary>
     /// List returns the caller org&#39;s live bot runs, read from the bot runtime and projected into the console contract with each run&#39;s live session URL derived here.
     /// </summary>
     /// <remarks>
     /// List returns the caller org&#39;s live bot runs, read from the bot runtime and projected into the console contract with each run&#39;s live session URL derived here.  The org is ALWAYS the validated principal&#39;s org, NEVER a request field, and it is what scopes the runtime&#39;s answer — so one tenant can never enumerate another&#39;s runs. A runtime that cannot answer is an error, not an empty list: [] would tell the caller \&quot;your org has no runs\&quot;, which is a different claim from \&quot;we could not ask\&quot;, and the difference is the whole reason this endpoint exists.
     /// </remarks>
     pplx::task<std::shared_ptr<BotRuns>> getBotRuns(
+    ) const;
+    /// <summary>
+    /// Re-projects the caller org&#39;s bots as members into every space of the org and removes the ones whose agent is gone.
+    /// </summary>
+    /// <remarks>
+    /// Re-projects the caller org&#39;s bots as members into every space of the org and removes the ones whose agent is gone. Idempotent, and admin only — the admin bit rides the caller to team, which is what decides it.
+    /// </remarks>
+    pplx::task<std::shared_ptr<BotSync>> postBotMembersSync(
     ) const;
     /// <summary>
     /// Answers 501 to every call: launching a bot run is not implemented.

@@ -18,15 +18,15 @@ namespace model {
 
 TrustAskView::TrustAskView()
 {
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
-    m_DecidedAt = 0;
+    m_DecidedAt = 0L;
     m_DecidedAtIsSet = false;
     m_DecidedBy = utility::conversions::to_string_t("");
     m_DecidedByIsSet = false;
     m_Email = utility::conversions::to_string_t("");
     m_EmailIsSet = false;
-    m_ExpiresAt = 0;
+    m_ExpiresAt = 0L;
     m_ExpiresAtIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
@@ -135,7 +135,7 @@ bool TrustAskView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -146,7 +146,7 @@ bool TrustAskView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("decidedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDecidedAt;
+            int64_t refVal_setDecidedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDecidedAt);
             setDecidedAt(refVal_setDecidedAt);
             
@@ -179,7 +179,7 @@ bool TrustAskView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("expiresAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExpiresAt;
+            int64_t refVal_setExpiresAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExpiresAt);
             setExpiresAt(refVal_setExpiresAt);
             
@@ -348,13 +348,13 @@ bool TrustAskView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("decidedAt"))))
     {
-        int32_t refVal_setDecidedAt;
+        int64_t refVal_setDecidedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("decidedAt"))), refVal_setDecidedAt );
         setDecidedAt(refVal_setDecidedAt);
     }
@@ -372,7 +372,7 @@ bool TrustAskView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("expiresAt"))))
     {
-        int32_t refVal_setExpiresAt;
+        int64_t refVal_setExpiresAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("expiresAt"))), refVal_setExpiresAt );
         setExpiresAt(refVal_setExpiresAt);
     }
@@ -428,13 +428,13 @@ bool TrustAskView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
 }
 
 
-int32_t TrustAskView::getCreatedAt() const
+int64_t TrustAskView::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void TrustAskView::setCreatedAt(int32_t value)
+void TrustAskView::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -449,13 +449,13 @@ void TrustAskView::unsetCreatedAt()
 {
     m_CreatedAtIsSet = false;
 }
-int32_t TrustAskView::getDecidedAt() const
+int64_t TrustAskView::getDecidedAt() const
 {
     return m_DecidedAt;
 }
 
 
-void TrustAskView::setDecidedAt(int32_t value)
+void TrustAskView::setDecidedAt(int64_t value)
 {
     m_DecidedAt = value;
     m_DecidedAtIsSet = true;
@@ -512,13 +512,13 @@ void TrustAskView::unsetEmail()
 {
     m_EmailIsSet = false;
 }
-int32_t TrustAskView::getExpiresAt() const
+int64_t TrustAskView::getExpiresAt() const
 {
     return m_ExpiresAt;
 }
 
 
-void TrustAskView::setExpiresAt(int32_t value)
+void TrustAskView::setExpiresAt(int64_t value)
 {
     m_ExpiresAt = value;
     m_ExpiresAtIsSet = true;

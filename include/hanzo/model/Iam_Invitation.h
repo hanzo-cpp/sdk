@@ -117,10 +117,10 @@ public:
     void unsetPhone();
     void setPhone(const utility::string_t& value);
 
-    int32_t getQuota() const;
+    int64_t getQuota() const;
     bool quotaIsSet() const;
     void unsetQuota();
-    void setQuota(int32_t value);
+    void setQuota(int64_t value);
 
     utility::string_t getSignupGroup() const;
     bool signupGroupIsSet() const;
@@ -142,10 +142,10 @@ public:
     void unsetUpdatedTime();
     void setUpdatedTime(const utility::string_t& value);
 
-    int32_t getUsedCount() const;
+    int64_t getUsedCount() const;
     bool usedCountIsSet() const;
     void unsetUsedCount();
-    void setUsedCount(int32_t value);
+    void setUsedCount(int64_t value);
 
     utility::string_t getUsername() const;
     bool usernameIsSet() const;
@@ -193,7 +193,7 @@ protected:
     utility::string_t m_Phone;
     bool m_PhoneIsSet;
 
-    int32_t m_Quota;
+    int64_t m_Quota;
     bool m_QuotaIsSet;
 
     utility::string_t m_SignupGroup;
@@ -208,7 +208,7 @@ protected:
     utility::string_t m_UpdatedTime;
     bool m_UpdatedTimeIsSet;
 
-    int32_t m_UsedCount;
+    int64_t m_UsedCount;
     bool m_UsedCountIsSet;
 
     utility::string_t m_Username;

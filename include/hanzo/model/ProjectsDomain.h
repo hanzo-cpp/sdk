@@ -58,10 +58,10 @@ public:
     /// <summary>
     /// CreatedAt is when the host was claimed, as Unix seconds — not when it went live.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// Detail is what is holding the claim up, in words a person can act on.
@@ -113,7 +113,7 @@ public:
 
 
 protected:
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_Detail;

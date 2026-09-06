@@ -63,28 +63,28 @@ public:
     /// <summary>
     /// Cents is what the org spent in that bucket over the window, in US cents.
     /// </summary>
-    int32_t getCents() const;
+    int64_t getCents() const;
     bool centsIsSet() const;
     void unsetCents();
-    void setCents(int32_t value);
+    void setCents(int64_t value);
 
     /// <summary>
     /// Count is how many ledger lines rolled up into it.
     /// </summary>
-    int32_t getCount() const;
+    int64_t getCount() const;
     bool countIsSet() const;
     void unsetCount();
-    void setCount(int32_t value);
+    void setCount(int64_t value);
 
 
 protected:
     utility::string_t m_Category;
     bool m_CategoryIsSet;
 
-    int32_t m_Cents;
+    int64_t m_Cents;
     bool m_CentsIsSet;
 
-    int32_t m_Count;
+    int64_t m_Count;
     bool m_CountIsSet;
 
 };

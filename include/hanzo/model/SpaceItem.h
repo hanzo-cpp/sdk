@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// CreatedAt is when the space was made, in unix seconds.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// Name is the space&#39;s name, as the org created it.
@@ -70,7 +70,7 @@ public:
 
 
 protected:
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_Name;

@@ -18,7 +18,7 @@ namespace model {
 
 CaptableRoundTotals::CaptableRoundTotals()
 {
-    m_Count = 0;
+    m_Count = 0L;
     m_CountIsSet = false;
     m_TotalRaised = 0.0;
     m_TotalRaisedIsSet = false;
@@ -58,7 +58,7 @@ bool CaptableRoundTotals::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("count")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCount;
+            int64_t refVal_setCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCount);
             setCount(refVal_setCount);
             
@@ -106,7 +106,7 @@ bool CaptableRoundTotals::fromMultiPart(std::shared_ptr<MultipartFormData> multi
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("count"))))
     {
-        int32_t refVal_setCount;
+        int64_t refVal_setCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("count"))), refVal_setCount );
         setCount(refVal_setCount);
     }
@@ -120,13 +120,13 @@ bool CaptableRoundTotals::fromMultiPart(std::shared_ptr<MultipartFormData> multi
 }
 
 
-int32_t CaptableRoundTotals::getCount() const
+int64_t CaptableRoundTotals::getCount() const
 {
     return m_Count;
 }
 
 
-void CaptableRoundTotals::setCount(int32_t value)
+void CaptableRoundTotals::setCount(int64_t value)
 {
     m_Count = value;
     m_CountIsSet = true;

@@ -21,7 +21,7 @@ DataroomLink::DataroomLink()
     m_AllowDownload = false;
     m_AllowDownloadIsSet = false;
     m_AllowListIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_DataroomId = utility::conversions::to_string_t("");
     m_DataroomIdIsSet = false;
@@ -30,7 +30,7 @@ DataroomLink::DataroomLink()
     m_DocumentIdIsSet = false;
     m_EmailProtected = false;
     m_EmailProtectedIsSet = false;
-    m_ExpiresAt = 0;
+    m_ExpiresAt = 0L;
     m_ExpiresAtIsSet = false;
     m_HasPassword = false;
     m_HasPasswordIsSet = false;
@@ -42,7 +42,7 @@ DataroomLink::DataroomLink()
     m_LinkTypeIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_UpdatedAt = 0;
+    m_UpdatedAt = 0L;
     m_UpdatedAtIsSet = false;
 }
 
@@ -162,7 +162,7 @@ bool DataroomLink::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -217,7 +217,7 @@ bool DataroomLink::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("expiresAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExpiresAt;
+            int64_t refVal_setExpiresAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExpiresAt);
             setExpiresAt(refVal_setExpiresAt);
             
@@ -283,7 +283,7 @@ bool DataroomLink::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updatedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdatedAt;
+            int64_t refVal_setUpdatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdatedAt);
             setUpdatedAt(refVal_setUpdatedAt);
             
@@ -380,7 +380,7 @@ bool DataroomLink::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -410,7 +410,7 @@ bool DataroomLink::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("expiresAt"))))
     {
-        int32_t refVal_setExpiresAt;
+        int64_t refVal_setExpiresAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("expiresAt"))), refVal_setExpiresAt );
         setExpiresAt(refVal_setExpiresAt);
     }
@@ -446,7 +446,7 @@ bool DataroomLink::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
-        int32_t refVal_setUpdatedAt;
+        int64_t refVal_setUpdatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))), refVal_setUpdatedAt );
         setUpdatedAt(refVal_setUpdatedAt);
     }
@@ -496,13 +496,13 @@ void DataroomLink::unsetAllowList()
 {
     m_AllowListIsSet = false;
 }
-int32_t DataroomLink::getCreatedAt() const
+int64_t DataroomLink::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void DataroomLink::setCreatedAt(int32_t value)
+void DataroomLink::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -601,13 +601,13 @@ void DataroomLink::unsetEmailProtected()
 {
     m_EmailProtectedIsSet = false;
 }
-int32_t DataroomLink::getExpiresAt() const
+int64_t DataroomLink::getExpiresAt() const
 {
     return m_ExpiresAt;
 }
 
 
-void DataroomLink::setExpiresAt(int32_t value)
+void DataroomLink::setExpiresAt(int64_t value)
 {
     m_ExpiresAt = value;
     m_ExpiresAtIsSet = true;
@@ -727,13 +727,13 @@ void DataroomLink::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t DataroomLink::getUpdatedAt() const
+int64_t DataroomLink::getUpdatedAt() const
 {
     return m_UpdatedAt;
 }
 
 
-void DataroomLink::setUpdatedAt(int32_t value)
+void DataroomLink::setUpdatedAt(int64_t value)
 {
     m_UpdatedAt = value;
     m_UpdatedAtIsSet = true;

@@ -28,7 +28,7 @@ RiskPolicyVersion::RiskPolicyVersion()
     m_ReviewIsSet = false;
     m_Sample = 0.0;
     m_SampleIsSet = false;
-    m_Version = 0;
+    m_Version = 0L;
     m_VersionIsSet = false;
 }
 
@@ -141,7 +141,7 @@ bool RiskPolicyVersion::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("version")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVersion;
+            int64_t refVal_setVersion;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVersion);
             setVersion(refVal_setVersion);
             
@@ -224,7 +224,7 @@ bool RiskPolicyVersion::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("version"))))
     {
-        int32_t refVal_setVersion;
+        int64_t refVal_setVersion;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("version"))), refVal_setVersion );
         setVersion(refVal_setVersion);
     }
@@ -337,13 +337,13 @@ void RiskPolicyVersion::unsetSample()
 {
     m_SampleIsSet = false;
 }
-int32_t RiskPolicyVersion::getVersion() const
+int64_t RiskPolicyVersion::getVersion() const
 {
     return m_Version;
 }
 
 
-void RiskPolicyVersion::setVersion(int32_t value)
+void RiskPolicyVersion::setVersion(int64_t value)
 {
     m_Version = value;
     m_VersionIsSet = true;

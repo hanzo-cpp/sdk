@@ -18,7 +18,7 @@ namespace model {
 
 CreditEntry::CreditEntry()
 {
-    m_Available = 0;
+    m_Available = 0L;
     m_AvailableIsSet = false;
     m_Currency = utility::conversions::to_string_t("");
     m_CurrencyIsSet = false;
@@ -58,7 +58,7 @@ bool CreditEntry::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("available")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAvailable;
+            int64_t refVal_setAvailable;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAvailable);
             setAvailable(refVal_setAvailable);
             
@@ -106,7 +106,7 @@ bool CreditEntry::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("available"))))
     {
-        int32_t refVal_setAvailable;
+        int64_t refVal_setAvailable;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("available"))), refVal_setAvailable );
         setAvailable(refVal_setAvailable);
     }
@@ -120,13 +120,13 @@ bool CreditEntry::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 }
 
 
-int32_t CreditEntry::getAvailable() const
+int64_t CreditEntry::getAvailable() const
 {
     return m_Available;
 }
 
 
-void CreditEntry::setAvailable(int32_t value)
+void CreditEntry::setAvailable(int64_t value)
 {
     m_Available = value;
     m_AvailableIsSet = true;

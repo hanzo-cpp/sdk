@@ -18,17 +18,17 @@ namespace model {
 
 AccountsTotal::AccountsTotal()
 {
-    m_Accounts = 0;
+    m_Accounts = 0L;
     m_AccountsIsSet = false;
-    m_CompletionTokens = 0;
+    m_CompletionTokens = 0L;
     m_CompletionTokensIsSet = false;
-    m_CostCents = 0;
+    m_CostCents = 0L;
     m_CostCentsIsSet = false;
-    m_PromptTokens = 0;
+    m_PromptTokens = 0L;
     m_PromptTokensIsSet = false;
-    m_Requests = 0;
+    m_Requests = 0L;
     m_RequestsIsSet = false;
-    m_TotalTokens = 0;
+    m_TotalTokens = 0L;
     m_TotalTokensIsSet = false;
 }
 
@@ -86,7 +86,7 @@ bool AccountsTotal::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("accounts")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAccounts;
+            int64_t refVal_setAccounts;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAccounts);
             setAccounts(refVal_setAccounts);
             
@@ -97,7 +97,7 @@ bool AccountsTotal::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("completionTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCompletionTokens;
+            int64_t refVal_setCompletionTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCompletionTokens);
             setCompletionTokens(refVal_setCompletionTokens);
             
@@ -108,7 +108,7 @@ bool AccountsTotal::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("costCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCostCents;
+            int64_t refVal_setCostCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCostCents);
             setCostCents(refVal_setCostCents);
             
@@ -119,7 +119,7 @@ bool AccountsTotal::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("promptTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPromptTokens;
+            int64_t refVal_setPromptTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPromptTokens);
             setPromptTokens(refVal_setPromptTokens);
             
@@ -130,7 +130,7 @@ bool AccountsTotal::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("requests")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRequests;
+            int64_t refVal_setRequests;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRequests);
             setRequests(refVal_setRequests);
             
@@ -141,7 +141,7 @@ bool AccountsTotal::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("totalTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotalTokens;
+            int64_t refVal_setTotalTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalTokens);
             setTotalTokens(refVal_setTotalTokens);
             
@@ -194,37 +194,37 @@ bool AccountsTotal::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("accounts"))))
     {
-        int32_t refVal_setAccounts;
+        int64_t refVal_setAccounts;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("accounts"))), refVal_setAccounts );
         setAccounts(refVal_setAccounts);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("completionTokens"))))
     {
-        int32_t refVal_setCompletionTokens;
+        int64_t refVal_setCompletionTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("completionTokens"))), refVal_setCompletionTokens );
         setCompletionTokens(refVal_setCompletionTokens);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))))
     {
-        int32_t refVal_setCostCents;
+        int64_t refVal_setCostCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))), refVal_setCostCents );
         setCostCents(refVal_setCostCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("promptTokens"))))
     {
-        int32_t refVal_setPromptTokens;
+        int64_t refVal_setPromptTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("promptTokens"))), refVal_setPromptTokens );
         setPromptTokens(refVal_setPromptTokens);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("requests"))))
     {
-        int32_t refVal_setRequests;
+        int64_t refVal_setRequests;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("requests"))), refVal_setRequests );
         setRequests(refVal_setRequests);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("totalTokens"))))
     {
-        int32_t refVal_setTotalTokens;
+        int64_t refVal_setTotalTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("totalTokens"))), refVal_setTotalTokens );
         setTotalTokens(refVal_setTotalTokens);
     }
@@ -232,13 +232,13 @@ bool AccountsTotal::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 }
 
 
-int32_t AccountsTotal::getAccounts() const
+int64_t AccountsTotal::getAccounts() const
 {
     return m_Accounts;
 }
 
 
-void AccountsTotal::setAccounts(int32_t value)
+void AccountsTotal::setAccounts(int64_t value)
 {
     m_Accounts = value;
     m_AccountsIsSet = true;
@@ -253,13 +253,13 @@ void AccountsTotal::unsetAccounts()
 {
     m_AccountsIsSet = false;
 }
-int32_t AccountsTotal::getCompletionTokens() const
+int64_t AccountsTotal::getCompletionTokens() const
 {
     return m_CompletionTokens;
 }
 
 
-void AccountsTotal::setCompletionTokens(int32_t value)
+void AccountsTotal::setCompletionTokens(int64_t value)
 {
     m_CompletionTokens = value;
     m_CompletionTokensIsSet = true;
@@ -274,13 +274,13 @@ void AccountsTotal::unsetCompletionTokens()
 {
     m_CompletionTokensIsSet = false;
 }
-int32_t AccountsTotal::getCostCents() const
+int64_t AccountsTotal::getCostCents() const
 {
     return m_CostCents;
 }
 
 
-void AccountsTotal::setCostCents(int32_t value)
+void AccountsTotal::setCostCents(int64_t value)
 {
     m_CostCents = value;
     m_CostCentsIsSet = true;
@@ -295,13 +295,13 @@ void AccountsTotal::unsetCostCents()
 {
     m_CostCentsIsSet = false;
 }
-int32_t AccountsTotal::getPromptTokens() const
+int64_t AccountsTotal::getPromptTokens() const
 {
     return m_PromptTokens;
 }
 
 
-void AccountsTotal::setPromptTokens(int32_t value)
+void AccountsTotal::setPromptTokens(int64_t value)
 {
     m_PromptTokens = value;
     m_PromptTokensIsSet = true;
@@ -316,13 +316,13 @@ void AccountsTotal::unsetPromptTokens()
 {
     m_PromptTokensIsSet = false;
 }
-int32_t AccountsTotal::getRequests() const
+int64_t AccountsTotal::getRequests() const
 {
     return m_Requests;
 }
 
 
-void AccountsTotal::setRequests(int32_t value)
+void AccountsTotal::setRequests(int64_t value)
 {
     m_Requests = value;
     m_RequestsIsSet = true;
@@ -337,13 +337,13 @@ void AccountsTotal::unsetRequests()
 {
     m_RequestsIsSet = false;
 }
-int32_t AccountsTotal::getTotalTokens() const
+int64_t AccountsTotal::getTotalTokens() const
 {
     return m_TotalTokens;
 }
 
 
-void AccountsTotal::setTotalTokens(int32_t value)
+void AccountsTotal::setTotalTokens(int64_t value)
 {
     m_TotalTokens = value;
     m_TotalTokensIsSet = true;

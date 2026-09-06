@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// Position is the absolute rank on the results page, counting every element — so it is what a person scrolling actually passes, not the organic-only rank.
     /// </summary>
-    int32_t getPosition() const;
+    int64_t getPosition() const;
     bool positionIsSet() const;
     void unsetPosition();
-    void setPosition(int32_t value);
+    void setPosition(int64_t value);
 
     /// <summary>
     /// Title is that result&#39;s headline.
@@ -95,17 +95,17 @@ public:
     /// <summary>
     /// Volume is the phrase&#39;s average monthly searches.
     /// </summary>
-    int32_t getVolume() const;
+    int64_t getVolume() const;
     bool volumeIsSet() const;
     void unsetVolume();
-    void setVolume(int32_t value);
+    void setVolume(int64_t value);
 
 
 protected:
     utility::string_t m_Keyword;
     bool m_KeywordIsSet;
 
-    int32_t m_Position;
+    int64_t m_Position;
     bool m_PositionIsSet;
 
     utility::string_t m_Title;
@@ -117,7 +117,7 @@ protected:
     utility::string_t m_Url;
     bool m_UrlIsSet;
 
-    int32_t m_Volume;
+    int64_t m_Volume;
     bool m_VolumeIsSet;
 
 };

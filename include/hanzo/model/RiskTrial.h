@@ -57,10 +57,10 @@ public:
     /// <summary>
     /// Alerted is how many of those it would have raised.
     /// </summary>
-    int32_t getAlerted() const;
+    int64_t getAlerted() const;
     bool alertedIsSet() const;
     void unsetAlerted();
-    void setAlerted(int32_t value);
+    void setAlerted(int64_t value);
 
     /// <summary>
     /// Curve is the realised alert rate over successive tenths of the history — the learning curve, which says whether the shape settled or is still moving.
@@ -81,10 +81,10 @@ public:
     /// <summary>
     /// Learned is how many events the shape learned from during the replay.
     /// </summary>
-    int32_t getLearned() const;
+    int64_t getLearned() const;
     bool learnedIsSet() const;
     void unsetLearned();
-    void setLearned(int32_t value);
+    void setLearned(int64_t value);
 
     /// <summary>
     /// Realised is what that appetite actually produced. The distance between the two is what the search is searching over.
@@ -105,10 +105,10 @@ public:
     /// <summary>
     /// Scored is how many it was able to score.
     /// </summary>
-    int32_t getScored() const;
+    int64_t getScored() const;
     bool scoredIsSet() const;
     void unsetScored();
-    void setScored(int32_t value);
+    void setScored(int64_t value);
 
     /// <summary>
     /// Stated is the appetite the shape was tried at.
@@ -136,7 +136,7 @@ public:
 
 
 protected:
-    int32_t m_Alerted;
+    int64_t m_Alerted;
     bool m_AlertedIsSet;
 
     std::vector<double> m_Curve;
@@ -145,7 +145,7 @@ protected:
     double m_Fit;
     bool m_FitIsSet;
 
-    int32_t m_Learned;
+    int64_t m_Learned;
     bool m_LearnedIsSet;
 
     double m_Realised;
@@ -154,7 +154,7 @@ protected:
     bool m_Saturated;
     bool m_SaturatedIsSet;
 
-    int32_t m_Scored;
+    int64_t m_Scored;
     bool m_ScoredIsSet;
 
     double m_Stated;

@@ -57,18 +57,18 @@ public:
     /// <summary>
     /// Charged is how many of them were actually charged. It is at most Orgs, and the difference is orgs whose balance was already above their threshold.
     /// </summary>
-    int32_t getCharged() const;
+    int64_t getCharged() const;
     bool chargedIsSet() const;
     void unsetCharged();
-    void setCharged(int32_t value);
+    void setCharged(int64_t value);
 
     /// <summary>
     /// Orgs is how many orgs the sweep considered — every org with auto-recharge armed, whether or not it needed charging.
     /// </summary>
-    int32_t getOrgs() const;
+    int64_t getOrgs() const;
     bool orgsIsSet() const;
     void unsetOrgs();
-    void setOrgs(int32_t value);
+    void setOrgs(int64_t value);
 
     /// <summary>
     /// Results is one row per org considered, so a sweep that charged nobody is still explainable. Never null.
@@ -80,10 +80,10 @@ public:
 
 
 protected:
-    int32_t m_Charged;
+    int64_t m_Charged;
     bool m_ChargedIsSet;
 
-    int32_t m_Orgs;
+    int64_t m_Orgs;
     bool m_OrgsIsSet;
 
     std::vector<std::shared_ptr<Recharged>> m_Results;

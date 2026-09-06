@@ -26,7 +26,7 @@ RiskEvent::RiskEvent()
     m_IdIsSet = false;
     m_Kind = utility::conversions::to_string_t("");
     m_KindIsSet = false;
-    m_Nano = 0;
+    m_Nano = 0L;
     m_NanoIsSet = false;
     m_Peer = utility::conversions::to_string_t("");
     m_PeerIsSet = false;
@@ -137,7 +137,7 @@ bool RiskEvent::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("nano")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNano;
+            int64_t refVal_setNano;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNano);
             setNano(refVal_setNano);
             
@@ -240,7 +240,7 @@ bool RiskEvent::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("nano"))))
     {
-        int32_t refVal_setNano;
+        int64_t refVal_setNano;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("nano"))), refVal_setNano );
         setNano(refVal_setNano);
     }
@@ -344,13 +344,13 @@ void RiskEvent::unsetKind()
 {
     m_KindIsSet = false;
 }
-int32_t RiskEvent::getNano() const
+int64_t RiskEvent::getNano() const
 {
     return m_Nano;
 }
 
 
-void RiskEvent::setNano(int32_t value)
+void RiskEvent::setNano(int64_t value)
 {
     m_Nano = value;
     m_NanoIsSet = true;

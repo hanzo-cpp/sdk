@@ -20,17 +20,17 @@ RiskDisposeOut::RiskDisposeOut()
 {
     m_Before = utility::conversions::to_string_t("");
     m_BeforeIsSet = false;
-    m_Disposed = 0;
+    m_Disposed = 0L;
     m_DisposedIsSet = false;
-    m_Held = 0;
+    m_Held = 0L;
     m_HeldIsSet = false;
     m_Oldest = utility::conversions::to_string_t("");
     m_OldestIsSet = false;
-    m_Remaining = 0;
+    m_Remaining = 0L;
     m_RemainingIsSet = false;
-    m_Restored = 0;
+    m_Restored = 0L;
     m_RestoredIsSet = false;
-    m_Total = 0;
+    m_Total = 0L;
     m_TotalIsSet = false;
 }
 
@@ -104,7 +104,7 @@ bool RiskDisposeOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("disposed")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDisposed;
+            int64_t refVal_setDisposed;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDisposed);
             setDisposed(refVal_setDisposed);
             
@@ -115,7 +115,7 @@ bool RiskDisposeOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("held")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setHeld;
+            int64_t refVal_setHeld;
             ok &= ModelBase::fromJson(fieldValue, refVal_setHeld);
             setHeld(refVal_setHeld);
             
@@ -137,7 +137,7 @@ bool RiskDisposeOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("remaining")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRemaining;
+            int64_t refVal_setRemaining;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRemaining);
             setRemaining(refVal_setRemaining);
             
@@ -148,7 +148,7 @@ bool RiskDisposeOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("restored")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRestored;
+            int64_t refVal_setRestored;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRestored);
             setRestored(refVal_setRestored);
             
@@ -159,7 +159,7 @@ bool RiskDisposeOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("total")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotal;
+            int64_t refVal_setTotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotal);
             setTotal(refVal_setTotal);
             
@@ -222,13 +222,13 @@ bool RiskDisposeOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("disposed"))))
     {
-        int32_t refVal_setDisposed;
+        int64_t refVal_setDisposed;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("disposed"))), refVal_setDisposed );
         setDisposed(refVal_setDisposed);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("held"))))
     {
-        int32_t refVal_setHeld;
+        int64_t refVal_setHeld;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("held"))), refVal_setHeld );
         setHeld(refVal_setHeld);
     }
@@ -240,19 +240,19 @@ bool RiskDisposeOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("remaining"))))
     {
-        int32_t refVal_setRemaining;
+        int64_t refVal_setRemaining;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("remaining"))), refVal_setRemaining );
         setRemaining(refVal_setRemaining);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("restored"))))
     {
-        int32_t refVal_setRestored;
+        int64_t refVal_setRestored;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("restored"))), refVal_setRestored );
         setRestored(refVal_setRestored);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("total"))))
     {
-        int32_t refVal_setTotal;
+        int64_t refVal_setTotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("total"))), refVal_setTotal );
         setTotal(refVal_setTotal);
     }
@@ -281,13 +281,13 @@ void RiskDisposeOut::unsetBefore()
 {
     m_BeforeIsSet = false;
 }
-int32_t RiskDisposeOut::getDisposed() const
+int64_t RiskDisposeOut::getDisposed() const
 {
     return m_Disposed;
 }
 
 
-void RiskDisposeOut::setDisposed(int32_t value)
+void RiskDisposeOut::setDisposed(int64_t value)
 {
     m_Disposed = value;
     m_DisposedIsSet = true;
@@ -302,13 +302,13 @@ void RiskDisposeOut::unsetDisposed()
 {
     m_DisposedIsSet = false;
 }
-int32_t RiskDisposeOut::getHeld() const
+int64_t RiskDisposeOut::getHeld() const
 {
     return m_Held;
 }
 
 
-void RiskDisposeOut::setHeld(int32_t value)
+void RiskDisposeOut::setHeld(int64_t value)
 {
     m_Held = value;
     m_HeldIsSet = true;
@@ -344,13 +344,13 @@ void RiskDisposeOut::unsetOldest()
 {
     m_OldestIsSet = false;
 }
-int32_t RiskDisposeOut::getRemaining() const
+int64_t RiskDisposeOut::getRemaining() const
 {
     return m_Remaining;
 }
 
 
-void RiskDisposeOut::setRemaining(int32_t value)
+void RiskDisposeOut::setRemaining(int64_t value)
 {
     m_Remaining = value;
     m_RemainingIsSet = true;
@@ -365,13 +365,13 @@ void RiskDisposeOut::unsetRemaining()
 {
     m_RemainingIsSet = false;
 }
-int32_t RiskDisposeOut::getRestored() const
+int64_t RiskDisposeOut::getRestored() const
 {
     return m_Restored;
 }
 
 
-void RiskDisposeOut::setRestored(int32_t value)
+void RiskDisposeOut::setRestored(int64_t value)
 {
     m_Restored = value;
     m_RestoredIsSet = true;
@@ -386,13 +386,13 @@ void RiskDisposeOut::unsetRestored()
 {
     m_RestoredIsSet = false;
 }
-int32_t RiskDisposeOut::getTotal() const
+int64_t RiskDisposeOut::getTotal() const
 {
     return m_Total;
 }
 
 
-void RiskDisposeOut::setTotal(int32_t value)
+void RiskDisposeOut::setTotal(int64_t value)
 {
     m_Total = value;
     m_TotalIsSet = true;

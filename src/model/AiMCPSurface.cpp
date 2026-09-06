@@ -20,7 +20,7 @@ AiMCPSurface::AiMCPSurface()
 {
     m_AppsIsSet = false;
     m_NamesIsSet = false;
-    m_Tools = 0;
+    m_Tools = 0L;
     m_ToolsIsSet = false;
 }
 
@@ -85,7 +85,7 @@ bool AiMCPSurface::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tools")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTools;
+            int64_t refVal_setTools;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTools);
             setTools(refVal_setTools);
             
@@ -138,7 +138,7 @@ bool AiMCPSurface::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tools"))))
     {
-        int32_t refVal_setTools;
+        int64_t refVal_setTools;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("tools"))), refVal_setTools );
         setTools(refVal_setTools);
     }
@@ -188,13 +188,13 @@ void AiMCPSurface::unsetNames()
 {
     m_NamesIsSet = false;
 }
-int32_t AiMCPSurface::getTools() const
+int64_t AiMCPSurface::getTools() const
 {
     return m_Tools;
 }
 
 
-void AiMCPSurface::setTools(int32_t value)
+void AiMCPSurface::setTools(int64_t value)
 {
     m_Tools = value;
     m_ToolsIsSet = true;

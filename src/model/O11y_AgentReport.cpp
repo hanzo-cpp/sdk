@@ -19,7 +19,7 @@ namespace model {
 O11y_AgentReport::O11y_AgentReport()
 {
     m_DataIsSet = false;
-    m_TimestampMillis = 0;
+    m_TimestampMillis = 0L;
     m_TimestampMillisIsSet = false;
 }
 
@@ -68,7 +68,7 @@ bool O11y_AgentReport::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("timestampMillis")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTimestampMillis;
+            int64_t refVal_setTimestampMillis;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTimestampMillis);
             setTimestampMillis(refVal_setTimestampMillis);
             
@@ -111,7 +111,7 @@ bool O11y_AgentReport::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("timestampMillis"))))
     {
-        int32_t refVal_setTimestampMillis;
+        int64_t refVal_setTimestampMillis;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("timestampMillis"))), refVal_setTimestampMillis );
         setTimestampMillis(refVal_setTimestampMillis);
     }
@@ -140,13 +140,13 @@ void O11y_AgentReport::unsetData()
 {
     m_DataIsSet = false;
 }
-int32_t O11y_AgentReport::getTimestampMillis() const
+int64_t O11y_AgentReport::getTimestampMillis() const
 {
     return m_TimestampMillis;
 }
 
 
-void O11y_AgentReport::setTimestampMillis(int32_t value)
+void O11y_AgentReport::setTimestampMillis(int64_t value)
 {
     m_TimestampMillis = value;
     m_TimestampMillisIsSet = true;

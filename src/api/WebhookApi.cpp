@@ -385,7 +385,7 @@ pplx::task<std::shared_ptr<Endpoint>> WebhookApi::getWebhookById(utility::string
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<DeliveryList>> WebhookApi::getWebhookByIdDeliveries(utility::string_t id, boost::optional<int32_t> limit, boost::optional<utility::string_t> status) const
+pplx::task<std::shared_ptr<DeliveryList>> WebhookApi::getWebhookByIdDeliveries(utility::string_t id, boost::optional<int64_t> limit, boost::optional<utility::string_t> status) const
 {
 
 

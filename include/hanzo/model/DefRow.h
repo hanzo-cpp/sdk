@@ -85,10 +85,10 @@ public:
     /// <summary>
     /// Version is 1 when the key was created and rises by one on every overwrite. It counts writes, not content changes: re-storing an identical document bumps it.
     /// </summary>
-    int32_t getVersion() const;
+    int64_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();
-    void setVersion(int32_t value);
+    void setVersion(int64_t value);
 
 
 protected:
@@ -103,7 +103,7 @@ protected:
     utility::string_t m_Updated_by;
     bool m_Updated_byIsSet;
 
-    int32_t m_Version;
+    int64_t m_Version;
     bool m_VersionIsSet;
 
 };

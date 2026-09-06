@@ -18,13 +18,13 @@ namespace model {
 
 ActivityPoint::ActivityPoint()
 {
-    m_CostCents = 0;
+    m_CostCents = 0L;
     m_CostCentsIsSet = false;
     m_Day = utility::conversions::to_string_t("");
     m_DayIsSet = false;
-    m_Requests = 0;
+    m_Requests = 0L;
     m_RequestsIsSet = false;
-    m_Tokens = 0;
+    m_Tokens = 0L;
     m_TokensIsSet = false;
 }
 
@@ -72,7 +72,7 @@ bool ActivityPoint::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("costCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCostCents;
+            int64_t refVal_setCostCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCostCents);
             setCostCents(refVal_setCostCents);
             
@@ -94,7 +94,7 @@ bool ActivityPoint::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("requests")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRequests;
+            int64_t refVal_setRequests;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRequests);
             setRequests(refVal_setRequests);
             
@@ -105,7 +105,7 @@ bool ActivityPoint::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTokens;
+            int64_t refVal_setTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTokens);
             setTokens(refVal_setTokens);
             
@@ -150,7 +150,7 @@ bool ActivityPoint::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))))
     {
-        int32_t refVal_setCostCents;
+        int64_t refVal_setCostCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))), refVal_setCostCents );
         setCostCents(refVal_setCostCents);
     }
@@ -162,13 +162,13 @@ bool ActivityPoint::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("requests"))))
     {
-        int32_t refVal_setRequests;
+        int64_t refVal_setRequests;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("requests"))), refVal_setRequests );
         setRequests(refVal_setRequests);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tokens"))))
     {
-        int32_t refVal_setTokens;
+        int64_t refVal_setTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("tokens"))), refVal_setTokens );
         setTokens(refVal_setTokens);
     }
@@ -176,13 +176,13 @@ bool ActivityPoint::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 }
 
 
-int32_t ActivityPoint::getCostCents() const
+int64_t ActivityPoint::getCostCents() const
 {
     return m_CostCents;
 }
 
 
-void ActivityPoint::setCostCents(int32_t value)
+void ActivityPoint::setCostCents(int64_t value)
 {
     m_CostCents = value;
     m_CostCentsIsSet = true;
@@ -218,13 +218,13 @@ void ActivityPoint::unsetDay()
 {
     m_DayIsSet = false;
 }
-int32_t ActivityPoint::getRequests() const
+int64_t ActivityPoint::getRequests() const
 {
     return m_Requests;
 }
 
 
-void ActivityPoint::setRequests(int32_t value)
+void ActivityPoint::setRequests(int64_t value)
 {
     m_Requests = value;
     m_RequestsIsSet = true;
@@ -239,13 +239,13 @@ void ActivityPoint::unsetRequests()
 {
     m_RequestsIsSet = false;
 }
-int32_t ActivityPoint::getTokens() const
+int64_t ActivityPoint::getTokens() const
 {
     return m_Tokens;
 }
 
 
-void ActivityPoint::setTokens(int32_t value)
+void ActivityPoint::setTokens(int64_t value)
 {
     m_Tokens = value;
     m_TokensIsSet = true;

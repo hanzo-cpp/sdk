@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// ChainID is the EVM chain the Safe transaction is bound to. 0 uses the wallet&#39;s own chain, or the Hanzo L1 (36963) when it is chain-agnostic.
     /// </summary>
-    int32_t getChainId() const;
+    int64_t getChainId() const;
     bool chainIdIsSet() const;
     void unsetChainId();
-    void setChainId(int32_t value);
+    void setChainId(int64_t value);
 
     /// <summary>
     /// Data is the call data, hex-encoded.
@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// Nonce is the Safe&#39;s transaction nonce.
     /// </summary>
-    int32_t getNonce() const;
+    int64_t getNonce() const;
     bool nonceIsSet() const;
     void unsetNonce();
-    void setNonce(int32_t value);
+    void setNonce(int64_t value);
 
     /// <summary>
     /// To is the transaction&#39;s target address.
@@ -94,13 +94,13 @@ public:
 
 
 protected:
-    int32_t m_ChainId;
+    int64_t m_ChainId;
     bool m_ChainIdIsSet;
 
     utility::string_t m_Data;
     bool m_DataIsSet;
 
-    int32_t m_Nonce;
+    int64_t m_Nonce;
     bool m_NonceIsSet;
 
     utility::string_t m_To;

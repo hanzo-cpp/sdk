@@ -18,15 +18,15 @@ namespace model {
 
 BoardPoint::BoardPoint()
 {
-    m_CostCents = 0;
+    m_CostCents = 0L;
     m_CostCentsIsSet = false;
-    m_Errors = 0;
+    m_Errors = 0L;
     m_ErrorsIsSet = false;
-    m_Generations = 0;
+    m_Generations = 0L;
     m_GenerationsIsSet = false;
     m_t = utility::conversions::to_string_t("");
     m_tIsSet = false;
-    m_TotalTokens = 0;
+    m_TotalTokens = 0L;
     m_TotalTokensIsSet = false;
 }
 
@@ -79,7 +79,7 @@ bool BoardPoint::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("costCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCostCents;
+            int64_t refVal_setCostCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCostCents);
             setCostCents(refVal_setCostCents);
             
@@ -90,7 +90,7 @@ bool BoardPoint::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("errors")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setErrors;
+            int64_t refVal_setErrors;
             ok &= ModelBase::fromJson(fieldValue, refVal_setErrors);
             setErrors(refVal_setErrors);
             
@@ -101,7 +101,7 @@ bool BoardPoint::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("generations")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setGenerations;
+            int64_t refVal_setGenerations;
             ok &= ModelBase::fromJson(fieldValue, refVal_setGenerations);
             setGenerations(refVal_setGenerations);
             
@@ -123,7 +123,7 @@ bool BoardPoint::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("totalTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotalTokens;
+            int64_t refVal_setTotalTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalTokens);
             setTotalTokens(refVal_setTotalTokens);
             
@@ -172,19 +172,19 @@ bool BoardPoint::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))))
     {
-        int32_t refVal_setCostCents;
+        int64_t refVal_setCostCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))), refVal_setCostCents );
         setCostCents(refVal_setCostCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("errors"))))
     {
-        int32_t refVal_setErrors;
+        int64_t refVal_setErrors;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("errors"))), refVal_setErrors );
         setErrors(refVal_setErrors);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("generations"))))
     {
-        int32_t refVal_setGenerations;
+        int64_t refVal_setGenerations;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("generations"))), refVal_setGenerations );
         setGenerations(refVal_setGenerations);
     }
@@ -196,7 +196,7 @@ bool BoardPoint::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("totalTokens"))))
     {
-        int32_t refVal_setTotalTokens;
+        int64_t refVal_setTotalTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("totalTokens"))), refVal_setTotalTokens );
         setTotalTokens(refVal_setTotalTokens);
     }
@@ -204,13 +204,13 @@ bool BoardPoint::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 }
 
 
-int32_t BoardPoint::getCostCents() const
+int64_t BoardPoint::getCostCents() const
 {
     return m_CostCents;
 }
 
 
-void BoardPoint::setCostCents(int32_t value)
+void BoardPoint::setCostCents(int64_t value)
 {
     m_CostCents = value;
     m_CostCentsIsSet = true;
@@ -225,13 +225,13 @@ void BoardPoint::unsetCostCents()
 {
     m_CostCentsIsSet = false;
 }
-int32_t BoardPoint::getErrors() const
+int64_t BoardPoint::getErrors() const
 {
     return m_Errors;
 }
 
 
-void BoardPoint::setErrors(int32_t value)
+void BoardPoint::setErrors(int64_t value)
 {
     m_Errors = value;
     m_ErrorsIsSet = true;
@@ -246,13 +246,13 @@ void BoardPoint::unsetErrors()
 {
     m_ErrorsIsSet = false;
 }
-int32_t BoardPoint::getGenerations() const
+int64_t BoardPoint::getGenerations() const
 {
     return m_Generations;
 }
 
 
-void BoardPoint::setGenerations(int32_t value)
+void BoardPoint::setGenerations(int64_t value)
 {
     m_Generations = value;
     m_GenerationsIsSet = true;
@@ -288,13 +288,13 @@ void BoardPoint::unsett()
 {
     m_tIsSet = false;
 }
-int32_t BoardPoint::getTotalTokens() const
+int64_t BoardPoint::getTotalTokens() const
 {
     return m_TotalTokens;
 }
 
 
-void BoardPoint::setTotalTokens(int32_t value)
+void BoardPoint::setTotalTokens(int64_t value)
 {
     m_TotalTokens = value;
     m_TotalTokensIsSet = true;

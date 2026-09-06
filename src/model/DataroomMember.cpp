@@ -20,25 +20,25 @@ DataroomMember::DataroomMember()
 {
     m_ContentType = utility::conversions::to_string_t("");
     m_ContentTypeIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_DataroomDocumentId = utility::conversions::to_string_t("");
     m_DataroomDocumentIdIsSet = false;
     m_FileKey = utility::conversions::to_string_t("");
     m_FileKeyIsSet = false;
-    m_FileSize = 0;
+    m_FileSize = 0L;
     m_FileSizeIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_NumPages = 0;
+    m_NumPages = 0L;
     m_NumPagesIsSet = false;
-    m_OrderIndex = 0;
+    m_OrderIndex = 0L;
     m_OrderIndexIsSet = false;
     m_Type = utility::conversions::to_string_t("");
     m_TypeIsSet = false;
-    m_UpdatedAt = 0;
+    m_UpdatedAt = 0L;
     m_UpdatedAtIsSet = false;
 }
 
@@ -132,7 +132,7 @@ bool DataroomMember::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -165,7 +165,7 @@ bool DataroomMember::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("fileSize")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFileSize;
+            int64_t refVal_setFileSize;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFileSize);
             setFileSize(refVal_setFileSize);
             
@@ -198,7 +198,7 @@ bool DataroomMember::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("numPages")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNumPages;
+            int64_t refVal_setNumPages;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNumPages);
             setNumPages(refVal_setNumPages);
             
@@ -209,7 +209,7 @@ bool DataroomMember::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("orderIndex")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOrderIndex;
+            int64_t refVal_setOrderIndex;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOrderIndex);
             setOrderIndex(refVal_setOrderIndex);
             
@@ -231,7 +231,7 @@ bool DataroomMember::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updatedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdatedAt;
+            int64_t refVal_setUpdatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdatedAt);
             setUpdatedAt(refVal_setUpdatedAt);
             
@@ -310,7 +310,7 @@ bool DataroomMember::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -328,7 +328,7 @@ bool DataroomMember::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("fileSize"))))
     {
-        int32_t refVal_setFileSize;
+        int64_t refVal_setFileSize;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("fileSize"))), refVal_setFileSize );
         setFileSize(refVal_setFileSize);
     }
@@ -346,13 +346,13 @@ bool DataroomMember::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("numPages"))))
     {
-        int32_t refVal_setNumPages;
+        int64_t refVal_setNumPages;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("numPages"))), refVal_setNumPages );
         setNumPages(refVal_setNumPages);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("orderIndex"))))
     {
-        int32_t refVal_setOrderIndex;
+        int64_t refVal_setOrderIndex;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("orderIndex"))), refVal_setOrderIndex );
         setOrderIndex(refVal_setOrderIndex);
     }
@@ -364,7 +364,7 @@ bool DataroomMember::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
-        int32_t refVal_setUpdatedAt;
+        int64_t refVal_setUpdatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))), refVal_setUpdatedAt );
         setUpdatedAt(refVal_setUpdatedAt);
     }
@@ -393,13 +393,13 @@ void DataroomMember::unsetContentType()
 {
     m_ContentTypeIsSet = false;
 }
-int32_t DataroomMember::getCreatedAt() const
+int64_t DataroomMember::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void DataroomMember::setCreatedAt(int32_t value)
+void DataroomMember::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -456,13 +456,13 @@ void DataroomMember::unsetFileKey()
 {
     m_FileKeyIsSet = false;
 }
-int32_t DataroomMember::getFileSize() const
+int64_t DataroomMember::getFileSize() const
 {
     return m_FileSize;
 }
 
 
-void DataroomMember::setFileSize(int32_t value)
+void DataroomMember::setFileSize(int64_t value)
 {
     m_FileSize = value;
     m_FileSizeIsSet = true;
@@ -519,13 +519,13 @@ void DataroomMember::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t DataroomMember::getNumPages() const
+int64_t DataroomMember::getNumPages() const
 {
     return m_NumPages;
 }
 
 
-void DataroomMember::setNumPages(int32_t value)
+void DataroomMember::setNumPages(int64_t value)
 {
     m_NumPages = value;
     m_NumPagesIsSet = true;
@@ -540,13 +540,13 @@ void DataroomMember::unsetNumPages()
 {
     m_NumPagesIsSet = false;
 }
-int32_t DataroomMember::getOrderIndex() const
+int64_t DataroomMember::getOrderIndex() const
 {
     return m_OrderIndex;
 }
 
 
-void DataroomMember::setOrderIndex(int32_t value)
+void DataroomMember::setOrderIndex(int64_t value)
 {
     m_OrderIndex = value;
     m_OrderIndexIsSet = true;
@@ -582,13 +582,13 @@ void DataroomMember::unsetType()
 {
     m_TypeIsSet = false;
 }
-int32_t DataroomMember::getUpdatedAt() const
+int64_t DataroomMember::getUpdatedAt() const
 {
     return m_UpdatedAt;
 }
 
 
-void DataroomMember::setUpdatedAt(int32_t value)
+void DataroomMember::setUpdatedAt(int64_t value)
 {
     m_UpdatedAt = value;
     m_UpdatedAtIsSet = true;

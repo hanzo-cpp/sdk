@@ -65,17 +65,17 @@ public:
     /// <summary>
     /// Total is how many buckets this org has. It equals len(buckets): the listing is not paged, because an org&#39;s bucket count is small by construction.
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
 
 protected:
     std::vector<std::shared_ptr<BucketItem>> m_Buckets;
     bool m_BucketsIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
 };

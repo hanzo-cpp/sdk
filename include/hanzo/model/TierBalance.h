@@ -52,46 +52,46 @@ public:
     /// TierBalance members
 
 
-    int32_t getCreditsRemaining() const;
+    int64_t getCreditsRemaining() const;
     bool creditsRemainingIsSet() const;
     void unsetCreditsRemaining();
-    void setCreditsRemaining(int32_t value);
+    void setCreditsRemaining(int64_t value);
 
     utility::string_t getCurrency() const;
     bool currencyIsSet() const;
     void unsetCurrency();
     void setCurrency(const utility::string_t& value);
 
-    int32_t getDailyRemaining() const;
+    int64_t getDailyRemaining() const;
     bool dailyRemainingIsSet() const;
     void unsetDailyRemaining();
-    void setDailyRemaining(int32_t value);
+    void setDailyRemaining(int64_t value);
 
-    int32_t getEffectiveAvailable() const;
+    int64_t getEffectiveAvailable() const;
     bool effectiveAvailableIsSet() const;
     void unsetEffectiveAvailable();
-    void setEffectiveAvailable(int32_t value);
+    void setEffectiveAvailable(int64_t value);
 
-    int32_t getPrepaidAvailable() const;
+    int64_t getPrepaidAvailable() const;
     bool prepaidAvailableIsSet() const;
     void unsetPrepaidAvailable();
-    void setPrepaidAvailable(int32_t value);
+    void setPrepaidAvailable(int64_t value);
 
 
 protected:
-    int32_t m_CreditsRemaining;
+    int64_t m_CreditsRemaining;
     bool m_CreditsRemainingIsSet;
 
     utility::string_t m_Currency;
     bool m_CurrencyIsSet;
 
-    int32_t m_DailyRemaining;
+    int64_t m_DailyRemaining;
     bool m_DailyRemainingIsSet;
 
-    int32_t m_EffectiveAvailable;
+    int64_t m_EffectiveAvailable;
     bool m_EffectiveAvailableIsSet;
 
-    int32_t m_PrepaidAvailable;
+    int64_t m_PrepaidAvailable;
     bool m_PrepaidAvailableIsSet;
 
 };

@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// CompletionTokens is the same measurement for what the model produced, on the same final completion. It is a count of TOKENS, not of turns and not of money.
     /// </summary>
-    int32_t getCompletionTokens() const;
+    int64_t getCompletionTokens() const;
     bool completionTokensIsSet() const;
     void unsetCompletionTokens();
-    void setCompletionTokens(int32_t value);
+    void setCompletionTokens(int64_t value);
 
     /// <summary>
     /// CreatedAt is when the run finished, RFC 3339 in UTC to the second — the duration above already says how long it had been going.
@@ -87,10 +87,10 @@ public:
     /// <summary>
     /// DurationMs is wall-clock milliseconds around the completion, including a failover&#39;s retries. It is time SPENT, not time billed.
     /// </summary>
-    int32_t getDurationMs() const;
+    int64_t getDurationMs() const;
     bool durationMsIsSet() const;
     void unsetDurationMs();
-    void setDurationMs(int32_t value);
+    void setDurationMs(int64_t value);
 
     /// <summary>
     /// Error is why an \&quot;ok\&quot;-less run failed, as the failing call reported it. Empty on every successful run.
@@ -135,10 +135,10 @@ public:
     /// <summary>
     /// PromptTokens is what the gateway reported for the run&#39;s FINAL completion, and only that one — a tool loop&#39;s earlier rounds are the metering ledger&#39;s account, joined by this run&#39;s id. Reading it as the run&#39;s total spend undercounts a loop.
     /// </summary>
-    int32_t getPromptTokens() const;
+    int64_t getPromptTokens() const;
     bool promptTokensIsSet() const;
     void unsetPromptTokens();
-    void setPromptTokens(int32_t value);
+    void setPromptTokens(int64_t value);
 
     /// <summary>
     /// Status is the run&#39;s outcome, and there are exactly two: \&quot;ok\&quot; when the model answered, \&quot;error\&quot; when it did not. It is written when the run ends, so no row here is in flight.
@@ -151,10 +151,10 @@ public:
     /// <summary>
     /// ToolCalls is how many tool dispatches the run made — a count of ACTIONS, which is a different measurement from the token counts above and from the turns a build reports. Zero is a run that answered straight from the model.
     /// </summary>
-    int32_t getToolCalls() const;
+    int64_t getToolCalls() const;
     bool toolCallsIsSet() const;
     void unsetToolCalls();
-    void setToolCalls(int32_t value);
+    void setToolCalls(int64_t value);
 
     /// <summary>
     /// TraceID is the trace this run IS, so the record and its spans are one thing to move between: it opens the waterfall for THIS run rather than a search that lands near it. Empty when the process had no tracer, never a fabricated id.
@@ -172,13 +172,13 @@ protected:
     utility::string_t m_Agent;
     bool m_AgentIsSet;
 
-    int32_t m_CompletionTokens;
+    int64_t m_CompletionTokens;
     bool m_CompletionTokensIsSet;
 
     utility::string_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
-    int32_t m_DurationMs;
+    int64_t m_DurationMs;
     bool m_DurationMsIsSet;
 
     utility::string_t m_Error;
@@ -196,13 +196,13 @@ protected:
     utility::string_t m_Output;
     bool m_OutputIsSet;
 
-    int32_t m_PromptTokens;
+    int64_t m_PromptTokens;
     bool m_PromptTokensIsSet;
 
     utility::string_t m_Status;
     bool m_StatusIsSet;
 
-    int32_t m_ToolCalls;
+    int64_t m_ToolCalls;
     bool m_ToolCallsIsSet;
 
     utility::string_t m_TraceId;

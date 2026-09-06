@@ -30,7 +30,7 @@ PullView::PullView()
     m_HeadIsSet = false;
     m_MergedRev = utility::conversions::to_string_t("");
     m_MergedRevIsSet = false;
-    m_number = 0;
+    m_number = 0L;
     m_numberIsSet = false;
     m_Repo = utility::conversions::to_string_t("");
     m_RepoIsSet = false;
@@ -187,7 +187,7 @@ bool PullView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("number")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNumber;
+            int64_t refVal_setNumber;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNumber);
             setNumber(refVal_setNumber);
             
@@ -340,7 +340,7 @@ bool PullView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("number"))))
     {
-        int32_t refVal_setNumber;
+        int64_t refVal_setNumber;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("number"))), refVal_setNumber );
         setNumber(refVal_setNumber);
     }
@@ -498,13 +498,13 @@ void PullView::unsetMergedRev()
 {
     m_MergedRevIsSet = false;
 }
-int32_t PullView::getNumber() const
+int64_t PullView::getNumber() const
 {
     return m_number;
 }
 
 
-void PullView::setNumber(int32_t value)
+void PullView::setNumber(int64_t value)
 {
     m_number = value;
     m_numberIsSet = true;

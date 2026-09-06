@@ -74,10 +74,10 @@ public:
     /// <summary>
     /// Total is how many the upstream holds, which is usually more than Limit returned — it is what raising the limit would reach.
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
 
 protected:
@@ -87,7 +87,7 @@ protected:
     std::vector<std::shared_ptr<SeoMetric>> m_Keywords;
     bool m_KeywordsIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
 };

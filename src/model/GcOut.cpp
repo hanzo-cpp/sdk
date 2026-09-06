@@ -22,7 +22,7 @@ GcOut::GcOut()
     m_MaintainedIsSet = false;
     m_Repo = utility::conversions::to_string_t("");
     m_RepoIsSet = false;
-    m_SizeBytes = 0;
+    m_SizeBytes = 0L;
     m_SizeBytesIsSet = false;
 }
 
@@ -87,7 +87,7 @@ bool GcOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("sizeBytes")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSizeBytes;
+            int64_t refVal_setSizeBytes;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSizeBytes);
             setSizeBytes(refVal_setSizeBytes);
             
@@ -140,7 +140,7 @@ bool GcOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("sizeBytes"))))
     {
-        int32_t refVal_setSizeBytes;
+        int64_t refVal_setSizeBytes;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("sizeBytes"))), refVal_setSizeBytes );
         setSizeBytes(refVal_setSizeBytes);
     }
@@ -190,13 +190,13 @@ void GcOut::unsetRepo()
 {
     m_RepoIsSet = false;
 }
-int32_t GcOut::getSizeBytes() const
+int64_t GcOut::getSizeBytes() const
 {
     return m_SizeBytes;
 }
 
 
-void GcOut::setSizeBytes(int32_t value)
+void GcOut::setSizeBytes(int64_t value)
 {
     m_SizeBytes = value;
     m_SizeBytesIsSet = true;

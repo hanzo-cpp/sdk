@@ -18,9 +18,9 @@ namespace model {
 
 O11y_NodeCountsByReadiness::O11y_NodeCountsByReadiness()
 {
-    m_NotReady = 0;
+    m_NotReady = 0L;
     m_NotReadyIsSet = false;
-    m_Ready = 0;
+    m_Ready = 0L;
     m_ReadyIsSet = false;
 }
 
@@ -58,7 +58,7 @@ bool O11y_NodeCountsByReadiness::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("notReady")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNotReady;
+            int64_t refVal_setNotReady;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNotReady);
             setNotReady(refVal_setNotReady);
             
@@ -69,7 +69,7 @@ bool O11y_NodeCountsByReadiness::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("ready")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setReady;
+            int64_t refVal_setReady;
             ok &= ModelBase::fromJson(fieldValue, refVal_setReady);
             setReady(refVal_setReady);
             
@@ -106,13 +106,13 @@ bool O11y_NodeCountsByReadiness::fromMultiPart(std::shared_ptr<MultipartFormData
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("notReady"))))
     {
-        int32_t refVal_setNotReady;
+        int64_t refVal_setNotReady;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("notReady"))), refVal_setNotReady );
         setNotReady(refVal_setNotReady);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("ready"))))
     {
-        int32_t refVal_setReady;
+        int64_t refVal_setReady;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ready"))), refVal_setReady );
         setReady(refVal_setReady);
     }
@@ -120,13 +120,13 @@ bool O11y_NodeCountsByReadiness::fromMultiPart(std::shared_ptr<MultipartFormData
 }
 
 
-int32_t O11y_NodeCountsByReadiness::getNotReady() const
+int64_t O11y_NodeCountsByReadiness::getNotReady() const
 {
     return m_NotReady;
 }
 
 
-void O11y_NodeCountsByReadiness::setNotReady(int32_t value)
+void O11y_NodeCountsByReadiness::setNotReady(int64_t value)
 {
     m_NotReady = value;
     m_NotReadyIsSet = true;
@@ -141,13 +141,13 @@ void O11y_NodeCountsByReadiness::unsetNotReady()
 {
     m_NotReadyIsSet = false;
 }
-int32_t O11y_NodeCountsByReadiness::getReady() const
+int64_t O11y_NodeCountsByReadiness::getReady() const
 {
     return m_Ready;
 }
 
 
-void O11y_NodeCountsByReadiness::setReady(int32_t value)
+void O11y_NodeCountsByReadiness::setReady(int64_t value)
 {
     m_Ready = value;
     m_ReadyIsSet = true;

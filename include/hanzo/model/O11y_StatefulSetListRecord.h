@@ -53,10 +53,10 @@ public:
     /// O11y_StatefulSetListRecord members
 
 
-    int32_t getAvailablePods() const;
+    int64_t getAvailablePods() const;
     bool availablePodsIsSet() const;
     void unsetAvailablePods();
-    void setAvailablePods(int32_t value);
+    void setAvailablePods(int64_t value);
 
     double getCpuLimit() const;
     bool cpuLimitIsSet() const;
@@ -73,10 +73,10 @@ public:
     void unsetCpuUsage();
     void setCpuUsage(double value);
 
-    int32_t getDesiredPods() const;
+    int64_t getDesiredPods() const;
     bool desiredPodsIsSet() const;
     void unsetDesiredPods();
-    void setDesiredPods(int32_t value);
+    void setDesiredPods(int64_t value);
 
     double getMemoryLimit() const;
     bool memoryLimitIsSet() const;
@@ -98,10 +98,10 @@ public:
     void unsetMeta();
     void setMeta(const std::map<utility::string_t, utility::string_t>& value);
 
-    int32_t getRestarts() const;
+    int64_t getRestarts() const;
     bool restartsIsSet() const;
     void unsetRestarts();
-    void setRestarts(int32_t value);
+    void setRestarts(int64_t value);
 
     utility::string_t getStatefulSetName() const;
     bool statefulSetNameIsSet() const;
@@ -110,7 +110,7 @@ public:
 
 
 protected:
-    int32_t m_AvailablePods;
+    int64_t m_AvailablePods;
     bool m_AvailablePodsIsSet;
 
     double m_CpuLimit;
@@ -122,7 +122,7 @@ protected:
     double m_CpuUsage;
     bool m_CpuUsageIsSet;
 
-    int32_t m_DesiredPods;
+    int64_t m_DesiredPods;
     bool m_DesiredPodsIsSet;
 
     double m_MemoryLimit;
@@ -137,7 +137,7 @@ protected:
     std::map<utility::string_t, utility::string_t> m_Meta;
     bool m_MetaIsSet;
 
-    int32_t m_Restarts;
+    int64_t m_Restarts;
     bool m_RestartsIsSet;
 
     utility::string_t m_StatefulSetName;

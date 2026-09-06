@@ -18,7 +18,7 @@ namespace model {
 
 GraphVocabularyOut::GraphVocabularyOut()
 {
-    m_Bound = 0;
+    m_Bound = 0L;
     m_BoundIsSet = false;
     m_RelationsIsSet = false;
     m_RuleIsSet = false;
@@ -63,7 +63,7 @@ bool GraphVocabularyOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("bound")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBound;
+            int64_t refVal_setBound;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBound);
             setBound(refVal_setBound);
             
@@ -126,7 +126,7 @@ bool GraphVocabularyOut::fromMultiPart(std::shared_ptr<MultipartFormData> multip
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("bound"))))
     {
-        int32_t refVal_setBound;
+        int64_t refVal_setBound;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("bound"))), refVal_setBound );
         setBound(refVal_setBound);
     }
@@ -146,13 +146,13 @@ bool GraphVocabularyOut::fromMultiPart(std::shared_ptr<MultipartFormData> multip
 }
 
 
-int32_t GraphVocabularyOut::getBound() const
+int64_t GraphVocabularyOut::getBound() const
 {
     return m_Bound;
 }
 
 
-void GraphVocabularyOut::setBound(int32_t value)
+void GraphVocabularyOut::setBound(int64_t value)
 {
     m_Bound = value;
     m_BoundIsSet = true;

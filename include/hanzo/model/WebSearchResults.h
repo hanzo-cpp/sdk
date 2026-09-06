@@ -68,10 +68,10 @@ public:
     /// <summary>
     /// NumberOfResults is len(results) — what this answer carries, never an estimate of what the web holds.
     /// </summary>
-    int32_t getNumberOfResults() const;
+    int64_t getNumberOfResults() const;
     bool numberOfResultsIsSet() const;
     void unsetNumber_of_results();
-    void setNumberOfResults(int32_t value);
+    void setNumberOfResults(int64_t value);
 
     /// <summary>
     /// Query is the query that ran, echoed back.
@@ -94,7 +94,7 @@ protected:
     std::vector<std::shared_ptr<WebEngine>> m_Engines;
     bool m_EnginesIsSet;
 
-    int32_t m_Number_of_results;
+    int64_t m_Number_of_results;
     bool m_Number_of_resultsIsSet;
 
     utility::string_t m_Query;

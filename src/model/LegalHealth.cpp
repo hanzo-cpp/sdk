@@ -20,7 +20,7 @@ LegalHealth::LegalHealth()
 {
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
-    m_Templates = 0;
+    m_Templates = 0L;
     m_TemplatesIsSet = false;
 }
 
@@ -69,7 +69,7 @@ bool LegalHealth::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("templates")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTemplates;
+            int64_t refVal_setTemplates;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTemplates);
             setTemplates(refVal_setTemplates);
             
@@ -112,7 +112,7 @@ bool LegalHealth::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("templates"))))
     {
-        int32_t refVal_setTemplates;
+        int64_t refVal_setTemplates;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("templates"))), refVal_setTemplates );
         setTemplates(refVal_setTemplates);
     }
@@ -141,13 +141,13 @@ void LegalHealth::unsetStatus()
 {
     m_StatusIsSet = false;
 }
-int32_t LegalHealth::getTemplates() const
+int64_t LegalHealth::getTemplates() const
 {
     return m_Templates;
 }
 
 
-void LegalHealth::setTemplates(int32_t value)
+void LegalHealth::setTemplates(int64_t value)
 {
     m_Templates = value;
     m_TemplatesIsSet = true;

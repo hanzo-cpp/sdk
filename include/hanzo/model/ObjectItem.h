@@ -79,18 +79,18 @@ public:
     /// <summary>
     /// unix seconds (0 for a folder)
     /// </summary>
-    int32_t getLastModified() const;
+    int64_t getLastModified() const;
     bool lastModifiedIsSet() const;
     void unsetLastModified();
-    void setLastModified(int32_t value);
+    void setLastModified(int64_t value);
 
     /// <summary>
     /// bytes (0 for a folder)
     /// </summary>
-    int32_t getSize() const;
+    int64_t getSize() const;
     bool sizeIsSet() const;
     void unsetSize();
-    void setSize(int32_t value);
+    void setSize(int64_t value);
 
 
 protected:
@@ -103,10 +103,10 @@ protected:
     utility::string_t m_Key;
     bool m_KeyIsSet;
 
-    int32_t m_LastModified;
+    int64_t m_LastModified;
     bool m_LastModifiedIsSet;
 
-    int32_t m_Size;
+    int64_t m_Size;
     bool m_SizeIsSet;
 
 };

@@ -18,31 +18,31 @@ namespace model {
 
 TrafficView::TrafficView()
 {
-    m_Blind = 0;
+    m_Blind = 0L;
     m_BlindIsSet = false;
     m_CallersIsSet = false;
-    m_Ceiling = 0;
+    m_Ceiling = 0L;
     m_CeilingIsSet = false;
-    m_Denied = 0;
+    m_Denied = 0L;
     m_DeniedIsSet = false;
     m_LanesIsSet = false;
     m_Mode = utility::conversions::to_string_t("");
     m_ModeIsSet = false;
     m_Org = utility::conversions::to_string_t("");
     m_OrgIsSet = false;
-    m_Refused = 0;
+    m_Refused = 0L;
     m_RefusedIsSet = false;
-    m_Requests = 0;
+    m_Requests = 0L;
     m_RequestsIsSet = false;
-    m_Screens = 0;
+    m_Screens = 0L;
     m_ScreensIsSet = false;
     m_Strain = utility::conversions::to_string_t("");
     m_StrainIsSet = false;
-    m_Tracked = 0;
+    m_Tracked = 0L;
     m_TrackedIsSet = false;
-    m_Unscored = 0;
+    m_Unscored = 0L;
     m_UnscoredIsSet = false;
-    m_Window_sec = 0;
+    m_Window_sec = 0L;
     m_Window_secIsSet = false;
 }
 
@@ -140,7 +140,7 @@ bool TrafficView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("blind")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBlind;
+            int64_t refVal_setBlind;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBlind);
             setBlind(refVal_setBlind);
             
@@ -162,7 +162,7 @@ bool TrafficView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("ceiling")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCeiling;
+            int64_t refVal_setCeiling;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCeiling);
             setCeiling(refVal_setCeiling);
             
@@ -173,7 +173,7 @@ bool TrafficView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("denied")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDenied;
+            int64_t refVal_setDenied;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDenied);
             setDenied(refVal_setDenied);
             
@@ -184,7 +184,7 @@ bool TrafficView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("lanes")));
         if(!fieldValue.is_null())
         {
-            std::map<utility::string_t, int32_t> refVal_setLanes;
+            std::map<utility::string_t, int64_t> refVal_setLanes;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLanes);
             setLanes(refVal_setLanes);
             
@@ -217,7 +217,7 @@ bool TrafficView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("refused")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRefused;
+            int64_t refVal_setRefused;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRefused);
             setRefused(refVal_setRefused);
             
@@ -228,7 +228,7 @@ bool TrafficView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("requests")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRequests;
+            int64_t refVal_setRequests;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRequests);
             setRequests(refVal_setRequests);
             
@@ -239,7 +239,7 @@ bool TrafficView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("screens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setScreens;
+            int64_t refVal_setScreens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setScreens);
             setScreens(refVal_setScreens);
             
@@ -261,7 +261,7 @@ bool TrafficView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tracked")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTracked;
+            int64_t refVal_setTracked;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTracked);
             setTracked(refVal_setTracked);
             
@@ -272,7 +272,7 @@ bool TrafficView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("unscored")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUnscored;
+            int64_t refVal_setUnscored;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUnscored);
             setUnscored(refVal_setUnscored);
             
@@ -283,7 +283,7 @@ bool TrafficView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("window_sec")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setWindowSec;
+            int64_t refVal_setWindowSec;
             ok &= ModelBase::fromJson(fieldValue, refVal_setWindowSec);
             setWindowSec(refVal_setWindowSec);
             
@@ -368,7 +368,7 @@ bool TrafficView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("blind"))))
     {
-        int32_t refVal_setBlind;
+        int64_t refVal_setBlind;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("blind"))), refVal_setBlind );
         setBlind(refVal_setBlind);
     }
@@ -380,19 +380,19 @@ bool TrafficView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("ceiling"))))
     {
-        int32_t refVal_setCeiling;
+        int64_t refVal_setCeiling;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ceiling"))), refVal_setCeiling );
         setCeiling(refVal_setCeiling);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("denied"))))
     {
-        int32_t refVal_setDenied;
+        int64_t refVal_setDenied;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("denied"))), refVal_setDenied );
         setDenied(refVal_setDenied);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("lanes"))))
     {
-        std::map<utility::string_t, int32_t> refVal_setLanes;
+        std::map<utility::string_t, int64_t> refVal_setLanes;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("lanes"))), refVal_setLanes );
         setLanes(refVal_setLanes);
     }
@@ -410,19 +410,19 @@ bool TrafficView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("refused"))))
     {
-        int32_t refVal_setRefused;
+        int64_t refVal_setRefused;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("refused"))), refVal_setRefused );
         setRefused(refVal_setRefused);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("requests"))))
     {
-        int32_t refVal_setRequests;
+        int64_t refVal_setRequests;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("requests"))), refVal_setRequests );
         setRequests(refVal_setRequests);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("screens"))))
     {
-        int32_t refVal_setScreens;
+        int64_t refVal_setScreens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("screens"))), refVal_setScreens );
         setScreens(refVal_setScreens);
     }
@@ -434,19 +434,19 @@ bool TrafficView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tracked"))))
     {
-        int32_t refVal_setTracked;
+        int64_t refVal_setTracked;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("tracked"))), refVal_setTracked );
         setTracked(refVal_setTracked);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("unscored"))))
     {
-        int32_t refVal_setUnscored;
+        int64_t refVal_setUnscored;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("unscored"))), refVal_setUnscored );
         setUnscored(refVal_setUnscored);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("window_sec"))))
     {
-        int32_t refVal_setWindowSec;
+        int64_t refVal_setWindowSec;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("window_sec"))), refVal_setWindowSec );
         setWindowSec(refVal_setWindowSec);
     }
@@ -454,13 +454,13 @@ bool TrafficView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 }
 
 
-int32_t TrafficView::getBlind() const
+int64_t TrafficView::getBlind() const
 {
     return m_Blind;
 }
 
 
-void TrafficView::setBlind(int32_t value)
+void TrafficView::setBlind(int64_t value)
 {
     m_Blind = value;
     m_BlindIsSet = true;
@@ -496,13 +496,13 @@ void TrafficView::unsetCallers()
 {
     m_CallersIsSet = false;
 }
-int32_t TrafficView::getCeiling() const
+int64_t TrafficView::getCeiling() const
 {
     return m_Ceiling;
 }
 
 
-void TrafficView::setCeiling(int32_t value)
+void TrafficView::setCeiling(int64_t value)
 {
     m_Ceiling = value;
     m_CeilingIsSet = true;
@@ -517,13 +517,13 @@ void TrafficView::unsetCeiling()
 {
     m_CeilingIsSet = false;
 }
-int32_t TrafficView::getDenied() const
+int64_t TrafficView::getDenied() const
 {
     return m_Denied;
 }
 
 
-void TrafficView::setDenied(int32_t value)
+void TrafficView::setDenied(int64_t value)
 {
     m_Denied = value;
     m_DeniedIsSet = true;
@@ -538,13 +538,13 @@ void TrafficView::unsetDenied()
 {
     m_DeniedIsSet = false;
 }
-std::map<utility::string_t, int32_t> TrafficView::getLanes() const
+std::map<utility::string_t, int64_t> TrafficView::getLanes() const
 {
     return m_Lanes;
 }
 
 
-void TrafficView::setLanes(std::map<utility::string_t, int32_t> value)
+void TrafficView::setLanes(std::map<utility::string_t, int64_t> value)
 {
     m_Lanes = value;
     m_LanesIsSet = true;
@@ -601,13 +601,13 @@ void TrafficView::unsetOrg()
 {
     m_OrgIsSet = false;
 }
-int32_t TrafficView::getRefused() const
+int64_t TrafficView::getRefused() const
 {
     return m_Refused;
 }
 
 
-void TrafficView::setRefused(int32_t value)
+void TrafficView::setRefused(int64_t value)
 {
     m_Refused = value;
     m_RefusedIsSet = true;
@@ -622,13 +622,13 @@ void TrafficView::unsetRefused()
 {
     m_RefusedIsSet = false;
 }
-int32_t TrafficView::getRequests() const
+int64_t TrafficView::getRequests() const
 {
     return m_Requests;
 }
 
 
-void TrafficView::setRequests(int32_t value)
+void TrafficView::setRequests(int64_t value)
 {
     m_Requests = value;
     m_RequestsIsSet = true;
@@ -643,13 +643,13 @@ void TrafficView::unsetRequests()
 {
     m_RequestsIsSet = false;
 }
-int32_t TrafficView::getScreens() const
+int64_t TrafficView::getScreens() const
 {
     return m_Screens;
 }
 
 
-void TrafficView::setScreens(int32_t value)
+void TrafficView::setScreens(int64_t value)
 {
     m_Screens = value;
     m_ScreensIsSet = true;
@@ -685,13 +685,13 @@ void TrafficView::unsetStrain()
 {
     m_StrainIsSet = false;
 }
-int32_t TrafficView::getTracked() const
+int64_t TrafficView::getTracked() const
 {
     return m_Tracked;
 }
 
 
-void TrafficView::setTracked(int32_t value)
+void TrafficView::setTracked(int64_t value)
 {
     m_Tracked = value;
     m_TrackedIsSet = true;
@@ -706,13 +706,13 @@ void TrafficView::unsetTracked()
 {
     m_TrackedIsSet = false;
 }
-int32_t TrafficView::getUnscored() const
+int64_t TrafficView::getUnscored() const
 {
     return m_Unscored;
 }
 
 
-void TrafficView::setUnscored(int32_t value)
+void TrafficView::setUnscored(int64_t value)
 {
     m_Unscored = value;
     m_UnscoredIsSet = true;
@@ -727,13 +727,13 @@ void TrafficView::unsetUnscored()
 {
     m_UnscoredIsSet = false;
 }
-int32_t TrafficView::getWindowSec() const
+int64_t TrafficView::getWindowSec() const
 {
     return m_Window_sec;
 }
 
 
-void TrafficView::setWindowSec(int32_t value)
+void TrafficView::setWindowSec(int64_t value)
 {
     m_Window_sec = value;
     m_Window_secIsSet = true;

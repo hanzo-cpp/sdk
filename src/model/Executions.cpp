@@ -21,7 +21,7 @@ Executions::Executions()
     m_FetchedAt = utility::datetime();
     m_FetchedAtIsSet = false;
     m_OrgsIsSet = false;
-    m_Repos = 0;
+    m_Repos = 0L;
     m_ReposIsSet = false;
     m_RunsIsSet = false;
     m_SourceErr = utility::conversions::to_string_t("");
@@ -106,7 +106,7 @@ bool Executions::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("repos")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRepos;
+            int64_t refVal_setRepos;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRepos);
             setRepos(refVal_setRepos);
             
@@ -204,7 +204,7 @@ bool Executions::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("repos"))))
     {
-        int32_t refVal_setRepos;
+        int64_t refVal_setRepos;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("repos"))), refVal_setRepos );
         setRepos(refVal_setRepos);
     }
@@ -272,13 +272,13 @@ void Executions::unsetOrgs()
 {
     m_OrgsIsSet = false;
 }
-int32_t Executions::getRepos() const
+int64_t Executions::getRepos() const
 {
     return m_Repos;
 }
 
 
-void Executions::setRepos(int32_t value)
+void Executions::setRepos(int64_t value)
 {
     m_Repos = value;
     m_ReposIsSet = true;

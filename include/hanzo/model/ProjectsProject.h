@@ -82,10 +82,10 @@ public:
     /// <summary>
     /// CreatedAt is when the project was created, as Unix seconds.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// CurrentDeploymentID names the deployment currently serving, so a caller can ask what is live without scanning the history.
@@ -154,10 +154,10 @@ public:
     /// <summary>
     /// LastPurgeAt is when the edge cache was last cleared, as Unix seconds, so a console can say how fresh what readers see actually is. Absent means never.
     /// </summary>
-    int32_t getLastPurgeAt() const;
+    int64_t getLastPurgeAt() const;
     bool lastPurgeAtIsSet() const;
     void unsetLastPurgeAt();
-    void setLastPurgeAt(int32_t value);
+    void setLastPurgeAt(int64_t value);
 
     /// <summary>
     /// License is the terms that upstream work carries. Absent has the same reading: undeclared, not unencumbered.
@@ -242,10 +242,10 @@ public:
     /// <summary>
     /// UpdatedAt is when the project&#39;s own record last changed, as Unix seconds. A deploy is not an edit of the project, so this does not move on every publish.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
     /// <summary>
     /// Upstream credits the third-party work this project was published from — a free-text line, because the honest answer is a name and a title that no enum could hold. Absent means NOBODY HAS SAID, not that there is nothing to say.
@@ -274,7 +274,7 @@ protected:
     utility::string_t m_CacheControl;
     bool m_CacheControlIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_CurrentDeploymentId;
@@ -301,7 +301,7 @@ protected:
     utility::string_t m_Key;
     bool m_KeyIsSet;
 
-    int32_t m_LastPurgeAt;
+    int64_t m_LastPurgeAt;
     bool m_LastPurgeAtIsSet;
 
     utility::string_t m_License;
@@ -334,7 +334,7 @@ protected:
     std::map<utility::string_t, utility::string_t> m_Tags;
     bool m_TagsIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
     utility::string_t m_Upstream;

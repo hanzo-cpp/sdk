@@ -18,7 +18,7 @@ namespace model {
 
 ChallengeView::ChallengeView()
 {
-    m_ExpiresAt = 0;
+    m_ExpiresAt = 0L;
     m_ExpiresAtIsSet = false;
     m_Message = utility::conversions::to_string_t("");
     m_MessageIsSet = false;
@@ -26,7 +26,7 @@ ChallengeView::ChallengeView()
     m_NonceIsSet = false;
     m_TokenId = 0;
     m_TokenIdIsSet = false;
-    m_TtlSeconds = 0;
+    m_TtlSeconds = 0L;
     m_TtlSecondsIsSet = false;
 }
 
@@ -79,7 +79,7 @@ bool ChallengeView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("expiresAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExpiresAt;
+            int64_t refVal_setExpiresAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExpiresAt);
             setExpiresAt(refVal_setExpiresAt);
             
@@ -123,7 +123,7 @@ bool ChallengeView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("ttlSeconds")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTtlSeconds;
+            int64_t refVal_setTtlSeconds;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTtlSeconds);
             setTtlSeconds(refVal_setTtlSeconds);
             
@@ -172,7 +172,7 @@ bool ChallengeView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("expiresAt"))))
     {
-        int32_t refVal_setExpiresAt;
+        int64_t refVal_setExpiresAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("expiresAt"))), refVal_setExpiresAt );
         setExpiresAt(refVal_setExpiresAt);
     }
@@ -196,7 +196,7 @@ bool ChallengeView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("ttlSeconds"))))
     {
-        int32_t refVal_setTtlSeconds;
+        int64_t refVal_setTtlSeconds;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ttlSeconds"))), refVal_setTtlSeconds );
         setTtlSeconds(refVal_setTtlSeconds);
     }
@@ -204,13 +204,13 @@ bool ChallengeView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 }
 
 
-int32_t ChallengeView::getExpiresAt() const
+int64_t ChallengeView::getExpiresAt() const
 {
     return m_ExpiresAt;
 }
 
 
-void ChallengeView::setExpiresAt(int32_t value)
+void ChallengeView::setExpiresAt(int64_t value)
 {
     m_ExpiresAt = value;
     m_ExpiresAtIsSet = true;
@@ -288,13 +288,13 @@ void ChallengeView::unsetTokenId()
 {
     m_TokenIdIsSet = false;
 }
-int32_t ChallengeView::getTtlSeconds() const
+int64_t ChallengeView::getTtlSeconds() const
 {
     return m_TtlSeconds;
 }
 
 
-void ChallengeView::setTtlSeconds(int32_t value)
+void ChallengeView::setTtlSeconds(int64_t value)
 {
     m_TtlSeconds = value;
     m_TtlSecondsIsSet = true;

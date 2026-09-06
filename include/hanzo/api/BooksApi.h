@@ -83,10 +83,10 @@ public:
     /// Returns the org&#39;s normalized bank transactions, newest first — every row the import and connector paths have ingested, with its amount in exact cents, its direction, and whether it has been matched to a voucher yet.
     /// </remarks>
     /// <param name="sandbox">Sandbox reads the org&#39;s SANDBOX ledger when it is exactly \&quot;true\&quot;. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many rows come back; 500 when absent or not positive. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many rows come back; 500 when absent or not positive. (optional, default to 0L)</param>
     pplx::task<std::vector<std::shared_ptr<BankTxnRow>>> getBooksBankTransactions(
         boost::optional<utility::string_t> sandbox,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns the org&#39;s unmatched bank inflows and their open clarifying questions — the queue a human answers so an unexplained deposit is never guessed into revenue.
@@ -108,13 +108,13 @@ public:
     /// <param name="from">From is the RFC3339 start of the window, exclusive. Empty means all time. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="to">To is the RFC3339 end of the window, inclusive. Empty means up to now. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="format">Format is the export encoding. Only \&quot;json\&quot; is supported; empty means json. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps the GL detail rows included as the audit trail; 5000 when absent or not positive. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the GL detail rows included as the audit trail; 5000 when absent or not positive. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<FinancialPackage>> getBooksExport(
         boost::optional<utility::string_t> sandbox,
         boost::optional<utility::string_t> from,
         boost::optional<utility::string_t> to,
         boost::optional<utility::string_t> format,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// ListGL returns the org&#39;s most recent GL Entry rows, newest first.
@@ -123,10 +123,10 @@ public:
     /// ListGL returns the org&#39;s most recent GL Entry rows, newest first. This is the raw double-entry detail behind every statement: one row per leg, with its debit, credit, posting time and the source that booked it.
     /// </remarks>
     /// <param name="sandbox">Sandbox reads the org&#39;s SANDBOX ledger when it is exactly \&quot;true\&quot;. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many rows come back; 500 when absent or not positive. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many rows come back; 500 when absent or not positive. (optional, default to 0L)</param>
     pplx::task<std::vector<std::shared_ptr<GLRow>>> getBooksGl(
         boost::optional<utility::string_t> sandbox,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns the org&#39;s open document queue — everything uploaded but not yet booked, newest first, each with its extracted summary and the confidence the scanner resolved its category at.
@@ -209,14 +209,14 @@ public:
     /// <param name="to">To is the RFC3339 end of the posting-time window, inclusive. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="category">Category filters to one COA account, named by number (\&quot;5300\&quot;) or by category slug (\&quot;software\&quot;). (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="vendor">Vendor filters to rows whose vendor or description contains this text, case-insensitively. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many rows come back; 200 when absent or not positive. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many rows come back; 200 when absent or not positive. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<TransactionsOut>> getBooksTransactions(
         boost::optional<utility::string_t> sandbox,
         boost::optional<utility::string_t> from,
         boost::optional<utility::string_t> to,
         boost::optional<utility::string_t> category,
         boost::optional<utility::string_t> vendor,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns the org&#39;s trial balance over an optional [from, to] window of RFC3339 posting times, including the opening/closing columns and the TotalDebit &#x3D;&#x3D; TotalCredit proof that the books balance.

@@ -20,13 +20,13 @@ Step::Step()
 {
     m_Body = utility::conversions::to_string_t("");
     m_BodyIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
-    m_DelaySeconds = 0;
+    m_DelaySeconds = 0L;
     m_DelaySecondsIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
-    m_Idx = 0;
+    m_Idx = 0L;
     m_IdxIsSet = false;
     m_SequenceId = utility::conversions::to_string_t("");
     m_SequenceIdIsSet = false;
@@ -104,7 +104,7 @@ bool Step::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -115,7 +115,7 @@ bool Step::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("delaySeconds")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDelaySeconds;
+            int64_t refVal_setDelaySeconds;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDelaySeconds);
             setDelaySeconds(refVal_setDelaySeconds);
             
@@ -137,7 +137,7 @@ bool Step::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("idx")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setIdx;
+            int64_t refVal_setIdx;
             ok &= ModelBase::fromJson(fieldValue, refVal_setIdx);
             setIdx(refVal_setIdx);
             
@@ -222,13 +222,13 @@ bool Step::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("delaySeconds"))))
     {
-        int32_t refVal_setDelaySeconds;
+        int64_t refVal_setDelaySeconds;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("delaySeconds"))), refVal_setDelaySeconds );
         setDelaySeconds(refVal_setDelaySeconds);
     }
@@ -240,7 +240,7 @@ bool Step::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("idx"))))
     {
-        int32_t refVal_setIdx;
+        int64_t refVal_setIdx;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("idx"))), refVal_setIdx );
         setIdx(refVal_setIdx);
     }
@@ -281,13 +281,13 @@ void Step::unsetBody()
 {
     m_BodyIsSet = false;
 }
-int32_t Step::getCreatedAt() const
+int64_t Step::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void Step::setCreatedAt(int32_t value)
+void Step::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -302,13 +302,13 @@ void Step::unsetCreatedAt()
 {
     m_CreatedAtIsSet = false;
 }
-int32_t Step::getDelaySeconds() const
+int64_t Step::getDelaySeconds() const
 {
     return m_DelaySeconds;
 }
 
 
-void Step::setDelaySeconds(int32_t value)
+void Step::setDelaySeconds(int64_t value)
 {
     m_DelaySeconds = value;
     m_DelaySecondsIsSet = true;
@@ -344,13 +344,13 @@ void Step::unsetId()
 {
     m_IdIsSet = false;
 }
-int32_t Step::getIdx() const
+int64_t Step::getIdx() const
 {
     return m_Idx;
 }
 
 
-void Step::setIdx(int32_t value)
+void Step::setIdx(int64_t value)
 {
     m_Idx = value;
     m_IdxIsSet = true;

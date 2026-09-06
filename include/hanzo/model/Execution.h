@@ -77,15 +77,15 @@ public:
     void unsetEvent();
     void setEvent(const utility::string_t& value);
 
-    int32_t getId() const;
+    int64_t getId() const;
     bool idIsSet() const;
     void unsetId();
-    void setId(int32_t value);
+    void setId(int64_t value);
 
-    int32_t getNumber() const;
+    int64_t getNumber() const;
     bool numberIsSet() const;
     void unsetnumber();
-    void setNumber(int32_t value);
+    void setNumber(int64_t value);
 
     utility::string_t getOrg() const;
     bool orgIsSet() const;
@@ -147,10 +147,10 @@ protected:
     utility::string_t m_Event;
     bool m_EventIsSet;
 
-    int32_t m_Id;
+    int64_t m_Id;
     bool m_IdIsSet;
 
-    int32_t m_number;
+    int64_t m_number;
     bool m_numberIsSet;
 
     utility::string_t m_Org;

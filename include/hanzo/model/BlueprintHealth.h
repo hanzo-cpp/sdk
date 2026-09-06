@@ -57,10 +57,10 @@ public:
     /// <summary>
     /// Blueprints is how many blueprints this build has embedded and priced.
     /// </summary>
-    int32_t getBlueprints() const;
+    int64_t getBlueprints() const;
     bool blueprintsIsSet() const;
     void unsetBlueprints();
-    void setBlueprints(int32_t value);
+    void setBlueprints(int64_t value);
 
     /// <summary>
     /// RateCard is the rate card actually in force after the operator env overlay (CLOUD_BLUEPRINT_UCPU_HR / CLOUD_BLUEPRINT_UGB_HR), not the shipped default.
@@ -88,7 +88,7 @@ public:
 
 
 protected:
-    int32_t m_Blueprints;
+    int64_t m_Blueprints;
     bool m_BlueprintsIsSet;
 
     std::shared_ptr<RateCard> m_RateCard;

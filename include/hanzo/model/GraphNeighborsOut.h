@@ -56,18 +56,18 @@ public:
     /// <summary>
     /// Bound is the ceiling this walk was held to, the same for every caller, so Truncated can be read against a number rather than guessed at.
     /// </summary>
-    int32_t getBound() const;
+    int64_t getBound() const;
     bool boundIsSet() const;
     void unsetBound();
-    void setBound(int32_t value);
+    void setBound(int64_t value);
 
     /// <summary>
     /// Depth is the deepest hop count actually reached. It is at most the depth asked for, and smaller when the walk ran out of edges first.
     /// </summary>
-    int32_t getDepth() const;
+    int64_t getDepth() const;
     bool depthIsSet() const;
     void unsetDepth();
-    void setDepth(int32_t value);
+    void setDepth(int64_t value);
 
     /// <summary>
     /// Entities is everything reached, the seeds included, ordered by the fewest hops that reach each one and then by key.
@@ -87,10 +87,10 @@ public:
 
 
 protected:
-    int32_t m_Bound;
+    int64_t m_Bound;
     bool m_BoundIsSet;
 
-    int32_t m_Depth;
+    int64_t m_Depth;
     bool m_DepthIsSet;
 
     std::vector<utility::string_t> m_Entities;

@@ -23,7 +23,7 @@ BusRequest::BusRequest()
     m_HeadersIsSet = false;
     m_Subject = utility::conversions::to_string_t("");
     m_SubjectIsSet = false;
-    m_TimeoutMs = 0;
+    m_TimeoutMs = 0L;
     m_TimeoutMsIsSet = false;
 }
 
@@ -104,7 +104,7 @@ bool BusRequest::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("timeoutMs")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTimeoutMs;
+            int64_t refVal_setTimeoutMs;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTimeoutMs);
             setTimeoutMs(refVal_setTimeoutMs);
             
@@ -167,7 +167,7 @@ bool BusRequest::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("timeoutMs"))))
     {
-        int32_t refVal_setTimeoutMs;
+        int64_t refVal_setTimeoutMs;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("timeoutMs"))), refVal_setTimeoutMs );
         setTimeoutMs(refVal_setTimeoutMs);
     }
@@ -238,13 +238,13 @@ void BusRequest::unsetSubject()
 {
     m_SubjectIsSet = false;
 }
-int32_t BusRequest::getTimeoutMs() const
+int64_t BusRequest::getTimeoutMs() const
 {
     return m_TimeoutMs;
 }
 
 
-void BusRequest::setTimeoutMs(int32_t value)
+void BusRequest::setTimeoutMs(int64_t value)
 {
     m_TimeoutMs = value;
     m_TimeoutMsIsSet = true;

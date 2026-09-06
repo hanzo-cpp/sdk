@@ -136,10 +136,10 @@ public:
     /// <summary>
     /// TimeoutSec is the per-invocation deadline, defaulting to 30 and clamped at 900 — a larger value is capped rather than reset to the default.
     /// </summary>
-    int32_t getTimeoutSec() const;
+    int64_t getTimeoutSec() const;
     bool timeoutSecIsSet() const;
     void unsetTimeoutSec();
-    void setTimeoutSec(int32_t value);
+    void setTimeoutSec(int64_t value);
 
 
 protected:
@@ -173,7 +173,7 @@ protected:
     utility::string_t m_Target;
     bool m_TargetIsSet;
 
-    int32_t m_TimeoutSec;
+    int64_t m_TimeoutSec;
     bool m_TimeoutSecIsSet;
 
 };

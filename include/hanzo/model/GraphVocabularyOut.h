@@ -56,10 +56,10 @@ public:
     /// <summary>
     /// Bound is the ceiling on one walk.
     /// </summary>
-    int32_t getBound() const;
+    int64_t getBound() const;
     bool boundIsSet() const;
     void unsetBound();
-    void setBound(int32_t value);
+    void setBound(int64_t value);
 
     /// <summary>
     /// Relations is what this organization has actually asserted, which is the only vocabulary there is: this plane declares none of its own.
@@ -79,7 +79,7 @@ public:
 
 
 protected:
-    int32_t m_Bound;
+    int64_t m_Bound;
     bool m_BoundIsSet;
 
     std::vector<utility::string_t> m_Relations;

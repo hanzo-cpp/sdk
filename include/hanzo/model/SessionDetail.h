@@ -84,10 +84,10 @@ public:
     void unsetChildSessions();
     void setChildSessions(const std::vector<std::shared_ptr<SessionView>>& value);
 
-    int32_t getChildren() const;
+    int64_t getChildren() const;
     bool childrenIsSet() const;
     void unsetChildren();
-    void setChildren(int32_t value);
+    void setChildren(int64_t value);
 
     utility::string_t getCreatedAt() const;
     bool createdAtIsSet() const;
@@ -104,10 +104,10 @@ public:
     void unsetEndedAt();
     void setEndedAt(const utility::string_t& value);
 
-    int32_t getEvents() const;
+    int64_t getEvents() const;
     bool eventsIsSet() const;
     void unsetEvents();
-    void setEvents(int32_t value);
+    void setEvents(int64_t value);
 
     utility::string_t getHost() const;
     bool hostIsSet() const;
@@ -231,7 +231,7 @@ protected:
     std::vector<std::shared_ptr<SessionView>> m_ChildSessions;
     bool m_ChildSessionsIsSet;
 
-    int32_t m_Children;
+    int64_t m_Children;
     bool m_ChildrenIsSet;
 
     utility::string_t m_CreatedAt;
@@ -243,7 +243,7 @@ protected:
     utility::string_t m_EndedAt;
     bool m_EndedAtIsSet;
 
-    int32_t m_Events;
+    int64_t m_Events;
     bool m_EventsIsSet;
 
     utility::string_t m_Host;

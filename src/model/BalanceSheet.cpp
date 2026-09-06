@@ -25,11 +25,11 @@ BalanceSheet::BalanceSheet()
     m_BalancedIsSet = false;
     m_EquityIsSet = false;
     m_LiabilitiesIsSet = false;
-    m_TotalAssets = 0;
+    m_TotalAssets = 0L;
     m_TotalAssetsIsSet = false;
-    m_TotalEquity = 0;
+    m_TotalEquity = 0L;
     m_TotalEquityIsSet = false;
-    m_TotalLiabilities = 0;
+    m_TotalLiabilities = 0L;
     m_TotalLiabilitiesIsSet = false;
 }
 
@@ -152,7 +152,7 @@ bool BalanceSheet::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("totalAssets")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotalAssets;
+            int64_t refVal_setTotalAssets;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalAssets);
             setTotalAssets(refVal_setTotalAssets);
             
@@ -163,7 +163,7 @@ bool BalanceSheet::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("totalEquity")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotalEquity;
+            int64_t refVal_setTotalEquity;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalEquity);
             setTotalEquity(refVal_setTotalEquity);
             
@@ -174,7 +174,7 @@ bool BalanceSheet::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("totalLiabilities")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotalLiabilities;
+            int64_t refVal_setTotalLiabilities;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalLiabilities);
             setTotalLiabilities(refVal_setTotalLiabilities);
             
@@ -265,19 +265,19 @@ bool BalanceSheet::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("totalAssets"))))
     {
-        int32_t refVal_setTotalAssets;
+        int64_t refVal_setTotalAssets;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("totalAssets"))), refVal_setTotalAssets );
         setTotalAssets(refVal_setTotalAssets);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("totalEquity"))))
     {
-        int32_t refVal_setTotalEquity;
+        int64_t refVal_setTotalEquity;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("totalEquity"))), refVal_setTotalEquity );
         setTotalEquity(refVal_setTotalEquity);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("totalLiabilities"))))
     {
-        int32_t refVal_setTotalLiabilities;
+        int64_t refVal_setTotalLiabilities;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("totalLiabilities"))), refVal_setTotalLiabilities );
         setTotalLiabilities(refVal_setTotalLiabilities);
     }
@@ -390,13 +390,13 @@ void BalanceSheet::unsetLiabilities()
 {
     m_LiabilitiesIsSet = false;
 }
-int32_t BalanceSheet::getTotalAssets() const
+int64_t BalanceSheet::getTotalAssets() const
 {
     return m_TotalAssets;
 }
 
 
-void BalanceSheet::setTotalAssets(int32_t value)
+void BalanceSheet::setTotalAssets(int64_t value)
 {
     m_TotalAssets = value;
     m_TotalAssetsIsSet = true;
@@ -411,13 +411,13 @@ void BalanceSheet::unsetTotalAssets()
 {
     m_TotalAssetsIsSet = false;
 }
-int32_t BalanceSheet::getTotalEquity() const
+int64_t BalanceSheet::getTotalEquity() const
 {
     return m_TotalEquity;
 }
 
 
-void BalanceSheet::setTotalEquity(int32_t value)
+void BalanceSheet::setTotalEquity(int64_t value)
 {
     m_TotalEquity = value;
     m_TotalEquityIsSet = true;
@@ -432,13 +432,13 @@ void BalanceSheet::unsetTotalEquity()
 {
     m_TotalEquityIsSet = false;
 }
-int32_t BalanceSheet::getTotalLiabilities() const
+int64_t BalanceSheet::getTotalLiabilities() const
 {
     return m_TotalLiabilities;
 }
 
 
-void BalanceSheet::setTotalLiabilities(int32_t value)
+void BalanceSheet::setTotalLiabilities(int64_t value)
 {
     m_TotalLiabilities = value;
     m_TotalLiabilitiesIsSet = true;

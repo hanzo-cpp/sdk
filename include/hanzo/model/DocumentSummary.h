@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// CreatedAt is when the document was generated, in unix seconds.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// EsignProvider names the e-signature provider handling it, absent until a signature has been requested.
@@ -87,10 +87,10 @@ public:
     /// <summary>
     /// SignedAt is when the provider reported completion, in unix seconds. Absent until then.
     /// </summary>
-    int32_t getSignedAt() const;
+    int64_t getSignedAt() const;
     bool signedAtIsSet() const;
     void unsetSignedAt();
-    void setSignedAt(int32_t value);
+    void setSignedAt(int64_t value);
 
     /// <summary>
     /// Status is the lifecycle state: draft, out_for_signature, signed or voided. There is deliberately no \&quot;legally valid\&quot; state — that is counsel&#39;s determination, not the platform&#39;s.
@@ -111,10 +111,10 @@ public:
     /// <summary>
     /// TemplateVersion is WHICH version of that template rendered it, so the document is reproducible and auditable.
     /// </summary>
-    int32_t getTemplateVersion() const;
+    int64_t getTemplateVersion() const;
     bool templateVersionIsSet() const;
     void unsetTemplateVersion();
-    void setTemplateVersion(int32_t value);
+    void setTemplateVersion(int64_t value);
 
     /// <summary>
     /// Title is the document&#39;s title, inherited from the template.
@@ -127,17 +127,17 @@ public:
     /// <summary>
     /// UpdatedAt is when it last changed, in unix seconds.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
 
 protected:
     utility::string_t m_Category;
     bool m_CategoryIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_EsignProvider;
@@ -146,7 +146,7 @@ protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
 
-    int32_t m_SignedAt;
+    int64_t m_SignedAt;
     bool m_SignedAtIsSet;
 
     utility::string_t m_Status;
@@ -155,13 +155,13 @@ protected:
     utility::string_t m_TemplateId;
     bool m_TemplateIdIsSet;
 
-    int32_t m_TemplateVersion;
+    int64_t m_TemplateVersion;
     bool m_TemplateVersionIsSet;
 
     utility::string_t m_Title;
     bool m_TitleIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
 };

@@ -79,18 +79,18 @@ public:
     /// <summary>
     /// Holds is what the source holds for the same window NOW. The difference between it and Rows is the whole of the reproducibility claim.
     /// </summary>
-    int32_t getHolds() const;
+    int64_t getHolds() const;
     bool holdsIsSet() const;
     void unsetHolds();
-    void setHolds(int32_t value);
+    void setHolds(int64_t value);
 
     /// <summary>
     /// Oversize is how many subjects the window held that were too large to represent when this version was built. It is part of the fingerprint, so it is part of what \&quot;reproducible\&quot; is measured over.
     /// </summary>
-    int32_t getOversize() const;
+    int64_t getOversize() const;
     bool oversizeIsSet() const;
     void unsetOversize();
-    void setOversize(int32_t value);
+    void setOversize(int64_t value);
 
     /// <summary>
     /// Refusal says which way it failed — the window expired, or the source now holds a different count. Absent when Reproducible is true.
@@ -119,18 +119,18 @@ public:
     /// <summary>
     /// Rows is how many rows the source held for that window at materialisation time. Holds is the same question asked now, and the difference between them is the whole of the reproducibility claim.
     /// </summary>
-    int32_t getRows() const;
+    int64_t getRows() const;
     bool rowsIsSet() const;
     void unsetRows();
-    void setRows(int32_t value);
+    void setRows(int64_t value);
 
     /// <summary>
     /// Share is the fraction of subjects admitted, in thousandths.
     /// </summary>
-    int32_t getShare() const;
+    int64_t getShare() const;
     bool shareIsSet() const;
     void unsetShare();
-    void setShare(int32_t value);
+    void setShare(int64_t value);
 
     /// <summary>
     /// Source is the plane the rows were derived from.
@@ -143,10 +143,10 @@ public:
     /// <summary>
     /// Subjects is how many distinct subjects those rows belonged to. It is the real sample size — the row count flatters it whenever a subject is active.
     /// </summary>
-    int32_t getSubjects() const;
+    int64_t getSubjects() const;
     bool subjectsIsSet() const;
     void unsetSubjects();
-    void setSubjects(int32_t value);
+    void setSubjects(int64_t value);
 
     /// <summary>
     /// To is where it ends: the spec&#39;s own end pulled BACK by the maturity horizon, so it is usually earlier than the spec says. This is the window a reproduction has to ask for — asking the spec&#39;s would not return these rows.
@@ -159,10 +159,10 @@ public:
     /// <summary>
     /// Version is the version traced — the one asked for, or the newest published one when the request named none.
     /// </summary>
-    int32_t getVersion() const;
+    int64_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();
-    void setVersion(int32_t value);
+    void setVersion(int64_t value);
 
 
 protected:
@@ -175,10 +175,10 @@ protected:
     utility::string_t m_From;
     bool m_FromIsSet;
 
-    int32_t m_Holds;
+    int64_t m_Holds;
     bool m_HoldsIsSet;
 
-    int32_t m_Oversize;
+    int64_t m_Oversize;
     bool m_OversizeIsSet;
 
     utility::string_t m_Refusal;
@@ -190,22 +190,22 @@ protected:
     utility::string_t m_Retention;
     bool m_RetentionIsSet;
 
-    int32_t m_Rows;
+    int64_t m_Rows;
     bool m_RowsIsSet;
 
-    int32_t m_Share;
+    int64_t m_Share;
     bool m_ShareIsSet;
 
     utility::string_t m_Source;
     bool m_SourceIsSet;
 
-    int32_t m_Subjects;
+    int64_t m_Subjects;
     bool m_SubjectsIsSet;
 
     utility::string_t m_To;
     bool m_ToIsSet;
 
-    int32_t m_Version;
+    int64_t m_Version;
     bool m_VersionIsSet;
 
 };

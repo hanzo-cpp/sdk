@@ -98,26 +98,26 @@ public:
     /// <summary>
     /// TotalAssets is the sum of the asset lines, in cents.
     /// </summary>
-    int32_t getTotalAssets() const;
+    int64_t getTotalAssets() const;
     bool totalAssetsIsSet() const;
     void unsetTotalAssets();
-    void setTotalAssets(int32_t value);
+    void setTotalAssets(int64_t value);
 
     /// <summary>
     /// TotalEquity is the sum of the equity lines including retained earnings, in cents.
     /// </summary>
-    int32_t getTotalEquity() const;
+    int64_t getTotalEquity() const;
     bool totalEquityIsSet() const;
     void unsetTotalEquity();
-    void setTotalEquity(int32_t value);
+    void setTotalEquity(int64_t value);
 
     /// <summary>
     /// TotalLiabilities is the sum of the liability lines, in cents.
     /// </summary>
-    int32_t getTotalLiabilities() const;
+    int64_t getTotalLiabilities() const;
     bool totalLiabilitiesIsSet() const;
     void unsetTotalLiabilities();
-    void setTotalLiabilities(int32_t value);
+    void setTotalLiabilities(int64_t value);
 
 
 protected:
@@ -136,13 +136,13 @@ protected:
     std::vector<std::shared_ptr<BalanceLine>> m_Liabilities;
     bool m_LiabilitiesIsSet;
 
-    int32_t m_TotalAssets;
+    int64_t m_TotalAssets;
     bool m_TotalAssetsIsSet;
 
-    int32_t m_TotalEquity;
+    int64_t m_TotalEquity;
     bool m_TotalEquityIsSet;
 
-    int32_t m_TotalLiabilities;
+    int64_t m_TotalLiabilities;
     bool m_TotalLiabilitiesIsSet;
 
 };

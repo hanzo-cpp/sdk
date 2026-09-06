@@ -57,10 +57,10 @@ public:
     /// <summary>
     /// ApplicationsCount is how many of THE CALLER&#39;S applications reconcile into this cluster, so a tenant sees its own count and a SuperAdmin the fleet&#39;s. It is zero for the in-cluster destination when the caller owns nothing, since that destination is listed whether or not anything targets it.
     /// </summary>
-    int32_t getApplicationsCount() const;
+    int64_t getApplicationsCount() const;
     bool applicationsCountIsSet() const;
     void unsetApplicationsCount();
-    void setApplicationsCount(int32_t value);
+    void setApplicationsCount(int64_t value);
 
     /// <summary>
     /// ConnectionState repeats the cluster&#39;s own connection state, which is where ArgoCD&#39;s UI reads it from on this object.
@@ -80,7 +80,7 @@ public:
 
 
 protected:
-    int32_t m_ApplicationsCount;
+    int64_t m_ApplicationsCount;
     bool m_ApplicationsCountIsSet;
 
     std::shared_ptr<ArgoConnectionState> m_ConnectionState;

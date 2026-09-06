@@ -24,7 +24,7 @@ CaptableTransferred::CaptableTransferred()
     m_NewShareIdIsSet = false;
     m_Success = false;
     m_SuccessIsSet = false;
-    m_Transferred = 0;
+    m_Transferred = 0L;
     m_TransferredIsSet = false;
 }
 
@@ -105,7 +105,7 @@ bool CaptableTransferred::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("transferred")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTransferred;
+            int64_t refVal_setTransferred;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTransferred);
             setTransferred(refVal_setTransferred);
             
@@ -168,7 +168,7 @@ bool CaptableTransferred::fromMultiPart(std::shared_ptr<MultipartFormData> multi
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("transferred"))))
     {
-        int32_t refVal_setTransferred;
+        int64_t refVal_setTransferred;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("transferred"))), refVal_setTransferred );
         setTransferred(refVal_setTransferred);
     }
@@ -239,13 +239,13 @@ void CaptableTransferred::unsetSuccess()
 {
     m_SuccessIsSet = false;
 }
-int32_t CaptableTransferred::getTransferred() const
+int64_t CaptableTransferred::getTransferred() const
 {
     return m_Transferred;
 }
 
 
-void CaptableTransferred::setTransferred(int32_t value)
+void CaptableTransferred::setTransferred(int64_t value)
 {
     m_Transferred = value;
     m_TransferredIsSet = true;

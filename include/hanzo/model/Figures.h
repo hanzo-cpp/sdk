@@ -52,20 +52,20 @@ public:
     /// Figures members
 
 
-    int32_t getCount() const;
+    int64_t getCount() const;
     bool countIsSet() const;
     void unsetCount();
-    void setCount(int32_t value);
+    void setCount(int64_t value);
 
     utility::string_t getLocked() const;
     bool lockedIsSet() const;
     void unsetLocked();
     void setLocked(const utility::string_t& value);
 
-    int32_t getPools() const;
+    int64_t getPools() const;
     bool poolsIsSet() const;
     void unsetPools();
-    void setPools(int32_t value);
+    void setPools(int64_t value);
 
     utility::string_t getVolume() const;
     bool volumeIsSet() const;
@@ -74,13 +74,13 @@ public:
 
 
 protected:
-    int32_t m_Count;
+    int64_t m_Count;
     bool m_CountIsSet;
 
     utility::string_t m_Locked;
     bool m_LockedIsSet;
 
-    int32_t m_Pools;
+    int64_t m_Pools;
     bool m_PoolsIsSet;
 
     utility::string_t m_Volume;

@@ -18,13 +18,13 @@ namespace model {
 
 AutoRechargeEdit::AutoRechargeEdit()
 {
-    m_AmountCents = 0;
+    m_AmountCents = 0L;
     m_AmountCentsIsSet = false;
     m_Currency = utility::conversions::to_string_t("");
     m_CurrencyIsSet = false;
     m_Enabled = false;
     m_EnabledIsSet = false;
-    m_ThresholdCents = 0;
+    m_ThresholdCents = 0L;
     m_ThresholdCentsIsSet = false;
 }
 
@@ -72,7 +72,7 @@ bool AutoRechargeEdit::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("amountCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAmountCents;
+            int64_t refVal_setAmountCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAmountCents);
             setAmountCents(refVal_setAmountCents);
             
@@ -105,7 +105,7 @@ bool AutoRechargeEdit::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("thresholdCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setThresholdCents;
+            int64_t refVal_setThresholdCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setThresholdCents);
             setThresholdCents(refVal_setThresholdCents);
             
@@ -150,7 +150,7 @@ bool AutoRechargeEdit::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("amountCents"))))
     {
-        int32_t refVal_setAmountCents;
+        int64_t refVal_setAmountCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("amountCents"))), refVal_setAmountCents );
         setAmountCents(refVal_setAmountCents);
     }
@@ -168,7 +168,7 @@ bool AutoRechargeEdit::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("thresholdCents"))))
     {
-        int32_t refVal_setThresholdCents;
+        int64_t refVal_setThresholdCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("thresholdCents"))), refVal_setThresholdCents );
         setThresholdCents(refVal_setThresholdCents);
     }
@@ -176,13 +176,13 @@ bool AutoRechargeEdit::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
 }
 
 
-int32_t AutoRechargeEdit::getAmountCents() const
+int64_t AutoRechargeEdit::getAmountCents() const
 {
     return m_AmountCents;
 }
 
 
-void AutoRechargeEdit::setAmountCents(int32_t value)
+void AutoRechargeEdit::setAmountCents(int64_t value)
 {
     m_AmountCents = value;
     m_AmountCentsIsSet = true;
@@ -239,13 +239,13 @@ void AutoRechargeEdit::unsetEnabled()
 {
     m_EnabledIsSet = false;
 }
-int32_t AutoRechargeEdit::getThresholdCents() const
+int64_t AutoRechargeEdit::getThresholdCents() const
 {
     return m_ThresholdCents;
 }
 
 
-void AutoRechargeEdit::setThresholdCents(int32_t value)
+void AutoRechargeEdit::setThresholdCents(int64_t value)
 {
     m_ThresholdCents = value;
     m_ThresholdCentsIsSet = true;

@@ -18,15 +18,15 @@ namespace model {
 
 LeaderboardRow::LeaderboardRow()
 {
-    m_AccruedCents = 0;
+    m_AccruedCents = 0L;
     m_AccruedCentsIsSet = false;
     m_Handle = utility::conversions::to_string_t("");
     m_HandleIsSet = false;
     m_IsYou = false;
     m_IsYouIsSet = false;
-    m_Rank = 0;
+    m_Rank = 0L;
     m_RankIsSet = false;
-    m_ReferredCount = 0;
+    m_ReferredCount = 0L;
     m_ReferredCountIsSet = false;
 }
 
@@ -79,7 +79,7 @@ bool LeaderboardRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("accruedCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAccruedCents;
+            int64_t refVal_setAccruedCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAccruedCents);
             setAccruedCents(refVal_setAccruedCents);
             
@@ -112,7 +112,7 @@ bool LeaderboardRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("rank")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRank;
+            int64_t refVal_setRank;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRank);
             setRank(refVal_setRank);
             
@@ -123,7 +123,7 @@ bool LeaderboardRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("referredCount")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setReferredCount;
+            int64_t refVal_setReferredCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setReferredCount);
             setReferredCount(refVal_setReferredCount);
             
@@ -172,7 +172,7 @@ bool LeaderboardRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("accruedCents"))))
     {
-        int32_t refVal_setAccruedCents;
+        int64_t refVal_setAccruedCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("accruedCents"))), refVal_setAccruedCents );
         setAccruedCents(refVal_setAccruedCents);
     }
@@ -190,13 +190,13 @@ bool LeaderboardRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("rank"))))
     {
-        int32_t refVal_setRank;
+        int64_t refVal_setRank;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("rank"))), refVal_setRank );
         setRank(refVal_setRank);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("referredCount"))))
     {
-        int32_t refVal_setReferredCount;
+        int64_t refVal_setReferredCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("referredCount"))), refVal_setReferredCount );
         setReferredCount(refVal_setReferredCount);
     }
@@ -204,13 +204,13 @@ bool LeaderboardRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 }
 
 
-int32_t LeaderboardRow::getAccruedCents() const
+int64_t LeaderboardRow::getAccruedCents() const
 {
     return m_AccruedCents;
 }
 
 
-void LeaderboardRow::setAccruedCents(int32_t value)
+void LeaderboardRow::setAccruedCents(int64_t value)
 {
     m_AccruedCents = value;
     m_AccruedCentsIsSet = true;
@@ -267,13 +267,13 @@ void LeaderboardRow::unsetIsYou()
 {
     m_IsYouIsSet = false;
 }
-int32_t LeaderboardRow::getRank() const
+int64_t LeaderboardRow::getRank() const
 {
     return m_Rank;
 }
 
 
-void LeaderboardRow::setRank(int32_t value)
+void LeaderboardRow::setRank(int64_t value)
 {
     m_Rank = value;
     m_RankIsSet = true;
@@ -288,13 +288,13 @@ void LeaderboardRow::unsetRank()
 {
     m_RankIsSet = false;
 }
-int32_t LeaderboardRow::getReferredCount() const
+int64_t LeaderboardRow::getReferredCount() const
 {
     return m_ReferredCount;
 }
 
 
-void LeaderboardRow::setReferredCount(int32_t value)
+void LeaderboardRow::setReferredCount(int64_t value)
 {
     m_ReferredCount = value;
     m_ReferredCountIsSet = true;

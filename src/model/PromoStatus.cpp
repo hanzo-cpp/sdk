@@ -19,9 +19,9 @@ namespace model {
 PromoStatus::PromoStatus()
 {
     m_PromoIsSet = false;
-    m_Redeemed = 0;
+    m_Redeemed = 0L;
     m_RedeemedIsSet = false;
-    m_Remaining = 0;
+    m_Remaining = 0L;
     m_RemainingIsSet = false;
 }
 
@@ -75,7 +75,7 @@ bool PromoStatus::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("redeemed")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRedeemed;
+            int64_t refVal_setRedeemed;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRedeemed);
             setRedeemed(refVal_setRedeemed);
             
@@ -86,7 +86,7 @@ bool PromoStatus::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("remaining")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRemaining;
+            int64_t refVal_setRemaining;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRemaining);
             setRemaining(refVal_setRemaining);
             
@@ -133,13 +133,13 @@ bool PromoStatus::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("redeemed"))))
     {
-        int32_t refVal_setRedeemed;
+        int64_t refVal_setRedeemed;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("redeemed"))), refVal_setRedeemed );
         setRedeemed(refVal_setRedeemed);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("remaining"))))
     {
-        int32_t refVal_setRemaining;
+        int64_t refVal_setRemaining;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("remaining"))), refVal_setRemaining );
         setRemaining(refVal_setRemaining);
     }
@@ -168,13 +168,13 @@ void PromoStatus::unsetPromo()
 {
     m_PromoIsSet = false;
 }
-int32_t PromoStatus::getRedeemed() const
+int64_t PromoStatus::getRedeemed() const
 {
     return m_Redeemed;
 }
 
 
-void PromoStatus::setRedeemed(int32_t value)
+void PromoStatus::setRedeemed(int64_t value)
 {
     m_Redeemed = value;
     m_RedeemedIsSet = true;
@@ -189,13 +189,13 @@ void PromoStatus::unsetRedeemed()
 {
     m_RedeemedIsSet = false;
 }
-int32_t PromoStatus::getRemaining() const
+int64_t PromoStatus::getRemaining() const
 {
     return m_Remaining;
 }
 
 
-void PromoStatus::setRemaining(int32_t value)
+void PromoStatus::setRemaining(int64_t value)
 {
     m_Remaining = value;
     m_RemainingIsSet = true;

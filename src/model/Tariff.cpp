@@ -20,14 +20,14 @@ Tariff::Tariff()
 {
     m_Currency = utility::conversions::to_string_t("");
     m_CurrencyIsSet = false;
-    m_DueNowCents = 0;
+    m_DueNowCents = 0L;
     m_DueNowCentsIsSet = false;
     m_Jurisdiction = utility::conversions::to_string_t("");
     m_JurisdictionIsSet = false;
     m_LinesIsSet = false;
     m_Recurring = utility::conversions::to_string_t("");
     m_RecurringIsSet = false;
-    m_RecurringCents = 0;
+    m_RecurringCents = 0L;
     m_RecurringCentsIsSet = false;
     m_Structure = utility::conversions::to_string_t("");
     m_StructureIsSet = false;
@@ -103,7 +103,7 @@ bool Tariff::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("dueNowCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDueNowCents;
+            int64_t refVal_setDueNowCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDueNowCents);
             setDueNowCents(refVal_setDueNowCents);
             
@@ -147,7 +147,7 @@ bool Tariff::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("recurringCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRecurringCents;
+            int64_t refVal_setRecurringCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRecurringCents);
             setRecurringCents(refVal_setRecurringCents);
             
@@ -221,7 +221,7 @@ bool Tariff::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("dueNowCents"))))
     {
-        int32_t refVal_setDueNowCents;
+        int64_t refVal_setDueNowCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("dueNowCents"))), refVal_setDueNowCents );
         setDueNowCents(refVal_setDueNowCents);
     }
@@ -245,7 +245,7 @@ bool Tariff::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("recurringCents"))))
     {
-        int32_t refVal_setRecurringCents;
+        int64_t refVal_setRecurringCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("recurringCents"))), refVal_setRecurringCents );
         setRecurringCents(refVal_setRecurringCents);
     }
@@ -280,13 +280,13 @@ void Tariff::unsetCurrency()
 {
     m_CurrencyIsSet = false;
 }
-int32_t Tariff::getDueNowCents() const
+int64_t Tariff::getDueNowCents() const
 {
     return m_DueNowCents;
 }
 
 
-void Tariff::setDueNowCents(int32_t value)
+void Tariff::setDueNowCents(int64_t value)
 {
     m_DueNowCents = value;
     m_DueNowCentsIsSet = true;
@@ -364,13 +364,13 @@ void Tariff::unsetRecurring()
 {
     m_RecurringIsSet = false;
 }
-int32_t Tariff::getRecurringCents() const
+int64_t Tariff::getRecurringCents() const
 {
     return m_RecurringCents;
 }
 
 
-void Tariff::setRecurringCents(int32_t value)
+void Tariff::setRecurringCents(int64_t value)
 {
     m_RecurringCents = value;
     m_RecurringCentsIsSet = true;

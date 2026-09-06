@@ -24,7 +24,7 @@ ProjectsSite::ProjectsSite()
     m_SlugIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
-    m_UpdatedAt = 0;
+    m_UpdatedAt = 0L;
     m_UpdatedAtIsSet = false;
     m_Url = utility::conversions::to_string_t("");
     m_UrlIsSet = false;
@@ -112,7 +112,7 @@ bool ProjectsSite::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updatedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdatedAt;
+            int64_t refVal_setUpdatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdatedAt);
             setUpdatedAt(refVal_setUpdatedAt);
             
@@ -190,7 +190,7 @@ bool ProjectsSite::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
-        int32_t refVal_setUpdatedAt;
+        int64_t refVal_setUpdatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))), refVal_setUpdatedAt );
         setUpdatedAt(refVal_setUpdatedAt);
     }
@@ -267,13 +267,13 @@ void ProjectsSite::unsetStatus()
 {
     m_StatusIsSet = false;
 }
-int32_t ProjectsSite::getUpdatedAt() const
+int64_t ProjectsSite::getUpdatedAt() const
 {
     return m_UpdatedAt;
 }
 
 
-void ProjectsSite::setUpdatedAt(int32_t value)
+void ProjectsSite::setUpdatedAt(int64_t value)
 {
     m_UpdatedAt = value;
     m_UpdatedAtIsSet = true;

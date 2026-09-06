@@ -93,10 +93,10 @@ public:
     /// <summary>
     /// Seq is the turn&#39;s position in this session&#39;s log: monotonic from 1, assigned by the store inside the insert, and unique PER SESSION rather than globally. It is the cursor a reader resumes from after a reconnect — ask for everything after your last-seen seq.
     /// </summary>
-    int32_t getSeq() const;
+    int64_t getSeq() const;
     bool seqIsSet() const;
     void unsetSeq();
-    void setSeq(int32_t value);
+    void setSeq(int64_t value);
 
     /// <summary>
     /// SessionID is the session this turn belongs to. Carried on every event so a stream frame stands alone — a subscriber watching a whole tree gets turns from several sessions down one connection.
@@ -122,7 +122,7 @@ protected:
 
     boost::optional<std::shared_ptr<AnyType>> m_Payload;
 
-    int32_t m_Seq;
+    int64_t m_Seq;
     bool m_SeqIsSet;
 
     utility::string_t m_SessionId;

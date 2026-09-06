@@ -18,13 +18,13 @@ namespace model {
 
 InvoiceLine::InvoiceLine()
 {
-    m_Amount = 0;
+    m_Amount = 0L;
     m_AmountIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
-    m_Quantity = 0;
+    m_Quantity = 0L;
     m_QuantityIsSet = false;
-    m_UnitPrice = 0;
+    m_UnitPrice = 0L;
     m_UnitPriceIsSet = false;
 }
 
@@ -72,7 +72,7 @@ bool InvoiceLine::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("amount")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAmount;
+            int64_t refVal_setAmount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAmount);
             setAmount(refVal_setAmount);
             
@@ -94,7 +94,7 @@ bool InvoiceLine::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("quantity")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setQuantity;
+            int64_t refVal_setQuantity;
             ok &= ModelBase::fromJson(fieldValue, refVal_setQuantity);
             setQuantity(refVal_setQuantity);
             
@@ -105,7 +105,7 @@ bool InvoiceLine::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("unitPrice")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUnitPrice;
+            int64_t refVal_setUnitPrice;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUnitPrice);
             setUnitPrice(refVal_setUnitPrice);
             
@@ -150,7 +150,7 @@ bool InvoiceLine::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("amount"))))
     {
-        int32_t refVal_setAmount;
+        int64_t refVal_setAmount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("amount"))), refVal_setAmount );
         setAmount(refVal_setAmount);
     }
@@ -162,13 +162,13 @@ bool InvoiceLine::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("quantity"))))
     {
-        int32_t refVal_setQuantity;
+        int64_t refVal_setQuantity;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("quantity"))), refVal_setQuantity );
         setQuantity(refVal_setQuantity);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("unitPrice"))))
     {
-        int32_t refVal_setUnitPrice;
+        int64_t refVal_setUnitPrice;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("unitPrice"))), refVal_setUnitPrice );
         setUnitPrice(refVal_setUnitPrice);
     }
@@ -176,13 +176,13 @@ bool InvoiceLine::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 }
 
 
-int32_t InvoiceLine::getAmount() const
+int64_t InvoiceLine::getAmount() const
 {
     return m_Amount;
 }
 
 
-void InvoiceLine::setAmount(int32_t value)
+void InvoiceLine::setAmount(int64_t value)
 {
     m_Amount = value;
     m_AmountIsSet = true;
@@ -218,13 +218,13 @@ void InvoiceLine::unsetDescription()
 {
     m_DescriptionIsSet = false;
 }
-int32_t InvoiceLine::getQuantity() const
+int64_t InvoiceLine::getQuantity() const
 {
     return m_Quantity;
 }
 
 
-void InvoiceLine::setQuantity(int32_t value)
+void InvoiceLine::setQuantity(int64_t value)
 {
     m_Quantity = value;
     m_QuantityIsSet = true;
@@ -239,13 +239,13 @@ void InvoiceLine::unsetQuantity()
 {
     m_QuantityIsSet = false;
 }
-int32_t InvoiceLine::getUnitPrice() const
+int64_t InvoiceLine::getUnitPrice() const
 {
     return m_UnitPrice;
 }
 
 
-void InvoiceLine::setUnitPrice(int32_t value)
+void InvoiceLine::setUnitPrice(int64_t value)
 {
     m_UnitPrice = value;
     m_UnitPriceIsSet = true;

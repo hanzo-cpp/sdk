@@ -52,10 +52,10 @@ public:
     /// CreditEntry members
 
 
-    int32_t getAvailable() const;
+    int64_t getAvailable() const;
     bool availableIsSet() const;
     void unsetAvailable();
-    void setAvailable(int32_t value);
+    void setAvailable(int64_t value);
 
     utility::string_t getCurrency() const;
     bool currencyIsSet() const;
@@ -64,7 +64,7 @@ public:
 
 
 protected:
-    int32_t m_Available;
+    int64_t m_Available;
     bool m_AvailableIsSet;
 
     utility::string_t m_Currency;

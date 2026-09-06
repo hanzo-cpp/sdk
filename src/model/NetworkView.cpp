@@ -22,7 +22,7 @@ NetworkView::NetworkView()
     m_IdIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_Nodes = 0;
+    m_Nodes = 0L;
     m_NodesIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
@@ -94,7 +94,7 @@ bool NetworkView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("nodes")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNodes;
+            int64_t refVal_setNodes;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNodes);
             setNodes(refVal_setNodes);
             
@@ -162,7 +162,7 @@ bool NetworkView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("nodes"))))
     {
-        int32_t refVal_setNodes;
+        int64_t refVal_setNodes;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("nodes"))), refVal_setNodes );
         setNodes(refVal_setNodes);
     }
@@ -218,13 +218,13 @@ void NetworkView::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t NetworkView::getNodes() const
+int64_t NetworkView::getNodes() const
 {
     return m_Nodes;
 }
 
 
-void NetworkView::setNodes(int32_t value)
+void NetworkView::setNodes(int64_t value)
 {
     m_Nodes = value;
     m_NodesIsSet = true;

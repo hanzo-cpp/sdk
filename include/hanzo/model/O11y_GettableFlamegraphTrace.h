@@ -54,10 +54,10 @@ public:
     /// O11y_GettableFlamegraphTrace members
 
 
-    int32_t getEndTimestampMillis() const;
+    int64_t getEndTimestampMillis() const;
     bool endTimestampMillisIsSet() const;
     void unsetEndTimestampMillis();
-    void setEndTimestampMillis(int32_t value);
+    void setEndTimestampMillis(int64_t value);
 
     bool isHasMore() const;
     bool hasMoreIsSet() const;
@@ -69,14 +69,14 @@ public:
     void unsetSpans();
     void setSpans(const std::vector<std::vector<std::shared_ptr<O11y_FlamegraphSpan>>>& value);
 
-    int32_t getStartTimestampMillis() const;
+    int64_t getStartTimestampMillis() const;
     bool startTimestampMillisIsSet() const;
     void unsetStartTimestampMillis();
-    void setStartTimestampMillis(int32_t value);
+    void setStartTimestampMillis(int64_t value);
 
 
 protected:
-    int32_t m_EndTimestampMillis;
+    int64_t m_EndTimestampMillis;
     bool m_EndTimestampMillisIsSet;
 
     bool m_HasMore;
@@ -85,7 +85,7 @@ protected:
     std::vector<std::vector<std::shared_ptr<O11y_FlamegraphSpan>>> m_Spans;
     bool m_SpansIsSet;
 
-    int32_t m_StartTimestampMillis;
+    int64_t m_StartTimestampMillis;
     bool m_StartTimestampMillisIsSet;
 
 };

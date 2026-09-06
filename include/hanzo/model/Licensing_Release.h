@@ -85,10 +85,10 @@ public:
     void unsetCosign_signature();
     void setCosignSignature(const utility::string_t& value);
 
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreated_at();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// ID is the release identifier, e.g. \&quot;engine-rocm-0.4.2-linux-amd64\&quot;. The accelerator belongs here — one product is built several ways — and never in Product below.
@@ -160,7 +160,7 @@ protected:
     utility::string_t m_Cosign_signature;
     bool m_Cosign_signatureIsSet;
 
-    int32_t m_Created_at;
+    int64_t m_Created_at;
     bool m_Created_atIsSet;
 
     utility::string_t m_Id;

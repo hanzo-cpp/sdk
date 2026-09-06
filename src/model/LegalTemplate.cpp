@@ -31,7 +31,7 @@ LegalTemplate::LegalTemplate()
     m_OriginIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
-    m_Version = 0;
+    m_Version = 0L;
     m_VersionIsSet = false;
 }
 
@@ -176,7 +176,7 @@ bool LegalTemplate::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("version")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVersion;
+            int64_t refVal_setVersion;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVersion);
             setVersion(refVal_setVersion);
             
@@ -279,7 +279,7 @@ bool LegalTemplate::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("version"))))
     {
-        int32_t refVal_setVersion;
+        int64_t refVal_setVersion;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("version"))), refVal_setVersion );
         setVersion(refVal_setVersion);
     }
@@ -434,13 +434,13 @@ void LegalTemplate::unsetTitle()
 {
     m_TitleIsSet = false;
 }
-int32_t LegalTemplate::getVersion() const
+int64_t LegalTemplate::getVersion() const
 {
     return m_Version;
 }
 
 
-void LegalTemplate::setVersion(int32_t value)
+void LegalTemplate::setVersion(int64_t value)
 {
     m_Version = value;
     m_VersionIsSet = true;

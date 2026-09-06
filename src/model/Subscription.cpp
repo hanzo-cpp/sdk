@@ -34,14 +34,14 @@ Subscription::Subscription()
     m_EndedAtIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
-    m_MrrCents = 0;
+    m_MrrCents = 0L;
     m_MrrCentsIsSet = false;
     m_PlanIsSet = false;
     m_PlanId = utility::conversions::to_string_t("");
     m_PlanIdIsSet = false;
     m_ProviderType = utility::conversions::to_string_t("");
     m_ProviderTypeIsSet = false;
-    m_Quantity = 0;
+    m_Quantity = 0L;
     m_QuantityIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
@@ -257,7 +257,7 @@ bool Subscription::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("mrrCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMrrCents;
+            int64_t refVal_setMrrCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMrrCents);
             setMrrCents(refVal_setMrrCents);
             
@@ -301,7 +301,7 @@ bool Subscription::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("quantity")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setQuantity;
+            int64_t refVal_setQuantity;
             ok &= ModelBase::fromJson(fieldValue, refVal_setQuantity);
             setQuantity(refVal_setQuantity);
             
@@ -505,7 +505,7 @@ bool Subscription::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("mrrCents"))))
     {
-        int32_t refVal_setMrrCents;
+        int64_t refVal_setMrrCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("mrrCents"))), refVal_setMrrCents );
         setMrrCents(refVal_setMrrCents);
     }
@@ -529,7 +529,7 @@ bool Subscription::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("quantity"))))
     {
-        int32_t refVal_setQuantity;
+        int64_t refVal_setQuantity;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("quantity"))), refVal_setQuantity );
         setQuantity(refVal_setQuantity);
     }
@@ -735,13 +735,13 @@ void Subscription::unsetId()
 {
     m_IdIsSet = false;
 }
-int32_t Subscription::getMrrCents() const
+int64_t Subscription::getMrrCents() const
 {
     return m_MrrCents;
 }
 
 
-void Subscription::setMrrCents(int32_t value)
+void Subscription::setMrrCents(int64_t value)
 {
     m_MrrCents = value;
     m_MrrCentsIsSet = true;
@@ -819,13 +819,13 @@ void Subscription::unsetProviderType()
 {
     m_ProviderTypeIsSet = false;
 }
-int32_t Subscription::getQuantity() const
+int64_t Subscription::getQuantity() const
 {
     return m_Quantity;
 }
 
 
-void Subscription::setQuantity(int32_t value)
+void Subscription::setQuantity(int64_t value)
 {
     m_Quantity = value;
     m_QuantityIsSet = true;

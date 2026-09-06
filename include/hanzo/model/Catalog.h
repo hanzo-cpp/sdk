@@ -54,10 +54,10 @@ public:
     /// Catalog members
 
 
-    int32_t getConnectorCount() const;
+    int64_t getConnectorCount() const;
     bool connectorCountIsSet() const;
     void unsetConnectorCount();
-    void setConnectorCount(int32_t value);
+    void setConnectorCount(int64_t value);
 
     std::vector<std::shared_ptr<ConnectorMetadata>> getConnectors() const;
     bool connectorsIsSet() const;
@@ -66,7 +66,7 @@ public:
 
 
 protected:
-    int32_t m_ConnectorCount;
+    int64_t m_ConnectorCount;
     bool m_ConnectorCountIsSet;
 
     std::vector<std::shared_ptr<ConnectorMetadata>> m_Connectors;

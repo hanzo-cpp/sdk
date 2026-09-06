@@ -84,10 +84,10 @@ public:
     /// <summary>
     /// Policy is the version of your organisation&#39;s decision regime this verdict was reached under, from its own policy history (GET /v1/risk/policy). Cut is derived from the appetite that version states, so it is the record that makes this decision reconstructible after the appetite is restated. Zero means no regime has ever been stated and the default posture — shadow — was in force.
     /// </summary>
-    int32_t getPolicy() const;
+    int64_t getPolicy() const;
     bool policyIsSet() const;
     void unsetPolicy();
-    void setPolicy(int32_t value);
+    void setPolicy(int64_t value);
 
     /// <summary>
     /// Refusal names why the model declined, when it did.
@@ -148,7 +148,7 @@ protected:
     double m_Cut;
     bool m_CutIsSet;
 
-    int32_t m_Policy;
+    int64_t m_Policy;
     bool m_PolicyIsSet;
 
     utility::string_t m_Refusal;

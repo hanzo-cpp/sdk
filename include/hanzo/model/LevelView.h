@@ -54,36 +54,36 @@ public:
     /// <summary>
     /// DownlineCount is how many orgs sit exactly this many hops below the caller. It is 0 in the schedule quoted to a caller that has not applied, which has no downline to count.
     /// </summary>
-    int32_t getDownlineCount() const;
+    int64_t getDownlineCount() const;
     bool downlineCountIsSet() const;
     void unsetDownlineCount();
-    void setDownlineCount(int32_t value);
+    void setDownlineCount(int64_t value);
 
     /// <summary>
     /// Level is the upline distance from the org whose spend is being shared: 1 is the direct referrer, 2 and 3 the referrers above it. Nothing accrues past 3.
     /// </summary>
-    int32_t getLevel() const;
+    int64_t getLevel() const;
     bool levelIsSet() const;
     void unsetLevel();
-    void setLevel(int32_t value);
+    void setLevel(int64_t value);
 
     /// <summary>
     /// RateBps is the commission paid at this level, in basis points OF Hanzo&#39;s margin (2000 &#x3D; 20% of margin, never of the customer&#39;s bill). Level 1 is the affiliate&#39;s own negotiated rate; 2 and 3 are platform switches read live, so this is the schedule actually in force, not one compiled in.
     /// </summary>
-    int32_t getRateBps() const;
+    int64_t getRateBps() const;
     bool rateBpsIsSet() const;
     void unsetRateBps();
-    void setRateBps(int32_t value);
+    void setRateBps(int64_t value);
 
 
 protected:
-    int32_t m_DownlineCount;
+    int64_t m_DownlineCount;
     bool m_DownlineCountIsSet;
 
-    int32_t m_Level;
+    int64_t m_Level;
     bool m_LevelIsSet;
 
-    int32_t m_RateBps;
+    int64_t m_RateBps;
     bool m_RateBpsIsSet;
 
 };

@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// Keys is how many members it carries.
     /// </summary>
-    int32_t getKeys() const;
+    int64_t getKeys() const;
     bool keysIsSet() const;
     void unsetKeys();
-    void setKeys(int32_t value);
+    void setKeys(int64_t value);
 
     /// <summary>
     /// Refusal is why this publisher contributed nothing, if it did not. The set keeps its previous version of this source rather than shrinking.
@@ -103,14 +103,14 @@ public:
     /// <summary>
     /// Wrote is how many rows this run actually wrote. Zero with Unchanged means the publisher served the same set again.
     /// </summary>
-    int32_t getWrote() const;
+    int64_t getWrote() const;
     bool wroteIsSet() const;
     void unsetWrote();
-    void setWrote(int32_t value);
+    void setWrote(int64_t value);
 
 
 protected:
-    int32_t m_Keys;
+    int64_t m_Keys;
     bool m_KeysIsSet;
 
     utility::string_t m_Refusal;
@@ -128,7 +128,7 @@ protected:
     utility::string_t m_Version;
     bool m_VersionIsSet;
 
-    int32_t m_Wrote;
+    int64_t m_Wrote;
     bool m_WroteIsSet;
 
 };

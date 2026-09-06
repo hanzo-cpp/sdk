@@ -52,10 +52,10 @@ public:
     /// Iam_ThemeData members
 
 
-    int32_t getBorderRadius() const;
+    int64_t getBorderRadius() const;
     bool borderRadiusIsSet() const;
     void unsetBorderRadius();
-    void setBorderRadius(int32_t value);
+    void setBorderRadius(int64_t value);
 
     utility::string_t getColorPrimary() const;
     bool colorPrimaryIsSet() const;
@@ -79,7 +79,7 @@ public:
 
 
 protected:
-    int32_t m_BorderRadius;
+    int64_t m_BorderRadius;
     bool m_BorderRadiusIsSet;
 
     utility::string_t m_ColorPrimary;

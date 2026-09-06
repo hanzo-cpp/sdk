@@ -54,10 +54,10 @@ public:
     /// FlowVersion members
 
 
-    int32_t getCreated() const;
+    int64_t getCreated() const;
     bool createdIsSet() const;
     void unsetCreated();
-    void setCreated(int32_t value);
+    void setCreated(int64_t value);
 
     utility::string_t getDisplayName() const;
     bool displayNameIsSet() const;
@@ -89,10 +89,10 @@ public:
     void unsetTrigger();
     void setTrigger(const std::shared_ptr<FlowTrigger>& value);
 
-    int32_t getUpdated() const;
+    int64_t getUpdated() const;
     bool updatedIsSet() const;
     void unsetUpdated();
-    void setUpdated(int32_t value);
+    void setUpdated(int64_t value);
 
     bool isValid() const;
     bool validIsSet() const;
@@ -101,7 +101,7 @@ public:
 
 
 protected:
-    int32_t m_Created;
+    int64_t m_Created;
     bool m_CreatedIsSet;
 
     utility::string_t m_DisplayName;
@@ -122,7 +122,7 @@ protected:
     std::shared_ptr<FlowTrigger> m_Trigger;
     bool m_TriggerIsSet;
 
-    int32_t m_Updated;
+    int64_t m_Updated;
     bool m_UpdatedIsSet;
 
     bool m_Valid;

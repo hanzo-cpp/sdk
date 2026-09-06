@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// Claims is how many independent claims exist for this model on this benchmark. More than one means several sources reported it.
     /// </summary>
-    int32_t getClaims() const;
+    int64_t getClaims() const;
     bool claimsIsSet() const;
     void unsetClaims();
-    void setClaims(int32_t value);
+    void setClaims(int64_t value);
 
     /// <summary>
     /// published − measured (the arena signal)
@@ -119,10 +119,10 @@ public:
     /// <summary>
     /// coverage — NEVER compare across different n
     /// </summary>
-    int32_t getN() const;
+    int64_t getN() const;
     bool NIsSet() const;
     void unsetn();
-    void setN(int32_t value);
+    void setN(int64_t value);
 
     /// <summary>
     /// how the vendor scored their claim: single-attempt, pass@k or agentic
@@ -164,7 +164,7 @@ protected:
     double m_CiLow;
     bool m_CiLowIsSet;
 
-    int32_t m_Claims;
+    int64_t m_Claims;
     bool m_ClaimsIsSet;
 
     double m_Gap;
@@ -182,7 +182,7 @@ protected:
     utility::string_t m_Model;
     bool m_ModelIsSet;
 
-    int32_t m_n;
+    int64_t m_n;
     bool m_nIsSet;
 
     utility::string_t m_Protocol;

@@ -18,9 +18,9 @@ namespace model {
 
 Iam_bulk::Iam_bulk()
 {
-    m_MaxOperations = 0;
+    m_MaxOperations = 0L;
     m_MaxOperationsIsSet = false;
-    m_MaxPayloadSize = 0;
+    m_MaxPayloadSize = 0L;
     m_MaxPayloadSizeIsSet = false;
     m_Supported = false;
     m_SupportedIsSet = false;
@@ -65,7 +65,7 @@ bool Iam_bulk::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("maxOperations")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMaxOperations;
+            int64_t refVal_setMaxOperations;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMaxOperations);
             setMaxOperations(refVal_setMaxOperations);
             
@@ -76,7 +76,7 @@ bool Iam_bulk::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("maxPayloadSize")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMaxPayloadSize;
+            int64_t refVal_setMaxPayloadSize;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMaxPayloadSize);
             setMaxPayloadSize(refVal_setMaxPayloadSize);
             
@@ -128,13 +128,13 @@ bool Iam_bulk::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("maxOperations"))))
     {
-        int32_t refVal_setMaxOperations;
+        int64_t refVal_setMaxOperations;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("maxOperations"))), refVal_setMaxOperations );
         setMaxOperations(refVal_setMaxOperations);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("maxPayloadSize"))))
     {
-        int32_t refVal_setMaxPayloadSize;
+        int64_t refVal_setMaxPayloadSize;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("maxPayloadSize"))), refVal_setMaxPayloadSize );
         setMaxPayloadSize(refVal_setMaxPayloadSize);
     }
@@ -148,13 +148,13 @@ bool Iam_bulk::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 }
 
 
-int32_t Iam_bulk::getMaxOperations() const
+int64_t Iam_bulk::getMaxOperations() const
 {
     return m_MaxOperations;
 }
 
 
-void Iam_bulk::setMaxOperations(int32_t value)
+void Iam_bulk::setMaxOperations(int64_t value)
 {
     m_MaxOperations = value;
     m_MaxOperationsIsSet = true;
@@ -169,13 +169,13 @@ void Iam_bulk::unsetMaxOperations()
 {
     m_MaxOperationsIsSet = false;
 }
-int32_t Iam_bulk::getMaxPayloadSize() const
+int64_t Iam_bulk::getMaxPayloadSize() const
 {
     return m_MaxPayloadSize;
 }
 
 
-void Iam_bulk::setMaxPayloadSize(int32_t value)
+void Iam_bulk::setMaxPayloadSize(int64_t value)
 {
     m_MaxPayloadSize = value;
     m_MaxPayloadSizeIsSet = true;

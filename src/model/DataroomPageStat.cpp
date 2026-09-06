@@ -18,13 +18,13 @@ namespace model {
 
 DataroomPageStat::DataroomPageStat()
 {
-    m_AvgDuration = 0;
+    m_AvgDuration = 0L;
     m_AvgDurationIsSet = false;
-    m_PageNumber = 0;
+    m_PageNumber = 0L;
     m_PageNumberIsSet = false;
-    m_TotalDuration = 0;
+    m_TotalDuration = 0L;
     m_TotalDurationIsSet = false;
-    m_Views = 0;
+    m_Views = 0L;
     m_ViewsIsSet = false;
 }
 
@@ -72,7 +72,7 @@ bool DataroomPageStat::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("avgDuration")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAvgDuration;
+            int64_t refVal_setAvgDuration;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAvgDuration);
             setAvgDuration(refVal_setAvgDuration);
             
@@ -83,7 +83,7 @@ bool DataroomPageStat::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("pageNumber")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPageNumber;
+            int64_t refVal_setPageNumber;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPageNumber);
             setPageNumber(refVal_setPageNumber);
             
@@ -94,7 +94,7 @@ bool DataroomPageStat::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("totalDuration")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotalDuration;
+            int64_t refVal_setTotalDuration;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalDuration);
             setTotalDuration(refVal_setTotalDuration);
             
@@ -105,7 +105,7 @@ bool DataroomPageStat::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("views")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setViews;
+            int64_t refVal_setViews;
             ok &= ModelBase::fromJson(fieldValue, refVal_setViews);
             setViews(refVal_setViews);
             
@@ -150,25 +150,25 @@ bool DataroomPageStat::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("avgDuration"))))
     {
-        int32_t refVal_setAvgDuration;
+        int64_t refVal_setAvgDuration;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("avgDuration"))), refVal_setAvgDuration );
         setAvgDuration(refVal_setAvgDuration);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("pageNumber"))))
     {
-        int32_t refVal_setPageNumber;
+        int64_t refVal_setPageNumber;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("pageNumber"))), refVal_setPageNumber );
         setPageNumber(refVal_setPageNumber);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("totalDuration"))))
     {
-        int32_t refVal_setTotalDuration;
+        int64_t refVal_setTotalDuration;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("totalDuration"))), refVal_setTotalDuration );
         setTotalDuration(refVal_setTotalDuration);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("views"))))
     {
-        int32_t refVal_setViews;
+        int64_t refVal_setViews;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("views"))), refVal_setViews );
         setViews(refVal_setViews);
     }
@@ -176,13 +176,13 @@ bool DataroomPageStat::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
 }
 
 
-int32_t DataroomPageStat::getAvgDuration() const
+int64_t DataroomPageStat::getAvgDuration() const
 {
     return m_AvgDuration;
 }
 
 
-void DataroomPageStat::setAvgDuration(int32_t value)
+void DataroomPageStat::setAvgDuration(int64_t value)
 {
     m_AvgDuration = value;
     m_AvgDurationIsSet = true;
@@ -197,13 +197,13 @@ void DataroomPageStat::unsetAvgDuration()
 {
     m_AvgDurationIsSet = false;
 }
-int32_t DataroomPageStat::getPageNumber() const
+int64_t DataroomPageStat::getPageNumber() const
 {
     return m_PageNumber;
 }
 
 
-void DataroomPageStat::setPageNumber(int32_t value)
+void DataroomPageStat::setPageNumber(int64_t value)
 {
     m_PageNumber = value;
     m_PageNumberIsSet = true;
@@ -218,13 +218,13 @@ void DataroomPageStat::unsetPageNumber()
 {
     m_PageNumberIsSet = false;
 }
-int32_t DataroomPageStat::getTotalDuration() const
+int64_t DataroomPageStat::getTotalDuration() const
 {
     return m_TotalDuration;
 }
 
 
-void DataroomPageStat::setTotalDuration(int32_t value)
+void DataroomPageStat::setTotalDuration(int64_t value)
 {
     m_TotalDuration = value;
     m_TotalDurationIsSet = true;
@@ -239,13 +239,13 @@ void DataroomPageStat::unsetTotalDuration()
 {
     m_TotalDurationIsSet = false;
 }
-int32_t DataroomPageStat::getViews() const
+int64_t DataroomPageStat::getViews() const
 {
     return m_Views;
 }
 
 
-void DataroomPageStat::setViews(int32_t value)
+void DataroomPageStat::setViews(int64_t value)
 {
     m_Views = value;
     m_ViewsIsSet = true;

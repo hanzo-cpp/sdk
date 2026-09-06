@@ -74,10 +74,10 @@ public:
     /// <summary>
     /// subjects enrolled across every arm
     /// </summary>
-    int32_t getExposedTotal() const;
+    int64_t getExposedTotal() const;
     bool exposedTotalIsSet() const;
     void unsetExposedTotal();
-    void setExposedTotal(int32_t value);
+    void setExposedTotal(int64_t value);
 
     /// <summary>
     /// the event a conversion is counted from
@@ -111,7 +111,7 @@ protected:
     utility::string_t m_Experiment;
     bool m_ExperimentIsSet;
 
-    int32_t m_ExposedTotal;
+    int64_t m_ExposedTotal;
     bool m_ExposedTotalIsSet;
 
     utility::string_t m_Metric;

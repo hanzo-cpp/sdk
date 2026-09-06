@@ -62,17 +62,17 @@ public:
     /// <summary>
     /// NumberOfDocuments is how many documents this org holds in that index.
     /// </summary>
-    int32_t getNumberOfDocuments() const;
+    int64_t getNumberOfDocuments() const;
     bool numberOfDocumentsIsSet() const;
     void unsetNumberOfDocuments();
-    void setNumberOfDocuments(int32_t value);
+    void setNumberOfDocuments(int64_t value);
 
 
 protected:
     bool m_IsIndexing;
     bool m_IsIndexingIsSet;
 
-    int32_t m_NumberOfDocuments;
+    int64_t m_NumberOfDocuments;
     bool m_NumberOfDocumentsIsSet;
 
 };

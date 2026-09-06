@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// EquityBps is the founder&#39;s ownership in basis points, 0–10000 (1% &#x3D;&#x3D; 100 bps, so 10000 is the whole company). The founders&#39; shares seed the cap-table genesis.
     /// </summary>
-    int32_t getEquityBps() const;
+    int64_t getEquityBps() const;
     bool equityBpsIsSet() const;
     void unsetEquityBps();
-    void setEquityBps(int32_t value);
+    void setEquityBps(int64_t value);
 
     /// <summary>
     /// KYCRef is the idv provider&#39;s session reference for this founder.
@@ -108,7 +108,7 @@ protected:
     utility::string_t m_Email;
     bool m_EmailIsSet;
 
-    int32_t m_EquityBps;
+    int64_t m_EquityBps;
     bool m_EquityBpsIsSet;
 
     utility::string_t m_KycRef;

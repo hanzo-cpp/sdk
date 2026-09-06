@@ -51,22 +51,22 @@ public:
     /// O11y_O11yFunnelWindowIn members
 
 
-    int32_t getEndTime() const;
+    int64_t getEndTime() const;
     bool endTimeIsSet() const;
     void unsetEnd_time();
-    void setEndTime(int32_t value);
+    void setEndTime(int64_t value);
 
-    int32_t getStartTime() const;
+    int64_t getStartTime() const;
     bool startTimeIsSet() const;
     void unsetStart_time();
-    void setStartTime(int32_t value);
+    void setStartTime(int64_t value);
 
 
 protected:
-    int32_t m_End_time;
+    int64_t m_End_time;
     bool m_End_timeIsSet;
 
-    int32_t m_Start_time;
+    int64_t m_Start_time;
     bool m_Start_timeIsSet;
 
 };

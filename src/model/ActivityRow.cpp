@@ -26,7 +26,7 @@ ActivityRow::ActivityRow()
     m_AtIsSet = false;
     m_Detail = utility::conversions::to_string_t("");
     m_DetailIsSet = false;
-    m_Id = 0;
+    m_Id = 0L;
     m_IdIsSet = false;
     m_Key = utility::conversions::to_string_t("");
     m_KeyIsSet = false;
@@ -130,7 +130,7 @@ bool ActivityRow::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("id")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setId;
+            int64_t refVal_setId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setId);
             setId(refVal_setId);
             
@@ -218,7 +218,7 @@ bool ActivityRow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("id"))))
     {
-        int32_t refVal_setId;
+        int64_t refVal_setId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("id"))), refVal_setId );
         setId(refVal_setId);
     }
@@ -316,13 +316,13 @@ void ActivityRow::unsetDetail()
 {
     m_DetailIsSet = false;
 }
-int32_t ActivityRow::getId() const
+int64_t ActivityRow::getId() const
 {
     return m_Id;
 }
 
 
-void ActivityRow::setId(int32_t value)
+void ActivityRow::setId(int64_t value)
 {
     m_Id = value;
     m_IdIsSet = true;

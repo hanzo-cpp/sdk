@@ -24,7 +24,7 @@ Fusion::Fusion()
     m_ModeIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
-    m_Took_ms = 0;
+    m_Took_ms = 0L;
     m_Took_msIsSet = false;
 }
 
@@ -121,7 +121,7 @@ bool Fusion::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("took_ms")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTookMs;
+            int64_t refVal_setTookMs;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTookMs);
             setTookMs(refVal_setTookMs);
             
@@ -194,7 +194,7 @@ bool Fusion::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("took_ms"))))
     {
-        int32_t refVal_setTookMs;
+        int64_t refVal_setTookMs;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("took_ms"))), refVal_setTookMs );
         setTookMs(refVal_setTookMs);
     }
@@ -286,13 +286,13 @@ void Fusion::unsetStatus()
 {
     m_StatusIsSet = false;
 }
-int32_t Fusion::getTookMs() const
+int64_t Fusion::getTookMs() const
 {
     return m_Took_ms;
 }
 
 
-void Fusion::setTookMs(int32_t value)
+void Fusion::setTookMs(int64_t value)
 {
     m_Took_ms = value;
     m_Took_msIsSet = true;

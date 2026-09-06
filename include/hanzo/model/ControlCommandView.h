@@ -77,10 +77,10 @@ public:
     /// <summary>
     /// Seq is this command&#39;s position in the session&#39;s log — the same monotonic number every other turn is ordered by, so a command sits in the transcript where it was issued. Send the highest one you applied back as &#x60;after&#x60; and it is never redelivered.
     /// </summary>
-    int32_t getSeq() const;
+    int64_t getSeq() const;
     bool seqIsSet() const;
     void unsetSeq();
-    void setSeq(int32_t value);
+    void setSeq(int64_t value);
 
 
 protected:
@@ -92,7 +92,7 @@ protected:
 
     boost::optional<std::shared_ptr<AnyType>> m_Payload;
 
-    int32_t m_Seq;
+    int64_t m_Seq;
     bool m_SeqIsSet;
 
 };

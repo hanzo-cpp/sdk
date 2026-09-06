@@ -27,7 +27,7 @@ ExecRequest::ExecRequest()
     m_IdIsSet = false;
     m_Stdin = utility::conversions::to_string_t("");
     m_StdinIsSet = false;
-    m_TimeoutSec = 0;
+    m_TimeoutSec = 0L;
     m_TimeoutSecIsSet = false;
 }
 
@@ -140,7 +140,7 @@ bool ExecRequest::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("timeoutSec")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTimeoutSec;
+            int64_t refVal_setTimeoutSec;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTimeoutSec);
             setTimeoutSec(refVal_setTimeoutSec);
             
@@ -223,7 +223,7 @@ bool ExecRequest::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("timeoutSec"))))
     {
-        int32_t refVal_setTimeoutSec;
+        int64_t refVal_setTimeoutSec;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("timeoutSec"))), refVal_setTimeoutSec );
         setTimeoutSec(refVal_setTimeoutSec);
     }
@@ -336,13 +336,13 @@ void ExecRequest::unsetStdin()
 {
     m_StdinIsSet = false;
 }
-int32_t ExecRequest::getTimeoutSec() const
+int64_t ExecRequest::getTimeoutSec() const
 {
     return m_TimeoutSec;
 }
 
 
-void ExecRequest::setTimeoutSec(int32_t value)
+void ExecRequest::setTimeoutSec(int64_t value)
 {
     m_TimeoutSec = value;
     m_TimeoutSecIsSet = true;

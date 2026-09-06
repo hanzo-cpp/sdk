@@ -18,7 +18,7 @@ namespace model {
 
 SpendPoint::SpendPoint()
 {
-    m_Cents = 0;
+    m_Cents = 0L;
     m_CentsIsSet = false;
     m_t = utility::conversions::to_string_t("");
     m_tIsSet = false;
@@ -58,7 +58,7 @@ bool SpendPoint::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCents;
+            int64_t refVal_setCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCents);
             setCents(refVal_setCents);
             
@@ -106,7 +106,7 @@ bool SpendPoint::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cents"))))
     {
-        int32_t refVal_setCents;
+        int64_t refVal_setCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cents"))), refVal_setCents );
         setCents(refVal_setCents);
     }
@@ -120,13 +120,13 @@ bool SpendPoint::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 }
 
 
-int32_t SpendPoint::getCents() const
+int64_t SpendPoint::getCents() const
 {
     return m_Cents;
 }
 
 
-void SpendPoint::setCents(int32_t value)
+void SpendPoint::setCents(int64_t value)
 {
     m_Cents = value;
     m_CentsIsSet = true;

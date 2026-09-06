@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// CreatedAt is when the skill was last written, Unix seconds.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// Description is the one-line summary discovery shows for the skill.
@@ -100,12 +100,20 @@ public:
     void unsetOrg();
     void setOrg(const utility::string_t& value);
 
+    /// <summary>
+    /// Source is the repository the skill was read from, \&quot;&lt;project&gt;/&lt;name&gt;\&quot; or \&quot;&lt;name&gt;\&quot;; empty for a skill written through the API. A push replaces every skill of its source at once, so a skill leaves when its file does.
+    /// </summary>
+    utility::string_t getSource() const;
+    bool sourceIsSet() const;
+    void unsetSource();
+    void setSource(const utility::string_t& value);
+
 
 protected:
     utility::string_t m_Content;
     bool m_ContentIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_Description;
@@ -119,6 +127,9 @@ protected:
 
     utility::string_t m_Org;
     bool m_OrgIsSet;
+
+    utility::string_t m_Source;
+    bool m_SourceIsSet;
 
 };
 

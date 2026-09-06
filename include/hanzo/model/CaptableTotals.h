@@ -54,58 +54,58 @@ public:
     /// <summary>
     /// FullyDilutedShares is outstandingShares plus grantedOptions.
     /// </summary>
-    int32_t getFullyDilutedShares() const;
+    int64_t getFullyDilutedShares() const;
     bool fullyDilutedSharesIsSet() const;
     void unsetFullyDilutedShares();
-    void setFullyDilutedShares(int32_t value);
+    void setFullyDilutedShares(int64_t value);
 
     /// <summary>
     /// GrantedOptions is the shares under non-terminal option grants — grants that are EXERCISED, EXPIRED or CANCELLED are excluded, so nothing double-counts.
     /// </summary>
-    int32_t getGrantedOptions() const;
+    int64_t getGrantedOptions() const;
     bool grantedOptionsIsSet() const;
     void unsetGrantedOptions();
-    void setGrantedOptions(int32_t value);
+    void setGrantedOptions(int64_t value);
 
     /// <summary>
     /// OutstandingShares is the sum of every issued share certificate.
     /// </summary>
-    int32_t getOutstandingShares() const;
+    int64_t getOutstandingShares() const;
     bool outstandingSharesIsSet() const;
     void unsetOutstandingShares();
-    void setOutstandingShares(int32_t value);
+    void setOutstandingShares(int64_t value);
 
     /// <summary>
     /// ShareClasses is how many share classes the company has authorized.
     /// </summary>
-    int32_t getShareClasses() const;
+    int64_t getShareClasses() const;
     bool shareClassesIsSet() const;
     void unsetShareClasses();
-    void setShareClasses(int32_t value);
+    void setShareClasses(int64_t value);
 
     /// <summary>
     /// Stakeholders is how many stakeholders the company has.
     /// </summary>
-    int32_t getStakeholders() const;
+    int64_t getStakeholders() const;
     bool stakeholdersIsSet() const;
     void unsetStakeholders();
-    void setStakeholders(int32_t value);
+    void setStakeholders(int64_t value);
 
 
 protected:
-    int32_t m_FullyDilutedShares;
+    int64_t m_FullyDilutedShares;
     bool m_FullyDilutedSharesIsSet;
 
-    int32_t m_GrantedOptions;
+    int64_t m_GrantedOptions;
     bool m_GrantedOptionsIsSet;
 
-    int32_t m_OutstandingShares;
+    int64_t m_OutstandingShares;
     bool m_OutstandingSharesIsSet;
 
-    int32_t m_ShareClasses;
+    int64_t m_ShareClasses;
     bool m_ShareClassesIsSet;
 
-    int32_t m_Stakeholders;
+    int64_t m_Stakeholders;
     bool m_StakeholdersIsSet;
 
 };

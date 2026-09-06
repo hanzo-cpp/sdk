@@ -64,10 +64,10 @@ public:
     /// <summary>
     /// CreatedAt is when the item was opened, in unix seconds. 0 when the source gave no parseable timestamp.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// Description is the body, markdown as its author wrote it. Absent when empty.
@@ -80,10 +80,10 @@ public:
     /// <summary>
     /// DueAt is when the work is due, in unix seconds; absent means no due date. A forge row takes it from its MILESTONE&#39;s due date, since a forge issue has no deadline of its own. Never before StartAt, and never past 2200-01-01.
     /// </summary>
-    int32_t getDueAt() const;
+    int64_t getDueAt() const;
     bool dueAtIsSet() const;
     void unsetDueAt();
-    void setDueAt(int32_t value);
+    void setDueAt(int64_t value);
 
     /// <summary>
     /// ExtRef anchors the item to something outside the todo — a mirrored issue (\&quot;github:owner/repo#123\&quot;), a pushed PR branch, or a record on another plane. It is the idempotency key the mirror upsert matches on. Absent when the item has no external origin.
@@ -128,10 +128,10 @@ public:
     /// <summary>
     /// Number is the item&#39;s number ON ITS BOARD, from 1 and monotonic there — the forge&#39;s own issue number for a forge row, allocated inside the create transaction for an index row so it cannot race. Unique per board, never across the org.
     /// </summary>
-    int32_t getNumber() const;
+    int64_t getNumber() const;
     bool numberIsSet() const;
     void unsetnumber();
-    void setNumber(int32_t value);
+    void setNumber(int64_t value);
 
     /// <summary>
     /// Priority is urgent, high, medium, low or none. Also a label on a forge row. Never empty: \&quot;none\&quot; when nothing names one, so callers compare a value rather than test for absence.
@@ -168,10 +168,10 @@ public:
     /// <summary>
     /// StartAt is when the work starts, in unix seconds; absent means unscheduled. A forge row takes it from when the issue was opened, but only once the issue has a due date — an interval needs both ends.
     /// </summary>
-    int32_t getStartAt() const;
+    int64_t getStartAt() const;
     bool startAtIsSet() const;
     void unsetStartAt();
-    void setStartAt(int32_t value);
+    void setStartAt(int64_t value);
 
     /// <summary>
     /// Status is the board column: backlog, todo, in_progress, done or canceled, and nothing else. On a forge row it is read off a LABEL, so relabelling in the forge web UI moves the card here and vice versa — and a CLOSED forge issue reads done whatever its labels say. Never empty: \&quot;backlog\&quot; when nothing names a column.
@@ -192,23 +192,23 @@ public:
     /// <summary>
     /// UpdatedAt is when it last changed, in unix seconds.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
 
 protected:
     utility::string_t m_Assignee;
     bool m_AssigneeIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_Description;
     bool m_DescriptionIsSet;
 
-    int32_t m_DueAt;
+    int64_t m_DueAt;
     bool m_DueAtIsSet;
 
     utility::string_t m_ExtRef;
@@ -226,7 +226,7 @@ protected:
     std::vector<utility::string_t> m_Labels;
     bool m_LabelsIsSet;
 
-    int32_t m_number;
+    int64_t m_number;
     bool m_numberIsSet;
 
     utility::string_t m_Priority;
@@ -241,7 +241,7 @@ protected:
     utility::string_t m_Source;
     bool m_SourceIsSet;
 
-    int32_t m_StartAt;
+    int64_t m_StartAt;
     bool m_StartAtIsSet;
 
     utility::string_t m_Status;
@@ -250,7 +250,7 @@ protected:
     utility::string_t m_Title;
     bool m_TitleIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
 };

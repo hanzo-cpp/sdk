@@ -152,18 +152,18 @@ public:
     void unsetEnableTour();
     void setEnableTour(bool value);
 
-    int32_t getFailedSigninFrozenTime() const;
+    int64_t getFailedSigninFrozenTime() const;
     bool failedSigninFrozenTimeIsSet() const;
     void unsetFailedSigninFrozenTime();
-    void setFailedSigninFrozenTime(int32_t value);
+    void setFailedSigninFrozenTime(int64_t value);
 
     /// <summary>
     /// Per-organization signin throttle. Zero means \&quot;inherit the application default\&quot;; a non-zero value overrides it. Safe bounds are clamped by the resource service before persistence.
     /// </summary>
-    int32_t getFailedSigninLimit() const;
+    int64_t getFailedSigninLimit() const;
     bool failedSigninLimitIsSet() const;
     void unsetFailedSigninLimit();
-    void setFailedSigninLimit(int32_t value);
+    void setFailedSigninLimit(int64_t value);
 
     utility::string_t getFavicon() const;
     bool faviconIsSet() const;
@@ -188,10 +188,10 @@ public:
     void unsetId();
     void setId(const utility::string_t& value);
 
-    int32_t getInitScore() const;
+    int64_t getInitScore() const;
     bool initScoreIsSet() const;
     void unsetInitScore();
-    void setInitScore(int32_t value);
+    void setInitScore(int64_t value);
 
     utility::string_t getIpRestriction() const;
     bool ipRestrictionIsSet() const;
@@ -268,10 +268,10 @@ public:
     void unsetMfaItems();
     void setMfaItems(const std::vector<std::shared_ptr<Iam_MfaItem>>& value);
 
-    int32_t getMfaRememberInHours() const;
+    int64_t getMfaRememberInHours() const;
     bool mfaRememberInHoursIsSet() const;
     void unsetMfaRememberInHours();
-    void setMfaRememberInHours(int32_t value);
+    void setMfaRememberInHours(int64_t value);
 
     utility::string_t getName() const;
     bool nameIsSet() const;
@@ -296,10 +296,10 @@ public:
     void unsetOwner();
     void setOwner(const utility::string_t& value);
 
-    int32_t getPasswordExpireDays() const;
+    int64_t getPasswordExpireDays() const;
     bool passwordExpireDaysIsSet() const;
     void unsetPasswordExpireDays();
-    void setPasswordExpireDays(int32_t value);
+    void setPasswordExpireDays(int64_t value);
 
     utility::string_t getPasswordObfuscatorKey() const;
     bool passwordObfuscatorKeyIsSet() const;
@@ -432,10 +432,10 @@ protected:
     bool m_EnableTour;
     bool m_EnableTourIsSet;
 
-    int32_t m_FailedSigninFrozenTime;
+    int64_t m_FailedSigninFrozenTime;
     bool m_FailedSigninFrozenTimeIsSet;
 
-    int32_t m_FailedSigninLimit;
+    int64_t m_FailedSigninLimit;
     bool m_FailedSigninLimitIsSet;
 
     utility::string_t m_Favicon;
@@ -450,7 +450,7 @@ protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
 
-    int32_t m_InitScore;
+    int64_t m_InitScore;
     bool m_InitScoreIsSet;
 
     utility::string_t m_IpRestriction;
@@ -498,7 +498,7 @@ protected:
     std::vector<std::shared_ptr<Iam_MfaItem>> m_MfaItems;
     bool m_MfaItemsIsSet;
 
-    int32_t m_MfaRememberInHours;
+    int64_t m_MfaRememberInHours;
     bool m_MfaRememberInHoursIsSet;
 
     utility::string_t m_Name;
@@ -513,7 +513,7 @@ protected:
     utility::string_t m_Owner;
     bool m_OwnerIsSet;
 
-    int32_t m_PasswordExpireDays;
+    int64_t m_PasswordExpireDays;
     bool m_PasswordExpireDaysIsSet;
 
     utility::string_t m_PasswordObfuscatorKey;

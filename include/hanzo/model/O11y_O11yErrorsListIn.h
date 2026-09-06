@@ -74,18 +74,18 @@ public:
     /// <summary>
     /// Limit caps how many exception groups come back. Required, non-zero.
     /// </summary>
-    int32_t getLimit() const;
+    int64_t getLimit() const;
     bool limitIsSet() const;
     void unsetLimit();
-    void setLimit(int32_t value);
+    void setLimit(int64_t value);
 
     /// <summary>
     /// Offset is how many groups to skip.
     /// </summary>
-    int32_t getOffset() const;
+    int64_t getOffset() const;
     bool offsetIsSet() const;
     void unsetOffset();
-    void setOffset(int32_t value);
+    void setOffset(int64_t value);
 
     /// <summary>
     /// Order is the direction: ascending or descending.
@@ -135,10 +135,10 @@ protected:
     utility::string_t m_ExceptionType;
     bool m_ExceptionTypeIsSet;
 
-    int32_t m_Limit;
+    int64_t m_Limit;
     bool m_LimitIsSet;
 
-    int32_t m_Offset;
+    int64_t m_Offset;
     bool m_OffsetIsSet;
 
     utility::string_t m_Order;

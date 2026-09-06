@@ -18,12 +18,12 @@ namespace model {
 
 O11y_O11yMetricInspectIn::O11y_O11yMetricInspectIn()
 {
-    m_End = 0;
+    m_End = 0L;
     m_EndIsSet = false;
     m_FilterIsSet = false;
     m_MetricName = utility::conversions::to_string_t("");
     m_MetricNameIsSet = false;
-    m_Start = 0;
+    m_Start = 0L;
     m_StartIsSet = false;
 }
 
@@ -71,7 +71,7 @@ bool O11y_O11yMetricInspectIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("end")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setEnd;
+            int64_t refVal_setEnd;
             ok &= ModelBase::fromJson(fieldValue, refVal_setEnd);
             setEnd(refVal_setEnd);
             
@@ -104,7 +104,7 @@ bool O11y_O11yMetricInspectIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("start")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStart;
+            int64_t refVal_setStart;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStart);
             setStart(refVal_setStart);
             
@@ -149,7 +149,7 @@ bool O11y_O11yMetricInspectIn::fromMultiPart(std::shared_ptr<MultipartFormData> 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("end"))))
     {
-        int32_t refVal_setEnd;
+        int64_t refVal_setEnd;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("end"))), refVal_setEnd );
         setEnd(refVal_setEnd);
     }
@@ -167,7 +167,7 @@ bool O11y_O11yMetricInspectIn::fromMultiPart(std::shared_ptr<MultipartFormData> 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("start"))))
     {
-        int32_t refVal_setStart;
+        int64_t refVal_setStart;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("start"))), refVal_setStart );
         setStart(refVal_setStart);
     }
@@ -175,13 +175,13 @@ bool O11y_O11yMetricInspectIn::fromMultiPart(std::shared_ptr<MultipartFormData> 
 }
 
 
-int32_t O11y_O11yMetricInspectIn::getEnd() const
+int64_t O11y_O11yMetricInspectIn::getEnd() const
 {
     return m_End;
 }
 
 
-void O11y_O11yMetricInspectIn::setEnd(int32_t value)
+void O11y_O11yMetricInspectIn::setEnd(int64_t value)
 {
     m_End = value;
     m_EndIsSet = true;
@@ -238,13 +238,13 @@ void O11y_O11yMetricInspectIn::unsetMetricName()
 {
     m_MetricNameIsSet = false;
 }
-int32_t O11y_O11yMetricInspectIn::getStart() const
+int64_t O11y_O11yMetricInspectIn::getStart() const
 {
     return m_Start;
 }
 
 
-void O11y_O11yMetricInspectIn::setStart(int32_t value)
+void O11y_O11yMetricInspectIn::setStart(int64_t value)
 {
     m_Start = value;
     m_StartIsSet = true;

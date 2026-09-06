@@ -55,18 +55,18 @@ public:
     /// <summary>
     /// CentsPerMonth is the estimated compute cost of running the whole stack for one month, in USD cents, from the rate card GET /v1/blueprint/health echoes.
     /// </summary>
-    int32_t getEstCentsPerMonth() const;
+    int64_t getEstCentsPerMonth() const;
     bool estCentsPerMonthIsSet() const;
     void unsetEstCentsPerMonth();
-    void setEstCentsPerMonth(int32_t value);
+    void setEstCentsPerMonth(int64_t value);
 
     /// <summary>
     /// Services is how many compose services the stack runs.
     /// </summary>
-    int32_t getServices() const;
+    int64_t getServices() const;
     bool servicesIsSet() const;
     void unsetServices();
-    void setServices(int32_t value);
+    void setServices(int64_t value);
 
     /// <summary>
     /// TemplateID is the blueprint slug — the id GET /v1/blueprint/sbom takes as ?template&#x3D; and the path under templates.hanzo.ai/blueprints/&lt;id&gt;/.
@@ -78,10 +78,10 @@ public:
 
 
 protected:
-    int32_t m_EstCentsPerMonth;
+    int64_t m_EstCentsPerMonth;
     bool m_EstCentsPerMonthIsSet;
 
-    int32_t m_Services;
+    int64_t m_Services;
     bool m_ServicesIsSet;
 
     utility::string_t m_TemplateId;

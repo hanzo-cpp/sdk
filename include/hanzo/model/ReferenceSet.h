@@ -74,10 +74,10 @@ public:
     /// <summary>
     /// Keys is how many members the baseline carries.
     /// </summary>
-    int32_t getKeys() const;
+    int64_t getKeys() const;
     bool keysIsSet() const;
     void unsetKeys();
-    void setKeys(int32_t value);
+    void setKeys(int64_t value);
 
     /// <summary>
     /// Kind is how the baseline comes to exist: fetch (downloaded from a publisher), local (computed here), attest (held by the component that screens against it, freshness reported), or gap (declared and NOT held, because the source needs a licence we do not have).
@@ -106,10 +106,10 @@ public:
     /// <summary>
     /// Overrides is how many entries YOUR org has laid over this baseline.
     /// </summary>
-    int32_t getOverrides() const;
+    int64_t getOverrides() const;
     bool overridesIsSet() const;
     void unsetOverrides();
-    void setOverrides(int32_t value);
+    void setOverrides(int64_t value);
 
     /// <summary>
     /// Refusal names why the set cannot be relied on, when it cannot: never loaded, held elsewhere, or a licence we do not hold. Non-empty means a lookup against this set will not answer, rather than answering clean.
@@ -167,7 +167,7 @@ protected:
     utility::string_t m_AsOf;
     bool m_AsOfIsSet;
 
-    int32_t m_Keys;
+    int64_t m_Keys;
     bool m_KeysIsSet;
 
     utility::string_t m_Kind;
@@ -179,7 +179,7 @@ protected:
     utility::string_t m_MaxAge;
     bool m_MaxAgeIsSet;
 
-    int32_t m_Overrides;
+    int64_t m_Overrides;
     bool m_OverridesIsSet;
 
     utility::string_t m_Refusal;

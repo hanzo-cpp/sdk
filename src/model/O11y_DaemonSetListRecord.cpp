@@ -18,7 +18,7 @@ namespace model {
 
 O11y_DaemonSetListRecord::O11y_DaemonSetListRecord()
 {
-    m_AvailableNodes = 0;
+    m_AvailableNodes = 0L;
     m_AvailableNodesIsSet = false;
     m_CpuLimit = 0.0;
     m_CpuLimitIsSet = false;
@@ -28,7 +28,7 @@ O11y_DaemonSetListRecord::O11y_DaemonSetListRecord()
     m_CpuUsageIsSet = false;
     m_DaemonSetName = utility::conversions::to_string_t("");
     m_DaemonSetNameIsSet = false;
-    m_DesiredNodes = 0;
+    m_DesiredNodes = 0L;
     m_DesiredNodesIsSet = false;
     m_MemoryLimit = 0.0;
     m_MemoryLimitIsSet = false;
@@ -37,7 +37,7 @@ O11y_DaemonSetListRecord::O11y_DaemonSetListRecord()
     m_MemoryUsage = 0.0;
     m_MemoryUsageIsSet = false;
     m_MetaIsSet = false;
-    m_Restarts = 0;
+    m_Restarts = 0L;
     m_RestartsIsSet = false;
 }
 
@@ -120,7 +120,7 @@ bool O11y_DaemonSetListRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("availableNodes")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAvailableNodes;
+            int64_t refVal_setAvailableNodes;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAvailableNodes);
             setAvailableNodes(refVal_setAvailableNodes);
             
@@ -175,7 +175,7 @@ bool O11y_DaemonSetListRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("desiredNodes")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDesiredNodes;
+            int64_t refVal_setDesiredNodes;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDesiredNodes);
             setDesiredNodes(refVal_setDesiredNodes);
             
@@ -230,7 +230,7 @@ bool O11y_DaemonSetListRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("restarts")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRestarts;
+            int64_t refVal_setRestarts;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRestarts);
             setRestarts(refVal_setRestarts);
             
@@ -303,7 +303,7 @@ bool O11y_DaemonSetListRecord::fromMultiPart(std::shared_ptr<MultipartFormData> 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("availableNodes"))))
     {
-        int32_t refVal_setAvailableNodes;
+        int64_t refVal_setAvailableNodes;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("availableNodes"))), refVal_setAvailableNodes );
         setAvailableNodes(refVal_setAvailableNodes);
     }
@@ -333,7 +333,7 @@ bool O11y_DaemonSetListRecord::fromMultiPart(std::shared_ptr<MultipartFormData> 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("desiredNodes"))))
     {
-        int32_t refVal_setDesiredNodes;
+        int64_t refVal_setDesiredNodes;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("desiredNodes"))), refVal_setDesiredNodes );
         setDesiredNodes(refVal_setDesiredNodes);
     }
@@ -363,7 +363,7 @@ bool O11y_DaemonSetListRecord::fromMultiPart(std::shared_ptr<MultipartFormData> 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("restarts"))))
     {
-        int32_t refVal_setRestarts;
+        int64_t refVal_setRestarts;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("restarts"))), refVal_setRestarts );
         setRestarts(refVal_setRestarts);
     }
@@ -371,13 +371,13 @@ bool O11y_DaemonSetListRecord::fromMultiPart(std::shared_ptr<MultipartFormData> 
 }
 
 
-int32_t O11y_DaemonSetListRecord::getAvailableNodes() const
+int64_t O11y_DaemonSetListRecord::getAvailableNodes() const
 {
     return m_AvailableNodes;
 }
 
 
-void O11y_DaemonSetListRecord::setAvailableNodes(int32_t value)
+void O11y_DaemonSetListRecord::setAvailableNodes(int64_t value)
 {
     m_AvailableNodes = value;
     m_AvailableNodesIsSet = true;
@@ -476,13 +476,13 @@ void O11y_DaemonSetListRecord::unsetDaemonSetName()
 {
     m_DaemonSetNameIsSet = false;
 }
-int32_t O11y_DaemonSetListRecord::getDesiredNodes() const
+int64_t O11y_DaemonSetListRecord::getDesiredNodes() const
 {
     return m_DesiredNodes;
 }
 
 
-void O11y_DaemonSetListRecord::setDesiredNodes(int32_t value)
+void O11y_DaemonSetListRecord::setDesiredNodes(int64_t value)
 {
     m_DesiredNodes = value;
     m_DesiredNodesIsSet = true;
@@ -581,13 +581,13 @@ void O11y_DaemonSetListRecord::unsetMeta()
 {
     m_MetaIsSet = false;
 }
-int32_t O11y_DaemonSetListRecord::getRestarts() const
+int64_t O11y_DaemonSetListRecord::getRestarts() const
 {
     return m_Restarts;
 }
 
 
-void O11y_DaemonSetListRecord::setRestarts(int32_t value)
+void O11y_DaemonSetListRecord::setRestarts(int64_t value)
 {
     m_Restarts = value;
     m_RestartsIsSet = true;

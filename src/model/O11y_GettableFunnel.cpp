@@ -18,7 +18,7 @@ namespace model {
 
 O11y_GettableFunnel::O11y_GettableFunnel()
 {
-    m_Created_at = 0;
+    m_Created_at = 0L;
     m_Created_atIsSet = false;
     m_Created_by = utility::conversions::to_string_t("");
     m_Created_byIsSet = false;
@@ -32,7 +32,7 @@ O11y_GettableFunnel::O11y_GettableFunnel()
     m_Org_id = utility::conversions::to_string_t("");
     m_Org_idIsSet = false;
     m_StepsIsSet = false;
-    m_Updated_at = 0;
+    m_Updated_at = 0L;
     m_Updated_atIsSet = false;
     m_Updated_by = utility::conversions::to_string_t("");
     m_Updated_byIsSet = false;
@@ -119,7 +119,7 @@ bool O11y_GettableFunnel::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("created_at")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -207,7 +207,7 @@ bool O11y_GettableFunnel::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updated_at")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdatedAt;
+            int64_t refVal_setUpdatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdatedAt);
             setUpdatedAt(refVal_setUpdatedAt);
             
@@ -302,7 +302,7 @@ bool O11y_GettableFunnel::fromMultiPart(std::shared_ptr<MultipartFormData> multi
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("created_at"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("created_at"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -350,7 +350,7 @@ bool O11y_GettableFunnel::fromMultiPart(std::shared_ptr<MultipartFormData> multi
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updated_at"))))
     {
-        int32_t refVal_setUpdatedAt;
+        int64_t refVal_setUpdatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updated_at"))), refVal_setUpdatedAt );
         setUpdatedAt(refVal_setUpdatedAt);
     }
@@ -370,13 +370,13 @@ bool O11y_GettableFunnel::fromMultiPart(std::shared_ptr<MultipartFormData> multi
 }
 
 
-int32_t O11y_GettableFunnel::getCreatedAt() const
+int64_t O11y_GettableFunnel::getCreatedAt() const
 {
     return m_Created_at;
 }
 
 
-void O11y_GettableFunnel::setCreatedAt(int32_t value)
+void O11y_GettableFunnel::setCreatedAt(int64_t value)
 {
     m_Created_at = value;
     m_Created_atIsSet = true;
@@ -538,13 +538,13 @@ void O11y_GettableFunnel::unsetSteps()
 {
     m_StepsIsSet = false;
 }
-int32_t O11y_GettableFunnel::getUpdatedAt() const
+int64_t O11y_GettableFunnel::getUpdatedAt() const
 {
     return m_Updated_at;
 }
 
 
-void O11y_GettableFunnel::setUpdatedAt(int32_t value)
+void O11y_GettableFunnel::setUpdatedAt(int64_t value)
 {
     m_Updated_at = value;
     m_Updated_atIsSet = true;

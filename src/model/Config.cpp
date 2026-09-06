@@ -20,15 +20,15 @@ Config::Config()
 {
     m_Max_age = utility::conversions::to_string_t("");
     m_Max_ageIsSet = false;
-    m_Max_bytes = 0;
+    m_Max_bytes = 0L;
     m_Max_bytesIsSet = false;
     m_Max_msg_size = 0;
     m_Max_msg_sizeIsSet = false;
-    m_Max_msgs = 0;
+    m_Max_msgs = 0L;
     m_Max_msgsIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_Num_replicas = 0;
+    m_Num_replicas = 0L;
     m_Num_replicasIsSet = false;
     m_Retention = utility::conversions::to_string_t("");
     m_RetentionIsSet = false;
@@ -117,7 +117,7 @@ bool Config::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("max_bytes")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMaxBytes;
+            int64_t refVal_setMaxBytes;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMaxBytes);
             setMaxBytes(refVal_setMaxBytes);
             
@@ -139,7 +139,7 @@ bool Config::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("max_msgs")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMaxMsgs;
+            int64_t refVal_setMaxMsgs;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMaxMsgs);
             setMaxMsgs(refVal_setMaxMsgs);
             
@@ -161,7 +161,7 @@ bool Config::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("num_replicas")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNumReplicas;
+            int64_t refVal_setNumReplicas;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNumReplicas);
             setNumReplicas(refVal_setNumReplicas);
             
@@ -265,7 +265,7 @@ bool Config::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("max_bytes"))))
     {
-        int32_t refVal_setMaxBytes;
+        int64_t refVal_setMaxBytes;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("max_bytes"))), refVal_setMaxBytes );
         setMaxBytes(refVal_setMaxBytes);
     }
@@ -277,7 +277,7 @@ bool Config::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("max_msgs"))))
     {
-        int32_t refVal_setMaxMsgs;
+        int64_t refVal_setMaxMsgs;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("max_msgs"))), refVal_setMaxMsgs );
         setMaxMsgs(refVal_setMaxMsgs);
     }
@@ -289,7 +289,7 @@ bool Config::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("num_replicas"))))
     {
-        int32_t refVal_setNumReplicas;
+        int64_t refVal_setNumReplicas;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("num_replicas"))), refVal_setNumReplicas );
         setNumReplicas(refVal_setNumReplicas);
     }
@@ -336,13 +336,13 @@ void Config::unsetMax_age()
 {
     m_Max_ageIsSet = false;
 }
-int32_t Config::getMaxBytes() const
+int64_t Config::getMaxBytes() const
 {
     return m_Max_bytes;
 }
 
 
-void Config::setMaxBytes(int32_t value)
+void Config::setMaxBytes(int64_t value)
 {
     m_Max_bytes = value;
     m_Max_bytesIsSet = true;
@@ -378,13 +378,13 @@ void Config::unsetMax_msg_size()
 {
     m_Max_msg_sizeIsSet = false;
 }
-int32_t Config::getMaxMsgs() const
+int64_t Config::getMaxMsgs() const
 {
     return m_Max_msgs;
 }
 
 
-void Config::setMaxMsgs(int32_t value)
+void Config::setMaxMsgs(int64_t value)
 {
     m_Max_msgs = value;
     m_Max_msgsIsSet = true;
@@ -420,13 +420,13 @@ void Config::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t Config::getNumReplicas() const
+int64_t Config::getNumReplicas() const
 {
     return m_Num_replicas;
 }
 
 
-void Config::setNumReplicas(int32_t value)
+void Config::setNumReplicas(int64_t value)
 {
     m_Num_replicas = value;
     m_Num_replicasIsSet = true;

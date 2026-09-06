@@ -24,15 +24,15 @@ AlertPatch::AlertPatch()
     m_IdIsSet = false;
     m_Project = utility::conversions::to_string_t("");
     m_ProjectIsSet = false;
-    m_RateLimitRpm = 0;
+    m_RateLimitRpm = 0L;
     m_RateLimitRpmIsSet = false;
     m_Service = utility::conversions::to_string_t("");
     m_ServiceIsSet = false;
-    m_SoftPct = 0;
+    m_SoftPct = 0L;
     m_SoftPctIsSet = false;
     m_Subject = utility::conversions::to_string_t("");
     m_SubjectIsSet = false;
-    m_Threshold = 0;
+    m_Threshold = 0L;
     m_ThresholdIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
@@ -140,7 +140,7 @@ bool AlertPatch::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("rateLimitRpm")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRateLimitRpm;
+            int64_t refVal_setRateLimitRpm;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRateLimitRpm);
             setRateLimitRpm(refVal_setRateLimitRpm);
             
@@ -162,7 +162,7 @@ bool AlertPatch::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("softPct")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSoftPct;
+            int64_t refVal_setSoftPct;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSoftPct);
             setSoftPct(refVal_setSoftPct);
             
@@ -184,7 +184,7 @@ bool AlertPatch::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("threshold")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setThreshold;
+            int64_t refVal_setThreshold;
             ok &= ModelBase::fromJson(fieldValue, refVal_setThreshold);
             setThreshold(refVal_setThreshold);
             
@@ -278,7 +278,7 @@ bool AlertPatch::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("rateLimitRpm"))))
     {
-        int32_t refVal_setRateLimitRpm;
+        int64_t refVal_setRateLimitRpm;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("rateLimitRpm"))), refVal_setRateLimitRpm );
         setRateLimitRpm(refVal_setRateLimitRpm);
     }
@@ -290,7 +290,7 @@ bool AlertPatch::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("softPct"))))
     {
-        int32_t refVal_setSoftPct;
+        int64_t refVal_setSoftPct;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("softPct"))), refVal_setSoftPct );
         setSoftPct(refVal_setSoftPct);
     }
@@ -302,7 +302,7 @@ bool AlertPatch::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("threshold"))))
     {
-        int32_t refVal_setThreshold;
+        int64_t refVal_setThreshold;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("threshold"))), refVal_setThreshold );
         setThreshold(refVal_setThreshold);
     }
@@ -379,13 +379,13 @@ void AlertPatch::unsetProject()
 {
     m_ProjectIsSet = false;
 }
-int32_t AlertPatch::getRateLimitRpm() const
+int64_t AlertPatch::getRateLimitRpm() const
 {
     return m_RateLimitRpm;
 }
 
 
-void AlertPatch::setRateLimitRpm(int32_t value)
+void AlertPatch::setRateLimitRpm(int64_t value)
 {
     m_RateLimitRpm = value;
     m_RateLimitRpmIsSet = true;
@@ -421,13 +421,13 @@ void AlertPatch::unsetService()
 {
     m_ServiceIsSet = false;
 }
-int32_t AlertPatch::getSoftPct() const
+int64_t AlertPatch::getSoftPct() const
 {
     return m_SoftPct;
 }
 
 
-void AlertPatch::setSoftPct(int32_t value)
+void AlertPatch::setSoftPct(int64_t value)
 {
     m_SoftPct = value;
     m_SoftPctIsSet = true;
@@ -463,13 +463,13 @@ void AlertPatch::unsetSubject()
 {
     m_SubjectIsSet = false;
 }
-int32_t AlertPatch::getThreshold() const
+int64_t AlertPatch::getThreshold() const
 {
     return m_Threshold;
 }
 
 
-void AlertPatch::setThreshold(int32_t value)
+void AlertPatch::setThreshold(int64_t value)
 {
     m_Threshold = value;
     m_ThresholdIsSet = true;

@@ -18,7 +18,7 @@ namespace model {
 
 Catalog::Catalog()
 {
-    m_ConnectorCount = 0;
+    m_ConnectorCount = 0L;
     m_ConnectorCountIsSet = false;
     m_ConnectorsIsSet = false;
 }
@@ -57,7 +57,7 @@ bool Catalog::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("connectorCount")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setConnectorCount;
+            int64_t refVal_setConnectorCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setConnectorCount);
             setConnectorCount(refVal_setConnectorCount);
             
@@ -105,7 +105,7 @@ bool Catalog::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("connectorCount"))))
     {
-        int32_t refVal_setConnectorCount;
+        int64_t refVal_setConnectorCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("connectorCount"))), refVal_setConnectorCount );
         setConnectorCount(refVal_setConnectorCount);
     }
@@ -119,13 +119,13 @@ bool Catalog::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
 }
 
 
-int32_t Catalog::getConnectorCount() const
+int64_t Catalog::getConnectorCount() const
 {
     return m_ConnectorCount;
 }
 
 
-void Catalog::setConnectorCount(int32_t value)
+void Catalog::setConnectorCount(int64_t value)
 {
     m_ConnectorCount = value;
     m_ConnectorCountIsSet = true;

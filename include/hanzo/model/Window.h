@@ -52,15 +52,15 @@ public:
     /// Window members
 
 
-    int32_t getLimit() const;
+    int64_t getLimit() const;
     bool limitIsSet() const;
     void unsetLimit();
-    void setLimit(int32_t value);
+    void setLimit(int64_t value);
 
-    int32_t getRemaining() const;
+    int64_t getRemaining() const;
     bool remainingIsSet() const;
     void unsetRemaining();
-    void setRemaining(int32_t value);
+    void setRemaining(int64_t value);
 
     utility::string_t getResets() const;
     bool resetsIsSet() const;
@@ -72,17 +72,17 @@ public:
     void unsetSpan();
     void setSpan(const utility::string_t& value);
 
-    int32_t getUsed() const;
+    int64_t getUsed() const;
     bool usedIsSet() const;
     void unsetUsed();
-    void setUsed(int32_t value);
+    void setUsed(int64_t value);
 
 
 protected:
-    int32_t m_Limit;
+    int64_t m_Limit;
     bool m_LimitIsSet;
 
-    int32_t m_Remaining;
+    int64_t m_Remaining;
     bool m_RemainingIsSet;
 
     utility::string_t m_Resets;
@@ -91,7 +91,7 @@ protected:
     utility::string_t m_Span;
     bool m_SpanIsSet;
 
-    int32_t m_Used;
+    int64_t m_Used;
     bool m_UsedIsSet;
 
 };

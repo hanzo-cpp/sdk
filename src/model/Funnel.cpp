@@ -20,17 +20,17 @@ Funnel::Funnel()
 {
     m_Available = false;
     m_AvailableIsSet = false;
-    m_Orders = 0;
+    m_Orders = 0L;
     m_OrdersIsSet = false;
-    m_Pageviews = 0;
+    m_Pageviews = 0L;
     m_PageviewsIsSet = false;
     m_Revenue = 0.0;
     m_RevenueIsSet = false;
-    m_Signups = 0;
+    m_Signups = 0L;
     m_SignupsIsSet = false;
-    m_Visitors = 0;
+    m_Visitors = 0L;
     m_VisitorsIsSet = false;
-    m_WindowDays = 0;
+    m_WindowDays = 0L;
     m_WindowDaysIsSet = false;
 }
 
@@ -104,7 +104,7 @@ bool Funnel::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("orders")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOrders;
+            int64_t refVal_setOrders;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOrders);
             setOrders(refVal_setOrders);
             
@@ -115,7 +115,7 @@ bool Funnel::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("pageviews")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPageviews;
+            int64_t refVal_setPageviews;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPageviews);
             setPageviews(refVal_setPageviews);
             
@@ -137,7 +137,7 @@ bool Funnel::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("signups")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSignups;
+            int64_t refVal_setSignups;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSignups);
             setSignups(refVal_setSignups);
             
@@ -148,7 +148,7 @@ bool Funnel::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("visitors")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVisitors;
+            int64_t refVal_setVisitors;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVisitors);
             setVisitors(refVal_setVisitors);
             
@@ -159,7 +159,7 @@ bool Funnel::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("windowDays")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setWindowDays;
+            int64_t refVal_setWindowDays;
             ok &= ModelBase::fromJson(fieldValue, refVal_setWindowDays);
             setWindowDays(refVal_setWindowDays);
             
@@ -222,13 +222,13 @@ bool Funnel::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("orders"))))
     {
-        int32_t refVal_setOrders;
+        int64_t refVal_setOrders;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("orders"))), refVal_setOrders );
         setOrders(refVal_setOrders);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("pageviews"))))
     {
-        int32_t refVal_setPageviews;
+        int64_t refVal_setPageviews;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("pageviews"))), refVal_setPageviews );
         setPageviews(refVal_setPageviews);
     }
@@ -240,19 +240,19 @@ bool Funnel::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("signups"))))
     {
-        int32_t refVal_setSignups;
+        int64_t refVal_setSignups;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("signups"))), refVal_setSignups );
         setSignups(refVal_setSignups);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("visitors"))))
     {
-        int32_t refVal_setVisitors;
+        int64_t refVal_setVisitors;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("visitors"))), refVal_setVisitors );
         setVisitors(refVal_setVisitors);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("windowDays"))))
     {
-        int32_t refVal_setWindowDays;
+        int64_t refVal_setWindowDays;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("windowDays"))), refVal_setWindowDays );
         setWindowDays(refVal_setWindowDays);
     }
@@ -281,13 +281,13 @@ void Funnel::unsetAvailable()
 {
     m_AvailableIsSet = false;
 }
-int32_t Funnel::getOrders() const
+int64_t Funnel::getOrders() const
 {
     return m_Orders;
 }
 
 
-void Funnel::setOrders(int32_t value)
+void Funnel::setOrders(int64_t value)
 {
     m_Orders = value;
     m_OrdersIsSet = true;
@@ -302,13 +302,13 @@ void Funnel::unsetOrders()
 {
     m_OrdersIsSet = false;
 }
-int32_t Funnel::getPageviews() const
+int64_t Funnel::getPageviews() const
 {
     return m_Pageviews;
 }
 
 
-void Funnel::setPageviews(int32_t value)
+void Funnel::setPageviews(int64_t value)
 {
     m_Pageviews = value;
     m_PageviewsIsSet = true;
@@ -344,13 +344,13 @@ void Funnel::unsetRevenue()
 {
     m_RevenueIsSet = false;
 }
-int32_t Funnel::getSignups() const
+int64_t Funnel::getSignups() const
 {
     return m_Signups;
 }
 
 
-void Funnel::setSignups(int32_t value)
+void Funnel::setSignups(int64_t value)
 {
     m_Signups = value;
     m_SignupsIsSet = true;
@@ -365,13 +365,13 @@ void Funnel::unsetSignups()
 {
     m_SignupsIsSet = false;
 }
-int32_t Funnel::getVisitors() const
+int64_t Funnel::getVisitors() const
 {
     return m_Visitors;
 }
 
 
-void Funnel::setVisitors(int32_t value)
+void Funnel::setVisitors(int64_t value)
 {
     m_Visitors = value;
     m_VisitorsIsSet = true;
@@ -386,13 +386,13 @@ void Funnel::unsetVisitors()
 {
     m_VisitorsIsSet = false;
 }
-int32_t Funnel::getWindowDays() const
+int64_t Funnel::getWindowDays() const
 {
     return m_WindowDays;
 }
 
 
-void Funnel::setWindowDays(int32_t value)
+void Funnel::setWindowDays(int64_t value)
 {
     m_WindowDays = value;
     m_WindowDaysIsSet = true;

@@ -18,9 +18,9 @@ namespace model {
 
 SyncTally::SyncTally()
 {
-    m_Live = 0;
+    m_Live = 0L;
     m_LiveIsSet = false;
-    m_Sandbox = 0;
+    m_Sandbox = 0L;
     m_SandboxIsSet = false;
 }
 
@@ -58,7 +58,7 @@ bool SyncTally::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("live")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLive;
+            int64_t refVal_setLive;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLive);
             setLive(refVal_setLive);
             
@@ -69,7 +69,7 @@ bool SyncTally::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("sandbox")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSandbox;
+            int64_t refVal_setSandbox;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSandbox);
             setSandbox(refVal_setSandbox);
             
@@ -106,13 +106,13 @@ bool SyncTally::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("live"))))
     {
-        int32_t refVal_setLive;
+        int64_t refVal_setLive;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("live"))), refVal_setLive );
         setLive(refVal_setLive);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("sandbox"))))
     {
-        int32_t refVal_setSandbox;
+        int64_t refVal_setSandbox;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("sandbox"))), refVal_setSandbox );
         setSandbox(refVal_setSandbox);
     }
@@ -120,13 +120,13 @@ bool SyncTally::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 }
 
 
-int32_t SyncTally::getLive() const
+int64_t SyncTally::getLive() const
 {
     return m_Live;
 }
 
 
-void SyncTally::setLive(int32_t value)
+void SyncTally::setLive(int64_t value)
 {
     m_Live = value;
     m_LiveIsSet = true;
@@ -141,13 +141,13 @@ void SyncTally::unsetLive()
 {
     m_LiveIsSet = false;
 }
-int32_t SyncTally::getSandbox() const
+int64_t SyncTally::getSandbox() const
 {
     return m_Sandbox;
 }
 
 
-void SyncTally::setSandbox(int32_t value)
+void SyncTally::setSandbox(int64_t value)
 {
     m_Sandbox = value;
     m_SandboxIsSet = true;

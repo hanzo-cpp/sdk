@@ -18,7 +18,7 @@ namespace model {
 
 RiskLearnOut::RiskLearnOut()
 {
-    m_Learned = 0;
+    m_Learned = 0L;
     m_LearnedIsSet = false;
 }
 
@@ -51,7 +51,7 @@ bool RiskLearnOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("learned")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLearned;
+            int64_t refVal_setLearned;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLearned);
             setLearned(refVal_setLearned);
             
@@ -84,7 +84,7 @@ bool RiskLearnOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("learned"))))
     {
-        int32_t refVal_setLearned;
+        int64_t refVal_setLearned;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("learned"))), refVal_setLearned );
         setLearned(refVal_setLearned);
     }
@@ -92,13 +92,13 @@ bool RiskLearnOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
 }
 
 
-int32_t RiskLearnOut::getLearned() const
+int64_t RiskLearnOut::getLearned() const
 {
     return m_Learned;
 }
 
 
-void RiskLearnOut::setLearned(int32_t value)
+void RiskLearnOut::setLearned(int64_t value)
 {
     m_Learned = value;
     m_LearnedIsSet = true;

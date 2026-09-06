@@ -22,7 +22,7 @@ Founder::Founder()
     m_DecidedByIsSet = false;
     m_Email = utility::conversions::to_string_t("");
     m_EmailIsSet = false;
-    m_EquityBps = 0;
+    m_EquityBps = 0L;
     m_EquityBpsIsSet = false;
     m_KycRef = utility::conversions::to_string_t("");
     m_KycRefIsSet = false;
@@ -108,7 +108,7 @@ bool Founder::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("equityBps")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setEquityBps;
+            int64_t refVal_setEquityBps;
             ok &= ModelBase::fromJson(fieldValue, refVal_setEquityBps);
             setEquityBps(refVal_setEquityBps);
             
@@ -206,7 +206,7 @@ bool Founder::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("equityBps"))))
     {
-        int32_t refVal_setEquityBps;
+        int64_t refVal_setEquityBps;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("equityBps"))), refVal_setEquityBps );
         setEquityBps(refVal_setEquityBps);
     }
@@ -274,13 +274,13 @@ void Founder::unsetEmail()
 {
     m_EmailIsSet = false;
 }
-int32_t Founder::getEquityBps() const
+int64_t Founder::getEquityBps() const
 {
     return m_EquityBps;
 }
 
 
-void Founder::setEquityBps(int32_t value)
+void Founder::setEquityBps(int64_t value)
 {
     m_EquityBps = value;
     m_EquityBpsIsSet = true;

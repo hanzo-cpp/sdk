@@ -104,10 +104,10 @@ public:
     /// <summary>
     /// ID is the EVM chain id, which is what a wallet must agree with.
     /// </summary>
-    int32_t getId() const;
+    int64_t getId() const;
     bool idIsSet() const;
     void unsetId();
-    void setId(int32_t value);
+    void setId(int64_t value);
 
     utility::string_t getName() const;
     bool nameIsSet() const;
@@ -158,7 +158,7 @@ protected:
     utility::string_t m_Graph;
     bool m_GraphIsSet;
 
-    int32_t m_Id;
+    int64_t m_Id;
     bool m_IdIsSet;
 
     utility::string_t m_Name;

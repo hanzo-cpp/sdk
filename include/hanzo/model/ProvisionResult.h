@@ -111,10 +111,10 @@ public:
     /// <summary>
     /// Port is the port a client connects to on Host.
     /// </summary>
-    int32_t getPort() const;
+    int64_t getPort() const;
     bool portIsSet() const;
     void unsetPort();
-    void setPort(int32_t value);
+    void setPort(int64_t value);
 
     /// <summary>
     /// Status is \&quot;ready\&quot;, or \&quot;provisioning\&quot; while a dedicated instance is still being materialized by the operator. A shared-backend create is \&quot;ready\&quot; here; a dedicated one answers 201 still launching, and reaches ready only when a later read reconciles it against the operator&#39;s live CR — never fabricated.
@@ -155,7 +155,7 @@ protected:
     utility::string_t m_Password;
     bool m_PasswordIsSet;
 
-    int32_t m_Port;
+    int64_t m_Port;
     bool m_PortIsSet;
 
     utility::string_t m_Status;

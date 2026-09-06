@@ -65,10 +65,10 @@ public:
     void unsetOrgs();
     void setOrgs(const std::vector<utility::string_t>& value);
 
-    int32_t getRepos() const;
+    int64_t getRepos() const;
     bool reposIsSet() const;
     void unsetRepos();
-    void setRepos(int32_t value);
+    void setRepos(int64_t value);
 
     std::vector<std::shared_ptr<Execution>> getRuns() const;
     bool runsIsSet() const;
@@ -93,7 +93,7 @@ protected:
     std::vector<utility::string_t> m_Orgs;
     bool m_OrgsIsSet;
 
-    int32_t m_Repos;
+    int64_t m_Repos;
     bool m_ReposIsSet;
 
     std::vector<std::shared_ptr<Execution>> m_Runs;

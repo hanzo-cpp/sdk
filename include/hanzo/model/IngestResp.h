@@ -57,10 +57,10 @@ public:
     /// <summary>
     /// Accepted is how many samples this report landed.
     /// </summary>
-    int32_t getAccepted() const;
+    int64_t getAccepted() const;
     bool acceptedIsSet() const;
     void unsetAccepted();
-    void setAccepted(int32_t value);
+    void setAccepted(int64_t value);
 
     /// <summary>
     /// Links is the link row each distinct (machine, provider, account) in the batch refreshed.
@@ -80,7 +80,7 @@ public:
 
 
 protected:
-    int32_t m_Accepted;
+    int64_t m_Accepted;
     bool m_AcceptedIsSet;
 
     std::vector<std::shared_ptr<LinkView>> m_Links;

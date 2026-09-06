@@ -138,10 +138,10 @@ public:
     /// <summary>
     /// Tier is public-gallery curation, carried verbatim from the embedded catalog. No request can set it — neither write body has the field and neither builds a kit carrying one — so it is absent on every customer-published kit.
     /// </summary>
-    int32_t getTier() const;
+    int64_t getTier() const;
     bool tierIsSet() const;
     void unsetTier();
-    void setTier(int32_t value);
+    void setTier(int64_t value);
 
     /// <summary>
     /// display name
@@ -199,7 +199,7 @@ protected:
     utility::string_t m_Source;
     bool m_SourceIsSet;
 
-    int32_t m_Tier;
+    int64_t m_Tier;
     bool m_TierIsSet;
 
     utility::string_t m_Title;

@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// CreatedAt is unix seconds when the owner claim was first recorded — equal to verifiedAt on the first proof, then fixed while verifiedAt moves.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// Method is HOW the owner was proven, always against its \&quot;.github\&quot; control repository: \&quot;oauth\&quot; — an IAM-linked forge token showed admin or push on it; or \&quot;file\&quot; — a hanzo.json on its default branch carried this author&#39;s verify code. The \&quot;maintainer\&quot; shortcut is a per-repository attribution and never appears here. Omitted on a row written before the method was recorded.
@@ -95,17 +95,17 @@ public:
     /// <summary>
     /// VerifiedAt is unix seconds of the most recent successful proof of the owner; re-verifying refreshes it, and the method beside it, in place.
     /// </summary>
-    int32_t getVerifiedAt() const;
+    int64_t getVerifiedAt() const;
     bool verifiedAtIsSet() const;
     void unsetVerifiedAt();
-    void setVerifiedAt(int32_t value);
+    void setVerifiedAt(int64_t value);
 
 
 protected:
     utility::string_t m_BadgeMarkdown;
     bool m_BadgeMarkdownIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_Method;
@@ -117,7 +117,7 @@ protected:
     bool m_Verified;
     bool m_VerifiedIsSet;
 
-    int32_t m_VerifiedAt;
+    int64_t m_VerifiedAt;
     bool m_VerifiedAtIsSet;
 
 };

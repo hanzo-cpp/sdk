@@ -53,7 +53,7 @@ public:
 
 
     /// <summary>
-    /// Backend is the leg that contributed this match: \&quot;index\&quot; (lexical), \&quot;vector\&quot; (semantic) or \&quot;code\&quot; (the org&#39;s repositories). It is the same name that leg reports itself under in Fusion.Backends, so a hit can be traced to a status.
+    /// Backend is the leg that contributed this match: \&quot;index\&quot; (lexical), \&quot;vector\&quot; (semantic), \&quot;code\&quot; (the org&#39;s repositories) or \&quot;rerank\&quot; (the cross-encoder pass, whose Score is the relevance it assigned). It is the same name that leg reports itself under in Fusion.Backends, so a hit can be traced to a status.
     /// </summary>
     utility::string_t getBackend() const;
     bool backendIsSet() const;
@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// Rank is this document&#39;s 1-based position in THAT leg&#39;s own result list, before fusion — 1 is the leg&#39;s best hit. It is the only input to the fused score: RRF adds 1/(60+rank) per leg, which is why a document two legs ranked second beats one a single leg ranked first.
     /// </summary>
-    int32_t getRank() const;
+    int64_t getRank() const;
     bool rankIsSet() const;
     void unsetRank();
-    void setRank(int32_t value);
+    void setRank(int64_t value);
 
     /// <summary>
     /// Score is the leg&#39;s NATIVE score, on that leg&#39;s own scale, reported for explanation and never used in ranking — the scales are incomparable (a cosine similarity against a term-match count), which is why fusion works on ranks. The vector leg reports Qdrant&#39;s cosine similarity; the lexical leg exposes no per-row score and reports 0, meaning \&quot;unscored\&quot;, not \&quot;scored zero\&quot;.
@@ -81,7 +81,7 @@ protected:
     utility::string_t m_Backend;
     bool m_BackendIsSet;
 
-    int32_t m_Rank;
+    int64_t m_Rank;
     bool m_RankIsSet;
 
     double m_Score;

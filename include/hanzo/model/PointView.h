@@ -63,17 +63,17 @@ public:
     /// <summary>
     /// how many invocations fell in it — a real count, never interpolated
     /// </summary>
-    int32_t getV() const;
+    int64_t getV() const;
     bool VIsSet() const;
     void unsetv();
-    void setV(int32_t value);
+    void setV(int64_t value);
 
 
 protected:
     utility::string_t m_t;
     bool m_tIsSet;
 
-    int32_t m_v;
+    int64_t m_v;
     bool m_vIsSet;
 
 };

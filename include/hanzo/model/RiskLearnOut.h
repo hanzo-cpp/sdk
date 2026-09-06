@@ -54,14 +54,14 @@ public:
     /// <summary>
     /// Learned is how many of the events the model actually learned from, and is also what the call is metered at: one screen per event learned from. It is the batch minus the events already in this organisation&#39;s record, so a retried batch reports — and is charged — zero.
     /// </summary>
-    int32_t getLearned() const;
+    int64_t getLearned() const;
     bool learnedIsSet() const;
     void unsetLearned();
-    void setLearned(int32_t value);
+    void setLearned(int64_t value);
 
 
 protected:
-    int32_t m_Learned;
+    int64_t m_Learned;
     bool m_LearnedIsSet;
 
 };

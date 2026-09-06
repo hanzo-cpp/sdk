@@ -24,23 +24,23 @@ DocumentView::DocumentView()
     m_CategoryIsSet = false;
     m_ContentType = utility::conversions::to_string_t("");
     m_ContentTypeIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_EsignProvider = utility::conversions::to_string_t("");
     m_EsignProviderIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
-    m_SignedAt = 0;
+    m_SignedAt = 0L;
     m_SignedAtIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
     m_TemplateId = utility::conversions::to_string_t("");
     m_TemplateIdIsSet = false;
-    m_TemplateVersion = 0;
+    m_TemplateVersion = 0L;
     m_TemplateVersionIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
-    m_UpdatedAt = 0;
+    m_UpdatedAt = 0L;
     m_UpdatedAtIsSet = false;
 }
 
@@ -161,7 +161,7 @@ bool DocumentView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -194,7 +194,7 @@ bool DocumentView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("signedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSignedAt;
+            int64_t refVal_setSignedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSignedAt);
             setSignedAt(refVal_setSignedAt);
             
@@ -227,7 +227,7 @@ bool DocumentView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("templateVersion")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTemplateVersion;
+            int64_t refVal_setTemplateVersion;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTemplateVersion);
             setTemplateVersion(refVal_setTemplateVersion);
             
@@ -249,7 +249,7 @@ bool DocumentView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updatedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdatedAt;
+            int64_t refVal_setUpdatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdatedAt);
             setUpdatedAt(refVal_setUpdatedAt);
             
@@ -344,7 +344,7 @@ bool DocumentView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
@@ -362,7 +362,7 @@ bool DocumentView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("signedAt"))))
     {
-        int32_t refVal_setSignedAt;
+        int64_t refVal_setSignedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("signedAt"))), refVal_setSignedAt );
         setSignedAt(refVal_setSignedAt);
     }
@@ -380,7 +380,7 @@ bool DocumentView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("templateVersion"))))
     {
-        int32_t refVal_setTemplateVersion;
+        int64_t refVal_setTemplateVersion;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("templateVersion"))), refVal_setTemplateVersion );
         setTemplateVersion(refVal_setTemplateVersion);
     }
@@ -392,7 +392,7 @@ bool DocumentView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
-        int32_t refVal_setUpdatedAt;
+        int64_t refVal_setUpdatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))), refVal_setUpdatedAt );
         setUpdatedAt(refVal_setUpdatedAt);
     }
@@ -463,13 +463,13 @@ void DocumentView::unsetContentType()
 {
     m_ContentTypeIsSet = false;
 }
-int32_t DocumentView::getCreatedAt() const
+int64_t DocumentView::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void DocumentView::setCreatedAt(int32_t value)
+void DocumentView::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -526,13 +526,13 @@ void DocumentView::unsetId()
 {
     m_IdIsSet = false;
 }
-int32_t DocumentView::getSignedAt() const
+int64_t DocumentView::getSignedAt() const
 {
     return m_SignedAt;
 }
 
 
-void DocumentView::setSignedAt(int32_t value)
+void DocumentView::setSignedAt(int64_t value)
 {
     m_SignedAt = value;
     m_SignedAtIsSet = true;
@@ -589,13 +589,13 @@ void DocumentView::unsetTemplateId()
 {
     m_TemplateIdIsSet = false;
 }
-int32_t DocumentView::getTemplateVersion() const
+int64_t DocumentView::getTemplateVersion() const
 {
     return m_TemplateVersion;
 }
 
 
-void DocumentView::setTemplateVersion(int32_t value)
+void DocumentView::setTemplateVersion(int64_t value)
 {
     m_TemplateVersion = value;
     m_TemplateVersionIsSet = true;
@@ -631,13 +631,13 @@ void DocumentView::unsetTitle()
 {
     m_TitleIsSet = false;
 }
-int32_t DocumentView::getUpdatedAt() const
+int64_t DocumentView::getUpdatedAt() const
 {
     return m_UpdatedAt;
 }
 
 
-void DocumentView::setUpdatedAt(int32_t value)
+void DocumentView::setUpdatedAt(int64_t value)
 {
     m_UpdatedAt = value;
     m_UpdatedAtIsSet = true;

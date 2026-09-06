@@ -66,10 +66,10 @@ public:
     /// <summary>
     /// GPU is how many GPUs the run asks for; a negative value is 400.
     /// </summary>
-    int32_t getGpu() const;
+    int64_t getGpu() const;
     bool gpuIsSet() const;
     void unsetGpu();
-    void setGpu(int32_t value);
+    void setGpu(int64_t value);
 
     /// <summary>
     /// Image is the container image to run. Required.
@@ -82,18 +82,18 @@ public:
     /// <summary>
     /// MaxScale above the floor declares an autoscaling ceiling; 0 means no autoscaler at all — a fixed run at the floor.
     /// </summary>
-    int32_t getMaxScale() const;
+    int64_t getMaxScale() const;
     bool maxScaleIsSet() const;
     void unsetMaxScale();
-    void setMaxScale(int32_t value);
+    void setMaxScale(int64_t value);
 
     /// <summary>
     /// MinScale is the replica floor, clamped to the deployment&#39;s limit.
     /// </summary>
-    int32_t getMinScale() const;
+    int64_t getMinScale() const;
     bool minScaleIsSet() const;
     void unsetMinScale();
-    void setMinScale(int32_t value);
+    void setMinScale(int64_t value);
 
     /// <summary>
     /// Name is the run&#39;s name, and the slug is derived from it. Required, and it must resolve to &#x60;^[a-z0-9]([a-z0-9-]{0,38}[a-z0-9])?$&#x60;. Re-running the same name updates that run in place.
@@ -106,10 +106,10 @@ public:
     /// <summary>
     /// Port is the container port the run listens on.
     /// </summary>
-    int32_t getPort() const;
+    int64_t getPort() const;
     bool portIsSet() const;
     void unsetPort();
-    void setPort(int32_t value);
+    void setPort(int64_t value);
 
     /// <summary>
     /// Runtime is accepted for the client contract and echoed nowhere: the image IS the runtime unit.
@@ -132,22 +132,22 @@ protected:
     std::vector<std::shared_ptr<EnvVarJSON>> m_Env;
     bool m_EnvIsSet;
 
-    int32_t m_Gpu;
+    int64_t m_Gpu;
     bool m_GpuIsSet;
 
     utility::string_t m_Image;
     bool m_ImageIsSet;
 
-    int32_t m_MaxScale;
+    int64_t m_MaxScale;
     bool m_MaxScaleIsSet;
 
-    int32_t m_MinScale;
+    int64_t m_MinScale;
     bool m_MinScaleIsSet;
 
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    int32_t m_Port;
+    int64_t m_Port;
     bool m_PortIsSet;
 
     utility::string_t m_Runtime;

@@ -18,7 +18,7 @@ namespace model {
 
 BlueprintHealth::BlueprintHealth()
 {
-    m_Blueprints = 0;
+    m_Blueprints = 0L;
     m_BlueprintsIsSet = false;
     m_RateCardIsSet = false;
     m_Service = utility::conversions::to_string_t("");
@@ -71,7 +71,7 @@ bool BlueprintHealth::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("blueprints")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBlueprints;
+            int64_t refVal_setBlueprints;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBlueprints);
             setBlueprints(refVal_setBlueprints);
             
@@ -149,7 +149,7 @@ bool BlueprintHealth::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("blueprints"))))
     {
-        int32_t refVal_setBlueprints;
+        int64_t refVal_setBlueprints;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("blueprints"))), refVal_setBlueprints );
         setBlueprints(refVal_setBlueprints);
     }
@@ -175,13 +175,13 @@ bool BlueprintHealth::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 }
 
 
-int32_t BlueprintHealth::getBlueprints() const
+int64_t BlueprintHealth::getBlueprints() const
 {
     return m_Blueprints;
 }
 
 
-void BlueprintHealth::setBlueprints(int32_t value)
+void BlueprintHealth::setBlueprints(int64_t value)
 {
     m_Blueprints = value;
     m_BlueprintsIsSet = true;

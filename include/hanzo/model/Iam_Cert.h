@@ -67,10 +67,10 @@ public:
     void unsetAccount();
     void setAccount(const utility::string_t& value);
 
-    int32_t getBitSize() const;
+    int64_t getBitSize() const;
     bool bitSizeIsSet() const;
     void unsetBitSize();
-    void setBitSize(int32_t value);
+    void setBitSize(int64_t value);
 
     utility::string_t getCertificate() const;
     bool certificateIsSet() const;
@@ -107,10 +107,10 @@ public:
     void unsetDomainExpireTime();
     void setDomainExpireTime(const utility::string_t& value);
 
-    int32_t getExpireInYears() const;
+    int64_t getExpireInYears() const;
     bool expireInYearsIsSet() const;
     void unsetExpireInYears();
-    void setExpireInYears(int32_t value);
+    void setExpireInYears(int64_t value);
 
     utility::string_t getExpireTime() const;
     bool expireTimeIsSet() const;
@@ -163,7 +163,7 @@ protected:
     utility::string_t m_Account;
     bool m_AccountIsSet;
 
-    int32_t m_BitSize;
+    int64_t m_BitSize;
     bool m_BitSizeIsSet;
 
     utility::string_t m_Certificate;
@@ -187,7 +187,7 @@ protected:
     utility::string_t m_DomainExpireTime;
     bool m_DomainExpireTimeIsSet;
 
-    int32_t m_ExpireInYears;
+    int64_t m_ExpireInYears;
     bool m_ExpireInYearsIsSet;
 
     utility::string_t m_ExpireTime;

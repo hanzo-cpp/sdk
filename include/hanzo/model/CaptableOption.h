@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// CliffYears is how many years before any of the grant vests.
     /// </summary>
-    int32_t getCliffYears() const;
+    int64_t getCliffYears() const;
     bool cliffYearsIsSet() const;
     void unsetCliffYears();
-    void setCliffYears(int32_t value);
+    void setCliffYears(int64_t value);
 
     /// <summary>
     /// EquityPlanID is the plan the grant draws from.
@@ -119,10 +119,10 @@ public:
     /// <summary>
     /// Quantity is how many shares the grant covers.
     /// </summary>
-    int32_t getQuantity() const;
+    int64_t getQuantity() const;
     bool quantityIsSet() const;
     void unsetQuantity();
-    void setQuantity(int32_t value);
+    void setQuantity(int64_t value);
 
     /// <summary>
     /// StakeholderID is the grantee.
@@ -159,14 +159,14 @@ public:
     /// <summary>
     /// VestingYears is the total vesting period in years.
     /// </summary>
-    int32_t getVestingYears() const;
+    int64_t getVestingYears() const;
     bool vestingYearsIsSet() const;
     void unsetVestingYears();
-    void setVestingYears(int32_t value);
+    void setVestingYears(int64_t value);
 
 
 protected:
-    int32_t m_CliffYears;
+    int64_t m_CliffYears;
     bool m_CliffYearsIsSet;
 
     utility::string_t m_EquityPlanId;
@@ -190,7 +190,7 @@ protected:
     utility::string_t m_IssueDate;
     bool m_IssueDateIsSet;
 
-    int32_t m_Quantity;
+    int64_t m_Quantity;
     bool m_QuantityIsSet;
 
     utility::string_t m_StakeholderId;
@@ -205,7 +205,7 @@ protected:
     utility::string_t m_Type;
     bool m_TypeIsSet;
 
-    int32_t m_VestingYears;
+    int64_t m_VestingYears;
     bool m_VestingYearsIsSet;
 
 };

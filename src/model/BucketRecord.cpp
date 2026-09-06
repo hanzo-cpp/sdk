@@ -20,9 +20,9 @@ BucketRecord::BucketRecord()
 {
     m_Bucket = utility::conversions::to_string_t("");
     m_BucketIsSet = false;
-    m_History = 0;
+    m_History = 0L;
     m_HistoryIsSet = false;
-    m_Ttl = 0;
+    m_Ttl = 0L;
     m_TtlIsSet = false;
     m_Values = 0;
     m_ValuesIsSet = false;
@@ -83,7 +83,7 @@ bool BucketRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("history")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setHistory;
+            int64_t refVal_setHistory;
             ok &= ModelBase::fromJson(fieldValue, refVal_setHistory);
             setHistory(refVal_setHistory);
             
@@ -94,7 +94,7 @@ bool BucketRecord::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("ttl")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTtl;
+            int64_t refVal_setTtl;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTtl);
             setTtl(refVal_setTtl);
             
@@ -156,13 +156,13 @@ bool BucketRecord::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("history"))))
     {
-        int32_t refVal_setHistory;
+        int64_t refVal_setHistory;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("history"))), refVal_setHistory );
         setHistory(refVal_setHistory);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("ttl"))))
     {
-        int32_t refVal_setTtl;
+        int64_t refVal_setTtl;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ttl"))), refVal_setTtl );
         setTtl(refVal_setTtl);
     }
@@ -197,13 +197,13 @@ void BucketRecord::unsetBucket()
 {
     m_BucketIsSet = false;
 }
-int32_t BucketRecord::getHistory() const
+int64_t BucketRecord::getHistory() const
 {
     return m_History;
 }
 
 
-void BucketRecord::setHistory(int32_t value)
+void BucketRecord::setHistory(int64_t value)
 {
     m_History = value;
     m_HistoryIsSet = true;
@@ -218,13 +218,13 @@ void BucketRecord::unsetHistory()
 {
     m_HistoryIsSet = false;
 }
-int32_t BucketRecord::getTtl() const
+int64_t BucketRecord::getTtl() const
 {
     return m_Ttl;
 }
 
 
-void BucketRecord::setTtl(int32_t value)
+void BucketRecord::setTtl(int64_t value)
 {
     m_Ttl = value;
     m_TtlIsSet = true;

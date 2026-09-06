@@ -263,7 +263,7 @@ pplx::task<std::shared_ptr<CampaignRecord>> CampaignApi::deleteCampaignByIdChann
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<CampaignPage>> CampaignApi::getCampaign(boost::optional<utility::string_t> status, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<CampaignPage>> CampaignApi::getCampaign(boost::optional<utility::string_t> status, boost::optional<int64_t> limit) const
 {
 
 

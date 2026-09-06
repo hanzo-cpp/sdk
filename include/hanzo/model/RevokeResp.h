@@ -65,28 +65,28 @@ public:
     /// <summary>
     /// Revoked is how many links this call revoked.
     /// </summary>
-    int32_t getRevoked() const;
+    int64_t getRevoked() const;
     bool revokedIsSet() const;
     void unsetRevoked();
-    void setRevoked(int32_t value);
+    void setRevoked(int64_t value);
 
     /// <summary>
     /// SessionsStopped is how many of the caller&#39;s own agent sessions stopped. A stop that fails does not fail the revoke, so this may honestly report fewer.
     /// </summary>
-    int32_t getSessionsStopped() const;
+    int64_t getSessionsStopped() const;
     bool sessionsStoppedIsSet() const;
     void unsetSessionsStopped();
-    void setSessionsStopped(int32_t value);
+    void setSessionsStopped(int64_t value);
 
 
 protected:
     std::vector<std::shared_ptr<LinkView>> m_Links;
     bool m_LinksIsSet;
 
-    int32_t m_Revoked;
+    int64_t m_Revoked;
     bool m_RevokedIsSet;
 
-    int32_t m_SessionsStopped;
+    int64_t m_SessionsStopped;
     bool m_SessionsStoppedIsSet;
 
 };

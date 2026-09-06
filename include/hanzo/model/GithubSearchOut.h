@@ -57,10 +57,10 @@ public:
     /// <summary>
     /// Count is how many hits Repos carries. It is that array&#39;s length, NOT GitHub&#39;s total_count, so it never exceeds limit and says nothing about how many more repositories matched.
     /// </summary>
-    int32_t getCount() const;
+    int64_t getCount() const;
     bool countIsSet() const;
     void unsetCount();
-    void setCount(int32_t value);
+    void setCount(int64_t value);
 
     /// <summary>
     /// Repos are the matching repositories in GitHub&#39;s own relevance order, capped at limit. Always an array, never null.
@@ -72,7 +72,7 @@ public:
 
 
 protected:
-    int32_t m_Count;
+    int64_t m_Count;
     bool m_CountIsSet;
 
     std::vector<std::shared_ptr<GithubSearchHit>> m_Repos;

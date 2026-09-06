@@ -18,15 +18,15 @@ namespace model {
 
 CaptableTotals::CaptableTotals()
 {
-    m_FullyDilutedShares = 0;
+    m_FullyDilutedShares = 0L;
     m_FullyDilutedSharesIsSet = false;
-    m_GrantedOptions = 0;
+    m_GrantedOptions = 0L;
     m_GrantedOptionsIsSet = false;
-    m_OutstandingShares = 0;
+    m_OutstandingShares = 0L;
     m_OutstandingSharesIsSet = false;
-    m_ShareClasses = 0;
+    m_ShareClasses = 0L;
     m_ShareClassesIsSet = false;
-    m_Stakeholders = 0;
+    m_Stakeholders = 0L;
     m_StakeholdersIsSet = false;
 }
 
@@ -79,7 +79,7 @@ bool CaptableTotals::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("fullyDilutedShares")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFullyDilutedShares;
+            int64_t refVal_setFullyDilutedShares;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFullyDilutedShares);
             setFullyDilutedShares(refVal_setFullyDilutedShares);
             
@@ -90,7 +90,7 @@ bool CaptableTotals::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("grantedOptions")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setGrantedOptions;
+            int64_t refVal_setGrantedOptions;
             ok &= ModelBase::fromJson(fieldValue, refVal_setGrantedOptions);
             setGrantedOptions(refVal_setGrantedOptions);
             
@@ -101,7 +101,7 @@ bool CaptableTotals::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("outstandingShares")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOutstandingShares;
+            int64_t refVal_setOutstandingShares;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOutstandingShares);
             setOutstandingShares(refVal_setOutstandingShares);
             
@@ -112,7 +112,7 @@ bool CaptableTotals::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("shareClasses")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setShareClasses;
+            int64_t refVal_setShareClasses;
             ok &= ModelBase::fromJson(fieldValue, refVal_setShareClasses);
             setShareClasses(refVal_setShareClasses);
             
@@ -123,7 +123,7 @@ bool CaptableTotals::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("stakeholders")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setStakeholders;
+            int64_t refVal_setStakeholders;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStakeholders);
             setStakeholders(refVal_setStakeholders);
             
@@ -172,31 +172,31 @@ bool CaptableTotals::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("fullyDilutedShares"))))
     {
-        int32_t refVal_setFullyDilutedShares;
+        int64_t refVal_setFullyDilutedShares;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("fullyDilutedShares"))), refVal_setFullyDilutedShares );
         setFullyDilutedShares(refVal_setFullyDilutedShares);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("grantedOptions"))))
     {
-        int32_t refVal_setGrantedOptions;
+        int64_t refVal_setGrantedOptions;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("grantedOptions"))), refVal_setGrantedOptions );
         setGrantedOptions(refVal_setGrantedOptions);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("outstandingShares"))))
     {
-        int32_t refVal_setOutstandingShares;
+        int64_t refVal_setOutstandingShares;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("outstandingShares"))), refVal_setOutstandingShares );
         setOutstandingShares(refVal_setOutstandingShares);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("shareClasses"))))
     {
-        int32_t refVal_setShareClasses;
+        int64_t refVal_setShareClasses;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("shareClasses"))), refVal_setShareClasses );
         setShareClasses(refVal_setShareClasses);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("stakeholders"))))
     {
-        int32_t refVal_setStakeholders;
+        int64_t refVal_setStakeholders;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("stakeholders"))), refVal_setStakeholders );
         setStakeholders(refVal_setStakeholders);
     }
@@ -204,13 +204,13 @@ bool CaptableTotals::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 }
 
 
-int32_t CaptableTotals::getFullyDilutedShares() const
+int64_t CaptableTotals::getFullyDilutedShares() const
 {
     return m_FullyDilutedShares;
 }
 
 
-void CaptableTotals::setFullyDilutedShares(int32_t value)
+void CaptableTotals::setFullyDilutedShares(int64_t value)
 {
     m_FullyDilutedShares = value;
     m_FullyDilutedSharesIsSet = true;
@@ -225,13 +225,13 @@ void CaptableTotals::unsetFullyDilutedShares()
 {
     m_FullyDilutedSharesIsSet = false;
 }
-int32_t CaptableTotals::getGrantedOptions() const
+int64_t CaptableTotals::getGrantedOptions() const
 {
     return m_GrantedOptions;
 }
 
 
-void CaptableTotals::setGrantedOptions(int32_t value)
+void CaptableTotals::setGrantedOptions(int64_t value)
 {
     m_GrantedOptions = value;
     m_GrantedOptionsIsSet = true;
@@ -246,13 +246,13 @@ void CaptableTotals::unsetGrantedOptions()
 {
     m_GrantedOptionsIsSet = false;
 }
-int32_t CaptableTotals::getOutstandingShares() const
+int64_t CaptableTotals::getOutstandingShares() const
 {
     return m_OutstandingShares;
 }
 
 
-void CaptableTotals::setOutstandingShares(int32_t value)
+void CaptableTotals::setOutstandingShares(int64_t value)
 {
     m_OutstandingShares = value;
     m_OutstandingSharesIsSet = true;
@@ -267,13 +267,13 @@ void CaptableTotals::unsetOutstandingShares()
 {
     m_OutstandingSharesIsSet = false;
 }
-int32_t CaptableTotals::getShareClasses() const
+int64_t CaptableTotals::getShareClasses() const
 {
     return m_ShareClasses;
 }
 
 
-void CaptableTotals::setShareClasses(int32_t value)
+void CaptableTotals::setShareClasses(int64_t value)
 {
     m_ShareClasses = value;
     m_ShareClassesIsSet = true;
@@ -288,13 +288,13 @@ void CaptableTotals::unsetShareClasses()
 {
     m_ShareClassesIsSet = false;
 }
-int32_t CaptableTotals::getStakeholders() const
+int64_t CaptableTotals::getStakeholders() const
 {
     return m_Stakeholders;
 }
 
 
-void CaptableTotals::setStakeholders(int32_t value)
+void CaptableTotals::setStakeholders(int64_t value)
 {
     m_Stakeholders = value;
     m_StakeholdersIsSet = true;

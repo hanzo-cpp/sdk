@@ -18,28 +18,28 @@ namespace model {
 
 ClauseCoverage::ClauseCoverage()
 {
-    m_Automated = 0;
+    m_Automated = 0L;
     m_AutomatedIsSet = false;
     m_ClausesIsSet = false;
     m_Edition = utility::conversions::to_string_t("");
     m_EditionIsSet = false;
     m_Framework = utility::conversions::to_string_t("");
     m_FrameworkIsSet = false;
-    m_Generated = 0;
+    m_Generated = 0L;
     m_GeneratedIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_None = 0;
+    m_None = 0L;
     m_NoneIsSet = false;
     m_Note = utility::conversions::to_string_t("");
     m_NoteIsSet = false;
-    m_Partial = 0;
+    m_Partial = 0L;
     m_PartialIsSet = false;
     m_Publisher = utility::conversions::to_string_t("");
     m_PublisherIsSet = false;
     m_Statement = utility::conversions::to_string_t("");
     m_StatementIsSet = false;
-    m_Total = 0;
+    m_Total = 0L;
     m_TotalIsSet = false;
     m_Unit = utility::conversions::to_string_t("");
     m_UnitIsSet = false;
@@ -148,7 +148,7 @@ bool ClauseCoverage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("automated")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAutomated;
+            int64_t refVal_setAutomated;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAutomated);
             setAutomated(refVal_setAutomated);
             
@@ -192,7 +192,7 @@ bool ClauseCoverage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("generated")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setGenerated;
+            int64_t refVal_setGenerated;
             ok &= ModelBase::fromJson(fieldValue, refVal_setGenerated);
             setGenerated(refVal_setGenerated);
             
@@ -214,7 +214,7 @@ bool ClauseCoverage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("none")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNone;
+            int64_t refVal_setNone;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNone);
             setNone(refVal_setNone);
             
@@ -236,7 +236,7 @@ bool ClauseCoverage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("partial")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPartial;
+            int64_t refVal_setPartial;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPartial);
             setPartial(refVal_setPartial);
             
@@ -269,7 +269,7 @@ bool ClauseCoverage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("total")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotal;
+            int64_t refVal_setTotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotal);
             setTotal(refVal_setTotal);
             
@@ -391,7 +391,7 @@ bool ClauseCoverage::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("automated"))))
     {
-        int32_t refVal_setAutomated;
+        int64_t refVal_setAutomated;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("automated"))), refVal_setAutomated );
         setAutomated(refVal_setAutomated);
     }
@@ -415,7 +415,7 @@ bool ClauseCoverage::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("generated"))))
     {
-        int32_t refVal_setGenerated;
+        int64_t refVal_setGenerated;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("generated"))), refVal_setGenerated );
         setGenerated(refVal_setGenerated);
     }
@@ -427,7 +427,7 @@ bool ClauseCoverage::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("none"))))
     {
-        int32_t refVal_setNone;
+        int64_t refVal_setNone;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("none"))), refVal_setNone );
         setNone(refVal_setNone);
     }
@@ -439,7 +439,7 @@ bool ClauseCoverage::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("partial"))))
     {
-        int32_t refVal_setPartial;
+        int64_t refVal_setPartial;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("partial"))), refVal_setPartial );
         setPartial(refVal_setPartial);
     }
@@ -457,7 +457,7 @@ bool ClauseCoverage::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("total"))))
     {
-        int32_t refVal_setTotal;
+        int64_t refVal_setTotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("total"))), refVal_setTotal );
         setTotal(refVal_setTotal);
     }
@@ -483,13 +483,13 @@ bool ClauseCoverage::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 }
 
 
-int32_t ClauseCoverage::getAutomated() const
+int64_t ClauseCoverage::getAutomated() const
 {
     return m_Automated;
 }
 
 
-void ClauseCoverage::setAutomated(int32_t value)
+void ClauseCoverage::setAutomated(int64_t value)
 {
     m_Automated = value;
     m_AutomatedIsSet = true;
@@ -567,13 +567,13 @@ void ClauseCoverage::unsetFramework()
 {
     m_FrameworkIsSet = false;
 }
-int32_t ClauseCoverage::getGenerated() const
+int64_t ClauseCoverage::getGenerated() const
 {
     return m_Generated;
 }
 
 
-void ClauseCoverage::setGenerated(int32_t value)
+void ClauseCoverage::setGenerated(int64_t value)
 {
     m_Generated = value;
     m_GeneratedIsSet = true;
@@ -609,13 +609,13 @@ void ClauseCoverage::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t ClauseCoverage::getNone() const
+int64_t ClauseCoverage::getNone() const
 {
     return m_None;
 }
 
 
-void ClauseCoverage::setNone(int32_t value)
+void ClauseCoverage::setNone(int64_t value)
 {
     m_None = value;
     m_NoneIsSet = true;
@@ -651,13 +651,13 @@ void ClauseCoverage::unsetNote()
 {
     m_NoteIsSet = false;
 }
-int32_t ClauseCoverage::getPartial() const
+int64_t ClauseCoverage::getPartial() const
 {
     return m_Partial;
 }
 
 
-void ClauseCoverage::setPartial(int32_t value)
+void ClauseCoverage::setPartial(int64_t value)
 {
     m_Partial = value;
     m_PartialIsSet = true;
@@ -714,13 +714,13 @@ void ClauseCoverage::unsetStatement()
 {
     m_StatementIsSet = false;
 }
-int32_t ClauseCoverage::getTotal() const
+int64_t ClauseCoverage::getTotal() const
 {
     return m_Total;
 }
 
 
-void ClauseCoverage::setTotal(int32_t value)
+void ClauseCoverage::setTotal(int64_t value)
 {
     m_Total = value;
     m_TotalIsSet = true;

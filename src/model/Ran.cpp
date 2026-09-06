@@ -18,7 +18,7 @@ namespace model {
 
 Ran::Ran()
 {
-    m_ExitCode = 0;
+    m_ExitCode = 0L;
     m_ExitCodeIsSet = false;
     m_Stderr = utility::conversions::to_string_t("");
     m_StderrIsSet = false;
@@ -65,7 +65,7 @@ bool Ran::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("exitCode")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExitCode;
+            int64_t refVal_setExitCode;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExitCode);
             setExitCode(refVal_setExitCode);
             
@@ -128,7 +128,7 @@ bool Ran::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const util
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("exitCode"))))
     {
-        int32_t refVal_setExitCode;
+        int64_t refVal_setExitCode;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("exitCode"))), refVal_setExitCode );
         setExitCode(refVal_setExitCode);
     }
@@ -148,13 +148,13 @@ bool Ran::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const util
 }
 
 
-int32_t Ran::getExitCode() const
+int64_t Ran::getExitCode() const
 {
     return m_ExitCode;
 }
 
 
-void Ran::setExitCode(int32_t value)
+void Ran::setExitCode(int64_t value)
 {
     m_ExitCode = value;
     m_ExitCodeIsSet = true;

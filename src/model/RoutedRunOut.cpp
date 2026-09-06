@@ -32,7 +32,7 @@ RoutedRunOut::RoutedRunOut()
     m_RepoIsSet = false;
     m_SessionId = utility::conversions::to_string_t("");
     m_SessionIdIsSet = false;
-    m_TimeoutSeconds = 0;
+    m_TimeoutSeconds = 0L;
     m_TimeoutSecondsIsSet = false;
 }
 
@@ -177,7 +177,7 @@ bool RoutedRunOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("timeoutSeconds")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTimeoutSeconds;
+            int64_t refVal_setTimeoutSeconds;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTimeoutSeconds);
             setTimeoutSeconds(refVal_setTimeoutSeconds);
             
@@ -280,7 +280,7 @@ bool RoutedRunOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("timeoutSeconds"))))
     {
-        int32_t refVal_setTimeoutSeconds;
+        int64_t refVal_setTimeoutSeconds;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("timeoutSeconds"))), refVal_setTimeoutSeconds );
         setTimeoutSeconds(refVal_setTimeoutSeconds);
     }
@@ -435,13 +435,13 @@ void RoutedRunOut::unsetSessionId()
 {
     m_SessionIdIsSet = false;
 }
-int32_t RoutedRunOut::getTimeoutSeconds() const
+int64_t RoutedRunOut::getTimeoutSeconds() const
 {
     return m_TimeoutSeconds;
 }
 
 
-void RoutedRunOut::setTimeoutSeconds(int32_t value)
+void RoutedRunOut::setTimeoutSeconds(int64_t value)
 {
     m_TimeoutSeconds = value;
     m_TimeoutSecondsIsSet = true;

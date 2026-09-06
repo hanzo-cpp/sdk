@@ -22,13 +22,13 @@ RiskDatasetSpec::RiskDatasetSpec()
     m_DimsIsSet = false;
     m_From = utility::conversions::to_string_t("");
     m_FromIsSet = false;
-    m_Horizon = 0;
+    m_Horizon = 0L;
     m_HorizonIsSet = false;
     m_Kind = utility::conversions::to_string_t("");
     m_KindIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_Rows = 0;
+    m_Rows = 0L;
     m_RowsIsSet = false;
     m_Seed = utility::conversions::to_string_t("");
     m_SeedIsSet = false;
@@ -138,7 +138,7 @@ bool RiskDatasetSpec::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("horizon")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setHorizon;
+            int64_t refVal_setHorizon;
             ok &= ModelBase::fromJson(fieldValue, refVal_setHorizon);
             setHorizon(refVal_setHorizon);
             
@@ -171,7 +171,7 @@ bool RiskDatasetSpec::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("rows")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRows;
+            int64_t refVal_setRows;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRows);
             setRows(refVal_setRows);
             
@@ -276,7 +276,7 @@ bool RiskDatasetSpec::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("horizon"))))
     {
-        int32_t refVal_setHorizon;
+        int64_t refVal_setHorizon;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("horizon"))), refVal_setHorizon );
         setHorizon(refVal_setHorizon);
     }
@@ -294,7 +294,7 @@ bool RiskDatasetSpec::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("rows"))))
     {
-        int32_t refVal_setRows;
+        int64_t refVal_setRows;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("rows"))), refVal_setRows );
         setRows(refVal_setRows);
     }
@@ -377,13 +377,13 @@ void RiskDatasetSpec::unsetFrom()
 {
     m_FromIsSet = false;
 }
-int32_t RiskDatasetSpec::getHorizon() const
+int64_t RiskDatasetSpec::getHorizon() const
 {
     return m_Horizon;
 }
 
 
-void RiskDatasetSpec::setHorizon(int32_t value)
+void RiskDatasetSpec::setHorizon(int64_t value)
 {
     m_Horizon = value;
     m_HorizonIsSet = true;
@@ -440,13 +440,13 @@ void RiskDatasetSpec::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t RiskDatasetSpec::getRows() const
+int64_t RiskDatasetSpec::getRows() const
 {
     return m_Rows;
 }
 
 
-void RiskDatasetSpec::setRows(int32_t value)
+void RiskDatasetSpec::setRows(int64_t value)
 {
     m_Rows = value;
     m_RowsIsSet = true;

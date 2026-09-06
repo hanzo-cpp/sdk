@@ -33,7 +33,7 @@ EvalApi::~EvalApi()
 {
 }
 
-pplx::task<std::shared_ptr<Object>> EvalApi::deleteEvalDatasetsByName(utility::string_t name) const
+pplx::task<void> EvalApi::deleteEvalDatasetsByName(utility::string_t name) const
 {
 
 
@@ -47,7 +47,6 @@ pplx::task<std::shared_ptr<Object>> EvalApi::deleteEvalDatasetsByName(utility::s
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -136,28 +135,10 @@ pplx::task<std::shared_ptr<Object>> EvalApi::deleteEvalDatasetsByName(utility::s
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<Object> localVarResult(new Object());
-
-        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value localVarJson = web::json::value::parse(localVarResponse);
-
-            ModelBase::fromJson(localVarJson, localVarResult);
-        }
-        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling deleteEvalDatasetsByName: unsupported response type"));
-        }
-
-        return localVarResult;
+        return void();
     });
 }
-pplx::task<std::shared_ptr<DatasetList>> EvalApi::getEvalDatasets(boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<DatasetList>> EvalApi::getEvalDatasets(boost::optional<int64_t> limit) const
 {
 
 
@@ -408,7 +389,7 @@ pplx::task<std::shared_ptr<DatasetView>> EvalApi::getEvalDatasetsByName(utility:
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ItemList>> EvalApi::getEvalDatasetsByNameItems(utility::string_t name, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<ItemList>> EvalApi::getEvalDatasetsByNameItems(utility::string_t name, boost::optional<int64_t> limit) const
 {
 
 
@@ -536,7 +517,7 @@ pplx::task<std::shared_ptr<ItemList>> EvalApi::getEvalDatasetsByNameItems(utilit
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EvaluatorList>> EvalApi::getEvalEvaluators(boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<EvaluatorList>> EvalApi::getEvalEvaluators(boost::optional<int64_t> limit) const
 {
 
 
@@ -794,7 +775,7 @@ pplx::task<std::shared_ptr<Board>> EvalApi::getEvalMetrics(boost::optional<utili
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ScoreConfigList>> EvalApi::getEvalRubrics(boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<ScoreConfigList>> EvalApi::getEvalRubrics(boost::optional<int64_t> limit) const
 {
 
 
@@ -921,7 +902,7 @@ pplx::task<std::shared_ptr<ScoreConfigList>> EvalApi::getEvalRubrics(boost::opti
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Runs>> EvalApi::getEvalRuns(boost::optional<utility::string_t> datasetName, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<Runs>> EvalApi::getEvalRuns(boost::optional<utility::string_t> datasetName, boost::optional<int64_t> limit) const
 {
 
 
@@ -1052,7 +1033,7 @@ pplx::task<std::shared_ptr<Runs>> EvalApi::getEvalRuns(boost::optional<utility::
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ScoreList>> EvalApi::getEvalScores(boost::optional<utility::string_t> name, boost::optional<utility::string_t> runName, boost::optional<utility::string_t> traceId, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<ScoreList>> EvalApi::getEvalScores(boost::optional<utility::string_t> name, boost::optional<utility::string_t> runName, boost::optional<utility::string_t> traceId, boost::optional<int64_t> limit) const
 {
 
 
@@ -1191,7 +1172,7 @@ pplx::task<std::shared_ptr<ScoreList>> EvalApi::getEvalScores(boost::optional<ut
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<TraceList>> EvalApi::getEvalTraces(boost::optional<utility::string_t> sessionId, boost::optional<utility::string_t> runName, boost::optional<utility::string_t> datasetName, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<TraceList>> EvalApi::getEvalTraces(boost::optional<utility::string_t> sessionId, boost::optional<utility::string_t> runName, boost::optional<utility::string_t> datasetName, boost::optional<int64_t> limit) const
 {
 
 

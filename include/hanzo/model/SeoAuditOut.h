@@ -88,10 +88,10 @@ public:
     /// <summary>
     /// Status is the HTTP status the page answered with.
     /// </summary>
-    int32_t getStatus() const;
+    int64_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
-    void setStatus(int32_t value);
+    void setStatus(int64_t value);
 
     /// <summary>
     /// Title is the page&#39;s title.
@@ -112,10 +112,10 @@ public:
     /// <summary>
     /// Words is how many words of readable text the page carries.
     /// </summary>
-    int32_t getWords() const;
+    int64_t getWords() const;
     bool wordsIsSet() const;
     void unsetWords();
-    void setWords(int32_t value);
+    void setWords(int64_t value);
 
 
 protected:
@@ -131,7 +131,7 @@ protected:
     double m_Score;
     bool m_ScoreIsSet;
 
-    int32_t m_Status;
+    int64_t m_Status;
     bool m_StatusIsSet;
 
     utility::string_t m_Title;
@@ -140,7 +140,7 @@ protected:
     utility::string_t m_Url;
     bool m_UrlIsSet;
 
-    int32_t m_Words;
+    int64_t m_Words;
     bool m_WordsIsSet;
 
 };

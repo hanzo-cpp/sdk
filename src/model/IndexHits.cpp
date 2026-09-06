@@ -18,14 +18,14 @@ namespace model {
 
 IndexHits::IndexHits()
 {
-    m_EstimatedTotalHits = 0;
+    m_EstimatedTotalHits = 0L;
     m_EstimatedTotalHitsIsSet = false;
     m_HitsIsSet = false;
-    m_Limit = 0;
+    m_Limit = 0L;
     m_LimitIsSet = false;
-    m_Offset = 0;
+    m_Offset = 0L;
     m_OffsetIsSet = false;
-    m_ProcessingTimeMs = 0;
+    m_ProcessingTimeMs = 0L;
     m_ProcessingTimeMsIsSet = false;
     m_Query = utility::conversions::to_string_t("");
     m_QueryIsSet = false;
@@ -85,7 +85,7 @@ bool IndexHits::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("estimatedTotalHits")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setEstimatedTotalHits;
+            int64_t refVal_setEstimatedTotalHits;
             ok &= ModelBase::fromJson(fieldValue, refVal_setEstimatedTotalHits);
             setEstimatedTotalHits(refVal_setEstimatedTotalHits);
             
@@ -107,7 +107,7 @@ bool IndexHits::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("limit")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setLimit;
+            int64_t refVal_setLimit;
             ok &= ModelBase::fromJson(fieldValue, refVal_setLimit);
             setLimit(refVal_setLimit);
             
@@ -118,7 +118,7 @@ bool IndexHits::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("offset")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOffset;
+            int64_t refVal_setOffset;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOffset);
             setOffset(refVal_setOffset);
             
@@ -129,7 +129,7 @@ bool IndexHits::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("processingTimeMs")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setProcessingTimeMs;
+            int64_t refVal_setProcessingTimeMs;
             ok &= ModelBase::fromJson(fieldValue, refVal_setProcessingTimeMs);
             setProcessingTimeMs(refVal_setProcessingTimeMs);
             
@@ -193,7 +193,7 @@ bool IndexHits::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("estimatedTotalHits"))))
     {
-        int32_t refVal_setEstimatedTotalHits;
+        int64_t refVal_setEstimatedTotalHits;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("estimatedTotalHits"))), refVal_setEstimatedTotalHits );
         setEstimatedTotalHits(refVal_setEstimatedTotalHits);
     }
@@ -205,19 +205,19 @@ bool IndexHits::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("limit"))))
     {
-        int32_t refVal_setLimit;
+        int64_t refVal_setLimit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("limit"))), refVal_setLimit );
         setLimit(refVal_setLimit);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("offset"))))
     {
-        int32_t refVal_setOffset;
+        int64_t refVal_setOffset;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("offset"))), refVal_setOffset );
         setOffset(refVal_setOffset);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("processingTimeMs"))))
     {
-        int32_t refVal_setProcessingTimeMs;
+        int64_t refVal_setProcessingTimeMs;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("processingTimeMs"))), refVal_setProcessingTimeMs );
         setProcessingTimeMs(refVal_setProcessingTimeMs);
     }
@@ -231,13 +231,13 @@ bool IndexHits::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 }
 
 
-int32_t IndexHits::getEstimatedTotalHits() const
+int64_t IndexHits::getEstimatedTotalHits() const
 {
     return m_EstimatedTotalHits;
 }
 
 
-void IndexHits::setEstimatedTotalHits(int32_t value)
+void IndexHits::setEstimatedTotalHits(int64_t value)
 {
     m_EstimatedTotalHits = value;
     m_EstimatedTotalHitsIsSet = true;
@@ -273,13 +273,13 @@ void IndexHits::unsetHits()
 {
     m_HitsIsSet = false;
 }
-int32_t IndexHits::getLimit() const
+int64_t IndexHits::getLimit() const
 {
     return m_Limit;
 }
 
 
-void IndexHits::setLimit(int32_t value)
+void IndexHits::setLimit(int64_t value)
 {
     m_Limit = value;
     m_LimitIsSet = true;
@@ -294,13 +294,13 @@ void IndexHits::unsetLimit()
 {
     m_LimitIsSet = false;
 }
-int32_t IndexHits::getOffset() const
+int64_t IndexHits::getOffset() const
 {
     return m_Offset;
 }
 
 
-void IndexHits::setOffset(int32_t value)
+void IndexHits::setOffset(int64_t value)
 {
     m_Offset = value;
     m_OffsetIsSet = true;
@@ -315,13 +315,13 @@ void IndexHits::unsetOffset()
 {
     m_OffsetIsSet = false;
 }
-int32_t IndexHits::getProcessingTimeMs() const
+int64_t IndexHits::getProcessingTimeMs() const
 {
     return m_ProcessingTimeMs;
 }
 
 
-void IndexHits::setProcessingTimeMs(int32_t value)
+void IndexHits::setProcessingTimeMs(int64_t value)
 {
     m_ProcessingTimeMs = value;
     m_ProcessingTimeMsIsSet = true;

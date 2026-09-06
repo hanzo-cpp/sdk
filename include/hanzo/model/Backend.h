@@ -63,17 +63,17 @@ public:
     /// <summary>
     /// Weight is this member&#39;s share of the round-robin; must be &gt;&#x3D; 0.
     /// </summary>
-    int32_t getWeight() const;
+    int64_t getWeight() const;
     bool weightIsSet() const;
     void unsetWeight();
-    void setWeight(int32_t value);
+    void setWeight(int64_t value);
 
 
 protected:
     utility::string_t m_Url;
     bool m_UrlIsSet;
 
-    int32_t m_Weight;
+    int64_t m_Weight;
     bool m_WeightIsSet;
 
 };

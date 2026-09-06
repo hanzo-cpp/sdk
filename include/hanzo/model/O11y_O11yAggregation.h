@@ -76,10 +76,10 @@ public:
     /// <summary>
     /// Index is the aggregation&#39;s position in the query.
     /// </summary>
-    int32_t getIndex() const;
+    int64_t getIndex() const;
     bool indexIsSet() const;
     void unsetIndex();
-    void setIndex(int32_t value);
+    void setIndex(int64_t value);
 
     /// <summary>
     /// LowerBoundSeries are forecast lower bounds.
@@ -129,7 +129,7 @@ protected:
     std::vector<std::shared_ptr<O11y_O11yMetricSeries>> m_AnomalyScores;
     bool m_AnomalyScoresIsSet;
 
-    int32_t m_Index;
+    int64_t m_Index;
     bool m_IndexIsSet;
 
     std::vector<std::shared_ptr<O11y_O11yMetricSeries>> m_LowerBoundSeries;

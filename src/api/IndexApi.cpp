@@ -1156,7 +1156,7 @@ pplx::task<std::shared_ptr<IndexStats>> IndexApi::getIndexStats() const
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<IndexTask>> IndexApi::getIndexTasksByUid(int32_t uid) const
+pplx::task<std::shared_ptr<IndexTask>> IndexApi::getIndexTasksByUid(int64_t uid) const
 {
 
 

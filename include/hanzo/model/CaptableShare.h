@@ -104,10 +104,10 @@ public:
     /// <summary>
     /// Quantity is how many shares the certificate covers.
     /// </summary>
-    int32_t getQuantity() const;
+    int64_t getQuantity() const;
     bool quantityIsSet() const;
     void unsetQuantity();
-    void setQuantity(int32_t value);
+    void setQuantity(int64_t value);
 
     /// <summary>
     /// ShareClassID is the class the shares belong to.
@@ -177,7 +177,7 @@ protected:
     double m_PricePerShare;
     bool m_PricePerShareIsSet;
 
-    int32_t m_Quantity;
+    int64_t m_Quantity;
     bool m_QuantityIsSet;
 
     utility::string_t m_ShareClassId;

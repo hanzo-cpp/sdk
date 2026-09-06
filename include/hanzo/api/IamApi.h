@@ -768,12 +768,12 @@ public:
     /// Returns your organization&#39;s service accounts — what each is called and when it was created. Never their secrets: a key&#39;s secret half exists in a response exactly once, when it is minted. Paginated in memory over the already org-scoped slice — the set per org is small, so a dedicated count query is overkill (v1 service_account.go:296-307).
     /// </remarks>
     /// <param name="organization">Organization is the organization whose service accounts to list. Required. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="p">P is the 1-indexed page to return. Paging takes both p and pageSize — leave either out, or send something that is not a number, and the whole list comes back. (optional, default to 0)</param>
-    /// <param name="pageSize">Size is how many accounts a page holds. (optional, default to 0)</param>
+    /// <param name="p">P is the 1-indexed page to return. Paging takes both p and pageSize — leave either out, or send something that is not a number, and the whole list comes back. (optional, default to 0L)</param>
+    /// <param name="pageSize">Size is how many accounts a page holds. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<Iam_Answer>> getIamServiceAccounts(
         boost::optional<utility::string_t> organization,
-        boost::optional<int32_t> p,
-        boost::optional<int32_t> pageSize
+        boost::optional<int64_t> p,
+        boost::optional<int64_t> pageSize
     ) const;
     /// <summary>
     /// Returns your organization&#39;s teams, newest first — each a named set of people that roles and permissions are granted to.
@@ -801,13 +801,13 @@ public:
     /// </remarks>
     /// <param name="owner"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="email">Email narrows the page to the accounts carrying one address. Looking a person up by their address is a QUERY over the collection, not an item read: an address is not the natural key, two rows in one org can carry one, and a caller that gets a page SEES both — where a single-item read would have to choose, and choosing is how somebody joins a team under a colleague&#39;s identity. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit"> (optional, default to 0)</param>
-    /// <param name="offset"> (optional, default to 0)</param>
+    /// <param name="limit"> (optional, default to 0L)</param>
+    /// <param name="offset"> (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<Iam_users_ListOutput>> getIamUsers(
         boost::optional<utility::string_t> owner,
         boost::optional<utility::string_t> email,
-        boost::optional<int32_t> limit,
-        boost::optional<int32_t> offset
+        boost::optional<int64_t> limit,
+        boost::optional<int64_t> offset
     ) const;
     /// <summary>
     /// Returns one person in your organization, addressed by their username or by their email address.
@@ -971,12 +971,12 @@ public:
     /// </remarks>
     /// <param name="xForwardedFor"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="q"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit"> (optional, default to 0)</param>
+    /// <param name="limit"> (optional, default to 0L)</param>
     /// <param name="cursor"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<Iam_ListOrganizationsOutput>> listOrganizations(
         boost::optional<utility::string_t> xForwardedFor,
         boost::optional<utility::string_t> q,
-        boost::optional<int32_t> limit,
+        boost::optional<int64_t> limit,
         boost::optional<utility::string_t> cursor
     ) const;
     /// <summary>

@@ -51,22 +51,22 @@ public:
     /// SharePolicy members
 
 
-    int32_t getRevenueShareBps() const;
+    int64_t getRevenueShareBps() const;
     bool revenueShareBpsIsSet() const;
     void unsetRevenueShareBps();
-    void setRevenueShareBps(int32_t value);
+    void setRevenueShareBps(int64_t value);
 
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
 
 protected:
-    int32_t m_RevenueShareBps;
+    int64_t m_RevenueShareBps;
     bool m_RevenueShareBpsIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
 };

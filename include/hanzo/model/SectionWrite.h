@@ -77,10 +77,10 @@ public:
     /// <summary>
     /// Ord orders this record within its section, ascending, ties broken by id. It is the organization&#39;s own ordering — the page renders in it.
     /// </summary>
-    int32_t getOrd() const;
+    int64_t getOrd() const;
     bool ordIsSet() const;
     void unsetOrd();
-    void setOrd(int32_t value);
+    void setOrd(int64_t value);
 
 
 protected:
@@ -92,7 +92,7 @@ protected:
     utility::string_t m_Kind;
     bool m_KindIsSet;
 
-    int32_t m_Ord;
+    int64_t m_Ord;
     bool m_OrdIsSet;
 
 };

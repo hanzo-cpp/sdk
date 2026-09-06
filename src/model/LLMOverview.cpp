@@ -20,25 +20,25 @@ LLMOverview::LLMOverview()
 {
     m_Available = false;
     m_AvailableIsSet = false;
-    m_CompletionTokens = 0;
+    m_CompletionTokens = 0L;
     m_CompletionTokensIsSet = false;
     m_ErrorRate = 0.0;
     m_ErrorRateIsSet = false;
-    m_Errors = 0;
+    m_Errors = 0L;
     m_ErrorsIsSet = false;
-    m_Models = 0;
+    m_Models = 0L;
     m_ModelsIsSet = false;
-    m_PromptTokens = 0;
+    m_PromptTokens = 0L;
     m_PromptTokensIsSet = false;
-    m_Providers = 0;
+    m_Providers = 0L;
     m_ProvidersIsSet = false;
-    m_Requests = 0;
+    m_Requests = 0L;
     m_RequestsIsSet = false;
     m_Source = utility::conversions::to_string_t("");
     m_SourceIsSet = false;
-    m_SpendCents = 0;
+    m_SpendCents = 0L;
     m_SpendCentsIsSet = false;
-    m_Tokens = 0;
+    m_Tokens = 0L;
     m_TokensIsSet = false;
 }
 
@@ -132,7 +132,7 @@ bool LLMOverview::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("completionTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCompletionTokens;
+            int64_t refVal_setCompletionTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCompletionTokens);
             setCompletionTokens(refVal_setCompletionTokens);
             
@@ -154,7 +154,7 @@ bool LLMOverview::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("errors")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setErrors;
+            int64_t refVal_setErrors;
             ok &= ModelBase::fromJson(fieldValue, refVal_setErrors);
             setErrors(refVal_setErrors);
             
@@ -165,7 +165,7 @@ bool LLMOverview::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("models")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setModels;
+            int64_t refVal_setModels;
             ok &= ModelBase::fromJson(fieldValue, refVal_setModels);
             setModels(refVal_setModels);
             
@@ -176,7 +176,7 @@ bool LLMOverview::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("promptTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPromptTokens;
+            int64_t refVal_setPromptTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPromptTokens);
             setPromptTokens(refVal_setPromptTokens);
             
@@ -187,7 +187,7 @@ bool LLMOverview::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("providers")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setProviders;
+            int64_t refVal_setProviders;
             ok &= ModelBase::fromJson(fieldValue, refVal_setProviders);
             setProviders(refVal_setProviders);
             
@@ -198,7 +198,7 @@ bool LLMOverview::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("requests")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRequests;
+            int64_t refVal_setRequests;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRequests);
             setRequests(refVal_setRequests);
             
@@ -220,7 +220,7 @@ bool LLMOverview::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("spendCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSpendCents;
+            int64_t refVal_setSpendCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSpendCents);
             setSpendCents(refVal_setSpendCents);
             
@@ -231,7 +231,7 @@ bool LLMOverview::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTokens;
+            int64_t refVal_setTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTokens);
             setTokens(refVal_setTokens);
             
@@ -310,7 +310,7 @@ bool LLMOverview::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("completionTokens"))))
     {
-        int32_t refVal_setCompletionTokens;
+        int64_t refVal_setCompletionTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("completionTokens"))), refVal_setCompletionTokens );
         setCompletionTokens(refVal_setCompletionTokens);
     }
@@ -322,31 +322,31 @@ bool LLMOverview::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("errors"))))
     {
-        int32_t refVal_setErrors;
+        int64_t refVal_setErrors;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("errors"))), refVal_setErrors );
         setErrors(refVal_setErrors);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("models"))))
     {
-        int32_t refVal_setModels;
+        int64_t refVal_setModels;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("models"))), refVal_setModels );
         setModels(refVal_setModels);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("promptTokens"))))
     {
-        int32_t refVal_setPromptTokens;
+        int64_t refVal_setPromptTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("promptTokens"))), refVal_setPromptTokens );
         setPromptTokens(refVal_setPromptTokens);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("providers"))))
     {
-        int32_t refVal_setProviders;
+        int64_t refVal_setProviders;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("providers"))), refVal_setProviders );
         setProviders(refVal_setProviders);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("requests"))))
     {
-        int32_t refVal_setRequests;
+        int64_t refVal_setRequests;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("requests"))), refVal_setRequests );
         setRequests(refVal_setRequests);
     }
@@ -358,13 +358,13 @@ bool LLMOverview::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("spendCents"))))
     {
-        int32_t refVal_setSpendCents;
+        int64_t refVal_setSpendCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("spendCents"))), refVal_setSpendCents );
         setSpendCents(refVal_setSpendCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tokens"))))
     {
-        int32_t refVal_setTokens;
+        int64_t refVal_setTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("tokens"))), refVal_setTokens );
         setTokens(refVal_setTokens);
     }
@@ -393,13 +393,13 @@ void LLMOverview::unsetAvailable()
 {
     m_AvailableIsSet = false;
 }
-int32_t LLMOverview::getCompletionTokens() const
+int64_t LLMOverview::getCompletionTokens() const
 {
     return m_CompletionTokens;
 }
 
 
-void LLMOverview::setCompletionTokens(int32_t value)
+void LLMOverview::setCompletionTokens(int64_t value)
 {
     m_CompletionTokens = value;
     m_CompletionTokensIsSet = true;
@@ -435,13 +435,13 @@ void LLMOverview::unsetErrorRate()
 {
     m_ErrorRateIsSet = false;
 }
-int32_t LLMOverview::getErrors() const
+int64_t LLMOverview::getErrors() const
 {
     return m_Errors;
 }
 
 
-void LLMOverview::setErrors(int32_t value)
+void LLMOverview::setErrors(int64_t value)
 {
     m_Errors = value;
     m_ErrorsIsSet = true;
@@ -456,13 +456,13 @@ void LLMOverview::unsetErrors()
 {
     m_ErrorsIsSet = false;
 }
-int32_t LLMOverview::getModels() const
+int64_t LLMOverview::getModels() const
 {
     return m_Models;
 }
 
 
-void LLMOverview::setModels(int32_t value)
+void LLMOverview::setModels(int64_t value)
 {
     m_Models = value;
     m_ModelsIsSet = true;
@@ -477,13 +477,13 @@ void LLMOverview::unsetModels()
 {
     m_ModelsIsSet = false;
 }
-int32_t LLMOverview::getPromptTokens() const
+int64_t LLMOverview::getPromptTokens() const
 {
     return m_PromptTokens;
 }
 
 
-void LLMOverview::setPromptTokens(int32_t value)
+void LLMOverview::setPromptTokens(int64_t value)
 {
     m_PromptTokens = value;
     m_PromptTokensIsSet = true;
@@ -498,13 +498,13 @@ void LLMOverview::unsetPromptTokens()
 {
     m_PromptTokensIsSet = false;
 }
-int32_t LLMOverview::getProviders() const
+int64_t LLMOverview::getProviders() const
 {
     return m_Providers;
 }
 
 
-void LLMOverview::setProviders(int32_t value)
+void LLMOverview::setProviders(int64_t value)
 {
     m_Providers = value;
     m_ProvidersIsSet = true;
@@ -519,13 +519,13 @@ void LLMOverview::unsetProviders()
 {
     m_ProvidersIsSet = false;
 }
-int32_t LLMOverview::getRequests() const
+int64_t LLMOverview::getRequests() const
 {
     return m_Requests;
 }
 
 
-void LLMOverview::setRequests(int32_t value)
+void LLMOverview::setRequests(int64_t value)
 {
     m_Requests = value;
     m_RequestsIsSet = true;
@@ -561,13 +561,13 @@ void LLMOverview::unsetSource()
 {
     m_SourceIsSet = false;
 }
-int32_t LLMOverview::getSpendCents() const
+int64_t LLMOverview::getSpendCents() const
 {
     return m_SpendCents;
 }
 
 
-void LLMOverview::setSpendCents(int32_t value)
+void LLMOverview::setSpendCents(int64_t value)
 {
     m_SpendCents = value;
     m_SpendCentsIsSet = true;
@@ -582,13 +582,13 @@ void LLMOverview::unsetSpendCents()
 {
     m_SpendCentsIsSet = false;
 }
-int32_t LLMOverview::getTokens() const
+int64_t LLMOverview::getTokens() const
 {
     return m_Tokens;
 }
 
 
-void LLMOverview::setTokens(int32_t value)
+void LLMOverview::setTokens(int64_t value)
 {
     m_Tokens = value;
     m_TokensIsSet = true;

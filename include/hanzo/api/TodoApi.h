@@ -94,7 +94,7 @@ public:
     /// <param name="room">Room keeps issues bound to one collaboration room, spelled \&quot;&lt;space&gt;_&lt;room&gt;\&quot; — the exact value GET /v1/meet/call answers with, so a channel&#39;s call and its todo list name the room the same way. This is the read a channel view runs to draw its own list; it spans every board of the org, because the work a channel is about is not confined to one board. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="source">Source keeps one origin: team, git, crm, helpdesk, cms, agent. \&quot;git\&quot; is how you ask for the mirrored GitHub issues specifically. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="assignee">Assignee keeps issues held by one person. Pass \&quot;me\&quot; for yourself. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps the answer; 0 means the default, and anything above the ceiling is clamped rather than refused — a search that errors on being too broad teaches people to guess. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the answer; 0 means the default, and anything above the ceiling is clamped rather than refused — a search that errors on being too broad teaches people to guess. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<IssueHits>> getTodoIssues(
         boost::optional<utility::string_t> q,
         boost::optional<utility::string_t> project,
@@ -104,7 +104,7 @@ public:
         boost::optional<utility::string_t> room,
         boost::optional<utility::string_t> source,
         boost::optional<utility::string_t> assignee,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns the boards of your org — the places your work actually is.
@@ -156,7 +156,7 @@ public:
     /// <param name="num">Num is the issue&#39;s number on that board.</param>
     pplx::task<std::shared_ptr<IssueView>> getTodoProjectsByKeyIssuesByNum(
         utility::string_t key,
-        int32_t num
+        int64_t num
     ) const;
     /// <summary>
     /// Summarises one room&#39;s work.
@@ -189,7 +189,7 @@ public:
     /// <param name="issueEdit"></param>
     pplx::task<std::shared_ptr<IssueView>> patchTodoProjectsByKeyIssuesByNum(
         utility::string_t key,
-        int32_t num,
+        int64_t num,
         std::shared_ptr<IssueEdit> issueEdit
     ) const;
     /// <summary>
@@ -222,7 +222,7 @@ public:
     /// <param name="num"></param>
     pplx::task<std::shared_ptr<IssueHit>> postTodoProjectsByKeyIssuesByNumClaim(
         utility::string_t key,
-        int32_t num
+        int64_t num
     ) const;
 
 protected:

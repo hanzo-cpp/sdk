@@ -39,7 +39,7 @@ AgentDetail::AgentDetail()
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
     m_RecentRunsIsSet = false;
-    m_Runs = 0;
+    m_Runs = 0L;
     m_RunsIsSet = false;
     m_Schedule = utility::conversions::to_string_t("");
     m_ScheduleIsSet = false;
@@ -282,7 +282,7 @@ bool AgentDetail::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("runs")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRuns;
+            int64_t refVal_setRuns;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRuns);
             setRuns(refVal_setRuns);
             
@@ -500,7 +500,7 @@ bool AgentDetail::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("runs"))))
     {
-        int32_t refVal_setRuns;
+        int64_t refVal_setRuns;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("runs"))), refVal_setRuns );
         setRuns(refVal_setRuns);
     }
@@ -769,13 +769,13 @@ void AgentDetail::unsetRecentRuns()
 {
     m_RecentRunsIsSet = false;
 }
-int32_t AgentDetail::getRuns() const
+int64_t AgentDetail::getRuns() const
 {
     return m_Runs;
 }
 
 
-void AgentDetail::setRuns(int32_t value)
+void AgentDetail::setRuns(int64_t value)
 {
     m_Runs = value;
     m_RunsIsSet = true;

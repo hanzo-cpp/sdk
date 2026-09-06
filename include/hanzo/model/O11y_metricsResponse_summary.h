@@ -59,33 +59,33 @@ public:
     void unsetErrorRate();
     void setErrorRate(double value);
 
-    int32_t getErrors() const;
+    int64_t getErrors() const;
     bool errorsIsSet() const;
     void unsetErrors();
-    void setErrors(int32_t value);
+    void setErrors(int64_t value);
 
     double getP95Ms() const;
     bool p95MsIsSet() const;
     void unsetP95Ms();
     void setP95Ms(double value);
 
-    int32_t getRequests() const;
+    int64_t getRequests() const;
     bool requestsIsSet() const;
     void unsetRequests();
-    void setRequests(int32_t value);
+    void setRequests(int64_t value);
 
 
 protected:
     double m_ErrorRate;
     bool m_ErrorRateIsSet;
 
-    int32_t m_Errors;
+    int64_t m_Errors;
     bool m_ErrorsIsSet;
 
     double m_P95Ms;
     bool m_P95MsIsSet;
 
-    int32_t m_Requests;
+    int64_t m_Requests;
     bool m_RequestsIsSet;
 
 };

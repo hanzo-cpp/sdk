@@ -22,19 +22,19 @@ Enrollment::Enrollment()
     m_AddressIsSet = false;
     m_Channel = utility::conversions::to_string_t("");
     m_ChannelIsSet = false;
-    m_CurrentStep = 0;
+    m_CurrentStep = 0L;
     m_CurrentStepIsSet = false;
-    m_EnrolledAt = 0;
+    m_EnrolledAt = 0L;
     m_EnrolledAtIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
-    m_NextRunAt = 0;
+    m_NextRunAt = 0L;
     m_NextRunAtIsSet = false;
     m_SequenceId = utility::conversions::to_string_t("");
     m_SequenceIdIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
-    m_UpdatedAt = 0;
+    m_UpdatedAt = 0L;
     m_UpdatedAtIsSet = false;
 }
 
@@ -129,7 +129,7 @@ bool Enrollment::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("currentStep")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCurrentStep;
+            int64_t refVal_setCurrentStep;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCurrentStep);
             setCurrentStep(refVal_setCurrentStep);
             
@@ -140,7 +140,7 @@ bool Enrollment::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("enrolledAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setEnrolledAt;
+            int64_t refVal_setEnrolledAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setEnrolledAt);
             setEnrolledAt(refVal_setEnrolledAt);
             
@@ -162,7 +162,7 @@ bool Enrollment::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("nextRunAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNextRunAt;
+            int64_t refVal_setNextRunAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNextRunAt);
             setNextRunAt(refVal_setNextRunAt);
             
@@ -195,7 +195,7 @@ bool Enrollment::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updatedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdatedAt;
+            int64_t refVal_setUpdatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdatedAt);
             setUpdatedAt(refVal_setUpdatedAt);
             
@@ -272,13 +272,13 @@ bool Enrollment::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("currentStep"))))
     {
-        int32_t refVal_setCurrentStep;
+        int64_t refVal_setCurrentStep;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("currentStep"))), refVal_setCurrentStep );
         setCurrentStep(refVal_setCurrentStep);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("enrolledAt"))))
     {
-        int32_t refVal_setEnrolledAt;
+        int64_t refVal_setEnrolledAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("enrolledAt"))), refVal_setEnrolledAt );
         setEnrolledAt(refVal_setEnrolledAt);
     }
@@ -290,7 +290,7 @@ bool Enrollment::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("nextRunAt"))))
     {
-        int32_t refVal_setNextRunAt;
+        int64_t refVal_setNextRunAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("nextRunAt"))), refVal_setNextRunAt );
         setNextRunAt(refVal_setNextRunAt);
     }
@@ -308,7 +308,7 @@ bool Enrollment::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
-        int32_t refVal_setUpdatedAt;
+        int64_t refVal_setUpdatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))), refVal_setUpdatedAt );
         setUpdatedAt(refVal_setUpdatedAt);
     }
@@ -358,13 +358,13 @@ void Enrollment::unsetChannel()
 {
     m_ChannelIsSet = false;
 }
-int32_t Enrollment::getCurrentStep() const
+int64_t Enrollment::getCurrentStep() const
 {
     return m_CurrentStep;
 }
 
 
-void Enrollment::setCurrentStep(int32_t value)
+void Enrollment::setCurrentStep(int64_t value)
 {
     m_CurrentStep = value;
     m_CurrentStepIsSet = true;
@@ -379,13 +379,13 @@ void Enrollment::unsetCurrentStep()
 {
     m_CurrentStepIsSet = false;
 }
-int32_t Enrollment::getEnrolledAt() const
+int64_t Enrollment::getEnrolledAt() const
 {
     return m_EnrolledAt;
 }
 
 
-void Enrollment::setEnrolledAt(int32_t value)
+void Enrollment::setEnrolledAt(int64_t value)
 {
     m_EnrolledAt = value;
     m_EnrolledAtIsSet = true;
@@ -421,13 +421,13 @@ void Enrollment::unsetId()
 {
     m_IdIsSet = false;
 }
-int32_t Enrollment::getNextRunAt() const
+int64_t Enrollment::getNextRunAt() const
 {
     return m_NextRunAt;
 }
 
 
-void Enrollment::setNextRunAt(int32_t value)
+void Enrollment::setNextRunAt(int64_t value)
 {
     m_NextRunAt = value;
     m_NextRunAtIsSet = true;
@@ -484,13 +484,13 @@ void Enrollment::unsetStatus()
 {
     m_StatusIsSet = false;
 }
-int32_t Enrollment::getUpdatedAt() const
+int64_t Enrollment::getUpdatedAt() const
 {
     return m_UpdatedAt;
 }
 
 
-void Enrollment::setUpdatedAt(int32_t value)
+void Enrollment::setUpdatedAt(int64_t value)
 {
     m_UpdatedAt = value;
     m_UpdatedAtIsSet = true;

@@ -64,28 +64,28 @@ public:
     /// <summary>
     /// Rows is how many rows were read from the sheet, header included.
     /// </summary>
-    int32_t getRows() const;
+    int64_t getRows() const;
     bool rowsIsSet() const;
     void unsetRows();
-    void setRows(int32_t value);
+    void setRows(int64_t value);
 
     /// <summary>
     /// StakeholdersImported is how many stakeholders the cap table accepted.
     /// </summary>
-    int32_t getStakeholdersImported() const;
+    int64_t getStakeholdersImported() const;
     bool stakeholdersImportedIsSet() const;
     void unsetStakeholdersImported();
-    void setStakeholdersImported(int32_t value);
+    void setStakeholdersImported(int64_t value);
 
 
 protected:
     std::shared_ptr<Formation> m_Formation;
     bool m_FormationIsSet;
 
-    int32_t m_Rows;
+    int64_t m_Rows;
     bool m_RowsIsSet;
 
-    int32_t m_StakeholdersImported;
+    int64_t m_StakeholdersImported;
     bool m_StakeholdersImportedIsSet;
 
 };

@@ -54,35 +54,35 @@ public:
     /// O11y_O11yRuleHistoryQueryIn members
 
 
-    int32_t getEnd() const;
+    int64_t getEnd() const;
     bool endIsSet() const;
     void unsetEnd();
-    void setEnd(int32_t value);
+    void setEnd(int64_t value);
 
     std::shared_ptr<O11y_FilterSet> getFilters() const;
     bool filtersIsSet() const;
     void unsetFilters();
     void setFilters(const std::shared_ptr<O11y_FilterSet>& value);
 
-    int32_t getLimit() const;
+    int64_t getLimit() const;
     bool limitIsSet() const;
     void unsetLimit();
-    void setLimit(int32_t value);
+    void setLimit(int64_t value);
 
-    int32_t getOffset() const;
+    int64_t getOffset() const;
     bool offsetIsSet() const;
     void unsetOffset();
-    void setOffset(int32_t value);
+    void setOffset(int64_t value);
 
     utility::string_t getOrder() const;
     bool orderIsSet() const;
     void unsetOrder();
     void setOrder(const utility::string_t& value);
 
-    int32_t getStart() const;
+    int64_t getStart() const;
     bool startIsSet() const;
     void unsetStart();
-    void setStart(int32_t value);
+    void setStart(int64_t value);
 
     utility::string_t getState() const;
     bool stateIsSet() const;
@@ -91,22 +91,22 @@ public:
 
 
 protected:
-    int32_t m_End;
+    int64_t m_End;
     bool m_EndIsSet;
 
     std::shared_ptr<O11y_FilterSet> m_Filters;
     bool m_FiltersIsSet;
 
-    int32_t m_Limit;
+    int64_t m_Limit;
     bool m_LimitIsSet;
 
-    int32_t m_Offset;
+    int64_t m_Offset;
     bool m_OffsetIsSet;
 
     utility::string_t m_Order;
     bool m_OrderIsSet;
 
-    int32_t m_Start;
+    int64_t m_Start;
     bool m_StartIsSet;
 
     utility::string_t m_State;

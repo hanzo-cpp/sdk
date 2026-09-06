@@ -63,10 +63,10 @@ public:
     /// <summary>
     /// ACorrect is how many of those common items A got right.
     /// </summary>
-    int32_t getACorrect() const;
+    int64_t getACorrect() const;
     bool aCorrectIsSet() const;
     void unsetA_correct();
-    void setACorrect(int32_t value);
+    void setACorrect(int64_t value);
 
     /// <summary>
     /// B is the second model id.
@@ -79,10 +79,10 @@ public:
     /// <summary>
     /// BCorrect is how many of those common items B got right.
     /// </summary>
-    int32_t getBCorrect() const;
+    int64_t getBCorrect() const;
     bool bCorrectIsSet() const;
     void unsetB_correct();
-    void setBCorrect(int32_t value);
+    void setBCorrect(int64_t value);
 
     /// <summary>
     /// Benchmark is the catalog id the two arms were compared on.
@@ -103,47 +103,47 @@ public:
     /// <summary>
     /// NCommon is how many items BOTH arms completed. It is the denominator, and the reason this comparison is valid where a raw accuracy difference is not.
     /// </summary>
-    int32_t getNCommon() const;
+    int64_t getNCommon() const;
     bool nCommonIsSet() const;
     void unsetN_common();
-    void setNCommon(int32_t value);
+    void setNCommon(int64_t value);
 
     /// <summary>
     /// NetAMinusB is the two rescue counts subtracted — A&#39;s advantage in items.
     /// </summary>
-    int32_t getNetAMinusB() const;
+    int64_t getNetAMinusB() const;
     bool netAMinusBIsSet() const;
     void unsetNet_a_minus_b();
-    void setNetAMinusB(int32_t value);
+    void setNetAMinusB(int64_t value);
 
     /// <summary>
     /// RescueAOverB is how many items A got right and B got wrong.
     /// </summary>
-    int32_t getRescueAOverB() const;
+    int64_t getRescueAOverB() const;
     bool rescueAOverBIsSet() const;
     void unsetRescue_a_over_b();
-    void setRescueAOverB(int32_t value);
+    void setRescueAOverB(int64_t value);
 
     /// <summary>
     /// RescueBOverA is how many items B got right and A got wrong.
     /// </summary>
-    int32_t getRescueBOverA() const;
+    int64_t getRescueBOverA() const;
     bool rescueBOverAIsSet() const;
     void unsetRescue_b_over_a();
-    void setRescueBOverA(int32_t value);
+    void setRescueBOverA(int64_t value);
 
 
 protected:
     utility::string_t m_a;
     bool m_aIsSet;
 
-    int32_t m_A_correct;
+    int64_t m_A_correct;
     bool m_A_correctIsSet;
 
     utility::string_t m_b;
     bool m_bIsSet;
 
-    int32_t m_B_correct;
+    int64_t m_B_correct;
     bool m_B_correctIsSet;
 
     utility::string_t m_Benchmark;
@@ -152,16 +152,16 @@ protected:
     double m_Mcnemar_p;
     bool m_Mcnemar_pIsSet;
 
-    int32_t m_N_common;
+    int64_t m_N_common;
     bool m_N_commonIsSet;
 
-    int32_t m_Net_a_minus_b;
+    int64_t m_Net_a_minus_b;
     bool m_Net_a_minus_bIsSet;
 
-    int32_t m_Rescue_a_over_b;
+    int64_t m_Rescue_a_over_b;
     bool m_Rescue_a_over_bIsSet;
 
-    int32_t m_Rescue_b_over_a;
+    int64_t m_Rescue_b_over_a;
     bool m_Rescue_b_over_aIsSet;
 
 };

@@ -20,7 +20,7 @@ UpdateCampaignIn::UpdateCampaignIn()
 {
     m_Account = utility::conversions::to_string_t("");
     m_AccountIsSet = false;
-    m_Budget = 0;
+    m_Budget = 0L;
     m_BudgetIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
@@ -28,7 +28,7 @@ UpdateCampaignIn::UpdateCampaignIn()
     m_ObjectiveIsSet = false;
     m_Platform = utility::conversions::to_string_t("");
     m_PlatformIsSet = false;
-    m_Spend = 0;
+    m_Spend = 0L;
     m_SpendIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
@@ -104,7 +104,7 @@ bool UpdateCampaignIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("budget")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBudget;
+            int64_t refVal_setBudget;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBudget);
             setBudget(refVal_setBudget);
             
@@ -148,7 +148,7 @@ bool UpdateCampaignIn::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("spend")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSpend;
+            int64_t refVal_setSpend;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSpend);
             setSpend(refVal_setSpend);
             
@@ -222,7 +222,7 @@ bool UpdateCampaignIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("budget"))))
     {
-        int32_t refVal_setBudget;
+        int64_t refVal_setBudget;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("budget"))), refVal_setBudget );
         setBudget(refVal_setBudget);
     }
@@ -246,7 +246,7 @@ bool UpdateCampaignIn::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("spend"))))
     {
-        int32_t refVal_setSpend;
+        int64_t refVal_setSpend;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("spend"))), refVal_setSpend );
         setSpend(refVal_setSpend);
     }
@@ -281,13 +281,13 @@ void UpdateCampaignIn::unsetAccount()
 {
     m_AccountIsSet = false;
 }
-int32_t UpdateCampaignIn::getBudget() const
+int64_t UpdateCampaignIn::getBudget() const
 {
     return m_Budget;
 }
 
 
-void UpdateCampaignIn::setBudget(int32_t value)
+void UpdateCampaignIn::setBudget(int64_t value)
 {
     m_Budget = value;
     m_BudgetIsSet = true;
@@ -365,13 +365,13 @@ void UpdateCampaignIn::unsetPlatform()
 {
     m_PlatformIsSet = false;
 }
-int32_t UpdateCampaignIn::getSpend() const
+int64_t UpdateCampaignIn::getSpend() const
 {
     return m_Spend;
 }
 
 
-void UpdateCampaignIn::setSpend(int32_t value)
+void UpdateCampaignIn::setSpend(int64_t value)
 {
     m_Spend = value;
     m_SpendIsSet = true;

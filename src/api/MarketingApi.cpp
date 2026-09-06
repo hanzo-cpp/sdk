@@ -348,7 +348,7 @@ pplx::task<void> MarketingApi::deleteMarketingCampaignsById(utility::string_t id
         return void();
     });
 }
-pplx::task<void> MarketingApi::deleteMarketingSuppressions(boost::optional<utility::string_t> channel, boost::optional<utility::string_t> address, boost::optional<utility::string_t> reason, boost::optional<int32_t> createdAt) const
+pplx::task<void> MarketingApi::deleteMarketingSuppressions(boost::optional<utility::string_t> channel, boost::optional<utility::string_t> address, boost::optional<utility::string_t> reason, boost::optional<int64_t> createdAt) const
 {
 
 
@@ -468,7 +468,7 @@ pplx::task<void> MarketingApi::deleteMarketingSuppressions(boost::optional<utili
         return void();
     });
 }
-pplx::task<std::shared_ptr<AudienceList>> MarketingApi::getMarketingAudiences(boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<AudienceList>> MarketingApi::getMarketingAudiences(boost::optional<int64_t> limit) const
 {
 
 
@@ -843,7 +843,7 @@ pplx::task<std::shared_ptr<AudiencePreview>> MarketingApi::getMarketingAudiences
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<PostList>> MarketingApi::getMarketingCalendar(boost::optional<utility::string_t> status, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<PostList>> MarketingApi::getMarketingCalendar(boost::optional<utility::string_t> status, boost::optional<int64_t> limit) const
 {
 
 
@@ -1098,7 +1098,7 @@ pplx::task<std::shared_ptr<CalendarPost>> MarketingApi::getMarketingCalendarById
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<CampaignList>> MarketingApi::getMarketingCampaigns(boost::optional<utility::string_t> status, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<CampaignList>> MarketingApi::getMarketingCampaigns(boost::optional<utility::string_t> status, boost::optional<int64_t> limit) const
 {
 
 
@@ -1476,7 +1476,7 @@ pplx::task<std::shared_ptr<PromoList>> MarketingApi::getMarketingPromos() const
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Quote>> MarketingApi::getMarketingPromosByCodeEligibility(utility::string_t code, boost::optional<utility::string_t> plan, boost::optional<int32_t> seats) const
+pplx::task<std::shared_ptr<Quote>> MarketingApi::getMarketingPromosByCodeEligibility(utility::string_t code, boost::optional<utility::string_t> plan, boost::optional<int64_t> seats) const
 {
 
 
@@ -1732,7 +1732,7 @@ pplx::task<std::shared_ptr<Redemption>> MarketingApi::getMarketingPromosByCodeRe
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<SequenceList>> MarketingApi::getMarketingSequences(boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<SequenceList>> MarketingApi::getMarketingSequences(boost::optional<int64_t> limit) const
 {
 
 
@@ -1983,7 +1983,7 @@ pplx::task<std::shared_ptr<SequenceView>> MarketingApi::getMarketingSequencesByI
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EnrollmentList>> MarketingApi::getMarketingSequencesByIdEnrollments(utility::string_t id, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<EnrollmentList>> MarketingApi::getMarketingSequencesByIdEnrollments(utility::string_t id, boost::optional<int64_t> limit) const
 {
 
 
@@ -2358,7 +2358,7 @@ pplx::task<std::shared_ptr<Summary>> MarketingApi::getMarketingSummary() const
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<SuppressionList>> MarketingApi::getMarketingSuppressions(boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<SuppressionList>> MarketingApi::getMarketingSuppressions(boost::optional<int64_t> limit) const
 {
 
 

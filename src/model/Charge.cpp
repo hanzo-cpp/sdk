@@ -18,7 +18,7 @@ namespace model {
 
 Charge::Charge()
 {
-    m_AmountCents = 0;
+    m_AmountCents = 0L;
     m_AmountCentsIsSet = false;
     m_AsOf = utility::conversions::to_string_t("");
     m_AsOfIsSet = false;
@@ -100,7 +100,7 @@ bool Charge::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("amountCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAmountCents;
+            int64_t refVal_setAmountCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAmountCents);
             setAmountCents(refVal_setAmountCents);
             
@@ -238,7 +238,7 @@ bool Charge::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("amountCents"))))
     {
-        int32_t refVal_setAmountCents;
+        int64_t refVal_setAmountCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("amountCents"))), refVal_setAmountCents );
         setAmountCents(refVal_setAmountCents);
     }
@@ -288,13 +288,13 @@ bool Charge::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
 }
 
 
-int32_t Charge::getAmountCents() const
+int64_t Charge::getAmountCents() const
 {
     return m_AmountCents;
 }
 
 
-void Charge::setAmountCents(int32_t value)
+void Charge::setAmountCents(int64_t value)
 {
     m_AmountCents = value;
     m_AmountCentsIsSet = true;

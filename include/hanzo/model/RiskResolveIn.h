@@ -58,10 +58,10 @@ public:
     /// <summary>
     /// Horizon is how many days an event must age before it may be resolved at all, and it is the whole of the no-leakage rule. 120 for the payment lane (past the Visa and Mastercard dispute windows), 14 for signup abuse. Unstated takes 120.
     /// </summary>
-    int32_t getHorizon() const;
+    int64_t getHorizon() const;
     bool horizonIsSet() const;
     void unsetHorizon();
-    void setHorizon(int32_t value);
+    void setHorizon(int64_t value);
 
     /// <summary>
     /// Now moves the observation instant BACKWARDS, RFC 3339. It exists so a BACKTEST can resolve labels as the plane stood at a past moment; without it, every backtest would score a model against knowledge that arrived after the decision it is being scored on. An instant after the server clock is refused: a backtest resolves the past, and a future one would declare unmatured events matured and hand a training set negatives for rows whose chargeback has not had time to arrive.
@@ -81,7 +81,7 @@ public:
 
 
 protected:
-    int32_t m_Horizon;
+    int64_t m_Horizon;
     bool m_HorizonIsSet;
 
     utility::string_t m_Now;

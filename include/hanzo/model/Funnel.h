@@ -62,18 +62,18 @@ public:
     /// <summary>
     /// Orders counts completed orders in the window — purchases, not carts started.
     /// </summary>
-    int32_t getOrders() const;
+    int64_t getOrders() const;
     bool ordersIsSet() const;
     void unsetOrders();
-    void setOrders(int32_t value);
+    void setOrders(int64_t value);
 
     /// <summary>
     /// Pageviews counts page events in the window, one per view rather than per person, so a single visitor reading ten pages counts ten.
     /// </summary>
-    int32_t getPageviews() const;
+    int64_t getPageviews() const;
     bool pageviewsIsSet() const;
     void unsetPageviews();
-    void setPageviews(int32_t value);
+    void setPageviews(int64_t value);
 
     /// <summary>
     /// Revenue is the sum of the amounts those orders reported, in whatever currency the beacon stamped on them (major units, e.g. 49.5 for $49.50) — NOT cents, and not converted to a single currency. Contrast revenueCents on the profile, which is the money of record.
@@ -86,48 +86,48 @@ public:
     /// <summary>
     /// Signups counts completed signups in the window, the step where an anonymous visitor becomes somebody with an account.
     /// </summary>
-    int32_t getSignups() const;
+    int64_t getSignups() const;
     bool signupsIsSet() const;
     void unsetSignups();
-    void setSignups(int32_t value);
+    void setSignups(int64_t value);
 
     /// <summary>
     /// Visitors is the number of DISTINCT people seen in the window, counted by the beacon&#39;s distinct id — so it is unique visitors, not sessions and not views.
     /// </summary>
-    int32_t getVisitors() const;
+    int64_t getVisitors() const;
     bool visitorsIsSet() const;
     void unsetVisitors();
-    void setVisitors(int32_t value);
+    void setVisitors(int64_t value);
 
     /// <summary>
     /// WindowDays is the length of the trailing window every count covers, so a reader knows whether 40 signups is a month or a day.
     /// </summary>
-    int32_t getWindowDays() const;
+    int64_t getWindowDays() const;
     bool windowDaysIsSet() const;
     void unsetWindowDays();
-    void setWindowDays(int32_t value);
+    void setWindowDays(int64_t value);
 
 
 protected:
     bool m_Available;
     bool m_AvailableIsSet;
 
-    int32_t m_Orders;
+    int64_t m_Orders;
     bool m_OrdersIsSet;
 
-    int32_t m_Pageviews;
+    int64_t m_Pageviews;
     bool m_PageviewsIsSet;
 
     double m_Revenue;
     bool m_RevenueIsSet;
 
-    int32_t m_Signups;
+    int64_t m_Signups;
     bool m_SignupsIsSet;
 
-    int32_t m_Visitors;
+    int64_t m_Visitors;
     bool m_VisitorsIsSet;
 
-    int32_t m_WindowDays;
+    int64_t m_WindowDays;
     bool m_WindowDaysIsSet;
 
 };

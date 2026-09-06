@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// CompletionTokens is the output token count.
     /// </summary>
-    int32_t getCompletionTokens() const;
+    int64_t getCompletionTokens() const;
     bool completionTokensIsSet() const;
     void unsetCompletionTokens();
-    void setCompletionTokens(int32_t value);
+    void setCompletionTokens(int64_t value);
 
     /// <summary>
     /// ID is the observation&#39;s id (the span id).
@@ -103,10 +103,10 @@ public:
     /// <summary>
     /// PromptTokens is the input token count.
     /// </summary>
-    int32_t getPromptTokens() const;
+    int64_t getPromptTokens() const;
     bool promptTokensIsSet() const;
     void unsetPromptTokens();
-    void setPromptTokens(int32_t value);
+    void setPromptTokens(int64_t value);
 
     /// <summary>
     /// Provider is the model&#39;s provider.
@@ -159,10 +159,10 @@ public:
     /// <summary>
     /// TotalTokens is the sum of prompt and completion tokens.
     /// </summary>
-    int32_t getTotalTokens() const;
+    int64_t getTotalTokens() const;
     bool totalTokensIsSet() const;
     void unsetTotalTokens();
-    void setTotalTokens(int32_t value);
+    void setTotalTokens(int64_t value);
 
     /// <summary>
     /// TraceID is the trace the observation belongs to.
@@ -190,7 +190,7 @@ public:
 
 
 protected:
-    int32_t m_CompletionTokens;
+    int64_t m_CompletionTokens;
     bool m_CompletionTokensIsSet;
 
     utility::string_t m_Id;
@@ -208,7 +208,7 @@ protected:
     utility::string_t m_ParentObservationId;
     bool m_ParentObservationIdIsSet;
 
-    int32_t m_PromptTokens;
+    int64_t m_PromptTokens;
     bool m_PromptTokensIsSet;
 
     utility::string_t m_Provider;
@@ -229,7 +229,7 @@ protected:
     double m_TotalCost;
     bool m_TotalCostIsSet;
 
-    int32_t m_TotalTokens;
+    int64_t m_TotalTokens;
     bool m_TotalTokensIsSet;
 
     utility::string_t m_TraceId;

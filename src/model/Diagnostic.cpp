@@ -22,7 +22,7 @@ Diagnostic::Diagnostic()
     m_Message = utility::conversions::to_string_t("");
     m_MessageIsSet = false;
     m_RangeIsSet = false;
-    m_Severity = 0;
+    m_Severity = 0L;
     m_SeverityIsSet = false;
     m_Source = utility::conversions::to_string_t("");
     m_SourceIsSet = false;
@@ -110,7 +110,7 @@ bool Diagnostic::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("severity")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSeverity;
+            int64_t refVal_setSeverity;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSeverity);
             setSeverity(refVal_setSeverity);
             
@@ -188,7 +188,7 @@ bool Diagnostic::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("severity"))))
     {
-        int32_t refVal_setSeverity;
+        int64_t refVal_setSeverity;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("severity"))), refVal_setSeverity );
         setSeverity(refVal_setSeverity);
     }
@@ -265,13 +265,13 @@ void Diagnostic::unsetRange()
 {
     m_RangeIsSet = false;
 }
-int32_t Diagnostic::getSeverity() const
+int64_t Diagnostic::getSeverity() const
 {
     return m_Severity;
 }
 
 
-void Diagnostic::setSeverity(int32_t value)
+void Diagnostic::setSeverity(int64_t value)
 {
     m_Severity = value;
     m_SeverityIsSet = true;

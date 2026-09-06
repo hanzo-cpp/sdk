@@ -20,9 +20,9 @@ Day::Day()
 {
     m_Close = utility::conversions::to_string_t("");
     m_CloseIsSet = false;
-    m_Count = 0;
+    m_Count = 0L;
     m_CountIsSet = false;
-    m_date = 0;
+    m_date = 0L;
     m_dateIsSet = false;
     m_High = utility::conversions::to_string_t("");
     m_HighIsSet = false;
@@ -118,7 +118,7 @@ bool Day::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("count")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCount;
+            int64_t refVal_setCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCount);
             setCount(refVal_setCount);
             
@@ -129,7 +129,7 @@ bool Day::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("date")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDate;
+            int64_t refVal_setDate;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDate);
             setDate(refVal_setDate);
             
@@ -266,13 +266,13 @@ bool Day::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const util
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("count"))))
     {
-        int32_t refVal_setCount;
+        int64_t refVal_setCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("count"))), refVal_setCount );
         setCount(refVal_setCount);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("date"))))
     {
-        int32_t refVal_setDate;
+        int64_t refVal_setDate;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("date"))), refVal_setDate );
         setDate(refVal_setDate);
     }
@@ -337,13 +337,13 @@ void Day::unsetClose()
 {
     m_CloseIsSet = false;
 }
-int32_t Day::getCount() const
+int64_t Day::getCount() const
 {
     return m_Count;
 }
 
 
-void Day::setCount(int32_t value)
+void Day::setCount(int64_t value)
 {
     m_Count = value;
     m_CountIsSet = true;
@@ -358,13 +358,13 @@ void Day::unsetCount()
 {
     m_CountIsSet = false;
 }
-int32_t Day::getDate() const
+int64_t Day::getDate() const
 {
     return m_date;
 }
 
 
-void Day::setDate(int32_t value)
+void Day::setDate(int64_t value)
 {
     m_date = value;
     m_dateIsSet = true;

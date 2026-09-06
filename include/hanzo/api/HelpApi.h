@@ -52,10 +52,10 @@ public:
     /// Returns the public knowledge base: the help center&#39;s Published, publicly-visible articles as cards. The org is server-fixed and the status/is_public filter is server-set, so neither the tenant nor the visibility can be widened by the caller. A deployment with no help center answers 404.
     /// </remarks>
     /// <param name="category">Category narrows the list to one knowledge-base section, matched against the article&#39;s category by exact name. Empty lists every section. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps how many articles are returned. Anything that is not a positive integer uses 50, and values above 200 are clamped to 200. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps how many articles are returned. Anything that is not a positive integer uses 50, and values above 200 are clamped to 200. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<HelpArticleList>> getHelpArticles(
         boost::optional<utility::string_t> category,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns one public article by slug, with its body.

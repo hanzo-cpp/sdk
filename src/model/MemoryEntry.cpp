@@ -32,7 +32,7 @@ MemoryEntry::MemoryEntry()
     m_TextIsSet = false;
     m_Tier = utility::conversions::to_string_t("");
     m_TierIsSet = false;
-    m_Updated_at = 0;
+    m_Updated_at = 0L;
     m_Updated_atIsSet = false;
 }
 
@@ -177,7 +177,7 @@ bool MemoryEntry::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updated_at")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdatedAt;
+            int64_t refVal_setUpdatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdatedAt);
             setUpdatedAt(refVal_setUpdatedAt);
             
@@ -280,7 +280,7 @@ bool MemoryEntry::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updated_at"))))
     {
-        int32_t refVal_setUpdatedAt;
+        int64_t refVal_setUpdatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updated_at"))), refVal_setUpdatedAt );
         setUpdatedAt(refVal_setUpdatedAt);
     }
@@ -435,13 +435,13 @@ void MemoryEntry::unsetTier()
 {
     m_TierIsSet = false;
 }
-int32_t MemoryEntry::getUpdatedAt() const
+int64_t MemoryEntry::getUpdatedAt() const
 {
     return m_Updated_at;
 }
 
 
-void MemoryEntry::setUpdatedAt(int32_t value)
+void MemoryEntry::setUpdatedAt(int64_t value)
 {
     m_Updated_at = value;
     m_Updated_atIsSet = true;

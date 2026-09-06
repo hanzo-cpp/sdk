@@ -97,10 +97,10 @@ public:
     /// <summary>
     /// TTLSeconds requests a token lifetime in seconds. It is clamped to the deployment maximum AND to the entitlement&#39;s own expiry — a token never outlives the subscription that paid for it.
     /// </summary>
-    int32_t getTtlSeconds() const;
+    int64_t getTtlSeconds() const;
     bool ttlSecondsIsSet() const;
     void unsetTtl_seconds();
-    void setTtlSeconds(int32_t value);
+    void setTtlSeconds(int64_t value);
 
 
 protected:
@@ -119,7 +119,7 @@ protected:
     std::shared_ptr<Licensing_DeviceSignals> m_Signals;
     bool m_SignalsIsSet;
 
-    int32_t m_Ttl_seconds;
+    int64_t m_Ttl_seconds;
     bool m_Ttl_secondsIsSet;
 
 };

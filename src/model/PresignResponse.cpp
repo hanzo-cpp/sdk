@@ -18,7 +18,7 @@ namespace model {
 
 PresignResponse::PresignResponse()
 {
-    m_ExpiresIn = 0;
+    m_ExpiresIn = 0L;
     m_ExpiresInIsSet = false;
     m_Key = utility::conversions::to_string_t("");
     m_KeyIsSet = false;
@@ -72,7 +72,7 @@ bool PresignResponse::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("expiresIn")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExpiresIn;
+            int64_t refVal_setExpiresIn;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExpiresIn);
             setExpiresIn(refVal_setExpiresIn);
             
@@ -150,7 +150,7 @@ bool PresignResponse::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("expiresIn"))))
     {
-        int32_t refVal_setExpiresIn;
+        int64_t refVal_setExpiresIn;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("expiresIn"))), refVal_setExpiresIn );
         setExpiresIn(refVal_setExpiresIn);
     }
@@ -176,13 +176,13 @@ bool PresignResponse::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
 }
 
 
-int32_t PresignResponse::getExpiresIn() const
+int64_t PresignResponse::getExpiresIn() const
 {
     return m_ExpiresIn;
 }
 
 
-void PresignResponse::setExpiresIn(int32_t value)
+void PresignResponse::setExpiresIn(int64_t value)
 {
     m_ExpiresIn = value;
     m_ExpiresInIsSet = true;

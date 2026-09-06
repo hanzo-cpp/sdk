@@ -63,18 +63,18 @@ public:
     /// <summary>
     /// Budget is the campaign&#39;s authorized spend in MINOR units (cents). Negative clamps to 0. It is the org&#39;s stored plan: a Meta launch creates the campaign object only, and the delivering budget lives on the ad set.
     /// </summary>
-    int32_t getBudget() const;
+    int64_t getBudget() const;
     bool budgetIsSet() const;
     void unsetBudget();
-    void setBudget(int32_t value);
+    void setBudget(int64_t value);
 
     /// <summary>
     /// CreatedAt is when the campaign was first stored, in unix seconds. It never changes, including across a full-replace update.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// ExternalID is the ad network&#39;s own campaign id, written by a successful launch and by nothing else — an update never touches it. Empty means this campaign has never reached its network.
@@ -119,10 +119,10 @@ public:
     /// <summary>
     /// Spend is spend-to-date in MINOR units (cents), as last written through create or update. Negative clamps to 0. It is NOT read back from the network — that is a separate insights call — so 0 means nothing was recorded here, not that nothing was spent.
     /// </summary>
-    int32_t getSpend() const;
+    int64_t getSpend() const;
     bool spendIsSet() const;
     void unsetSpend();
-    void setSpend(int32_t value);
+    void setSpend(int64_t value);
 
     /// <summary>
     /// Status is the lifecycle: draft, active, paused or completed, and nothing else — a write naming another is 400. Empty stores as draft; a successful launch sets active. It records what this deployment did, not what the ad network currently reports.
@@ -135,20 +135,20 @@ public:
     /// <summary>
     /// UpdatedAt is when the row was last written, in unix seconds — set by create, update and launch. Listings are ordered by it, newest first.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
 
 protected:
     utility::string_t m_Account;
     bool m_AccountIsSet;
 
-    int32_t m_Budget;
+    int64_t m_Budget;
     bool m_BudgetIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_ExternalId;
@@ -166,13 +166,13 @@ protected:
     utility::string_t m_Platform;
     bool m_PlatformIsSet;
 
-    int32_t m_Spend;
+    int64_t m_Spend;
     bool m_SpendIsSet;
 
     utility::string_t m_Status;
     bool m_StatusIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
 };

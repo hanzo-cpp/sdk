@@ -79,10 +79,10 @@ public:
     /// <summary>
     /// Num is the issue number on that repository, from the path.
     /// </summary>
-    int32_t getNum() const;
+    int64_t getNum() const;
     bool numIsSet() const;
     void unsetNum();
-    void setNum(int32_t value);
+    void setNum(int64_t value);
 
     /// <summary>
     /// Priority re-prioritises it.
@@ -119,7 +119,7 @@ protected:
     utility::string_t m_Key;
     bool m_KeyIsSet;
 
-    int32_t m_Num;
+    int64_t m_Num;
     bool m_NumIsSet;
 
     utility::string_t m_Priority;

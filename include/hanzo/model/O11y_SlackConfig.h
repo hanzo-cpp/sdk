@@ -188,10 +188,10 @@ public:
     /// <summary>
     /// Timeout is the maximum time allowed to invoke the slack. Setting this to 0 does not impose a timeout.
     /// </summary>
-    int32_t getTimeout() const;
+    int64_t getTimeout() const;
     bool timeoutIsSet() const;
     void unsetTimeout();
-    void setTimeout(int32_t value);
+    void setTimeout(int64_t value);
 
     utility::string_t getTitle() const;
     bool titleIsSet() const;
@@ -279,7 +279,7 @@ protected:
     utility::string_t m_Thumb_url;
     bool m_Thumb_urlIsSet;
 
-    int32_t m_Timeout;
+    int64_t m_Timeout;
     bool m_TimeoutIsSet;
 
     utility::string_t m_Title;

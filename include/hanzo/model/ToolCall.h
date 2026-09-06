@@ -63,7 +63,7 @@ public:
     void setArguments(const std::map<utility::string_t, std::shared_ptr<Object>>& value);
 
     /// <summary>
-    /// Name is the tool to run, exactly as GET /v1/tools reports it.
+    /// Name is the tool to run, exactly as GET /v1/tool reports it.
     /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;

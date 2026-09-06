@@ -56,12 +56,12 @@ public:
     /// <param name="scope">Scope picks the board: \&quot;personal\&quot; (default) ranks the caller among their own org&#39;s users, \&quot;org\&quot; is that same org board named for an admin, \&quot;global\&quot; ranks organizations against each other. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="metric">Metric is the value ranked: tokens (default), requests, or cost. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="period">Period is the window ranked: day, week, month (default) or all. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps the rows returned, clamped to 100. Defaults to 10, which is also what a non-positive or unparseable value takes. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the rows returned, clamped to 100. Defaults to 10, which is also what a non-positive or unparseable value takes. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<LeaderboardView>> getLeaderboard(
         boost::optional<utility::string_t> scope,
         boost::optional<utility::string_t> metric,
         boost::optional<utility::string_t> period,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Activity returns the per-day usage series for ONE authorized subject — the points a contribution heatmap and a timeline are drawn from, gap-filled so every day in the range is present.

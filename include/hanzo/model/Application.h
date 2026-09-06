@@ -79,10 +79,10 @@ public:
     /// <summary>
     /// RateBps is the direct (level 1) commission rate the row carries, in basis points OF Hanzo&#39;s margin (2000 &#x3D; 20% of margin, never of the customer&#39;s bill).
     /// </summary>
-    int32_t getRateBps() const;
+    int64_t getRateBps() const;
     bool rateBpsIsSet() const;
     void unsetRateBps();
-    void setRateBps(int32_t value);
+    void setRateBps(int64_t value);
 
     /// <summary>
     /// RequestedCode echoes the vanity code asked for, normalized to lower case. It is a request only: approval mints a different slug if this one is taken.
@@ -111,7 +111,7 @@ protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
 
-    int32_t m_RateBps;
+    int64_t m_RateBps;
     bool m_RateBpsIsSet;
 
     utility::string_t m_RequestedCode;

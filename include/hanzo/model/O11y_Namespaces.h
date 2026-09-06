@@ -67,10 +67,10 @@ public:
     void unsetRecords();
     void setRecords(const std::vector<std::shared_ptr<O11y_NamespaceRecord>>& value);
 
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
     std::shared_ptr<AnyType> getType() const;
     bool typeIsSet() const;
@@ -90,7 +90,7 @@ protected:
     std::vector<std::shared_ptr<O11y_NamespaceRecord>> m_Records;
     bool m_RecordsIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
     boost::optional<std::shared_ptr<AnyType>> m_Type;

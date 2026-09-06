@@ -18,7 +18,7 @@ namespace model {
 
 InboxPage::InboxPage()
 {
-    m_Cursor = 0;
+    m_Cursor = 0L;
     m_CursorIsSet = false;
     m_MessagesIsSet = false;
 }
@@ -57,7 +57,7 @@ bool InboxPage::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cursor")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCursor;
+            int64_t refVal_setCursor;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCursor);
             setCursor(refVal_setCursor);
             
@@ -105,7 +105,7 @@ bool InboxPage::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cursor"))))
     {
-        int32_t refVal_setCursor;
+        int64_t refVal_setCursor;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cursor"))), refVal_setCursor );
         setCursor(refVal_setCursor);
     }
@@ -119,13 +119,13 @@ bool InboxPage::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
 }
 
 
-int32_t InboxPage::getCursor() const
+int64_t InboxPage::getCursor() const
 {
     return m_Cursor;
 }
 
 
-void InboxPage::setCursor(int32_t value)
+void InboxPage::setCursor(int64_t value)
 {
     m_Cursor = value;
     m_CursorIsSet = true;

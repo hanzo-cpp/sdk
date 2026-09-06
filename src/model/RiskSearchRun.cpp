@@ -18,9 +18,9 @@ namespace model {
 
 RiskSearchRun::RiskSearchRun()
 {
-    m_Candidates = 0;
+    m_Candidates = 0L;
     m_CandidatesIsSet = false;
-    m_Events = 0;
+    m_Events = 0L;
     m_EventsIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
@@ -65,7 +65,7 @@ bool RiskSearchRun::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("candidates")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCandidates;
+            int64_t refVal_setCandidates;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCandidates);
             setCandidates(refVal_setCandidates);
             
@@ -76,7 +76,7 @@ bool RiskSearchRun::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("events")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setEvents;
+            int64_t refVal_setEvents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setEvents);
             setEvents(refVal_setEvents);
             
@@ -128,13 +128,13 @@ bool RiskSearchRun::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("candidates"))))
     {
-        int32_t refVal_setCandidates;
+        int64_t refVal_setCandidates;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("candidates"))), refVal_setCandidates );
         setCandidates(refVal_setCandidates);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("events"))))
     {
-        int32_t refVal_setEvents;
+        int64_t refVal_setEvents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("events"))), refVal_setEvents );
         setEvents(refVal_setEvents);
     }
@@ -148,13 +148,13 @@ bool RiskSearchRun::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 }
 
 
-int32_t RiskSearchRun::getCandidates() const
+int64_t RiskSearchRun::getCandidates() const
 {
     return m_Candidates;
 }
 
 
-void RiskSearchRun::setCandidates(int32_t value)
+void RiskSearchRun::setCandidates(int64_t value)
 {
     m_Candidates = value;
     m_CandidatesIsSet = true;
@@ -169,13 +169,13 @@ void RiskSearchRun::unsetCandidates()
 {
     m_CandidatesIsSet = false;
 }
-int32_t RiskSearchRun::getEvents() const
+int64_t RiskSearchRun::getEvents() const
 {
     return m_Events;
 }
 
 
-void RiskSearchRun::setEvents(int32_t value)
+void RiskSearchRun::setEvents(int64_t value)
 {
     m_Events = value;
     m_EventsIsSet = true;

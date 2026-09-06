@@ -19,7 +19,7 @@ namespace model {
 DeviceView::DeviceView()
 {
     m_AccountsIsSet = false;
-    m_ActiveSessions = 0;
+    m_ActiveSessions = 0L;
     m_ActiveSessionsIsSet = false;
     m_Host = utility::conversions::to_string_t("");
     m_HostIsSet = false;
@@ -96,7 +96,7 @@ bool DeviceView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("activeSessions")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setActiveSessions;
+            int64_t refVal_setActiveSessions;
             ok &= ModelBase::fromJson(fieldValue, refVal_setActiveSessions);
             setActiveSessions(refVal_setActiveSessions);
             
@@ -199,7 +199,7 @@ bool DeviceView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("activeSessions"))))
     {
-        int32_t refVal_setActiveSessions;
+        int64_t refVal_setActiveSessions;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("activeSessions"))), refVal_setActiveSessions );
         setActiveSessions(refVal_setActiveSessions);
     }
@@ -252,13 +252,13 @@ void DeviceView::unsetAccounts()
 {
     m_AccountsIsSet = false;
 }
-int32_t DeviceView::getActiveSessions() const
+int64_t DeviceView::getActiveSessions() const
 {
     return m_ActiveSessions;
 }
 
 
-void DeviceView::setActiveSessions(int32_t value)
+void DeviceView::setActiveSessions(int64_t value)
 {
     m_ActiveSessions = value;
     m_ActiveSessionsIsSet = true;

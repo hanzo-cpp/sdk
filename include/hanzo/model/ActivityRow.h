@@ -87,10 +87,10 @@ public:
     /// <summary>
     /// ID is the log&#39;s own sequence number, rising with each entry. The log is served newest-first, which is this descending.
     /// </summary>
-    int32_t getId() const;
+    int64_t getId() const;
     bool idIsSet() const;
     void unsetId();
-    void setId(int32_t value);
+    void setId(int64_t value);
 
     /// <summary>
     /// Key is the flag that changed. It survives a delete, so the log still names flags the definition store no longer holds.
@@ -114,7 +114,7 @@ protected:
     utility::string_t m_Detail;
     bool m_DetailIsSet;
 
-    int32_t m_Id;
+    int64_t m_Id;
     bool m_IdIsSet;
 
     utility::string_t m_Key;

@@ -325,7 +325,7 @@ pplx::task<std::shared_ptr<GraphNeighborsOut>> GraphApi::graphNeighbors(std::sha
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<GraphReadOut>> GraphApi::graphRead(boost::optional<utility::string_t> entity, boost::optional<utility::string_t> relation, boost::optional<utility::string_t> value, boost::optional<utility::string_t> asOf, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<GraphReadOut>> GraphApi::graphRead(boost::optional<utility::string_t> entity, boost::optional<utility::string_t> relation, boost::optional<utility::string_t> value, boost::optional<utility::string_t> asOf, boost::optional<int64_t> limit) const
 {
 
 
@@ -614,7 +614,7 @@ pplx::task<std::shared_ptr<GraphResolveOut>> GraphApi::graphResolve(std::shared_
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<GraphReadOut>> GraphApi::graphSearch(boost::optional<utility::string_t> q, boost::optional<utility::string_t> relation, boost::optional<utility::string_t> asOf, boost::optional<int32_t> limit) const
+pplx::task<std::shared_ptr<GraphReadOut>> GraphApi::graphSearch(boost::optional<utility::string_t> q, boost::optional<utility::string_t> relation, boost::optional<utility::string_t> asOf, boost::optional<int64_t> limit) const
 {
 
 

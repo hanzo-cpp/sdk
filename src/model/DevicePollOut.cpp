@@ -19,7 +19,7 @@ namespace model {
 DevicePollOut::DevicePollOut()
 {
     m_ConnectorIsSet = false;
-    m_Interval = 0;
+    m_Interval = 0L;
     m_IntervalIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
@@ -75,7 +75,7 @@ bool DevicePollOut::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("interval")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setInterval;
+            int64_t refVal_setInterval;
             ok &= ModelBase::fromJson(fieldValue, refVal_setInterval);
             setInterval(refVal_setInterval);
             
@@ -133,7 +133,7 @@ bool DevicePollOut::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("interval"))))
     {
-        int32_t refVal_setInterval;
+        int64_t refVal_setInterval;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("interval"))), refVal_setInterval );
         setInterval(refVal_setInterval);
     }
@@ -168,13 +168,13 @@ void DevicePollOut::unsetConnector()
 {
     m_ConnectorIsSet = false;
 }
-int32_t DevicePollOut::getInterval() const
+int64_t DevicePollOut::getInterval() const
 {
     return m_Interval;
 }
 
 
-void DevicePollOut::setInterval(int32_t value)
+void DevicePollOut::setInterval(int64_t value)
 {
     m_Interval = value;
     m_IntervalIsSet = true;

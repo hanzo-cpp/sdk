@@ -82,10 +82,10 @@ public:
     /// <summary>
     /// NetIncome is totalIncome minus totalExpense, in cents. Negative is a loss.
     /// </summary>
-    int32_t getNetIncome() const;
+    int64_t getNetIncome() const;
     bool netIncomeIsSet() const;
     void unsetNetIncome();
-    void setNetIncome(int32_t value);
+    void setNetIncome(int64_t value);
 
     /// <summary>
     /// To closes the period and is inclusive. Absent means up to now.
@@ -98,18 +98,18 @@ public:
     /// <summary>
     /// TotalExpense is cost MATCHED to that revenue, in cents, including accrued infrastructure that has not been billed yet.
     /// </summary>
-    int32_t getTotalExpense() const;
+    int64_t getTotalExpense() const;
     bool totalExpenseIsSet() const;
     void unsetTotalExpense();
-    void setTotalExpense(int32_t value);
+    void setTotalExpense(int64_t value);
 
     /// <summary>
     /// TotalIncome is revenue RECOGNIZED in the period, in cents — accrual, not cash, so a prepaid top-up is not in it until the credit is consumed.
     /// </summary>
-    int32_t getTotalIncome() const;
+    int64_t getTotalIncome() const;
     bool totalIncomeIsSet() const;
     void unsetTotalIncome();
-    void setTotalIncome(int32_t value);
+    void setTotalIncome(int64_t value);
 
 
 protected:
@@ -122,16 +122,16 @@ protected:
     std::vector<std::shared_ptr<PnLLine>> m_Income;
     bool m_IncomeIsSet;
 
-    int32_t m_NetIncome;
+    int64_t m_NetIncome;
     bool m_NetIncomeIsSet;
 
     utility::string_t m_To;
     bool m_ToIsSet;
 
-    int32_t m_TotalExpense;
+    int64_t m_TotalExpense;
     bool m_TotalExpenseIsSet;
 
-    int32_t m_TotalIncome;
+    int64_t m_TotalIncome;
     bool m_TotalIncomeIsSet;
 
 };

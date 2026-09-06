@@ -18,11 +18,11 @@ namespace model {
 
 Summary::Summary()
 {
-    m_Calls = 0;
+    m_Calls = 0L;
     m_CallsIsSet = false;
-    m_Messages = 0;
+    m_Messages = 0L;
     m_MessagesIsSet = false;
-    m_Numbers = 0;
+    m_Numbers = 0L;
     m_NumbersIsSet = false;
 }
 
@@ -65,7 +65,7 @@ bool Summary::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("calls")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCalls;
+            int64_t refVal_setCalls;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCalls);
             setCalls(refVal_setCalls);
             
@@ -76,7 +76,7 @@ bool Summary::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("messages")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMessages;
+            int64_t refVal_setMessages;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMessages);
             setMessages(refVal_setMessages);
             
@@ -87,7 +87,7 @@ bool Summary::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("numbers")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setNumbers;
+            int64_t refVal_setNumbers;
             ok &= ModelBase::fromJson(fieldValue, refVal_setNumbers);
             setNumbers(refVal_setNumbers);
             
@@ -128,19 +128,19 @@ bool Summary::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("calls"))))
     {
-        int32_t refVal_setCalls;
+        int64_t refVal_setCalls;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("calls"))), refVal_setCalls );
         setCalls(refVal_setCalls);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("messages"))))
     {
-        int32_t refVal_setMessages;
+        int64_t refVal_setMessages;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("messages"))), refVal_setMessages );
         setMessages(refVal_setMessages);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("numbers"))))
     {
-        int32_t refVal_setNumbers;
+        int64_t refVal_setNumbers;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("numbers"))), refVal_setNumbers );
         setNumbers(refVal_setNumbers);
     }
@@ -148,13 +148,13 @@ bool Summary::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
 }
 
 
-int32_t Summary::getCalls() const
+int64_t Summary::getCalls() const
 {
     return m_Calls;
 }
 
 
-void Summary::setCalls(int32_t value)
+void Summary::setCalls(int64_t value)
 {
     m_Calls = value;
     m_CallsIsSet = true;
@@ -169,13 +169,13 @@ void Summary::unsetCalls()
 {
     m_CallsIsSet = false;
 }
-int32_t Summary::getMessages() const
+int64_t Summary::getMessages() const
 {
     return m_Messages;
 }
 
 
-void Summary::setMessages(int32_t value)
+void Summary::setMessages(int64_t value)
 {
     m_Messages = value;
     m_MessagesIsSet = true;
@@ -190,13 +190,13 @@ void Summary::unsetMessages()
 {
     m_MessagesIsSet = false;
 }
-int32_t Summary::getNumbers() const
+int64_t Summary::getNumbers() const
 {
     return m_Numbers;
 }
 
 
-void Summary::setNumbers(int32_t value)
+void Summary::setNumbers(int64_t value)
 {
     m_Numbers = value;
     m_NumbersIsSet = true;

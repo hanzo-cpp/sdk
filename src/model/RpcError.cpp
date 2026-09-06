@@ -18,7 +18,7 @@ namespace model {
 
 RpcError::RpcError()
 {
-    m_Code = 0;
+    m_Code = 0L;
     m_CodeIsSet = false;
     m_Message = utility::conversions::to_string_t("");
     m_MessageIsSet = false;
@@ -58,7 +58,7 @@ bool RpcError::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("code")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCode;
+            int64_t refVal_setCode;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCode);
             setCode(refVal_setCode);
             
@@ -106,7 +106,7 @@ bool RpcError::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("code"))))
     {
-        int32_t refVal_setCode;
+        int64_t refVal_setCode;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("code"))), refVal_setCode );
         setCode(refVal_setCode);
     }
@@ -120,13 +120,13 @@ bool RpcError::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 }
 
 
-int32_t RpcError::getCode() const
+int64_t RpcError::getCode() const
 {
     return m_Code;
 }
 
 
-void RpcError::setCode(int32_t value)
+void RpcError::setCode(int64_t value)
 {
     m_Code = value;
     m_CodeIsSet = true;

@@ -54,36 +54,36 @@ public:
     /// <summary>
     /// invocations that ran and failed
     /// </summary>
-    int32_t getError() const;
+    int64_t getError() const;
     bool errorIsSet() const;
     void unsetError();
-    void setError(int32_t value);
+    void setError(int64_t value);
 
     /// <summary>
     /// invocations whose code ran and wrote nothing to stderr
     /// </summary>
-    int32_t getSuccess() const;
+    int64_t getSuccess() const;
     bool successIsSet() const;
     void unsetSuccess();
-    void setSuccess(int32_t value);
+    void setSuccess(int64_t value);
 
     /// <summary>
     /// invocations that hit their configured deadline
     /// </summary>
-    int32_t getTimeout() const;
+    int64_t getTimeout() const;
     bool timeoutIsSet() const;
     void unsetTimeout();
-    void setTimeout(int32_t value);
+    void setTimeout(int64_t value);
 
 
 protected:
-    int32_t m_Error;
+    int64_t m_Error;
     bool m_ErrorIsSet;
 
-    int32_t m_Success;
+    int64_t m_Success;
     bool m_SuccessIsSet;
 
-    int32_t m_Timeout;
+    int64_t m_Timeout;
     bool m_TimeoutIsSet;
 
 };

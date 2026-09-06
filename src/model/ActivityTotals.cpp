@@ -18,17 +18,17 @@ namespace model {
 
 ActivityTotals::ActivityTotals()
 {
-    m_ActiveDays = 0;
+    m_ActiveDays = 0L;
     m_ActiveDaysIsSet = false;
-    m_CostCents = 0;
+    m_CostCents = 0L;
     m_CostCentsIsSet = false;
-    m_MaxRequests = 0;
+    m_MaxRequests = 0L;
     m_MaxRequestsIsSet = false;
-    m_MaxTokens = 0;
+    m_MaxTokens = 0L;
     m_MaxTokensIsSet = false;
-    m_Requests = 0;
+    m_Requests = 0L;
     m_RequestsIsSet = false;
-    m_Tokens = 0;
+    m_Tokens = 0L;
     m_TokensIsSet = false;
 }
 
@@ -86,7 +86,7 @@ bool ActivityTotals::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("activeDays")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setActiveDays;
+            int64_t refVal_setActiveDays;
             ok &= ModelBase::fromJson(fieldValue, refVal_setActiveDays);
             setActiveDays(refVal_setActiveDays);
             
@@ -97,7 +97,7 @@ bool ActivityTotals::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("costCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCostCents;
+            int64_t refVal_setCostCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCostCents);
             setCostCents(refVal_setCostCents);
             
@@ -108,7 +108,7 @@ bool ActivityTotals::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("maxRequests")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMaxRequests;
+            int64_t refVal_setMaxRequests;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMaxRequests);
             setMaxRequests(refVal_setMaxRequests);
             
@@ -119,7 +119,7 @@ bool ActivityTotals::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("maxTokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMaxTokens;
+            int64_t refVal_setMaxTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMaxTokens);
             setMaxTokens(refVal_setMaxTokens);
             
@@ -130,7 +130,7 @@ bool ActivityTotals::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("requests")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRequests;
+            int64_t refVal_setRequests;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRequests);
             setRequests(refVal_setRequests);
             
@@ -141,7 +141,7 @@ bool ActivityTotals::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTokens;
+            int64_t refVal_setTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTokens);
             setTokens(refVal_setTokens);
             
@@ -194,37 +194,37 @@ bool ActivityTotals::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("activeDays"))))
     {
-        int32_t refVal_setActiveDays;
+        int64_t refVal_setActiveDays;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("activeDays"))), refVal_setActiveDays );
         setActiveDays(refVal_setActiveDays);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))))
     {
-        int32_t refVal_setCostCents;
+        int64_t refVal_setCostCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))), refVal_setCostCents );
         setCostCents(refVal_setCostCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("maxRequests"))))
     {
-        int32_t refVal_setMaxRequests;
+        int64_t refVal_setMaxRequests;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("maxRequests"))), refVal_setMaxRequests );
         setMaxRequests(refVal_setMaxRequests);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("maxTokens"))))
     {
-        int32_t refVal_setMaxTokens;
+        int64_t refVal_setMaxTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("maxTokens"))), refVal_setMaxTokens );
         setMaxTokens(refVal_setMaxTokens);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("requests"))))
     {
-        int32_t refVal_setRequests;
+        int64_t refVal_setRequests;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("requests"))), refVal_setRequests );
         setRequests(refVal_setRequests);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tokens"))))
     {
-        int32_t refVal_setTokens;
+        int64_t refVal_setTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("tokens"))), refVal_setTokens );
         setTokens(refVal_setTokens);
     }
@@ -232,13 +232,13 @@ bool ActivityTotals::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 }
 
 
-int32_t ActivityTotals::getActiveDays() const
+int64_t ActivityTotals::getActiveDays() const
 {
     return m_ActiveDays;
 }
 
 
-void ActivityTotals::setActiveDays(int32_t value)
+void ActivityTotals::setActiveDays(int64_t value)
 {
     m_ActiveDays = value;
     m_ActiveDaysIsSet = true;
@@ -253,13 +253,13 @@ void ActivityTotals::unsetActiveDays()
 {
     m_ActiveDaysIsSet = false;
 }
-int32_t ActivityTotals::getCostCents() const
+int64_t ActivityTotals::getCostCents() const
 {
     return m_CostCents;
 }
 
 
-void ActivityTotals::setCostCents(int32_t value)
+void ActivityTotals::setCostCents(int64_t value)
 {
     m_CostCents = value;
     m_CostCentsIsSet = true;
@@ -274,13 +274,13 @@ void ActivityTotals::unsetCostCents()
 {
     m_CostCentsIsSet = false;
 }
-int32_t ActivityTotals::getMaxRequests() const
+int64_t ActivityTotals::getMaxRequests() const
 {
     return m_MaxRequests;
 }
 
 
-void ActivityTotals::setMaxRequests(int32_t value)
+void ActivityTotals::setMaxRequests(int64_t value)
 {
     m_MaxRequests = value;
     m_MaxRequestsIsSet = true;
@@ -295,13 +295,13 @@ void ActivityTotals::unsetMaxRequests()
 {
     m_MaxRequestsIsSet = false;
 }
-int32_t ActivityTotals::getMaxTokens() const
+int64_t ActivityTotals::getMaxTokens() const
 {
     return m_MaxTokens;
 }
 
 
-void ActivityTotals::setMaxTokens(int32_t value)
+void ActivityTotals::setMaxTokens(int64_t value)
 {
     m_MaxTokens = value;
     m_MaxTokensIsSet = true;
@@ -316,13 +316,13 @@ void ActivityTotals::unsetMaxTokens()
 {
     m_MaxTokensIsSet = false;
 }
-int32_t ActivityTotals::getRequests() const
+int64_t ActivityTotals::getRequests() const
 {
     return m_Requests;
 }
 
 
-void ActivityTotals::setRequests(int32_t value)
+void ActivityTotals::setRequests(int64_t value)
 {
     m_Requests = value;
     m_RequestsIsSet = true;
@@ -337,13 +337,13 @@ void ActivityTotals::unsetRequests()
 {
     m_RequestsIsSet = false;
 }
-int32_t ActivityTotals::getTokens() const
+int64_t ActivityTotals::getTokens() const
 {
     return m_Tokens;
 }
 
 
-void ActivityTotals::setTokens(int32_t value)
+void ActivityTotals::setTokens(int64_t value)
 {
     m_Tokens = value;
     m_TokensIsSet = true;

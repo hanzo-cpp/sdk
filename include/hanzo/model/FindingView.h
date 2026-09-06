@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// CreatedAt is when the finding was recorded, in Unix milliseconds.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// Fingerprint is the SHA-256 of the raw secret. It is what makes the same secret recognisable across scans and after rotation without the secret ever being written down.
@@ -79,10 +79,10 @@ public:
     /// <summary>
     /// Line is where in that file.
     /// </summary>
-    int32_t getLine() const;
+    int64_t getLine() const;
     bool lineIsSet() const;
     void unsetLine();
-    void setLine(int32_t value);
+    void setLine(int64_t value);
 
     /// <summary>
     /// Path is the file the secret was found in.
@@ -134,7 +134,7 @@ public:
 
 
 protected:
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_Fingerprint;
@@ -143,7 +143,7 @@ protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
 
-    int32_t m_Line;
+    int64_t m_Line;
     bool m_LineIsSet;
 
     utility::string_t m_Path;

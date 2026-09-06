@@ -74,18 +74,18 @@ public:
     /// <summary>
     /// TotalPageViews is the room&#39;s page views across every link.
     /// </summary>
-    int32_t getTotalPageViews() const;
+    int64_t getTotalPageViews() const;
     bool totalPageViewsIsSet() const;
     void unsetTotalPageViews();
-    void setTotalPageViews(int32_t value);
+    void setTotalPageViews(int64_t value);
 
     /// <summary>
     /// TotalViews is the room&#39;s viewing sessions across every link.
     /// </summary>
-    int32_t getTotalViews() const;
+    int64_t getTotalViews() const;
     bool totalViewsIsSet() const;
     void unsetTotalViews();
-    void setTotalViews(int32_t value);
+    void setTotalViews(int64_t value);
 
 
 protected:
@@ -95,10 +95,10 @@ protected:
     std::vector<std::shared_ptr<DataroomLinkStats>> m_Links;
     bool m_LinksIsSet;
 
-    int32_t m_TotalPageViews;
+    int64_t m_TotalPageViews;
     bool m_TotalPageViewsIsSet;
 
-    int32_t m_TotalViews;
+    int64_t m_TotalViews;
     bool m_TotalViewsIsSet;
 
 };

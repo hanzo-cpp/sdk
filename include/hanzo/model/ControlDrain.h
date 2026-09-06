@@ -65,17 +65,17 @@ public:
     /// <summary>
     /// Cursor is the seq to send as &#x60;after&#x60; on the next poll — the highest seq in this page, or the cursor sent in when the page is empty.
     /// </summary>
-    int32_t getCursor() const;
+    int64_t getCursor() const;
     bool cursorIsSet() const;
     void unsetCursor();
-    void setCursor(int32_t value);
+    void setCursor(int64_t value);
 
 
 protected:
     std::vector<std::shared_ptr<ControlCommandView>> m_Commands;
     bool m_CommandsIsSet;
 
-    int32_t m_Cursor;
+    int64_t m_Cursor;
     bool m_CursorIsSet;
 
 };

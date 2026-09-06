@@ -87,10 +87,10 @@ public:
     /// <summary>
     /// Nano is the value moved, in nano-USD. Omit it for an event that moves no money: the value features then read BLIND rather than being told the amount was zero, and the difference is reported on the model state.
     /// </summary>
-    int32_t getNano() const;
+    int64_t getNano() const;
     bool nanoIsSet() const;
     void unsetNano();
-    void setNano(int32_t value);
+    void setNano(int64_t value);
 
     /// <summary>
     /// Peer is the counterparty, if any. It is an aggregation axis of its own — \&quot;unfamiliar\&quot; is a fact about a relationship and not about either party.
@@ -122,7 +122,7 @@ protected:
     utility::string_t m_Kind;
     bool m_KindIsSet;
 
-    int32_t m_Nano;
+    int64_t m_Nano;
     bool m_NanoIsSet;
 
     utility::string_t m_Peer;

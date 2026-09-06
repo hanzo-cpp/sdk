@@ -22,7 +22,7 @@ ConnectorView::ConnectorView()
     m_AccountIsSet = false;
     m_Configured = false;
     m_ConfiguredIsSet = false;
-    m_DocCount = 0;
+    m_DocCount = 0L;
     m_DocCountIsSet = false;
     m_Error = utility::conversions::to_string_t("");
     m_ErrorIsSet = false;
@@ -122,7 +122,7 @@ bool ConnectorView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("docCount")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDocCount;
+            int64_t refVal_setDocCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDocCount);
             setDocCount(refVal_setDocCount);
             
@@ -250,7 +250,7 @@ bool ConnectorView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("docCount"))))
     {
-        int32_t refVal_setDocCount;
+        int64_t refVal_setDocCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("docCount"))), refVal_setDocCount );
         setDocCount(refVal_setDocCount);
     }
@@ -330,13 +330,13 @@ void ConnectorView::unsetConfigured()
 {
     m_ConfiguredIsSet = false;
 }
-int32_t ConnectorView::getDocCount() const
+int64_t ConnectorView::getDocCount() const
 {
     return m_DocCount;
 }
 
 
-void ConnectorView::setDocCount(int32_t value)
+void ConnectorView::setDocCount(int64_t value)
 {
     m_DocCount = value;
     m_DocCountIsSet = true;

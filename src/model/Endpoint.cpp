@@ -20,12 +20,12 @@ Endpoint::Endpoint()
 {
     m_Created = utility::conversions::to_string_t("");
     m_CreatedIsSet = false;
-    m_Deliveries7d = 0;
+    m_Deliveries7d = 0L;
     m_Deliveries7dIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
     m_EventsIsSet = false;
-    m_Failures7d = 0;
+    m_Failures7d = 0L;
     m_Failures7dIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
@@ -131,7 +131,7 @@ bool Endpoint::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("deliveries7d")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setDeliveries7d;
+            int64_t refVal_setDeliveries7d;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDeliveries7d);
             setDeliveries7d(refVal_setDeliveries7d);
             
@@ -164,7 +164,7 @@ bool Endpoint::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("failures7d")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFailures7d;
+            int64_t refVal_setFailures7d;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFailures7d);
             setFailures7d(refVal_setFailures7d);
             
@@ -309,7 +309,7 @@ bool Endpoint::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("deliveries7d"))))
     {
-        int32_t refVal_setDeliveries7d;
+        int64_t refVal_setDeliveries7d;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("deliveries7d"))), refVal_setDeliveries7d );
         setDeliveries7d(refVal_setDeliveries7d);
     }
@@ -327,7 +327,7 @@ bool Endpoint::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("failures7d"))))
     {
-        int32_t refVal_setFailures7d;
+        int64_t refVal_setFailures7d;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("failures7d"))), refVal_setFailures7d );
         setFailures7d(refVal_setFailures7d);
     }
@@ -392,13 +392,13 @@ void Endpoint::unsetCreated()
 {
     m_CreatedIsSet = false;
 }
-int32_t Endpoint::getDeliveries7d() const
+int64_t Endpoint::getDeliveries7d() const
 {
     return m_Deliveries7d;
 }
 
 
-void Endpoint::setDeliveries7d(int32_t value)
+void Endpoint::setDeliveries7d(int64_t value)
 {
     m_Deliveries7d = value;
     m_Deliveries7dIsSet = true;
@@ -455,13 +455,13 @@ void Endpoint::unsetEvents()
 {
     m_EventsIsSet = false;
 }
-int32_t Endpoint::getFailures7d() const
+int64_t Endpoint::getFailures7d() const
 {
     return m_Failures7d;
 }
 
 
-void Endpoint::setFailures7d(int32_t value)
+void Endpoint::setFailures7d(int64_t value)
 {
     m_Failures7d = value;
     m_Failures7dIsSet = true;

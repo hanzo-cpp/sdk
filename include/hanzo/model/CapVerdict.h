@@ -57,41 +57,41 @@ public:
     void unsetAllow();
     void setAllow(bool value);
 
-    int32_t getCapCents() const;
+    int64_t getCapCents() const;
     bool capCentsIsSet() const;
     void unsetCapCents();
-    void setCapCents(int32_t value);
+    void setCapCents(int64_t value);
 
     utility::string_t getReason() const;
     bool reasonIsSet() const;
     void unsetReason();
     void setReason(const utility::string_t& value);
 
-    int32_t getSpentCents() const;
+    int64_t getSpentCents() const;
     bool spentCentsIsSet() const;
     void unsetSpentCents();
-    void setSpentCents(int32_t value);
+    void setSpentCents(int64_t value);
 
-    int32_t getWarnPct() const;
+    int64_t getWarnPct() const;
     bool warnPctIsSet() const;
     void unsetWarnPct();
-    void setWarnPct(int32_t value);
+    void setWarnPct(int64_t value);
 
 
 protected:
     bool m_Allow;
     bool m_AllowIsSet;
 
-    int32_t m_CapCents;
+    int64_t m_CapCents;
     bool m_CapCentsIsSet;
 
     utility::string_t m_Reason;
     bool m_ReasonIsSet;
 
-    int32_t m_SpentCents;
+    int64_t m_SpentCents;
     bool m_SpentCentsIsSet;
 
-    int32_t m_WarnPct;
+    int64_t m_WarnPct;
     bool m_WarnPctIsSet;
 
 };

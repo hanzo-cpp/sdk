@@ -20,23 +20,23 @@ TotalView::TotalView()
 {
     m_Confidence = utility::conversions::to_string_t("");
     m_ConfidenceIsSet = false;
-    m_CostCents = 0;
+    m_CostCents = 0L;
     m_CostCentsIsSet = false;
     m_Provider = utility::conversions::to_string_t("");
     m_ProviderIsSet = false;
-    m_Requests = 0;
+    m_Requests = 0L;
     m_RequestsIsSet = false;
     m_Scope = utility::conversions::to_string_t("");
     m_ScopeIsSet = false;
     m_Source = utility::conversions::to_string_t("");
     m_SourceIsSet = false;
-    m_Tokens = 0;
+    m_Tokens = 0L;
     m_TokensIsSet = false;
     m_UsedPct = 0.0;
     m_UsedPctIsSet = false;
     m_Window = utility::conversions::to_string_t("");
     m_WindowIsSet = false;
-    m_Windows = 0;
+    m_Windows = 0L;
     m_WindowsIsSet = false;
 }
 
@@ -125,7 +125,7 @@ bool TotalView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("costCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCostCents;
+            int64_t refVal_setCostCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCostCents);
             setCostCents(refVal_setCostCents);
             
@@ -147,7 +147,7 @@ bool TotalView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("requests")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRequests;
+            int64_t refVal_setRequests;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRequests);
             setRequests(refVal_setRequests);
             
@@ -180,7 +180,7 @@ bool TotalView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tokens")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTokens;
+            int64_t refVal_setTokens;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTokens);
             setTokens(refVal_setTokens);
             
@@ -213,7 +213,7 @@ bool TotalView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("windows")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setWindows;
+            int64_t refVal_setWindows;
             ok &= ModelBase::fromJson(fieldValue, refVal_setWindows);
             setWindows(refVal_setWindows);
             
@@ -288,7 +288,7 @@ bool TotalView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))))
     {
-        int32_t refVal_setCostCents;
+        int64_t refVal_setCostCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("costCents"))), refVal_setCostCents );
         setCostCents(refVal_setCostCents);
     }
@@ -300,7 +300,7 @@ bool TotalView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("requests"))))
     {
-        int32_t refVal_setRequests;
+        int64_t refVal_setRequests;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("requests"))), refVal_setRequests );
         setRequests(refVal_setRequests);
     }
@@ -318,7 +318,7 @@ bool TotalView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tokens"))))
     {
-        int32_t refVal_setTokens;
+        int64_t refVal_setTokens;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("tokens"))), refVal_setTokens );
         setTokens(refVal_setTokens);
     }
@@ -336,7 +336,7 @@ bool TotalView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("windows"))))
     {
-        int32_t refVal_setWindows;
+        int64_t refVal_setWindows;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("windows"))), refVal_setWindows );
         setWindows(refVal_setWindows);
     }
@@ -365,13 +365,13 @@ void TotalView::unsetConfidence()
 {
     m_ConfidenceIsSet = false;
 }
-int32_t TotalView::getCostCents() const
+int64_t TotalView::getCostCents() const
 {
     return m_CostCents;
 }
 
 
-void TotalView::setCostCents(int32_t value)
+void TotalView::setCostCents(int64_t value)
 {
     m_CostCents = value;
     m_CostCentsIsSet = true;
@@ -407,13 +407,13 @@ void TotalView::unsetProvider()
 {
     m_ProviderIsSet = false;
 }
-int32_t TotalView::getRequests() const
+int64_t TotalView::getRequests() const
 {
     return m_Requests;
 }
 
 
-void TotalView::setRequests(int32_t value)
+void TotalView::setRequests(int64_t value)
 {
     m_Requests = value;
     m_RequestsIsSet = true;
@@ -470,13 +470,13 @@ void TotalView::unsetSource()
 {
     m_SourceIsSet = false;
 }
-int32_t TotalView::getTokens() const
+int64_t TotalView::getTokens() const
 {
     return m_Tokens;
 }
 
 
-void TotalView::setTokens(int32_t value)
+void TotalView::setTokens(int64_t value)
 {
     m_Tokens = value;
     m_TokensIsSet = true;
@@ -533,13 +533,13 @@ void TotalView::unsetWindow()
 {
     m_WindowIsSet = false;
 }
-int32_t TotalView::getWindows() const
+int64_t TotalView::getWindows() const
 {
     return m_Windows;
 }
 
 
-void TotalView::setWindows(int32_t value)
+void TotalView::setWindows(int64_t value)
 {
     m_Windows = value;
     m_WindowsIsSet = true;

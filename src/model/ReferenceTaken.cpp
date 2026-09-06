@@ -18,7 +18,7 @@ namespace model {
 
 ReferenceTaken::ReferenceTaken()
 {
-    m_Keys = 0;
+    m_Keys = 0L;
     m_KeysIsSet = false;
     m_Refusal = utility::conversions::to_string_t("");
     m_RefusalIsSet = false;
@@ -30,7 +30,7 @@ ReferenceTaken::ReferenceTaken()
     m_UnchangedIsSet = false;
     m_Version = utility::conversions::to_string_t("");
     m_VersionIsSet = false;
-    m_Wrote = 0;
+    m_Wrote = 0L;
     m_WroteIsSet = false;
 }
 
@@ -93,7 +93,7 @@ bool ReferenceTaken::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("keys")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setKeys;
+            int64_t refVal_setKeys;
             ok &= ModelBase::fromJson(fieldValue, refVal_setKeys);
             setKeys(refVal_setKeys);
             
@@ -159,7 +159,7 @@ bool ReferenceTaken::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("wrote")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setWrote;
+            int64_t refVal_setWrote;
             ok &= ModelBase::fromJson(fieldValue, refVal_setWrote);
             setWrote(refVal_setWrote);
             
@@ -216,7 +216,7 @@ bool ReferenceTaken::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("keys"))))
     {
-        int32_t refVal_setKeys;
+        int64_t refVal_setKeys;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("keys"))), refVal_setKeys );
         setKeys(refVal_setKeys);
     }
@@ -252,7 +252,7 @@ bool ReferenceTaken::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("wrote"))))
     {
-        int32_t refVal_setWrote;
+        int64_t refVal_setWrote;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("wrote"))), refVal_setWrote );
         setWrote(refVal_setWrote);
     }
@@ -260,13 +260,13 @@ bool ReferenceTaken::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 }
 
 
-int32_t ReferenceTaken::getKeys() const
+int64_t ReferenceTaken::getKeys() const
 {
     return m_Keys;
 }
 
 
-void ReferenceTaken::setKeys(int32_t value)
+void ReferenceTaken::setKeys(int64_t value)
 {
     m_Keys = value;
     m_KeysIsSet = true;
@@ -386,13 +386,13 @@ void ReferenceTaken::unsetVersion()
 {
     m_VersionIsSet = false;
 }
-int32_t ReferenceTaken::getWrote() const
+int64_t ReferenceTaken::getWrote() const
 {
     return m_Wrote;
 }
 
 
-void ReferenceTaken::setWrote(int32_t value)
+void ReferenceTaken::setWrote(int64_t value)
 {
     m_Wrote = value;
     m_WroteIsSet = true;

@@ -22,7 +22,7 @@ WebEngine::WebEngine()
     m_NameIsSet = false;
     m_Outcome = utility::conversions::to_string_t("");
     m_OutcomeIsSet = false;
-    m_Results = 0;
+    m_Results = 0L;
     m_ResultsIsSet = false;
 }
 
@@ -87,7 +87,7 @@ bool WebEngine::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("results")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setResults;
+            int64_t refVal_setResults;
             ok &= ModelBase::fromJson(fieldValue, refVal_setResults);
             setResults(refVal_setResults);
             
@@ -140,7 +140,7 @@ bool WebEngine::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("results"))))
     {
-        int32_t refVal_setResults;
+        int64_t refVal_setResults;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("results"))), refVal_setResults );
         setResults(refVal_setResults);
     }
@@ -190,13 +190,13 @@ void WebEngine::unsetOutcome()
 {
     m_OutcomeIsSet = false;
 }
-int32_t WebEngine::getResults() const
+int64_t WebEngine::getResults() const
 {
     return m_Results;
 }
 
 
-void WebEngine::setResults(int32_t value)
+void WebEngine::setResults(int64_t value)
 {
     m_Results = value;
     m_ResultsIsSet = true;

@@ -58,12 +58,12 @@ public:
     /// <param name="status">Status keeps only items in one lifecycle state (draft, in_review, approved, queued, published, archived). An undefined state is refused. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="project">Project keeps only items in one brand/site sub-scope. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="doctype">DocType keeps only one content type; omitted, the board spans every publishable type. An unknown type is refused. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Limit caps the rows returned, clamped to 1000. Defaults to 200, which is also what a non-positive or unparseable value takes. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the rows returned, clamped to 1000. Defaults to 200, which is also what a non-positive or unparseable value takes. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<BoardPage>> getContentBoard(
         boost::optional<utility::string_t> status,
         boost::optional<utility::string_t> project,
         boost::optional<utility::string_t> doctype,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Lists the distribution channels the caller&#39;s org has connected — the social integrations a publish can target.

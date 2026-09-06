@@ -64,10 +64,10 @@ public:
     /// <summary>
     /// LookbackMs is how far back to sample when estimating.
     /// </summary>
-    int32_t getLookbackMs() const;
+    int64_t getLookbackMs() const;
     bool lookbackMsIsSet() const;
     void unsetLookbackMs();
-    void setLookbackMs(int32_t value);
+    void setLookbackMs(int64_t value);
 
     /// <summary>
     /// MatchType is drop or keep. Required.
@@ -90,7 +90,7 @@ protected:
     std::vector<utility::string_t> m_Labels;
     bool m_LabelsIsSet;
 
-    int32_t m_LookbackMs;
+    int64_t m_LookbackMs;
     bool m_LookbackMsIsSet;
 
     utility::string_t m_MatchType;

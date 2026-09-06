@@ -127,10 +127,10 @@ public:
     /// <summary>
     /// SettledAt is when this settlement was CLAIMED, in unix seconds — the moment the authorization was accepted, which is also the moment the time window it carried stopped applying. A settlement finished later by reconciliation keeps this instant.
     /// </summary>
-    int32_t getSettledAt() const;
+    int64_t getSettledAt() const;
     bool settledAtIsSet() const;
     void unsetSettledAt();
-    void setSettledAt(int32_t value);
+    void setSettledAt(int64_t value);
 
     /// <summary>
     /// SettledVia is which rail moved the money: \&quot;ledger\&quot;, the live default, or \&quot;chain\&quot; when the authorization is broadcast. Those two values and no others.
@@ -177,7 +177,7 @@ protected:
     utility::string_t m_Resource;
     bool m_ResourceIsSet;
 
-    int32_t m_SettledAt;
+    int64_t m_SettledAt;
     bool m_SettledAtIsSet;
 
     utility::string_t m_SettledVia;

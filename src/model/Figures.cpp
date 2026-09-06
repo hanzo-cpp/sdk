@@ -18,11 +18,11 @@ namespace model {
 
 Figures::Figures()
 {
-    m_Count = 0;
+    m_Count = 0L;
     m_CountIsSet = false;
     m_Locked = utility::conversions::to_string_t("");
     m_LockedIsSet = false;
-    m_Pools = 0;
+    m_Pools = 0L;
     m_PoolsIsSet = false;
     m_Volume = utility::conversions::to_string_t("");
     m_VolumeIsSet = false;
@@ -72,7 +72,7 @@ bool Figures::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("count")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCount;
+            int64_t refVal_setCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCount);
             setCount(refVal_setCount);
             
@@ -94,7 +94,7 @@ bool Figures::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("pools")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPools;
+            int64_t refVal_setPools;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPools);
             setPools(refVal_setPools);
             
@@ -150,7 +150,7 @@ bool Figures::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("count"))))
     {
-        int32_t refVal_setCount;
+        int64_t refVal_setCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("count"))), refVal_setCount );
         setCount(refVal_setCount);
     }
@@ -162,7 +162,7 @@ bool Figures::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("pools"))))
     {
-        int32_t refVal_setPools;
+        int64_t refVal_setPools;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("pools"))), refVal_setPools );
         setPools(refVal_setPools);
     }
@@ -176,13 +176,13 @@ bool Figures::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
 }
 
 
-int32_t Figures::getCount() const
+int64_t Figures::getCount() const
 {
     return m_Count;
 }
 
 
-void Figures::setCount(int32_t value)
+void Figures::setCount(int64_t value)
 {
     m_Count = value;
     m_CountIsSet = true;
@@ -218,13 +218,13 @@ void Figures::unsetLocked()
 {
     m_LockedIsSet = false;
 }
-int32_t Figures::getPools() const
+int64_t Figures::getPools() const
 {
     return m_Pools;
 }
 
 
-void Figures::setPools(int32_t value)
+void Figures::setPools(int64_t value)
 {
     m_Pools = value;
     m_PoolsIsSet = true;

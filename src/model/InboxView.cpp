@@ -22,9 +22,9 @@ InboxView::InboxView()
     m_AccountIsSet = false;
     m_Channel = utility::conversions::to_string_t("");
     m_ChannelIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
-    m_Id = 0;
+    m_Id = 0L;
     m_IdIsSet = false;
     m_ReplyTo = utility::conversions::to_string_t("");
     m_ReplyToIsSet = false;
@@ -136,7 +136,7 @@ bool InboxView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -147,7 +147,7 @@ bool InboxView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("id")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setId;
+            int64_t refVal_setId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setId);
             setId(refVal_setId);
             
@@ -294,13 +294,13 @@ bool InboxView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("id"))))
     {
-        int32_t refVal_setId;
+        int64_t refVal_setId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("id"))), refVal_setId );
         setId(refVal_setId);
     }
@@ -386,13 +386,13 @@ void InboxView::unsetChannel()
 {
     m_ChannelIsSet = false;
 }
-int32_t InboxView::getCreatedAt() const
+int64_t InboxView::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void InboxView::setCreatedAt(int32_t value)
+void InboxView::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -407,13 +407,13 @@ void InboxView::unsetCreatedAt()
 {
     m_CreatedAtIsSet = false;
 }
-int32_t InboxView::getId() const
+int64_t InboxView::getId() const
 {
     return m_Id;
 }
 
 
-void InboxView::setId(int32_t value)
+void InboxView::setId(int64_t value)
 {
     m_Id = value;
     m_IdIsSet = true;

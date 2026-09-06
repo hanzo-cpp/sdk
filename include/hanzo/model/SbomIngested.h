@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// ComponentCount is how many components the CycloneDX document yielded and this call persisted.
     /// </summary>
-    int32_t getComponentCount() const;
+    int64_t getComponentCount() const;
     bool componentCountIsSet() const;
     void unsetComponentCount();
-    void setComponentCount(int32_t value);
+    void setComponentCount(int64_t value);
 
     /// <summary>
     /// ImageDigest is the content-addressed digest the components were keyed under.
@@ -70,7 +70,7 @@ public:
 
 
 protected:
-    int32_t m_ComponentCount;
+    int64_t m_ComponentCount;
     bool m_ComponentCountIsSet;
 
     utility::string_t m_ImageDigest;

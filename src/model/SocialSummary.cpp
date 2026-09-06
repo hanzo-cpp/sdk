@@ -18,13 +18,13 @@ namespace model {
 
 SocialSummary::SocialSummary()
 {
-    m_Accounts = 0;
+    m_Accounts = 0L;
     m_AccountsIsSet = false;
-    m_Posts = 0;
+    m_Posts = 0L;
     m_PostsIsSet = false;
-    m_Published = 0;
+    m_Published = 0L;
     m_PublishedIsSet = false;
-    m_Scheduled = 0;
+    m_Scheduled = 0L;
     m_ScheduledIsSet = false;
 }
 
@@ -72,7 +72,7 @@ bool SocialSummary::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("accounts")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAccounts;
+            int64_t refVal_setAccounts;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAccounts);
             setAccounts(refVal_setAccounts);
             
@@ -83,7 +83,7 @@ bool SocialSummary::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("posts")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPosts;
+            int64_t refVal_setPosts;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPosts);
             setPosts(refVal_setPosts);
             
@@ -94,7 +94,7 @@ bool SocialSummary::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("published")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setPublished;
+            int64_t refVal_setPublished;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPublished);
             setPublished(refVal_setPublished);
             
@@ -105,7 +105,7 @@ bool SocialSummary::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("scheduled")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setScheduled;
+            int64_t refVal_setScheduled;
             ok &= ModelBase::fromJson(fieldValue, refVal_setScheduled);
             setScheduled(refVal_setScheduled);
             
@@ -150,25 +150,25 @@ bool SocialSummary::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("accounts"))))
     {
-        int32_t refVal_setAccounts;
+        int64_t refVal_setAccounts;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("accounts"))), refVal_setAccounts );
         setAccounts(refVal_setAccounts);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("posts"))))
     {
-        int32_t refVal_setPosts;
+        int64_t refVal_setPosts;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("posts"))), refVal_setPosts );
         setPosts(refVal_setPosts);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("published"))))
     {
-        int32_t refVal_setPublished;
+        int64_t refVal_setPublished;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("published"))), refVal_setPublished );
         setPublished(refVal_setPublished);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("scheduled"))))
     {
-        int32_t refVal_setScheduled;
+        int64_t refVal_setScheduled;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("scheduled"))), refVal_setScheduled );
         setScheduled(refVal_setScheduled);
     }
@@ -176,13 +176,13 @@ bool SocialSummary::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
 }
 
 
-int32_t SocialSummary::getAccounts() const
+int64_t SocialSummary::getAccounts() const
 {
     return m_Accounts;
 }
 
 
-void SocialSummary::setAccounts(int32_t value)
+void SocialSummary::setAccounts(int64_t value)
 {
     m_Accounts = value;
     m_AccountsIsSet = true;
@@ -197,13 +197,13 @@ void SocialSummary::unsetAccounts()
 {
     m_AccountsIsSet = false;
 }
-int32_t SocialSummary::getPosts() const
+int64_t SocialSummary::getPosts() const
 {
     return m_Posts;
 }
 
 
-void SocialSummary::setPosts(int32_t value)
+void SocialSummary::setPosts(int64_t value)
 {
     m_Posts = value;
     m_PostsIsSet = true;
@@ -218,13 +218,13 @@ void SocialSummary::unsetPosts()
 {
     m_PostsIsSet = false;
 }
-int32_t SocialSummary::getPublished() const
+int64_t SocialSummary::getPublished() const
 {
     return m_Published;
 }
 
 
-void SocialSummary::setPublished(int32_t value)
+void SocialSummary::setPublished(int64_t value)
 {
     m_Published = value;
     m_PublishedIsSet = true;
@@ -239,13 +239,13 @@ void SocialSummary::unsetPublished()
 {
     m_PublishedIsSet = false;
 }
-int32_t SocialSummary::getScheduled() const
+int64_t SocialSummary::getScheduled() const
 {
     return m_Scheduled;
 }
 
 
-void SocialSummary::setScheduled(int32_t value)
+void SocialSummary::setScheduled(int64_t value)
 {
     m_Scheduled = value;
     m_ScheduledIsSet = true;

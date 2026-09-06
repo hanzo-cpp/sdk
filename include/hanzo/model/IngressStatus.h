@@ -95,10 +95,10 @@ public:
     /// <summary>
     /// LiveHosts is how many hosts the compiled table routes.
     /// </summary>
-    int32_t getLiveHosts() const;
+    int64_t getLiveHosts() const;
     bool liveHostsIsSet() const;
     void unsetLiveHosts();
-    void setLiveHosts(int32_t value);
+    void setLiveHosts(int64_t value);
 
     /// <summary>
     /// Proxy names the reverse-proxy implementation behind every route.
@@ -119,10 +119,10 @@ public:
     /// <summary>
     /// TLSHosts is how many hosts the ACME HostPolicy will issue a certificate for. NOT a subset of LiveHosts: an extraHost owns no route, and a TLS route naming a missing service is skipped while its host still wants a cert.
     /// </summary>
-    int32_t getTlsHosts() const;
+    int64_t getTlsHosts() const;
     bool tlsHostsIsSet() const;
     void unsetTlsHosts();
-    void setTlsHosts(int32_t value);
+    void setTlsHosts(int64_t value);
 
 
 protected:
@@ -141,7 +141,7 @@ protected:
     utility::string_t m_HttpsAddr;
     bool m_HttpsAddrIsSet;
 
-    int32_t m_LiveHosts;
+    int64_t m_LiveHosts;
     bool m_LiveHostsIsSet;
 
     utility::string_t m_Proxy;
@@ -150,7 +150,7 @@ protected:
     utility::string_t m_Role;
     bool m_RoleIsSet;
 
-    int32_t m_TlsHosts;
+    int64_t m_TlsHosts;
     bool m_TlsHostsIsSet;
 
 };

@@ -63,20 +63,20 @@ public:
     void unsetHas_existing_observability_tool();
     void setHasExistingObservabilityTool(bool value);
 
-    int32_t getLogsScalePerDayInGb() const;
+    int64_t getLogsScalePerDayInGb() const;
     bool logsScalePerDayInGbIsSet() const;
     void unsetLogs_scale_per_day_in_gb();
-    void setLogsScalePerDayInGb(int32_t value);
+    void setLogsScalePerDayInGb(int64_t value);
 
-    int32_t getNumberOfHosts() const;
+    int64_t getNumberOfHosts() const;
     bool numberOfHostsIsSet() const;
     void unsetNumber_of_hosts();
-    void setNumberOfHosts(int32_t value);
+    void setNumberOfHosts(int64_t value);
 
-    int32_t getNumberOfServices() const;
+    int64_t getNumberOfServices() const;
     bool numberOfServicesIsSet() const;
     void unsetNumber_of_services();
-    void setNumberOfServices(int32_t value);
+    void setNumberOfServices(int64_t value);
 
     std::vector<utility::string_t> getReasonsForInterestInO11y() const;
     bool reasonsForInterestInO11yIsSet() const;
@@ -106,13 +106,13 @@ protected:
     bool m_Has_existing_observability_tool;
     bool m_Has_existing_observability_toolIsSet;
 
-    int32_t m_Logs_scale_per_day_in_gb;
+    int64_t m_Logs_scale_per_day_in_gb;
     bool m_Logs_scale_per_day_in_gbIsSet;
 
-    int32_t m_Number_of_hosts;
+    int64_t m_Number_of_hosts;
     bool m_Number_of_hostsIsSet;
 
-    int32_t m_Number_of_services;
+    int64_t m_Number_of_services;
     bool m_Number_of_servicesIsSet;
 
     std::vector<utility::string_t> m_Reasons_for_interest_in_o11y;

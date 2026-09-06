@@ -18,7 +18,7 @@ namespace model {
 
 ExecResult::ExecResult()
 {
-    m_ExitCode = 0;
+    m_ExitCode = 0L;
     m_ExitCodeIsSet = false;
     m_Stderr = utility::conversions::to_string_t("");
     m_StderrIsSet = false;
@@ -65,7 +65,7 @@ bool ExecResult::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("exitCode")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExitCode;
+            int64_t refVal_setExitCode;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExitCode);
             setExitCode(refVal_setExitCode);
             
@@ -128,7 +128,7 @@ bool ExecResult::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("exitCode"))))
     {
-        int32_t refVal_setExitCode;
+        int64_t refVal_setExitCode;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("exitCode"))), refVal_setExitCode );
         setExitCode(refVal_setExitCode);
     }
@@ -148,13 +148,13 @@ bool ExecResult::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 }
 
 
-int32_t ExecResult::getExitCode() const
+int64_t ExecResult::getExitCode() const
 {
     return m_ExitCode;
 }
 
 
-void ExecResult::setExitCode(int32_t value)
+void ExecResult::setExitCode(int64_t value)
 {
     m_ExitCode = value;
     m_ExitCodeIsSet = true;

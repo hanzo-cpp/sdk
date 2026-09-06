@@ -18,11 +18,11 @@ namespace model {
 
 StatusCounts::StatusCounts()
 {
-    m_Qualified = 0;
+    m_Qualified = 0L;
     m_QualifiedIsSet = false;
-    m_Signup = 0;
+    m_Signup = 0L;
     m_SignupIsSet = false;
-    m_Total = 0;
+    m_Total = 0L;
     m_TotalIsSet = false;
 }
 
@@ -65,7 +65,7 @@ bool StatusCounts::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("qualified")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setQualified;
+            int64_t refVal_setQualified;
             ok &= ModelBase::fromJson(fieldValue, refVal_setQualified);
             setQualified(refVal_setQualified);
             
@@ -76,7 +76,7 @@ bool StatusCounts::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("signup")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setSignup;
+            int64_t refVal_setSignup;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSignup);
             setSignup(refVal_setSignup);
             
@@ -87,7 +87,7 @@ bool StatusCounts::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("total")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotal;
+            int64_t refVal_setTotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotal);
             setTotal(refVal_setTotal);
             
@@ -128,19 +128,19 @@ bool StatusCounts::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("qualified"))))
     {
-        int32_t refVal_setQualified;
+        int64_t refVal_setQualified;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("qualified"))), refVal_setQualified );
         setQualified(refVal_setQualified);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("signup"))))
     {
-        int32_t refVal_setSignup;
+        int64_t refVal_setSignup;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("signup"))), refVal_setSignup );
         setSignup(refVal_setSignup);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("total"))))
     {
-        int32_t refVal_setTotal;
+        int64_t refVal_setTotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("total"))), refVal_setTotal );
         setTotal(refVal_setTotal);
     }
@@ -148,13 +148,13 @@ bool StatusCounts::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
 }
 
 
-int32_t StatusCounts::getQualified() const
+int64_t StatusCounts::getQualified() const
 {
     return m_Qualified;
 }
 
 
-void StatusCounts::setQualified(int32_t value)
+void StatusCounts::setQualified(int64_t value)
 {
     m_Qualified = value;
     m_QualifiedIsSet = true;
@@ -169,13 +169,13 @@ void StatusCounts::unsetQualified()
 {
     m_QualifiedIsSet = false;
 }
-int32_t StatusCounts::getSignup() const
+int64_t StatusCounts::getSignup() const
 {
     return m_Signup;
 }
 
 
-void StatusCounts::setSignup(int32_t value)
+void StatusCounts::setSignup(int64_t value)
 {
     m_Signup = value;
     m_SignupIsSet = true;
@@ -190,13 +190,13 @@ void StatusCounts::unsetSignup()
 {
     m_SignupIsSet = false;
 }
-int32_t StatusCounts::getTotal() const
+int64_t StatusCounts::getTotal() const
 {
     return m_Total;
 }
 
 
-void StatusCounts::setTotal(int32_t value)
+void StatusCounts::setTotal(int64_t value)
 {
     m_Total = value;
     m_TotalIsSet = true;

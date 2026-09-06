@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// ExitCode is the command&#39;s own exit status. A non-zero one is a SUCCESSFUL call carrying a failed command — the HTTP status stays 200, because \&quot;the command failed\&quot; and \&quot;the call failed\&quot; are different facts and a caller has to be able to tell them apart.
     /// </summary>
-    int32_t getExitCode() const;
+    int64_t getExitCode() const;
     bool exitCodeIsSet() const;
     void unsetExitCode();
-    void setExitCode(int32_t value);
+    void setExitCode(int64_t value);
 
     /// <summary>
     /// Stderr is everything it wrote to standard error. It is populated on a successful run too — plenty of tools report progress there — so it is not a signal that anything went wrong; ExitCode is.
@@ -78,7 +78,7 @@ public:
 
 
 protected:
-    int32_t m_ExitCode;
+    int64_t m_ExitCode;
     bool m_ExitCodeIsSet;
 
     utility::string_t m_Stderr;

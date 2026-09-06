@@ -20,7 +20,7 @@ Provenance::Provenance()
 {
     m_Backend = utility::conversions::to_string_t("");
     m_BackendIsSet = false;
-    m_Rank = 0;
+    m_Rank = 0L;
     m_RankIsSet = false;
     m_Score = 0.0;
     m_ScoreIsSet = false;
@@ -76,7 +76,7 @@ bool Provenance::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("rank")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setRank;
+            int64_t refVal_setRank;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRank);
             setRank(refVal_setRank);
             
@@ -134,7 +134,7 @@ bool Provenance::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("rank"))))
     {
-        int32_t refVal_setRank;
+        int64_t refVal_setRank;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("rank"))), refVal_setRank );
         setRank(refVal_setRank);
     }
@@ -169,13 +169,13 @@ void Provenance::unsetBackend()
 {
     m_BackendIsSet = false;
 }
-int32_t Provenance::getRank() const
+int64_t Provenance::getRank() const
 {
     return m_Rank;
 }
 
 
-void Provenance::setRank(int32_t value)
+void Provenance::setRank(int64_t value)
 {
     m_Rank = value;
     m_RankIsSet = true;

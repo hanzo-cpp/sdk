@@ -106,10 +106,10 @@ public:
     void unsetSpan_name();
     void setSpanName(const utility::string_t& value);
 
-    int32_t getStepOrder() const;
+    int64_t getStepOrder() const;
     bool stepOrderIsSet() const;
     void unsetStep_order();
-    void setStepOrder(int32_t value);
+    void setStepOrder(int64_t value);
 
 
 protected:
@@ -139,7 +139,7 @@ protected:
     utility::string_t m_Span_name;
     bool m_Span_nameIsSet;
 
-    int32_t m_Step_order;
+    int64_t m_Step_order;
     bool m_Step_orderIsSet;
 
 };

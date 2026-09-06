@@ -57,26 +57,26 @@ public:
     /// <summary>
     /// Count is how many traces this page carries.
     /// </summary>
-    int32_t getCount() const;
+    int64_t getCount() const;
     bool countIsSet() const;
     void unsetCount();
-    void setCount(int32_t value);
+    void setCount(int64_t value);
 
     /// <summary>
     /// Limit is the page cap actually applied, after clamping.
     /// </summary>
-    int32_t getLimit() const;
+    int64_t getLimit() const;
     bool limitIsSet() const;
     void unsetLimit();
-    void setLimit(int32_t value);
+    void setLimit(int64_t value);
 
     /// <summary>
     /// SinceSec is the window actually read, in seconds, after clamping.
     /// </summary>
-    int32_t getSinceSec() const;
+    int64_t getSinceSec() const;
     bool sinceSecIsSet() const;
     void unsetSinceSec();
-    void setSinceSec(int32_t value);
+    void setSinceSec(int64_t value);
 
     /// <summary>
     /// Traces are the caller org&#39;s traces, most recently active first.
@@ -88,13 +88,13 @@ public:
 
 
 protected:
-    int32_t m_Count;
+    int64_t m_Count;
     bool m_CountIsSet;
 
-    int32_t m_Limit;
+    int64_t m_Limit;
     bool m_LimitIsSet;
 
-    int32_t m_SinceSec;
+    int64_t m_SinceSec;
     bool m_SinceSecIsSet;
 
     std::vector<std::shared_ptr<O11y_traceRow>> m_Traces;

@@ -119,10 +119,10 @@ public:
     /// <summary>
     /// UpdatedAt is when the item last changed, in unix milliseconds.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
 
 protected:
@@ -150,7 +150,7 @@ protected:
     utility::string_t m_Summary;
     bool m_SummaryIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
 };

@@ -18,7 +18,7 @@ namespace model {
 
 Payout::Payout()
 {
-    m_Amount = 0;
+    m_Amount = 0L;
     m_AmountIsSet = false;
     m_ArrivalDate = utility::conversions::to_string_t("");
     m_ArrivalDateIsSet = false;
@@ -133,7 +133,7 @@ bool Payout::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("amount")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setAmount;
+            int64_t refVal_setAmount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAmount);
             setAmount(refVal_setAmount);
             
@@ -346,7 +346,7 @@ bool Payout::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("amount"))))
     {
-        int32_t refVal_setAmount;
+        int64_t refVal_setAmount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("amount"))), refVal_setAmount );
         setAmount(refVal_setAmount);
     }
@@ -426,13 +426,13 @@ bool Payout::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
 }
 
 
-int32_t Payout::getAmount() const
+int64_t Payout::getAmount() const
 {
     return m_Amount;
 }
 
 
-void Payout::setAmount(int32_t value)
+void Payout::setAmount(int64_t value)
 {
     m_Amount = value;
     m_AmountIsSet = true;

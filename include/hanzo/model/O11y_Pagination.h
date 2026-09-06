@@ -51,38 +51,38 @@ public:
     /// O11y_Pagination members
 
 
-    int32_t getPage() const;
+    int64_t getPage() const;
     bool pageIsSet() const;
     void unsetPage();
-    void setPage(int32_t value);
+    void setPage(int64_t value);
 
-    int32_t getPages() const;
+    int64_t getPages() const;
     bool pagesIsSet() const;
     void unsetPages();
-    void setPages(int32_t value);
+    void setPages(int64_t value);
 
-    int32_t getPerPage() const;
+    int64_t getPerPage() const;
     bool perPageIsSet() const;
     void unsetPer_page();
-    void setPerPage(int32_t value);
+    void setPerPage(int64_t value);
 
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
 
 protected:
-    int32_t m_Page;
+    int64_t m_Page;
     bool m_PageIsSet;
 
-    int32_t m_Pages;
+    int64_t m_Pages;
     bool m_PagesIsSet;
 
-    int32_t m_Per_page;
+    int64_t m_Per_page;
     bool m_Per_pageIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
 };

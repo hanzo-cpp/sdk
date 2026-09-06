@@ -65,10 +65,10 @@ public:
     /// <summary>
     /// Bytes is their total size in bytes.
     /// </summary>
-    int32_t getBytes() const;
+    int64_t getBytes() const;
     bool bytesIsSet() const;
     void unsetBytes();
-    void setBytes(int32_t value);
+    void setBytes(int64_t value);
 
     /// <summary>
     /// Commit is the revision that was built, for a deployment that came from a repository. Absent for an uploaded artifact, which has no revision.
@@ -81,18 +81,18 @@ public:
     /// <summary>
     /// CreatedAt is when the deployment was queued, as Unix seconds.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// Files is how many objects the deployment published.
     /// </summary>
-    int32_t getFiles() const;
+    int64_t getFiles() const;
     bool filesIsSet() const;
     void unsetFiles();
-    void setFiles(int32_t value);
+    void setFiles(int64_t value);
 
     /// <summary>
     /// ID identifies this one deployment attempt, and is what CI quotes back to complete it.
@@ -153,10 +153,10 @@ public:
     /// <summary>
     /// UpdatedAt is when it last changed state, as Unix seconds — so the gap between the two is how long the build took.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
     /// <summary>
     /// Upload is the prefix-scoped, short-lived S3 write grant handed to CI with a queued git deployment, so it needs no bucket credential (grant.go). Present ONLY on the 202 that creates the deployment — it is never stored and never replayed on a later read, so a grant cannot outlive the build it was minted for by being fetched again.
@@ -169,26 +169,26 @@ public:
     /// <summary>
     /// Version counts deployments of this project from 1, so the history reads as an ordered sequence rather than by timestamp. It is per project, not global.
     /// </summary>
-    int32_t getVersion() const;
+    int64_t getVersion() const;
     bool versionIsSet() const;
     void unsetVersion();
-    void setVersion(int32_t value);
+    void setVersion(int64_t value);
 
 
 protected:
     utility::string_t m_Bucket;
     bool m_BucketIsSet;
 
-    int32_t m_Bytes;
+    int64_t m_Bytes;
     bool m_BytesIsSet;
 
     utility::string_t m_Commit;
     bool m_CommitIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
-    int32_t m_Files;
+    int64_t m_Files;
     bool m_FilesIsSet;
 
     utility::string_t m_Id;
@@ -212,13 +212,13 @@ protected:
     utility::string_t m_Status;
     bool m_StatusIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
     std::shared_ptr<ProjectsUploadGrant> m_Upload;
     bool m_UploadIsSet;
 
-    int32_t m_Version;
+    int64_t m_Version;
     bool m_VersionIsSet;
 
 };

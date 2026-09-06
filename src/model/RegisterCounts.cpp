@@ -19,7 +19,7 @@ namespace model {
 RegisterCounts::RegisterCounts()
 {
     m_ByStageIsSet = false;
-    m_Total = 0;
+    m_Total = 0L;
     m_TotalIsSet = false;
 }
 
@@ -57,7 +57,7 @@ bool RegisterCounts::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("byStage")));
         if(!fieldValue.is_null())
         {
-            std::map<utility::string_t, int32_t> refVal_setByStage;
+            std::map<utility::string_t, int64_t> refVal_setByStage;
             ok &= ModelBase::fromJson(fieldValue, refVal_setByStage);
             setByStage(refVal_setByStage);
             
@@ -68,7 +68,7 @@ bool RegisterCounts::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("total")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotal;
+            int64_t refVal_setTotal;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotal);
             setTotal(refVal_setTotal);
             
@@ -105,13 +105,13 @@ bool RegisterCounts::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("byStage"))))
     {
-        std::map<utility::string_t, int32_t> refVal_setByStage;
+        std::map<utility::string_t, int64_t> refVal_setByStage;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("byStage"))), refVal_setByStage );
         setByStage(refVal_setByStage);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("total"))))
     {
-        int32_t refVal_setTotal;
+        int64_t refVal_setTotal;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("total"))), refVal_setTotal );
         setTotal(refVal_setTotal);
     }
@@ -119,13 +119,13 @@ bool RegisterCounts::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 }
 
 
-std::map<utility::string_t, int32_t> RegisterCounts::getByStage() const
+std::map<utility::string_t, int64_t> RegisterCounts::getByStage() const
 {
     return m_ByStage;
 }
 
 
-void RegisterCounts::setByStage(std::map<utility::string_t, int32_t> value)
+void RegisterCounts::setByStage(std::map<utility::string_t, int64_t> value)
 {
     m_ByStage = value;
     m_ByStageIsSet = true;
@@ -140,13 +140,13 @@ void RegisterCounts::unsetByStage()
 {
     m_ByStageIsSet = false;
 }
-int32_t RegisterCounts::getTotal() const
+int64_t RegisterCounts::getTotal() const
 {
     return m_Total;
 }
 
 
-void RegisterCounts::setTotal(int32_t value)
+void RegisterCounts::setTotal(int64_t value)
 {
     m_Total = value;
     m_TotalIsSet = true;

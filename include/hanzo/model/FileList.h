@@ -90,10 +90,10 @@ public:
     /// <summary>
     /// Total is how many entries came back. The listing is BOUNDED, so a drive with more files than the cap answers the cap and this says so — it is not a count of what the drive holds.
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
 
 protected:
@@ -109,7 +109,7 @@ protected:
     utility::string_t m_Space;
     bool m_SpaceIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
 };

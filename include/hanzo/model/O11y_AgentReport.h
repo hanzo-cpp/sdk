@@ -58,17 +58,17 @@ public:
     void unsetData();
     void setData(const std::map<utility::string_t, std::shared_ptr<Object>>& value);
 
-    int32_t getTimestampMillis() const;
+    int64_t getTimestampMillis() const;
     bool timestampMillisIsSet() const;
     void unsetTimestampMillis();
-    void setTimestampMillis(int32_t value);
+    void setTimestampMillis(int64_t value);
 
 
 protected:
     std::map<utility::string_t, std::shared_ptr<Object>> m_Data;
     bool m_DataIsSet;
 
-    int32_t m_TimestampMillis;
+    int64_t m_TimestampMillis;
     bool m_TimestampMillisIsSet;
 
 };

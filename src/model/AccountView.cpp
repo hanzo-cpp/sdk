@@ -20,7 +20,7 @@ AccountView::AccountView()
 {
     m_Address = utility::conversions::to_string_t("");
     m_AddressIsSet = false;
-    m_BalanceCents = 0;
+    m_BalanceCents = 0L;
     m_BalanceCentsIsSet = false;
 }
 
@@ -69,7 +69,7 @@ bool AccountView::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("balanceCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBalanceCents;
+            int64_t refVal_setBalanceCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBalanceCents);
             setBalanceCents(refVal_setBalanceCents);
             
@@ -112,7 +112,7 @@ bool AccountView::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("balanceCents"))))
     {
-        int32_t refVal_setBalanceCents;
+        int64_t refVal_setBalanceCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("balanceCents"))), refVal_setBalanceCents );
         setBalanceCents(refVal_setBalanceCents);
     }
@@ -141,13 +141,13 @@ void AccountView::unsetAddress()
 {
     m_AddressIsSet = false;
 }
-int32_t AccountView::getBalanceCents() const
+int64_t AccountView::getBalanceCents() const
 {
     return m_BalanceCents;
 }
 
 
-void AccountView::setBalanceCents(int32_t value)
+void AccountView::setBalanceCents(int64_t value)
 {
     m_BalanceCents = value;
     m_BalanceCentsIsSet = true;

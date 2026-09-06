@@ -57,38 +57,38 @@ public:
     /// O11y_metricsResponse_usage members
 
 
-    int32_t getCalls() const;
+    int64_t getCalls() const;
     bool callsIsSet() const;
     void unsetCalls();
-    void setCalls(int32_t value);
+    void setCalls(int64_t value);
 
-    int32_t getCostCents() const;
+    int64_t getCostCents() const;
     bool costCentsIsSet() const;
     void unsetCostCents();
-    void setCostCents(int32_t value);
+    void setCostCents(int64_t value);
 
     std::vector<std::shared_ptr<O11y_usageBucket>> getSeries() const;
     bool seriesIsSet() const;
     void unsetSeries();
     void setSeries(const std::vector<std::shared_ptr<O11y_usageBucket>>& value);
 
-    int32_t getTokens() const;
+    int64_t getTokens() const;
     bool tokensIsSet() const;
     void unsetTokens();
-    void setTokens(int32_t value);
+    void setTokens(int64_t value);
 
 
 protected:
-    int32_t m_Calls;
+    int64_t m_Calls;
     bool m_CallsIsSet;
 
-    int32_t m_CostCents;
+    int64_t m_CostCents;
     bool m_CostCentsIsSet;
 
     std::vector<std::shared_ptr<O11y_usageBucket>> m_Series;
     bool m_SeriesIsSet;
 
-    int32_t m_Tokens;
+    int64_t m_Tokens;
     bool m_TokensIsSet;
 
 };

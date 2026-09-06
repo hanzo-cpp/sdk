@@ -55,10 +55,10 @@ public:
     /// <summary>
     /// Budget is what the campaign is allowed to cost, in USD cents. A negative value is clamped to 0; nothing enforces the ceiling here.
     /// </summary>
-    int32_t getBudget() const;
+    int64_t getBudget() const;
     bool budgetIsSet() const;
     void unsetBudget();
-    void setBudget(int32_t value);
+    void setBudget(int64_t value);
 
     /// <summary>
     /// Channel is the delivery surface: email, sms, social, meta, google or tiktok. Empty means email.
@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// CreatedAt is unix seconds when the campaign was registered. Server-assigned and never rewritten — an update leaves it as it was.
     /// </summary>
-    int32_t getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
-    void setCreatedAt(int32_t value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// ID is the server-assigned campaign id (\&quot;camp_\&quot; + 128 random bits).
@@ -103,18 +103,18 @@ public:
     /// <summary>
     /// ScheduledAt is the unix send time; 0 means unscheduled. Setting it on a campaign with no explicit status makes that status \&quot;scheduled\&quot;.
     /// </summary>
-    int32_t getScheduledAt() const;
+    int64_t getScheduledAt() const;
     bool scheduledAtIsSet() const;
     void unsetScheduledAt();
-    void setScheduledAt(int32_t value);
+    void setScheduledAt(int64_t value);
 
     /// <summary>
     /// Spend is what the campaign has cost so far, in USD cents, clamped to &gt;&#x3D; 0. The CALLER owns it: no send, ad buy or invoice moves it, so it changes only when create or update carries a new value. It is summed across the org&#39;s campaigns into GET /v1/marketing/summary.
     /// </summary>
-    int32_t getSpend() const;
+    int64_t getSpend() const;
     bool spendIsSet() const;
     void unsetSpend();
-    void setSpend(int32_t value);
+    void setSpend(int64_t value);
 
     /// <summary>
     /// Status is the lifecycle: draft, scheduled, active, paused or completed. Empty means draft.
@@ -127,20 +127,20 @@ public:
     /// <summary>
     /// UpdatedAt is unix seconds of the last write. Server-assigned on create and on every update or schedule change, and the campaign list is ordered by it, newest first.
     /// </summary>
-    int32_t getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
-    void setUpdatedAt(int32_t value);
+    void setUpdatedAt(int64_t value);
 
 
 protected:
-    int32_t m_Budget;
+    int64_t m_Budget;
     bool m_BudgetIsSet;
 
     utility::string_t m_Channel;
     bool m_ChannelIsSet;
 
-    int32_t m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
     utility::string_t m_Id;
@@ -152,16 +152,16 @@ protected:
     utility::string_t m_Objective;
     bool m_ObjectiveIsSet;
 
-    int32_t m_ScheduledAt;
+    int64_t m_ScheduledAt;
     bool m_ScheduledAtIsSet;
 
-    int32_t m_Spend;
+    int64_t m_Spend;
     bool m_SpendIsSet;
 
     utility::string_t m_Status;
     bool m_StatusIsSet;
 
-    int32_t m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
 };

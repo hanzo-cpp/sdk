@@ -34,7 +34,7 @@ O11y_O11yLogPipeline::O11y_O11yLogPipeline()
     m_IdIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_OrderId = 0;
+    m_OrderId = 0L;
     m_OrderIdIsSet = false;
     m_UpdatedAt = utility::datetime();
     m_UpdatedAtIsSet = false;
@@ -225,7 +225,7 @@ bool O11y_O11yLogPipeline::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("orderId")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setOrderId;
+            int64_t refVal_setOrderId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOrderId);
             setOrderId(refVal_setOrderId);
             
@@ -378,7 +378,7 @@ bool O11y_O11yLogPipeline::fromMultiPart(std::shared_ptr<MultipartFormData> mult
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("orderId"))))
     {
-        int32_t refVal_setOrderId;
+        int64_t refVal_setOrderId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("orderId"))), refVal_setOrderId );
         setOrderId(refVal_setOrderId);
     }
@@ -587,13 +587,13 @@ void O11y_O11yLogPipeline::unsetName()
 {
     m_NameIsSet = false;
 }
-int32_t O11y_O11yLogPipeline::getOrderId() const
+int64_t O11y_O11yLogPipeline::getOrderId() const
 {
     return m_OrderId;
 }
 
 
-void O11y_O11yLogPipeline::setOrderId(int32_t value)
+void O11y_O11yLogPipeline::setOrderId(int64_t value)
 {
     m_OrderId = value;
     m_OrderIdIsSet = true;

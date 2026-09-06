@@ -20,7 +20,7 @@ O11y_O11yErrorIssue::O11y_O11yErrorIssue()
 {
     m_Assignee = utility::conversions::to_string_t("");
     m_AssigneeIsSet = false;
-    m_Count = 0;
+    m_Count = 0L;
     m_CountIsSet = false;
     m_CreatedAt = utility::datetime();
     m_CreatedAtIsSet = false;
@@ -188,7 +188,7 @@ bool O11y_O11yErrorIssue::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("count")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCount;
+            int64_t refVal_setCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCount);
             setCount(refVal_setCount);
             
@@ -486,7 +486,7 @@ bool O11y_O11yErrorIssue::fromMultiPart(std::shared_ptr<MultipartFormData> multi
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("count"))))
     {
-        int32_t refVal_setCount;
+        int64_t refVal_setCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("count"))), refVal_setCount );
         setCount(refVal_setCount);
     }
@@ -617,13 +617,13 @@ void O11y_O11yErrorIssue::unsetAssignee()
 {
     m_AssigneeIsSet = false;
 }
-int32_t O11y_O11yErrorIssue::getCount() const
+int64_t O11y_O11yErrorIssue::getCount() const
 {
     return m_Count;
 }
 
 
-void O11y_O11yErrorIssue::setCount(int32_t value)
+void O11y_O11yErrorIssue::setCount(int64_t value)
 {
     m_Count = value;
     m_CountIsSet = true;

@@ -20,9 +20,9 @@ FinanceLedgerEntry::FinanceLedgerEntry()
 {
     m_Account = utility::conversions::to_string_t("");
     m_AccountIsSet = false;
-    m_BalanceCents = 0;
+    m_BalanceCents = 0L;
     m_BalanceCentsIsSet = false;
-    m_Cents = 0;
+    m_Cents = 0L;
     m_CentsIsSet = false;
     m_Currency = utility::conversions::to_string_t("");
     m_CurrencyIsSet = false;
@@ -104,7 +104,7 @@ bool FinanceLedgerEntry::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("balanceCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBalanceCents;
+            int64_t refVal_setBalanceCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBalanceCents);
             setBalanceCents(refVal_setBalanceCents);
             
@@ -115,7 +115,7 @@ bool FinanceLedgerEntry::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("cents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCents;
+            int64_t refVal_setCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCents);
             setCents(refVal_setCents);
             
@@ -222,13 +222,13 @@ bool FinanceLedgerEntry::fromMultiPart(std::shared_ptr<MultipartFormData> multip
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("balanceCents"))))
     {
-        int32_t refVal_setBalanceCents;
+        int64_t refVal_setBalanceCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("balanceCents"))), refVal_setBalanceCents );
         setBalanceCents(refVal_setBalanceCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("cents"))))
     {
-        int32_t refVal_setCents;
+        int64_t refVal_setCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("cents"))), refVal_setCents );
         setCents(refVal_setCents);
     }
@@ -281,13 +281,13 @@ void FinanceLedgerEntry::unsetAccount()
 {
     m_AccountIsSet = false;
 }
-int32_t FinanceLedgerEntry::getBalanceCents() const
+int64_t FinanceLedgerEntry::getBalanceCents() const
 {
     return m_BalanceCents;
 }
 
 
-void FinanceLedgerEntry::setBalanceCents(int32_t value)
+void FinanceLedgerEntry::setBalanceCents(int64_t value)
 {
     m_BalanceCents = value;
     m_BalanceCentsIsSet = true;
@@ -302,13 +302,13 @@ void FinanceLedgerEntry::unsetBalanceCents()
 {
     m_BalanceCentsIsSet = false;
 }
-int32_t FinanceLedgerEntry::getCents() const
+int64_t FinanceLedgerEntry::getCents() const
 {
     return m_Cents;
 }
 
 
-void FinanceLedgerEntry::setCents(int32_t value)
+void FinanceLedgerEntry::setCents(int64_t value)
 {
     m_Cents = value;
     m_CentsIsSet = true;

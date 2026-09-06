@@ -18,10 +18,10 @@ namespace model {
 
 ProjectsUploadGrant::ProjectsUploadGrant()
 {
-    m_ExpiresAt = 0;
+    m_ExpiresAt = 0L;
     m_ExpiresAtIsSet = false;
     m_FieldsIsSet = false;
-    m_MaxBytes = 0;
+    m_MaxBytes = 0L;
     m_MaxBytesIsSet = false;
     m_Prefix = utility::conversions::to_string_t("");
     m_PrefixIsSet = false;
@@ -78,7 +78,7 @@ bool ProjectsUploadGrant::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("expiresAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setExpiresAt;
+            int64_t refVal_setExpiresAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setExpiresAt);
             setExpiresAt(refVal_setExpiresAt);
             
@@ -100,7 +100,7 @@ bool ProjectsUploadGrant::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("maxBytes")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setMaxBytes;
+            int64_t refVal_setMaxBytes;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMaxBytes);
             setMaxBytes(refVal_setMaxBytes);
             
@@ -171,7 +171,7 @@ bool ProjectsUploadGrant::fromMultiPart(std::shared_ptr<MultipartFormData> multi
 
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("expiresAt"))))
     {
-        int32_t refVal_setExpiresAt;
+        int64_t refVal_setExpiresAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("expiresAt"))), refVal_setExpiresAt );
         setExpiresAt(refVal_setExpiresAt);
     }
@@ -183,7 +183,7 @@ bool ProjectsUploadGrant::fromMultiPart(std::shared_ptr<MultipartFormData> multi
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("maxBytes"))))
     {
-        int32_t refVal_setMaxBytes;
+        int64_t refVal_setMaxBytes;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("maxBytes"))), refVal_setMaxBytes );
         setMaxBytes(refVal_setMaxBytes);
     }
@@ -203,13 +203,13 @@ bool ProjectsUploadGrant::fromMultiPart(std::shared_ptr<MultipartFormData> multi
 }
 
 
-int32_t ProjectsUploadGrant::getExpiresAt() const
+int64_t ProjectsUploadGrant::getExpiresAt() const
 {
     return m_ExpiresAt;
 }
 
 
-void ProjectsUploadGrant::setExpiresAt(int32_t value)
+void ProjectsUploadGrant::setExpiresAt(int64_t value)
 {
     m_ExpiresAt = value;
     m_ExpiresAtIsSet = true;
@@ -245,13 +245,13 @@ void ProjectsUploadGrant::unsetFields()
 {
     m_FieldsIsSet = false;
 }
-int32_t ProjectsUploadGrant::getMaxBytes() const
+int64_t ProjectsUploadGrant::getMaxBytes() const
 {
     return m_MaxBytes;
 }
 
 
-void ProjectsUploadGrant::setMaxBytes(int32_t value)
+void ProjectsUploadGrant::setMaxBytes(int64_t value)
 {
     m_MaxBytes = value;
     m_MaxBytesIsSet = true;

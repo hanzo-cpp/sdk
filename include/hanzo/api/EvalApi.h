@@ -32,7 +32,6 @@
 #include "hanzo/model/ItemList.h"
 #include "hanzo/model/ItemReq.h"
 #include "hanzo/model/ItemView.h"
-#include "hanzo/Object.h"
 #include "hanzo/model/RunRequest.h"
 #include "hanzo/model/RunSummary.h"
 #include "hanzo/model/Runs.h"
@@ -68,7 +67,7 @@ public:
     /// Removes the named dataset of the caller&#39;s org AND all of its examples, in one transaction.  This is not a detach: the examples are gone with the set, so a dataset cannot be resurrected by re-creating the name. A name this org does not have is 404 — never a silent success — and a name belonging to another tenant is the same 404, because the delete is predicated on the validated org. Requires a validated principal; 403 without one. Runs and scores already recorded against the dataset are telemetry events and are NOT deleted with it.
     /// </remarks>
     /// <param name="name">Name is the dataset the URL names.</param>
-    pplx::task<std::shared_ptr<Object>> deleteEvalDatasetsByName(
+    pplx::task<void> deleteEvalDatasetsByName(
         utility::string_t name
     ) const;
     /// <summary>
@@ -77,9 +76,9 @@ public:
     /// <remarks>
     /// Is the datasets your org has, each with its name, description, metadata and timestamps.  It is the only way to enumerate what an org holds. Requires a validated principal; 403 without one. Every row is filtered on the validated org, so there is no parameter that reaches another tenant&#39;s datasets. The item count is NOT populated here — read one dataset to get it.
     /// </remarks>
-    /// <param name="limit">Limit caps the rows returned. It defaults to 100 and is capped at 500; a non-positive or unparseable value falls back to the default rather than failing, because a typo about paging is not a reason to refuse a read. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the rows returned. It defaults to 100 and is capped at 500; a non-positive or unparseable value falls back to the default rather than failing, because a typo about paging is not a reason to refuse a read. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<DatasetList>> getEvalDatasets(
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Returns one dataset of the caller&#39;s org by name, together with its live item count — the one read that answers how big the set actually is.
@@ -98,10 +97,10 @@ public:
     /// Is the examples in one of your datasets — the set is named in the path, because this collection only exists inside one.  Archived examples are included, so the caller sees the whole set rather than only what a run would use. Requires a validated principal; 403 without one, and the read is filtered on the validated org, so naming another tenant&#39;s dataset returns nothing rather than its contents.
     /// </remarks>
     /// <param name="name">Dataset is the set to read, from the path — this collection only exists inside one.</param>
-    /// <param name="limit"> (optional, default to 0)</param>
+    /// <param name="limit"> (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<ItemList>> getEvalDatasetsByNameItems(
         utility::string_t name,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Is the judges your org has defined, each with its judge model, criteria and the score name it writes under.
@@ -109,9 +108,9 @@ public:
     /// <remarks>
     /// Is the judges your org has defined, each with its judge model, criteria and the score name it writes under.  Requires a validated principal; 403 without one, and the listing is filtered on the validated org.
     /// </remarks>
-    /// <param name="limit">Limit caps the rows returned. It defaults to 100 and is capped at 500; a non-positive or unparseable value falls back to the default rather than failing, because a typo about paging is not a reason to refuse a read. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the rows returned. It defaults to 100 and is capped at 500; a non-positive or unparseable value falls back to the default rather than failing, because a typo about paging is not a reason to refuse a read. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<EvaluatorList>> getEvalEvaluators(
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Is your org&#39;s AI overview board over a window: totals (generations, prompt and completion tokens, cost in cents, errors, success rate, distinct models and users), a gap-filled time series, a per-model breakdown with the long tail folded into \&quot;other\&quot;, and latency percentiles read from the GenAI spans.
@@ -131,9 +130,9 @@ public:
     /// <remarks>
     /// Is the score shapes your org has declared — each name&#39;s data type, its numeric bounds and its allowed categories.  Requires a validated principal; 403 without one, and the listing is filtered on the validated org.
     /// </remarks>
-    /// <param name="limit">Limit caps the rows returned. It defaults to 100 and is capped at 500; a non-positive or unparseable value falls back to the default rather than failing, because a typo about paging is not a reason to refuse a read. (optional, default to 0)</param>
+    /// <param name="limit">Limit caps the rows returned. It defaults to 100 and is capped at 500; a non-positive or unparseable value falls back to the default rather than failing, because a typo about paging is not a reason to refuse a read. (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<ScoreConfigList>> getEvalRubrics(
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Is your past runs and how they scored — the dataset and model, the judge model, how many examples were attempted and how many scored, the average score, and when it happened.
@@ -142,10 +141,10 @@ public:
     /// Is your past runs and how they scored — the dataset and model, the judge model, how many examples were attempted and how many scored, the average score, and when it happened.  Requires a validated principal; 403 without one, and rows are filtered on the validated org. These records come from the metastore rather than the datastore, so they are readable on a deployment with no telemetry wired — but a run&#39;s traces and scores are not.
     /// </remarks>
     /// <param name="datasetName">Dataset narrows to the runs against one dataset. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit"> (optional, default to 0)</param>
+    /// <param name="limit"> (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<Runs>> getEvalRuns(
         boost::optional<utility::string_t> datasetName,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Is the score events your org has recorded, narrowed by any of name, runName and traceId.
@@ -156,12 +155,12 @@ public:
     /// <param name="name">Name narrows to one score name. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="runName">RunName narrows to the scores of one run. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="traceId">TraceID narrows to the scores on one model call. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit"> (optional, default to 0)</param>
+    /// <param name="limit"> (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<ScoreList>> getEvalScores(
         boost::optional<utility::string_t> name,
         boost::optional<utility::string_t> runName,
         boost::optional<utility::string_t> traceId,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Is the traces behind your evaluations — one per model call an evaluation made, carrying its input, output, model and timing — narrowed by any of sessionId, runName and datasetName.
@@ -172,12 +171,12 @@ public:
     /// <param name="sessionId">SessionID narrows to one session, which for an evaluation is one run. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="runName">RunName narrows to the calls one run made. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="datasetName">Dataset narrows to the calls made against one dataset. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit"> (optional, default to 0)</param>
+    /// <param name="limit"> (optional, default to 0L)</param>
     pplx::task<std::shared_ptr<TraceList>> getEvalTraces(
         boost::optional<utility::string_t> sessionId,
         boost::optional<utility::string_t> runName,
         boost::optional<utility::string_t> datasetName,
-        boost::optional<int32_t> limit
+        boost::optional<int64_t> limit
     ) const;
     /// <summary>
     /// Writes a dataset — the named set of graded examples a run scores a model against — under the caller&#39;s org and answers 201 with it.

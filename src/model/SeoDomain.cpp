@@ -20,7 +20,7 @@ SeoDomain::SeoDomain()
 {
     m_Domain = utility::conversions::to_string_t("");
     m_DomainIsSet = false;
-    m_Keywords = 0;
+    m_Keywords = 0L;
     m_KeywordsIsSet = false;
     m_Position = 0.0;
     m_PositionIsSet = false;
@@ -90,7 +90,7 @@ bool SeoDomain::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("keywords")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setKeywords;
+            int64_t refVal_setKeywords;
             ok &= ModelBase::fromJson(fieldValue, refVal_setKeywords);
             setKeywords(refVal_setKeywords);
             
@@ -178,7 +178,7 @@ bool SeoDomain::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("keywords"))))
     {
-        int32_t refVal_setKeywords;
+        int64_t refVal_setKeywords;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("keywords"))), refVal_setKeywords );
         setKeywords(refVal_setKeywords);
     }
@@ -225,13 +225,13 @@ void SeoDomain::unsetDomain()
 {
     m_DomainIsSet = false;
 }
-int32_t SeoDomain::getKeywords() const
+int64_t SeoDomain::getKeywords() const
 {
     return m_Keywords;
 }
 
 
-void SeoDomain::setKeywords(int32_t value)
+void SeoDomain::setKeywords(int64_t value)
 {
     m_Keywords = value;
     m_KeywordsIsSet = true;

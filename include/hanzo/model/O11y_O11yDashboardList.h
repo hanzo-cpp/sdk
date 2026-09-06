@@ -75,10 +75,10 @@ public:
     /// <summary>
     /// Total is the count across all pages.
     /// </summary>
-    int32_t getTotal() const;
+    int64_t getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
-    void setTotal(int32_t value);
+    void setTotal(int64_t value);
 
 
 protected:
@@ -88,7 +88,7 @@ protected:
     std::vector<std::shared_ptr<O11y_O11yDashboardTag>> m_Tags;
     bool m_TagsIsSet;
 
-    int32_t m_Total;
+    int64_t m_Total;
     bool m_TotalIsSet;
 
 };

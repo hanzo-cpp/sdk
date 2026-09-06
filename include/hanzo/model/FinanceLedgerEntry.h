@@ -57,15 +57,15 @@ public:
     void unsetAccount();
     void setAccount(const utility::string_t& value);
 
-    int32_t getBalanceCents() const;
+    int64_t getBalanceCents() const;
     bool balanceCentsIsSet() const;
     void unsetBalanceCents();
-    void setBalanceCents(int32_t value);
+    void setBalanceCents(int64_t value);
 
-    int32_t getCents() const;
+    int64_t getCents() const;
     bool centsIsSet() const;
     void unsetCents();
-    void setCents(int32_t value);
+    void setCents(int64_t value);
 
     utility::string_t getCurrency() const;
     bool currencyIsSet() const;
@@ -92,10 +92,10 @@ protected:
     utility::string_t m_Account;
     bool m_AccountIsSet;
 
-    int32_t m_BalanceCents;
+    int64_t m_BalanceCents;
     bool m_BalanceCentsIsSet;
 
-    int32_t m_Cents;
+    int64_t m_Cents;
     bool m_CentsIsSet;
 
     utility::string_t m_Currency;

@@ -29,9 +29,9 @@ Extracted::Extracted()
     m_MerchantIsSet = false;
     m_Note = utility::conversions::to_string_t("");
     m_NoteIsSet = false;
-    m_TaxCents = 0;
+    m_TaxCents = 0L;
     m_TaxCentsIsSet = false;
-    m_TotalCents = 0;
+    m_TotalCents = 0L;
     m_TotalCentsIsSet = false;
 }
 
@@ -165,7 +165,7 @@ bool Extracted::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("taxCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTaxCents;
+            int64_t refVal_setTaxCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTaxCents);
             setTaxCents(refVal_setTaxCents);
             
@@ -176,7 +176,7 @@ bool Extracted::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("totalCents")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setTotalCents;
+            int64_t refVal_setTotalCents;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalCents);
             setTotalCents(refVal_setTotalCents);
             
@@ -273,13 +273,13 @@ bool Extracted::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("taxCents"))))
     {
-        int32_t refVal_setTaxCents;
+        int64_t refVal_setTaxCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("taxCents"))), refVal_setTaxCents );
         setTaxCents(refVal_setTaxCents);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("totalCents"))))
     {
-        int32_t refVal_setTotalCents;
+        int64_t refVal_setTotalCents;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("totalCents"))), refVal_setTotalCents );
         setTotalCents(refVal_setTotalCents);
     }
@@ -413,13 +413,13 @@ void Extracted::unsetNote()
 {
     m_NoteIsSet = false;
 }
-int32_t Extracted::getTaxCents() const
+int64_t Extracted::getTaxCents() const
 {
     return m_TaxCents;
 }
 
 
-void Extracted::setTaxCents(int32_t value)
+void Extracted::setTaxCents(int64_t value)
 {
     m_TaxCents = value;
     m_TaxCentsIsSet = true;
@@ -434,13 +434,13 @@ void Extracted::unsetTaxCents()
 {
     m_TaxCentsIsSet = false;
 }
-int32_t Extracted::getTotalCents() const
+int64_t Extracted::getTotalCents() const
 {
     return m_TotalCents;
 }
 
 
-void Extracted::setTotalCents(int32_t value)
+void Extracted::setTotalCents(int64_t value)
 {
     m_TotalCents = value;
     m_TotalCentsIsSet = true;

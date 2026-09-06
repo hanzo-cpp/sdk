@@ -20,13 +20,13 @@ ProjectsDeployment::ProjectsDeployment()
 {
     m_Bucket = utility::conversions::to_string_t("");
     m_BucketIsSet = false;
-    m_Bytes = 0;
+    m_Bytes = 0L;
     m_BytesIsSet = false;
     m_Commit = utility::conversions::to_string_t("");
     m_CommitIsSet = false;
-    m_CreatedAt = 0;
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
-    m_Files = 0;
+    m_Files = 0L;
     m_FilesIsSet = false;
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
@@ -42,10 +42,10 @@ ProjectsDeployment::ProjectsDeployment()
     m_SourceIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
-    m_UpdatedAt = 0;
+    m_UpdatedAt = 0L;
     m_UpdatedAtIsSet = false;
     m_UploadIsSet = false;
-    m_Version = 0;
+    m_Version = 0L;
     m_VersionIsSet = false;
 }
 
@@ -159,7 +159,7 @@ bool ProjectsDeployment::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("bytes")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setBytes;
+            int64_t refVal_setBytes;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBytes);
             setBytes(refVal_setBytes);
             
@@ -181,7 +181,7 @@ bool ProjectsDeployment::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setCreatedAt;
+            int64_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
             
@@ -192,7 +192,7 @@ bool ProjectsDeployment::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("files")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setFiles;
+            int64_t refVal_setFiles;
             ok &= ModelBase::fromJson(fieldValue, refVal_setFiles);
             setFiles(refVal_setFiles);
             
@@ -280,7 +280,7 @@ bool ProjectsDeployment::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updatedAt")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setUpdatedAt;
+            int64_t refVal_setUpdatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdatedAt);
             setUpdatedAt(refVal_setUpdatedAt);
             
@@ -302,7 +302,7 @@ bool ProjectsDeployment::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("version")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setVersion;
+            int64_t refVal_setVersion;
             ok &= ModelBase::fromJson(fieldValue, refVal_setVersion);
             setVersion(refVal_setVersion);
             
@@ -397,7 +397,7 @@ bool ProjectsDeployment::fromMultiPart(std::shared_ptr<MultipartFormData> multip
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("bytes"))))
     {
-        int32_t refVal_setBytes;
+        int64_t refVal_setBytes;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("bytes"))), refVal_setBytes );
         setBytes(refVal_setBytes);
     }
@@ -409,13 +409,13 @@ bool ProjectsDeployment::fromMultiPart(std::shared_ptr<MultipartFormData> multip
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
-        int32_t refVal_setCreatedAt;
+        int64_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("files"))))
     {
-        int32_t refVal_setFiles;
+        int64_t refVal_setFiles;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("files"))), refVal_setFiles );
         setFiles(refVal_setFiles);
     }
@@ -463,7 +463,7 @@ bool ProjectsDeployment::fromMultiPart(std::shared_ptr<MultipartFormData> multip
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
-        int32_t refVal_setUpdatedAt;
+        int64_t refVal_setUpdatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))), refVal_setUpdatedAt );
         setUpdatedAt(refVal_setUpdatedAt);
     }
@@ -475,7 +475,7 @@ bool ProjectsDeployment::fromMultiPart(std::shared_ptr<MultipartFormData> multip
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("version"))))
     {
-        int32_t refVal_setVersion;
+        int64_t refVal_setVersion;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("version"))), refVal_setVersion );
         setVersion(refVal_setVersion);
     }
@@ -504,13 +504,13 @@ void ProjectsDeployment::unsetBucket()
 {
     m_BucketIsSet = false;
 }
-int32_t ProjectsDeployment::getBytes() const
+int64_t ProjectsDeployment::getBytes() const
 {
     return m_Bytes;
 }
 
 
-void ProjectsDeployment::setBytes(int32_t value)
+void ProjectsDeployment::setBytes(int64_t value)
 {
     m_Bytes = value;
     m_BytesIsSet = true;
@@ -546,13 +546,13 @@ void ProjectsDeployment::unsetCommit()
 {
     m_CommitIsSet = false;
 }
-int32_t ProjectsDeployment::getCreatedAt() const
+int64_t ProjectsDeployment::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void ProjectsDeployment::setCreatedAt(int32_t value)
+void ProjectsDeployment::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -567,13 +567,13 @@ void ProjectsDeployment::unsetCreatedAt()
 {
     m_CreatedAtIsSet = false;
 }
-int32_t ProjectsDeployment::getFiles() const
+int64_t ProjectsDeployment::getFiles() const
 {
     return m_Files;
 }
 
 
-void ProjectsDeployment::setFiles(int32_t value)
+void ProjectsDeployment::setFiles(int64_t value)
 {
     m_Files = value;
     m_FilesIsSet = true;
@@ -735,13 +735,13 @@ void ProjectsDeployment::unsetStatus()
 {
     m_StatusIsSet = false;
 }
-int32_t ProjectsDeployment::getUpdatedAt() const
+int64_t ProjectsDeployment::getUpdatedAt() const
 {
     return m_UpdatedAt;
 }
 
 
-void ProjectsDeployment::setUpdatedAt(int32_t value)
+void ProjectsDeployment::setUpdatedAt(int64_t value)
 {
     m_UpdatedAt = value;
     m_UpdatedAtIsSet = true;
@@ -777,13 +777,13 @@ void ProjectsDeployment::unsetUpload()
 {
     m_UploadIsSet = false;
 }
-int32_t ProjectsDeployment::getVersion() const
+int64_t ProjectsDeployment::getVersion() const
 {
     return m_Version;
 }
 
 
-void ProjectsDeployment::setVersion(int32_t value)
+void ProjectsDeployment::setVersion(int64_t value)
 {
     m_Version = value;
     m_VersionIsSet = true;

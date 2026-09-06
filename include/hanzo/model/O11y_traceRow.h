@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// NumSpans is how many spans the trace carries.
     /// </summary>
-    int32_t getNumSpans() const;
+    int64_t getNumSpans() const;
     bool numSpansIsSet() const;
     void unsetNumSpans();
-    void setNumSpans(int32_t value);
+    void setNumSpans(int64_t value);
 
     /// <summary>
     /// Start is the earliest span start, RFC3339 with nanoseconds, in UTC.
@@ -100,7 +100,7 @@ protected:
     utility::string_t m_End;
     bool m_EndIsSet;
 
-    int32_t m_NumSpans;
+    int64_t m_NumSpans;
     bool m_NumSpansIsSet;
 
     utility::string_t m_Start;

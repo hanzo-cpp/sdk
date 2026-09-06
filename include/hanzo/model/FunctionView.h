@@ -79,10 +79,10 @@ public:
     /// <summary>
     /// how many secret NAMES it mounts; values are never carried
     /// </summary>
-    int32_t getEnvCount() const;
+    int64_t getEnvCount() const;
     bool envCountIsSet() const;
     void unsetEnvCount();
-    void setEnvCount(int32_t value);
+    void setEnvCount(int64_t value);
 
     /// <summary>
     /// the language it runs under
@@ -95,10 +95,10 @@ public:
     /// <summary>
     /// how many of those runs failed
     /// </summary>
-    int32_t getErrors7d() const;
+    int64_t getErrors7d() const;
     bool errors7dIsSet() const;
     void unsetErrors7d();
-    void setErrors7d(int32_t value);
+    void setErrors7d(int64_t value);
 
     /// <summary>
     /// the prebuilt image it runs, when it runs one instead of source
@@ -111,10 +111,10 @@ public:
     /// <summary>
     /// runs in the last 7 days; ABSENT, never 0, when it has not run
     /// </summary>
-    int32_t getInvocations7d() const;
+    int64_t getInvocations7d() const;
     bool invocations7dIsSet() const;
     void unsetInvocations7d();
-    void setInvocations7d(int32_t value);
+    void setInvocations7d(int64_t value);
 
     /// <summary>
     /// when its code last changed
@@ -175,10 +175,10 @@ public:
     /// <summary>
     /// its per-invocation deadline
     /// </summary>
-    int32_t getTimeoutSec() const;
+    int64_t getTimeoutSec() const;
     bool timeoutSecIsSet() const;
     void unsetTimeoutSec();
-    void setTimeoutSec(int32_t value);
+    void setTimeoutSec(int64_t value);
 
 
 protected:
@@ -191,19 +191,19 @@ protected:
     utility::string_t m_Endpoint;
     bool m_EndpointIsSet;
 
-    int32_t m_EnvCount;
+    int64_t m_EnvCount;
     bool m_EnvCountIsSet;
 
     utility::string_t m_Environment;
     bool m_EnvironmentIsSet;
 
-    int32_t m_Errors7d;
+    int64_t m_Errors7d;
     bool m_Errors7dIsSet;
 
     utility::string_t m_Image;
     bool m_ImageIsSet;
 
-    int32_t m_Invocations7d;
+    int64_t m_Invocations7d;
     bool m_Invocations7dIsSet;
 
     utility::string_t m_LastDeployedAt;
@@ -227,7 +227,7 @@ protected:
     utility::string_t m_Target;
     bool m_TargetIsSet;
 
-    int32_t m_TimeoutSec;
+    int64_t m_TimeoutSec;
     bool m_TimeoutSecIsSet;
 
 };

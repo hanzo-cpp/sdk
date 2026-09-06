@@ -79,10 +79,10 @@ public:
     /// <summary>
     /// Items is how many examples were attempted.
     /// </summary>
-    int32_t getItems() const;
+    int64_t getItems() const;
     bool itemsIsSet() const;
     void unsetItems();
-    void setItems(int32_t value);
+    void setItems(int64_t value);
 
     /// <summary>
     /// JudgeModel is the model that graded.
@@ -111,10 +111,10 @@ public:
     /// <summary>
     /// Scored is how many produced a real score.
     /// </summary>
-    int32_t getScored() const;
+    int64_t getScored() const;
     bool scoredIsSet() const;
     void unsetScored();
-    void setScored(int32_t value);
+    void setScored(int64_t value);
 
     /// <summary>
     /// UpdatedAt is when the record last changed.
@@ -135,7 +135,7 @@ protected:
     utility::string_t m_Dataset;
     bool m_DatasetIsSet;
 
-    int32_t m_Items;
+    int64_t m_Items;
     bool m_ItemsIsSet;
 
     utility::string_t m_JudgeModel;
@@ -147,7 +147,7 @@ protected:
     utility::string_t m_RunName;
     bool m_RunNameIsSet;
 
-    int32_t m_Scored;
+    int64_t m_Scored;
     bool m_ScoredIsSet;
 
     utility::string_t m_UpdatedAt;

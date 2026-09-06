@@ -63,17 +63,17 @@ public:
     /// <summary>
     /// Templates is how many built-in templates the catalog carries.
     /// </summary>
-    int32_t getTemplates() const;
+    int64_t getTemplates() const;
     bool templatesIsSet() const;
     void unsetTemplates();
-    void setTemplates(int32_t value);
+    void setTemplates(int64_t value);
 
 
 protected:
     utility::string_t m_Status;
     bool m_StatusIsSet;
 
-    int32_t m_Templates;
+    int64_t m_Templates;
     bool m_TemplatesIsSet;
 
 };

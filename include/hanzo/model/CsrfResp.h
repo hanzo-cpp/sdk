@@ -63,17 +63,17 @@ public:
     /// <summary>
     /// ExpiresIn is the token&#39;s lifetime in seconds. Fetch a new one when it lapses; a change with an expired token is refused.
     /// </summary>
-    int32_t getExpiresIn() const;
+    int64_t getExpiresIn() const;
     bool expiresInIsSet() const;
     void unsetExpiresIn();
-    void setExpiresIn(int32_t value);
+    void setExpiresIn(int64_t value);
 
 
 protected:
     utility::string_t m_CsrfToken;
     bool m_CsrfTokenIsSet;
 
-    int32_t m_ExpiresIn;
+    int64_t m_ExpiresIn;
     bool m_ExpiresInIsSet;
 
 };

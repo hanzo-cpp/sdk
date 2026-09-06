@@ -63,17 +63,17 @@ public:
     /// <summary>
     /// ScheduledAt is the unix send time. 0 clears the schedule.
     /// </summary>
-    int32_t getScheduledAt() const;
+    int64_t getScheduledAt() const;
     bool scheduledAtIsSet() const;
     void unsetScheduledAt();
-    void setScheduledAt(int32_t value);
+    void setScheduledAt(int64_t value);
 
 
 protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
 
-    int32_t m_ScheduledAt;
+    int64_t m_ScheduledAt;
     bool m_ScheduledAtIsSet;
 
 };
