@@ -3,3 +3,8 @@ dist/
 *.tar.gz
 .cache/
 compile_commands.json
+
+# Local symlinks to LLM.md
+CLAUDE.md
+AGENTS.md
+GEMINI.md
