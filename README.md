@@ -161,7 +161,7 @@ routers, so a route changes there and arrives here by regeneration.
 
 Open source · every language · on-chain settlement. [hanzo.ai](https://hanzo.ai) · [docs.hanzo.ai](https://docs.hanzo.ai)
 
-**SDKs in every language** — [Python](https://github.com/hanzoai/python-sdk) (flagship) · [TypeScript](https://github.com/hanzoai/js-sdk) · [Go](https://github.com/hanzo-go/sdk) · [Rust](https://github.com/hanzo-rs/sdk) · [C++](https://github.com/hanzo-cpp/sdk) · [Java](https://github.com/hanzoai/java-sdk) · [Kotlin](https://github.com/hanzo-kotlin/sdk) · [umbrella](https://github.com/hanzoai/sdk)
+**SDKs in every language** — [Python](https://github.com/hanzoai/python-sdk) (flagship) · [TypeScript](https://github.com/hanzoai/js-sdk) · [Go](https://github.com/hanzo-go/sdk) · [Rust](https://github.com/hanzo-rs/sdk) · [C++](https://github.com/hanzo-cpp/sdk) · [Java](https://github.com/hanzo-java/sdk) · [C#](https://github.com/hanzo-csharp/sdk) · [Kotlin](https://github.com/hanzo-kotlin/sdk) · [umbrella](https://github.com/hanzoai/sdk)
 
 ## License
 
