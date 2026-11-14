@@ -61,5 +61,10 @@ binaries:
 # the emitted one: 1814 paths / 2479 operations against hanzo.yaml's 1794 / 2456,
 # a strict superset of its routes.
 client:
+  # WHICH cloud, said out loud: hanzoai/ci defaults to `hanzoai/cloud`, which is
+  # the re-rooted OSS core and carries no openapi.yaml. The product line is what
+  # this SDK is a projection of. Keep equal to `.spec-lock`'s repo= line.
+  spec:
+    repo: hanzo-inc/cloud
   generate: ./scripts/generate.sh
   version: "CMakeLists.txt:grep -m1 -oE 'VERSION [0-9]+\\.[0-9]+\\.[0-9]+' CMakeLists.txt | cut -d' ' -f2"
