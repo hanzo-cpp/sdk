@@ -19,6 +19,11 @@ test:
     # not a README instruction.
     run: |
       set -e
+      # The runner is bare: no cmake. The PyPI wheels carry cmake and ninja with
+      # no root needed; a compiler is the one thing it must already have.
+      export PATH="$HOME/.local/bin:$PATH"
+      command -v cmake >/dev/null || python3 -m pip install --user -q cmake ninja || pip3 install --user -q --break-system-packages cmake ninja
+      c++ --version | head -1
       cmake -B build -DCMAKE_BUILD_TYPE=Release
       cmake --build build -j"$(nproc)"
 
@@ -28,6 +33,11 @@ test:
     # rather than merely committed.
     run: |
       set -e
+      # The runner is bare: no cmake. The PyPI wheels carry cmake and ninja with
+      # no root needed; a compiler is the one thing it must already have.
+      export PATH="$HOME/.local/bin:$PATH"
+      command -v cmake >/dev/null || python3 -m pip install --user -q cmake ninja || pip3 install --user -q --break-system-packages cmake ninja
+      c++ --version | head -1
       cmake -B build -DHANZO_BUILD_EXAMPLES=ON
       cmake --build build -j"$(nproc)" --target hello chat money store agent tools
 
@@ -38,6 +48,11 @@ binaries:
   - name: hanzo-cpp-sdk
     run: |
       set -e
+      # The runner is bare: no cmake. The PyPI wheels carry cmake and ninja with
+      # no root needed; a compiler is the one thing it must already have.
+      export PATH="$HOME/.local/bin:$PATH"
+      command -v cmake >/dev/null || python3 -m pip install --user -q cmake ninja || pip3 install --user -q --break-system-packages cmake ninja
+      c++ --version | head -1
       cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=dist
       cmake --build build -j"$(nproc)" --target install
       tar -czf hanzo-cpp-sdk-"$(uname -m)"-linux.tar.gz -C dist .
